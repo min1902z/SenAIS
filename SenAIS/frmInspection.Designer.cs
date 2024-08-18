@@ -28,410 +28,421 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnInspecProgress = new System.Windows.Forms.Button();
+            this.InspectionPanel = new System.Windows.Forms.Panel();
+            this.chkToggleFuelType = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEmission = new System.Windows.Forms.Button();
+            this.btnWeight = new System.Windows.Forms.Button();
+            this.btnNoise = new System.Windows.Forms.Button();
+            this.btnSpeed = new System.Windows.Forms.Button();
+            this.btnSideSlip = new System.Windows.Forms.Button();
+            this.btnWhistle = new System.Windows.Forms.Button();
+            this.btnBrake = new System.Windows.Forms.Button();
+            this.btnHeadLight = new System.Windows.Forms.Button();
+            this.btnCosLight = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.dateInSpec = new System.Windows.Forms.DateTimePicker();
+            this.txtSerialNum = new System.Windows.Forms.TextBox();
+            this.txtEngineNum = new System.Windows.Forms.TextBox();
+            this.txtFrameNum = new System.Windows.Forms.TextBox();
+            this.txtInspector = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.txtTypeCar = new System.Windows.Forms.TextBox();
+            this.InspectionPanel.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // btnInspecProgress
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.button13);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(1, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1182, 115);
-            this.panel1.TabIndex = 0;
+            this.btnInspecProgress.AutoSize = true;
+            this.btnInspecProgress.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnInspecProgress.FlatAppearance.BorderSize = 2;
+            this.btnInspecProgress.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInspecProgress.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnInspecProgress.Location = new System.Drawing.Point(40, 32);
+            this.btnInspecProgress.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInspecProgress.Name = "btnInspecProgress";
+            this.btnInspecProgress.Size = new System.Drawing.Size(179, 58);
+            this.btnInspecProgress.TabIndex = 1;
+            this.btnInspecProgress.Text = "Tiến Hành Đo";
+            this.btnInspecProgress.UseVisualStyleBackColor = true;
+            this.btnInspecProgress.Click += new System.EventHandler(this.btnInspecProgress_Click);
             // 
-            // button2
+            // InspectionPanel
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(412, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 49);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Tiến Trình";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 49);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.InspectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.button12);
-            this.panel2.Controls.Add(this.button11);
-            this.panel2.Controls.Add(this.tableLayoutPanel1);
-            this.panel2.Location = new System.Drawing.Point(2, 121);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1182, 432);
-            this.panel2.TabIndex = 1;
+            this.InspectionPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.InspectionPanel.Controls.Add(this.chkToggleFuelType);
+            this.InspectionPanel.Controls.Add(this.btnInspecProgress);
+            this.InspectionPanel.Controls.Add(this.tableLayoutPanel2);
+            this.InspectionPanel.Controls.Add(this.btnReport);
+            this.InspectionPanel.Controls.Add(this.tableLayoutPanel1);
+            this.InspectionPanel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InspectionPanel.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.InspectionPanel.Location = new System.Drawing.Point(1, 2);
+            this.InspectionPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.InspectionPanel.Name = "InspectionPanel";
+            this.InspectionPanel.Size = new System.Drawing.Size(1202, 678);
+            this.InspectionPanel.TabIndex = 1;
+            // 
+            // chkToggleFuelType
+            // 
+            this.chkToggleFuelType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkToggleFuelType.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkToggleFuelType.AutoSize = true;
+            this.chkToggleFuelType.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkToggleFuelType.Location = new System.Drawing.Point(967, 32);
+            this.chkToggleFuelType.Margin = new System.Windows.Forms.Padding(2);
+            this.chkToggleFuelType.Name = "chkToggleFuelType";
+            this.chkToggleFuelType.Size = new System.Drawing.Size(212, 43);
+            this.chkToggleFuelType.TabIndex = 7;
+            this.chkToggleFuelType.Text = "Nhiên Liệu: Xăng";
+            this.chkToggleFuelType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkToggleFuelType.UseVisualStyleBackColor = true;
+            this.chkToggleFuelType.CheckedChanged += new System.EventHandler(this.chkToggleFuelType_CheckedChanged);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnEmission, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.btnWeight, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnSpeed, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSideSlip, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnBrake, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnHeadLight, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnCosLight, 1, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(574, 55);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(442, 570);
+            this.tableLayoutPanel2.TabIndex = 6;
+            // 
+            // btnEmission
+            // 
+            this.btnEmission.AutoSize = true;
+            this.btnEmission.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnEmission.Location = new System.Drawing.Point(2, 458);
+            this.btnEmission.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEmission.Name = "btnEmission";
+            this.btnEmission.Size = new System.Drawing.Size(129, 53);
+            this.btnEmission.TabIndex = 12;
+            this.btnEmission.Text = "Khí Xả - Xăng";
+            this.btnEmission.UseVisualStyleBackColor = true;
+            this.btnEmission.Click += new System.EventHandler(this.btnEmission_Click);
+            // 
+            // btnWeight
+            // 
+            this.btnWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWeight.Location = new System.Drawing.Point(223, 116);
+            this.btnWeight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWeight.Name = "btnWeight";
+            this.btnWeight.Size = new System.Drawing.Size(129, 53);
+            this.btnWeight.TabIndex = 7;
+            this.btnWeight.Text = "Trọng Lượng";
+            this.btnWeight.UseVisualStyleBackColor = true;
+            this.btnWeight.Click += new System.EventHandler(this.btnWeight_Click);
+            // 
+            // btnNoise
+            // 
+            this.btnNoise.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise.Location = new System.Drawing.Point(2, 116);
+            this.btnNoise.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNoise.Name = "btnNoise";
+            this.btnNoise.Size = new System.Drawing.Size(129, 53);
+            this.btnNoise.TabIndex = 6;
+            this.btnNoise.Text = "Độ Ồn";
+            this.btnNoise.UseVisualStyleBackColor = true;
+            this.btnNoise.Click += new System.EventHandler(this.btnNoise_Click);
+            // 
+            // btnSpeed
+            // 
+            this.btnSpeed.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpeed.Location = new System.Drawing.Point(2, 2);
+            this.btnSpeed.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSpeed.Name = "btnSpeed";
+            this.btnSpeed.Size = new System.Drawing.Size(129, 53);
+            this.btnSpeed.TabIndex = 4;
+            this.btnSpeed.Text = "Tốc Độ";
+            this.btnSpeed.UseVisualStyleBackColor = true;
+            this.btnSpeed.Click += new System.EventHandler(this.btnSpeed_Click);
+            // 
+            // btnSideSlip
+            // 
+            this.btnSideSlip.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSideSlip.Location = new System.Drawing.Point(223, 2);
+            this.btnSideSlip.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSideSlip.Name = "btnSideSlip";
+            this.btnSideSlip.Size = new System.Drawing.Size(129, 53);
+            this.btnSideSlip.TabIndex = 5;
+            this.btnSideSlip.Text = "Trượt Ngang";
+            this.btnSideSlip.UseVisualStyleBackColor = true;
+            this.btnSideSlip.Click += new System.EventHandler(this.btnSideSlip_Click);
+            // 
+            // btnWhistle
+            // 
+            this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWhistle.Location = new System.Drawing.Point(2, 230);
+            this.btnWhistle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWhistle.Name = "btnWhistle";
+            this.btnWhistle.Size = new System.Drawing.Size(129, 53);
+            this.btnWhistle.TabIndex = 11;
+            this.btnWhistle.Text = "Còi";
+            this.btnWhistle.UseVisualStyleBackColor = true;
+            this.btnWhistle.Click += new System.EventHandler(this.btnWhistle_Click);
+            // 
+            // btnBrake
+            // 
+            this.btnBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrake.Location = new System.Drawing.Point(223, 230);
+            this.btnBrake.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBrake.Name = "btnBrake";
+            this.btnBrake.Size = new System.Drawing.Size(129, 53);
+            this.btnBrake.TabIndex = 8;
+            this.btnBrake.Text = "Lực Phanh";
+            this.btnBrake.UseVisualStyleBackColor = true;
+            this.btnBrake.Click += new System.EventHandler(this.btnBrake_Click);
+            // 
+            // btnHeadLight
+            // 
+            this.btnHeadLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHeadLight.Location = new System.Drawing.Point(2, 344);
+            this.btnHeadLight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHeadLight.Name = "btnHeadLight";
+            this.btnHeadLight.Size = new System.Drawing.Size(129, 53);
+            this.btnHeadLight.TabIndex = 9;
+            this.btnHeadLight.Text = "Đèn Pha";
+            this.btnHeadLight.UseVisualStyleBackColor = true;
+            this.btnHeadLight.Click += new System.EventHandler(this.btnHeadLight_Click);
+            // 
+            // btnCosLight
+            // 
+            this.btnCosLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCosLight.Location = new System.Drawing.Point(223, 344);
+            this.btnCosLight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCosLight.Name = "btnCosLight";
+            this.btnCosLight.Size = new System.Drawing.Size(129, 53);
+            this.btnCosLight.TabIndex = 10;
+            this.btnCosLight.Text = "Đèn Cốt";
+            this.btnCosLight.UseVisualStyleBackColor = true;
+            this.btnCosLight.Click += new System.EventHandler(this.btnCosLight_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.Location = new System.Drawing.Point(1096, 627);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(92, 40);
+            this.btnReport.TabIndex = 2;
+            this.btnReport.Text = "Xem Mẫu";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Controls.Add(this.textBox8, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.textBox7, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBox6, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button8, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.button6, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button5, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button4, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 7);
+            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 247F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.dateInSpec, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txtSerialNum, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtEngineNum, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txtFrameNum, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtInspector, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.button7, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button9, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.button10, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 16);
+            this.tableLayoutPanel1.Controls.Add(this.txtTypeCar, 1, 0);
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(40, 165);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(553, 372);
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(434, 360);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // label10
+            // dateInSpec
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 322);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(99, 31);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Đèn Pha";
+            this.dateInSpec.CalendarForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dateInSpec.CalendarMonthBackground = System.Drawing.SystemColors.InactiveCaption;
+            this.dateInSpec.CalendarTitleForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dateInSpec.CalendarTrailingForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dateInSpec.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateInSpec.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateInSpec.Location = new System.Drawing.Point(202, 300);
+            this.dateInSpec.Name = "dateInSpec";
+            this.dateInSpec.Size = new System.Drawing.Size(222, 37);
+            this.dateInSpec.TabIndex = 8;
+            this.dateInSpec.Value = new System.DateTime(2024, 8, 14, 0, 0, 0, 0);
+            // 
+            // txtSerialNum
+            // 
+            this.txtSerialNum.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSerialNum.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSerialNum.Location = new System.Drawing.Point(201, 240);
+            this.txtSerialNum.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSerialNum.Name = "txtSerialNum";
+            this.txtSerialNum.Size = new System.Drawing.Size(223, 32);
+            this.txtSerialNum.TabIndex = 17;
+            this.txtSerialNum.Text = "SN333";
+            // 
+            // txtEngineNum
+            // 
+            this.txtEngineNum.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtEngineNum.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEngineNum.Location = new System.Drawing.Point(201, 181);
+            this.txtEngineNum.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEngineNum.Name = "txtEngineNum";
+            this.txtEngineNum.Size = new System.Drawing.Size(223, 32);
+            this.txtEngineNum.TabIndex = 16;
+            // 
+            // txtFrameNum
+            // 
+            this.txtFrameNum.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtFrameNum.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFrameNum.Location = new System.Drawing.Point(201, 122);
+            this.txtFrameNum.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFrameNum.Name = "txtFrameNum";
+            this.txtFrameNum.Size = new System.Drawing.Size(223, 32);
+            this.txtFrameNum.TabIndex = 15;
+            // 
+            // txtInspector
+            // 
+            this.txtInspector.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtInspector.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInspector.Location = new System.Drawing.Point(201, 63);
+            this.txtInspector.Margin = new System.Windows.Forms.Padding(2);
+            this.txtInspector.Name = "txtInspector";
+            this.txtInspector.Size = new System.Drawing.Size(223, 32);
+            this.txtInspector.TabIndex = 14;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 2);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 31);
+            this.label1.Size = new System.Drawing.Size(91, 33);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Trọng Lượng Trái";
+            this.label1.Text = "Loại Xe";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 92);
+            this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(4, 120);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 31);
+            this.label3.Size = new System.Drawing.Size(116, 33);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Phanh Trước";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 138);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 31);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Phanh Sau";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 184);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 31);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "HC";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 230);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 31);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "CO";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(3, 276);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 31);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Tốc Độ";
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(431, 49);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(119, 40);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Đo Lại";
-            this.button4.UseVisualStyleBackColor = true;
+            this.label3.Text = "Số Khung";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 46);
+            this.label2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 61);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 31);
+            this.label2.Size = new System.Drawing.Size(182, 33);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Trọng Lượng Phải";
+            this.label2.Text = "Người Kiểm Tra";
             // 
-            // button3
+            // label6
             // 
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(431, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 40);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Đo Lại";
-            this.button3.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(4, 179);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 33);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Số Máy";
             // 
-            // button5
+            // label7
             // 
-            this.button5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(431, 95);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(119, 40);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Đo Lại";
-            this.button5.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(4, 238);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(141, 33);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Số Sản Xuất";
             // 
-            // button6
+            // label8
             // 
-            this.button6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(431, 141);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(119, 40);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Đo Lại";
-            this.button6.UseVisualStyleBackColor = true;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(4, 297);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(167, 33);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Ngày Kiểm Tra";
             // 
-            // button7
+            // txtTypeCar
             // 
-            this.button7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(431, 187);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(119, 40);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "Đo Lại";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(431, 233);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(119, 40);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "Đo Lại";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(431, 279);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(119, 40);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "Đo Lại";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(431, 325);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(119, 42);
-            this.button10.TabIndex = 12;
-            this.button10.Text = "Đo Lại";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(231, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 38);
-            this.textBox1.TabIndex = 13;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(231, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(175, 38);
-            this.textBox2.TabIndex = 14;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(231, 95);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(175, 38);
-            this.textBox3.TabIndex = 15;
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(231, 141);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(175, 38);
-            this.textBox4.TabIndex = 16;
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(231, 187);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(175, 38);
-            this.textBox5.TabIndex = 17;
-            // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(231, 233);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(175, 38);
-            this.textBox6.TabIndex = 18;
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(231, 279);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(175, 38);
-            this.textBox7.TabIndex = 19;
-            // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox8.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(231, 325);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(175, 38);
-            this.textBox8.TabIndex = 20;
-            // 
-            // button11
-            // 
-            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button11.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(915, 371);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(122, 49);
-            this.button11.TabIndex = 2;
-            this.button11.Text = "Xem Mẫu";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(1025, 8);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(122, 49);
-            this.button12.TabIndex = 2;
-            this.button12.Text = "Xăng - Dầu";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.Location = new System.Drawing.Point(173, 12);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(177, 49);
-            this.button13.TabIndex = 2;
-            this.button13.Text = "Người Kiểm Duyệt";
-            this.button13.UseVisualStyleBackColor = true;
+            this.txtTypeCar.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtTypeCar.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTypeCar.Location = new System.Drawing.Point(201, 4);
+            this.txtTypeCar.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTypeCar.Name = "txtTypeCar";
+            this.txtTypeCar.Size = new System.Drawing.Size(223, 32);
+            this.txtTypeCar.TabIndex = 13;
             // 
             // frmInspection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1182, 553);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(1200, 680);
+            this.Controls.Add(this.InspectionPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "frmInspection";
             this.Text = "Form2";
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.InspectionPanel.ResumeLayout(false);
+            this.InspectionPanel.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -439,38 +450,32 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel InspectionPanel;
+        private System.Windows.Forms.Button btnInspecProgress;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.TextBox txtSerialNum;
+        private System.Windows.Forms.TextBox txtEngineNum;
+        private System.Windows.Forms.TextBox txtFrameNum;
+        private System.Windows.Forms.TextBox txtInspector;
+        private System.Windows.Forms.TextBox txtTypeCar;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnSpeed;
+        private System.Windows.Forms.Button btnSideSlip;
+        private System.Windows.Forms.Button btnEmission;
+        private System.Windows.Forms.Button btnWeight;
+        private System.Windows.Forms.Button btnNoise;
+        private System.Windows.Forms.Button btnBrake;
+        private System.Windows.Forms.Button btnHeadLight;
+        private System.Windows.Forms.Button btnCosLight;
+        private System.Windows.Forms.Button btnWhistle;
+        private System.Windows.Forms.CheckBox chkToggleFuelType;
+        private System.Windows.Forms.DateTimePicker dateInSpec;
     }
 }

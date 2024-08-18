@@ -12,13 +12,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SenAIS
 {
-    public partial class frmFrontBrake : Form
+    public partial class frmRearBrake : Form
     {
         private Form parentForm;
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
-        public frmFrontBrake(Form parent, OPCItem opcCounterPos)
+        public frmRearBrake(Form parent, OPCItem opcCounterPos)
         {
             InitializeComponent();
             this.parentForm = parent;
@@ -29,7 +29,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 10000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 5000; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -42,26 +42,26 @@ namespace SenAIS
                 cbReady.BackColor = Color.Green;
                 double brakeRightA = 1.0;
                 brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
-                double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Front_Result");
-                double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Front_Result");
+                double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
+                double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
                 double leftBrake = leftBrakeResult / brakeRightA;
                 double rightBrake = rightBrakeResult / brakeRightA;
                 double diffBrake = 0.0;
-                if(leftBrake > rightBrake)
+                if (leftBrake > rightBrake)
                 {
-                    diffBrake = 100*(leftBrake - rightBrake) / leftBrake;
-                }    
+                    diffBrake = 100 * (leftBrake - rightBrake) / leftBrake;
+                }
                 else
                 {
                     diffBrake = 100 * (rightBrake - leftBrake) / rightBrake;
-                }    
+                }
 
                 double sumBrake = leftBrake + rightBrake;
 
-                lbLeft_Brake.Text = leftBrake.ToString("F1");
-                lbRight_Brake.Text = rightBrake.ToString("F1");
-                lbDiff_Brake.Text = diffBrake.ToString("F1");
-                lbSum_Brake.Text = sumBrake.ToString("F1");
+                lbLeft_Brake.Text = leftBrake.ToString("F2");
+                lbRight_Brake.Text = rightBrake.ToString("F2");
+                lbDiff_Brake.Text = diffBrake.ToString("F2");
+                lbSum_Brake.Text = sumBrake.ToString("F2");
             }
             else
             {
@@ -70,29 +70,29 @@ namespace SenAIS
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
-            // Thay đổi giá trị T99 và mở form trước
+            // Thay đổi giá trị CounterPosition và mở form trước
             try
             {
-                opcCounterPos.Write(6); // Giá trị cho form chờ hoặc giá trị tương ứng
-                ((frmInspection)parentForm).ProcessMeasurement(6);
+                opcCounterPos.Write(7); // Giá trị cho form chờ hoặc giá trị tương ứng
+                ((frmInspection)parentForm).ProcessMeasurement(7);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi giá trị T99: " + ex.Message);
+                MessageBox.Show("Lỗi khi thay đổi giá trị CounterPosition: " + ex.Message);
             }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            // Thay đổi giá trị T99 và mở form tiếp theo
+            // Thay đổi giá trị CounterPosition và mở form tiếp theo
             try
             {
-                opcCounterPos.Write(8); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
-                ((frmInspection)parentForm).ProcessMeasurement(8);
+                opcCounterPos.Write(9); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
+                ((frmInspection)parentForm).ProcessMeasurement(9);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi giá trị T99: " + ex.Message);
+                MessageBox.Show("Lỗi khi thay đổi giá trị CounterPosition: " + ex.Message);
             }
         }
     }

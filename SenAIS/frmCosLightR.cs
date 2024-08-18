@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SenAIS
 {
-    public partial class frmParameter : Form
+    public partial class frmCosLightR : Form
     {
-        public frmParameter()
+        public frmCosLightR()
         {
             InitializeComponent();
         }

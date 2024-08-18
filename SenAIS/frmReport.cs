@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SenAIS
 {
-    public partial class frmBackBrake : Form
+    public partial class frmReport : Form
     {
-        public frmBackBrake()
+        public frmReport()
         {
             InitializeComponent();
         }

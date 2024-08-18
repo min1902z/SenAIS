@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SenAIS
 {
-    public partial class frmBackWeight : Form
+    public partial class frmHeadLightR : Form
     {
-        public frmBackWeight()
+        public frmHeadLightR()
         {
             InitializeComponent();
         }

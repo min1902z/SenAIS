@@ -8,17 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SenAIS
 {
-    public partial class frmFrontWeight : Form
+    public partial class frmRearWeight : Form
     {
         private Form parentForm;
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
-
-        public frmFrontWeight(Form parent, OPCItem opcCounterPos)
+        public frmRearWeight(Form parent, OPCItem opcCounterPos)
         {
             InitializeComponent();
             this.parentForm = parent;
@@ -29,7 +29,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 5000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 10000; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -42,8 +42,8 @@ namespace SenAIS
                 cbReady.BackColor = Color.Green;
                 double weightRightA = 1.0;
                 weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
-                double leftWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Front_Result");
-                double rightWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Front_Result");
+                double leftWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Rear_Result");
+                double rightWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Rear_Result");
                 double leftWeight = leftWeightResult / weightRightA;
                 double rightWeight = rightWeightResult / weightRightA;
                 double sumWeight = leftWeight + rightWeight;
@@ -62,8 +62,8 @@ namespace SenAIS
             // Thay đổi giá trị CounterPosition và mở form trước
             try
             {
-                opcCounterPos.Write(3); // Giá trị cho form chờ hoặc giá trị tương ứng
-                ((frmInspection)parentForm).ProcessMeasurement(3);
+                opcCounterPos.Write(7); // Giá trị cho form chờ hoặc giá trị tương ứng
+                ((frmInspection)parentForm).ProcessMeasurement(7);
             }
             catch (Exception ex)
             {
@@ -76,8 +76,8 @@ namespace SenAIS
             // Thay đổi giá trị CounterPosition và mở form tiếp theo
             try
             {
-                opcCounterPos.Write(5); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
-                ((frmInspection)parentForm).ProcessMeasurement(5);
+                opcCounterPos.Write(9); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
+                ((frmInspection)parentForm).ProcessMeasurement(9);
             }
             catch (Exception ex)
             {

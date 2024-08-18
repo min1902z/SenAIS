@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +13,26 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SenAIS
 {
-    public partial class frmFrontBrake : Form
+    public partial class frmHeadLightL : Form
     {
         private Form parentForm;
         private OPCItem opcCounterPos;
         private Timer updateTimer;
-        private SQLHelper sqlHelper;
-        public frmFrontBrake(Form parent, OPCItem opcCounterPos)
+        private COMConnect comConnect;
+        public int Intensity { get; set; }
+        public int HorizontalDeviation { get; set; }
+        public int VerticalDeviation { get; set; }
+        public frmHeadLightL(Form parent, OPCItem opcCounterPos)
         {
             InitializeComponent();
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
-            sqlHelper = new SQLHelper("Server=LAPTOP-G4Q0RA59\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 10000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 2000; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -40,41 +43,22 @@ namespace SenAIS
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
-                double brakeRightA = 1.0;
-                brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
-                double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Front_Result");
-                double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Front_Result");
-                double leftBrake = leftBrakeResult / brakeRightA;
-                double rightBrake = rightBrakeResult / brakeRightA;
-                double diffBrake = 0.0;
-                if(leftBrake > rightBrake)
-                {
-                    diffBrake = 100*(leftBrake - rightBrake) / leftBrake;
-                }    
-                else
-                {
-                    diffBrake = 100 * (rightBrake - leftBrake) / rightBrake;
-                }    
+                UpdateLabels();
 
-                double sumBrake = leftBrake + rightBrake;
-
-                lbLeft_Brake.Text = leftBrake.ToString("F1");
-                lbRight_Brake.Text = rightBrake.ToString("F1");
-                lbDiff_Brake.Text = diffBrake.ToString("F1");
-                lbSum_Brake.Text = sumBrake.ToString("F1");
             }
             else
             {
                 cbReady.BackColor = SystemColors.Control;
             }
         }
+
         private void btnPre_Click(object sender, EventArgs e)
         {
             // Thay đổi giá trị T99 và mở form trước
             try
             {
-                opcCounterPos.Write(6); // Giá trị cho form chờ hoặc giá trị tương ứng
-                ((frmInspection)parentForm).ProcessMeasurement(6);
+                opcCounterPos.Write(8); // Giá trị cho form chờ hoặc giá trị tương ứng
+                ((frmInspection)parentForm).ProcessMeasurement(8);
             }
             catch (Exception ex)
             {
@@ -87,13 +71,29 @@ namespace SenAIS
             // Thay đổi giá trị T99 và mở form tiếp theo
             try
             {
-                opcCounterPos.Write(8); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
-                ((frmInspection)parentForm).ProcessMeasurement(8);
+                opcCounterPos.Write(10); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
+                ((frmInspection)parentForm).ProcessMeasurement(10);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi thay đổi giá trị T99: " + ex.Message);
             }
+        }
+
+        private void frmHeadLightL_Load(object sender, EventArgs e)
+        {
+            comConnect.OpenConnection();
+        }
+
+        private void frmHeadLightL_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            comConnect.CloseConnection();
+        }
+        public void UpdateLabels()
+        {
+            lbIntensity.Text = Intensity.ToString();
+            lbHorizontalDeviation.Text = HorizontalDeviation.ToString();
+            lbVerticalDeviation.Text = VerticalDeviation.ToString();
         }
     }
 }

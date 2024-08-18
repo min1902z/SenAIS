@@ -46,23 +46,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="COMConnect.cs" />
     <Compile Include="frmAISMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAISMain.Designer.cs">
       <DependentUpon>frmAISMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBackBrake.cs">
+    <Compile Include="frmRearBrake.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBackBrake.Designer.cs">
-      <DependentUpon>frmBackBrake.cs</DependentUpon>
+    <Compile Include="frmRearBrake.Designer.cs">
+      <DependentUpon>frmRearBrake.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBackWeight.cs">
+    <Compile Include="frmRearWeight.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBackWeight.Designer.cs">
-      <DependentUpon>frmBackWeight.cs</DependentUpon>
+    <Compile Include="frmRearWeight.Designer.cs">
+      <DependentUpon>frmRearWeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalibration.Designer.cs">
+      <DependentUpon>frmCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCosLightL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCosLightL.Designer.cs">
+      <DependentUpon>frmCosLightL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCosLightR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCosLightR.Designer.cs">
+      <DependentUpon>frmCosLightR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDieselEmission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDieselEmission.Designer.cs">
+      <DependentUpon>frmDieselEmission.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFrontBrake.cs">
       <SubType>Form</SubType>
@@ -82,6 +107,24 @@
     <Compile Include="frmGasEmission.Designer.cs">
       <DependentUpon>frmGasEmission.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHandBrake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHandBrake.Designer.cs">
+      <DependentUpon>frmHandBrake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHeadLightL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHeadLightL.Designer.cs">
+      <DependentUpon>frmHeadLightL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHeadLightR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHeadLightR.Designer.cs">
+      <DependentUpon>frmHeadLightR.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInspection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +137,17 @@
     <Compile Include="frmNoise.Designer.cs">
       <DependentUpon>frmNoise.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmParameter.cs">
+    <Compile Include="frmReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmParameter.Designer.cs">
-      <DependentUpon>frmParameter.cs</DependentUpon>
+    <Compile Include="frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpeed.Designer.cs">
+      <DependentUpon>frmSpeed.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSideSlip.cs">
       <SubType>Form</SubType>
@@ -106,22 +155,42 @@
     <Compile Include="frmSideSlip.Designer.cs">
       <DependentUpon>frmSideSlip.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWaiting.Designer.cs">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWhistle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmWhistle.Designer.cs">
       <DependentUpon>frmWhistle.cs</DependentUpon>
     </Compile>
+    <Compile Include="OPCUtility.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLHelper.cs" />
     <EmbeddedResource Include="frmAISMain.resx">
       <DependentUpon>frmAISMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBackBrake.resx">
-      <DependentUpon>frmBackBrake.cs</DependentUpon>
+    <EmbeddedResource Include="frmRearBrake.resx">
+      <DependentUpon>frmRearBrake.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBackWeight.resx">
-      <DependentUpon>frmBackWeight.cs</DependentUpon>
+    <EmbeddedResource Include="frmRearWeight.resx">
+      <DependentUpon>frmRearWeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCalibration.resx">
+      <DependentUpon>frmCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCosLightL.resx">
+      <DependentUpon>frmCosLightL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCosLightR.resx">
+      <DependentUpon>frmCosLightR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDieselEmission.resx">
+      <DependentUpon>frmDieselEmission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFrontBrake.resx">
       <DependentUpon>frmFrontBrake.cs</DependentUpon>
@@ -132,17 +201,32 @@
     <EmbeddedResource Include="frmGasEmission.resx">
       <DependentUpon>frmGasEmission.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmHandBrake.resx">
+      <DependentUpon>frmHandBrake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHeadLightL.resx">
+      <DependentUpon>frmHeadLightL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHeadLightR.resx">
+      <DependentUpon>frmHeadLightR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInspection.resx">
       <DependentUpon>frmInspection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNoise.resx">
       <DependentUpon>frmNoise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmParameter.resx">
-      <DependentUpon>frmParameter.cs</DependentUpon>
+    <EmbeddedResource Include="frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpeed.resx">
+      <DependentUpon>frmSpeed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSideSlip.resx">
       <DependentUpon>frmSideSlip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWaiting.resx">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWhistle.resx">
       <DependentUpon>frmWhistle.cs</DependentUpon>
@@ -168,6 +252,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="OPCAutomation">
+      <Guid>{6E6170F6-FF2D-11D2-8087-00105AA8F840}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Image\Logo_sentek.ico" />
+    <Content Include="Image\QR_Sentek.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
