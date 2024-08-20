@@ -115,7 +115,7 @@ namespace SenAIS
                     OpenNewForm(new frmGasEmission(this, opcCounterPos, this.serialNumber));
                     break;
                 case 12:
-                    OpenNewForm(new frmDieselEmission(this, opcCounterPos));
+                    OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
                     break;
                 default:
                     MessageBox.Show("Giá trị CounterPosition không hợp lệ.");
@@ -204,7 +204,7 @@ namespace SenAIS
             {
                 if (CheckSerialNumber())
                     // Open the Diesel Emission form
-                    OpenNewForm(new frmDieselEmission(this, opcCounterPos));
+                    OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
             }
         }
 

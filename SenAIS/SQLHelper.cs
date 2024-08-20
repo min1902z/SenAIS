@@ -108,6 +108,29 @@ namespace SenAIS
 
             ExecuteQuery(query, parameters);
         }
+        public void SaveDieselEmissionData(string serialNumber, decimal minSpeed, decimal maxSpeed, decimal hsu)
+        {
+            string query = @"IF EXISTS (SELECT 1 FROM GasEmission_Diesel WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE GasEmission_Diesel 
+                             SET MinSpeed = @MinSpeed, MaxSpeed = @MaxSpeed, HSU = @HSU 
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO GasEmission_Diesel (SerialNumber, MinSpeed, MaxSpeed, HSU)
+                             VALUES (@SerialNumber, @MinSpeed, @MaxSpeed, @HSU)
+                         END";
+            var parameters = new[]
+            {
+            new SqlParameter("@MinSpeed", minSpeed),
+            new SqlParameter("@MaxSpeed", maxSpeed),
+            new SqlParameter("@HSU", hsu),
+            new SqlParameter("@SerialNumber", serialNumber)
+        };
+
+            ExecuteQuery(query, parameters);
+        }
         public void SaveSpeedData(string serialNumber, decimal speedValue)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

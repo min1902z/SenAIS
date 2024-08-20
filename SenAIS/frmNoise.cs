@@ -27,6 +27,7 @@ namespace SenAIS
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
+            comConnect = new COMConnect("COM7", this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
@@ -49,8 +50,8 @@ namespace SenAIS
 
                 //Lấy giá trị Độ ồn
                 // Gửi lệnh để bắt đầu nhận dữ liệu thời gian thực
-                byte[] startCommand = { 0xB8 }; // Gửi lệnh bắt đầu phát hiện
-                comConnect.SendRequest(startCommand);
+                //byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
+                //comConnect.SendRequest(startcommand);
                 //CheckCounterPosition();
             }
             else
@@ -63,7 +64,6 @@ namespace SenAIS
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
-            // Thay đổi giá trị T99 và mở form trước
             try
             {
                 opcCounterPos.Write(2); // Giá trị cho form chờ hoặc giá trị tương ứng
@@ -114,11 +114,21 @@ namespace SenAIS
             MessageBox.Show("ProcessNoiseData");
             try
             {
-                // Giả sử dữ liệu tiếng ồn là 5 byte ASCII với dấu thập phân
-                string noiseLevel = Encoding.ASCII.GetString(data);
-                
-                    Invoke(new Action(() => lbNoise.Text = noiseLevel.ToString()));
-               
+                if (data.Length == 9 && data[0] == 0x01 && data[8] == 0xFF) // Check start and end byte
+                {
+                    // Extract sound level data (5 bytes in ASCII)
+                    string soundLevelString = Encoding.ASCII.GetString(data, 1, 5);
+
+                    if (double.TryParse(soundLevelString, out double soundLevel))
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            // Update UI with the sound level value
+                            lbNoise.Text = soundLevel.ToString("F1");
+                        }));
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -128,10 +138,9 @@ namespace SenAIS
         }
         private void frmNoise_Load(object sender, EventArgs e)
         {
-            comConnect = new COMConnect("COM7", this); 
             comConnect.OpenConnection();
-            //byte[] startCommand = { 0xB2 }; // Gửi lệnh bắt đầu phát hiện
-            //comConnect.SendRequest(startCommand);
+            byte[] startcommand = { 0xB2 }; // gửi lệnh bắt đầu phát hiện
+            comConnect.SendRequest(startcommand);
 
         }
 

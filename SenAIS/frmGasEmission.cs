@@ -38,20 +38,6 @@ namespace SenAIS
             comConnect = new COMConnect("COM7", this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
-            //InitializeEmission();
-
-        }
-        private void InitializeEmission()
-        {
-            updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
-            updateTimer.Tick += DataUpdateTimer_Tick;
-            updateTimer.Start();
-        }
-        private void DataUpdateTimer_Tick(object sender, EventArgs e)
-        {
-            byte[] request = { 0x03 };
-            comConnect.SendRequest(request);
         }
         private void InitializeTimer()
         {
@@ -254,14 +240,6 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            //this.hcValue = Convert.ToDecimal(lbHCValue.Text);
-            //this.coValue = Convert.ToDecimal(lbCOValue.Text);
-            //this.co2Value = Convert.ToDecimal(lbCO2Value.Text);
-            //this.o2Value = Convert.ToDecimal(lbO2Value.Text);
-            //this.noValue = Convert.ToDecimal(lbNOValue.Text);
-            //this.oilTemp = Convert.ToDecimal(lbOTValue.Text);
-            //this.rpm = Convert.ToDecimal(lbRPMValue.Text);
-            //this.serialNumber = "SN333";
             sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm);
         }
         private void CheckCounterPosition()

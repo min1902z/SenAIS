@@ -121,7 +121,7 @@
             this.tbEmissionPetrol.ColumnCount = 3;
             this.tbEmissionPetrol.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tbEmissionPetrol.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
-            this.tbEmissionPetrol.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tbEmissionPetrol.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tbEmissionPetrol.Controls.Add(this.label18, 2, 6);
             this.tbEmissionPetrol.Controls.Add(this.label17, 2, 5);
             this.tbEmissionPetrol.Controls.Add(this.label16, 2, 4);
@@ -435,7 +435,7 @@
             this.tbSpeed.ColumnCount = 3;
             this.tbSpeed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tbSpeed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
-            this.tbSpeed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tbSpeed.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tbSpeed.Controls.Add(this.label8, 2, 3);
             this.tbSpeed.Controls.Add(this.label7, 2, 2);
             this.tbSpeed.Controls.Add(this.label5, 2, 1);
@@ -630,7 +630,7 @@
             this.tbVihicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tbVihicleInfo.ColumnCount = 2;
             this.tbVihicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tbVihicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 286F));
+            this.tbVihicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 289F));
             this.tbVihicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tbVihicleInfo.Controls.Add(this.txtDateInspec, 1, 5);
             this.tbVihicleInfo.Controls.Add(this.txtSerialNum, 1, 4);

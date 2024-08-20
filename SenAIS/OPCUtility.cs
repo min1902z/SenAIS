@@ -49,9 +49,9 @@ namespace SenAIS
                 {
                     MessageBox.Show($"Failed to read OPC item {opcItem}: {ex.Message}");
                     opcErrorShown = true;
-                    return 0; // Trả về giá trị mặc định nếu đọc thất bại
                 }
-                throw;
+                return 0; // Trả về giá trị mặc định nếu đọc thất bại
+                //throw;
             }
         }
 
@@ -69,7 +69,7 @@ namespace SenAIS
                     MessageBox.Show($"Failed to write to OPC item {opcItem}: {ex.Message}");
                     opcErrorShown = true;
                 }
-                throw;
+                //throw;
             }
         }
         public static void ResetErrorFlag()

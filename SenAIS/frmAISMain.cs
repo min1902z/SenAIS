@@ -48,7 +48,7 @@ namespace SenAIS
 
         private void TSTruyXuat_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmInspection());
+            OpenChildForm(new frmReport());
         }
 
         public string SelectedCalibrationType { get; private set; }
