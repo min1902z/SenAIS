@@ -17,13 +17,18 @@ namespace SenAIS
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private string serialNumber;
+        public decimal frontLeftWeight;
+        public decimal frontRightWeight;
+        private bool isReady = false;
 
-        public frmFrontWeight(Form parent, OPCItem opcCounterPos)
+        public frmFrontWeight(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
             InitializeComponent();
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
-            sqlHelper = new SQLHelper("Server=LAPTOP-G4Q0RA59\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            this.serialNumber = serialNumber;
+            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
         private void InitializeTimer()
@@ -33,13 +38,16 @@ namespace SenAIS
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
-        private void UpdateReadyStatus(object sender, EventArgs e)
+        private async void UpdateReadyStatus(object sender, EventArgs e)
         {
             int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
 
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
+                await Task.Delay(10000); // Chờ 10 giây
+                isReady = true;
+
                 double weightRightA = 1.0;
                 weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
                 double leftWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Front_Result");
@@ -51,10 +59,15 @@ namespace SenAIS
                 lbLeft_Weight.Text = leftWeight.ToString("F1");
                 lbRight_Weight.Text = rightWeight.ToString("F1");
                 lbSum_Weight.Text = sumWeight.ToString("F1");
+
+                this.frontLeftWeight = Convert.ToDecimal(leftWeight.ToString("F1"));
+                this.frontRightWeight = Convert.ToDecimal(rightWeight.ToString("F1"));
+                CheckCounterPosition();
             }
             else
             {
                 cbReady.BackColor = SystemColors.Control;
+                isReady = false;
             }
         }
         private void btnPre_Click(object sender, EventArgs e)
@@ -63,6 +76,10 @@ namespace SenAIS
             try
             {
                 opcCounterPos.Write(3); // Giá trị cho form chờ hoặc giá trị tương ứng
+                if (isReady)
+                {
+                    CheckCounterPosition(); // Lưu dữ liệu nếu đèn đã sáng 10 giây
+                }
                 ((frmInspection)parentForm).ProcessMeasurement(3);
             }
             catch (Exception ex)
@@ -77,11 +94,28 @@ namespace SenAIS
             try
             {
                 opcCounterPos.Write(5); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
+                if (isReady)
+                {
+                    CheckCounterPosition(); // Lưu dữ liệu nếu đèn đã sáng 10 giây
+                }
                 ((frmInspection)parentForm).ProcessMeasurement(5);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi thay đổi giá trị CounterPosition: " + ex.Message);
+            }
+        }
+        private void SaveDataToDatabase()
+        {
+            sqlHelper.SaveFrontWeightData(this.serialNumber, this.frontLeftWeight, this.frontRightWeight);
+        }
+        private void CheckCounterPosition()
+        {
+            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+
+            if (currentPosition != 1)
+            {
+                SaveDataToDatabase();
             }
         }
     }

@@ -53,6 +53,7 @@ namespace SenAIS
                 double speedResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Result");
                 double speed = speedResult / speedA;
                 lbSpeed.Text = speed.ToString("F1");
+
                 this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
                 CheckCounterPosition();
             }

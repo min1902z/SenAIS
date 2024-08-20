@@ -85,36 +85,45 @@ namespace SenAIS
                     OpenNewForm(new frmSpeed(this, opcCounterPos, this.serialNumber));
                     break;
                 case 2:
-                    OpenNewForm(new frmSideSlip(this, opcCounterPos));
+                    OpenNewForm(new frmSideSlip(this, opcCounterPos, this.serialNumber));
                     break;
                 case 3:
                     OpenNewForm(new frmNoise(this, opcCounterPos, this.serialNumber));
                     break;
                 case 4:
-                    OpenNewForm(new frmFrontWeight(this, opcCounterPos));
+                    OpenNewForm(new frmFrontWeight(this, opcCounterPos, this.serialNumber));
                     break;
                 case 5:
-                    OpenNewForm(new frmRearWeight(this, opcCounterPos));
+                    OpenNewForm(new frmRearWeight(this, opcCounterPos, this.serialNumber));
                     break;
                 case 6:
-                    OpenNewForm(new frmWhistle(this, opcCounterPos));
+                    OpenNewForm(new frmWhistle(this, opcCounterPos, this.serialNumber));
                     break;
                 case 7:
-                    OpenNewForm(new frmFrontBrake(this, opcCounterPos));
+                    OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
                     break;
                 case 8:
-                    OpenNewForm(new frmRearBrake(this, opcCounterPos));
+                    OpenNewForm(new frmRearBrake(this, opcCounterPos, this.serialNumber));
                     break;
                 case 9:
-                    OpenNewForm(new frmHeadLightL(this, opcCounterPos));
+                    OpenNewForm(new frmHandBrake(this, opcCounterPos, this.serialNumber));
                     break;
                 case 10:
-                    OpenNewForm(new frmCosLightL(this, opcCounterPos));
+                    OpenNewForm(new frmHeadLightL(this, opcCounterPos, this.serialNumber));
                     break;
                 case 11:
-                    OpenNewForm(new frmGasEmission(this, opcCounterPos, this.serialNumber));
+                    OpenNewForm(new frmHeadLightR(this, opcCounterPos, this.serialNumber));
                     break;
                 case 12:
+                    OpenNewForm(new frmCosLightL(this, opcCounterPos, this.serialNumber));
+                    break;
+                case 13:
+                    OpenNewForm(new frmCosLightR(this, opcCounterPos, this.serialNumber));
+                    break;
+                case 14:
+                    OpenNewForm(new frmGasEmission(this, opcCounterPos, this.serialNumber));
+                    break;
+                case 15:
                     OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
                     break;
                 default:
@@ -150,7 +159,7 @@ namespace SenAIS
         private void btnSideSlip_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmSideSlip(this, opcCounterPos));
+                OpenNewForm(new frmSideSlip(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnNoise_Click(object sender, EventArgs e)
@@ -164,31 +173,31 @@ namespace SenAIS
         private void btnWeight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmFrontWeight(this, opcCounterPos));
+                OpenNewForm(new frmFrontWeight(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnWhistle_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmWhistle(this, opcCounterPos));
+                OpenNewForm(new frmWhistle(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmFrontBrake(this, opcCounterPos));
+                OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnHeadLight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmHeadLightL(this, opcCounterPos));
+                OpenNewForm(new frmHeadLightL(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnCosLight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmCosLightL(this, opcCounterPos));
+                OpenNewForm(new frmCosLightL(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnEmission_Click(object sender, EventArgs e)

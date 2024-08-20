@@ -31,30 +31,30 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCosLightL));
             this.CosLightPanel = new System.Windows.Forms.Panel();
             this.cbReady = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbCosLightL = new System.Windows.Forms.TableLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbInten = new System.Windows.Forms.Label();
-            this.lbDiviaLR = new System.Windows.Forms.Label();
-            this.lbDeviaUpDown = new System.Windows.Forms.Label();
+            this.lbIntensity = new System.Windows.Forms.Label();
+            this.lbHorizontalDeviation = new System.Windows.Forms.Label();
+            this.lbVerticalDeviation = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbCosLightTitle = new System.Windows.Forms.Label();
             this.CosLightPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tbCosLightL.SuspendLayout();
             this.SuspendLayout();
             // 
             // CosLightPanel
             // 
             this.CosLightPanel.Controls.Add(this.cbReady);
-            this.CosLightPanel.Controls.Add(this.tableLayoutPanel1);
+            this.CosLightPanel.Controls.Add(this.tbCosLightL);
             this.CosLightPanel.Controls.Add(this.btnNext);
             this.CosLightPanel.Controls.Add(this.btnPre);
-            this.CosLightPanel.Controls.Add(this.label1);
+            this.CosLightPanel.Controls.Add(this.lbCosLightTitle);
             this.CosLightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CosLightPanel.Location = new System.Drawing.Point(0, 0);
             this.CosLightPanel.Name = "CosLightPanel";
@@ -76,31 +76,31 @@
             this.cbReady.TabIndex = 44;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel1
+            // tbCosLightL
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41619F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.60091F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.9829F));
-            this.tableLayoutPanel1.Controls.Add(this.label12, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lbInten, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lbDiviaLR, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbDeviaUpDown, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 2, 1);
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(132, 113);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1683, 875);
-            this.tableLayoutPanel1.TabIndex = 43;
+            this.tbCosLightL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCosLightL.ColumnCount = 3;
+            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.78966F));
+            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.21569F));
+            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.9829F));
+            this.tbCosLightL.Controls.Add(this.label12, 2, 2);
+            this.tbCosLightL.Controls.Add(this.label7, 0, 2);
+            this.tbCosLightL.Controls.Add(this.label2, 0, 0);
+            this.tbCosLightL.Controls.Add(this.label3, 0, 1);
+            this.tbCosLightL.Controls.Add(this.lbIntensity, 1, 0);
+            this.tbCosLightL.Controls.Add(this.lbHorizontalDeviation, 1, 2);
+            this.tbCosLightL.Controls.Add(this.lbVerticalDeviation, 1, 1);
+            this.tbCosLightL.Controls.Add(this.label10, 2, 0);
+            this.tbCosLightL.Controls.Add(this.label11, 2, 1);
+            this.tbCosLightL.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCosLightL.Location = new System.Drawing.Point(132, 113);
+            this.tbCosLightL.Name = "tbCosLightL";
+            this.tbCosLightL.RowCount = 3;
+            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbCosLightL.Size = new System.Drawing.Size(1683, 875);
+            this.tbCosLightL.TabIndex = 43;
             // 
             // label12
             // 
@@ -151,38 +151,38 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "L. Trên/Dưới";
             // 
-            // lbInten
+            // lbIntensity
             // 
-            this.lbInten.AutoSize = true;
-            this.lbInten.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInten.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbInten.Location = new System.Drawing.Point(700, 0);
-            this.lbInten.Name = "lbInten";
-            this.lbInten.Size = new System.Drawing.Size(408, 277);
-            this.lbInten.TabIndex = 8;
-            this.lbInten.Text = "0.0";
+            this.lbIntensity.AutoSize = true;
+            this.lbIntensity.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbIntensity.Location = new System.Drawing.Point(639, 0);
+            this.lbIntensity.Name = "lbIntensity";
+            this.lbIntensity.Size = new System.Drawing.Size(408, 277);
+            this.lbIntensity.TabIndex = 8;
+            this.lbIntensity.Text = "0.0";
             // 
-            // lbDiviaLR
+            // lbHorizontalDeviation
             // 
-            this.lbDiviaLR.AutoSize = true;
-            this.lbDiviaLR.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDiviaLR.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDiviaLR.Location = new System.Drawing.Point(700, 582);
-            this.lbDiviaLR.Name = "lbDiviaLR";
-            this.lbDiviaLR.Size = new System.Drawing.Size(408, 277);
-            this.lbDiviaLR.TabIndex = 10;
-            this.lbDiviaLR.Text = "0.0";
+            this.lbHorizontalDeviation.AutoSize = true;
+            this.lbHorizontalDeviation.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHorizontalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbHorizontalDeviation.Location = new System.Drawing.Point(639, 582);
+            this.lbHorizontalDeviation.Name = "lbHorizontalDeviation";
+            this.lbHorizontalDeviation.Size = new System.Drawing.Size(408, 277);
+            this.lbHorizontalDeviation.TabIndex = 10;
+            this.lbHorizontalDeviation.Text = "0.0";
             // 
-            // lbDeviaUpDown
+            // lbVerticalDeviation
             // 
-            this.lbDeviaUpDown.AutoSize = true;
-            this.lbDeviaUpDown.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDeviaUpDown.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDeviaUpDown.Location = new System.Drawing.Point(700, 291);
-            this.lbDeviaUpDown.Name = "lbDeviaUpDown";
-            this.lbDeviaUpDown.Size = new System.Drawing.Size(408, 277);
-            this.lbDeviaUpDown.TabIndex = 9;
-            this.lbDeviaUpDown.Text = "0.0";
+            this.lbVerticalDeviation.AutoSize = true;
+            this.lbVerticalDeviation.Font = new System.Drawing.Font("Calibri", 170.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVerticalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbVerticalDeviation.Location = new System.Drawing.Point(639, 291);
+            this.lbVerticalDeviation.Name = "lbVerticalDeviation";
+            this.lbVerticalDeviation.Size = new System.Drawing.Size(408, 277);
+            this.lbVerticalDeviation.TabIndex = 9;
+            this.lbVerticalDeviation.Text = "0.0";
             // 
             // label10
             // 
@@ -240,21 +240,21 @@
             this.btnPre.UseVisualStyleBackColor = false;
             this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
-            // label1
+            // lbCosLightTitle
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(626, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(622, 117);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "ĐÈN CỐT PHẢI";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbCosLightTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbCosLightTitle.AutoSize = true;
+            this.lbCosLightTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCosLightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbCosLightTitle.Location = new System.Drawing.Point(626, 0);
+            this.lbCosLightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbCosLightTitle.Name = "lbCosLightTitle";
+            this.lbCosLightTitle.Size = new System.Drawing.Size(612, 117);
+            this.lbCosLightTitle.TabIndex = 40;
+            this.lbCosLightTitle.Text = "ĐÈN CỐT TRÁI";
+            this.lbCosLightTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // frmCosLight
+            // frmCosLightL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,13 +263,13 @@
             this.Controls.Add(this.CosLightPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "frmCosLight";
+            this.Name = "frmCosLightL";
             this.Text = "Đèn Cốt";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.CosLightPanel.ResumeLayout(false);
             this.CosLightPanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tbCosLightL.ResumeLayout(false);
+            this.tbCosLightL.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -277,19 +277,19 @@
         #endregion
 
         private System.Windows.Forms.Panel CosLightPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tbCosLightL;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbInten;
-        private System.Windows.Forms.Label lbDiviaLR;
-        private System.Windows.Forms.Label lbDeviaUpDown;
+        private System.Windows.Forms.Label lbIntensity;
+        private System.Windows.Forms.Label lbHorizontalDeviation;
+        private System.Windows.Forms.Label lbVerticalDeviation;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbCosLightTitle;
         private System.Windows.Forms.CheckBox cbReady;
     }
 }

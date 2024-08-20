@@ -155,6 +155,259 @@ namespace SenAIS
                 }
             }
         }
+        public void SaveSideSlipData(string serialNumber, decimal sideSlip)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM SideSlip WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE SideSlip 
+                             SET SideSlip = @SideSlip
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO SideSlip (SerialNumber, SideSlip)
+                             VALUES (@SerialNumber, @SideSlip)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SideSlip", sideSlip);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveFrontWeightData(string serialNumber, decimal leftWeight, decimal rightWeight)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM Weight WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE Weight 
+                             SET FrontLeftWeight = @FrontLeftWeight, FrontRightWeight = @FrontRightWeight
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO Weight (SerialNumber, FrontLeftWeight, FrontRightWeight)
+                             VALUES (@SerialNumber, @FrontLeftWeight, @FrontRightWeight)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FrontLeftWeight", leftWeight);
+                    cmd.Parameters.AddWithValue("@FrontRightWeight", rightWeight);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveRearWeightData(string serialNumber, decimal leftWeight, decimal rightWeight)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM Weight WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE Weight 
+                             SET RearLeftWeight = @RearLeftWeight, RearRightWeight = @RearRightWeight
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO Weight (SerialNumber, RearLeftWeight, RearRightWeight)
+                             VALUES (@SerialNumber, @RearLeftWeight, @RearRightWeight)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RearLeftWeight", leftWeight);
+                    cmd.Parameters.AddWithValue("@RearRightWeight", rightWeight);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveFrontBrakeData(string serialNumber, decimal leftBrake, decimal rightBrake)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM BrakeForce WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE BrakeForce 
+                             SET FrontLeftBrake = @FrontLeftBrake, FrontRightBrake = @FrontRightBrake
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO BrakeForce (SerialNumber, FrontLeftBrake, FrontRightBrake)
+                             VALUES (@SerialNumber, @FrontLeftBrake, @FrontRightBrake)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@FrontLeftBrake", leftBrake);
+                    cmd.Parameters.AddWithValue("@FrontRightBrake", rightBrake);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveRearBrakeData(string serialNumber, decimal leftBrake, decimal rightBrake)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM BrakeForce WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE BrakeForce 
+                             SET RearLeftBrake = @RearLeftBrake, RearRightBrake = @RearRightBrake
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO BrakeForce (SerialNumber, RearLeftBrake, RearRightBrake)
+                             VALUES (@SerialNumber, @RearLeftBrake, @RearRightBrake)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RearLeftBrake", leftBrake);
+                    cmd.Parameters.AddWithValue("@RearRightBrake", rightBrake);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveHandBrakeData(string serialNumber, decimal leftBrake, decimal rightBrake)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM BrakeForce WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE BrakeForce 
+                             SET HandLeftBrake = @HandLeftBrake, HandRightBrake = @HandRightBrake
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO BrakeForce (SerialNumber, HandLeftBrake, HandRightBrake)
+                             VALUES (@SerialNumber, @HandLeftBrake, @HandRightBrake)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@HandLeftBrake", leftBrake);
+                    cmd.Parameters.AddWithValue("@HandRightBrake", rightBrake);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveLeftLowBeamData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM LowBeam WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE LowBeam 
+                             SET LeftIntensity = @LeftIntensity, LeftVerticalDeviation = @LeftVerticalDeviation, LeftHorizontalDeviation = @LeftHorizontalDeviation
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO LowBeam (SerialNumber, LeftIntensity, LeftVerticalDeviation, LeftHorizontalDeviation)
+                             VALUES (@SerialNumber, @LeftIntensity, @LeftVerticalDeviation, @LeftHorizontalDeviation)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@LeftIntensity", intensity);
+                    cmd.Parameters.AddWithValue("@LeftVerticalDeviation", veritiDeviation);
+                    cmd.Parameters.AddWithValue("@LeftHorizontalDeviation", horiDeviation);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveLeftHeadLightData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM HeadLights WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE HeadLights 
+                             SET LeftIntensity = @LeftIntensity, LeftVerticalDeviation = @LeftVerticalDeviation, LeftHorizontalDeviation = @LeftHorizontalDeviation
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO HeadLights (SerialNumber, LeftIntensity, LeftVerticalDeviation, LeftHorizontalDeviation)
+                             VALUES (@SerialNumber, @LeftIntensity, @LeftVerticalDeviation, @LeftHorizontalDeviation)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@LeftIntensity", intensity);
+                    cmd.Parameters.AddWithValue("@LeftVerticalDeviation", veritiDeviation);
+                    cmd.Parameters.AddWithValue("@LeftHorizontalDeviation", horiDeviation);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveRightLowBeamData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM LowBeam WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE LowBeam 
+                             SET RightIntensity = @RightIntensity, RightVerticalDeviation = @RightVerticalDeviation, RightHorizontalDeviation = @RightHorizontalDeviation
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO LowBeam (SerialNumber, RightIntensity, RightVerticalDeviation, RightHorizontalDeviation)
+                             VALUES (@SerialNumber, @RightIntensity, @RightVerticalDeviation, @RightHorizontalDeviation)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RightIntensity", intensity);
+                    cmd.Parameters.AddWithValue("@RightVerticalDeviation", veritiDeviation);
+                    cmd.Parameters.AddWithValue("@RightHorizontalDeviation", horiDeviation);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveRightHeadLightData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM HeadLights WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE HeadLights 
+                             SET RightIntensity = @RightIntensity, RightVerticalDeviation = @RightVerticalDeviation, RightHorizontalDeviation = @RightHorizontalDeviation
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO HeadLights (SerialNumber, RightIntensity, RightVerticalDeviation, RightHorizontalDeviation)
+                             VALUES (@SerialNumber, @RightIntensity, @RightVerticalDeviation, @RightHorizontalDeviation)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RightIntensity", intensity);
+                    cmd.Parameters.AddWithValue("@RightVerticalDeviation", veritiDeviation);
+                    cmd.Parameters.AddWithValue("@RightHorizontalDeviation", horiDeviation);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public void SaveNoiseData(string serialNumber, decimal noiseValue)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -174,6 +427,30 @@ namespace SenAIS
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Speed", noiseValue);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveWhistleData(string serialNumber, decimal whistle)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM Whistle WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE Whistle 
+                             SET Whistle = @Whistle
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO Whistle (SerialNumber, Whistle)
+                             VALUES (@SerialNumber, @Whistle)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Speed", whistle);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }

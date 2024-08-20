@@ -18,28 +18,36 @@ namespace SenAIS
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
-        public frmFrontBrake(Form parent, OPCItem opcCounterPos)
+        private string serialNumber;
+        public decimal frontLeftBrake;
+        public decimal frontRightBrake;
+        private bool isReady = false;
+        public frmFrontBrake(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
             InitializeComponent();
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
-            sqlHelper = new SQLHelper("Server=LAPTOP-G4Q0RA59\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            this.serialNumber = serialNumber;
+            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 10000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
-        private void UpdateReadyStatus(object sender, EventArgs e)
+        private async void UpdateReadyStatus(object sender, EventArgs e)
         {
             int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
 
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
+                await Task.Delay(10000); // Chờ 10 giây
+                isReady = true;
+
                 double brakeRightA = 1.0;
                 brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
                 double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Front_Result");
@@ -62,10 +70,15 @@ namespace SenAIS
                 lbRight_Brake.Text = rightBrake.ToString("F1");
                 lbDiff_Brake.Text = diffBrake.ToString("F1");
                 lbSum_Brake.Text = sumBrake.ToString("F1");
+
+                this.frontLeftBrake = Convert.ToDecimal(leftBrake.ToString("F1"));
+                this.frontRightBrake = Convert.ToDecimal(rightBrake.ToString("F1"));
+                CheckCounterPosition();
             }
             else
             {
                 cbReady.BackColor = SystemColors.Control;
+                isReady = false;
             }
         }
         private void btnPre_Click(object sender, EventArgs e)
@@ -74,6 +87,10 @@ namespace SenAIS
             try
             {
                 opcCounterPos.Write(6); // Giá trị cho form chờ hoặc giá trị tương ứng
+                if (isReady)
+                {
+                    CheckCounterPosition(); // Lưu dữ liệu nếu đèn đã sáng 10 giây
+                }
                 ((frmInspection)parentForm).ProcessMeasurement(6);
             }
             catch (Exception ex)
@@ -88,11 +105,28 @@ namespace SenAIS
             try
             {
                 opcCounterPos.Write(8); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
+                if (isReady)
+                {
+                    CheckCounterPosition(); // Lưu dữ liệu nếu đèn đã sáng 10 giây
+                }
                 ((frmInspection)parentForm).ProcessMeasurement(8);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi thay đổi giá trị T99: " + ex.Message);
+            }
+        }
+        private void SaveDataToDatabase()
+        {
+            sqlHelper.SaveFrontBrakeData(this.serialNumber, this.frontLeftBrake, this.frontRightBrake);
+        }
+        private void CheckCounterPosition()
+        {
+            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+
+            if (currentPosition != 1)
+            {
+                SaveDataToDatabase();
             }
         }
     }

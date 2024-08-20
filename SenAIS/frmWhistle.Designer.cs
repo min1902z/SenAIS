@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWhistle));
             this.WhistlePanel = new System.Windows.Forms.Panel();
+            this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbReady = new System.Windows.Forms.CheckBox();
+            this.lbWhistle = new System.Windows.Forms.Label();
+            this.lbWhistleTitle = new System.Windows.Forms.Label();
             this.WhistlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,13 +45,28 @@
             this.WhistlePanel.Controls.Add(this.btnNext);
             this.WhistlePanel.Controls.Add(this.btnPre);
             this.WhistlePanel.Controls.Add(this.label2);
-            this.WhistlePanel.Controls.Add(this.label3);
-            this.WhistlePanel.Controls.Add(this.label1);
+            this.WhistlePanel.Controls.Add(this.lbWhistle);
+            this.WhistlePanel.Controls.Add(this.lbWhistleTitle);
             this.WhistlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WhistlePanel.Location = new System.Drawing.Point(0, 0);
             this.WhistlePanel.Name = "WhistlePanel";
             this.WhistlePanel.Size = new System.Drawing.Size(1904, 1041);
             this.WhistlePanel.TabIndex = 0;
+            // 
+            // cbReady
+            // 
+            this.cbReady.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbReady.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbReady.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbReady.BackgroundImage")));
+            this.cbReady.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.cbReady.Checked = true;
+            this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbReady.Enabled = false;
+            this.cbReady.Location = new System.Drawing.Point(12, 12);
+            this.cbReady.Name = "cbReady";
+            this.cbReady.Size = new System.Drawing.Size(111, 88);
+            this.cbReady.TabIndex = 44;
+            this.cbReady.UseVisualStyleBackColor = false;
             // 
             // btnNext
             // 
@@ -95,48 +110,33 @@
             this.label2.Text = "dB";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
+            // lbWhistle
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(194, 308);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1326, 488);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "00.000";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbWhistle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbWhistle.AutoSize = true;
+            this.lbWhistle.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWhistle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbWhistle.Location = new System.Drawing.Point(194, 308);
+            this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbWhistle.Name = "lbWhistle";
+            this.lbWhistle.Size = new System.Drawing.Size(1326, 488);
+            this.lbWhistle.TabIndex = 26;
+            this.lbWhistle.Text = "00.000";
+            this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // lbWhistleTitle
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(658, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(678, 117);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "ÂM LƯỢNG CÒI";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cbReady
-            // 
-            this.cbReady.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbReady.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.cbReady.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbReady.BackgroundImage")));
-            this.cbReady.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.cbReady.Checked = true;
-            this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbReady.Enabled = false;
-            this.cbReady.Location = new System.Drawing.Point(12, 12);
-            this.cbReady.Name = "cbReady";
-            this.cbReady.Size = new System.Drawing.Size(111, 88);
-            this.cbReady.TabIndex = 44;
-            this.cbReady.UseVisualStyleBackColor = false;
+            this.lbWhistleTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbWhistleTitle.AutoSize = true;
+            this.lbWhistleTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWhistleTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbWhistleTitle.Location = new System.Drawing.Point(658, 0);
+            this.lbWhistleTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbWhistleTitle.Name = "lbWhistleTitle";
+            this.lbWhistleTitle.Size = new System.Drawing.Size(678, 117);
+            this.lbWhistleTitle.TabIndex = 25;
+            this.lbWhistleTitle.Text = "ÂM LƯỢNG CÒI";
+            this.lbWhistleTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frmWhistle
             // 
@@ -152,6 +152,8 @@
             this.Name = "frmWhistle";
             this.Text = "Âm Lượng Còi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWhistle_FormClosing);
+            this.Load += new System.EventHandler(this.frmWhistle_Load);
             this.WhistlePanel.ResumeLayout(false);
             this.WhistlePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -164,8 +166,8 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbWhistle;
+        private System.Windows.Forms.Label lbWhistleTitle;
         private System.Windows.Forms.CheckBox cbReady;
     }
 }

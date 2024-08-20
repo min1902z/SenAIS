@@ -36,11 +36,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbInten = new System.Windows.Forms.Label();
-            this.lbDiviaLR = new System.Windows.Forms.Label();
+            this.lbIntensity = new System.Windows.Forms.Label();
+            this.lbVerticalDeviation = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lbDiviaUpDown = new System.Windows.Forms.Label();
+            this.lbHorizontalDeviation = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
             this.lbHeadLightTitle = new System.Windows.Forms.Label();
@@ -87,11 +87,11 @@
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lbInten, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lbDiviaLR, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbIntensity, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbVerticalDeviation, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label10, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label11, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lbDiviaUpDown, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lbHorizontalDeviation, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(95, 120);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -154,27 +154,27 @@
             this.label3.Text = "L. Trên/Dưới";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbInten
+            // lbIntensity
             // 
-            this.lbInten.AutoSize = true;
-            this.lbInten.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInten.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbInten.Location = new System.Drawing.Point(614, 0);
-            this.lbInten.Name = "lbInten";
-            this.lbInten.Size = new System.Drawing.Size(357, 244);
-            this.lbInten.TabIndex = 8;
-            this.lbInten.Text = "0.0";
+            this.lbIntensity.AutoSize = true;
+            this.lbIntensity.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbIntensity.Location = new System.Drawing.Point(614, 0);
+            this.lbIntensity.Name = "lbIntensity";
+            this.lbIntensity.Size = new System.Drawing.Size(357, 244);
+            this.lbIntensity.TabIndex = 8;
+            this.lbIntensity.Text = "0.0";
             // 
-            // lbDiviaLR
+            // lbVerticalDeviation
             // 
-            this.lbDiviaLR.AutoSize = true;
-            this.lbDiviaLR.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDiviaLR.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDiviaLR.Location = new System.Drawing.Point(614, 578);
-            this.lbDiviaLR.Name = "lbDiviaLR";
-            this.lbDiviaLR.Size = new System.Drawing.Size(357, 244);
-            this.lbDiviaLR.TabIndex = 10;
-            this.lbDiviaLR.Text = "0.0";
+            this.lbVerticalDeviation.AutoSize = true;
+            this.lbVerticalDeviation.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVerticalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbVerticalDeviation.Location = new System.Drawing.Point(614, 578);
+            this.lbVerticalDeviation.Name = "lbVerticalDeviation";
+            this.lbVerticalDeviation.Size = new System.Drawing.Size(357, 244);
+            this.lbVerticalDeviation.TabIndex = 10;
+            this.lbVerticalDeviation.Text = "0.0";
             // 
             // label10
             // 
@@ -204,16 +204,16 @@
             this.label11.Text = "cm/dam";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbDiviaUpDown
+            // lbHorizontalDeviation
             // 
-            this.lbDiviaUpDown.AutoSize = true;
-            this.lbDiviaUpDown.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDiviaUpDown.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDiviaUpDown.Location = new System.Drawing.Point(614, 289);
-            this.lbDiviaUpDown.Name = "lbDiviaUpDown";
-            this.lbDiviaUpDown.Size = new System.Drawing.Size(357, 244);
-            this.lbDiviaUpDown.TabIndex = 9;
-            this.lbDiviaUpDown.Text = "0.0";
+            this.lbHorizontalDeviation.AutoSize = true;
+            this.lbHorizontalDeviation.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHorizontalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbHorizontalDeviation.Location = new System.Drawing.Point(614, 289);
+            this.lbHorizontalDeviation.Name = "lbHorizontalDeviation";
+            this.lbHorizontalDeviation.Size = new System.Drawing.Size(357, 244);
+            this.lbHorizontalDeviation.TabIndex = 9;
+            this.lbHorizontalDeviation.Text = "0.0";
             // 
             // btnNext
             // 
@@ -228,6 +228,7 @@
             this.btnNext.TabIndex = 38;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPre
             // 
@@ -242,6 +243,7 @@
             this.btnPre.TabIndex = 37;
             this.btnPre.Text = "Trở Lại";
             this.btnPre.UseVisualStyleBackColor = false;
+            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
             // lbHeadLightTitle
             // 
@@ -284,11 +286,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbInten;
-        private System.Windows.Forms.Label lbDiviaLR;
+        private System.Windows.Forms.Label lbIntensity;
+        private System.Windows.Forms.Label lbVerticalDeviation;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lbDiviaUpDown;
+        private System.Windows.Forms.Label lbHorizontalDeviation;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbHeadLightTitle;
