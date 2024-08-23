@@ -17,6 +17,7 @@ namespace SenAIS
         private Form parentForm;
         private OPCItem opcCounterPos;
         private Timer updateTimer;
+        private COMConnect comConnect;
         private SQLHelper sqlHelper;
         private string serialNumber;
         public decimal intensity;
@@ -49,7 +50,9 @@ namespace SenAIS
                 await Task.Delay(10000); // Chờ 10 giây
                 isReady = true;
 
-                // Xử lý Data
+                // Gửi request đến NHD6109 để lấy dữ liệu
+                byte[] request = { 0x4D }; // Thay đổi lệnh nếu cần thiết (4D cho CosLightL)
+                comConnect.SendRequest(request);
 
                 this.intensity = Convert.ToDecimal(intensity.ToString("F1"));
                 this.vertiDeviation = Convert.ToDecimal(vertiDeviation.ToString("F1"));
@@ -61,6 +64,27 @@ namespace SenAIS
                 cbReady.BackColor = SystemColors.Control;
                 isReady = false;
             }
+        }
+        // Method to process and display data on frmCosLightL
+        public void ProcessNHD6109Data(byte[] data)
+        {
+            // Assuming the data format is correctly parsed here
+            string intensityStr = Encoding.ASCII.GetString(data, 2, 5);   // Extract Intensity (example positions)
+            string verticalDeviationStr = Encoding.ASCII.GetString(data, 7, 5);  // Extract Vertical Deviation
+            string horizontalDeviationStr = Encoding.ASCII.GetString(data, 12, 5);  // Extract Horizontal Deviation
+
+            // Convert the strings to decimal or float as needed
+            decimal intensity = decimal.Parse(intensityStr);
+            decimal verticalDeviation = decimal.Parse(verticalDeviationStr);
+            decimal horizontalDeviation = decimal.Parse(horizontalDeviationStr);
+
+            // Update UI
+            this.Invoke(new Action(() =>
+            {
+                lbIntensity.Text = intensity.ToString("F2");
+                lbVerticalDeviation.Text = verticalDeviation.ToString("F2");
+                lbHorizontalDeviation.Text = horizontalDeviation.ToString("F2");
+            }));
         }
         private void btnPre_Click(object sender, EventArgs e)
         {

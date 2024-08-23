@@ -21,6 +21,7 @@ namespace SenAIS
         private string serialNumber;
         public decimal speedValue;
         private bool isReady = false;
+        private bool isUpdatingStatus = false;
 
         public frmSpeed(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
@@ -40,30 +41,45 @@ namespace SenAIS
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
+            if (isUpdatingStatus) return; // Nếu hàm đang chạy, thoát ra
+            isUpdatingStatus = true; // Đặt cờ khi bắt đầu chạy
 
-           if (checkStatus == 1)
+            try
             {
-                cbReady.BackColor = Color.Green;
-                await Task.Delay(10000); // Chờ 10 giây
-                isReady = true;
+                int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
 
-                double speedA = 1.0;
-                speedA = sqlHelper.GetParaValue("Speed", "ParaA");
-                double speedResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Result");
-                double speed = speedResult / speedA;
-                lbSpeed.Text = speed.ToString("F1");
+                if (checkStatus == 1)
+                {
+                    cbReady.BackColor = Color.Green;
+                    await Task.Delay(10000); // Chờ 10 giây
+                    isReady = true;
 
-                this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
-                CheckCounterPosition();
+                    double speedA = sqlHelper.GetParaValue("Speed", "ParaA");
+                    double speedResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Result");
+                    double speed = speedResult / speedA;
+                    lbSpeed.Text = speed.ToString("F1");
+
+                    this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
+                    CheckCounterPosition();
+                }
+                else
+                {
+                    cbReady.BackColor = SystemColors.Control;
+                    isReady = false;
+                }
+
+                // Reset lỗi để lần sau có thể hiển thị lại lỗi nếu cần
+                OPCUtility.ResetErrorFlag();
             }
-            else
+            catch (Exception ex)
             {
-                cbReady.BackColor = SystemColors.Control;
-                isReady = false;
+                MessageBox.Show($"Error in UpdateReadyStatus: {ex.Message}");
+                updateTimer.Stop(); // Dừng timer nếu có lỗi nghiêm trọng
             }
-            // Reset lỗi để lần sau có thể hiển thị lại lỗi nếu cần
-            OPCUtility.ResetErrorFlag();
+            finally
+            {
+                isUpdatingStatus = false; // Giải phóng cờ khi kết thúc
+            }
         }
         private void btnPreSpeed_Click(object sender, EventArgs e)
         {
@@ -113,6 +129,14 @@ namespace SenAIS
                 SaveDataToDatabase();
             }
         }
-        
+
+        private void frmSpeed_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (updateTimer != null)
+            {
+                updateTimer.Stop();    // Dừng Timer khi form đóng
+                updateTimer.Dispose(); // Giải phóng tài nguyên Timer
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace SenAIS
         private double measurePoint1;
         private double refPoint2;
         private double measurePoint2;
-        private double calibA = 0.0;
+        private double calibA = 1.0;
         private double calibB = 0.0;
         private double calibResult = 0.0;
         private string calibrationType;
@@ -174,25 +174,48 @@ namespace SenAIS
         {
             try
             {
-                // Get the values from the form
-                decimal paraA = Convert.ToDecimal(calibA);
-                decimal paraB = Convert.ToDecimal(calibB);
-                string paraType = this.calibrationType;
-                // Use SqlHelper to execute the query
-                SQLHelper sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True;");
-                sqlHelper.UpdateCalibrationData(paraType, paraA, paraB);
+                // Hiển thị hộp thoại nhập mật khẩu trước khi lưu dữ liệu
+                string password = Prompt.ShowDialog("Vui lòng nhập mật khẩu để lưu thông số:", "Xác nhận mật khẩu");
 
-                lbParaWeightLA.Text = paraA.ToString("F2");
-                lbParaWeightLB.Text = paraB.ToString("F1");
+                // Kiểm tra mật khẩu đã nhập
+                if (!string.IsNullOrEmpty(password))
+                {
+                    if (ValidatePassword(password))
+                    {
+                        // Nếu mật khẩu đúng, thực hiện lưu dữ liệu
+                        decimal paraA = Convert.ToDecimal(calibA);
+                        decimal paraB = Convert.ToDecimal(calibB);
+                        string paraType = this.calibrationType;
 
-                MessageBox.Show("Lưu dữ liệu Kiểm Chuẩn Thành Công!");
+                        // Sử dụng SQLHelper để thực hiện truy vấn
+                        SQLHelper sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True;");
+                        sqlHelper.UpdateCalibrationData(paraType, paraA, paraB);
+
+                        // Cập nhật giá trị lên giao diện
+                        lbParaWeightLA.Text = paraA.ToString("F1");
+                        lbParaWeightLB.Text = paraB.ToString("F1");
+
+                        MessageBox.Show("Lưu dữ liệu Kiểm Chuẩn Thành Công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu không đúng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Lưu dữ liệu đã bị hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lưu dữ liệu xảy ra lỗi: " + ex.Message);
             }
         }
-
+        private bool ValidatePassword(string enteredPassword)
+        {
+            return enteredPassword == "Sentek.vn";
+        }
         private void frmCalibration_Load(object sender, EventArgs e)
         {
             if (this.Owner is SenAIS mainForm)

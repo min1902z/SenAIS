@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -490,6 +491,123 @@ namespace SenAIS
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+        public DataTable TableExecuteQuery(string query, SqlParameter[] parameters = null)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+
+                    DataTable dataTable = new DataTable();
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
+        public DataTable SearchVehicleInfo(string searchTerm)
+        {
+            string query = @"
+            SELECT FrameNumber, VehicleType, Inspector, EngineNumber, SerialNumber, InspectionDate 
+            FROM VehicleInfo 
+            WHERE 
+                SerialNumber LIKE @SearchTerm OR
+                FrameNumber LIKE @SearchTerm OR
+                VehicleType LIKE @SearchTerm OR
+                Inspector LIKE @SearchTerm OR
+                EngineNumber LIKE @SearchTerm OR
+                InspectionDate LIKE @SearchTerm";
+
+            var parameters = new[]
+            {
+            new SqlParameter("@SearchTerm", "%" + searchTerm + "%")
+        };
+
+            return TableExecuteQuery(query, parameters);
+        }
+
+        public DataRow GetVehicleDetails(string serialNumber)
+        {
+            string query = @"SELECT 
+                            vi.SerialNumber,
+                            vi.FrameNumber,
+                            vi.VehicleType,
+                            vi.Inspector,
+                            vi.EngineNumber,
+                            vi.InspectionDate,
+                            sp.Speed,
+                            ss.SideSlip,
+	                        we.FrontLeftWeight,
+	                        we.FrontRightWeight,
+	                        we.RearLeftWeight,
+	                        we.RearRightWeight,
+	                        bf.FrontLeftBrake,
+	                        bf.FrontRightBrake,
+	                        bf.RearLeftBrake,
+	                        bf.RearRightBrake,
+	                        bf.HandBrakeLeft,
+	                        bf.HandBrakeRight,
+	                        ns.Noise,
+	                        ns.Whistle,
+	                        hl.[LeftIntensity] AS LHLIntensity,
+                            hl.[LeftVerticalDeviation] AS LHLVertical,
+                            hl.[LeftHorizontalDeviation] AS LHLHorizontal,
+                            hl.[RightIntensity] AS RHLIntensity,
+                            hl.[RightVerticalDeviation] AS RHLVertical,
+                            hl.[RightHorizontalDeviation] AS RHLHorizontal,
+	                        lb.[LeftIntensity] AS LLBIntensity,
+                            lb.[LeftVerticalDeviation] AS LLBVertical,
+                            lb.[LeftHorizontalDeviation] AS LLBHorizontal,
+                            lb.[RightIntensity] AS RLBIntensity,
+                            lb.[RightVerticalDeviation] AS RLBVertical,
+                            lb.[RightHorizontalDeviation] AS RLBHorizontal,
+	                        pe.[HC],
+                            pe.[CO],
+                            pe.[CO2],
+                            pe.[O2],
+                            pe.[NO],
+                            pe.[OilTemp],
+                            pe.[RPM],
+	                        de.[MinSpeed],
+                            de.[MaxSpeed],
+                            de.[HSU]
+
+                        FROM 
+                            VehicleInfo vi
+                        LEFT JOIN 
+                            Speed sp ON vi.SerialNumber = sp.SerialNumber
+                        LEFT JOIN 
+                            SideSlip ss ON vi.SerialNumber = ss.SerialNumber
+                        LEFT JOIN 
+                            Weight we ON vi.SerialNumber = we.SerialNumber
+                        LEFT JOIN 
+                            BrakeForce bf ON vi.SerialNumber = bf.SerialNumber
+                        LEFT JOIN 
+                            Noise ns ON vi.SerialNumber = ns.SerialNumber
+                        LEFT JOIN 
+                            Headlights hl ON vi.SerialNumber = hl.SerialNumber
+                        LEFT JOIN 
+                            LowBeam lb ON vi.SerialNumber = lb.SerialNumber
+                        LEFT JOIN 
+                            GasEmission_Petrol pe ON vi.SerialNumber = pe.SerialNumber
+                        LEFT JOIN 
+                            GasEmission_Diesel de ON vi.SerialNumber = de.SerialNumber
+                        WHERE 
+                            vi.SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+            new SqlParameter("@SerialNumber", serialNumber)
+        };
+
+            DataTable result = TableExecuteQuery(query, parameters);
+
+            return result.Rows.Count > 0 ? result.Rows[0] : null;
         }
     }
 

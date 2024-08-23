@@ -32,15 +32,20 @@
             this.InspectionPanel = new System.Windows.Forms.Panel();
             this.chkToggleFuelType = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnEmission = new System.Windows.Forms.Button();
-            this.btnWeight = new System.Windows.Forms.Button();
-            this.btnNoise = new System.Windows.Forms.Button();
+            this.btnHandBrake = new System.Windows.Forms.Button();
+            this.btnRearWeight = new System.Windows.Forms.Button();
             this.btnSpeed = new System.Windows.Forms.Button();
-            this.btnSideSlip = new System.Windows.Forms.Button();
+            this.btnFrontWeight = new System.Windows.Forms.Button();
+            this.btnLeftHeadLight = new System.Windows.Forms.Button();
+            this.btnRightHeadLight = new System.Windows.Forms.Button();
+            this.btnLeftCosLight = new System.Windows.Forms.Button();
+            this.btnRightCosLight = new System.Windows.Forms.Button();
+            this.btnEmission = new System.Windows.Forms.Button();
             this.btnWhistle = new System.Windows.Forms.Button();
-            this.btnBrake = new System.Windows.Forms.Button();
-            this.btnHeadLight = new System.Windows.Forms.Button();
-            this.btnCosLight = new System.Windows.Forms.Button();
+            this.btnNoise = new System.Windows.Forms.Button();
+            this.btnSideSlip = new System.Windows.Forms.Button();
+            this.btnFrontBrake = new System.Windows.Forms.Button();
+            this.btnRearBrake = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dateInSpec = new System.Windows.Forms.DateTimePicker();
@@ -114,19 +119,25 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.btnEmission, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnWeight, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 0, 1);
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Controls.Add(this.btnHandBrake, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnRearWeight, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSpeed, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSideSlip, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnBrake, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnHeadLight, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnCosLight, 1, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(574, 55);
+            this.tableLayoutPanel2.Controls.Add(this.btnFrontWeight, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnLeftHeadLight, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnRightHeadLight, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnLeftCosLight, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnRightCosLight, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnEmission, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnSideSlip, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnFrontBrake, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnRearBrake, 1, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(514, 55);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -134,46 +145,32 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(442, 570);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(544, 570);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
-            // btnEmission
+            // btnHandBrake
             // 
-            this.btnEmission.AutoSize = true;
-            this.btnEmission.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnEmission.Location = new System.Drawing.Point(2, 458);
-            this.btnEmission.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEmission.Name = "btnEmission";
-            this.btnEmission.Size = new System.Drawing.Size(129, 53);
-            this.btnEmission.TabIndex = 12;
-            this.btnEmission.Text = "Khí Xả - Xăng";
-            this.btnEmission.UseVisualStyleBackColor = true;
-            this.btnEmission.Click += new System.EventHandler(this.btnEmission_Click);
+            this.btnHandBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHandBrake.Location = new System.Drawing.Point(364, 116);
+            this.btnHandBrake.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHandBrake.Name = "btnHandBrake";
+            this.btnHandBrake.Size = new System.Drawing.Size(129, 53);
+            this.btnHandBrake.TabIndex = 17;
+            this.btnHandBrake.Text = "Phanh Tay";
+            this.btnHandBrake.UseVisualStyleBackColor = true;
+            this.btnHandBrake.Click += new System.EventHandler(this.btnHandBrake_Click);
             // 
-            // btnWeight
+            // btnRearWeight
             // 
-            this.btnWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWeight.Location = new System.Drawing.Point(223, 116);
-            this.btnWeight.Margin = new System.Windows.Forms.Padding(2);
-            this.btnWeight.Name = "btnWeight";
-            this.btnWeight.Size = new System.Drawing.Size(129, 53);
-            this.btnWeight.TabIndex = 7;
-            this.btnWeight.Text = "Trọng Lượng";
-            this.btnWeight.UseVisualStyleBackColor = true;
-            this.btnWeight.Click += new System.EventHandler(this.btnWeight_Click);
-            // 
-            // btnNoise
-            // 
-            this.btnNoise.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNoise.Location = new System.Drawing.Point(2, 116);
-            this.btnNoise.Margin = new System.Windows.Forms.Padding(2);
-            this.btnNoise.Name = "btnNoise";
-            this.btnNoise.Size = new System.Drawing.Size(129, 53);
-            this.btnNoise.TabIndex = 6;
-            this.btnNoise.Text = "Độ Ồn";
-            this.btnNoise.UseVisualStyleBackColor = true;
-            this.btnNoise.Click += new System.EventHandler(this.btnNoise_Click);
+            this.btnRearWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRearWeight.Location = new System.Drawing.Point(364, 2);
+            this.btnRearWeight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRearWeight.Name = "btnRearWeight";
+            this.btnRearWeight.Size = new System.Drawing.Size(138, 53);
+            this.btnRearWeight.TabIndex = 13;
+            this.btnRearWeight.Text = "Trọng Lượng S";
+            this.btnRearWeight.UseVisualStyleBackColor = true;
+            this.btnRearWeight.Click += new System.EventHandler(this.btnRearWeight_Click);
             // 
             // btnSpeed
             // 
@@ -187,22 +184,83 @@
             this.btnSpeed.UseVisualStyleBackColor = true;
             this.btnSpeed.Click += new System.EventHandler(this.btnSpeed_Click);
             // 
-            // btnSideSlip
+            // btnFrontWeight
             // 
-            this.btnSideSlip.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSideSlip.Location = new System.Drawing.Point(223, 2);
-            this.btnSideSlip.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSideSlip.Name = "btnSideSlip";
-            this.btnSideSlip.Size = new System.Drawing.Size(129, 53);
-            this.btnSideSlip.TabIndex = 5;
-            this.btnSideSlip.Text = "Trượt Ngang";
-            this.btnSideSlip.UseVisualStyleBackColor = true;
-            this.btnSideSlip.Click += new System.EventHandler(this.btnSideSlip_Click);
+            this.btnFrontWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFrontWeight.Location = new System.Drawing.Point(183, 2);
+            this.btnFrontWeight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFrontWeight.Name = "btnFrontWeight";
+            this.btnFrontWeight.Size = new System.Drawing.Size(144, 53);
+            this.btnFrontWeight.TabIndex = 7;
+            this.btnFrontWeight.Text = "Trọng Lượng T";
+            this.btnFrontWeight.UseVisualStyleBackColor = true;
+            this.btnFrontWeight.Click += new System.EventHandler(this.btnFrontWeight_Click);
+            // 
+            // btnLeftHeadLight
+            // 
+            this.btnLeftHeadLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeftHeadLight.Location = new System.Drawing.Point(183, 230);
+            this.btnLeftHeadLight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLeftHeadLight.Name = "btnLeftHeadLight";
+            this.btnLeftHeadLight.Size = new System.Drawing.Size(129, 53);
+            this.btnLeftHeadLight.TabIndex = 9;
+            this.btnLeftHeadLight.Text = "Đèn Pha Trái";
+            this.btnLeftHeadLight.UseVisualStyleBackColor = true;
+            this.btnLeftHeadLight.Click += new System.EventHandler(this.btnLeftHeadLight_Click);
+            // 
+            // btnRightHeadLight
+            // 
+            this.btnRightHeadLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRightHeadLight.Location = new System.Drawing.Point(364, 230);
+            this.btnRightHeadLight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRightHeadLight.Name = "btnRightHeadLight";
+            this.btnRightHeadLight.Size = new System.Drawing.Size(129, 53);
+            this.btnRightHeadLight.TabIndex = 14;
+            this.btnRightHeadLight.Text = "Đèn Pha Phải";
+            this.btnRightHeadLight.UseVisualStyleBackColor = true;
+            this.btnRightHeadLight.Click += new System.EventHandler(this.btnRightHeadLight_Click);
+            // 
+            // btnLeftCosLight
+            // 
+            this.btnLeftCosLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeftCosLight.Location = new System.Drawing.Point(183, 344);
+            this.btnLeftCosLight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLeftCosLight.Name = "btnLeftCosLight";
+            this.btnLeftCosLight.Size = new System.Drawing.Size(129, 53);
+            this.btnLeftCosLight.TabIndex = 10;
+            this.btnLeftCosLight.Text = "Đèn Cốt Trái";
+            this.btnLeftCosLight.UseVisualStyleBackColor = true;
+            this.btnLeftCosLight.Click += new System.EventHandler(this.btnLeftCosLight_Click);
+            // 
+            // btnRightCosLight
+            // 
+            this.btnRightCosLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRightCosLight.Location = new System.Drawing.Point(364, 344);
+            this.btnRightCosLight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRightCosLight.Name = "btnRightCosLight";
+            this.btnRightCosLight.Size = new System.Drawing.Size(129, 53);
+            this.btnRightCosLight.TabIndex = 15;
+            this.btnRightCosLight.Text = "Đèn Cốt Phải";
+            this.btnRightCosLight.UseVisualStyleBackColor = true;
+            this.btnRightCosLight.Click += new System.EventHandler(this.btnRightCosLight_Click);
+            // 
+            // btnEmission
+            // 
+            this.btnEmission.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnEmission.Location = new System.Drawing.Point(183, 458);
+            this.btnEmission.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEmission.Name = "btnEmission";
+            this.btnEmission.Size = new System.Drawing.Size(125, 53);
+            this.btnEmission.TabIndex = 12;
+            this.btnEmission.Text = "Khí Xả - Xăng";
+            this.btnEmission.UseVisualStyleBackColor = true;
+            this.btnEmission.Click += new System.EventHandler(this.btnEmission_Click);
             // 
             // btnWhistle
             // 
             this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWhistle.Location = new System.Drawing.Point(2, 230);
+            this.btnWhistle.Location = new System.Drawing.Point(2, 458);
             this.btnWhistle.Margin = new System.Windows.Forms.Padding(2);
             this.btnWhistle.Name = "btnWhistle";
             this.btnWhistle.Size = new System.Drawing.Size(129, 53);
@@ -211,41 +269,53 @@
             this.btnWhistle.UseVisualStyleBackColor = true;
             this.btnWhistle.Click += new System.EventHandler(this.btnWhistle_Click);
             // 
-            // btnBrake
+            // btnNoise
             // 
-            this.btnBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrake.Location = new System.Drawing.Point(223, 230);
-            this.btnBrake.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBrake.Name = "btnBrake";
-            this.btnBrake.Size = new System.Drawing.Size(129, 53);
-            this.btnBrake.TabIndex = 8;
-            this.btnBrake.Text = "Lực Phanh";
-            this.btnBrake.UseVisualStyleBackColor = true;
-            this.btnBrake.Click += new System.EventHandler(this.btnBrake_Click);
+            this.btnNoise.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise.Location = new System.Drawing.Point(2, 344);
+            this.btnNoise.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNoise.Name = "btnNoise";
+            this.btnNoise.Size = new System.Drawing.Size(129, 53);
+            this.btnNoise.TabIndex = 6;
+            this.btnNoise.Text = "Độ Ồn";
+            this.btnNoise.UseVisualStyleBackColor = true;
+            this.btnNoise.Click += new System.EventHandler(this.btnNoise_Click);
             // 
-            // btnHeadLight
+            // btnSideSlip
             // 
-            this.btnHeadLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHeadLight.Location = new System.Drawing.Point(2, 344);
-            this.btnHeadLight.Margin = new System.Windows.Forms.Padding(2);
-            this.btnHeadLight.Name = "btnHeadLight";
-            this.btnHeadLight.Size = new System.Drawing.Size(129, 53);
-            this.btnHeadLight.TabIndex = 9;
-            this.btnHeadLight.Text = "Đèn Pha";
-            this.btnHeadLight.UseVisualStyleBackColor = true;
-            this.btnHeadLight.Click += new System.EventHandler(this.btnHeadLight_Click);
+            this.btnSideSlip.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSideSlip.Location = new System.Drawing.Point(2, 230);
+            this.btnSideSlip.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSideSlip.Name = "btnSideSlip";
+            this.btnSideSlip.Size = new System.Drawing.Size(129, 53);
+            this.btnSideSlip.TabIndex = 5;
+            this.btnSideSlip.Text = "Trượt Ngang";
+            this.btnSideSlip.UseVisualStyleBackColor = true;
+            this.btnSideSlip.Click += new System.EventHandler(this.btnSideSlip_Click);
             // 
-            // btnCosLight
+            // btnFrontBrake
             // 
-            this.btnCosLight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCosLight.Location = new System.Drawing.Point(223, 344);
-            this.btnCosLight.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCosLight.Name = "btnCosLight";
-            this.btnCosLight.Size = new System.Drawing.Size(129, 53);
-            this.btnCosLight.TabIndex = 10;
-            this.btnCosLight.Text = "Đèn Cốt";
-            this.btnCosLight.UseVisualStyleBackColor = true;
-            this.btnCosLight.Click += new System.EventHandler(this.btnCosLight_Click);
+            this.btnFrontBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFrontBrake.Location = new System.Drawing.Point(2, 116);
+            this.btnFrontBrake.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFrontBrake.Name = "btnFrontBrake";
+            this.btnFrontBrake.Size = new System.Drawing.Size(129, 53);
+            this.btnFrontBrake.TabIndex = 8;
+            this.btnFrontBrake.Text = "Lực Phanh T";
+            this.btnFrontBrake.UseVisualStyleBackColor = true;
+            this.btnFrontBrake.Click += new System.EventHandler(this.btnFrontBrake_Click);
+            // 
+            // btnRearBrake
+            // 
+            this.btnRearBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRearBrake.Location = new System.Drawing.Point(183, 116);
+            this.btnRearBrake.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRearBrake.Name = "btnRearBrake";
+            this.btnRearBrake.Size = new System.Drawing.Size(129, 53);
+            this.btnRearBrake.TabIndex = 16;
+            this.btnRearBrake.Text = "Lực Phanh S";
+            this.btnRearBrake.UseVisualStyleBackColor = true;
+            this.btnRearBrake.Click += new System.EventHandler(this.btnRearBrake_Click);
             // 
             // btnReport
             // 
@@ -266,7 +336,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 249F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 261F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.dateInSpec, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtSerialNum, 1, 4);
@@ -442,7 +512,6 @@
             this.InspectionPanel.ResumeLayout(false);
             this.InspectionPanel.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -469,13 +538,18 @@
         private System.Windows.Forms.Button btnSpeed;
         private System.Windows.Forms.Button btnSideSlip;
         private System.Windows.Forms.Button btnEmission;
-        private System.Windows.Forms.Button btnWeight;
+        private System.Windows.Forms.Button btnFrontWeight;
         private System.Windows.Forms.Button btnNoise;
-        private System.Windows.Forms.Button btnBrake;
-        private System.Windows.Forms.Button btnHeadLight;
-        private System.Windows.Forms.Button btnCosLight;
+        private System.Windows.Forms.Button btnFrontBrake;
+        private System.Windows.Forms.Button btnLeftHeadLight;
+        private System.Windows.Forms.Button btnLeftCosLight;
         private System.Windows.Forms.Button btnWhistle;
         private System.Windows.Forms.CheckBox chkToggleFuelType;
         private System.Windows.Forms.DateTimePicker dateInSpec;
+        private System.Windows.Forms.Button btnRearWeight;
+        private System.Windows.Forms.Button btnRightHeadLight;
+        private System.Windows.Forms.Button btnRightCosLight;
+        private System.Windows.Forms.Button btnRearBrake;
+        private System.Windows.Forms.Button btnHandBrake;
     }
 }

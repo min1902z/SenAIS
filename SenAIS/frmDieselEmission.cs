@@ -55,7 +55,7 @@ namespace SenAIS
                 await Task.Delay(10000); // Chờ 10 giây
 
                 // Sau khi đợi 10 giây, gửi yêu cầu lấy dữ liệu
-                byte[] request = { 0x03 };
+                byte[] request = { 0xA5 };
                 comConnect.SendRequest(request);
                 isReady = true;
                 //CheckCounterPosition();

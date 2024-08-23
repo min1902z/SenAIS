@@ -44,9 +44,9 @@
             this.tsLBrakeCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.tsRBrakeCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.TSHoTro = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSGioiThieu = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSAuboutMe = new System.Windows.Forms.ToolStripMenuItem();
             this.TSReset = new System.Windows.Forms.ToolStripMenuItem();
-            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody = new System.Windows.Forms.Panel();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
@@ -159,48 +159,52 @@
             // tsLBrakeCalib
             // 
             this.tsLBrakeCalib.Name = "tsLBrakeCalib";
-            this.tsLBrakeCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsLBrakeCalib.Size = new System.Drawing.Size(172, 24);
             this.tsLBrakeCalib.Text = "Lực Phanh Trái";
             this.tsLBrakeCalib.Click += new System.EventHandler(this.tsLBrakeCalib_Click);
             // 
             // tsRBrakeCalib
             // 
             this.tsRBrakeCalib.Name = "tsRBrakeCalib";
-            this.tsRBrakeCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsRBrakeCalib.Size = new System.Drawing.Size(172, 24);
             this.tsRBrakeCalib.Text = "Lực Phanh Phải";
             this.tsRBrakeCalib.Click += new System.EventHandler(this.tsRBrakeCalib_Click);
             // 
             // TSHoTro
             // 
             this.TSHoTro.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSGioiThieu,
+            this.TSAuboutMe,
             this.TSReset,
-            this.thoátToolStripMenuItem});
+            this.tsExit});
             this.TSHoTro.Name = "TSHoTro";
             this.TSHoTro.Size = new System.Drawing.Size(62, 23);
             this.TSHoTro.Text = "Hỗ Trợ";
             this.TSHoTro.Click += new System.EventHandler(this.TSHoTro_Click);
             // 
-            // TSGioiThieu
+            // TSAuboutMe
             // 
-            this.TSGioiThieu.Name = "TSGioiThieu";
-            this.TSGioiThieu.Size = new System.Drawing.Size(164, 24);
-            this.TSGioiThieu.Text = "Giới Thiệu";
+            this.TSAuboutMe.Name = "TSAuboutMe";
+            this.TSAuboutMe.Size = new System.Drawing.Size(180, 24);
+            this.TSAuboutMe.Text = "Giới Thiệu";
+            this.TSAuboutMe.Click += new System.EventHandler(this.TSAuboutMe_Click);
             // 
             // TSReset
             // 
             this.TSReset.Name = "TSReset";
-            this.TSReset.Size = new System.Drawing.Size(164, 24);
+            this.TSReset.Size = new System.Drawing.Size(180, 24);
             this.TSReset.Text = "Khởi Động Lại";
+            this.TSReset.Click += new System.EventHandler(this.TSReset_Click);
             // 
-            // thoátToolStripMenuItem
+            // tsExit
             // 
-            this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
-            this.thoátToolStripMenuItem.Text = "Thoát ";
+            this.tsExit.Name = "tsExit";
+            this.tsExit.Size = new System.Drawing.Size(180, 24);
+            this.tsExit.Text = "Thoát ";
+            this.tsExit.Click += new System.EventHandler(this.tsExit_Click);
             // 
             // panelBody
             // 
+            this.panelBody.AutoScroll = true;
             this.panelBody.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(0, 27);
@@ -213,6 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(886, 514);
             this.Controls.Add(this.panelBody);
@@ -239,7 +244,7 @@
         private System.Windows.Forms.ToolStripMenuItem TSDuLieu;
         private System.Windows.Forms.ToolStripMenuItem TSTruyXuat;
         private System.Windows.Forms.ToolStripMenuItem TSHoTro;
-        private System.Windows.Forms.ToolStripMenuItem TSGioiThieu;
+        private System.Windows.Forms.ToolStripMenuItem TSAuboutMe;
         private System.Windows.Forms.ToolStripMenuItem TSReset;
         private System.Windows.Forms.Panel panelBody;
         private System.Windows.Forms.ToolStripMenuItem điềuChỉnhToolStripMenuItem;
@@ -251,7 +256,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsBrakeCalib;
         private System.Windows.Forms.ToolStripMenuItem tsLBrakeCalib;
         private System.Windows.Forms.ToolStripMenuItem tsRBrakeCalib;
-        private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsExit;
     }
 }
 

@@ -107,6 +107,28 @@ namespace SenAIS
 
                         dataBuffer.RemoveRange(0, 9);
                     }
+                    //if (dataBuffer.Count >= 21 && dataBuffer[0] == 0x4D) // Assume 0x4D is the start byte for NHD6109 data
+                    //{
+                    //    byte[] completeData = dataBuffer.Take(21).ToArray();
+                    //    dataBuffer.RemoveRange(0, 21);
+
+                    //    if (activeForm is frmCosLightL)
+                    //    {
+                    //        ((frmCosLightL)activeForm).ProcessNHD6109Data(completeData);
+                    //    }
+                    //    else if (activeForm is frmCosLightR)
+                    //    {
+                    //        ((frmCosLightR)activeForm).ProcessNHD6109Data(completeData);
+                    //    }
+                    //    else if (activeForm is frmHeadLightL)
+                    //    {
+                    //        ((frmHeadLightL)activeForm).ProcessNHD6109Data(completeData);
+                    //    }
+                    //    else if (activeForm is frmHeadLightR)
+                    //    {
+                    //        ((frmHeadLightR)activeForm).ProcessNHD6109Data(completeData);
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)

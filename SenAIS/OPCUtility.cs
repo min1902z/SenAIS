@@ -13,6 +13,9 @@ namespace SenAIS
         private static OPCServer opcServer;
         private static OPCGroup opcGroup;
         private static bool opcErrorShown = false;
+        private static bool isConnected = false;
+        private static int retryCount = 0;
+        private static int maxRetry = 3;
 
         static OPCUtility()
         {
@@ -23,20 +26,47 @@ namespace SenAIS
         {
             try
             {
+                if (retryCount >= maxRetry)
+                {
+                    if (!opcErrorShown)
+                    {
+                        MessageBox.Show("Không thể kết nối tới OPC server sau nhiều lần thử. Dừng kết nối.");
+                        opcErrorShown = true;
+                    }
+                    return;
+                }
                 opcServer = new OPCServer();
                 opcServer.Connect("Kepware.KEPServerEX.V4"); // Kết nối tới OPC server
                 opcGroup = opcServer.OPCGroups.Add("Group1");
                 opcGroup.IsActive = true;
+                isConnected = true; // Đánh dấu kết nối thành công
+                opcErrorShown = false; // Reset cờ lỗi
+                retryCount = 0; // Reset lại số lần thử nếu kết nối thành công
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to connect to OPC server: {ex.Message}");
+                isConnected = false; // Đánh dấu không kết nối được
+                retryCount++; // Tăng số lần thử
+                if (!opcErrorShown)
+                {
+                    MessageBox.Show($"Kết nối đến OPC server thất bại: {ex.Message}");
+                    opcErrorShown = true; // Đánh dấu đã hiển thị lỗi
+                }
             }
         }
         public static int GetOPCValue(string opcItem)
         {
             try
             {
+                if (!isConnected)
+                {
+                        if (!opcErrorShown)
+                        {
+                            MessageBox.Show("Không thể kết nối tới OPC server. Sử dụng giá trị mặc định.");
+                            opcErrorShown = true;
+                        }
+                        return 0; // Giá trị mặc định
+                }
                 OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
                 object value;
                 item.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
@@ -47,11 +77,10 @@ namespace SenAIS
             {
                 if (!opcErrorShown)
                 {
-                    MessageBox.Show($"Failed to read OPC item {opcItem}: {ex.Message}");
+                    MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
                     opcErrorShown = true;
                 }
                 return 0; // Trả về giá trị mặc định nếu đọc thất bại
-                //throw;
             }
         }
 
@@ -66,7 +95,7 @@ namespace SenAIS
             {
                 if (!opcErrorShown)
                 {
-                    MessageBox.Show($"Failed to write to OPC item {opcItem}: {ex.Message}");
+                    MessageBox.Show($"Ghi giá trị OPC item {opcItem} thất bại: {ex.Message}");
                     opcErrorShown = true;
                 }
                 //throw;

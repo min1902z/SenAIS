@@ -163,5 +163,38 @@ namespace SenAIS
         {
             OpenChildForm(new frmInspection());
         }
+
+        private void TSReset_Click(object sender, EventArgs e)
+        {
+            RestartApplication();
+        }
+        private void RestartApplication()
+        {
+            try
+            {
+                // Lấy đường dẫn của ứng dụng hiện tại
+                var applicationPath = Application.ExecutablePath;
+
+                // Khởi động lại ứng dụng
+                System.Diagnostics.Process.Start(applicationPath);
+
+                // Thoát ứng dụng hiện tại
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể khởi động lại ứng dụng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void TSAuboutMe_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmAboutUs());
+        }
     }
 }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="COMConnect.cs" />
+    <Compile Include="frmAboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAboutUs.Designer.cs">
+      <DependentUpon>frmAboutUs.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAISMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,8 +176,12 @@
     </Compile>
     <Compile Include="OPCUtility.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHelper.cs" />
+    <EmbeddedResource Include="frmAboutUs.resx">
+      <DependentUpon>frmAboutUs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAISMain.resx">
       <DependentUpon>frmAISMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,6 +250,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,6 +280,10 @@
   <ItemGroup>
     <Content Include="Image\Logo_sentek.ico" />
     <Content Include="Image\QR_Sentek.png" />
+    <None Include="Resources\sentek_NoBG1.png" />
+    <None Include="Resources\sentek_NoBG.png" />
+    <None Include="Resources\sentek.jpg" />
+    <None Include="Resources\QR_Sentek.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

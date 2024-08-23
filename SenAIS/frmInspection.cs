@@ -170,7 +170,7 @@ namespace SenAIS
             }
         }
 
-        private void btnWeight_Click(object sender, EventArgs e)
+        private void btnFrontWeight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
                 OpenNewForm(new frmFrontWeight(this, opcCounterPos, this.serialNumber));
@@ -182,19 +182,19 @@ namespace SenAIS
                 OpenNewForm(new frmWhistle(this, opcCounterPos, this.serialNumber));
         }
 
-        private void btnBrake_Click(object sender, EventArgs e)
+        private void btnFrontBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
                 OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
         }
 
-        private void btnHeadLight_Click(object sender, EventArgs e)
+        private void btnLeftHeadLight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
                 OpenNewForm(new frmHeadLightL(this, opcCounterPos, this.serialNumber));
         }
 
-        private void btnCosLight_Click(object sender, EventArgs e)
+        private void btnLeftCosLight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
                 OpenNewForm(new frmCosLightL(this, opcCounterPos, this.serialNumber));
@@ -233,7 +233,8 @@ namespace SenAIS
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            OpenNewForm(new frmReport());
+            if (CheckSerialNumber())
+                OpenNewForm(new frmReport(this.serialNumber));
         }
 
         private void btnInspecProgress_Click(object sender, EventArgs e)
@@ -292,6 +293,36 @@ namespace SenAIS
             }
             this.serialNumber = txtSerialNum.Text;
             return true;
+        }
+
+        private void btnRearWeight_Click(object sender, EventArgs e)
+        {
+            if (CheckSerialNumber())
+                OpenNewForm(new frmRearWeight(this, opcCounterPos, this.serialNumber));
+        }
+
+        private void btnRearBrake_Click(object sender, EventArgs e)
+        {
+            if (CheckSerialNumber())
+                OpenNewForm(new frmRearBrake(this, opcCounterPos, this.serialNumber));
+        }
+
+        private void btnHandBrake_Click(object sender, EventArgs e)
+        {
+            if (CheckSerialNumber())
+                OpenNewForm(new frmHandBrake(this, opcCounterPos, this.serialNumber));
+        }
+
+        private void btnRightHeadLight_Click(object sender, EventArgs e)
+        {
+            if (CheckSerialNumber())
+                OpenNewForm(new frmHeadLightR(this, opcCounterPos, this.serialNumber));
+        }
+
+        private void btnRightCosLight_Click(object sender, EventArgs e)
+        {
+            if (CheckSerialNumber())
+                OpenNewForm(new frmCosLightR(this, opcCounterPos, this.serialNumber));
         }
     }
 }

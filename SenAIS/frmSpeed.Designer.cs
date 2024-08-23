@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpeed));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.SpeedPanel = new System.Windows.Forms.Panel();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNextSpeed = new System.Windows.Forms.Button();
@@ -40,20 +38,6 @@
             this.lbTitleSpeed = new System.Windows.Forms.Label();
             this.SpeedPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 39;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 38;
             // 
             // SpeedPanel
             // 
@@ -165,14 +149,13 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1443, 862);
             this.Controls.Add(this.SpeedPanel);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1204, 657);
             this.Name = "frmSpeed";
             this.Text = "Tốc Độ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSpeed_FormClosing);
             this.SpeedPanel.ResumeLayout(false);
             this.SpeedPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -180,8 +163,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel SpeedPanel;
         private System.Windows.Forms.Label lbSpeed;
         private System.Windows.Forms.Label lbKmh;
