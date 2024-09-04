@@ -17,6 +17,7 @@ namespace SenAIS
         private OPCServer opcServer;
         private OPCGroup opcGroup;
         private OPCItem opcCounterPos;
+        private SQLHelper sqlHelper;
         private Form currentMeasurementForm;
         private bool isMeasuring = false; // Cờ để xác định khi nào bắt đầu theo dõi
         private string vehicleType;
@@ -28,6 +29,8 @@ namespace SenAIS
         public frmInspection()
         {
             InitializeComponent();
+            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            LoadVehicleInfo();
             InitializeOPC();
         }
 
@@ -203,7 +206,7 @@ namespace SenAIS
         private void btnEmission_Click(object sender, EventArgs e)
         {
             // Check the text of the button
-            if (btnEmission.Text == "Khí Xả - Xăng")
+            if (btnEmission.Text == "Khí Xả Xăng")
             {
                 if (CheckSerialNumber())
                     // Open the Gas Emission form
@@ -222,12 +225,12 @@ namespace SenAIS
             if (chkToggleFuelType.Checked)
             {
                 chkToggleFuelType.Text = "Nhiên Liệu: Dầu";
-                btnEmission.Text = "Khí Xả - Diesel";
+                btnEmission.Text = "Khí Xả Diesel";
             }
             else
             {
                 chkToggleFuelType.Text = "Nhiên Liệu: Xăng";
-                btnEmission.Text = "Khí Xả - Xăng";
+                btnEmission.Text = "Khí Xả Xăng";
             }
         }
 
@@ -263,10 +266,24 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi đọc giá trị CounterPosition: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void LoadVehicleInfo()
+        {
+            // Tải dữ liệu cho cbTypeCar
+            DataTable typeCarTable = sqlHelper.GetTypeCarList();
+            cbTypeCar.DataSource = typeCarTable;
+            cbTypeCar.DisplayMember = "TypeCar"; // Hiển thị TypeCar trong ComboBox
+            cbTypeCar.ValueMember = "TypeCar";   // Sử dụng TypeCar làm giá trị
+
+            // Tải dữ liệu cho cbInspector
+            DataTable inspectorTable = sqlHelper.GetInspectorList();
+            cbInspector.DataSource = inspectorTable;
+            cbInspector.DisplayMember = "InspectorName"; // Hiển thị InspectorName trong ComboBox
+            cbInspector.ValueMember = "InspectorName";   // Sử dụng InspectorName làm giá trị
+        }
         private bool SaveDataToDB()
         {
-            vehicleType = txtTypeCar.Text;
-            inspector = txtInspector.Text;
+            vehicleType = cbTypeCar.SelectedValue.ToString();
+            inspector = cbInspector.SelectedValue.ToString();
             frameNumber = txtFrameNum.Text;
             engineNumber = txtEngineNum.Text;
             serialNumber = txtSerialNum.Text;

@@ -122,51 +122,84 @@
     <value>True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="StaticTitlePanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="label52.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="label52.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="btnExportReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label52.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 72pt, style=Bold</value>
+  <data name="btnExportReport.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt, style=Bold</value>
   </data>
-  <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
-    <value>529, 0</value>
+  <data name="btnExportReport.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>834, 117</value>
+  <data name="btnExportReport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1759, 83</value>
   </data>
-  <data name="label52.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnExportReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 52</value>
+  </data>
+  <data name="btnExportReport.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnExportReport.Text" xml:space="preserve">
+    <value>Xuất Report</value>
+  </data>
+  <data name="&gt;&gt;btnExportReport.Name" xml:space="preserve">
+    <value>btnExportReport</value>
+  </data>
+  <data name="&gt;&gt;btnExportReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnExportReport.Parent" xml:space="preserve">
+    <value>ReportPanel</value>
+  </data>
+  <data name="&gt;&gt;btnExportReport.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label52.Text" xml:space="preserve">
+  <data name="StaticTitlePanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="lbReportTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lbReportTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbReportTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 72pt, style=Bold</value>
+  </data>
+  <data name="lbReportTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="lbReportTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>834, 117</value>
+  </data>
+  <data name="lbReportTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbReportTitle.Text" xml:space="preserve">
     <value>Thống Kê Thông Số </value>
   </data>
-  <data name="label52.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lbReportTitle.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
-  <data name="&gt;&gt;label52.Name" xml:space="preserve">
-    <value>label52</value>
+  <data name="&gt;&gt;lbReportTitle.Name" xml:space="preserve">
+    <value>lbReportTitle</value>
   </data>
-  <data name="&gt;&gt;label52.Type" xml:space="preserve">
+  <data name="&gt;&gt;lbReportTitle.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label52.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbReportTitle.Parent" xml:space="preserve">
     <value>StaticTitlePanel</value>
   </data>
-  <data name="&gt;&gt;label52.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lbReportTitle.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="StaticTitlePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>401, 0</value>
   </data>
   <data name="StaticTitlePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1898, 123</value>
+    <value>836, 123</value>
   </data>
   <data name="StaticTitlePanel.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -181,13 +214,13 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;StaticTitlePanel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="StaticPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="tableLayoutPanel5.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
+  <data name="StaticPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="tableLayoutPanel5.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
@@ -199,7 +232,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 104</value>
+    <value>2, 100</value>
   </data>
   <data name="label51.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -229,7 +262,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHSU3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>566, 106</value>
+    <value>562, 102</value>
   </data>
   <data name="txtHSU3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -239,6 +272,9 @@
   </data>
   <data name="txtHSU3.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
+  </data>
+  <data name="txtHSU3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHSU3.Name" xml:space="preserve">
     <value>txtHSU3</value>
@@ -256,7 +292,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtMaxSpeed3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 106</value>
+    <value>349, 102</value>
   </data>
   <data name="txtMaxSpeed3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -266,6 +302,9 @@
   </data>
   <data name="txtMaxSpeed3.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
+  </data>
+  <data name="txtMaxSpeed3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtMaxSpeed3.Name" xml:space="preserve">
     <value>txtMaxSpeed3</value>
@@ -279,6 +318,9 @@
   <data name="&gt;&gt;txtMaxSpeed3.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label45.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label45.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -286,7 +328,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 1</value>
+    <value>448, 0</value>
   </data>
   <data name="label45.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -316,7 +358,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtMinSpeed2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 68</value>
+    <value>150, 65</value>
   </data>
   <data name="txtMinSpeed2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -326,6 +368,9 @@
   </data>
   <data name="txtMinSpeed2.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtMinSpeed2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtMinSpeed2.Name" xml:space="preserve">
     <value>txtMinSpeed2</value>
@@ -343,7 +388,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtMinSpeed1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 30</value>
+    <value>150, 28</value>
   </data>
   <data name="txtMinSpeed1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -353,6 +398,9 @@
   </data>
   <data name="txtMinSpeed1.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtMinSpeed1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtMinSpeed1.Name" xml:space="preserve">
     <value>txtMinSpeed1</value>
@@ -373,7 +421,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 66</value>
+    <value>2, 63</value>
   </data>
   <data name="label46.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -406,7 +454,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
+    <value>2, 26</value>
   </data>
   <data name="label47.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -432,6 +480,9 @@
   <data name="&gt;&gt;label47.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="label48.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label48.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -439,7 +490,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 1</value>
+    <value>238, 0</value>
   </data>
   <data name="label48.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -469,7 +520,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtMaxSpeed1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 30</value>
+    <value>349, 28</value>
   </data>
   <data name="txtMaxSpeed1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -479,6 +530,9 @@
   </data>
   <data name="txtMaxSpeed1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="txtMaxSpeed1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtMaxSpeed1.Name" xml:space="preserve">
     <value>txtMaxSpeed1</value>
@@ -496,7 +550,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtMaxSpeed2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 68</value>
+    <value>349, 65</value>
   </data>
   <data name="txtMaxSpeed2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -506,6 +560,9 @@
   </data>
   <data name="txtMaxSpeed2.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtMaxSpeed2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtMaxSpeed2.Name" xml:space="preserve">
     <value>txtMaxSpeed2</value>
@@ -519,6 +576,9 @@
   <data name="&gt;&gt;txtMaxSpeed2.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="label49.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label49.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -526,7 +586,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
-    <value>566, 1</value>
+    <value>739, 0</value>
   </data>
   <data name="label49.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -556,7 +616,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHSU1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>566, 30</value>
+    <value>562, 28</value>
   </data>
   <data name="txtHSU1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -566,6 +626,9 @@
   </data>
   <data name="txtHSU1.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
+  </data>
+  <data name="txtHSU1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHSU1.Name" xml:space="preserve">
     <value>txtHSU1</value>
@@ -583,7 +646,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHSU2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>566, 68</value>
+    <value>562, 65</value>
   </data>
   <data name="txtHSU2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -593,6 +656,9 @@
   </data>
   <data name="txtHSU2.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="txtHSU2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHSU2.Name" xml:space="preserve">
     <value>txtHSU2</value>
@@ -610,7 +676,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtMinSpeed3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 106</value>
+    <value>150, 102</value>
   </data>
   <data name="txtMinSpeed3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -620,6 +686,9 @@
   </data>
   <data name="txtMinSpeed3.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
+  </data>
+  <data name="txtMinSpeed3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtMinSpeed3.Name" xml:space="preserve">
     <value>txtMinSpeed3</value>
@@ -720,9 +789,6 @@
   <data name="&gt;&gt;DieselPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tableLayoutPanel4.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
-  </data>
   <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
@@ -730,7 +796,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLLBHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>578, 30</value>
+    <value>574, 28</value>
   </data>
   <data name="txtLLBHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -740,6 +806,9 @@
   </data>
   <data name="txtLLBHorizontal.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtLLBHorizontal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtLLBHorizontal.Name" xml:space="preserve">
     <value>txtLLBHorizontal</value>
@@ -757,7 +826,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLLBIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 30</value>
+    <value>150, 28</value>
   </data>
   <data name="txtLLBIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -767,6 +836,9 @@
   </data>
   <data name="txtLLBIntensity.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtLLBIntensity.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtLLBIntensity.Name" xml:space="preserve">
     <value>txtLLBIntensity</value>
@@ -780,6 +852,9 @@
   <data name="&gt;&gt;txtLLBIntensity.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="label39.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label39.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -787,7 +862,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 1</value>
+    <value>362, 0</value>
   </data>
   <data name="label39.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -817,7 +892,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRLBIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 68</value>
+    <value>150, 65</value>
   </data>
   <data name="txtRLBIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -827,6 +902,9 @@
   </data>
   <data name="txtRLBIntensity.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtRLBIntensity.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRLBIntensity.Name" xml:space="preserve">
     <value>txtRLBIntensity</value>
@@ -847,7 +925,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 66</value>
+    <value>2, 63</value>
   </data>
   <data name="label40.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -859,7 +937,7 @@
     <value>2</value>
   </data>
   <data name="label40.Text" xml:space="preserve">
-    <value>Bên Phải</value>
+    <value>Bên phải</value>
   </data>
   <data name="&gt;&gt;label40.Name" xml:space="preserve">
     <value>label40</value>
@@ -880,19 +958,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
+    <value>2, 26</value>
   </data>
   <data name="label41.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 26</value>
+    <value>78, 26</value>
   </data>
   <data name="label41.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="label41.Text" xml:space="preserve">
-    <value>Bên Trái</value>
+    <value>Bên trái</value>
   </data>
   <data name="&gt;&gt;label41.Name" xml:space="preserve">
     <value>label41</value>
@@ -906,6 +984,9 @@
   <data name="&gt;&gt;label41.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="label42.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label42.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -913,7 +994,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 1</value>
+    <value>182, 0</value>
   </data>
   <data name="label42.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -943,7 +1024,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLLBVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 30</value>
+    <value>362, 28</value>
   </data>
   <data name="txtLLBVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -953,6 +1034,9 @@
   </data>
   <data name="txtLLBVertical.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="txtLLBVertical.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtLLBVertical.Name" xml:space="preserve">
     <value>txtLLBVertical</value>
@@ -970,7 +1054,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRLBVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 68</value>
+    <value>362, 65</value>
   </data>
   <data name="txtRLBVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -980,6 +1064,9 @@
   </data>
   <data name="txtRLBVertical.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtRLBVertical.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRLBVertical.Name" xml:space="preserve">
     <value>txtRLBVertical</value>
@@ -993,6 +1080,9 @@
   <data name="&gt;&gt;txtRLBVertical.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="label43.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label43.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1000,19 +1090,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
-    <value>578, 1</value>
+    <value>594, 0</value>
   </data>
   <data name="label43.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label43.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 26</value>
+    <value>196, 26</value>
   </data>
   <data name="label43.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="label43.Text" xml:space="preserve">
-    <value>L. Trên/Dưới (cm/dam)</value>
+    <value>L. Trái/Phải (cm/dam)</value>
   </data>
   <data name="&gt;&gt;label43.Name" xml:space="preserve">
     <value>label43</value>
@@ -1030,7 +1120,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRLBHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>578, 68</value>
+    <value>574, 65</value>
   </data>
   <data name="txtRLBHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1040,6 +1130,9 @@
   </data>
   <data name="txtRLBHorizontal.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="txtRLBHorizontal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRLBHorizontal.Name" xml:space="preserve">
     <value>txtRLBHorizontal</value>
@@ -1140,11 +1233,11 @@
   <data name="&gt;&gt;LBPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tableLayoutPanel3.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
-  </data>
   <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <data name="label33.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="label33.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1153,7 +1246,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 1</value>
+    <value>365, 0</value>
   </data>
   <data name="label33.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1183,7 +1276,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRHLIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 68</value>
+    <value>150, 65</value>
   </data>
   <data name="txtRHLIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1193,6 +1286,9 @@
   </data>
   <data name="txtRHLIntensity.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtRHLIntensity.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRHLIntensity.Name" xml:space="preserve">
     <value>txtRHLIntensity</value>
@@ -1213,7 +1309,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 66</value>
+    <value>2, 63</value>
   </data>
   <data name="label34.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1225,7 +1321,7 @@
     <value>2</value>
   </data>
   <data name="label34.Text" xml:space="preserve">
-    <value>Bên Phải</value>
+    <value>Bên phải</value>
   </data>
   <data name="&gt;&gt;label34.Name" xml:space="preserve">
     <value>label34</value>
@@ -1246,19 +1342,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
+    <value>2, 26</value>
   </data>
   <data name="label35.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 26</value>
+    <value>78, 26</value>
   </data>
   <data name="label35.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="label35.Text" xml:space="preserve">
-    <value>Bên Trái</value>
+    <value>Bên trái</value>
   </data>
   <data name="&gt;&gt;label35.Name" xml:space="preserve">
     <value>label35</value>
@@ -1272,6 +1368,9 @@
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="label36.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label36.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1279,7 +1378,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 1</value>
+    <value>183, 0</value>
   </data>
   <data name="label36.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1309,7 +1408,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLHLVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 30</value>
+    <value>363, 28</value>
   </data>
   <data name="txtLHLVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1319,6 +1418,9 @@
   </data>
   <data name="txtLHLVertical.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="txtLHLVertical.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtLHLVertical.Name" xml:space="preserve">
     <value>txtLHLVertical</value>
@@ -1332,6 +1434,9 @@
   <data name="&gt;&gt;txtLHLVertical.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="label37.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label37.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1339,19 +1444,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
-    <value>581, 1</value>
+    <value>596, 0</value>
   </data>
   <data name="label37.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 26</value>
+    <value>196, 26</value>
   </data>
   <data name="label37.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="label37.Text" xml:space="preserve">
-    <value>L. Trên/Dưới (cm/dam)</value>
+    <value>L. Trái/Phải (cm/dam)</value>
   </data>
   <data name="&gt;&gt;label37.Name" xml:space="preserve">
     <value>label37</value>
@@ -1369,7 +1474,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLHLHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>581, 30</value>
+    <value>577, 28</value>
   </data>
   <data name="txtLHLHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1379,6 +1484,9 @@
   </data>
   <data name="txtLHLHorizontal.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
+  </data>
+  <data name="txtLHLHorizontal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtLHLHorizontal.Name" xml:space="preserve">
     <value>txtLHLHorizontal</value>
@@ -1396,7 +1504,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRHLHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>581, 68</value>
+    <value>577, 65</value>
   </data>
   <data name="txtRHLHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1406,6 +1514,9 @@
   </data>
   <data name="txtRHLHorizontal.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="txtRHLHorizontal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRHLHorizontal.Name" xml:space="preserve">
     <value>txtRHLHorizontal</value>
@@ -1423,7 +1534,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLHLIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 30</value>
+    <value>150, 28</value>
   </data>
   <data name="txtLHLIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1433,6 +1544,9 @@
   </data>
   <data name="txtLHLIntensity.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtLHLIntensity.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtLHLIntensity.Name" xml:space="preserve">
     <value>txtLHLIntensity</value>
@@ -1450,7 +1564,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRHLVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 68</value>
+    <value>363, 65</value>
   </data>
   <data name="txtRHLVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1460,6 +1574,9 @@
   </data>
   <data name="txtRHLVertical.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtRHLVertical.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRHLVertical.Name" xml:space="preserve">
     <value>txtRHLVertical</value>
@@ -1560,11 +1677,11 @@
   <data name="&gt;&gt;HLPanel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tableLayoutPanel2.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
-  </data>
   <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
     <value>5</value>
+  </data>
+  <data name="label22.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="label22.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1573,7 +1690,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 1</value>
+    <value>332, 0</value>
   </data>
   <data name="label22.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1603,7 +1720,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearLeftBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 68</value>
+    <value>150, 65</value>
   </data>
   <data name="txtRearLeftBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1613,6 +1730,9 @@
   </data>
   <data name="txtRearLeftBrake.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtRearLeftBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearLeftBrake.Name" xml:space="preserve">
     <value>txtRearLeftBrake</value>
@@ -1630,7 +1750,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontLeftBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 30</value>
+    <value>150, 28</value>
   </data>
   <data name="txtFrontLeftBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1640,6 +1760,9 @@
   </data>
   <data name="txtFrontLeftBrake.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtFrontLeftBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontLeftBrake.Name" xml:space="preserve">
     <value>txtFrontLeftBrake</value>
@@ -1660,19 +1783,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 66</value>
+    <value>2, 63</value>
   </data>
   <data name="label24.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 26</value>
+    <value>89, 26</value>
   </data>
   <data name="label24.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="label24.Text" xml:space="preserve">
-    <value>Bánh Sau</value>
+    <value>Bánh sau</value>
   </data>
   <data name="&gt;&gt;label24.Name" xml:space="preserve">
     <value>label24</value>
@@ -1693,19 +1816,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
+    <value>2, 26</value>
   </data>
   <data name="label26.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 26</value>
+    <value>108, 26</value>
   </data>
   <data name="label26.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
-    <value>Bánh Trước</value>
+    <value>Bánh trước</value>
   </data>
   <data name="&gt;&gt;label26.Name" xml:space="preserve">
     <value>label26</value>
@@ -1719,6 +1842,9 @@
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="label28.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label28.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1726,7 +1852,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 1</value>
+    <value>189, 0</value>
   </data>
   <data name="label28.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1756,7 +1882,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontRightBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 30</value>
+    <value>302, 28</value>
   </data>
   <data name="txtFrontRightBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1766,6 +1892,9 @@
   </data>
   <data name="txtFrontRightBrake.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="txtFrontRightBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontRightBrake.Name" xml:space="preserve">
     <value>txtFrontRightBrake</value>
@@ -1783,7 +1912,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearRightBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 68</value>
+    <value>302, 65</value>
   </data>
   <data name="txtRearRightBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1793,6 +1922,9 @@
   </data>
   <data name="txtRearRightBrake.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtRearRightBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearRightBrake.Name" xml:space="preserve">
     <value>txtRearRightBrake</value>
@@ -1806,6 +1938,9 @@
   <data name="&gt;&gt;txtRearRightBrake.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="label29.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label29.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1813,7 +1948,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>457, 1</value>
+    <value>518, 0</value>
   </data>
   <data name="label29.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1843,7 +1978,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontSumBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>457, 30</value>
+    <value>453, 28</value>
   </data>
   <data name="txtFrontSumBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1853,6 +1988,9 @@
   </data>
   <data name="txtFrontSumBrake.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
+  </data>
+  <data name="txtFrontSumBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontSumBrake.Name" xml:space="preserve">
     <value>txtFrontSumBrake</value>
@@ -1870,7 +2008,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearSumBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>457, 68</value>
+    <value>453, 65</value>
   </data>
   <data name="txtRearSumBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1880,6 +2018,9 @@
   </data>
   <data name="txtRearSumBrake.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="txtRearSumBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearSumBrake.Name" xml:space="preserve">
     <value>txtRearSumBrake</value>
@@ -1897,7 +2038,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHandLeftBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 106</value>
+    <value>150, 102</value>
   </data>
   <data name="txtHandLeftBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1907,6 +2048,9 @@
   </data>
   <data name="txtHandLeftBrake.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
+  </data>
+  <data name="txtHandLeftBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHandLeftBrake.Name" xml:space="preserve">
     <value>txtHandLeftBrake</value>
@@ -1924,7 +2068,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontDiffBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>610, 30</value>
+    <value>605, 28</value>
   </data>
   <data name="txtFrontDiffBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1934,6 +2078,9 @@
   </data>
   <data name="txtFrontDiffBrake.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
+  </data>
+  <data name="txtFrontDiffBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontDiffBrake.Name" xml:space="preserve">
     <value>txtFrontDiffBrake</value>
@@ -1951,7 +2098,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearDiffBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>610, 68</value>
+    <value>605, 65</value>
   </data>
   <data name="txtRearDiffBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1961,6 +2108,9 @@
   </data>
   <data name="txtRearDiffBrake.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
+  </data>
+  <data name="txtRearDiffBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearDiffBrake.Name" xml:space="preserve">
     <value>txtRearDiffBrake</value>
@@ -1974,6 +2124,9 @@
   <data name="&gt;&gt;txtRearDiffBrake.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="label31.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1981,7 +2134,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>610, 1</value>
+    <value>678, 0</value>
   </data>
   <data name="label31.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2011,7 +2164,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHandRightBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 106</value>
+    <value>302, 102</value>
   </data>
   <data name="txtHandRightBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2021,6 +2174,9 @@
   </data>
   <data name="txtHandRightBrake.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
+  </data>
+  <data name="txtHandRightBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHandRightBrake.Name" xml:space="preserve">
     <value>txtHandRightBrake</value>
@@ -2038,7 +2194,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHandSumBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>457, 106</value>
+    <value>453, 102</value>
   </data>
   <data name="txtHandSumBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2048,6 +2204,9 @@
   </data>
   <data name="txtHandSumBrake.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
+  </data>
+  <data name="txtHandSumBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHandSumBrake.Name" xml:space="preserve">
     <value>txtHandSumBrake</value>
@@ -2065,7 +2224,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHandDiffBrake.Location" type="System.Drawing.Point, System.Drawing">
-    <value>610, 106</value>
+    <value>605, 102</value>
   </data>
   <data name="txtHandDiffBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2075,6 +2234,9 @@
   </data>
   <data name="txtHandDiffBrake.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
+  </data>
+  <data name="txtHandDiffBrake.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHandDiffBrake.Name" xml:space="preserve">
     <value>txtHandDiffBrake</value>
@@ -2095,19 +2257,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 104</value>
+    <value>2, 100</value>
   </data>
   <data name="label32.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 26</value>
+    <value>98, 26</value>
   </data>
   <data name="label32.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
   </data>
   <data name="label32.Text" xml:space="preserve">
-    <value>Phanh Tay</value>
+    <value>Phanh tay</value>
   </data>
   <data name="&gt;&gt;label32.Name" xml:space="preserve">
     <value>label32</value>
@@ -2146,7 +2308,7 @@
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>BrakePanel</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -2179,40 +2341,40 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label30.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>BrakePanel</value>
   </data>
   <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="panel2.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="BrakePanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
   </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="BrakePanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>505, 167</value>
   </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="BrakePanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>833, 186</value>
   </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+  <data name="BrakePanel.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
+  <data name="&gt;&gt;BrakePanel.Name" xml:space="preserve">
+    <value>BrakePanel</value>
   </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+  <data name="&gt;&gt;BrakePanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BrakePanel.Parent" xml:space="preserve">
     <value>StaticPanel</value>
   </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;BrakePanel.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="tableLayoutPanel1.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <data name="label23.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="label23.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2221,7 +2383,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 1</value>
+    <value>421, 0</value>
   </data>
   <data name="label23.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2251,7 +2413,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearLeftWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 68</value>
+    <value>150, 65</value>
   </data>
   <data name="txtRearLeftWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2261,6 +2423,9 @@
   </data>
   <data name="txtRearLeftWeight.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtRearLeftWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearLeftWeight.Name" xml:space="preserve">
     <value>txtRearLeftWeight</value>
@@ -2278,7 +2443,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontLeftWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 30</value>
+    <value>150, 28</value>
   </data>
   <data name="txtFrontLeftWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2288,6 +2453,9 @@
   </data>
   <data name="txtFrontLeftWeight.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtFrontLeftWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontLeftWeight.Name" xml:space="preserve">
     <value>txtFrontLeftWeight</value>
@@ -2308,19 +2476,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 66</value>
+    <value>2, 63</value>
   </data>
   <data name="label25.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 26</value>
+    <value>89, 26</value>
   </data>
   <data name="label25.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
-    <value>Bánh Sau</value>
+    <value>Bánh sau</value>
   </data>
   <data name="&gt;&gt;label25.Name" xml:space="preserve">
     <value>label25</value>
@@ -2341,19 +2509,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 28</value>
+    <value>2, 26</value>
   </data>
   <data name="label27.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 26</value>
+    <value>108, 26</value>
   </data>
   <data name="label27.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
-    <value>Bánh Trước</value>
+    <value>Bánh trước</value>
   </data>
   <data name="&gt;&gt;label27.Name" xml:space="preserve">
     <value>label27</value>
@@ -2367,6 +2535,9 @@
   <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="label20.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label20.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2374,7 +2545,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 1</value>
+    <value>230, 0</value>
   </data>
   <data name="label20.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2404,7 +2575,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontRightWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 30</value>
+    <value>349, 28</value>
   </data>
   <data name="txtFrontRightWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2414,6 +2585,9 @@
   </data>
   <data name="txtFrontRightWeight.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="txtFrontRightWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontRightWeight.Name" xml:space="preserve">
     <value>txtFrontRightWeight</value>
@@ -2431,7 +2605,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearRightWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 68</value>
+    <value>349, 65</value>
   </data>
   <data name="txtRearRightWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2441,6 +2615,9 @@
   </data>
   <data name="txtRearRightWeight.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtRearRightWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearRightWeight.Name" xml:space="preserve">
     <value>txtRearRightWeight</value>
@@ -2454,6 +2631,9 @@
   <data name="&gt;&gt;txtRearRightWeight.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="label21.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2461,7 +2641,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 1</value>
+    <value>703, 0</value>
   </data>
   <data name="label21.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2491,7 +2671,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrontSumWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 30</value>
+    <value>548, 28</value>
   </data>
   <data name="txtFrontSumWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2501,6 +2681,9 @@
   </data>
   <data name="txtFrontSumWeight.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
+  </data>
+  <data name="txtFrontSumWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrontSumWeight.Name" xml:space="preserve">
     <value>txtFrontSumWeight</value>
@@ -2518,7 +2701,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRearSumWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 68</value>
+    <value>548, 65</value>
   </data>
   <data name="txtRearSumWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2528,6 +2711,9 @@
   </data>
   <data name="txtRearSumWeight.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="txtRearSumWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRearSumWeight.Name" xml:space="preserve">
     <value>txtRearSumWeight</value>
@@ -2566,7 +2752,7 @@
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>panel6</value>
+    <value>WeightPanel</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -2599,37 +2785,34 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbWeightPanelTitle.Parent" xml:space="preserve">
-    <value>panel6</value>
+    <value>WeightPanel</value>
   </data>
   <data name="&gt;&gt;lbWeightPanelTitle.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="panel6.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="WeightPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
   </data>
-  <data name="panel6.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="WeightPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>503, 17</value>
   </data>
-  <data name="panel6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="WeightPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>835, 144</value>
   </data>
-  <data name="panel6.TabIndex" type="System.Int32, mscorlib">
+  <data name="WeightPanel.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="&gt;&gt;panel6.Name" xml:space="preserve">
-    <value>panel6</value>
+  <data name="&gt;&gt;WeightPanel.Name" xml:space="preserve">
+    <value>WeightPanel</value>
   </data>
-  <data name="&gt;&gt;panel6.Type" xml:space="preserve">
+  <data name="&gt;&gt;WeightPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;panel6.Parent" xml:space="preserve">
+  <data name="&gt;&gt;WeightPanel.Parent" xml:space="preserve">
     <value>StaticPanel</value>
   </data>
-  <data name="&gt;&gt;panel6.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;WeightPanel.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="tbEmissionPetrol.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
   </data>
   <data name="tbEmissionPetrol.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
@@ -2641,7 +2824,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 229</value>
+    <value>331, 222</value>
   </data>
   <data name="label18.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2674,7 +2857,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 191</value>
+    <value>331, 185</value>
   </data>
   <data name="label17.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2707,7 +2890,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 153</value>
+    <value>331, 148</value>
   </data>
   <data name="label16.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2740,7 +2923,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtNO.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 155</value>
+    <value>150, 150</value>
   </data>
   <data name="txtNO.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2750,6 +2933,9 @@
   </data>
   <data name="txtNO.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
+  </data>
+  <data name="txtNO.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtNO.Name" xml:space="preserve">
     <value>txtNO</value>
@@ -2770,19 +2956,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 191</value>
+    <value>2, 185</value>
   </data>
   <data name="label15.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 26</value>
+    <value>86, 26</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>Oil Temp</value>
+    <value>Oil temp</value>
   </data>
   <data name="&gt;&gt;label15.Name" xml:space="preserve">
     <value>label15</value>
@@ -2803,7 +2989,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 153</value>
+    <value>2, 148</value>
   </data>
   <data name="label14.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2836,7 +3022,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 229</value>
+    <value>2, 222</value>
   </data>
   <data name="label13.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2869,7 +3055,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 115</value>
+    <value>331, 111</value>
   </data>
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2902,7 +3088,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 77</value>
+    <value>331, 74</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2935,7 +3121,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 39</value>
+    <value>331, 37</value>
   </data>
   <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2968,7 +3154,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 1</value>
+    <value>331, 0</value>
   </data>
   <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -2998,7 +3184,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtO2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 117</value>
+    <value>150, 113</value>
   </data>
   <data name="txtO2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3008,6 +3194,9 @@
   </data>
   <data name="txtO2.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
+  </data>
+  <data name="txtO2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtO2.Name" xml:space="preserve">
     <value>txtO2</value>
@@ -3025,7 +3214,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtCO2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 79</value>
+    <value>150, 76</value>
   </data>
   <data name="txtCO2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3035,6 +3224,9 @@
   </data>
   <data name="txtCO2.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtCO2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtCO2.Name" xml:space="preserve">
     <value>txtCO2</value>
@@ -3052,7 +3244,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtCO.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 41</value>
+    <value>150, 39</value>
   </data>
   <data name="txtCO.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3062,6 +3254,9 @@
   </data>
   <data name="txtCO.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtCO.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtCO.Name" xml:space="preserve">
     <value>txtCO</value>
@@ -3082,7 +3277,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 1</value>
+    <value>2, 0</value>
   </data>
   <data name="label9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3115,7 +3310,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 77</value>
+    <value>2, 74</value>
   </data>
   <data name="label10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3148,7 +3343,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 115</value>
+    <value>2, 111</value>
   </data>
   <data name="label11.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3178,7 +3373,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtHC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 3</value>
+    <value>150, 2</value>
   </data>
   <data name="txtHC.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3188,6 +3383,9 @@
   </data>
   <data name="txtHC.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
+  </data>
+  <data name="txtHC.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtHC.Name" xml:space="preserve">
     <value>txtHC</value>
@@ -3208,7 +3406,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 39</value>
+    <value>2, 37</value>
   </data>
   <data name="label12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3238,7 +3436,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtOT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 193</value>
+    <value>150, 187</value>
   </data>
   <data name="txtOT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3248,6 +3446,9 @@
   </data>
   <data name="txtOT.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
+  </data>
+  <data name="txtOT.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtOT.Name" xml:space="preserve">
     <value>txtOT</value>
@@ -3265,7 +3466,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRPM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 231</value>
+    <value>150, 224</value>
   </data>
   <data name="txtRPM.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3275,6 +3476,9 @@
   </data>
   <data name="txtRPM.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
+  </data>
+  <data name="txtRPM.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtRPM.Name" xml:space="preserve">
     <value>txtRPM</value>
@@ -3319,7 +3523,7 @@
     <value>0</value>
   </data>
   <data name="tbEmissionPetrol.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label18" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtNO" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtO2" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtHC" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtOT" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtRPM" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,148,Absolute,181,Absolute,103" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label18" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtNO" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtO2" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtHC" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtOT" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtRPM" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,148,Absolute,181,Absolute,106" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbEmissionPetTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3375,9 +3579,6 @@
   <data name="&gt;&gt;EmissionPetrolPanel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="tbSpeed.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
-  </data>
   <data name="tbSpeed.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -3388,7 +3589,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 112</value>
+    <value>331, 114</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3421,7 +3622,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 75</value>
+    <value>331, 76</value>
   </data>
   <data name="label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3454,7 +3655,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 38</value>
+    <value>331, 38</value>
   </data>
   <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3487,7 +3688,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>334, 1</value>
+    <value>331, 0</value>
   </data>
   <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3517,7 +3718,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtWhistle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 114</value>
+    <value>150, 116</value>
   </data>
   <data name="txtWhistle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3527,6 +3728,9 @@
   </data>
   <data name="txtWhistle.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
+  </data>
+  <data name="txtWhistle.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtWhistle.Name" xml:space="preserve">
     <value>txtWhistle</value>
@@ -3544,7 +3748,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtNoise.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 77</value>
+    <value>150, 78</value>
   </data>
   <data name="txtNoise.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3554,6 +3758,9 @@
   </data>
   <data name="txtNoise.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtNoise.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtNoise.Name" xml:space="preserve">
     <value>txtNoise</value>
@@ -3571,7 +3778,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtSideSlip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 40</value>
+    <value>150, 40</value>
   </data>
   <data name="txtSideSlip.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3581,6 +3788,9 @@
   </data>
   <data name="txtSideSlip.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtSideSlip.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtSideSlip.Name" xml:space="preserve">
     <value>txtSideSlip</value>
@@ -3601,19 +3811,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbSpeedTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 1</value>
+    <value>2, 0</value>
   </data>
   <data name="lbSpeedTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbSpeedTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 26</value>
+    <value>68, 26</value>
   </data>
   <data name="lbSpeedTitle.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="lbSpeedTitle.Text" xml:space="preserve">
-    <value>Tốc Độ</value>
+    <value>Tốc độ</value>
   </data>
   <data name="&gt;&gt;lbSpeedTitle.Name" xml:space="preserve">
     <value>lbSpeedTitle</value>
@@ -3634,7 +3844,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbNoiseTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 75</value>
+    <value>2, 76</value>
   </data>
   <data name="lbNoiseTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3667,7 +3877,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbWhistleTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 112</value>
+    <value>2, 114</value>
   </data>
   <data name="lbWhistleTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -3697,7 +3907,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 3</value>
+    <value>150, 2</value>
   </data>
   <data name="txtSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3707,6 +3917,9 @@
   </data>
   <data name="txtSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
+  </data>
+  <data name="txtSpeed.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtSpeed.Name" xml:space="preserve">
     <value>txtSpeed</value>
@@ -3727,19 +3940,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbSideSlipTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 38</value>
+    <value>2, 38</value>
   </data>
   <data name="lbSideSlipTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbSideSlipTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 26</value>
+    <value>117, 26</value>
   </data>
   <data name="lbSideSlipTitle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="lbSideSlipTitle.Text" xml:space="preserve">
-    <value>Trượt Ngang</value>
+    <value>Trượt ngang</value>
   </data>
   <data name="&gt;&gt;lbSideSlipTitle.Name" xml:space="preserve">
     <value>lbSideSlipTitle</value>
@@ -3784,7 +3997,7 @@
     <value>0</value>
   </data>
   <data name="tbSpeed.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label8" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtWhistle" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtNoise" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtSideSlip" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbSpeedTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbNoiseTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbWhistleTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtSpeed" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbSideSlipTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,148,Absolute,181,Absolute,103" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label8" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtWhistle" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtNoise" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtSideSlip" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbSpeedTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbNoiseTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbWhistleTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtSpeed" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbSideSlipTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,148,Absolute,181,Absolute,106" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbSpeedPanelTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3793,7 +4006,7 @@
     <value>Calibri, 15.75pt, style=Bold</value>
   </data>
   <data name="lbSpeedPanelTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
+    <value>3, -2</value>
   </data>
   <data name="lbSpeedPanelTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>299, 26</value>
@@ -3840,8 +4053,8 @@
   <data name="&gt;&gt;SpeedPanel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="tbVehicleInfo.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
-    <value>Single</value>
+  <data name="VehiclePanel.AccessibleName" xml:space="preserve">
+    <value />
   </data>
   <data name="tbVehicleInfo.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3850,7 +4063,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtDateInspec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 178</value>
+    <value>152, 177</value>
   </data>
   <data name="txtDateInspec.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3860,6 +4073,9 @@
   </data>
   <data name="txtDateInspec.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
+  </data>
+  <data name="txtDateInspec.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtDateInspec.Name" xml:space="preserve">
     <value>txtDateInspec</value>
@@ -3877,7 +4093,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 143</value>
+    <value>152, 142</value>
   </data>
   <data name="txtSerialNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3887,6 +4103,9 @@
   </data>
   <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
+  </data>
+  <data name="txtSerialNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
     <value>txtSerialNum</value>
@@ -3904,7 +4123,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtEngineNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 108</value>
+    <value>152, 107</value>
   </data>
   <data name="txtEngineNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3914,6 +4133,9 @@
   </data>
   <data name="txtEngineNum.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
+  </data>
+  <data name="txtEngineNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtEngineNum.Name" xml:space="preserve">
     <value>txtEngineNum</value>
@@ -3931,7 +4153,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtFrameNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 73</value>
+    <value>152, 72</value>
   </data>
   <data name="txtFrameNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3941,6 +4163,9 @@
   </data>
   <data name="txtFrameNum.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
+  </data>
+  <data name="txtFrameNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtFrameNum.Name" xml:space="preserve">
     <value>txtFrameNum</value>
@@ -3958,7 +4183,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtInspector.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 38</value>
+    <value>152, 37</value>
   </data>
   <data name="txtInspector.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3968,6 +4193,9 @@
   </data>
   <data name="txtInspector.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="txtInspector.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtInspector.Name" xml:space="preserve">
     <value>txtInspector</value>
@@ -3988,19 +4216,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbTypeCarTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 1</value>
+    <value>2, 0</value>
   </data>
   <data name="lbTypeCarTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbTypeCarTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 26</value>
+    <value>70, 26</value>
   </data>
   <data name="lbTypeCarTitle.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="lbTypeCarTitle.Text" xml:space="preserve">
-    <value>Loại Xe</value>
+    <value>Loại xe</value>
   </data>
   <data name="&gt;&gt;lbTypeCarTitle.Name" xml:space="preserve">
     <value>lbTypeCarTitle</value>
@@ -4021,19 +4249,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbFrameNumTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 71</value>
+    <value>2, 70</value>
   </data>
   <data name="lbFrameNumTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbFrameNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 26</value>
+    <value>91, 26</value>
   </data>
   <data name="lbFrameNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="lbFrameNumTitle.Text" xml:space="preserve">
-    <value>Số Khung</value>
+    <value>Số khung</value>
   </data>
   <data name="&gt;&gt;lbFrameNumTitle.Name" xml:space="preserve">
     <value>lbFrameNumTitle</value>
@@ -4054,19 +4282,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbEngineNumTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 106</value>
+    <value>2, 105</value>
   </data>
   <data name="lbEngineNumTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbEngineNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 26</value>
+    <value>75, 26</value>
   </data>
   <data name="lbEngineNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="lbEngineNumTitle.Text" xml:space="preserve">
-    <value>Số Máy</value>
+    <value>Số máy</value>
   </data>
   <data name="&gt;&gt;lbEngineNumTitle.Name" xml:space="preserve">
     <value>lbEngineNumTitle</value>
@@ -4087,19 +4315,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbSerialNumTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 141</value>
+    <value>2, 140</value>
   </data>
   <data name="lbSerialNumTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbSerialNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 26</value>
+    <value>108, 26</value>
   </data>
   <data name="lbSerialNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="lbSerialNumTitle.Text" xml:space="preserve">
-    <value>Số Sản Xuất</value>
+    <value>Số sản suất</value>
   </data>
   <data name="&gt;&gt;lbSerialNumTitle.Name" xml:space="preserve">
     <value>lbSerialNumTitle</value>
@@ -4120,19 +4348,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbDateInspecTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 176</value>
+    <value>2, 175</value>
   </data>
   <data name="lbDateInspecTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbDateInspecTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 26</value>
+    <value>132, 26</value>
   </data>
   <data name="lbDateInspecTitle.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="lbDateInspecTitle.Text" xml:space="preserve">
-    <value>Ngày Kiểm Tra</value>
+    <value>Ngày kiểm tra</value>
   </data>
   <data name="&gt;&gt;lbDateInspecTitle.Name" xml:space="preserve">
     <value>lbDateInspecTitle</value>
@@ -4150,7 +4378,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtTypeCar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 3</value>
+    <value>152, 2</value>
   </data>
   <data name="txtTypeCar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -4160,6 +4388,9 @@
   </data>
   <data name="txtTypeCar.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
+  </data>
+  <data name="txtTypeCar.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtTypeCar.Name" xml:space="preserve">
     <value>txtTypeCar</value>
@@ -4180,19 +4411,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="lbInspectorTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 36</value>
+    <value>2, 35</value>
   </data>
   <data name="lbInspectorTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lbInspectorTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 26</value>
+    <value>142, 26</value>
   </data>
   <data name="lbInspectorTitle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="lbInspectorTitle.Text" xml:space="preserve">
-    <value>Người Kiểm Tra</value>
+    <value>Người kiểm tra</value>
   </data>
   <data name="&gt;&gt;lbInspectorTitle.Name" xml:space="preserve">
     <value>lbInspectorTitle</value>
@@ -4231,13 +4462,13 @@
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tbVehicleInfo.Parent" xml:space="preserve">
-    <value>VihiclePanel</value>
+    <value>VehiclePanel</value>
   </data>
   <data name="&gt;&gt;tbVehicleInfo.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tbVehicleInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtDateInspec" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtSerialNum" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrameNum" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtInspector" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbEngineNumTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbDateInspecTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtTypeCar" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,297,Absolute,20" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtDateInspec" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtSerialNum" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrameNum" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtInspector" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbEngineNumTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbDateInspecTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtTypeCar" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,300,Absolute,20" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbVehicleTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4245,14 +4476,20 @@
   <data name="lbVehicleTitle.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt, style=Bold</value>
   </data>
+  <data name="lbVehicleTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lbVehicleTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
+    <value>1, -2</value>
+  </data>
+  <data name="lbVehicleTitle.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="lbVehicleTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 26</value>
   </data>
   <data name="lbVehicleTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>23</value>
   </data>
   <data name="lbVehicleTitle.Text" xml:space="preserve">
     <value>Thông tin chung</value>
@@ -4264,33 +4501,33 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbVehicleTitle.Parent" xml:space="preserve">
-    <value>VihiclePanel</value>
+    <value>VehiclePanel</value>
   </data>
   <data name="&gt;&gt;lbVehicleTitle.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="VihiclePanel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="VehiclePanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 9.75pt</value>
   </data>
-  <data name="VihiclePanel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="VehiclePanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 17</value>
   </data>
-  <data name="VihiclePanel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="VehiclePanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>470, 267</value>
   </data>
-  <data name="VihiclePanel.TabIndex" type="System.Int32, mscorlib">
+  <data name="VehiclePanel.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;VihiclePanel.Name" xml:space="preserve">
-    <value>VihiclePanel</value>
+  <data name="&gt;&gt;VehiclePanel.Name" xml:space="preserve">
+    <value>VehiclePanel</value>
   </data>
-  <data name="&gt;&gt;VihiclePanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;VehiclePanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;VihiclePanel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;VehiclePanel.Parent" xml:space="preserve">
     <value>StaticPanel</value>
   </data>
-  <data name="&gt;&gt;VihiclePanel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;VehiclePanel.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="StaticPanel.Location" type="System.Drawing.Point, System.Drawing">
@@ -4312,7 +4549,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;StaticPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="SearchPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4441,7 +4678,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;SearchPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="ReportPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

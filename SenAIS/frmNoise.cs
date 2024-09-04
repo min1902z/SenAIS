@@ -50,8 +50,8 @@ namespace SenAIS
 
                 //Lấy giá trị Độ ồn
                 // Gửi lệnh để bắt đầu nhận dữ liệu thời gian thực
-                byte[] startcommand = { 0x06 }; // gửi lệnh bắt đầu phát hiện
-                comConnect.SendRequest(startcommand);
+                //byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
+                //comConnect.SendRequest(startcommand);
                 //CheckCounterPosition();
             }
             else
@@ -139,9 +139,8 @@ namespace SenAIS
         private void frmNoise_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
-            //byte[] startcommand = { 0xB2 }; // gửi lệnh bắt đầu phát hiện
-            //comConnect.SendRequest(startcommand);
-
+            byte[] startcommand = { 0xB2, 0xB8, 0xB5 }; // gửi lệnh bắt đầu phát hiện
+            comConnect.SendRequest(startcommand);
         }
 
         private void frmNoise_FormClosing(object sender, FormClosingEventArgs e)

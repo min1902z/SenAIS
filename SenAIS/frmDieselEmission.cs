@@ -34,7 +34,19 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect("COM7", this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            byte[] command = new byte[] { 0xA5, 0x00 };
+            command[1] = CalculateCheckCode(new byte[] { 0xA5 });
+            comConnect.SendRequest(command);
             InitializeTimer();
+        }
+        private byte CalculateCheckCode(byte[] data)
+        {
+            int sum = 0;
+            foreach (byte b in data)
+            {
+                sum += b;
+            }
+            return (byte)((~(sum & 0xFF)) + 1);
         }
         private void InitializeTimer()
         {
@@ -44,7 +56,7 @@ namespace SenAIS
             updateTimer.Start();
 
         }
-        private async void UpdateReadyStatus(object sender, EventArgs e)
+        private void UpdateReadyStatus(object sender, EventArgs e)
         {
             //int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
             int checkStatus = 1;
@@ -52,11 +64,11 @@ namespace SenAIS
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
-                await Task.Delay(10000); // Chờ 10 giây
+                //await Task.Delay(10000); // Chờ 10 giây
 
                 // Sau khi đợi 10 giây, gửi yêu cầu lấy dữ liệu
-                byte[] request = { 0xA5 };
-                comConnect.SendRequest(request);
+                //byte[] request = { 0xA5};
+                //comConnect.SendRequest(request);
                 isReady = true;
                 //CheckCounterPosition();
             }
@@ -101,48 +113,40 @@ namespace SenAIS
         }
         public void SetMinSpeed(string value)
         {
-            if (lbMinSpeed.Text != value)
+            if (lbMinSpeed1.Text != value)
             {
-                lbMinSpeed.Text = value;
+                lbMinSpeed1.Text = value;
             }
             this.minSpeed = Convert.ToDecimal(value);
         }
         public void SetMaxSpeed(string value)
         {
-            if (lbMaxSpeed.Text != value)
+            if (lbMaxSpeed1.Text != value)
             {
-                lbMaxSpeed.Text = value;
+                lbMaxSpeed1.Text = value;
             }
             this.maxSpeed = Convert.ToDecimal(value);
         }
         public void SetHSU(string value)
         {
-            if (lbHSU.Text != value)
+            if (lbHSU1.Text != value)
             {
-                lbHSU.Text = value;
+                lbHSU1.Text = value;
             }
             this.hsu = Convert.ToDecimal(value);
         }
         public void ProcessNHT6Data(byte[] data)
         {
-            if (data.Length == 21 && data[0] == 0xA5) // Kiểm tra mã lệnh A5H và độ dài dữ liệu
+            if (data.Length >= 9 && data[0] == 0xA5)
             {
-                // Lưu lại dữ liệu cuối cùng
-                lastReceivedData = data;
-
-                // Xử lý từng giá trị từ gói dữ liệu NHT6
-                double opacity = ConvertToDouble(data[1], data[2], 10); // Độ mờ chia 10
-                double lightAbsorption = ConvertToDouble(data[3], data[4], 100); // Hệ số hấp thụ ánh sáng chia 100
-                int rpm = ConvertToInt(data[5], data[6]); // Vòng quay không chia scale
-                int oilTemp = ConvertToInt(data[7], data[8]) - 273; // Nhiệt độ dầu (đã chuyển đổi sang độ C)
+                // Extract speed (assuming bytes 6-7) and oil temperature (assuming bytes 8-9)
+                int speedValue = (data[5] << 8) + data[6];
+                int oilTempValue = (data[7] << 8) + data[8] - 273; // Convert from absolute temperature to Celsius
 
                 this.Invoke(new Action(() =>
                 {
-                    // Cập nhật giá trị lên UI
-                    //SetOpacityValue(opacity.ToString("F1"));
-                    //SetLightAbsorptionValue(lightAbsorption.ToString("F2"));
-                    //SetRPMValue(rpm.ToString());
-                    //SetOilTempValue(oilTemp.ToString());
+                    lbMinSpeed1.Text = speedValue.ToString();
+                    lbMinSpeed2.Text = oilTempValue.ToString(); 
                 }));
             }
             else if (data.Length == 0)
@@ -184,6 +188,8 @@ namespace SenAIS
         private void frmDieselEmission_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
+            //byte[] request = { 0xA5 };
+            //comConnect.SendRequest(request);
         }
 
         private void frmDieselEmission_FormClosing(object sender, FormClosingEventArgs e)

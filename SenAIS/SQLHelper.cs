@@ -573,9 +573,15 @@ namespace SenAIS
                             pe.[NO],
                             pe.[OilTemp],
                             pe.[RPM],
-	                        de.[MinSpeed],
-                            de.[MaxSpeed],
-                            de.[HSU]
+	                        de.[MinSpeed1],
+                            de.[MaxSpeed1],
+                            de.[HSU1],
+                            de.[MinSpeed2],
+                            de.[MaxSpeed2],
+                            de.[HSU2],
+                            de.[MinSpeed3],
+                            de.[MaxSpeed3],
+                            de.[HSU3]
 
                         FROM 
                             VehicleInfo vi
@@ -609,6 +615,56 @@ namespace SenAIS
 
             return result.Rows.Count > 0 ? result.Rows[0] : null;
         }
-    }
+        public DataTable GetVehicleStandardsData()
+        {
+            string query = "SELECT * FROM VehicleStandards";
+            return TableExecuteQuery(query, null);
+        }
 
+        public void UpdateVehicleStandardsData(DataTable dataTable)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM VehicleStandards";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Update(dataTable);
+            }
+        }
+        public DataTable GetInspectorData()
+        {
+            string query = "SELECT * FROM Inspector";
+            return TableExecuteQuery(query, null);
+        }
+        public void UpdateInspectorData(DataTable dataTable)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Inspector";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Update(dataTable);
+            }
+        }
+        public DataTable GetTypeCarList()
+        {
+            string query = "SELECT TypeCar FROM VehicleStandards";
+            return TableExecuteQuery(query);
+        }
+
+        public DataTable GetInspectorList()
+        {
+            string query = "SELECT InspectorName FROM Inspector";
+            return TableExecuteQuery(query);
+        }
+        public DataTable GetVehicleStandardsByTypeCar(string typeCar)
+        {
+            string query = "SELECT * FROM VehicleStandards WHERE TypeCar = @TypeCar";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@TypeCar", typeCar)
+            };
+            return TableExecuteQuery(query, parameters);
+        }
+    }
 }

@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReport));
             this.ReportPanel = new System.Windows.Forms.Panel();
+            this.btnExportReport = new System.Windows.Forms.Button();
             this.StaticTitlePanel = new System.Windows.Forms.Panel();
-            this.label52 = new System.Windows.Forms.Label();
+            this.lbReportTitle = new System.Windows.Forms.Label();
             this.StaticPanel = new System.Windows.Forms.Panel();
             this.DieselPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -79,7 +80,7 @@
             this.txtLHLIntensity = new System.Windows.Forms.TextBox();
             this.txtRHLVertical = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.BrakePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label22 = new System.Windows.Forms.Label();
             this.txtRearLeftBrake = new System.Windows.Forms.TextBox();
@@ -101,7 +102,7 @@
             this.txtHandDiffBrake = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.WeightPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label23 = new System.Windows.Forms.Label();
             this.txtRearLeftWeight = new System.Windows.Forms.TextBox();
@@ -154,7 +155,7 @@
             this.txtSpeed = new System.Windows.Forms.TextBox();
             this.lbSideSlipTitle = new System.Windows.Forms.Label();
             this.lbSpeedPanelTitle = new System.Windows.Forms.Label();
-            this.VihiclePanel = new System.Windows.Forms.Panel();
+            this.VehiclePanel = new System.Windows.Forms.Panel();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
             this.txtDateInspec = new System.Windows.Forms.TextBox();
             this.txtSerialNum = new System.Windows.Forms.TextBox();
@@ -183,15 +184,15 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.HLPanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.BrakePanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.WeightPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.EmissionPetrolPanel.SuspendLayout();
             this.tbEmissionPetrol.SuspendLayout();
             this.SpeedPanel.SuspendLayout();
             this.tbSpeed.SuspendLayout();
-            this.VihiclePanel.SuspendLayout();
+            this.VehiclePanel.SuspendLayout();
             this.tbVehicleInfo.SuspendLayout();
             this.SearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).BeginInit();
@@ -201,23 +202,33 @@
             // 
             resources.ApplyResources(this.ReportPanel, "ReportPanel");
             this.ReportPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ReportPanel.Controls.Add(this.btnExportReport);
             this.ReportPanel.Controls.Add(this.StaticTitlePanel);
             this.ReportPanel.Controls.Add(this.StaticPanel);
             this.ReportPanel.Controls.Add(this.SearchPanel);
             this.ReportPanel.Name = "ReportPanel";
             // 
+            // btnExportReport
+            // 
+            resources.ApplyResources(this.btnExportReport, "btnExportReport");
+            this.btnExportReport.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnExportReport.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnExportReport.Name = "btnExportReport";
+            this.btnExportReport.UseVisualStyleBackColor = false;
+            this.btnExportReport.Click += new System.EventHandler(this.btnExportReport_Click);
+            // 
             // StaticTitlePanel
             // 
             resources.ApplyResources(this.StaticTitlePanel, "StaticTitlePanel");
             this.StaticTitlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.StaticTitlePanel.Controls.Add(this.label52);
+            this.StaticTitlePanel.Controls.Add(this.lbReportTitle);
             this.StaticTitlePanel.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.StaticTitlePanel.Name = "StaticTitlePanel";
             // 
-            // label52
+            // lbReportTitle
             // 
-            resources.ApplyResources(this.label52, "label52");
-            this.label52.Name = "label52";
+            resources.ApplyResources(this.lbReportTitle, "lbReportTitle");
+            this.lbReportTitle.Name = "lbReportTitle";
             // 
             // StaticPanel
             // 
@@ -226,16 +237,16 @@
             this.StaticPanel.Controls.Add(this.DieselPanel);
             this.StaticPanel.Controls.Add(this.LBPanel);
             this.StaticPanel.Controls.Add(this.HLPanel);
-            this.StaticPanel.Controls.Add(this.panel2);
-            this.StaticPanel.Controls.Add(this.panel6);
+            this.StaticPanel.Controls.Add(this.BrakePanel);
+            this.StaticPanel.Controls.Add(this.WeightPanel);
             this.StaticPanel.Controls.Add(this.EmissionPetrolPanel);
             this.StaticPanel.Controls.Add(this.SpeedPanel);
-            this.StaticPanel.Controls.Add(this.VihiclePanel);
+            this.StaticPanel.Controls.Add(this.VehiclePanel);
             this.StaticPanel.Name = "StaticPanel";
             // 
             // DieselPanel
             // 
-            this.DieselPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DieselPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DieselPanel.Controls.Add(this.tableLayoutPanel5);
             this.DieselPanel.Controls.Add(this.label50);
             resources.ApplyResources(this.DieselPanel, "DieselPanel");
@@ -380,7 +391,7 @@
             // 
             // LBPanel
             // 
-            this.LBPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LBPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LBPanel.Controls.Add(this.tableLayoutPanel4);
             this.LBPanel.Controls.Add(this.label44);
             resources.ApplyResources(this.LBPanel, "LBPanel");
@@ -491,7 +502,7 @@
             // 
             // HLPanel
             // 
-            this.HLPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.HLPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.HLPanel.Controls.Add(this.tableLayoutPanel3);
             this.HLPanel.Controls.Add(this.label38);
             resources.ApplyResources(this.HLPanel, "HLPanel");
@@ -600,14 +611,14 @@
             this.label38.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label38.Name = "label38";
             // 
-            // panel2
+            // BrakePanel
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.tableLayoutPanel2);
-            this.panel2.Controls.Add(this.label30);
-            resources.ApplyResources(this.panel2, "panel2");
-            this.panel2.Name = "panel2";
-            this.panel2.Tag = "";
+            this.BrakePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BrakePanel.Controls.Add(this.tableLayoutPanel2);
+            this.BrakePanel.Controls.Add(this.label30);
+            resources.ApplyResources(this.BrakePanel, "BrakePanel");
+            this.BrakePanel.Name = "BrakePanel";
+            this.BrakePanel.Tag = "";
             // 
             // tableLayoutPanel2
             // 
@@ -779,14 +790,14 @@
             this.label30.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label30.Name = "label30";
             // 
-            // panel6
+            // WeightPanel
             // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.tableLayoutPanel1);
-            this.panel6.Controls.Add(this.lbWeightPanelTitle);
-            resources.ApplyResources(this.panel6, "panel6");
-            this.panel6.Name = "panel6";
-            this.panel6.Tag = "";
+            this.WeightPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.WeightPanel.Controls.Add(this.tableLayoutPanel1);
+            this.WeightPanel.Controls.Add(this.lbWeightPanelTitle);
+            resources.ApplyResources(this.WeightPanel, "WeightPanel");
+            this.WeightPanel.Name = "WeightPanel";
+            this.WeightPanel.Tag = "";
             // 
             // tableLayoutPanel1
             // 
@@ -892,7 +903,7 @@
             // 
             // EmissionPetrolPanel
             // 
-            this.EmissionPetrolPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmissionPetrolPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.EmissionPetrolPanel.Controls.Add(this.tbEmissionPetrol);
             this.EmissionPetrolPanel.Controls.Add(this.lbEmissionPetTitle);
             resources.ApplyResources(this.EmissionPetrolPanel, "EmissionPetrolPanel");
@@ -1075,7 +1086,7 @@
             // 
             // SpeedPanel
             // 
-            this.SpeedPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SpeedPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.SpeedPanel.Controls.Add(this.tbSpeed);
             this.SpeedPanel.Controls.Add(this.lbSpeedPanelTitle);
             resources.ApplyResources(this.SpeedPanel, "SpeedPanel");
@@ -1187,14 +1198,14 @@
             this.lbSpeedPanelTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbSpeedPanelTitle.Name = "lbSpeedPanelTitle";
             // 
-            // VihiclePanel
+            // VehiclePanel
             // 
-            this.VihiclePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.VihiclePanel.Controls.Add(this.tbVehicleInfo);
-            this.VihiclePanel.Controls.Add(this.lbVehicleTitle);
-            resources.ApplyResources(this.VihiclePanel, "VihiclePanel");
-            this.VihiclePanel.Name = "VihiclePanel";
-            this.VihiclePanel.Tag = "";
+            resources.ApplyResources(this.VehiclePanel, "VehiclePanel");
+            this.VehiclePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.VehiclePanel.Controls.Add(this.tbVehicleInfo);
+            this.VehiclePanel.Controls.Add(this.lbVehicleTitle);
+            this.VehiclePanel.Name = "VehiclePanel";
+            this.VehiclePanel.Tag = "";
             // 
             // tbVehicleInfo
             // 
@@ -1373,12 +1384,12 @@
             this.HLPanel.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.BrakePanel.ResumeLayout(false);
+            this.BrakePanel.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.WeightPanel.ResumeLayout(false);
+            this.WeightPanel.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.EmissionPetrolPanel.ResumeLayout(false);
@@ -1389,8 +1400,8 @@
             this.SpeedPanel.PerformLayout();
             this.tbSpeed.ResumeLayout(false);
             this.tbSpeed.PerformLayout();
-            this.VihiclePanel.ResumeLayout(false);
-            this.VihiclePanel.PerformLayout();
+            this.VehiclePanel.ResumeLayout(false);
+            this.VehiclePanel.PerformLayout();
             this.tbVehicleInfo.ResumeLayout(false);
             this.tbVehicleInfo.PerformLayout();
             this.SearchPanel.ResumeLayout(false);
@@ -1452,7 +1463,7 @@
         private System.Windows.Forms.TextBox txtLHLIntensity;
         private System.Windows.Forms.TextBox txtRHLVertical;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel BrakePanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtRearLeftBrake;
@@ -1474,7 +1485,7 @@
         private System.Windows.Forms.TextBox txtHandDiffBrake;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel WeightPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtRearLeftWeight;
@@ -1527,7 +1538,7 @@
         private System.Windows.Forms.TextBox txtSpeed;
         private System.Windows.Forms.Label lbSideSlipTitle;
         private System.Windows.Forms.Label lbSpeedPanelTitle;
-        private System.Windows.Forms.Panel VihiclePanel;
+        private System.Windows.Forms.Panel VehiclePanel;
         private System.Windows.Forms.TableLayoutPanel tbVehicleInfo;
         private System.Windows.Forms.TextBox txtDateInspec;
         private System.Windows.Forms.TextBox txtSerialNum;
@@ -1541,11 +1552,12 @@
         private System.Windows.Forms.Label lbDateInspecTitle;
         private System.Windows.Forms.TextBox txtTypeCar;
         private System.Windows.Forms.Label lbInspectorTitle;
-        private System.Windows.Forms.Label lbVehicleTitle;
         private System.Windows.Forms.Panel StaticTitlePanel;
-        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label lbReportTitle;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dgVehicleInfo;
+        private System.Windows.Forms.Label lbVehicleTitle;
+        private System.Windows.Forms.Button btnExportReport;
     }
 }

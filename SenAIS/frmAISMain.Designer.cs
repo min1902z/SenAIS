@@ -34,6 +34,8 @@
             this.TSDangKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDuLieu = new System.Windows.Forms.ToolStripMenuItem();
             this.TSTruyXuat = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsVehicleStandard = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsInspector = new System.Windows.Forms.ToolStripMenuItem();
             this.điềuChỉnhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsCalibration = new System.Windows.Forms.ToolStripMenuItem();
             this.tsLWeightCalib = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,7 +88,9 @@
             // TSDuLieu
             // 
             this.TSDuLieu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSTruyXuat});
+            this.TSTruyXuat,
+            this.tsVehicleStandard,
+            this.tsInspector});
             this.TSDuLieu.Name = "TSDuLieu";
             this.TSDuLieu.Size = new System.Drawing.Size(68, 23);
             this.TSDuLieu.Text = "Dữ Liệu";
@@ -95,9 +99,23 @@
             // TSTruyXuat
             // 
             this.TSTruyXuat.Name = "TSTruyXuat";
-            this.TSTruyXuat.Size = new System.Drawing.Size(187, 24);
+            this.TSTruyXuat.Size = new System.Drawing.Size(242, 24);
             this.TSTruyXuat.Text = "Truy Xuất Dữ Liệu";
             this.TSTruyXuat.Click += new System.EventHandler(this.TSTruyXuat_Click);
+            // 
+            // tsVehicleStandard
+            // 
+            this.tsVehicleStandard.Name = "tsVehicleStandard";
+            this.tsVehicleStandard.Size = new System.Drawing.Size(242, 24);
+            this.tsVehicleStandard.Text = "Tiêu Chuẩn Chất Lượng Xe";
+            this.tsVehicleStandard.Click += new System.EventHandler(this.tsVehicleStandard_Click);
+            // 
+            // tsInspector
+            // 
+            this.tsInspector.Name = "tsInspector";
+            this.tsInspector.Size = new System.Drawing.Size(242, 24);
+            this.tsInspector.Text = "Người Kiểm Tra";
+            this.tsInspector.Click += new System.EventHandler(this.tsInspector_Click);
             // 
             // điềuChỉnhToolStripMenuItem
             // 
@@ -154,7 +172,7 @@
             this.tsRBrakeCalib});
             this.tsBrakeCalib.Name = "tsBrakeCalib";
             this.tsBrakeCalib.Size = new System.Drawing.Size(228, 24);
-            this.tsBrakeCalib.Text = "Hiệu Chinh Lực Phanh";
+            this.tsBrakeCalib.Text = "Hiệu Chỉnh Lực Phanh";
             // 
             // tsLBrakeCalib
             // 
@@ -184,21 +202,21 @@
             // TSAuboutMe
             // 
             this.TSAuboutMe.Name = "TSAuboutMe";
-            this.TSAuboutMe.Size = new System.Drawing.Size(180, 24);
+            this.TSAuboutMe.Size = new System.Drawing.Size(164, 24);
             this.TSAuboutMe.Text = "Giới Thiệu";
             this.TSAuboutMe.Click += new System.EventHandler(this.TSAuboutMe_Click);
             // 
             // TSReset
             // 
             this.TSReset.Name = "TSReset";
-            this.TSReset.Size = new System.Drawing.Size(180, 24);
+            this.TSReset.Size = new System.Drawing.Size(164, 24);
             this.TSReset.Text = "Khởi Động Lại";
             this.TSReset.Click += new System.EventHandler(this.TSReset_Click);
             // 
             // tsExit
             // 
             this.tsExit.Name = "tsExit";
-            this.tsExit.Size = new System.Drawing.Size(180, 24);
+            this.tsExit.Size = new System.Drawing.Size(164, 24);
             this.tsExit.Text = "Thoát ";
             this.tsExit.Click += new System.EventHandler(this.tsExit_Click);
             // 
@@ -257,6 +275,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsLBrakeCalib;
         private System.Windows.Forms.ToolStripMenuItem tsRBrakeCalib;
         private System.Windows.Forms.ToolStripMenuItem tsExit;
+        private System.Windows.Forms.ToolStripMenuItem tsVehicleStandard;
+        private System.Windows.Forms.ToolStripMenuItem tsInspector;
     }
 }
 

@@ -196,5 +196,15 @@ namespace SenAIS
         {
             OpenChildForm(new frmAboutUs());
         }
+
+        private void tsVehicleStandard_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmStandards());
+        }
+
+        private void tsInspector_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmInspector());
+        }
     }
 }

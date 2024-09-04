@@ -13,7 +13,7 @@ namespace SenAIS
 {
     public partial class frmWaiting : Form
     {
-        private Form parentForm;
+        private Form parentForm = new Form();
         private OPCItem opcItemT99;
         public frmWaiting()
         {
