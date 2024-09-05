@@ -28,27 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rpvVehicleReport = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.VehicleReports1 = new VehicleReports();
             this.SuspendLayout();
             // 
-            // rpvVehicleReport
+            // crystalReportViewer1
             // 
-            this.rpvVehicleReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rpvVehicleReport.LocalReport.ReportEmbeddedResource = "SenAIS.VehicleReport.rdlc";
-            this.rpvVehicleReport.Location = new System.Drawing.Point(0, 0);
-            this.rpvVehicleReport.Name = "rpvVehicleReport";
-            this.rpvVehicleReport.ServerReport.BearerToken = null;
-            this.rpvVehicleReport.Size = new System.Drawing.Size(800, 450);
-            this.rpvVehicleReport.TabIndex = 0;
+            this.crystalReportViewer1.ActiveViewIndex = 0;
+            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.ReportSource = this.VehicleReports1;
+            this.crystalReportViewer1.Size = new System.Drawing.Size(800, 1061);
+            this.crystalReportViewer1.TabIndex = 0;
+            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // frmExportReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.rpvVehicleReport);
+            this.ClientSize = new System.Drawing.Size(800, 1061);
+            this.Controls.Add(this.crystalReportViewer1);
             this.Name = "frmExportReport";
-            this.Text = "frmExportReport";
+            this.Text = "Báo cáo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmExportReport_Load);
             this.ResumeLayout(false);
@@ -57,6 +61,7 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer rpvVehicleReport;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private VehicleReports VehicleReports1;
     }
 }

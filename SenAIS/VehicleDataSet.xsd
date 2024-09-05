@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VehicleDataSet" targetNamespace="http://tempuri.org/VehicleDataSet.xsd" xmlns:mstns="http://tempuri.org/VehicleDataSet.xsd" xmlns="http://tempuri.org/VehicleDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="VehicleDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="VehicleDataSet" msprop:Generator_DataSetName="VehicleDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VehicleReportData" msprop:Generator_RowEvHandlerName="VehicleReportDataRowChangeEventHandler" msprop:Generator_RowDeletedName="VehicleReportDataRowDeleted" msprop:Generator_RowDeletingName="VehicleReportDataRowDeleting" msprop:Generator_RowEvArgName="VehicleReportDataRowChangeEvent" msprop:Generator_TablePropName="VehicleReportData" msprop:Generator_RowChangedName="VehicleReportDataRowChanged" msprop:Generator_RowChangingName="VehicleReportDataRowChanging" msprop:Generator_TableClassName="VehicleReportDataDataTable" msprop:Generator_RowClassName="VehicleReportDataRow" msprop:Generator_TableVarName="tableVehicleReportData" msprop:Generator_UserTableName="VehicleReportData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SerialNumber" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" msprop:Generator_UserColumnName="SerialNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="FrameNumber" msprop:Generator_ColumnPropNameInRow="FrameNumber" msprop:Generator_ColumnPropNameInTable="FrameNumberColumn" msprop:Generator_ColumnVarNameInTable="columnFrameNumber" msprop:Generator_UserColumnName="FrameNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleType" msprop:Generator_ColumnPropNameInRow="VehicleType" msprop:Generator_ColumnPropNameInTable="VehicleTypeColumn" msprop:Generator_ColumnVarNameInTable="columnVehicleType" msprop:Generator_UserColumnName="VehicleType" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

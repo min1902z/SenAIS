@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,30 +14,33 @@ namespace SenAIS
 {
     public partial class frmExportReport : Form
     {
-        private List<VehicleReportData> reportDataList;
-        public frmExportReport(List<VehicleReportData> data)
+        //private List<VehicleReportData> reportDataList;
+        //private string serialNumber;
+        private DataTable reportData;
+        public frmExportReport(DataTable data)
         {
             InitializeComponent();
-            reportDataList = data;
+            reportData = data;
         }
 
         private void frmExportReport_Load(object sender, EventArgs e)
         {
-            LoadReport();
-            this.rpvVehicleReport.RefreshReport();
-        }
-        private void LoadReport()
-        {
-            // Tạo ReportDataSource từ DataTable và gán nó vào ReportViewer
-            ReportDataSource rds = new ReportDataSource("VehicleDataSet", reportDataList);
-            rpvVehicleReport.LocalReport.DataSources.Clear();
-            rpvVehicleReport.LocalReport.DataSources.Add(rds);
+            // Tạo instance của báo cáo
+            ReportDocument cryRpt = new ReportDocument();
 
-            // Đặt đường dẫn tới tệp RDLC
-            rpvVehicleReport.LocalReport.ReportPath = "VehicleReport.rdlc";
+            // Đường dẫn đến file Crystal Report (.rpt)
+            string reportPath = "VehicleReports.rpt";
+            cryRpt.Load(reportPath);
 
-            // Làm mới ReportViewer để hiển thị báo cáo
-            rpvVehicleReport.RefreshReport();
+            // Nạp dữ liệu từ DataTable vào báo cáo
+            cryRpt.SetDataSource(reportData);
+
+            // Gán báo cáo cho CrystalReportViewer
+            crystalReportViewer1.ReportSource = cryRpt;
+
+            // Làm mới CrystalReportViewer
+            crystalReportViewer1.Refresh();
         }
+        
     }
 }
