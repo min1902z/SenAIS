@@ -271,8 +271,8 @@ namespace SenAIS
             // Tải dữ liệu cho cbTypeCar
             DataTable typeCarTable = sqlHelper.GetTypeCarList();
             cbTypeCar.DataSource = typeCarTable;
-            cbTypeCar.DisplayMember = "TypeCar"; // Hiển thị TypeCar trong ComboBox
-            cbTypeCar.ValueMember = "TypeCar";   // Sử dụng TypeCar làm giá trị
+            cbTypeCar.DisplayMember = "VehicleType"; // Hiển thị TypeCar trong ComboBox
+            cbTypeCar.ValueMember = "VehicleType";   // Sử dụng TypeCar làm giá trị
 
             // Tải dữ liệu cho cbInspector
             DataTable inspectorTable = sqlHelper.GetInspectorList();

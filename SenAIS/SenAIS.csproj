@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="COMConnect.cs" />
+    <Compile Include="date.cs" />
     <Compile Include="frmAboutUs.cs">
       <SubType>Form</SubType>
     </Compile>

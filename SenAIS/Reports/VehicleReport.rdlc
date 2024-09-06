@@ -288,7 +288,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Fields!Inspector.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -318,7 +318,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Fields!VehicleType.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -442,7 +442,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Fields!SerialNumber.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1127,12 +1127,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>2.61979in</Top>
             <Left>5.7118in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.17709in</Height>
+            <Width>0.24342in</Width>
             <ZIndex>40</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -1187,12 +1187,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>2.61979in</Top>
             <Left>7.17882in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.17709in</Height>
+            <Width>0.24342in</Width>
             <ZIndex>42</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -1530,12 +1530,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.75868in</Top>
             <Left>5.68924in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.17709in</Height>
+            <Width>0.24342in</Width>
             <ZIndex>54</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -1590,12 +1590,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.75868in</Top>
             <Left>7.17882in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.17709in</Height>
+            <Width>0.24342in</Width>
             <ZIndex>56</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -2562,13 +2562,13 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>5.28298in</Top>
-            <Left>5.7118in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Left>5.70138in</Left>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>89</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -2622,13 +2622,13 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>5.28298in</Top>
-            <Left>7.20138in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Left>7.19096in</Left>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>91</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -2877,12 +2877,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>6.19965in</Top>
             <Left>5.7118in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>100</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -2937,12 +2937,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>6.19965in</Top>
             <Left>7.20138in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>102</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -3341,12 +3341,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.35243in</Top>
             <Left>5.68465in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>116</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -3401,12 +3401,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.35243in</Top>
             <Left>7.17424in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>118</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -4222,14 +4222,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.70659in</Top>
+            <Top>8.72048in</Top>
             <Left>5.68465in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>146</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -4282,14 +4282,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.70659in</Top>
+            <Top>8.72048in</Top>
             <Left>7.17424in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>148</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -5257,8 +5257,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.07117in</Top>
             <Left>2.31425in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>181</ZIndex>
             <Style>
               <Border>
@@ -5317,8 +5317,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.07117in</Top>
             <Left>3.80384in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>183</ZIndex>
             <Style>
               <Border>
@@ -5527,14 +5527,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>10.03992in</Top>
+            <Top>10.07117in</Top>
             <Left>6.53125in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>190</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -5587,14 +5587,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>10.03992in</Top>
+            <Top>10.07117in</Top>
             <Left>8.02084in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>192</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -5824,12 +5824,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.9045in</Top>
             <Left>2.6482in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>201</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -5884,12 +5884,12 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.9045in</Top>
             <Left>4.13779in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36285in</Width>
+            <Height>0.19097in</Height>
+            <Width>0.23128in</Width>
             <ZIndex>203</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -6539,6 +6539,14 @@
         </Field>
         <Field Name="VehicleType">
           <DataField>VehicleType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Inspector">
+          <DataField>Inspector</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FrontSumWeight">
+          <DataField>FrontSumWeight</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

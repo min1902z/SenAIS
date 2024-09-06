@@ -22,7 +22,7 @@ namespace SenAIS
 
         public COMConnect(string portName, Form form)
         {
-            serialPort = new SerialPort(portName, 300, Parity.None, 8, StopBits.One);
+            serialPort = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
             activeForm = form;
             serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         }

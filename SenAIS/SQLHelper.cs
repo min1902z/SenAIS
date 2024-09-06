@@ -648,7 +648,7 @@ namespace SenAIS
         }
         public DataTable GetTypeCarList()
         {
-            string query = "SELECT TypeCar FROM VehicleStandards";
+            string query = "SELECT VehicleType FROM VehicleStandards";
             return TableExecuteQuery(query);
         }
 
@@ -657,12 +657,12 @@ namespace SenAIS
             string query = "SELECT InspectorName FROM Inspector";
             return TableExecuteQuery(query);
         }
-        public DataTable GetVehicleStandardsByTypeCar(string typeCar)
+        public DataTable GetVehicleStandardsByTypeCar(string vehicleType)
         {
-            string query = "SELECT * FROM VehicleStandards WHERE TypeCar = @TypeCar";
+            string query = "SELECT * FROM VehicleStandards WHERE VehicleType = @VehicleType";
             SqlParameter[] parameters = new SqlParameter[]
             {
-        new SqlParameter("@TypeCar", typeCar)
+        new SqlParameter("@VehicleType", vehicleType)
             };
             return TableExecuteQuery(query, parameters);
         }
