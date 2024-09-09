@@ -1331,6 +1331,7 @@
             // 
             resources.ApplyResources(this.dgVehicleInfo, "dgVehicleInfo");
             this.dgVehicleInfo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgVehicleInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVehicleInfo.Name = "dgVehicleInfo";
@@ -1369,6 +1370,7 @@
             this.Name = "frmReport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ReportPanel.ResumeLayout(false);
+            this.ReportPanel.PerformLayout();
             this.StaticTitlePanel.ResumeLayout(false);
             this.StaticTitlePanel.PerformLayout();
             this.StaticPanel.ResumeLayout(false);

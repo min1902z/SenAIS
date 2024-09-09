@@ -449,6 +449,10 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnMaxHSU;
             
+            private global::System.Data.DataColumn columnRHLVertical;
+            
+            private global::System.Data.DataColumn columnLightHeight;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1164,6 +1168,22 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RHLVerticalColumn {
+                get {
+                    return this.columnRHLVertical;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LightHeightColumn {
+                get {
+                    return this.columnLightHeight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1284,7 +1304,9 @@ namespace SenAIS {
                         string MaxSpeed3, 
                         string HSU3, 
                         string AvgHSU, 
-                        string MaxHSU) {
+                        string MaxHSU, 
+                        string RHLVertical, 
+                        string LightHeight) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1371,7 +1393,9 @@ namespace SenAIS {
                         MaxSpeed3,
                         HSU3,
                         AvgHSU,
-                        MaxHSU};
+                        MaxHSU,
+                        RHLVertical,
+                        LightHeight};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -1479,6 +1503,8 @@ namespace SenAIS {
                 this.columnHSU3 = base.Columns["HSU3"];
                 this.columnAvgHSU = base.Columns["AvgHSU"];
                 this.columnMaxHSU = base.Columns["MaxHSU"];
+                this.columnRHLVertical = base.Columns["RHLVertical"];
+                this.columnLightHeight = base.Columns["LightHeight"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1654,6 +1680,10 @@ namespace SenAIS {
                 base.Columns.Add(this.columnAvgHSU);
                 this.columnMaxHSU = new global::System.Data.DataColumn("MaxHSU", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaxHSU);
+                this.columnRHLVertical = new global::System.Data.DataColumn("RHLVertical", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRHLVertical);
+                this.columnLightHeight = new global::System.Data.DataColumn("LightHeight", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLightHeight);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3156,6 +3186,38 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RHLVertical {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RHLVerticalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RHLVertical\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RHLVerticalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LightHeight {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LightHeightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LightHeight\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LightHeightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -4172,6 +4234,30 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaxHSUNull() {
                 this[this.tableVehicleReportData.MaxHSUColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRHLVerticalNull() {
+                return this.IsNull(this.tableVehicleReportData.RHLVerticalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRHLVerticalNull() {
+                this[this.tableVehicleReportData.RHLVerticalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLightHeightNull() {
+                return this.IsNull(this.tableVehicleReportData.LightHeightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLightHeightNull() {
+                this[this.tableVehicleReportData.LightHeightColumn] = global::System.Convert.DBNull;
             }
         }
         

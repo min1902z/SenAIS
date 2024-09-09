@@ -29,7 +29,7 @@ namespace SenAIS
 
             // Đổi tên các cột thành tiếng Việt
             dgStandards.DataSource = vehicleStandardsTable;
-            dgStandards.Columns["TypeCar"].HeaderText = "Loại xe";
+            dgStandards.Columns["VehicleType"].HeaderText = "Loại xe";
             dgStandards.Columns["MinSpeed"].HeaderText = "Tốc độ tối thiểu";
             dgStandards.Columns["MaxSpeed"].HeaderText = "Tốc độ tối đa";
             dgStandards.Columns["MinFrontBrake"].HeaderText = "Phanh trước tối thiểu";
@@ -54,7 +54,7 @@ namespace SenAIS
             dgStandards .Columns["DiffHoriLeftHLMin"].HeaderText = "Chênh lệch ngang đèn pha trái tối thiểu";
             dgStandards.Columns["DiffHoriLeftHLMax"].HeaderText = "Chênh lệch ngang đèn pha trái tối đa";
             dgStandards.Columns["DiffHoriHLMin"].HeaderText = "Chênh lệch ngang đèn pha tối thiểu";
-            dgStandards.Columns["DiffHoriRightHLMax"].HeaderText = "Chênh lệch ngang phải đèn pha tối đa";
+            dgStandards.Columns["DiffHoriHLMax"].HeaderText = "Chênh lệch ngang đèn pha tối đa";
             dgStandards.Columns["DiffVertiHLMin"].HeaderText = "Chênh lệch dọc đèn pha tối thiểu";
             dgStandards.Columns["DiffVertiHLMax"].HeaderText = "Chênh lệch dọc đèn pha tối đa";
             dgStandards.Columns["DiffHoriLBMin"].HeaderText = "Chênh lệch ngang đèn cos tối thiểu";

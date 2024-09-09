@@ -290,7 +290,7 @@ namespace SenAIS
                 CheckAndColorTextBox(txtLHLIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
                 CheckAndColorTextBox(txtRHLIntensity, standard.Field<decimal?>("MinLBIntensity"), null);
                 CheckAndColorTextBox(txtLHLHorizontal, standard.Field<decimal?>("DiffHoriLeftHLMin"), standard.Field<decimal?>("DiffHoriLeftHLMax"));
-                CheckAndColorTextBox(txtRHLHorizontal, standard.Field<decimal?>("DiffHoriHLMin"), standard.Field<decimal?>("DiffHoriRightHLMax"));
+                CheckAndColorTextBox(txtRHLHorizontal, standard.Field<decimal?>("DiffHoriHLMin"), standard.Field<decimal?>("DiffHoriHLMax"));
                 CheckAndColorTextBox(txtLHLVertical, standard.Field<decimal?>("DiffVertiHLMin"), standard.Field<decimal?>("DiffVertiHLMax"));
                 CheckAndColorTextBox(txtRHLVertical, standard.Field<decimal?>("DiffVertiHLMin"), standard.Field<decimal?>("DiffVertiHLMax"));
                 CheckAndColorTextBox(txtLLBIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
@@ -466,6 +466,8 @@ namespace SenAIS
             reportDataTable.Columns.Add("AvgHSU", typeof(decimal));
             reportDataTable.Columns.Add("MaxHSU", typeof(decimal));
 
+            reportDataTable.Columns.Add("LightHeight", typeof(decimal));
+
 
             // Gọi hàm GetVehicleDetails để lấy thông tin xe theo serialNumber
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
@@ -488,18 +490,23 @@ namespace SenAIS
 
                 decimal frontLeftBrake = vehicleDetails.Field<decimal>("FrontLeftBrake");
                 decimal frontRightBrake = vehicleDetails.Field<decimal>("FrontRightBrake");
-                decimal frontDiffBrake = Convert.ToDecimal(txtHandDiffBrake.Text);
+                decimal frontDiffBrake = Convert.ToDecimal(txtFrontDiffBrake.Text);
                 decimal frontSumBrake = frontLeftBrake + frontRightBrake;
 
                 decimal rearLeftBrake = vehicleDetails.Field<decimal>("RearLeftBrake");
                 decimal rearRightBrake = vehicleDetails.Field<decimal>("RearRightBrake");
-                decimal rearDiffBrake = Convert.ToDecimal(txtHandDiffBrake.Text);
+                decimal rearDiffBrake = Convert.ToDecimal(txtRearDiffBrake.Text);
                 decimal rearSumBrake = rearLeftBrake + rearRightBrake;
 
-                decimal handLeftBrake = vehicleDetails.Field<decimal>("HandLeftBrake");
-                decimal handRightBrake = vehicleDetails.Field<decimal>("HandRightBrake");
+                decimal handLeftBrake = vehicleDetails.Field<decimal>("HandBrakeLeft");
+                decimal handRightBrake = vehicleDetails.Field<decimal>("HandBrakeRight");
                 decimal handDiffBrake = Convert.ToDecimal(txtHandDiffBrake.Text);
                 decimal handSumBrake = handLeftBrake + handRightBrake;
+
+                decimal hsu1 = vehicleDetails.Field<decimal>("HSU1");
+                decimal hsu2 = vehicleDetails.Field<decimal>("HSU2");
+                decimal hsu3 = vehicleDetails.Field<decimal>("HSU3");
+                decimal avgHSU = (hsu1+ hsu2+ hsu3) / 3;
 
                 // Thêm dữ liệu vào DataTable
                 DataRow reportRow = reportDataTable.NewRow();
@@ -546,182 +553,70 @@ namespace SenAIS
 
                 reportRow["FrontLeftBrake"] = frontLeftBrake.ToString("F1");
                 reportRow["FrontRightBrake"] = frontRightBrake.ToString("F1");
+                reportRow["FrontDiffBrake"] = frontDiffBrake.ToString("F1");
+                reportRow["DiffFrontBrakeMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffFrontBrakeMax")).ToString("F1");
                 reportRow["FrontSumBrake"] = frontSumBrake.ToString("F1");
+                reportRow["MinFrontBrake"] = Convert.ToDecimal(standard.Field<decimal>("MinFrontBrake")).ToString("F1");
                 reportRow["RearLeftBrake"] = rearLeftBrake.ToString("F1");
                 reportRow["RearRightBrake"] = rearRightBrake.ToString("F1");
+                reportRow["RearDiffBrake"] = rearDiffBrake.ToString("F1");
+                reportRow["DiffRearBrakeMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffRearBrakeMax")).ToString("F1");
                 reportRow["RearSumBrake"] = rearSumBrake.ToString("F1");
-                //reportDataTable.Rows.Add(
-                //    vehicleDetails["SerialNumber"].ToString(),
-                //    vehicleDetails["FrameNumber"].ToString(),
-                //    vehicleDetails["VehicleType"].ToString(),
-                //    vehicleDetails["Inspector"].ToString(),
-                //    vehicleDetails["EngineNumber"].ToString()
-                //);
+                reportRow["MinRearBrake"] = Convert.ToDecimal(standard.Field<decimal>("MinRearBrake")).ToString("F1");
+                reportRow["HandLeftBrake"] = handLeftBrake.ToString("F1");
+                reportRow["HandRightBrake"] = handRightBrake.ToString("F1");
+                reportRow["HandDiffBrake"] = handDiffBrake.ToString("F1");
+                reportRow["DiffHandBrakeMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffHandBrakeMax")).ToString("F1");
+                reportRow["HandSumBrake"] = rearSumBrake.ToString("F1");
+                reportRow["MinHandBrake"] = Convert.ToDecimal(standard.Field<decimal>("MinHandBrake")).ToString("F1");
+
+                reportRow["LHLIntensity"] = Convert.ToDecimal(vehicleDetails["LHLIntensity"]).ToString("F1");
+                reportRow["RHLIntensity"] = Convert.ToDecimal(vehicleDetails["RHLIntensity"]).ToString("F1");
+                reportRow["MinHLIntensity"] = Convert.ToDecimal(standard.Field<decimal>("MinHLIntensity")).ToString("F1");
+                reportRow["LHLVertical"] = Convert.ToDecimal(vehicleDetails["LHLVertical"]).ToString("F1");
+                reportRow["RHLVertical"] = Convert.ToDecimal(vehicleDetails["RHLVertical"]).ToString("F1");
+                reportRow["DiffVertiHLMin"] = Convert.ToDecimal(standard.Field<decimal>("DiffVertiHLMin")).ToString("F1");
+                reportRow["DiffVertiHLMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffVertiHLMax")).ToString("F1");
+                reportRow["LHLHorizontal"] = Convert.ToDecimal(vehicleDetails["LHLHorizontal"]).ToString("F1");
+                reportRow["RHLHorizontal"] = Convert.ToDecimal(vehicleDetails["RHLHorizontal"]).ToString("F1");
+                reportRow["DiffHoriHLMin"] = Convert.ToDecimal(standard.Field<decimal>("DiffHoriHLMin")).ToString("F1");
+                reportRow["DiffHoriHLMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffHoriHLMax")).ToString("F1");
+
+                reportRow["LLBIntensity"] = Convert.ToDecimal(vehicleDetails["LLBIntensity"]).ToString("F1");
+                reportRow["RLBIntensity"] = Convert.ToDecimal(vehicleDetails["RLBIntensity"]).ToString("F1");
+                reportRow["MinLBIntensity"] = Convert.ToDecimal(standard.Field<decimal>("MinLBIntensity")).ToString("F1");
+                reportRow["LLBVertical"] = Convert.ToDecimal(vehicleDetails["LLBVertical"]).ToString("F1");
+                reportRow["RLBVertical"] = Convert.ToDecimal(vehicleDetails["RLBVertical"]).ToString("F1");
+                reportRow["DiffVertiLBMin"] = Convert.ToDecimal(standard.Field<decimal>("DiffVertiLBMin")).ToString("F1");
+                reportRow["DiffVertiLBMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffVertiLBMax")).ToString("F1");
+                reportRow["LLBHorizontal"] = Convert.ToDecimal(vehicleDetails["LLBHorizontal"]).ToString("F1");
+                reportRow["RLBHorizontal"] = Convert.ToDecimal(vehicleDetails["RLBHorizontal"]).ToString("F1");
+                reportRow["DiffHoriLBMin"] = Convert.ToDecimal(standard.Field<decimal>("DiffHoriLBMin")).ToString("F1");
+                reportRow["DiffHoriLBMax"] = Convert.ToDecimal(standard.Field<decimal>("DiffHoriLBMax")).ToString("F1");
+
+                reportRow["MinSpeed1"] = Convert.ToDecimal(vehicleDetails["MinSpeed1"]).ToString("F1");
+                reportRow["MaxSpeed1"] = Convert.ToDecimal(vehicleDetails["MaxSpeed1"]).ToString("F1");
+                reportRow["HSU1"] = hsu1.ToString("F1");
+                reportRow["MinSpeed2"] = Convert.ToDecimal(vehicleDetails["MinSpeed2"]).ToString("F1");
+                reportRow["MaxSpeed2"] = Convert.ToDecimal(vehicleDetails["MaxSpeed2"]).ToString("F1");
+                reportRow["HSU2"] = hsu2.ToString("F1");
+                reportRow["MinSpeed3"] = Convert.ToDecimal(vehicleDetails["MinSpeed3"]).ToString("F1");
+                reportRow["MaxSpeed3"] = Convert.ToDecimal(vehicleDetails["MaxSpeed3"]).ToString("F1");
+                reportRow["HSU3"] = hsu3.ToString("F1");
+                reportRow["AvgHSU"] = avgHSU.ToString("F1");
+                reportRow["MaxHSU"] = Convert.ToDecimal(standard.Field<decimal>("MaxHSU")).ToString("F1");
+                reportRow["LightHeight"] = Convert.ToDecimal(standard.Field<decimal>("LightHeight")).ToString("F1");
+
                 reportDataTable.Rows.Add(reportRow);
             }
 
             return reportDataTable;
         }
-        //private List<VehicleReportData> GetVehicleReportData(string serialNumber)
-        //{
-        //    DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-        //    DataTable standardsTable = sqlHelper.GetVehicleStandardsByTypeCar(vehicleDetails["VehicleType"].ToString());
-
-        //    if (standardsTable.Rows.Count > 0)
-        //    {
-        //        DataRow standard = standardsTable.Rows[0];
-
-        //            bool isBrakeWithinStandard = CheckBrakeWithinStandard(
-        //            Convert.ToDecimal(txtHandDiffBrake.Text),
-        //            standard.Field<decimal?>("DiffHandBrakeMax"),
-        //            Convert.ToDecimal(txtHandSumBrake.Text),
-        //            standard.Field<decimal?>("MinHandBrake"),
-        //            Convert.ToDecimal(txtFrontDiffBrake.Text),
-        //            standard.Field<decimal?>("DiffFrontBrakeMax"),
-        //            Convert.ToDecimal(txtFrontSumBrake.Text),
-        //            standard.Field<decimal?>("MinFrontBrake"),
-        //            Convert.ToDecimal(txtRearDiffBrake.Text),
-        //            standard.Field<decimal?>("DiffRearBrakeMax"),
-        //            Convert.ToDecimal(txtRearSumBrake.Text),
-        //            standard.Field<decimal?>("MinRearBrake")
-        //            );
-        //        var reportData = new VehicleReportData
-        //        {
-        //            SerialNumber = vehicleDetails["SerialNumber"].ToString(),
-        //            FrameNumber = vehicleDetails["FrameNumber"].ToString(),
-        //            VehicleType = vehicleDetails["VehicleType"].ToString(),
-        //            Inspector = vehicleDetails["Inspector"].ToString(),
-        //            EngineNumber = vehicleDetails["EngineNumber"].ToString(),
-        //            InspectionDate = vehicleDetails["InspectionDate"].ToString(),
-        //            Speed = Convert.ToDecimal(vehicleDetails["Speed"]),
-        //            MinSpeed = standard.Field<decimal?>("MinSpeed"),
-        //            MaxSpeed = standard.Field<decimal?>("MaxSpeed"),
-        //            IsSpeedWithinStandard = CheckIfWithinStandard(Convert.ToDecimal(vehicleDetails["Speed"]), standard.Field<decimal?>("MinSpeed"), standard.Field<decimal?>("MaxSpeed")),
-        //            SideSlip = Convert.ToDecimal(vehicleDetails["SideSlip"]),
-        //            MinSideSlip = standard.Field<decimal?>("MinSideSlip"),
-        //            MaxSideSlip = standard.Field<decimal?>("MaxSideSlip"),
-        //            IsSideSlipWithinStandard = CheckIfWithinStandard(Convert.ToDecimal(vehicleDetails["SideSlip"]), standard.Field<decimal?>("MinSideSlip"), standard.Field<decimal?>("MaxSideSlip")),
-        //            Noise = Convert.ToDecimal(vehicleDetails["Noise"]),
-        //            MaxNoise = standard.Field<decimal?>("MaxNoise"),
-        //            IsNoiseWithinStandard = CheckIfWithinStandard(Convert.ToDecimal(vehicleDetails["Noise"]), null, standard.Field<decimal?>("MaxNoise")),
-        //            Whistle = Convert.ToDecimal(vehicleDetails["Whistle"]),
-        //            MinWhistle = standard.Field<decimal?>("MinWhistle"),
-        //            MaxWhistle = standard.Field<decimal?>("MaxWhistle"),
-        //            IsWhistleWithinStandard = CheckIfWithinStandard(Convert.ToDecimal(vehicleDetails["Whistle"]), standard.Field<decimal?>("MinWhistle"), standard.Field<decimal?>("MaxWhistle")),
-        //            FrontLeftWeight = Convert.ToDecimal(vehicleDetails["FrontLeftWeight"]),
-        //            FrontRightWeight = Convert.ToDecimal(vehicleDetails["FrontRightWeight"]),
-        //            FrontSumWeight = Convert.ToDecimal(txtFrontSumWeight.Text),
-        //            RearLeftWeight = Convert.ToDecimal(vehicleDetails["RearLeftWeight"]),
-        //            RearRightWeight = Convert.ToDecimal(vehicleDetails["RearRightWeight"]),
-        //            RearSumWeight = Convert.ToDecimal(txtRearSumWeight.Text),
-        //            FrontLeftBrake = Convert.ToDecimal(vehicleDetails["FrontLeftBrake"]),
-        //            FrontRightBrake = Convert.ToDecimal(vehicleDetails["FrontRightBrake"]),
-        //            FrontDiffBrake = Convert.ToDecimal(txtFrontDiffBrake.Text),
-        //            DiffFrontBrakeMax = standard.Field<decimal?>("DiffFrontBrakeMax"),
-        //            FrontSumBrake = Convert.ToDecimal(txtFrontSumBrake.Text),
-        //            MinFrontBrake = standard.Field<decimal?>("MinFrontBrake"),
-
-        //            RearLeftBrake = Convert.ToDecimal(vehicleDetails["RearLeftBrake"]),
-        //            RearRightBrake = Convert.ToDecimal(vehicleDetails["RearRightBrake"]),
-        //            RearDiffBrake = Convert.ToDecimal(txtRearDiffBrake.Text),
-        //            DiffRearBrakeMax = standard.Field<decimal?>("DiffRearBrakeMax"),
-        //            RearSumBrake = Convert.ToDecimal(txtRearSumBrake.Text),
-        //            MinRearBrake = standard.Field<decimal?>("MinRearBrake"),
-
-        //            HandLeftBrake = Convert.ToDecimal(vehicleDetails["HandBrakeLeft"]),
-        //            HandRightBrake = Convert.ToDecimal(vehicleDetails["HandBrakeRight"]),
-        //            HandDiffBrake = Convert.ToDecimal(txtHandDiffBrake.Text),
-        //            DiffHandBrakeMax = standard.Field<decimal?>("DiffHandBrakeMax"),
-        //            HandSumBrake = Convert.ToDecimal(txtHandSumBrake.Text),
-        //            MinHandBrake = standard.Field<decimal?>("MinHandBrake"),
-        //            IsBrakeWithinStandard = isBrakeWithinStandard,
-        //            HC = Convert.ToDecimal(vehicleDetails["HC"]),
-        //            MaxHC = standard.Field<decimal?>("MaxHC"),
-        //            CO = Convert.ToDecimal(vehicleDetails["CO"]),
-        //            MaxCO = standard.Field<decimal?>("MaxCO"),
-        //            RPM = Convert.ToDecimal(vehicleDetails["RPM"]),
-        //            OilTemp = Convert.ToDecimal(vehicleDetails["OilTemp"]),
-        //            IsPetrolWithinStandard = true,
-        //            MinSpeed1 = Convert.ToDecimal(vehicleDetails["MinSpeed1"]),
-        //            MinSpeed2 = Convert.ToDecimal(vehicleDetails["MinSpeed2"]),
-        //            MinSpeed3 = Convert.ToDecimal(vehicleDetails["MinSpeed3"]),
-        //            MaxSpeed1 = Convert.ToDecimal(vehicleDetails["MaxSpeed1"]),
-        //            MaxSpeed2 = Convert.ToDecimal(vehicleDetails["MaxSpeed2"]),
-        //            MaxSpeed3 = Convert.ToDecimal(vehicleDetails["MaxSpeed3"]),
-        //            HSU1 = Convert.ToDecimal(vehicleDetails["HSU1"]),
-        //            HSU2 = Convert.ToDecimal(vehicleDetails["HSU2"]),
-        //            HSU3 = Convert.ToDecimal(vehicleDetails["HSU3"]),
-        //            MaxHSU = standard.Field<decimal?>("MaxHSU"),
-        //            IsDieselWithinStandard = true,
-        //            LHLIntensity = Convert.ToDecimal(vehicleDetails["LHLIntensity"]),
-        //            RHLIntensity = Convert.ToDecimal(vehicleDetails["RHLIntensity"]),
-        //            MinHLIntensity = standard.Field<decimal?>("MinHLIntensity"),
-        //            LHLVertical = Convert.ToDecimal(vehicleDetails["LHLVertical"]),
-        //            RHLVertical = Convert.ToDecimal(vehicleDetails["RHLVertical"]),
-        //            MinHLVertical = standard.Field<decimal?>("DiffVertiHLMin"),
-        //            MaxHLVertical = standard.Field<decimal?>("DiffVertiHLMax"),
-        //            LHLHorizontal = Convert.ToDecimal(vehicleDetails["LHLHorizontal"]),
-        //            RHLHorizontal = Convert.ToDecimal(vehicleDetails["RHLHorizontal"]),
-        //            MinHLHorizontal = standard.Field<decimal?>("DiffHoriHLMin"),
-        //            MaxHLHorizontal = standard.Field<decimal?>("DiffHoriRightHLMax"),
-
-        //            LLBIntensity = Convert.ToDecimal(vehicleDetails["LLBIntensity"]),
-        //            RLBIntensity = Convert.ToDecimal(vehicleDetails["RLBIntensity"]),
-        //            MinLBIntensity = standard.Field<decimal?>("MinLBIntensity"),
-        //            LLBVertical = Convert.ToDecimal(vehicleDetails["LLBVertical"]),
-        //            RLBVertical = Convert.ToDecimal(vehicleDetails["RLBVertical"]),
-        //            MinLBVertical = standard.Field<decimal?>("DiffVertiLBMin"),
-        //            MaxLBVertical = standard.Field<decimal?>("DiffVertiLBMax"),
-        //            LLBHorizontal = Convert.ToDecimal(vehicleDetails["LLBHorizontal"]),
-        //            RLBHorizontal = Convert.ToDecimal(vehicleDetails["RLBHorizontal"]),
-        //            MinLBHorizontal = standard.Field<decimal?>("DiffHoriLBMin"),
-        //            MaxLBHorizontal = standard.Field<decimal?>("DiffHoriLBMax"),
-        //            LightHeight = standard.Field<decimal?>("LightHeight"),
-        //            IsLightWithinStandard = true
-
-        //        };
-
-        //        return new List<VehicleReportData> { reportData };
-        //    }
-
-        //    return null;
-        //}
-        //private bool CheckIfWithinStandard(decimal measuredValue, decimal? minValue, decimal? maxValue)
-        //{
-        //    if (minValue.HasValue && measuredValue < minValue.Value) return false;
-        //    if (maxValue.HasValue && measuredValue > maxValue.Value) return false;
-        //    return true;
-        //}
-        //private bool CheckBrakeWithinStandard(
-        //    decimal? handDiffBrake, decimal? diffHandBrakeMax,
-        //    decimal? handSumBrake, decimal? minHandBrake,
-        //    decimal? frontDiffBrake, decimal? diffFrontBrakeMax,
-        //    decimal? frontSumBrake, decimal? minFrontBrake,
-        //    decimal? rearDiffBrake, decimal? diffRearBrakeMax,
-        //    decimal? rearSumBrake, decimal? minRearBrake)
-        //{
-        //    // Kiểm tra từng điều kiện và trả về false nếu bất kỳ điều kiện nào không thỏa mãn
-        //    if (handDiffBrake.HasValue && diffHandBrakeMax.HasValue && handDiffBrake > diffHandBrakeMax) return false;
-        //    if (handSumBrake.HasValue && minHandBrake.HasValue && handSumBrake < minHandBrake) return false;
-
-        //    if (frontDiffBrake.HasValue && diffFrontBrakeMax.HasValue && frontDiffBrake > diffFrontBrakeMax) return false;
-        //    if (frontSumBrake.HasValue && minFrontBrake.HasValue && frontSumBrake < minFrontBrake) return false;
-
-        //    if (rearDiffBrake.HasValue && diffRearBrakeMax.HasValue && rearDiffBrake > diffRearBrakeMax) return false;
-        //    if (rearSumBrake.HasValue && minRearBrake.HasValue && rearSumBrake < minRearBrake) return false;
-
-        //    // Nếu tất cả điều kiện đều thỏa mãn, trả về true
-        //    return true;
-        //}
         private void btnExportReport_Click(object sender, EventArgs e)
         {
             string serialNumber = txtSerialNum.Text; // Lấy số serial từ TextBox
             //List<VehicleReportData> reportDataList = GetVehicleReportData(serialNumber);
             DataTable reportDataList = GetVehicleReportData(serialNumber);
-
-            //frmExportReport exportReportForm = new frmExportReport(reportDataList);
-            //exportReportForm.Show();
-
             TestReport exportReportForm = new TestReport(reportDataList);
             exportReportForm.Show();
         }

@@ -29,32 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.vehicleDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.vehicleDataSet = new VehicleDataSet();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.vehicleDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSet)).BeginInit();
+            this.vehicleDataSet = new VehicleDataSet();
+            this.vehicleDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // vehicleDataSetBindingSource
+            // vehicleDataSetBindingSource1
             // 
-            this.vehicleDataSetBindingSource.DataSource = this.vehicleDataSet;
-            this.vehicleDataSetBindingSource.Position = 0;
+            this.vehicleDataSetBindingSource1.DataSource = this.vehicleDataSet;
+            this.vehicleDataSetBindingSource1.Position = 0;
             // 
             // vehicleDataSet
             // 
             this.vehicleDataSet.DataSetName = "VehicleDataSet";
             this.vehicleDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // vehicleDataSetBindingSource
+            // 
+            this.vehicleDataSetBindingSource.DataSource = this.vehicleDataSet;
+            this.vehicleDataSetBindingSource.Position = 0;
+            // 
             // reportViewer1
             // 
+            this.reportViewer1.AutoScroll = true;
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "VehicleDataSet";
-            reportDataSource1.Value = this.vehicleDataSetBindingSource1;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource2.Name = "VehicleDataSet";
+            reportDataSource2.Value = this.vehicleDataSetBindingSource1;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SenAIS.Reports.VehicleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
@@ -62,23 +68,20 @@
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // vehicleDataSetBindingSource1
-            // 
-            this.vehicleDataSetBindingSource1.DataSource = this.vehicleDataSet;
-            this.vehicleDataSetBindingSource1.Position = 0;
-            // 
             // TestReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "TestReport";
-            this.Text = "TestReport";
+            this.Text = "Báo Cáo";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.TestReport_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

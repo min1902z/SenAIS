@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnExportReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Right</value>
+    <value>Top, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnExportReport.Font" type="System.Drawing.Font, System.Drawing">
@@ -133,7 +133,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnExportReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1759, 83</value>
+    <value>1305, 67</value>
   </data>
   <data name="btnExportReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 52</value>
@@ -196,7 +196,7 @@
     <value>0</value>
   </data>
   <data name="StaticTitlePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>401, 0</value>
+    <value>171, 0</value>
   </data>
   <data name="StaticTitlePanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>836, 123</value>
@@ -4534,7 +4534,7 @@
     <value>552, 141</value>
   </data>
   <data name="StaticPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1349, 897</value>
+    <value>888, 713</value>
   </data>
   <data name="StaticPanel.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -4552,7 +4552,13 @@
     <value>2</value>
   </data>
   <data name="SearchPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="SearchPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SearchPanel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="dgVehicleInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4560,8 +4566,11 @@
   <data name="dgVehicleInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 81</value>
   </data>
+  <data name="dgVehicleInfo.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
   <data name="dgVehicleInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>529, 730</value>
+    <value>529, 602</value>
   </data>
   <data name="dgVehicleInfo.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -4663,7 +4672,7 @@
     <value>3, 158</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>542, 880</value>
+    <value>544, 696</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -4687,7 +4696,7 @@
     <value>0, 0</value>
   </data>
   <data name="ReportPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1904, 1041</value>
+    <value>1443, 857</value>
   </data>
   <data name="ReportPanel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -4714,7 +4723,7 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1904, 1041</value>
+    <value>1443, 857</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
