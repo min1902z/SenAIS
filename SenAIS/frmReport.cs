@@ -15,7 +15,7 @@ namespace SenAIS
         //private Form parentForm;
         private SQLHelper sqlHelper;
         private string serialNumber;
-        private DataTable reportDataTable;
+        //private DataTable reportDataTable;
         public frmReport(string serialNumber)
         {
             InitializeComponent();

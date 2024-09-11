@@ -22,7 +22,7 @@ namespace SenAIS
 
         public COMConnect(string portName, Form form)
         {
-            serialPort = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+            serialPort = new SerialPort(portName, 300, Parity.None, 8, StopBits.One);
             activeForm = form;
             serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         }
@@ -59,14 +59,15 @@ namespace SenAIS
                 // Đọc các byte dữ liệu có sẵn
                 while (serialPort.BytesToRead > 0)
                 {
-                    //byte[] buffer = new byte[10]; // Có thể update realtime
-                    byte[] buffer = new byte[serialPort.BytesToRead];
+                    byte[] buffer = new byte[10]; // Có thể update realtime
+                    //byte[] buffer = new byte[serialPort.BytesToRead];
                     serialPort.Read(buffer, 0, buffer.Length);
                     dataBuffer.AddRange(buffer);
 
                     MessageBox.Show("DataReceivedHandler");
                     string receivedData = BitConverter.ToString(buffer);
                     MessageBox.Show(receivedData);
+                    ((frmNoise)activeForm).ProcessNoiseData(buffer);
                     // if (buffer.Length >= 10 && buffer[0] == 0xA5) // Assuming 0xA5 is the response start byte
                     //{
                     //    byte[] completeData = new byte[10];

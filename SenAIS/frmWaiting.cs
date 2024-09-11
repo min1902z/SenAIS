@@ -14,7 +14,7 @@ namespace SenAIS
     public partial class frmWaiting : Form
     {
         private Form parentForm = new Form();
-        private OPCItem opcItemT99;
+        private OPCItem opcCounterPos;
         public frmWaiting()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace SenAIS
         private void btnPre_Click(object sender, EventArgs e)
         {
             object value;
-            opcItemT99.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
+            opcCounterPos.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
             int t99Value = Convert.ToInt32(value);
             ((frmInspection)parentForm).ProcessMeasurement(t99Value - 1);
         }
@@ -30,7 +30,7 @@ namespace SenAIS
         private void btnNext_Click(object sender, EventArgs e)
         {
             object value;
-            opcItemT99.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
+            opcCounterPos.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
             int t99Value = Convert.ToInt32(value);
             ((frmInspection)parentForm).ProcessMeasurement(t99Value + 1);
         }

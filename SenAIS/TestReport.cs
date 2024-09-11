@@ -13,7 +13,6 @@ namespace SenAIS
 {
     public partial class TestReport : Form
     {
-        private List<VehicleReportData> reportDataList;
         private DataTable reportData;
         public TestReport(DataTable data)
         {

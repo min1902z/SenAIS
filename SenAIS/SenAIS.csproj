@@ -239,7 +239,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="VehicleReportData.cs" />
     <Compile Include="VehicleReports.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
