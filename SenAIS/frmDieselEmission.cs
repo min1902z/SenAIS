@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,17 @@ namespace SenAIS
         private COMConnect comConnect;
         private bool isReady = false;
         private string serialNumber;
-        private decimal minSpeed;
-        private decimal maxSpeed;
-        private decimal hsu;
-        private byte[] lastReceivedData;
+        private decimal minSpeed1;
+        private decimal minSpeed2;
+        private decimal minSpeed3;
+        private decimal maxSpeed1;
+        private decimal maxSpeed2;
+        private decimal maxSpeed3;
+        private decimal hsu1;
+        private decimal hsu2;
+        private decimal hsu3;
+        private bool isRequestInProgress = false;  // To prevent sending multiple requests simultaneously
+        private int currentDataRequest = 1;        // Keep track of the current request count
 
         public frmDieselEmission(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
@@ -34,29 +42,16 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect("COM7", this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
-            byte[] command = new byte[] { 0xA5, 0x00 };
-            command[1] = CalculateCheckCode(new byte[] { 0xA5 });
-            comConnect.SendRequest(command);
             InitializeTimer();
-        }
-        private byte CalculateCheckCode(byte[] data)
-        {
-            int sum = 0;
-            foreach (byte b in data)
-            {
-                sum += b;
-            }
-            return (byte)((~(sum & 0xFF)) + 1);
         }
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 2000; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
-
         }
-        private void UpdateReadyStatus(object sender, EventArgs e)
+        private async void UpdateReadyStatus(object sender, EventArgs e)
         {
             //int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
             int checkStatus = 1;
@@ -64,12 +59,34 @@ namespace SenAIS
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
-                //await Task.Delay(10000); // Chờ 10 giây
-
-                // Sau khi đợi 10 giây, gửi yêu cầu lấy dữ liệu
-                //byte[] request = { 0xA5};
-                //comConnect.SendRequest(request);
                 isReady = true;
+                if (!isRequestInProgress && currentDataRequest <=3)
+                {
+                    if (currentDataRequest == 1)
+                    {
+                        await Task.Delay(2000); // Đợi 10 giây
+                    }
+                    if (currentDataRequest <= 3)
+                    {
+                        lbNotice.Text = $"Vui Lòng Đạp Ga lần {currentDataRequest}!";
+                        //await Task.Delay(5000);
+                    }
+
+                    byte[] commandA5 = { 0xA5, CalculateCheckCode(0xA5) };
+                    comConnect.SendRequest(commandA5);
+                    isRequestInProgress = true;
+
+                }
+                else if (currentDataRequest>3)
+                {
+                    updateTimer.Stop();
+
+                    lbMinAvg.Text = ((minSpeed1 + minSpeed2 + minSpeed3) / 3).ToString("F1");
+                    lbMaxAvg.Text = ((maxSpeed1 + maxSpeed2 + maxSpeed3) / 3).ToString("F1");
+                    lbHsuAvg.Text = ((hsu1 + hsu2 + hsu3) / 3).ToString("F1");
+                    lbNotice.Text = "Đã hoàn thành 3 lần lấy dữ liệu!";
+
+                }
                 //CheckCounterPosition();
             }
             else
@@ -78,6 +95,7 @@ namespace SenAIS
                 isReady = false;
             }
         }
+        
         private void btnPre_Click(object sender, EventArgs e)
         {
             try
@@ -111,21 +129,29 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi giá trị T99: " + ex.Message);
             }
         }
-        public void SetMinSpeed(string value)
+        public void SetMinSpeed1(string value)
         {
             if (lbMinSpeed1.Text != value)
             {
                 lbMinSpeed1.Text = value;
             }
-            this.minSpeed = Convert.ToDecimal(value);
+            this.minSpeed1 = Convert.ToDecimal(value);
         }
-        public void SetMaxSpeed(string value)
+        public void SetMinSpeed2(string value)
+        {
+            if (lbMinSpeed1.Text != value)
+            {
+                lbMinSpeed1.Text = value;
+            }
+            this.minSpeed1 = Convert.ToDecimal(value);
+        }
+        public void SetMaxSpeed1(string value)
         {
             if (lbMaxSpeed1.Text != value)
             {
                 lbMaxSpeed1.Text = value;
             }
-            this.maxSpeed = Convert.ToDecimal(value);
+            this.maxSpeed2 = Convert.ToDecimal(value);
         }
         public void SetHSU(string value)
         {
@@ -133,47 +159,92 @@ namespace SenAIS
             {
                 lbHSU1.Text = value;
             }
-            this.hsu = Convert.ToDecimal(value);
+            this.hsu1 = Convert.ToDecimal(value);
+        }
+        public async void ProcessNHT6MaxData(byte[] data)
+        {
+            if (data.Length >= 7 && data[0] == 0xA6)
+            {
+                    int maxRpm = (data[5] << 8) + data[6]; // Max Speed (revolving speed)
+                    this.Invoke(new Action(() =>
+                    {
+                         switch (currentDataRequest)
+                        {
+                            case 1:
+                                lbMaxSpeed1.Text = maxRpm.ToString();
+                                this.maxSpeed1 = Convert.ToDecimal(maxRpm);
+                                break;
+                            case 2:
+                                lbMaxSpeed2.Text = maxRpm.ToString();
+                                this.maxSpeed2 = Convert.ToDecimal(maxRpm);
+                                break;
+                            case 3:
+                                lbMaxSpeed3.Text = maxRpm.ToString();
+                                this.maxSpeed3 = Convert.ToDecimal(maxRpm);
+                                break;
+                        }
+                    }));
+                //this.Invoke(new Action(async () =>
+                //{
+                    currentDataRequest++;
+                    isRequestInProgress = false;
+                    await Task.Delay(5000);
+
+                //}));
+            }
         }
         public void ProcessNHT6Data(byte[] data)
         {
             if (data.Length >= 9 && data[0] == 0xA5)
             {
-                // Extract speed (assuming bytes 6-7) and oil temperature (assuming bytes 8-9)
-                int speedValue = (data[5] << 8) + data[6];
-                int oilTempValue = (data[7] << 8) + data[8] - 273; // Convert from absolute temperature to Celsius
-
-                this.Invoke(new Action(() =>
-                {
-                    lbMinSpeed1.Text = speedValue.ToString();
-                    lbMinSpeed2.Text = oilTempValue.ToString(); 
-                }));
-            }
-            else if (data.Length == 0)
-            {
-                // Dữ liệu rỗng, sử dụng dữ liệu cuối cùng được lưu lại
-                this.Invoke(new Action(() =>
-                {
-                    if (lastReceivedData != null)
+                    // Xử lý dữ liệu MinSpeed và OilTemp
+                    int rpm = (data[5] << 8) + data[6];
+                    int oilTempRaw = (data[7] << 8) + data[8];
+                    string oilTemperature;
+                    int  oilTempCelsius = 0;
+                    if (oilTempRaw == 0xFFFF)
                     {
-                        ProcessNHT6Data(lastReceivedData); // Gọi lại hàm với dữ liệu cuối cùng
+                        oilTemperature = "--";  // Không có cảm biến nhiệt độ
+                        oilTempCelsius = 0;
                     }
-                }));
-            }
-        }
-        private double ConvertToDouble(byte highByte, byte lowByte, double scale)
-        {
-            int value = (highByte << 8) | lowByte;
-            return value / scale;
-        }
+                    else
+                    {
+                        oilTempCelsius = oilTempRaw;
+                        oilTemperature = oilTempCelsius.ToString();
+                    }
 
-        private int ConvertToInt(byte highByte, byte lowByte)
-        {
-            return (highByte << 8) | lowByte;
-        }
+                    this.Invoke(new Action(() =>
+                    {
+                        switch (currentDataRequest)
+                        {
+                            case 1:
+                                lbMinSpeed1.Text = rpm.ToString("F0");
+                                lbHSU1.Text = oilTemperature;
+                                this.minSpeed1 = Convert.ToDecimal(rpm);
+                                this.hsu1 = oilTempCelsius;
+                                break;
+                            case 2:
+                                lbMinSpeed2.Text = rpm.ToString("F0");
+                                lbHSU2.Text = oilTemperature;
+                                this.minSpeed2 = Convert.ToDecimal(rpm);
+                                this.hsu2 = oilTempCelsius;
+                                break;
+                            case 3:
+                                lbMinSpeed3.Text = rpm.ToString("F0");
+                                lbHSU3.Text = oilTemperature;
+                                this.minSpeed3 = Convert.ToDecimal(rpm);
+                                this.hsu3 = oilTempCelsius;
+                                break;
+                        }
+                    }));
+                    byte[] commandA6 = { 0xA6, CalculateCheckCode(0xA6) };
+                    comConnect.SendRequest(commandA6);
+                
+                }
+            }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveDieselEmissionData(this.serialNumber, minSpeed, maxSpeed, hsu);
+            sqlHelper.SaveDieselEmissionData(this.serialNumber, minSpeed1, maxSpeed1, hsu1, minSpeed2, maxSpeed2, hsu2, minSpeed3, maxSpeed3, hsu3);
         }
         private void CheckCounterPosition()
         {
@@ -188,10 +259,12 @@ namespace SenAIS
         private void frmDieselEmission_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
-            //byte[] request = { 0xA5 };
-            //comConnect.SendRequest(request);
         }
-
+        private byte CalculateCheckCode(byte command)
+        {
+            int sum = command;
+            return (byte)(~sum + 1);
+        }
         private void frmDieselEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
             comConnect.CloseConnection();

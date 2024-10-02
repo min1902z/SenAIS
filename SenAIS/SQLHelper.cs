@@ -109,24 +109,30 @@ namespace SenAIS
 
             ExecuteQuery(query, parameters);
         }
-        public void SaveDieselEmissionData(string serialNumber, decimal minSpeed, decimal maxSpeed, decimal hsu)
+        public void SaveDieselEmissionData(string serialNumber, decimal minSpeed1, decimal maxSpeed1, decimal hsu1, decimal minSpeed2, decimal maxSpeed2, decimal hsu2, decimal minSpeed3, decimal maxSpeed3, decimal hsu3)
         {
             string query = @"IF EXISTS (SELECT 1 FROM GasEmission_Diesel WHERE SerialNumber = @SerialNumber)
                          BEGIN
                              UPDATE GasEmission_Diesel 
-                             SET MinSpeed = @MinSpeed, MaxSpeed = @MaxSpeed, HSU = @HSU 
+                             SET MinSpeed1 = @MinSpeed1, MaxSpeed1 = @MaxSpeed1, HSU1 = @HSU1, MinSpeed2 = @MinSpeed2, MaxSpeed2 = @MaxSpeed2, HSU2 = @HSU2, MinSpeed3 = @MinSpeed3, MaxSpeed3 = @MaxSpeed3, HSU3 = @HSU3
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
                          BEGIN
-                             INSERT INTO GasEmission_Diesel (SerialNumber, MinSpeed, MaxSpeed, HSU)
-                             VALUES (@SerialNumber, @MinSpeed, @MaxSpeed, @HSU)
+                             INSERT INTO GasEmission_Diesel (SerialNumber, MinSpeed1, MaxSpeed1, HSU1, MinSpeed2, MaxSpeed2, HSU2,MinSpeed3, MaxSpeed3, HSU3)
+                             VALUES (@SerialNumber, @MinSpeed1, @MaxSpeed1, @HSU1, MinSpeed2, @MaxSpeed2, @HSU2, MinSpeed3, @MaxSpeed3, @HSU3)
                          END";
             var parameters = new[]
             {
-            new SqlParameter("@MinSpeed", minSpeed),
-            new SqlParameter("@MaxSpeed", maxSpeed),
-            new SqlParameter("@HSU", hsu),
+            new SqlParameter("@MinSpeed1", minSpeed1),
+            new SqlParameter("@MaxSpeed1", maxSpeed1),
+            new SqlParameter("@HSU1", hsu1),
+            new SqlParameter("@MinSpeed2", minSpeed2),
+            new SqlParameter("@MaxSpeed2", maxSpeed2),
+            new SqlParameter("@HSU2", hsu2),
+            new SqlParameter("@MinSpeed3", minSpeed3),
+            new SqlParameter("@MaxSpeed3", maxSpeed3),
+            new SqlParameter("@HSU3", hsu3),
             new SqlParameter("@SerialNumber", serialNumber)
         };
 
@@ -427,7 +433,7 @@ namespace SenAIS
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Speed", noiseValue);
+                    cmd.Parameters.AddWithValue("@Noise", noiseValue);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }
@@ -451,7 +457,7 @@ namespace SenAIS
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Speed", whistle);
+                    cmd.Parameters.AddWithValue("@Whistle", whistle);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }

@@ -116,12 +116,12 @@
             this.lbWhistle.AutoSize = true;
             this.lbWhistle.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistle.Location = new System.Drawing.Point(194, 308);
+            this.lbWhistle.Location = new System.Drawing.Point(263, 308);
             this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
             this.lbWhistle.Name = "lbWhistle";
-            this.lbWhistle.Size = new System.Drawing.Size(1326, 488);
+            this.lbWhistle.Size = new System.Drawing.Size(920, 488);
             this.lbWhistle.TabIndex = 26;
-            this.lbWhistle.Text = "00.000";
+            this.lbWhistle.Text = "00.0";
             this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbWhistleTitle

@@ -20,6 +20,7 @@ namespace SenAIS
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
+        private double maxSoundValue = 0;
         public decimal whistle;
         private bool isReady = false;
         public frmWhistle(Form parent, OPCItem opcCounterPos, string serialNumber)
@@ -39,20 +40,19 @@ namespace SenAIS
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
-        private void UpdateReadyStatus(object sender, EventArgs e)
+        private async void UpdateReadyStatus(object sender, EventArgs e)
         {
             //int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
             int checkStatus = 1;
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
-                //await Task.Delay(10000); // Chờ 10 giây
+                await Task.Delay(5000); // Chờ 10 giây
                 isReady = true;
 
                 //Lấy giá trị Độ ồn
-                // Gửi lệnh để bắt đầu nhận dữ liệu thời gian thực
-                //byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
-                //comConnect.SendRequest(startcommand);
+                byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
+                comConnect.SendRequest(startcommand);
                 //CheckCounterPosition();
             }
             else
@@ -111,39 +111,38 @@ namespace SenAIS
                 SaveDataToDatabase();
             }
         }
-        public void ProcessNoiseData(byte[] data)
+        public void ProcessMaxSoundData(byte[] data)
         {
-            MessageBox.Show("ProcessNoiseData");
             try
             {
-                if (data.Length == 9 && data[0] == 0x01 && data[8] == 0xFF) // Check start and end byte
+                if (data.Length == 9 && data[0] == 0x01) // Check start and end byte
                 {
-                    // Extract sound level data (5 bytes in ASCII)
-                    string soundLevelString = Encoding.ASCII.GetString(data, 1, 5);
+                    // Xử lý và hiển thị giá trị max sound
+                    string maxSoundLevel = Encoding.ASCII.GetString(data, 1, 5); // 5 bytes ASCII
 
-                    if (double.TryParse(soundLevelString, out double soundLevel))
+                    if (double.TryParse(maxSoundLevel, out double soundLevel))
                     {
                         this.Invoke(new Action(() =>
                         {
-                            // Update UI with the sound level value
-                            lbWhistle.Text = soundLevel.ToString("F1");
+                            if (soundLevel > maxSoundValue)
+                            {
+                                maxSoundValue = soundLevel;
+                                lbWhistle.Text = maxSoundValue.ToString("F1");
+                                this.whistle = Convert.ToDecimal(maxSoundValue);
+                            }
                         }));
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi xử lý dữ liệu tiếng ồn: " + ex.Message);
+                MessageBox.Show("Lỗi xử lý dữ liệu Còi: " + ex.Message);
             }
-
         }
 
         private void frmWhistle_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
-            byte[] startcommand = { 0xB2 }; // gửi lệnh bắt đầu phát hiện
-            comConnect.SendRequest(startcommand);
         }
 
         private void frmWhistle_FormClosing(object sender, FormClosingEventArgs e)

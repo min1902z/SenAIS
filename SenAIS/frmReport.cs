@@ -314,7 +314,7 @@ namespace SenAIS
                 {
                     if (value < minValue.Value)
                     {
-                        txtBox.BackColor = Color.Yellow; // Dưới mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Dưới mức chuẩn
                     }
                     else
                     {
@@ -326,7 +326,7 @@ namespace SenAIS
                 {
                     if (value > maxValue.Value)
                     {
-                        txtBox.BackColor = Color.IndianRed; // Vượt quá mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Vượt quá mức chuẩn
                     }
                     else
                     {
@@ -338,11 +338,11 @@ namespace SenAIS
                 {
                     if (value < minValue.Value)
                     {
-                        txtBox.BackColor = Color.Yellow; // Dưới mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Dưới mức chuẩn
                     }
                     else if (value > maxValue.Value)
                     {
-                        txtBox.BackColor = Color.IndianRed; // Vượt quá mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Vượt quá mức chuẩn
                     }
                     else
                     {

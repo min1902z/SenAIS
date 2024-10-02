@@ -104,7 +104,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(1721, 632);
+            this.label2.Location = new System.Drawing.Point(1541, 632);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(172, 131);
@@ -118,7 +118,7 @@
             this.lbNoise.AutoSize = true;
             this.lbNoise.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNoise.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNoise.Location = new System.Drawing.Point(366, 353);
+            this.lbNoise.Location = new System.Drawing.Point(393, 353);
             this.lbNoise.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbNoise.Name = "lbNoise";
             this.lbNoise.Size = new System.Drawing.Size(807, 488);

@@ -6276,68 +6276,6 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox567">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>9.12326in</Top>
-            <Left>7.45362in</Left>
-            <Height>0.25in</Height>
-            <Width>0.85416in</Width>
-            <ZIndex>208</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox568">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Tiêu chuẩn</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>9.39756in</Top>
-            <Left>7.44841in</Left>
-            <Height>0.25in</Height>
-            <Width>0.85416in</Width>
-            <ZIndex>209</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox569">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -6355,11 +6293,11 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>9.67534in</Top>
+            <Top>9.12326in</Top>
             <Left>7.44841in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>210</ZIndex>
+            <ZIndex>208</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6391,7 +6329,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>3.84972in</Left>
             <Height>0.25in</Height>
             <Width>0.42795in</Width>
-            <ZIndex>211</ZIndex>
+            <ZIndex>209</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6423,7 +6361,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>3.86361in</Left>
             <Height>0.25in</Height>
             <Width>0.42795in</Width>
-            <ZIndex>212</ZIndex>
+            <ZIndex>210</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6453,7 +6391,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>3.66778in</Left>
             <Height>0.25in</Height>
             <Width>0.18194in</Width>
-            <ZIndex>213</ZIndex>
+            <ZIndex>211</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6483,7 +6421,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>3.65389in</Left>
             <Height>0.25in</Height>
             <Width>0.19583in</Width>
-            <ZIndex>214</ZIndex>
+            <ZIndex>212</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6515,7 +6453,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.34834in</Left>
             <Height>0.25in</Height>
             <Width>0.41295in</Width>
-            <ZIndex>215</ZIndex>
+            <ZIndex>213</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6547,7 +6485,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.34834in</Left>
             <Height>0.25in</Height>
             <Width>0.41295in</Width>
-            <ZIndex>216</ZIndex>
+            <ZIndex>214</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6579,7 +6517,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>7.02656in</Left>
             <Height>0.25in</Height>
             <Width>0.35241in</Width>
-            <ZIndex>217</ZIndex>
+            <ZIndex>215</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6611,7 +6549,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>7.02656in</Left>
             <Height>0.25in</Height>
             <Width>0.35241in</Width>
-            <ZIndex>218</ZIndex>
+            <ZIndex>216</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6641,7 +6579,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.84462in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>219</ZIndex>
+            <ZIndex>217</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6671,7 +6609,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.83073in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>220</ZIndex>
+            <ZIndex>218</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6701,7 +6639,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>5.97618in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>221</ZIndex>
+            <ZIndex>219</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6733,7 +6671,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.1859in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>222</ZIndex>
+            <ZIndex>220</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6763,7 +6701,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.59139in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>223</ZIndex>
+            <ZIndex>221</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6795,7 +6733,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.80112in</Left>
             <Height>0.25in</Height>
             <Width>0.57785in</Width>
-            <ZIndex>224</ZIndex>
+            <ZIndex>222</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6827,7 +6765,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>5.6157in</Left>
             <Height>0.25in</Height>
             <Width>0.9618in</Width>
-            <ZIndex>225</ZIndex>
+            <ZIndex>223</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6859,7 +6797,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Left>6.5914in</Left>
             <Height>0.25in</Height>
             <Width>1.59784in</Width>
-            <ZIndex>226</ZIndex>
+            <ZIndex>224</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

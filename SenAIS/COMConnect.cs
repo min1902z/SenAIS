@@ -19,7 +19,7 @@ namespace SenAIS
         private SerialPort serialPort;
         private Form activeForm;
         private List<byte> dataBuffer = new List<byte>();
-
+        private bool requestA5Completed = false;
         public COMConnect(string portName, Form form)
         {
             serialPort = new SerialPort(portName, 300, Parity.None, 8, StopBits.One);
@@ -34,7 +34,6 @@ namespace SenAIS
                 if (!serialPort.IsOpen)
                 {
                     serialPort.Open();
-                    MessageBox.Show("Kết nối thành công. ");
                 }
             }
             catch (Exception ex)
@@ -53,65 +52,85 @@ namespace SenAIS
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
-            MessageBox.Show("DataReceivedHandler start");
             try
             {
                 // Đọc các byte dữ liệu có sẵn
                 while (serialPort.BytesToRead > 0)
+             {
+                byte[] buffer = new byte[serialPort.BytesToRead];
+                serialPort.Read(buffer, 0, buffer.Length);
+                dataBuffer.AddRange(buffer);
+                string receivedData = BitConverter.ToString(buffer);
+               Console.WriteLine("Received (Hex): " + receivedData);
+                if (activeForm is frmDieselEmission)
                 {
-                    byte[] buffer = new byte[10]; // Có thể update realtime
-                    //byte[] buffer = new byte[serialPort.BytesToRead];
-                    serialPort.Read(buffer, 0, buffer.Length);
-                    dataBuffer.AddRange(buffer);
+                    if (dataBuffer.Count >= 9 && dataBuffer[0] == 0xA5)
+                    {
+                        byte[] completeData = dataBuffer.Take(9).ToArray();
+                        ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
+                           // dataBuffer.RemoveRange(0, 9);
+                            dataBuffer.Clear();
+                    }
+                    else if(dataBuffer.Count >= 7 && dataBuffer[0] == 0xA6)
+                    {
+                        byte[] completeData = dataBuffer.Take(7).ToArray();
+                        ((frmDieselEmission)activeForm).ProcessNHT6MaxData(completeData);
+                            //dataBuffer.RemoveRange(0, 7);
+                            dataBuffer.Clear();
+                    }
+                    else // Nếu không đủ dữ liệu
+                    {
+                        dataBuffer.Clear(); // Xóa dữ liệu hiện tại trong buffer
 
-                    MessageBox.Show("DataReceivedHandler");
-                    string receivedData = BitConverter.ToString(buffer);
-                    MessageBox.Show(receivedData);
-                    ((frmNoise)activeForm).ProcessNoiseData(buffer);
-                    // if (buffer.Length >= 10 && buffer[0] == 0xA5) // Assuming 0xA5 is the response start byte
+                            byte[] commandA5 = { 0xA5, 0x5B };
+                            byte[] commandA6 = { 0xA6, 0x5A };
+                            SendRequest(commandA5);
+                            //SendRequest(commandA6);
+                        }
+                }
+
+                    //if (dataBuffer.Count >= 21)
                     //{
-                    //    byte[] completeData = new byte[10];
-                    //    Array.Copy(buffer, completeData, 10);
+                    //    byte[] completeData = dataBuffer.Take(21).ToArray();
 
-                    //    if (activeForm is frmDieselEmission)
+                    //    // Kiểm tra byte đầu tiên để đảm bảo rằng đây là một gói dữ liệu hợp lệ
+                    //    if (completeData[0] == 0x06)
                     //    {
-                    //        ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
-                    //    }
-                    //}
-                    //    if (dataBuffer.Count >= 21)
-                    //    {
-                    //        byte[] completeData = dataBuffer.Take(21).ToArray();
-
-                    //        // Kiểm tra byte đầu tiên để đảm bảo rằng đây là một gói dữ liệu hợp lệ
-                    //        if (completeData[0] == 0x06)
+                    //        if (activeForm is frmGasEmission)
                     //        {
-                    //            if (activeForm is frmGasEmission)
-                    //            {
-                    //                ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
-                    //            }
+                    //            ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
                     //        }
                     //    }
                     //    // Xóa các byte đã xử lý khỏi buffer
                     //    dataBuffer.RemoveRange(0, 21);
                     //}
 
-                    if (dataBuffer.Contains(0x06))
-                    {
-                        MessageBox.Show("data 0x06");
-                    }
-
                     // Xử lý gói dữ liệu trả về từ HY114 (nếu có)
-                    if (dataBuffer[0] == 0x01)
+                    if (activeForm is frmNoise)
                     {
-                        MessageBox.Show("Data trả về 01H");
-                        byte[] completeData = dataBuffer.Take(9).ToArray();
-
-                        if (activeForm is frmNoise)
+                        if (dataBuffer.Count > 0 && dataBuffer[0] == 0x06)
                         {
-                            ((frmNoise)activeForm).ProcessNoiseData(completeData);
+                            dataBuffer.RemoveAt(0);
                         }
-
-                        dataBuffer.RemoveRange(0, 9);
+                        if (dataBuffer.Count >= 9 && dataBuffer[0] == 0x01)
+                        {
+                            byte[] completeData = dataBuffer.Take(9).ToArray();
+                            ((frmNoise)activeForm).ProcessNoiseData(completeData);
+                            dataBuffer.RemoveRange(0, 9);
+                        }
+                    }
+                    if (activeForm is frmWhistle)
+                    {
+                        if (dataBuffer.Count > 0 && dataBuffer[0] == 0x06)
+                        {
+                            dataBuffer.RemoveAt(0);
+                        }
+                        if (dataBuffer.Count >= 9 && dataBuffer[0] == 0x01)
+                        {
+                            byte[] completeData = dataBuffer.Take(9).ToArray();
+                            ((frmWhistle)activeForm).ProcessMaxSoundData(completeData);
+                            dataBuffer.RemoveRange(0, 9);
+                        }
                     }
 
                     //if (dataBuffer.Count >= 21 && dataBuffer[0] == 0x4D) // Assume 0x4D is the start byte for NHD6109 data
@@ -138,12 +157,12 @@ namespace SenAIS
                     //}
                     //}
                 }
-            }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi nhận dữ liệu:  " + ex.Message);
             }
-        }
+}
         
         public void SendRequest(byte[] request)
         {
@@ -152,7 +171,5 @@ namespace SenAIS
                 serialPort.Write(request, 0, request.Length);
             }
         }
-
-
     }
 }
