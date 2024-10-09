@@ -29,7 +29,7 @@ namespace SenAIS
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", this);
+            comConnect = new COMConnect("COM7", 2400, this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
@@ -47,7 +47,7 @@ namespace SenAIS
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
-                await Task.Delay(10000); // Chờ 10 giây
+                await Task.Delay(2000); // Chờ 10 giây
                 isReady = true;
 
                 // Gửi request đến NHD6109 để lấy dữ liệu

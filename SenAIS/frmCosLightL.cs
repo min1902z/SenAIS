@@ -24,13 +24,15 @@ namespace SenAIS
         public decimal vertiDeviation;
         public decimal horiDeviation;
         private bool isReady = false;
+        private bool autoTestCheck = false;
+        public bool isDataCollected = false;
         public frmCosLightL(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
             InitializeComponent();
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", this);
+            comConnect = new COMConnect("COM7", 2400, this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
@@ -43,22 +45,33 @@ namespace SenAIS
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
-
+            //int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
+            int checkStatus = 1;
             if (checkStatus == 1)
             {
                 cbReady.BackColor = Color.Green;
-                await Task.Delay(10000); // Chờ 10 giây
                 isReady = true;
 
-                // Gửi request đến NHD6109 để lấy dữ liệu
-                byte[] request = { 0x4D }; // Thay đổi lệnh nếu cần thiết (4D cho CosLightL)
-                comConnect.SendRequest(request);
+                if (!autoTestCheck)
+                {
+                    await Task.Delay(1000); // Đợi 10 giây lần đầu
 
-                this.intensity = Convert.ToDecimal(intensity.ToString("F1"));
-                this.vertiDeviation = Convert.ToDecimal(vertiDeviation.ToString("F1"));
-                this.horiDeviation = Convert.ToDecimal(horiDeviation.ToString("F1"));
-                CheckCounterPosition();
+                    byte[] autoTest = { 0x41 };
+                    comConnect.SendRequest(autoTest); 
+                    autoTestCheck = true; 
+                }
+
+                // Gửi request đến NHD6109 để lấy dữ liệu
+                if (comConnect.respone47H == true && !isDataCollected)
+                {
+                    byte[] request = { 0x4E, 0x4D };
+                    comConnect.SendRequest(request);
+                }
+
+                //this.intensity = Convert.ToDecimal(intensity.ToString("F1"));
+                //this.vertiDeviation = Convert.ToDecimal(vertiDeviation.ToString("F1"));
+                //this.horiDeviation = Convert.ToDecimal(horiDeviation.ToString("F1"));
+                //CheckCounterPosition();
             }
             else
             {
@@ -69,23 +82,63 @@ namespace SenAIS
         // Method to process and display data on frmCosLightL
         public void ProcessNHD6109Data(byte[] data)
         {
-            // Assuming the data format is correctly parsed here
-            string intensityStr = Encoding.ASCII.GetString(data, 2, 5);   // Extract Intensity (example positions)
-            string verticalDeviationStr = Encoding.ASCII.GetString(data, 7, 5);  // Extract Vertical Deviation
-            string horizontalDeviationStr = Encoding.ASCII.GetString(data, 12, 5);  // Extract Horizontal Deviation
-
-            // Convert the strings to decimal or float as needed
-            decimal intensity = decimal.Parse(intensityStr);
-            decimal verticalDeviation = decimal.Parse(verticalDeviationStr);
-            decimal horizontalDeviation = decimal.Parse(horizontalDeviationStr);
-
-            // Update UI
-            this.Invoke(new Action(() =>
+            if (data.Length >= 68 && data[0] == 0x01)
             {
-                lbIntensity.Text = intensity.ToString("F2");
-                lbVerticalDeviation.Text = verticalDeviation.ToString("F2");
-                lbHorizontalDeviation.Text = horizontalDeviation.ToString("F2");
-            }));
+                    // Xử lý 34 byte của đèn phải (Right Headlight)
+                string rightHBHorizontalDeviation = Encoding.ASCII.GetString(data, 2, 5);    // Lệch ngang Right HB (5 bytes)
+                string rightHBVerticalDeviation = Encoding.ASCII.GetString(data, 7, 5);      // Lệch dọc Right HB (5 bytes)
+                string rightHBLightIntensity = Encoding.ASCII.GetString(data, 12, 4);        // Cường độ Right HB (4 bytes)
+
+                string rightLBHorizontalDeviation = Encoding.ASCII.GetString(data, 19, 5);   // Lệch ngang Right LB (5 bytes)
+                string rightLBVerticalDeviation = Encoding.ASCII.GetString(data, 24, 5);     // Lệch dọc Right LB (5 bytes)
+                string rightLBLightIntensity = Encoding.ASCII.GetString(data, 12, 4);        // Cường độ Right LB (4 bytes)
+
+                // Xử lý 34 byte của đèn trái (Left Headlight)
+                string leftHBHorizontalDeviation = Encoding.ASCII.GetString(data, 36, 5);    // Lệch ngang Left HB (5 bytes)
+                string leftHBVerticalDeviation = Encoding.ASCII.GetString(data, 41, 5);      // Lệch dọc Left HB (5 bytes)
+                string leftHBLightIntensity = Encoding.ASCII.GetString(data, 46, 4);         // Cường độ Left HB (4 bytes)
+
+                string leftLBHorizontalDeviation = Encoding.ASCII.GetString(data, 53, 5);    // Lệch ngang Left LB (5 bytes)
+                string leftLBVerticalDeviation = Encoding.ASCII.GetString(data, 58, 5);      // Lệch dọc Left LB (5 bytes)
+                string leftLBLightIntensity = Encoding.ASCII.GetString(data, 46, 4);         // Cường độ Left LB (4 bytes)
+
+                // Chuyển đổi chuỗi ASCII thành số thực
+                decimal rightHBHorizontalValue = decimal.Parse(rightHBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal rightHBVerticalValue = decimal.Parse(rightHBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal rightHBIntensityValue = decimal.Parse(rightHBLightIntensity);
+
+                decimal rightLBHorizontalValue = decimal.Parse(rightLBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal rightLBVerticalValue = decimal.Parse(rightLBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal rightLBIntensityValue = decimal.Parse(rightLBLightIntensity);
+
+                decimal leftHBHorizontalValue = decimal.Parse(leftHBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal leftHBVerticalValue = decimal.Parse(leftHBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal leftHBIntensityValue = decimal.Parse(leftHBLightIntensity);
+
+                decimal leftLBHorizontalValue = decimal.Parse(leftLBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal leftLBVerticalValue = decimal.Parse(leftLBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                decimal leftLBIntensityValue = decimal.Parse(leftLBLightIntensity);
+
+                this.Invoke(new Action(() =>
+                {
+                    lbHBRIntensity.Text = rightHBIntensityValue.ToString();
+                    lbHBRVerticalDeviation.Text = rightHBVerticalValue.ToString();
+                    lbHBRHorizontalDeviation.Text = rightHBHorizontalValue.ToString();
+
+                    lbLBRIntensity.Text = rightLBIntensityValue.ToString();
+                    lbLBRVerticalDeviation.Text = rightLBVerticalValue.ToString();
+                    lbLBRHorizontalDeviation.Text = rightLBHorizontalValue.ToString();
+
+                    lbHBLIntensity.Text = leftHBIntensityValue.ToString();
+                    lbHBLVerticalDeviation.Text = leftHBVerticalValue.ToString();
+                    lbHBLHorizontalDeviation.Text = leftHBHorizontalValue.ToString();
+
+                    lbLBLIntensity.Text = leftLBIntensityValue.ToString();
+                    lbLBLVerticalDeviation.Text = leftLBVerticalValue.ToString();
+                    lbLBLHorizontalDeviation.Text = leftLBHorizontalValue.ToString();
+                    isDataCollected = true;
+                }));
+            }
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -133,6 +186,16 @@ namespace SenAIS
             {
                 SaveDataToDatabase();
             }
+        }
+
+        private void frmCosLightL_Load(object sender, EventArgs e)
+        {
+            comConnect.OpenConnection();
+        }
+
+        private void frmCosLightL_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            comConnect.CloseConnection();
         }
     }
 }

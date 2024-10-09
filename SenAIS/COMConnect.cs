@@ -19,10 +19,10 @@ namespace SenAIS
         private SerialPort serialPort;
         private Form activeForm;
         private List<byte> dataBuffer = new List<byte>();
-        private bool requestA5Completed = false;
-        public COMConnect(string portName, Form form)
+        public bool respone47H = false;
+        public COMConnect(string portName, int baudRate, Form form)
         {
-            serialPort = new SerialPort(portName, 300, Parity.None, 8, StopBits.One);
+            serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
             activeForm = form;
             serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         }
@@ -56,19 +56,19 @@ namespace SenAIS
             {
                 // Đọc các byte dữ liệu có sẵn
                 while (serialPort.BytesToRead > 0)
-             {
+                {
                 byte[] buffer = new byte[serialPort.BytesToRead];
                 serialPort.Read(buffer, 0, buffer.Length);
                 dataBuffer.AddRange(buffer);
                 string receivedData = BitConverter.ToString(buffer);
                Console.WriteLine("Received (Hex): " + receivedData);
-                if (activeForm is frmDieselEmission)
+                    if (activeForm is frmDieselEmission)
                 {
                     if (dataBuffer.Count >= 9 && dataBuffer[0] == 0xA5)
                     {
                         byte[] completeData = dataBuffer.Take(9).ToArray();
                         ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
-                           // dataBuffer.RemoveRange(0, 9);
+                            // dataBuffer.RemoveRange(0, 9);
                             dataBuffer.Clear();
                     }
                     else if(dataBuffer.Count >= 7 && dataBuffer[0] == 0xA6)
@@ -87,24 +87,17 @@ namespace SenAIS
                             SendRequest(commandA5);
                             //SendRequest(commandA6);
                         }
-                }
-
-                    //if (dataBuffer.Count >= 21)
-                    //{
-                    //    byte[] completeData = dataBuffer.Take(21).ToArray();
-
-                    //    // Kiểm tra byte đầu tiên để đảm bảo rằng đây là một gói dữ liệu hợp lệ
-                    //    if (completeData[0] == 0x06)
-                    //    {
-                    //        if (activeForm is frmGasEmission)
-                    //        {
-                    //            ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
-                    //        }
-                    //    }
-                    //    // Xóa các byte đã xử lý khỏi buffer
-                    //    dataBuffer.RemoveRange(0, 21);
-                    //}
-
+                    }
+                    if (activeForm is frmGasEmission)
+                    {
+                        if (dataBuffer.Count >= 21 && dataBuffer[0] == 0x06)
+                        {
+                            byte[] completeData = dataBuffer.Take(21).ToArray();
+                            ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
+                            dataBuffer.RemoveRange(0, 21);
+                        }
+                    }
+                        
                     // Xử lý gói dữ liệu trả về từ HY114 (nếu có)
                     if (activeForm is frmNoise)
                     {
@@ -132,32 +125,50 @@ namespace SenAIS
                             dataBuffer.RemoveRange(0, 9);
                         }
                     }
-
-                    //if (dataBuffer.Count >= 21 && dataBuffer[0] == 0x4D) // Assume 0x4D is the start byte for NHD6109 data
-                    //{
-                    //    byte[] completeData = dataBuffer.Take(21).ToArray();
-                    //    dataBuffer.RemoveRange(0, 21);
-
-                    //    if (activeForm is frmCosLightL)
-                    //    {
-                    //        ((frmCosLightL)activeForm).ProcessNHD6109Data(completeData);
-                    //    }
-                    //    else if (activeForm is frmCosLightR)
-                    //    {
-                    //        ((frmCosLightR)activeForm).ProcessNHD6109Data(completeData);
-                    //    }
-                    //    else if (activeForm is frmHeadLightL)
-                    //    {
-                    //        ((frmHeadLightL)activeForm).ProcessNHD6109Data(completeData);
-                    //    }
-                    //    else if (activeForm is frmHeadLightR)
-                    //    {
-                    //        ((frmHeadLightR)activeForm).ProcessNHD6109Data(completeData);
-                    //    }
-                    //}
-                    //}
+                    if (activeForm is frmCosLightL)
+                    {
+                        if (dataBuffer.Contains(0x47))
+                        {
+                            respone47H = true;
+                        }
+                        if (dataBuffer.Count >= 68 && dataBuffer[0] == 0x01 && dataBuffer[1] == 0x12 && dataBuffer[34] == 0x01)
+                        {
+                            byte[] completeData = dataBuffer.Take(68).ToArray();
+                            ((frmCosLightL)activeForm).ProcessNHD6109Data(completeData);
+                            dataBuffer.RemoveRange(0, 68);
+                        }
+                        else
+                            dataBuffer.RemoveAt(0);
+                    }
+                    else if (activeForm is frmCosLightR)
+                    {
+                        if (dataBuffer.Count >= 26 && dataBuffer[0] == 0x01)
+                        {
+                            byte[] completeData = dataBuffer.Take(26).ToArray();
+                            ((frmCosLightL)activeForm).ProcessNHD6109Data(completeData);
+                            dataBuffer.RemoveRange(0, 26);
+                        }
+                    }
+                    else if (activeForm is frmHeadLightL)
+                    {
+                        if (dataBuffer.Count >= 26 && dataBuffer[0] == 0x01)
+                        {
+                            byte[] completeData = dataBuffer.Take(26).ToArray();
+                            ((frmCosLightL)activeForm).ProcessNHD6109Data(completeData);
+                            dataBuffer.RemoveRange(0, 26);
+                        }
+                    }
+                    else if (activeForm is frmHeadLightR)
+                    {
+                        if (dataBuffer.Count >= 26 && dataBuffer[0] == 0x01)
+                        {
+                            byte[] completeData = dataBuffer.Take(26).ToArray();
+                            ((frmCosLightL)activeForm).ProcessNHD6109Data(completeData);
+                            dataBuffer.RemoveRange(0, 26);
+                        }
+                    }
                 }
-        }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi nhận dữ liệu:  " + ex.Message);

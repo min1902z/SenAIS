@@ -35,7 +35,7 @@ namespace SenAIS
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", this);
+            comConnect = new COMConnect("COM7", 9600, this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }

@@ -40,7 +40,7 @@ namespace SenAIS
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", this);
+            comConnect = new COMConnect("COM7", 9600,  this);
             sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
             InitializeTimer();
         }
@@ -66,16 +66,11 @@ namespace SenAIS
                     {
                         await Task.Delay(2000); // Đợi 10 giây
                     }
-                    if (currentDataRequest <= 3)
-                    {
-                        lbNotice.Text = $"Vui Lòng Đạp Ga lần {currentDataRequest}!";
-                        //await Task.Delay(5000);
-                    }
-
+                    lbNotice.Text = $"Vui Lòng Đạp Ga lần {currentDataRequest}!";
+                    await Task.Delay(5000);
                     byte[] commandA5 = { 0xA5, CalculateCheckCode(0xA5) };
                     comConnect.SendRequest(commandA5);
                     isRequestInProgress = true;
-
                 }
                 else if (currentDataRequest>3)
                 {
@@ -166,7 +161,7 @@ namespace SenAIS
             if (data.Length >= 7 && data[0] == 0xA6)
             {
                     int maxRpm = (data[5] << 8) + data[6]; // Max Speed (revolving speed)
-                    this.Invoke(new Action(() =>
+                    this.Invoke(new Action(async () =>
                     {
                          switch (currentDataRequest)
                         {
@@ -184,13 +179,9 @@ namespace SenAIS
                                 break;
                         }
                     }));
-                //this.Invoke(new Action(async () =>
-                //{
-                    currentDataRequest++;
-                    isRequestInProgress = false;
-                    await Task.Delay(5000);
-
-                //}));
+                        currentDataRequest++;
+                        isRequestInProgress = false;
+                        await Task.Delay(5000);
             }
         }
         public void ProcessNHT6Data(byte[] data)
