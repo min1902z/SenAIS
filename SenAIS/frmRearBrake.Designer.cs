@@ -301,8 +301,10 @@
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.BBrakePanel);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.MaximizeBox = false;
             this.Name = "frmRearBrake";
-            this.Text = "frmBackBrake";
+            this.Text = "Phanh Sau";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.BBrakePanel.ResumeLayout(false);
             this.BBrakePanel.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

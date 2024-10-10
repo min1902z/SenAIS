@@ -20,9 +20,18 @@ namespace SenAIS
         private COMConnect comConnect;
         private SQLHelper sqlHelper;
         private string serialNumber;
-        public decimal intensity;
-        public decimal vertiDeviation;
-        public decimal horiDeviation;
+        public decimal rightHBIntensityValue;
+        public decimal rightHBVerticalValue;
+        public decimal rightHBHorizontalValue;
+        public decimal leftHBIntensityValue;
+        public decimal leftHBVerticalValue;
+        public decimal leftHBHorizontalValue;
+        public decimal rightLBIntensityValue;
+        public decimal rightLBVerticalValue;
+        public decimal rightLBHorizontalValue;
+        public decimal leftLBIntensityValue;
+        public decimal leftLBVerticalValue;
+        public decimal leftLBHorizontalValue;
         private bool isReady = false;
         private bool autoTestCheck = false;
         public bool isDataCollected = false;
@@ -60,17 +69,12 @@ namespace SenAIS
                     comConnect.SendRequest(autoTest); 
                     autoTestCheck = true; 
                 }
-
                 // Gửi request đến NHD6109 để lấy dữ liệu
                 if (comConnect.respone47H == true && !isDataCollected)
                 {
                     byte[] request = { 0x4E, 0x4D };
                     comConnect.SendRequest(request);
                 }
-
-                //this.intensity = Convert.ToDecimal(intensity.ToString("F1"));
-                //this.vertiDeviation = Convert.ToDecimal(vertiDeviation.ToString("F1"));
-                //this.horiDeviation = Convert.ToDecimal(horiDeviation.ToString("F1"));
                 //CheckCounterPosition();
             }
             else
@@ -103,21 +107,21 @@ namespace SenAIS
                 string leftLBLightIntensity = Encoding.ASCII.GetString(data, 46, 4);         // Cường độ Left LB (4 bytes)
 
                 // Chuyển đổi chuỗi ASCII thành số thực
-                decimal rightHBHorizontalValue = decimal.Parse(rightHBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal rightHBVerticalValue = decimal.Parse(rightHBVerticalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal rightHBIntensityValue = decimal.Parse(rightHBLightIntensity);
+                this.rightHBHorizontalValue = decimal.Parse(rightHBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                this.rightHBVerticalValue = decimal.Parse(rightHBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                this.rightHBIntensityValue = decimal.Parse(rightHBLightIntensity);
 
-                decimal rightLBHorizontalValue = decimal.Parse(rightLBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal rightLBVerticalValue = decimal.Parse(rightLBVerticalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal rightLBIntensityValue = decimal.Parse(rightLBLightIntensity);
+                this.rightLBHorizontalValue = decimal.Parse(rightLBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                this.rightLBVerticalValue = decimal.Parse(rightLBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                this.rightLBIntensityValue = decimal.Parse(rightLBLightIntensity);
 
-                decimal leftHBHorizontalValue = decimal.Parse(leftHBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal leftHBVerticalValue = decimal.Parse(leftHBVerticalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal leftHBIntensityValue = decimal.Parse(leftHBLightIntensity);
+                this.leftHBHorizontalValue = decimal.Parse(leftHBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                this.leftHBVerticalValue = decimal.Parse(leftHBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                this.leftHBIntensityValue = decimal.Parse(leftHBLightIntensity);
 
-                decimal leftLBHorizontalValue = decimal.Parse(leftLBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal leftLBVerticalValue = decimal.Parse(leftLBVerticalDeviation.Replace("+", "").Replace("-", "-"));
-                decimal leftLBIntensityValue = decimal.Parse(leftLBLightIntensity);
+                this.leftLBHorizontalValue = decimal.Parse(leftLBHorizontalDeviation.Replace("+", "").Replace("-", "-"));
+                this.leftLBVerticalValue = decimal.Parse(leftLBVerticalDeviation.Replace("+", "").Replace("-", "-"));
+                this.leftLBIntensityValue = decimal.Parse(leftLBLightIntensity);
 
                 this.Invoke(new Action(() =>
                 {
@@ -176,7 +180,10 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveLeftLowBeamData(this.serialNumber, this.intensity, this.vertiDeviation, this.horiDeviation);
+            sqlHelper.SaveHeadlightsData(this.serialNumber, this.leftHBIntensityValue, this.leftHBVerticalValue, this.leftHBHorizontalValue, 
+                                                                    this.rightHBIntensityValue, this.rightHBVerticalValue, this.rightHBHorizontalValue, 
+                                                                    this.leftLBIntensityValue, this.leftLBVerticalValue, this.leftLBHorizontalValue,
+                                                                    this.rightLBIntensityValue, this.rightLBVerticalValue, this.rightLBHorizontalValue);
         }
         private void CheckCounterPosition()
         {

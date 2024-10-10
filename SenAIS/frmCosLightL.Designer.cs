@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCosLightL));
             this.CosLightPanel = new System.Windows.Forms.Panel();
             this.cbReady = new System.Windows.Forms.CheckBox();
-            this.tbCosLightL = new System.Windows.Forms.TableLayoutPanel();
+            this.tbHeadLights = new System.Windows.Forms.TableLayoutPanel();
             this.lbLBRHorizontalDeviation = new System.Windows.Forms.Label();
             this.lbLBRIntensity = new System.Windows.Forms.Label();
             this.lbLBLIntensity = new System.Windows.Forms.Label();
@@ -55,21 +55,20 @@
             this.btnPre = new System.Windows.Forms.Button();
             this.lbCosLightTitle = new System.Windows.Forms.Label();
             this.CosLightPanel.SuspendLayout();
-            this.tbCosLightL.SuspendLayout();
+            this.tbHeadLights.SuspendLayout();
             this.SuspendLayout();
             // 
             // CosLightPanel
             // 
             this.CosLightPanel.Controls.Add(this.cbReady);
-            this.CosLightPanel.Controls.Add(this.tbCosLightL);
+            this.CosLightPanel.Controls.Add(this.tbHeadLights);
             this.CosLightPanel.Controls.Add(this.btnNext);
             this.CosLightPanel.Controls.Add(this.btnPre);
             this.CosLightPanel.Controls.Add(this.lbCosLightTitle);
             this.CosLightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CosLightPanel.Location = new System.Drawing.Point(0, 0);
-            this.CosLightPanel.Margin = new System.Windows.Forms.Padding(4);
             this.CosLightPanel.Name = "CosLightPanel";
-            this.CosLightPanel.Size = new System.Drawing.Size(1924, 1055);
+            this.CosLightPanel.Size = new System.Drawing.Size(1904, 1041);
             this.CosLightPanel.TabIndex = 0;
             // 
             // cbReady
@@ -81,56 +80,54 @@
             this.cbReady.Checked = true;
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
-            this.cbReady.Location = new System.Drawing.Point(16, 15);
-            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
+            this.cbReady.Location = new System.Drawing.Point(12, 12);
             this.cbReady.Name = "cbReady";
-            this.cbReady.Size = new System.Drawing.Size(148, 108);
+            this.cbReady.Size = new System.Drawing.Size(111, 88);
             this.cbReady.TabIndex = 44;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
-            // tbCosLightL
+            // tbHeadLights
             // 
-            this.tbCosLightL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbHeadLights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCosLightL.AutoScroll = true;
-            this.tbCosLightL.AutoSize = true;
-            this.tbCosLightL.ColumnCount = 4;
-            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tbCosLightL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tbCosLightL.Controls.Add(this.lbLBRHorizontalDeviation, 3, 4);
-            this.tbCosLightL.Controls.Add(this.lbLBRIntensity, 1, 4);
-            this.tbCosLightL.Controls.Add(this.lbLBLIntensity, 1, 3);
-            this.tbCosLightL.Controls.Add(this.lbLBLHorizontalDeviation, 3, 3);
-            this.tbCosLightL.Controls.Add(this.lbHBRHorizontalDeviation, 3, 2);
-            this.tbCosLightL.Controls.Add(this.label5, 0, 3);
-            this.tbCosLightL.Controls.Add(this.label7, 3, 0);
-            this.tbCosLightL.Controls.Add(this.label2, 1, 0);
-            this.tbCosLightL.Controls.Add(this.label3, 2, 0);
-            this.tbCosLightL.Controls.Add(this.label4, 0, 1);
-            this.tbCosLightL.Controls.Add(this.label1, 0, 2);
-            this.tbCosLightL.Controls.Add(this.label6, 0, 4);
-            this.tbCosLightL.Controls.Add(this.lbHBLVerticalDeviation, 2, 1);
-            this.tbCosLightL.Controls.Add(this.lbHBLHorizontalDeviation, 3, 1);
-            this.tbCosLightL.Controls.Add(this.lbHBLIntensity, 1, 1);
-            this.tbCosLightL.Controls.Add(this.lbHBRVerticalDeviation, 2, 2);
-            this.tbCosLightL.Controls.Add(this.lbHBRIntensity, 1, 2);
-            this.tbCosLightL.Controls.Add(this.lbLBLVerticalDeviation, 2, 3);
-            this.tbCosLightL.Controls.Add(this.lbLBRVerticalDeviation, 2, 4);
-            this.tbCosLightL.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCosLightL.Location = new System.Drawing.Point(176, 150);
-            this.tbCosLightL.Margin = new System.Windows.Forms.Padding(4);
-            this.tbCosLightL.Name = "tbCosLightL";
-            this.tbCosLightL.RowCount = 5;
-            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbCosLightL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbCosLightL.Size = new System.Drawing.Size(1629, 1077);
-            this.tbCosLightL.TabIndex = 43;
+            this.tbHeadLights.AutoScroll = true;
+            this.tbHeadLights.AutoSize = true;
+            this.tbHeadLights.ColumnCount = 4;
+            this.tbHeadLights.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tbHeadLights.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbHeadLights.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbHeadLights.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbHeadLights.Controls.Add(this.lbLBRHorizontalDeviation, 3, 4);
+            this.tbHeadLights.Controls.Add(this.lbLBRIntensity, 1, 4);
+            this.tbHeadLights.Controls.Add(this.lbLBLIntensity, 1, 3);
+            this.tbHeadLights.Controls.Add(this.lbLBLHorizontalDeviation, 3, 3);
+            this.tbHeadLights.Controls.Add(this.lbHBRHorizontalDeviation, 3, 2);
+            this.tbHeadLights.Controls.Add(this.label5, 0, 3);
+            this.tbHeadLights.Controls.Add(this.label7, 3, 0);
+            this.tbHeadLights.Controls.Add(this.label2, 1, 0);
+            this.tbHeadLights.Controls.Add(this.label3, 2, 0);
+            this.tbHeadLights.Controls.Add(this.label4, 0, 1);
+            this.tbHeadLights.Controls.Add(this.label1, 0, 2);
+            this.tbHeadLights.Controls.Add(this.label6, 0, 4);
+            this.tbHeadLights.Controls.Add(this.lbHBLVerticalDeviation, 2, 1);
+            this.tbHeadLights.Controls.Add(this.lbHBLHorizontalDeviation, 3, 1);
+            this.tbHeadLights.Controls.Add(this.lbHBLIntensity, 1, 1);
+            this.tbHeadLights.Controls.Add(this.lbHBRVerticalDeviation, 2, 2);
+            this.tbHeadLights.Controls.Add(this.lbHBRIntensity, 1, 2);
+            this.tbHeadLights.Controls.Add(this.lbLBLVerticalDeviation, 2, 3);
+            this.tbHeadLights.Controls.Add(this.lbLBRVerticalDeviation, 2, 4);
+            this.tbHeadLights.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHeadLights.Location = new System.Drawing.Point(121, 120);
+            this.tbHeadLights.Name = "tbHeadLights";
+            this.tbHeadLights.RowCount = 5;
+            this.tbHeadLights.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tbHeadLights.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tbHeadLights.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tbHeadLights.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tbHeadLights.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tbHeadLights.Size = new System.Drawing.Size(1688, 860);
+            this.tbHeadLights.TabIndex = 43;
             // 
             // lbLBRHorizontalDeviation
             // 
@@ -138,10 +135,9 @@
             this.lbLBRHorizontalDeviation.AutoSize = true;
             this.lbLBRHorizontalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBRHorizontalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBRHorizontalDeviation.Location = new System.Drawing.Point(1290, 554);
-            this.lbLBRHorizontalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLBRHorizontalDeviation.Location = new System.Drawing.Point(1352, 668);
             this.lbLBRHorizontalDeviation.Name = "lbLBRHorizontalDeviation";
-            this.lbLBRHorizontalDeviation.Size = new System.Drawing.Size(216, 523);
+            this.lbLBRHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBRHorizontalDeviation.TabIndex = 45;
             this.lbLBRHorizontalDeviation.Text = "0.0";
             this.lbLBRHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -152,10 +148,9 @@
             this.lbLBRIntensity.AutoSize = true;
             this.lbLBRIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBRIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBRIntensity.Location = new System.Drawing.Point(367, 554);
-            this.lbLBRIntensity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLBRIntensity.Location = new System.Drawing.Point(356, 668);
             this.lbLBRIntensity.Name = "lbLBRIntensity";
-            this.lbLBRIntensity.Size = new System.Drawing.Size(216, 523);
+            this.lbLBRIntensity.Size = new System.Drawing.Size(174, 192);
             this.lbLBRIntensity.TabIndex = 45;
             this.lbLBRIntensity.Text = "0.0";
             this.lbLBRIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,10 +161,9 @@
             this.lbLBLIntensity.AutoSize = true;
             this.lbLBLIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBLIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBLIntensity.Location = new System.Drawing.Point(367, 408);
-            this.lbLBLIntensity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLBLIntensity.Location = new System.Drawing.Point(356, 476);
             this.lbLBLIntensity.Name = "lbLBLIntensity";
-            this.lbLBLIntensity.Size = new System.Drawing.Size(216, 146);
+            this.lbLBLIntensity.Size = new System.Drawing.Size(174, 192);
             this.lbLBLIntensity.TabIndex = 45;
             this.lbLBLIntensity.Text = "0.0";
             this.lbLBLIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -180,10 +174,9 @@
             this.lbLBLHorizontalDeviation.AutoSize = true;
             this.lbLBLHorizontalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBLHorizontalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBLHorizontalDeviation.Location = new System.Drawing.Point(1290, 408);
-            this.lbLBLHorizontalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLBLHorizontalDeviation.Location = new System.Drawing.Point(1352, 476);
             this.lbLBLHorizontalDeviation.Name = "lbLBLHorizontalDeviation";
-            this.lbLBLHorizontalDeviation.Size = new System.Drawing.Size(216, 146);
+            this.lbLBLHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBLHorizontalDeviation.TabIndex = 45;
             this.lbLBLHorizontalDeviation.Text = "0.0";
             this.lbLBLHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,10 +187,9 @@
             this.lbHBRHorizontalDeviation.AutoSize = true;
             this.lbHBRHorizontalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBRHorizontalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBRHorizontalDeviation.Location = new System.Drawing.Point(1290, 262);
-            this.lbHBRHorizontalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbHBRHorizontalDeviation.Location = new System.Drawing.Point(1352, 284);
             this.lbHBRHorizontalDeviation.Name = "lbHBRHorizontalDeviation";
-            this.lbHBRHorizontalDeviation.Size = new System.Drawing.Size(216, 146);
+            this.lbHBRHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBRHorizontalDeviation.TabIndex = 45;
             this.lbHBRHorizontalDeviation.Text = "0.0";
             this.lbHBRHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -208,10 +200,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label5.Location = new System.Drawing.Point(4, 408);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(3, 513);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(229, 146);
+            this.label5.Size = new System.Drawing.Size(182, 118);
             this.label5.TabIndex = 46;
             this.label5.Text = "Đèn Cốt\r\nTrái";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -222,10 +213,9 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label7.Location = new System.Drawing.Point(1279, 0);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(1342, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(238, 116);
+            this.label7.Size = new System.Drawing.Size(193, 92);
             this.label7.TabIndex = 31;
             this.label7.Text = "L. Trái/Phải\r\n(cm/dam)";
             // 
@@ -235,10 +225,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(361, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(350, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(228, 116);
+            this.label2.Size = new System.Drawing.Size(185, 92);
             this.label2.TabIndex = 6;
             this.label2.Text = "Cường Độ \r\n(100xCd)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -249,10 +238,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(804, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(833, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(264, 116);
+            this.label3.Size = new System.Drawing.Size(215, 92);
             this.label3.TabIndex = 7;
             this.label3.Text = "L. Trên/Dưới\r\n(cm/dam)";
             // 
@@ -262,10 +250,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(4, 116);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(3, 129);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(237, 146);
+            this.label4.Size = new System.Drawing.Size(188, 118);
             this.label4.TabIndex = 45;
             this.label4.Text = "Đèn Pha\r\nTrái\r\n";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -276,10 +263,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(4, 262);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 321);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 146);
+            this.label1.Size = new System.Drawing.Size(188, 118);
             this.label1.TabIndex = 46;
             this.label1.Text = "Đèn Pha\r\nPhải";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -290,10 +276,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label6.Location = new System.Drawing.Point(4, 742);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(3, 705);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(229, 146);
+            this.label6.Size = new System.Drawing.Size(182, 118);
             this.label6.TabIndex = 47;
             this.label6.Text = "Đèn Cốt\r\nPhải";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -304,10 +289,9 @@
             this.lbHBLVerticalDeviation.AutoSize = true;
             this.lbHBLVerticalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBLVerticalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBLVerticalDeviation.Location = new System.Drawing.Point(828, 116);
-            this.lbHBLVerticalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbHBLVerticalDeviation.Location = new System.Drawing.Point(854, 92);
             this.lbHBLVerticalDeviation.Name = "lbHBLVerticalDeviation";
-            this.lbHBLVerticalDeviation.Size = new System.Drawing.Size(216, 146);
+            this.lbHBLVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBLVerticalDeviation.TabIndex = 9;
             this.lbHBLVerticalDeviation.Text = "0.0";
             this.lbHBLVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -318,10 +302,9 @@
             this.lbHBLHorizontalDeviation.AutoSize = true;
             this.lbHBLHorizontalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBLHorizontalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBLHorizontalDeviation.Location = new System.Drawing.Point(1290, 116);
-            this.lbHBLHorizontalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbHBLHorizontalDeviation.Location = new System.Drawing.Point(1352, 92);
             this.lbHBLHorizontalDeviation.Name = "lbHBLHorizontalDeviation";
-            this.lbHBLHorizontalDeviation.Size = new System.Drawing.Size(216, 146);
+            this.lbHBLHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBLHorizontalDeviation.TabIndex = 10;
             this.lbHBLHorizontalDeviation.Text = "0.0";
             this.lbHBLHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -332,10 +315,9 @@
             this.lbHBLIntensity.AutoSize = true;
             this.lbHBLIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBLIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBLIntensity.Location = new System.Drawing.Point(367, 116);
-            this.lbHBLIntensity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbHBLIntensity.Location = new System.Drawing.Point(356, 92);
             this.lbHBLIntensity.Name = "lbHBLIntensity";
-            this.lbHBLIntensity.Size = new System.Drawing.Size(216, 146);
+            this.lbHBLIntensity.Size = new System.Drawing.Size(174, 192);
             this.lbHBLIntensity.TabIndex = 8;
             this.lbHBLIntensity.Text = "0.0";
             this.lbHBLIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -346,10 +328,9 @@
             this.lbHBRVerticalDeviation.AutoSize = true;
             this.lbHBRVerticalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBRVerticalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBRVerticalDeviation.Location = new System.Drawing.Point(828, 262);
-            this.lbHBRVerticalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbHBRVerticalDeviation.Location = new System.Drawing.Point(854, 284);
             this.lbHBRVerticalDeviation.Name = "lbHBRVerticalDeviation";
-            this.lbHBRVerticalDeviation.Size = new System.Drawing.Size(216, 146);
+            this.lbHBRVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBRVerticalDeviation.TabIndex = 49;
             this.lbHBRVerticalDeviation.Text = "0.0";
             this.lbHBRVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -360,10 +341,9 @@
             this.lbHBRIntensity.AutoSize = true;
             this.lbHBRIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBRIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBRIntensity.Location = new System.Drawing.Point(367, 262);
-            this.lbHBRIntensity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbHBRIntensity.Location = new System.Drawing.Point(356, 284);
             this.lbHBRIntensity.Name = "lbHBRIntensity";
-            this.lbHBRIntensity.Size = new System.Drawing.Size(216, 146);
+            this.lbHBRIntensity.Size = new System.Drawing.Size(174, 192);
             this.lbHBRIntensity.TabIndex = 48;
             this.lbHBRIntensity.Text = "0.0";
             this.lbHBRIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -374,10 +354,9 @@
             this.lbLBLVerticalDeviation.AutoSize = true;
             this.lbLBLVerticalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBLVerticalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBLVerticalDeviation.Location = new System.Drawing.Point(828, 408);
-            this.lbLBLVerticalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLBLVerticalDeviation.Location = new System.Drawing.Point(854, 476);
             this.lbLBLVerticalDeviation.Name = "lbLBLVerticalDeviation";
-            this.lbLBLVerticalDeviation.Size = new System.Drawing.Size(216, 146);
+            this.lbLBLVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBLVerticalDeviation.TabIndex = 45;
             this.lbLBLVerticalDeviation.Text = "0.0";
             this.lbLBLVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -388,10 +367,9 @@
             this.lbLBRVerticalDeviation.AutoSize = true;
             this.lbLBRVerticalDeviation.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBRVerticalDeviation.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBRVerticalDeviation.Location = new System.Drawing.Point(828, 554);
-            this.lbLBRVerticalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLBRVerticalDeviation.Location = new System.Drawing.Point(854, 668);
             this.lbLBRVerticalDeviation.Name = "lbLBRVerticalDeviation";
-            this.lbLBRVerticalDeviation.Size = new System.Drawing.Size(216, 523);
+            this.lbLBRVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBRVerticalDeviation.TabIndex = 45;
             this.lbLBRVerticalDeviation.Text = "0.0";
             this.lbLBRVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -402,10 +380,10 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1794, 996);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNext.Location = new System.Drawing.Point(1807, 993);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(115, 46);
+            this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 42;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -417,10 +395,10 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(15, 996);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPre.Location = new System.Drawing.Point(11, 993);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(115, 46);
+            this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 41;
             this.btnPre.Text = "Trở Lại";
             this.btnPre.UseVisualStyleBackColor = false;
@@ -432,23 +410,23 @@
             this.lbCosLightTitle.AutoSize = true;
             this.lbCosLightTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCosLightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbCosLightTitle.Location = new System.Drawing.Point(528, 0);
+            this.lbCosLightTitle.Location = new System.Drawing.Point(627, 0);
+            this.lbCosLightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCosLightTitle.Name = "lbCosLightTitle";
-            this.lbCosLightTitle.Size = new System.Drawing.Size(739, 146);
+            this.lbCosLightTitle.Size = new System.Drawing.Size(592, 117);
             this.lbCosLightTitle.TabIndex = 40;
             this.lbCosLightTitle.Text = "Đèn Pha - Cốt";
             this.lbCosLightTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frmCosLightL
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.CosLightPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmCosLightL";
             this.Text = "Dữ liệu đèn";
@@ -457,8 +435,8 @@
             this.Load += new System.EventHandler(this.frmCosLightL_Load);
             this.CosLightPanel.ResumeLayout(false);
             this.CosLightPanel.PerformLayout();
-            this.tbCosLightL.ResumeLayout(false);
-            this.tbCosLightL.PerformLayout();
+            this.tbHeadLights.ResumeLayout(false);
+            this.tbHeadLights.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -466,7 +444,7 @@
         #endregion
 
         private System.Windows.Forms.Panel CosLightPanel;
-        private System.Windows.Forms.TableLayoutPanel tbCosLightL;
+        private System.Windows.Forms.TableLayoutPanel tbHeadLights;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbHBLIntensity;
         private System.Windows.Forms.Label lbHBLHorizontalDeviation;

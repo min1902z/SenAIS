@@ -293,8 +293,8 @@ namespace SenAIS
                 CheckAndColorTextBox(txtRHLHorizontal, standard.Field<decimal?>("DiffHoriHLMin"), standard.Field<decimal?>("DiffHoriHLMax"));
                 CheckAndColorTextBox(txtLHLVertical, standard.Field<decimal?>("DiffVertiHLMin"), standard.Field<decimal?>("DiffVertiHLMax"));
                 CheckAndColorTextBox(txtRHLVertical, standard.Field<decimal?>("DiffVertiHLMin"), standard.Field<decimal?>("DiffVertiHLMax"));
-                CheckAndColorTextBox(txtLLBIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
-                CheckAndColorTextBox(txtRLBIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
+                CheckAndColorTextBox(txtLLBIntensity, standard.Field<decimal?>("MinLBIntensity"), null);
+                CheckAndColorTextBox(txtRLBIntensity, standard.Field<decimal?>("MinLBIntensity"), null);
                 CheckAndColorTextBox(txtLLBHorizontal, standard.Field<decimal?>("DiffHoriLBMin"), standard.Field<decimal?>("DiffHoriLBMax"));
                 CheckAndColorTextBox(txtRLBHorizontal, standard.Field<decimal?>("DiffHoriLBMin"), standard.Field<decimal?>("DiffHoriLBMax"));
                 CheckAndColorTextBox(txtLLBVertical, standard.Field<decimal?>("DiffVertiLBMin"), standard.Field<decimal?>("DiffVertiLBMax"));

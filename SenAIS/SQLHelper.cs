@@ -311,27 +311,48 @@ namespace SenAIS
                 }
             }
         }
-        public void SaveLeftLowBeamData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
+        public void SaveHeadlightsData(string serialNumber, decimal leftHBIntensityValue, decimal leftHBVerticalValue, decimal leftHBHorizontalValue,
+                                                                    decimal rightHBIntensityValue, decimal rightHBVerticalValue, decimal rightHBHorizontalValue,
+                                                                    decimal leftLBIntensityValue, decimal leftLBVerticalValue, decimal leftLBHorizontalValue,
+                                                                    decimal rightLBIntensityValue, decimal rightLBVerticalValue, decimal rightLBHorizontalValue)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string query = @"IF EXISTS (SELECT 1 FROM LowBeam WHERE SerialNumber = @SerialNumber)
+                string query = @"IF EXISTS (SELECT 1 FROM Headlights WHERE SerialNumber = @SerialNumber)
                          BEGIN
-                             UPDATE LowBeam 
-                             SET LeftIntensity = @LeftIntensity, LeftVerticalDeviation = @LeftVerticalDeviation, LeftHorizontalDeviation = @LeftHorizontalDeviation
+                             UPDATE Headlights 
+                             SET LeftHBIntensity = @LeftHBIntensity, LeftHBVerticalDeviation = @LeftHBVerticalDeviation, LeftHBHorizontalDeviation = @LeftHBHorizontalDeviation, 
+                                    RightHBIntensity = RightHBIntensity, RightHBVerticalDeviation = @RightHBVerticalDeviation, RightHBHorizontalDeviation = @RightHBHorizontalDeviation,
+                                    LeftLBIntensity = @LeftLBIntensity, LeftLBVerticalDeviation = @LeftLBVerticalDeviation, LeftLBHorizontalDeviation = @LeftLBHorizontalDeviation, 
+                                    RightLBIntensity = RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation,
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
                          BEGIN
-                             INSERT INTO LowBeam (SerialNumber, LeftIntensity, LeftVerticalDeviation, LeftHorizontalDeviation)
-                             VALUES (@SerialNumber, @LeftIntensity, @LeftVerticalDeviation, @LeftHorizontalDeviation)
+                             INSERT INTO Headlights (SerialNumber, LeftHBIntensity, LeftHBVerticalDeviation, LeftHBHorizontalDeviation, 
+                                                                                                    RightHBIntensity, RightHBVerticalDeviation, RightHBHorizontalDeviation, 
+                                                                                                    LeftLBIntensity, LeftLBVerticalDeviation, LeftLBHorizontalDeviation, 
+                                                                                                    RightLBIntensity, RightLBVerticalDeviation, RightLBHorizontalDeviation)
+                             VALUES (@SerialNumber, @LeftHBIntensity, @LeftHBVerticalDeviation, @LeftHBHorizontalDeviation, 
+                                                                            @RightHBIntensity, @RightHBVerticalDeviation, @RightHBHorizontalDeviation, 
+                                                                            @LeftLBIntensity, @LeftLBVerticalDeviation, @LeftLBHorizontalDeviation, 
+                                                                            @RightLBIntensity, @RightLBVerticalDeviation, @RightLBHorizontalDeviation)
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@LeftIntensity", intensity);
-                    cmd.Parameters.AddWithValue("@LeftVerticalDeviation", veritiDeviation);
-                    cmd.Parameters.AddWithValue("@LeftHorizontalDeviation", horiDeviation);
+                    cmd.Parameters.AddWithValue("@LeftHBIntensity", leftHBIntensityValue);
+                    cmd.Parameters.AddWithValue("@LeftHBVerticalDeviation", leftHBVerticalValue);
+                    cmd.Parameters.AddWithValue("@LeftHBHorizontalDeviation", leftHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightHBIntensity", leftHBIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightHBVerticalDeviation", leftHBVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightHBHorizontalDeviation", leftHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@LeftLBIntensity", leftHBIntensityValue);
+                    cmd.Parameters.AddWithValue("@LeftLBVerticalDeviation", leftHBVerticalValue);
+                    cmd.Parameters.AddWithValue("@LeftLBHorizontalDeviation", leftHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightLBIntensity", leftHBIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", leftHBVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", leftHBHorizontalValue);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }
@@ -560,18 +581,18 @@ namespace SenAIS
 	                        bf.HandBrakeRight,
 	                        ns.Noise,
 	                        ns.Whistle,
-	                        hl.[LeftIntensity] AS LHLIntensity,
-                            hl.[LeftVerticalDeviation] AS LHLVertical,
-                            hl.[LeftHorizontalDeviation] AS LHLHorizontal,
-                            hl.[RightIntensity] AS RHLIntensity,
-                            hl.[RightVerticalDeviation] AS RHLVertical,
-                            hl.[RightHorizontalDeviation] AS RHLHorizontal,
-	                        lb.[LeftIntensity] AS LLBIntensity,
-                            lb.[LeftVerticalDeviation] AS LLBVertical,
-                            lb.[LeftHorizontalDeviation] AS LLBHorizontal,
-                            lb.[RightIntensity] AS RLBIntensity,
-                            lb.[RightVerticalDeviation] AS RLBVertical,
-                            lb.[RightHorizontalDeviation] AS RLBHorizontal,
+	                        hl.[LeftHBIntensity] AS LHLIntensity,
+                            hl.[LeftHBVerticalDeviation] AS LHLVertical,
+                            hl.[LeftHBHorizontalDeviation] AS LHLHorizontal,
+                            hl.[RightHBIntensity] AS RHLIntensity,
+                            hl.[RightHBVerticalDeviation] AS RHLVertical,
+                            hl.[RightHBHorizontalDeviation] AS RHLHorizontal,
+	                        hl.[LeftLBIntensity] AS LLBIntensity,
+                            hl.[LeftLBVerticalDeviation] AS LLBVertical,
+                            hl.[LeftLBHorizontalDeviation] AS LLBHorizontal,
+                            hl.[RightLBIntensity] AS RLBIntensity,
+                            hl.[RightLBVerticalDeviation] AS RLBVertical,
+                            hl.[RightLBHorizontalDeviation] AS RLBHorizontal,
 	                        pe.[HC],
                             pe.[CO],
                             pe.[CO2],
@@ -603,8 +624,6 @@ namespace SenAIS
                             Noise ns ON vi.SerialNumber = ns.SerialNumber
                         LEFT JOIN 
                             Headlights hl ON vi.SerialNumber = hl.SerialNumber
-                        LEFT JOIN 
-                            LowBeam lb ON vi.SerialNumber = lb.SerialNumber
                         LEFT JOIN 
                             GasEmission_Petrol pe ON vi.SerialNumber = pe.SerialNumber
                         LEFT JOIN 

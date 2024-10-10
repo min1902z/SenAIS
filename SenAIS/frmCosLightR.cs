@@ -121,7 +121,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveLeftLowBeamData(this.serialNumber, this.intensity, this.vertiDeviation, this.horiDeviation);
+            sqlHelper.SaveRightLowBeamData(this.serialNumber, this.intensity, this.vertiDeviation, this.horiDeviation);
         }
         private void CheckCounterPosition()
         {
