@@ -148,7 +148,6 @@
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.WhistlePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.Name = "frmWhistle";
             this.Text = "Âm Lượng Còi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

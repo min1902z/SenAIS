@@ -13,7 +13,7 @@ namespace SenAIS
 {
     public partial class SenAIS : Form
     {
-        private Form activeChildForm;
+        //private Form activeChildForm;
         public SenAIS()
         {
             InitializeComponent();
@@ -32,11 +32,11 @@ namespace SenAIS
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Show();
         }
-        public void ShowFormInNewWindow(Form form)
-        {
-            form.FormClosed += (s, args) => activeChildForm = null;
-            form.Show();
-        }
+        //public void ShowFormInNewWindow(Form form)
+        //{
+        //    form.FormClosed += (s, args) => activeChildForm = null;
+        //    form.Show();
+        //}
         private void TSHoTro_Click(object sender, EventArgs e)
         {
         }

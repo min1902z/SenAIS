@@ -87,12 +87,6 @@
     <Compile Include="frmAISMain.Designer.cs">
       <DependentUpon>frmAISMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExportReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmExportReport.Designer.cs">
-      <DependentUpon>frmExportReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmInspector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,20 +233,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="VehicleReports.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VehicleReports.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <EmbeddedResource Include="frmAboutUs.resx">
       <DependentUpon>frmAboutUs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAISMain.resx">
       <DependentUpon>frmAISMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmExportReport.resx">
-      <DependentUpon>frmExportReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInspector.resx">
       <DependentUpon>frmInspector.cs</DependentUpon>
@@ -330,10 +315,6 @@
     <EmbeddedResource Include="Reports\VehicleReport.rdlc" />
     <EmbeddedResource Include="TestReport.resx">
       <DependentUpon>TestReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VehicleReports.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>VehicleReports.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\VehicleReportData.datasource" />

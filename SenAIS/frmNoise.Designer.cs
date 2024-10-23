@@ -36,11 +36,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbNoise = new System.Windows.Forms.Label();
             this.lbNoiseTitle = new System.Windows.Forms.Label();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.NoisePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // NoisePanel
             // 
+            this.NoisePanel.Controls.Add(this.lbEngineNumber);
             this.NoisePanel.Controls.Add(this.cbReady);
             this.NoisePanel.Controls.Add(this.btnNext);
             this.NoisePanel.Controls.Add(this.btnPre);
@@ -132,13 +134,24 @@
             this.lbNoiseTitle.AutoSize = true;
             this.lbNoiseTitle.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNoiseTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNoiseTitle.Location = new System.Drawing.Point(700, 0);
+            this.lbNoiseTitle.Location = new System.Drawing.Point(807, 0);
             this.lbNoiseTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbNoiseTitle.Name = "lbNoiseTitle";
             this.lbNoiseTitle.Size = new System.Drawing.Size(452, 163);
             this.lbNoiseTitle.TabIndex = 20;
             this.lbNoiseTitle.Text = "ĐỘ ỒN";
             this.lbNoiseTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 22);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 48;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // frmNoise
             // 
@@ -148,7 +161,6 @@
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.NoisePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.Name = "frmNoise";
             this.Text = "Đo Độ Ồn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -169,5 +181,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.CheckBox cbReady;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

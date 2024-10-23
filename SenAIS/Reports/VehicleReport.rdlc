@@ -289,7 +289,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!Inspector.Value</Value>
+                    <Value>=Format(Fields!InspectionDate.Value, "dd/MM/yyyy")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -302,7 +302,7 @@
             <Top>0.74653in</Top>
             <Left>1.25918in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>1.78472in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -334,7 +334,7 @@
             <Top>1.00521in</Top>
             <Left>1.26959in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>1.78472in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -353,7 +353,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Số khung:</Value>
+                    <Value>Số máy:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -385,7 +385,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Số máy:</Value>
+                    <Value>Số khung:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -417,7 +417,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!FrameNumber.Value</Value>
+                    <Value>=Fields!SerialNumber.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -430,7 +430,7 @@
             <Top>0.74653in</Top>
             <Left>3.94841in</Left>
             <Height>0.25in</Height>
-            <Width>1.59784in</Width>
+            <Width>2.10243in</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -449,7 +449,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!EngineNumber.Value</Value>
+                    <Value>=Fields!FrameNumber.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -462,7 +462,7 @@
             <Top>1.00521in</Top>
             <Left>3.94841in</Left>
             <Height>0.25in</Height>
-            <Width>1.59784in</Width>
+            <Width>2.10243in</Width>
             <ZIndex>17</ZIndex>
             <Style>
               <Border>
@@ -1137,7 +1137,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!SideSlip.Value &gt;= Fields!MinSideSlip.Value AND Fields!SideSlip.Value &lt;= Fields!MaxSideSlip.Value, "ü", "")</Value>
+                    <Value>=IIF(Fields!SideSlipResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1200,7 +1200,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!SideSlip.Value &lt; Fields!MinSideSlip.Value OR Fields!SideSlip.Value &gt; Fields!MaxSideSlip.Value, "ü", "")</Value>
+                    <Value>=IIF(Fields!SideSlipResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1212,7 +1212,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.42882in</Top>
+            <Top>2.41702in</Top>
             <Left>7.02542in</Left>
             <Height>0.19444in</Height>
             <Width>0.24342in</Width>
@@ -1554,13 +1554,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF((Fields!FrontDiffBrake.Value &lt;= Fields!DiffFrontBrakeMax.Value) 
-AND (Fields!RearDiffBrake.Value &lt;= Fields!DiffFrontBrakeMax.Value)
-AND (Fields!HandDiffBrake.Value &lt;= Fields!DiffFrontBrakeMax.Value)
-AND (Fields!FrontSumBrake.Value &gt;= Fields!MinFrontBrake.Value)
-AND (Fields!RearSumBrake.Value &gt;= Fields!MinRearBrake.Value)
-AND (Fields!HandSumBrake.Value &gt;= Fields!MinHandBrake.Value)
-, "ü", "")</Value>
+                    <Value>=IIF(Fields!BrakeResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1623,13 +1617,7 @@ AND (Fields!HandSumBrake.Value &gt;= Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF((Fields!FrontDiffBrake.Value &gt; Fields!DiffFrontBrakeMax.Value) 
-OR (Fields!RearDiffBrake.Value &gt; Fields!DiffFrontBrakeMax.Value)
-OR (Fields!HandDiffBrake.Value &gt; Fields!DiffFrontBrakeMax.Value)
-OR (Fields!FrontSumBrake.Value &lt; Fields!MinFrontBrake.Value)
-OR (Fields!RearSumBrake.Value &lt; Fields!MinRearBrake.Value)
-OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
-, "ü", "")</Value>
+                    <Value>=IIF(Fields!BrakeResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -2191,7 +2179,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffFrontBrakeMax.Value</Value>
+                    <Value>=Fields!MaxDiffFrontBrake.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2223,7 +2211,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffRearBrakeMax.Value</Value>
+                    <Value>=Fields!MaxDiffRearBrake.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2255,7 +2243,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffHandBrakeMax.Value</Value>
+                    <Value>=Fields!MaxDiffHandBrake.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2641,7 +2629,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!Speed.Value &gt;= Fields!MinSpeed.Value AND Fields!Speed.Value &lt;= Fields!MaxSpeed.Value, "ü", "")</Value>
+                    <Value>=IIF(Fields!SpeedResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -2704,7 +2692,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!Speed.Value &lt; Fields!MinSpeed.Value OR Fields!Speed.Value &gt; Fields!MaxSpeed.Value, "ü", "")</Value>
+                    <Value>=IIF(Fields!SpeedResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -2963,7 +2951,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!HC.Value &lt;= Fields!MaxHC.Value AND Fields!CO.Value &lt;= Fields!MaxCO.Value, "ü", "")</Value>
+                    <Value>=IIF(Fields!PetrolResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -3026,7 +3014,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!HC.Value &gt; Fields!MaxHC.Value OR Fields!CO.Value &gt; Fields!MaxCO.Value, "ü", "")</Value>
+                    <Value>=IIF(Fields!PetrolResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -3444,7 +3432,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!AvgHSU.Value &lt;= Fields!MaxHSU.Value, "ü", " ")</Value>
+                    <Value>=IIF(Fields!DieselResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -3507,7 +3495,7 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!AvgHSU.Value &gt; Fields!MaxHSU.Value, "ü", " ")</Value>
+                    <Value>=IIF(Fields!DieselResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -4363,29 +4351,11 @@ OR (Fields!HandSumBrake.Value &lt; Fields!MinHandBrake.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF((Fields!LHLIntensity.Value &gt;= Fields!MinHLIntensity.Value)
-AND (Fields!RHLIntensity.Value &gt;= Fields!MinHLIntensity.Value)
-AND (Fields!DiffVertiHLMax.Value &gt;= Fields!LHLVertical.Value) 
-AND (Fields!LHLVertical.Value &gt;= Fields!DiffVertiHLMin.Value)
-AND (Fields!DiffVertiHLMax.Value &gt;= Fields!RHLVertical.Value) 
-AND (Fields!RHLVertical.Value &gt;= Fields!DiffVertiHLMin.Value)
-AND (Fields!DiffHoriHLMax.Value &gt;= Fields!LHLHorizontal.Value) 
-AND (Fields!LHLHorizontal.Value &gt;= Fields!DiffHoriHLMin.Value)
-AND (Fields!DiffHoriHLMax.Value &gt;= Fields!RHLHorizontal.Value) 
-AND (Fields!RHLHorizontal.Value &gt;= Fields!DiffHoriHLMin.Value)
-AND (Fields!LLBIntensity.Value &gt;= Fields!MinLBIntensity.Value) 
-AND (Fields!RLBIntensity.Value &gt;= Fields!MinLBIntensity.Value)
-AND (Fields!DiffVertiLBMax.Value &gt;= Fields!LLBVertical.Value) 
-AND (Fields!LLBVertical.Value &gt;= Fields!DiffVertiLBMin.Value)
-AND (Fields!DiffVertiLBMax.Value &gt;= Fields!RLBVertical.Value) 
-AND (Fields!RLBVertical.Value &gt;= Fields!DiffVertiLBMin.Value)
-AND (Fields!DiffHoriLBMax.Value &gt;= Fields!LLBHorizontal.Value)
-AND (Fields!LLBHorizontal.Value &gt;= Fields!DiffHoriLBMin.Value)
-AND (Fields!DiffHoriLBMax.Value &gt;= Fields!RLBHorizontal.Value)
-AND (Fields!RLBHorizontal.Value &gt;= Fields!DiffHoriLBMin.Value), "ü", " ")</Value>
+                    <Value>=IIF(Fields!HLResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -4444,27 +4414,7 @@ AND (Fields!RLBHorizontal.Value &gt;= Fields!DiffHoriLBMin.Value), "ü", " ")</V
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF((Fields!LHLIntensity.Value &lt; Fields!MinHLIntensity.Value) 
-OR (Fields!RHLIntensity.Value &lt; Fields!MinHLIntensity.Value)
-OR (Fields!DiffVertiHLMax.Value &lt; Fields!LHLVertical.Value) 
-OR (Fields!LHLVertical.Value &lt; Fields!DiffVertiHLMin.Value)
-OR (Fields!DiffVertiHLMax.Value &lt; Fields!RHLVertical.Value) 
-OR (Fields!RHLVertical.Value &lt; Fields!DiffVertiHLMin.Value)
-OR (Fields!DiffHoriHLMax.Value &lt; Fields!LHLHorizontal.Value) 
-OR (Fields!LHLHorizontal.Value &lt; Fields!DiffHoriHLMin.Value)
-OR (Fields!DiffHoriHLMax.Value &lt; Fields!RHLHorizontal.Value) 
-OR (Fields!RHLHorizontal.Value &lt; Fields!DiffHoriHLMin.Value)
-OR (Fields!LLBIntensity.Value &lt; Fields!MinLBIntensity.Value) 
-OR (Fields!RLBIntensity.Value &lt; Fields!MinLBIntensity.Value)
-OR (Fields!DiffVertiLBMax.Value &lt; Fields!LLBVertical.Value) 
-OR (Fields!LLBVertical.Value &lt; Fields!DiffVertiLBMin.Value)
-OR (Fields!DiffVertiLBMax.Value &lt; Fields!RLBVertical.Value) 
-OR (Fields!RLBVertical.Value &lt; Fields!DiffVertiLBMin.Value)
-OR (Fields!DiffHoriLBMax.Value &lt; Fields!LLBHorizontal.Value) 
-OR (Fields!LLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
-OR (Fields!DiffHoriLBMax.Value &lt; Fields!RLBHorizontal.Value) 
-OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
-, "ü", " ")</Value>
+                    <Value>=IIF(Fields!HLResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -4601,7 +4551,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.09548in</Top>
             <Left>1.4282in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.72221in</Width>
             <ZIndex>152</ZIndex>
             <Style>
               <Border>
@@ -4633,7 +4583,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36979in</Top>
             <Left>1.4282in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.72221in</Width>
             <ZIndex>153</ZIndex>
             <Style>
               <Border>
@@ -4695,7 +4645,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.1059in</Top>
             <Left>3.1715in</Left>
             <Height>0.25in</Height>
-            <Width>0.9866in</Width>
+            <Width>1.07132in</Width>
             <ZIndex>155</ZIndex>
             <Style>
               <Border>
@@ -4714,7 +4664,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffVertiHLMin.Value</Value>
+                    <Value>=Fields!MinDiffVertiHB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -4727,7 +4677,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36146in</Top>
             <Left>3.1715in</Left>
             <Height>0.25in</Height>
-            <Width>0.40017in</Width>
+            <Width>0.45461in</Width>
             <ZIndex>156</ZIndex>
             <Style>
               <Border>
@@ -4789,7 +4739,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.1059in</Top>
             <Left>4.69841in</Left>
             <Height>0.25in</Height>
-            <Width>0.51102in</Width>
+            <Width>0.7361in</Width>
             <ZIndex>158</ZIndex>
             <Style>
               <Border>
@@ -4821,7 +4771,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36979in</Top>
             <Left>4.69841in</Left>
             <Height>0.25in</Height>
-            <Width>0.51102in</Width>
+            <Width>0.7361in</Width>
             <ZIndex>159</ZIndex>
             <Style>
               <Border>
@@ -4883,7 +4833,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.1059in</Top>
             <Left>6.34834in</Left>
             <Height>0.25in</Height>
-            <Width>0.95807in</Width>
+            <Width>1.03063in</Width>
             <ZIndex>161</ZIndex>
             <Style>
               <Border>
@@ -4945,7 +4895,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64756in</Top>
             <Left>1.4282in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.72221in</Width>
             <ZIndex>163</ZIndex>
             <Style>
               <Border>
@@ -4964,7 +4914,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffHoriHLMin.Value</Value>
+                    <Value>=Fields!MinDiffHoriHB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -4977,7 +4927,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.63923in</Top>
             <Left>3.1715in</Left>
             <Height>0.25in</Height>
-            <Width>0.40017in</Width>
+            <Width>0.45461in</Width>
             <ZIndex>164</ZIndex>
             <Style>
               <Border>
@@ -5009,7 +4959,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64756in</Top>
             <Left>4.69841in</Left>
             <Height>0.25in</Height>
-            <Width>0.51102in</Width>
+            <Width>0.7361in</Width>
             <ZIndex>165</ZIndex>
             <Style>
               <Border>
@@ -5052,7 +5002,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.09548in</Top>
             <Left>2.43105in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.67101in</Width>
             <ZIndex>167</ZIndex>
             <Style>
               <Border>
@@ -5084,7 +5034,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36979in</Top>
             <Left>2.43105in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.67101in</Width>
             <ZIndex>168</ZIndex>
             <Style>
               <Border>
@@ -5116,7 +5066,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64756in</Top>
             <Left>2.43105in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.67101in</Width>
             <ZIndex>169</ZIndex>
             <Style>
               <Border>
@@ -5144,9 +5094,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09201in</Top>
-            <Left>2.13591in</Left>
+            <Left>2.26091in</Left>
             <Height>0.25in</Height>
-            <Width>0.27603in</Width>
+            <Width>0.15103in</Width>
             <ZIndex>170</ZIndex>
             <Style>
               <Border>
@@ -5174,9 +5124,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36632in</Top>
-            <Left>2.13591in</Left>
+            <Left>2.26091in</Left>
             <Height>0.25in</Height>
-            <Width>0.27603in</Width>
+            <Width>0.15103in</Width>
             <ZIndex>171</ZIndex>
             <Style>
               <Border>
@@ -5204,9 +5154,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64409in</Top>
-            <Left>2.13591in</Left>
+            <Left>2.26091in</Left>
             <Height>0.25in</Height>
-            <Width>0.27603in</Width>
+            <Width>0.15103in</Width>
             <ZIndex>172</ZIndex>
             <Style>
               <Border>
@@ -5234,9 +5184,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09548in</Top>
-            <Left>5.2511in</Left>
+            <Left>5.47618in</Left>
             <Height>0.25in</Height>
-            <Width>0.22396in</Width>
+            <Width>0.11979in</Width>
             <ZIndex>173</ZIndex>
             <Style>
               <Border>
@@ -5266,9 +5216,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09895in</Top>
-            <Left>5.54624in</Left>
+            <Left>5.59597in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.65513in</Width>
             <ZIndex>174</ZIndex>
             <Style>
               <Border>
@@ -5298,9 +5248,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.37326in</Top>
-            <Left>5.54624in</Left>
+            <Left>5.59597in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.65513in</Width>
             <ZIndex>175</ZIndex>
             <Style>
               <Border>
@@ -5328,9 +5278,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>5.2511in</Left>
+            <Left>5.47618in</Left>
             <Height>0.25in</Height>
-            <Width>0.22396in</Width>
+            <Width>0.11979in</Width>
             <ZIndex>176</ZIndex>
             <Style>
               <Border>
@@ -5358,9 +5308,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>5.2511in</Left>
+            <Left>5.47618in</Left>
             <Height>0.25in</Height>
-            <Width>0.22396in</Width>
+            <Width>0.11979in</Width>
             <ZIndex>177</ZIndex>
             <Style>
               <Border>
@@ -5390,9 +5340,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.65103in</Top>
-            <Left>5.54624in</Left>
+            <Left>5.59597in</Left>
             <Height>0.25in</Height>
-            <Width>0.62326in</Width>
+            <Width>0.65513in</Width>
             <ZIndex>178</ZIndex>
             <Style>
               <Border>
@@ -5472,7 +5422,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!Noise.Value &lt;= Fields!MaxNoise.Value, "ü", " ")</Value>
+                    <Value>=IIF(Fields!NoiseResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -5536,10 +5486,11 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!Noise.Value &gt; Fields!MaxNoise.Value, "ü", " ")</Value>
+                    <Value>=IIF(Fields!NoiseResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -5754,7 +5705,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!Whistle.Value &lt;= Fields!MaxWhistle.Value AND Fields!Whistle.Value &gt;= Fields!MinWhistle.Value, "ü", " ")</Value>
+                    <Value>=IIF(Fields!WhistleResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -5817,7 +5768,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(Fields!Whistle.Value &gt; Fields!MaxWhistle.Value OR Fields!Whistle.Value &lt; Fields!MinWhistle.Value, "ü", " ")</Value>
+                    <Value>=IIF(Fields!WhistleResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -5956,7 +5907,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>10.45658in</Top>
             <Left>5.99268in</Left>
             <Height>0.25in</Height>
-            <Width>0.58482in</Width>
+            <Width>0.68204in</Width>
             <ZIndex>196</ZIndex>
             <Style>
               <Border>
@@ -6059,10 +6010,11 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=IIF(Fields!FinalResult.Value = True, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -6121,10 +6073,11 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=IIF(Fields!FinalResult.Value = False, "ü", " ")</Value>
                     <Style>
                       <FontFamily>Wingdings</FontFamily>
                       <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -6283,7 +6236,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!LightHeight.Value</Value>
+                    <Value>=Fields!MinLightHeight.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6315,7 +6268,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffVertiHLMax.Value</Value>
+                    <Value>=Fields!MaxDiffVertiHB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6328,7 +6281,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36146in</Top>
             <Left>3.84972in</Left>
             <Height>0.25in</Height>
-            <Width>0.42795in</Width>
+            <Width>0.48581in</Width>
             <ZIndex>209</ZIndex>
             <Style>
               <Border>
@@ -6347,7 +6300,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffHoriHLMax.Value</Value>
+                    <Value>=Fields!MaxDiffHoriHB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6360,7 +6313,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64061in</Top>
             <Left>3.86361in</Left>
             <Height>0.25in</Height>
-            <Width>0.42795in</Width>
+            <Width>0.48581in</Width>
             <ZIndex>210</ZIndex>
             <Style>
               <Border>
@@ -6420,7 +6373,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64756in</Top>
             <Left>3.65389in</Left>
             <Height>0.25in</Height>
-            <Width>0.19583in</Width>
+            <Width>0.16805in</Width>
             <ZIndex>212</ZIndex>
             <Style>
               <Border>
@@ -6439,7 +6392,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffVertiLBMin.Value</Value>
+                    <Value>=Fields!MinDiffVertiLB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6452,7 +6405,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36632in</Top>
             <Left>6.34834in</Left>
             <Height>0.25in</Height>
-            <Width>0.41295in</Width>
+            <Width>0.44072in</Width>
             <ZIndex>213</ZIndex>
             <Style>
               <Border>
@@ -6471,7 +6424,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffHoriLBMin.Value</Value>
+                    <Value>=Fields!MinDiffHoriLB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6484,7 +6437,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64409in</Top>
             <Left>6.34834in</Left>
             <Height>0.25in</Height>
-            <Width>0.41295in</Width>
+            <Width>0.44072in</Width>
             <ZIndex>214</ZIndex>
             <Style>
               <Border>
@@ -6503,7 +6456,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffVertiLBMax.Value</Value>
+                    <Value>=Fields!MaxDiffVertiLB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6516,7 +6469,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.38021in</Top>
             <Left>7.02656in</Left>
             <Height>0.25in</Height>
-            <Width>0.35241in</Width>
+            <Width>0.40847in</Width>
             <ZIndex>215</ZIndex>
             <Style>
               <Border>
@@ -6535,7 +6488,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!DiffHoriLBMax.Value</Value>
+                    <Value>=Fields!MaxDiffHoriLB.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6548,7 +6501,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.65798in</Top>
             <Left>7.02656in</Left>
             <Height>0.25in</Height>
-            <Width>0.35241in</Width>
+            <Width>0.40847in</Width>
             <ZIndex>216</ZIndex>
             <Style>
               <Border>
@@ -6578,7 +6531,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.36979in</Top>
             <Left>6.84462in</Left>
             <Height>0.25in</Height>
-            <Width>0.16806in</Width>
+            <Width>0.13849in</Width>
             <ZIndex>217</ZIndex>
             <Style>
               <Border>
@@ -6608,7 +6561,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             <Top>9.64409in</Top>
             <Left>6.83073in</Left>
             <Height>0.25in</Height>
-            <Width>0.16806in</Width>
+            <Width>0.13849in</Width>
             <ZIndex>218</ZIndex>
             <Style>
               <Border>
@@ -6698,9 +6651,9 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.45658in</Top>
-            <Left>6.59139in</Left>
+            <Left>6.71639in</Left>
             <Height>0.25in</Height>
-            <Width>0.16806in</Width>
+            <Width>0.14029in</Width>
             <ZIndex>221</ZIndex>
             <Style>
               <Border>
@@ -6730,7 +6683,7 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.45658in</Top>
-            <Left>6.80112in</Left>
+            <Left>6.92612in</Left>
             <Height>0.25in</Height>
             <Width>0.57785in</Width>
             <ZIndex>222</ZIndex>
@@ -6744,27 +6697,25 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox584">
+          <Textbox Name="Textbox567">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Số sản xuất:</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
+                    <Value>Người phụ trách</Value>
+                    <Style />
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>0.74652in</Top>
-            <Left>5.6157in</Left>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>10.73436in</Top>
+            <Left>4.82341in</Left>
             <Height>0.25in</Height>
-            <Width>0.9618in</Width>
+            <Width>1.36458in</Width>
             <ZIndex>223</ZIndex>
             <Style>
               <Border>
@@ -6776,14 +6727,14 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox585">
+          <Textbox Name="Textbox458">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!SerialNumber.Value</Value>
+                    <Value>=Fields!Inspector.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6793,10 +6744,10 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>0.74652in</Top>
-            <Left>6.5914in</Left>
+            <Top>11.01214in</Top>
+            <Left>4.82341in</Left>
             <Height>0.25in</Height>
-            <Width>1.59784in</Width>
+            <Width>1.36458in</Width>
             <ZIndex>224</ZIndex>
             <Style>
               <Border>
@@ -6873,10 +6824,6 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
         </Field>
         <Field Name="Inspector">
           <DataField>Inspector</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="EngineNumber">
-          <DataField>EngineNumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="InspectionDate">
@@ -7043,16 +6990,16 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>FrontDiffBrake</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffFrontBrakeMax">
-          <DataField>DiffFrontBrakeMax</DataField>
+        <Field Name="MaxDiffFrontBrake">
+          <DataField>MaxDiffFrontBrake</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="RearDiffBrake">
           <DataField>RearDiffBrake</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffRearBrakeMax">
-          <DataField>DiffRearBrakeMax</DataField>
+        <Field Name="MaxDiffRearBrake">
+          <DataField>MaxDiffRearBrake</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="HandSumBrake">
@@ -7067,8 +7014,8 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>HandDiffBrake</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffHandBrakeMax">
-          <DataField>DiffHandBrakeMax</DataField>
+        <Field Name="MaxDiffHandBrake">
+          <DataField>MaxDiffHandBrake</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="LHLIntensity">
@@ -7087,12 +7034,12 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>LHLVertical</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffVertiHLMin">
-          <DataField>DiffVertiHLMin</DataField>
+        <Field Name="MinDiffVertiHB">
+          <DataField>MinDiffVertiHB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffVertiHLMax">
-          <DataField>DiffVertiHLMax</DataField>
+        <Field Name="MaxDiffVertiHB">
+          <DataField>MaxDiffVertiHB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="LHLHorizontal">
@@ -7103,12 +7050,12 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>RHLHorizontal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffHoriHLMin">
-          <DataField>DiffHoriHLMin</DataField>
+        <Field Name="MinDiffHoriHB">
+          <DataField>MinDiffHoriHB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffHoriHLMax">
-          <DataField>DiffHoriHLMax</DataField>
+        <Field Name="MaxDiffHoriHB">
+          <DataField>MaxDiffHoriHB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="LLBIntensity">
@@ -7131,12 +7078,12 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>RLBVertical</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffVertiLBMin">
-          <DataField>DiffVertiLBMin</DataField>
+        <Field Name="MinDiffVertiLB">
+          <DataField>MinDiffVertiLB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffVertiLBMax">
-          <DataField>DiffVertiLBMax</DataField>
+        <Field Name="MaxDiffVertiLB">
+          <DataField>MaxDiffVertiLB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="LLBHorizontal">
@@ -7147,12 +7094,12 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>RLBHorizontal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffHoriLBMin">
-          <DataField>DiffHoriLBMin</DataField>
+        <Field Name="MinDiffHoriLB">
+          <DataField>MinDiffHoriLB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DiffHoriLBMax">
-          <DataField>DiffHoriLBMax</DataField>
+        <Field Name="MaxDiffHoriLB">
+          <DataField>MaxDiffHoriLB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="MinSpeed1">
@@ -7203,8 +7150,44 @@ OR (Fields!RLBHorizontal.Value &lt; Fields!DiffHoriLBMin.Value)
           <DataField>RHLVertical</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="LightHeight">
-          <DataField>LightHeight</DataField>
+        <Field Name="MinLightHeight">
+          <DataField>MinLightHeight</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SideSlipResult">
+          <DataField>SideSlipResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BrakeResult">
+          <DataField>BrakeResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SpeedResult">
+          <DataField>SpeedResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PetrolResult">
+          <DataField>PetrolResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DieselResult">
+          <DataField>DieselResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HLResult">
+          <DataField>HLResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NoiseResult">
+          <DataField>NoiseResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WhistleResult">
+          <DataField>WhistleResult</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FinalResult">
+          <DataField>FinalResult</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

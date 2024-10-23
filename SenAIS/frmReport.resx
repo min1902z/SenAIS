@@ -122,10 +122,43 @@
     <value>True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnExportReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnEditSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnEditSave.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt, style=Bold</value>
+  </data>
+  <data name="btnEditSave.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnEditSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1156, 67</value>
+  </data>
+  <data name="btnEditSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 52</value>
+  </data>
+  <data name="btnEditSave.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnEditSave.Text" xml:space="preserve">
+    <value>Chỉnh sửa</value>
+  </data>
+  <data name="&gt;&gt;btnEditSave.Name" xml:space="preserve">
+    <value>btnEditSave</value>
+  </data>
+  <data name="&gt;&gt;btnEditSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEditSave.Parent" xml:space="preserve">
+    <value>ReportPanel</value>
+  </data>
+  <data name="&gt;&gt;btnEditSave.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnExportReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="btnExportReport.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt, style=Bold</value>
   </data>
@@ -154,7 +187,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;btnExportReport.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="StaticTitlePanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
@@ -214,7 +247,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;StaticTitlePanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="StaticPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -4059,96 +4092,6 @@
   <data name="tbVehicleInfo.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="txtDateInspec.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtDateInspec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 177</value>
-  </data>
-  <data name="txtDateInspec.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtDateInspec.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 33</value>
-  </data>
-  <data name="txtDateInspec.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="txtDateInspec.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.Name" xml:space="preserve">
-    <value>txtDateInspec</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtSerialNum.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 142</value>
-  </data>
-  <data name="txtSerialNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtSerialNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 33</value>
-  </data>
-  <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="txtSerialNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
-    <value>txtSerialNum</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtEngineNum.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtEngineNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 107</value>
-  </data>
-  <data name="txtEngineNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtEngineNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 33</value>
-  </data>
-  <data name="txtEngineNum.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="txtEngineNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtEngineNum.Name" xml:space="preserve">
-    <value>txtEngineNum</value>
-  </data>
-  <data name="&gt;&gt;txtEngineNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtEngineNum.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;txtEngineNum.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="txtFrameNum.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt</value>
   </data>
@@ -4177,7 +4120,7 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;txtFrameNum.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="txtInspector.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt</value>
@@ -4207,7 +4150,7 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;txtInspector.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="lbTypeCarTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4240,7 +4183,7 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;lbTypeCarTitle.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="lbFrameNumTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4273,106 +4216,7 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;lbFrameNumTitle.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lbEngineNumTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbEngineNumTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="lbEngineNumTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 105</value>
-  </data>
-  <data name="lbEngineNumTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lbEngineNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 26</value>
-  </data>
-  <data name="lbEngineNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="lbEngineNumTitle.Text" xml:space="preserve">
-    <value>Số máy</value>
-  </data>
-  <data name="&gt;&gt;lbEngineNumTitle.Name" xml:space="preserve">
-    <value>lbEngineNumTitle</value>
-  </data>
-  <data name="&gt;&gt;lbEngineNumTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbEngineNumTitle.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;lbEngineNumTitle.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lbSerialNumTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbSerialNumTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="lbSerialNumTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 140</value>
-  </data>
-  <data name="lbSerialNumTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lbSerialNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 26</value>
-  </data>
-  <data name="lbSerialNumTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lbSerialNumTitle.Text" xml:space="preserve">
-    <value>Số sản suất</value>
-  </data>
-  <data name="&gt;&gt;lbSerialNumTitle.Name" xml:space="preserve">
-    <value>lbSerialNumTitle</value>
-  </data>
-  <data name="&gt;&gt;lbSerialNumTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbSerialNumTitle.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;lbSerialNumTitle.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="lbDateInspecTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbDateInspecTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="lbDateInspecTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 175</value>
-  </data>
-  <data name="lbDateInspecTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lbDateInspecTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
-  </data>
-  <data name="lbDateInspecTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lbDateInspecTitle.Text" xml:space="preserve">
-    <value>Ngày kiểm tra</value>
-  </data>
-  <data name="&gt;&gt;lbDateInspecTitle.Name" xml:space="preserve">
-    <value>lbDateInspecTitle</value>
-  </data>
-  <data name="&gt;&gt;lbDateInspecTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbDateInspecTitle.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;lbDateInspecTitle.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="txtTypeCar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt</value>
@@ -4402,7 +4246,7 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;txtTypeCar.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>4</value>
   </data>
   <data name="lbInspectorTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4435,7 +4279,133 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;lbInspectorTitle.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>5</value>
+  </data>
+  <data name="lbSerialNumTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbSerialNumTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt</value>
+  </data>
+  <data name="lbSerialNumTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 105</value>
+  </data>
+  <data name="lbSerialNumTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbSerialNumTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 26</value>
+  </data>
+  <data name="lbSerialNumTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="lbSerialNumTitle.Text" xml:space="preserve">
+    <value>Số máy</value>
+  </data>
+  <data name="&gt;&gt;lbSerialNumTitle.Name" xml:space="preserve">
+    <value>lbSerialNumTitle</value>
+  </data>
+  <data name="&gt;&gt;lbSerialNumTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbSerialNumTitle.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;lbSerialNumTitle.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txtSerialNum.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt</value>
+  </data>
+  <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 107</value>
+  </data>
+  <data name="txtSerialNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="txtSerialNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 33</value>
+  </data>
+  <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="txtSerialNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
+    <value>txtSerialNum</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lbDateInspecTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbDateInspecTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt</value>
+  </data>
+  <data name="lbDateInspecTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 140</value>
+  </data>
+  <data name="lbDateInspecTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbDateInspecTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 26</value>
+  </data>
+  <data name="lbDateInspecTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="lbDateInspecTitle.Text" xml:space="preserve">
+    <value>Ngày kiểm tra</value>
+  </data>
+  <data name="&gt;&gt;lbDateInspecTitle.Name" xml:space="preserve">
+    <value>lbDateInspecTitle</value>
+  </data>
+  <data name="&gt;&gt;lbDateInspecTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbDateInspecTitle.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;lbDateInspecTitle.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="txtDateInspec.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt</value>
+  </data>
+  <data name="txtDateInspec.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 142</value>
+  </data>
+  <data name="txtDateInspec.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="txtDateInspec.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 33</value>
+  </data>
+  <data name="txtDateInspec.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="txtDateInspec.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.Name" xml:space="preserve">
+    <value>txtDateInspec</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="tbVehicleInfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 18pt</value>
@@ -4468,7 +4438,7 @@
     <value>0</value>
   </data>
   <data name="tbVehicleInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtDateInspec" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtSerialNum" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrameNum" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtInspector" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbEngineNumTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbDateInspecTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtTypeCar" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,300,Absolute,20" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtFrameNum" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtInspector" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtTypeCar" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtSerialNum" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbDateInspecTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtDateInspec" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,300,Absolute,20" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbVehicleTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4549,7 +4519,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;StaticPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="SearchPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -4570,7 +4540,7 @@
     <value>51</value>
   </data>
   <data name="dgVehicleInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>529, 602</value>
+    <value>529, 589</value>
   </data>
   <data name="dgVehicleInfo.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -4672,7 +4642,7 @@
     <value>3, 158</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 698</value>
+    <value>559, 708</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -4687,7 +4657,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;SearchPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="ReportPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

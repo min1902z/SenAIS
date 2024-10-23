@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReport));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportPanel = new System.Windows.Forms.Panel();
+            this.btnEditSave = new System.Windows.Forms.Button();
             this.btnExportReport = new System.Windows.Forms.Button();
             this.StaticTitlePanel = new System.Windows.Forms.Panel();
             this.lbReportTitle = new System.Windows.Forms.Label();
@@ -157,18 +160,16 @@
             this.lbSpeedPanelTitle = new System.Windows.Forms.Label();
             this.VehiclePanel = new System.Windows.Forms.Panel();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
-            this.txtDateInspec = new System.Windows.Forms.TextBox();
-            this.txtSerialNum = new System.Windows.Forms.TextBox();
-            this.txtEngineNum = new System.Windows.Forms.TextBox();
             this.txtFrameNum = new System.Windows.Forms.TextBox();
             this.txtInspector = new System.Windows.Forms.TextBox();
             this.lbTypeCarTitle = new System.Windows.Forms.Label();
             this.lbFrameNumTitle = new System.Windows.Forms.Label();
-            this.lbEngineNumTitle = new System.Windows.Forms.Label();
-            this.lbSerialNumTitle = new System.Windows.Forms.Label();
-            this.lbDateInspecTitle = new System.Windows.Forms.Label();
             this.txtTypeCar = new System.Windows.Forms.TextBox();
             this.lbInspectorTitle = new System.Windows.Forms.Label();
+            this.lbSerialNumTitle = new System.Windows.Forms.Label();
+            this.txtSerialNum = new System.Windows.Forms.TextBox();
+            this.lbDateInspecTitle = new System.Windows.Forms.Label();
+            this.txtDateInspec = new System.Windows.Forms.TextBox();
             this.lbVehicleTitle = new System.Windows.Forms.Label();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
@@ -202,11 +203,21 @@
             // 
             resources.ApplyResources(this.ReportPanel, "ReportPanel");
             this.ReportPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ReportPanel.Controls.Add(this.btnEditSave);
             this.ReportPanel.Controls.Add(this.btnExportReport);
             this.ReportPanel.Controls.Add(this.StaticTitlePanel);
             this.ReportPanel.Controls.Add(this.StaticPanel);
             this.ReportPanel.Controls.Add(this.SearchPanel);
             this.ReportPanel.Name = "ReportPanel";
+            // 
+            // btnEditSave
+            // 
+            resources.ApplyResources(this.btnEditSave, "btnEditSave");
+            this.btnEditSave.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEditSave.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnEditSave.Name = "btnEditSave";
+            this.btnEditSave.UseVisualStyleBackColor = false;
+            this.btnEditSave.Click += new System.EventHandler(this.btnEditSave_Click);
             // 
             // btnExportReport
             // 
@@ -1210,44 +1221,18 @@
             // tbVehicleInfo
             // 
             resources.ApplyResources(this.tbVehicleInfo, "tbVehicleInfo");
-            this.tbVehicleInfo.Controls.Add(this.txtDateInspec, 1, 5);
-            this.tbVehicleInfo.Controls.Add(this.txtSerialNum, 1, 4);
-            this.tbVehicleInfo.Controls.Add(this.txtEngineNum, 1, 3);
             this.tbVehicleInfo.Controls.Add(this.txtFrameNum, 1, 2);
             this.tbVehicleInfo.Controls.Add(this.txtInspector, 1, 1);
             this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 0);
             this.tbVehicleInfo.Controls.Add(this.lbFrameNumTitle, 0, 2);
-            this.tbVehicleInfo.Controls.Add(this.lbEngineNumTitle, 0, 3);
-            this.tbVehicleInfo.Controls.Add(this.lbSerialNumTitle, 0, 4);
-            this.tbVehicleInfo.Controls.Add(this.lbDateInspecTitle, 0, 5);
             this.tbVehicleInfo.Controls.Add(this.txtTypeCar, 1, 0);
             this.tbVehicleInfo.Controls.Add(this.lbInspectorTitle, 0, 1);
+            this.tbVehicleInfo.Controls.Add(this.lbSerialNumTitle, 0, 3);
+            this.tbVehicleInfo.Controls.Add(this.txtSerialNum, 1, 3);
+            this.tbVehicleInfo.Controls.Add(this.lbDateInspecTitle, 0, 4);
+            this.tbVehicleInfo.Controls.Add(this.txtDateInspec, 1, 4);
             this.tbVehicleInfo.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tbVehicleInfo.Name = "tbVehicleInfo";
-            // 
-            // txtDateInspec
-            // 
-            this.txtDateInspec.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtDateInspec, "txtDateInspec");
-            this.txtDateInspec.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtDateInspec.Name = "txtDateInspec";
-            this.txtDateInspec.ReadOnly = true;
-            // 
-            // txtSerialNum
-            // 
-            this.txtSerialNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtSerialNum, "txtSerialNum");
-            this.txtSerialNum.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtSerialNum.Name = "txtSerialNum";
-            this.txtSerialNum.ReadOnly = true;
-            // 
-            // txtEngineNum
-            // 
-            this.txtEngineNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtEngineNum, "txtEngineNum");
-            this.txtEngineNum.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtEngineNum.Name = "txtEngineNum";
-            this.txtEngineNum.ReadOnly = true;
             // 
             // txtFrameNum
             // 
@@ -1277,24 +1262,6 @@
             this.lbFrameNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbFrameNumTitle.Name = "lbFrameNumTitle";
             // 
-            // lbEngineNumTitle
-            // 
-            resources.ApplyResources(this.lbEngineNumTitle, "lbEngineNumTitle");
-            this.lbEngineNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbEngineNumTitle.Name = "lbEngineNumTitle";
-            // 
-            // lbSerialNumTitle
-            // 
-            resources.ApplyResources(this.lbSerialNumTitle, "lbSerialNumTitle");
-            this.lbSerialNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbSerialNumTitle.Name = "lbSerialNumTitle";
-            // 
-            // lbDateInspecTitle
-            // 
-            resources.ApplyResources(this.lbDateInspecTitle, "lbDateInspecTitle");
-            this.lbDateInspecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbDateInspecTitle.Name = "lbDateInspecTitle";
-            // 
             // txtTypeCar
             // 
             this.txtTypeCar.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1308,6 +1275,34 @@
             resources.ApplyResources(this.lbInspectorTitle, "lbInspectorTitle");
             this.lbInspectorTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbInspectorTitle.Name = "lbInspectorTitle";
+            // 
+            // lbSerialNumTitle
+            // 
+            resources.ApplyResources(this.lbSerialNumTitle, "lbSerialNumTitle");
+            this.lbSerialNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbSerialNumTitle.Name = "lbSerialNumTitle";
+            // 
+            // txtSerialNum
+            // 
+            this.txtSerialNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtSerialNum, "txtSerialNum");
+            this.txtSerialNum.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtSerialNum.Name = "txtSerialNum";
+            this.txtSerialNum.ReadOnly = true;
+            // 
+            // lbDateInspecTitle
+            // 
+            resources.ApplyResources(this.lbDateInspecTitle, "lbDateInspecTitle");
+            this.lbDateInspecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbDateInspecTitle.Name = "lbDateInspecTitle";
+            // 
+            // txtDateInspec
+            // 
+            this.txtDateInspec.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtDateInspec, "txtDateInspec");
+            this.txtDateInspec.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtDateInspec.Name = "txtDateInspec";
+            this.txtDateInspec.ReadOnly = true;
             // 
             // lbVehicleTitle
             // 
@@ -1333,7 +1328,23 @@
             this.dgVehicleInfo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgVehicleInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgVehicleInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgVehicleInfo.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgVehicleInfo.Name = "dgVehicleInfo";
             this.dgVehicleInfo.ReadOnly = true;
             this.dgVehicleInfo.SelectionChanged += new System.EventHandler(this.dgVehicleInfo_SelectionChanged);
@@ -1365,8 +1376,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ReportPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmReport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ReportPanel.ResumeLayout(false);
@@ -1544,12 +1553,10 @@
         private System.Windows.Forms.TableLayoutPanel tbVehicleInfo;
         private System.Windows.Forms.TextBox txtDateInspec;
         private System.Windows.Forms.TextBox txtSerialNum;
-        private System.Windows.Forms.TextBox txtEngineNum;
         private System.Windows.Forms.TextBox txtFrameNum;
         private System.Windows.Forms.TextBox txtInspector;
         private System.Windows.Forms.Label lbTypeCarTitle;
         private System.Windows.Forms.Label lbFrameNumTitle;
-        private System.Windows.Forms.Label lbEngineNumTitle;
         private System.Windows.Forms.Label lbSerialNumTitle;
         private System.Windows.Forms.Label lbDateInspecTitle;
         private System.Windows.Forms.TextBox txtTypeCar;
@@ -1561,5 +1568,6 @@
         private System.Windows.Forms.DataGridView dgVehicleInfo;
         private System.Windows.Forms.Label lbVehicleTitle;
         private System.Windows.Forms.Button btnExportReport;
+        private System.Windows.Forms.Button btnEditSave;
     }
 }

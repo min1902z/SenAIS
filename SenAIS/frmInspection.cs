@@ -14,6 +14,7 @@ namespace SenAIS
 {
     public partial class frmInspection : Form
     {
+        private SenAIS senAIS;
         private OPCServer opcServer;
         private OPCGroup opcGroup;
         private OPCItem opcCounterPos;
@@ -23,9 +24,9 @@ namespace SenAIS
         private string vehicleType;
         private string inspector;
         private string frameNumber;
-        private string engineNumber;
         public string serialNumber { get; set; }
         private DateTime inspectionDate;
+        private string fuelType;
         public frmInspection()
         {
             InitializeComponent();
@@ -34,10 +35,10 @@ namespace SenAIS
             InitializeOPC();
         }
 
-        public frmInspection(SenAIS senAIS)
-        {
-            this.senAIS = senAIS;
-        }
+        //public frmInspection(SenAIS senAIS)
+        //{
+        //    this.senAIS = senAIS;
+        //}
 
         private void InitializeOPC()
         {
@@ -74,82 +75,88 @@ namespace SenAIS
         }
         public void ProcessMeasurement(int counterPos)
         {
-            if (currentMeasurementForm != null)
-            {
-                currentMeasurementForm.Close();
-            }
+            // Select the form to open based on the counter position
             Form formToOpen = null;
             switch (counterPos)
             {
                 case 0:
-                    OpenNewForm(new frmWaiting());
+                    formToOpen = new frmWaiting();
                     break;
                 case 1:
-                    OpenNewForm(new frmSpeed(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmSpeed(this, opcCounterPos, this.serialNumber);
                     break;
                 case 2:
-                    OpenNewForm(new frmSideSlip(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmSideSlip(this, opcCounterPos, this.serialNumber);
                     break;
                 case 3:
-                    OpenNewForm(new frmNoise(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmNoise(this, opcCounterPos, this.serialNumber);
                     break;
                 case 4:
-                    OpenNewForm(new frmFrontWeight(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmFrontWeight(this, opcCounterPos, this.serialNumber);
                     break;
                 case 5:
-                    OpenNewForm(new frmRearWeight(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmRearWeight(this, opcCounterPos, this.serialNumber);
                     break;
                 case 6:
-                    OpenNewForm(new frmWhistle(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmWhistle(this, opcCounterPos, this.serialNumber);
                     break;
                 case 7:
-                    OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmFrontBrake(this, opcCounterPos, this.serialNumber);
                     break;
                 case 8:
-                    OpenNewForm(new frmRearBrake(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmRearBrake(this, opcCounterPos, this.serialNumber);
                     break;
                 case 9:
-                    OpenNewForm(new frmHandBrake(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmHandBrake(this, opcCounterPos, this.serialNumber);
                     break;
                 case 10:
-                    OpenNewForm(new frmHeadLightL(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmHeadLightL(this, opcCounterPos, this.serialNumber);
                     break;
                 case 11:
-                    OpenNewForm(new frmHeadLightR(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmHeadLightR(this, opcCounterPos, this.serialNumber);
                     break;
                 case 12:
-                    OpenNewForm(new frmCosLightL(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmCosLightL(this, opcCounterPos, this.serialNumber);
                     break;
                 case 13:
-                    OpenNewForm(new frmCosLightR(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmCosLightR(this, opcCounterPos, this.serialNumber);
                     break;
                 case 14:
-                    OpenNewForm(new frmGasEmission(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmGasEmission(this, opcCounterPos, this.serialNumber);
                     break;
                 case 15:
-                    OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
+                    formToOpen = new frmDieselEmission(this, opcCounterPos, this.serialNumber);
                     break;
                 default:
-                    MessageBox.Show("Giá trị CounterPosition không hợp lệ.");
+                    MessageBox.Show("Invalid counter position.");
                     break;
             }
+
+            // If a form was determined to open, show it
             if (formToOpen != null)
             {
-                currentMeasurementForm = formToOpen;
                 formToOpen.Show();
+                formToOpen.BringToFront();  // Bring the new form to the front
             }
         }
-        private Form currentForm = null;
-        private SenAIS senAIS;
-
+        private List<Form> openForms = new List<Form>();
         private void OpenNewForm(Form newForm)
         {
-            if (currentForm != null)
+            // Kiểm tra nếu form đã mở hay chưa
+            var openedForm = openForms.FirstOrDefault(f => f.GetType() == newForm.GetType());
+            if (openedForm != null)
             {
-                currentForm.Close();
+                // Nếu form đã mở, đưa nó lên trước
+                openedForm.BringToFront();  // Đưa form lên đầu
+                openedForm.Activate();      // Kích hoạt form để nhận focus
             }
-            currentForm = newForm;
-            newForm.Show();
+            else
+            {
+                // Nếu form chưa mở, mở form mới
+                openForms.Add(newForm);  // Thêm form vào danh sách
+                newForm.FormClosed += (s, e) => openForms.Remove(newForm);  // Gỡ form khỏi danh sách khi đóng
+                newForm.Show();  // Hiển thị form mới
+            }
         }
         private void btnSpeed_Click(object sender, EventArgs e)
         {
@@ -247,24 +254,24 @@ namespace SenAIS
             {
                 return; // Dừng lại nếu dữ liệu không đủ và không lưu được
             }
-            try
-            {
-                if (opcCounterPos != null)
-                {
-                    object value;
-                    opcCounterPos.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
-                    int t99Value = Convert.ToInt32(value);
-                    ProcessMeasurement(t99Value);
-                }
-                else
-                {
-                    MessageBox.Show("CounterPosition chưa được khởi tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi đọc giá trị CounterPosition: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    if (opcCounterPos != null)
+            //    {
+            //        object value;
+            //        opcCounterPos.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
+            //        int t99Value = Convert.ToInt32(value);
+            //        ProcessMeasurement(t99Value);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("CounterPosition chưa được khởi tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Lỗi khi đọc giá trị CounterPosition: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         private void LoadVehicleInfo()
         {
@@ -285,19 +292,19 @@ namespace SenAIS
             vehicleType = cbTypeCar.SelectedValue.ToString();
             inspector = cbInspector.SelectedValue.ToString();
             frameNumber = txtFrameNum.Text;
-            engineNumber = txtEngineNum.Text;
             serialNumber = txtSerialNum.Text;
             inspectionDate = dateInSpec.Value;
+            fuelType = cbFuel.SelectedItem.ToString();
 
             if (string.IsNullOrEmpty(vehicleType) || string.IsNullOrEmpty(inspector) ||
-                   string.IsNullOrEmpty(frameNumber) || string.IsNullOrEmpty(engineNumber) ||
+                   string.IsNullOrEmpty(frameNumber) || string.IsNullOrEmpty(fuelType) ||
                    string.IsNullOrEmpty(serialNumber))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ tất cả các trường thông tin của phương tiện", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             SQLHelper sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True;");
-            sqlHelper.SaveVehicleInfo(vehicleType, inspector, frameNumber, engineNumber, serialNumber, inspectionDate);
+            sqlHelper.SaveVehicleInfo(vehicleType, inspector, frameNumber, serialNumber, inspectionDate, fuelType);
             return true;
         }
         private bool CheckSerialNumber()

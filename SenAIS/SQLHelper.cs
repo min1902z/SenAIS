@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SenAIS
 {
@@ -465,15 +466,15 @@ namespace SenAIS
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string query = @"IF EXISTS (SELECT 1 FROM Whistle WHERE SerialNumber = @SerialNumber)
+                string query = @"IF EXISTS (SELECT 1 FROM Noise WHERE SerialNumber = @SerialNumber)
                          BEGIN
-                             UPDATE Whistle 
+                             UPDATE Noise 
                              SET Whistle = @Whistle
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
                          BEGIN
-                             INSERT INTO Whistle (SerialNumber, Whistle)
+                             INSERT INTO Noise (SerialNumber, Whistle)
                              VALUES (@SerialNumber, @Whistle)
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -484,7 +485,7 @@ namespace SenAIS
                 }
             }
         }
-        public void SaveVehicleInfo(string vehicleType, string inspector, string frameNumber, string engineNumber, string serialNumber, DateTime inspectionDate)
+        public void SaveVehicleInfo(string vehicleType, string inspector, string frameNumber, string serialNumber, DateTime inspectionDate, string fuelType)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -496,14 +497,14 @@ namespace SenAIS
                         SET VehicleType = @VehicleType,
                             Inspector = @Inspector,
                             FrameNumber = @FrameNumber,
-                            EngineNumber = @EngineNumber,
-                            InspectionDate = @InspectionDate
+                            InspectionDate = @InspectionDate,
+                            Fuel = @Fuel
                         WHERE SerialNumber = @SerialNumber
                     END
                     ELSE
                     BEGIN
-                        INSERT INTO VehicleInfo (VehicleType, Inspector, FrameNumber, EngineNumber, SerialNumber, InspectionDate)
-                        VALUES (@VehicleType, @Inspector, @FrameNumber, @EngineNumber, @SerialNumber, @InspectionDate)
+                        INSERT INTO VehicleInfo (VehicleType, Inspector, FrameNumber, SerialNumber, InspectionDate, Fuel)
+                        VALUES (@VehicleType, @Inspector, @FrameNumber, @SerialNumber, @InspectionDate, @Fuel)
                     END";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -511,9 +512,9 @@ namespace SenAIS
                     cmd.Parameters.AddWithValue("@VehicleType", vehicleType);
                     cmd.Parameters.AddWithValue("@Inspector", inspector);
                     cmd.Parameters.AddWithValue("@FrameNumber", frameNumber);
-                    cmd.Parameters.AddWithValue("@EngineNumber", engineNumber);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.Parameters.AddWithValue("@InspectionDate", inspectionDate);
+                    cmd.Parameters.AddWithValue("@Fuel", fuelType);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -540,15 +541,15 @@ namespace SenAIS
         public DataTable SearchVehicleInfo(string searchTerm)
         {
             string query = @"
-            SELECT FrameNumber, VehicleType, Inspector, EngineNumber, SerialNumber, InspectionDate 
+            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel
             FROM VehicleInfo 
             WHERE 
                 SerialNumber LIKE @SearchTerm OR
                 FrameNumber LIKE @SearchTerm OR
                 VehicleType LIKE @SearchTerm OR
                 Inspector LIKE @SearchTerm OR
-                EngineNumber LIKE @SearchTerm OR
-                InspectionDate LIKE @SearchTerm";
+                InspectionDate LIKE @SearchTerm OR
+                Fuel LIKE @SearchTerm";
 
             var parameters = new[]
             {
@@ -565,8 +566,8 @@ namespace SenAIS
                             vi.FrameNumber,
                             vi.VehicleType,
                             vi.Inspector,
-                            vi.EngineNumber,
                             vi.InspectionDate,
+                            vi.Fuel,
                             sp.Speed,
                             ss.SideSlip,
 	                        we.FrontLeftWeight,
@@ -690,6 +691,263 @@ namespace SenAIS
         new SqlParameter("@VehicleType", vehicleType)
             };
             return TableExecuteQuery(query, parameters);
+        }
+        public void UpdateSpeed(string serialNumber, decimal speed)
+        {
+            string query = @"UPDATE Speed 
+                     SET Speed = @Speed
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@Speed", speed)
+            };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateSideSlip(string serialNumber, decimal sideSlip)
+        {
+            string query = @"UPDATE SideSlip 
+                     SET SideSlip = @SideSlip
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@SideSlip", sideSlip)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateWeight(string serialNumber, decimal frontLeftWeight, decimal frontRightWeight, decimal rearLeftWeight, decimal rearRightWeight)
+        {
+            string query = @"UPDATE Weight 
+                     SET FrontLeftWeight = @FrontLeftWeight, 
+                         FrontRightWeight = @FrontRightWeight, 
+                         RearLeftWeight = @RearLeftWeight, 
+                         RearRightWeight = @RearRightWeight
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@FrontLeftWeight", frontLeftWeight),
+        new SqlParameter("@FrontRightWeight", frontRightWeight),
+        new SqlParameter("@RearLeftWeight", rearLeftWeight),
+        new SqlParameter("@RearRightWeight", rearRightWeight)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateBrakeForce(string serialNumber, decimal frontLeftBrake, decimal frontRightBrake, decimal rearLeftBrake, decimal rearRightBrake, decimal handBrakeLeft, decimal handBrakeRight)
+        {
+            string query = @"UPDATE BrakeForce 
+                     SET FrontLeftBrake = @FrontLeftBrake, 
+                         FrontRightBrake = @FrontRightBrake, 
+                         RearLeftBrake = @RearLeftBrake, 
+                         RearRightBrake = @RearRightBrake, 
+                         HandBrakeLeft = @HandBrakeLeft, 
+                         HandBrakeRight = @HandBrakeRight
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@FrontLeftBrake", frontLeftBrake),
+        new SqlParameter("@FrontRightBrake", frontRightBrake),
+        new SqlParameter("@RearLeftBrake", rearLeftBrake),
+        new SqlParameter("@RearRightBrake", rearRightBrake),
+        new SqlParameter("@HandBrakeLeft", handBrakeLeft),
+        new SqlParameter("@HandBrakeRight", handBrakeRight)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateNoise(string serialNumber, decimal noise, decimal whistle)
+        {
+            string query = @"UPDATE Noise 
+                     SET Noise = @Noise, 
+                         Whistle = @Whistle
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@Noise", noise),
+        new SqlParameter("@Whistle", whistle)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateHeadlights(string serialNumber, decimal leftHBIntensity, decimal leftHBVertical, decimal leftHBHorizontal, decimal rightHBIntensity, decimal rightHBVertical, decimal rightHBHorizontal, decimal leftLBIntensity, decimal leftLBVertical, decimal leftLBHorizontal, decimal rightLBIntensity, decimal rightLBVertical, decimal rightLBHorizontal)
+        {
+            string query = @"UPDATE Headlights 
+                     SET LeftHBIntensity = @LeftHBIntensity, 
+                         LeftHBVerticalDeviation = @LeftHBVertical, 
+                         LeftHBHorizontalDeviation = @LeftHBHorizontal, 
+                         RightHBIntensity = @RightHBIntensity, 
+                         RightHBVerticalDeviation = @RightHBVertical, 
+                         RightHBHorizontalDeviation = @RightHBHorizontal,
+                         LeftLBIntensity = @LeftLBIntensity,
+                         LeftLBVerticalDeviation = @LeftLBVertical,
+                         LeftLBHorizontalDeviation = @LeftLBHorizontal,
+                         RightLBIntensity = @RightLBIntensity,
+                         RightLBVerticalDeviation = @RightLBVertical,
+                         RightLBHorizontalDeviation = @RightLBHorizontal
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@LeftHBIntensity", leftHBIntensity),
+        new SqlParameter("@LeftHBVertical", leftHBVertical),
+        new SqlParameter("@LeftHBHorizontal", leftHBHorizontal),
+        new SqlParameter("@RightHBIntensity", rightHBIntensity),
+        new SqlParameter("@RightHBVertical", rightHBVertical),
+        new SqlParameter("@RightHBHorizontal", rightHBHorizontal),
+        new SqlParameter("@LeftLBIntensity", leftLBIntensity),
+        new SqlParameter("@LeftLBVertical", leftLBVertical),
+        new SqlParameter("@LeftLBHorizontal", leftLBHorizontal),
+        new SqlParameter("@RightLBIntensity", rightLBIntensity),
+        new SqlParameter("@RightLBVertical", rightLBVertical),
+        new SqlParameter("@RightLBHorizontal", rightLBHorizontal)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateGasEmissionPetrol(string serialNumber, decimal hc, decimal co, decimal co2, decimal o2, decimal no, decimal oilTemp, decimal rpm)
+        {
+            string query = @"UPDATE GasEmission_Petrol 
+                     SET HC = @HC, 
+                         CO = @CO, 
+                         CO2 = @CO2, 
+                         O2 = @O2, 
+                         NO = @NO, 
+                         OilTemp = @OilTemp, 
+                         RPM = @RPM
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@HC", hc),
+        new SqlParameter("@CO", co),
+        new SqlParameter("@CO2", co2),
+        new SqlParameter("@O2", o2),
+        new SqlParameter("@NO", no),
+        new SqlParameter("@OilTemp", oilTemp),
+        new SqlParameter("@RPM", rpm)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateGasEmissionDiesel(string serialNumber, decimal minSpeed1, decimal maxSpeed1, decimal hsu1, decimal minSpeed2, decimal maxSpeed2, decimal hsu2, decimal minSpeed3, decimal maxSpeed3, decimal hsu3)
+        {
+            string query = @"UPDATE GasEmission_Diesel 
+                     SET MinSpeed1 = @MinSpeed1, 
+                         MaxSpeed1 = @MaxSpeed1, 
+                         HSU1 = @HSU1, 
+                         MinSpeed2 = @MinSpeed2, 
+                         MaxSpeed2 = @MaxSpeed2, 
+                         HSU2 = @HSU2, 
+                         MinSpeed3 = @MinSpeed3, 
+                         MaxSpeed3 = @MaxSpeed3, 
+                         HSU3 = @HSU3
+                     WHERE SerialNumber = @SerialNumber";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@MinSpeed1", minSpeed1),
+        new SqlParameter("@MaxSpeed1", maxSpeed1),
+        new SqlParameter("@HSU1", hsu1),
+        new SqlParameter("@MinSpeed2", minSpeed2),
+        new SqlParameter("@MaxSpeed2", maxSpeed2),
+        new SqlParameter("@HSU2", hsu2),
+        new SqlParameter("@MinSpeed3", minSpeed3),
+        new SqlParameter("@MaxSpeed3", maxSpeed3),
+        new SqlParameter("@HSU3", hsu3)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public string GetPreviousSerialNumber(string currentSerialNumber)
+        {
+            string query = @"SELECT TOP 1 SerialNumber FROM VehicleInfo 
+                     WHERE VehicleID < (SELECT VehicleID FROM VehicleInfo WHERE SerialNumber = @currentSerialNumber)
+                     ORDER BY VehicleID DESC";
+
+            var parameters = new[] { new SqlParameter("@currentSerialNumber", currentSerialNumber) };
+            DataTable result = TableExecuteQuery(query, parameters);
+
+            return result.Rows.Count > 0 ? result.Rows[0]["SerialNumber"].ToString() : null;
+        }
+        public string GetNextSerialNumber(string currentSerialNumber)
+        {
+            string query = @"SELECT TOP 1 SerialNumber FROM VehicleInfo 
+                     WHERE VehicleID > (SELECT VehicleID FROM VehicleInfo WHERE SerialNumber = @currentSerialNumber)
+                     ORDER BY VehicleID ASC";
+
+            var parameters = new[] { new SqlParameter("@currentSerialNumber", currentSerialNumber) };
+            DataTable result = TableExecuteQuery(query, parameters);
+
+            return result.Rows.Count > 0 ? result.Rows[0]["SerialNumber"].ToString() : null;
+        }
+        public bool CheckValueAgainstStandard(string valueType, decimal value, string serialNumber)
+        {
+            // Bước 1: Lấy VehicleType dựa trên SerialNumber
+            string vehicleTypeQuery = "SELECT VehicleType FROM VehicleInfo WHERE SerialNumber = @SerialNumber";
+            var vehicleTypeParams = new[]
+            {
+                new SqlParameter("@SerialNumber", serialNumber)
+            };
+
+            DataTable vehicleTypeResult = TableExecuteQuery(vehicleTypeQuery, vehicleTypeParams);
+            if (vehicleTypeResult.Rows.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy Tiêu chuẩn cho SerialNumber này.");
+                return false;
+            }
+
+            string vehicleType = vehicleTypeResult.Rows[0]["VehicleType"].ToString();
+
+            // Bước 2: Lấy tiêu chuẩn từ VehicleStandards dựa trên VehicleType
+            string query = "";
+            switch (valueType)
+            {
+                case "Noise":
+                    query = "SELECT MaxNoise FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "Speed":
+                    query = "SELECT MinSpeed, MaxSpeed FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "SideSlip":
+                    query = "SELECT MinSideSlip, MaxSideSlip FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                    // Thêm các loại giá trị khác nếu cần
+            }
+
+            var standardParams = new[]
+            {
+                new SqlParameter("@VehicleType", vehicleType)
+            };
+
+            DataTable result = TableExecuteQuery(query, standardParams);
+            if (result.Rows.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy tiêu chuẩn cho loại xe này.");
+                return false;
+            }
+
+            // Bước 3: Kiểm tra giá trị so với tiêu chuẩn
+            decimal? minValue = result.Rows[0].Field<decimal?>("Min" + valueType);
+            decimal? maxValue = result.Rows[0].Field<decimal?>("Max" + valueType);
+
+            if (minValue.HasValue && value < minValue.Value) return false;
+            if (maxValue.HasValue && value > maxValue.Value) return false;
+
+            return true; // Nếu giá trị nằm trong tiêu chuẩn
         }
     }
 }
