@@ -234,7 +234,7 @@ namespace SenAIS
             this.lbParaB.Name = "lbParaB";
             this.lbParaB.Size = new System.Drawing.Size(212, 33);
             this.lbParaB.TabIndex = 49;
-            this.lbParaB.Text = "Para\\WeightLeftB";
+            this.lbParaB.Text = "Para\\LeftWeightB";
             // 
             // lbParaWeightLB
             // 
@@ -275,7 +275,7 @@ namespace SenAIS
             this.lbParaA.Name = "lbParaA";
             this.lbParaA.Size = new System.Drawing.Size(213, 33);
             this.lbParaA.TabIndex = 49;
-            this.lbParaA.Text = "Para\\WeightLeftA";
+            this.lbParaA.Text = "Para\\LeftWeightA";
             // 
             // txtCalibrateInput2
             // 
@@ -315,7 +315,7 @@ namespace SenAIS
             this.lbCalibB.Name = "lbCalibB";
             this.lbCalibB.Size = new System.Drawing.Size(219, 33);
             this.lbCalibB.TabIndex = 41;
-            this.lbCalibB.Text = "Calib\\WeightLeftB";
+            this.lbCalibB.Text = "Calib\\LeftWeightB";
             // 
             // lbCalibWeightLA
             // 
@@ -402,7 +402,7 @@ namespace SenAIS
             this.lbCalibA.Name = "lbCalibA";
             this.lbCalibA.Size = new System.Drawing.Size(220, 33);
             this.lbCalibA.TabIndex = 40;
-            this.lbCalibA.Text = "Calib\\WeightLeftA";
+            this.lbCalibA.Text = "Calib\\LeftWeightA";
             // 
             // btnCalculateCalib
             // 

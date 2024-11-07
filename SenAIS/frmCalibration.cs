@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OPCAutomation;
+using System;
 using System.Windows.Forms;
-using OPCAutomation;
 
 namespace SenAIS
 {
@@ -17,7 +8,7 @@ namespace SenAIS
     {
         private OPCServer opcServer;
         private OPCGroup opcGroup;
-        private string opcItem;
+        //private string opcItem;
 
         private double beforeCalib = 0.0;
         private double refPoint1;
@@ -76,19 +67,19 @@ namespace SenAIS
         private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
         {
             // Lấy giá trị từ ItemValues
-            double brakeValue = Convert.ToDouble(ItemValues.GetValue(1));
+            double beforeCalib = Convert.ToDouble(ItemValues.GetValue(1));
 
             // Gán giá trị cho txtBeforeCalib (invoke để đảm bảo an toàn thread)
             if (txtBeforeCalib.InvokeRequired)
             {
                 txtBeforeCalib.Invoke(new MethodInvoker(delegate
                 {
-                    txtBeforeCalib.Text = brakeValue.ToString("F2");
+                    txtBeforeCalib.Text = beforeCalib.ToString("F2");
                 }));
             }
             else
             {
-                txtBeforeCalib.Text = brakeValue.ToString("F2");
+                txtBeforeCalib.Text = beforeCalib.ToString("F2");
             }
 
         }
@@ -188,7 +179,7 @@ namespace SenAIS
                         string paraType = this.calibrationType;
 
                         // Sử dụng SQLHelper để thực hiện truy vấn
-                        SQLHelper sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True;");
+                        SQLHelper sqlHelper = new SQLHelper();
                         sqlHelper.UpdateCalibrationData(paraType, paraA, paraB);
 
                         // Cập nhật giá trị lên giao diện

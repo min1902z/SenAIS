@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -13,9 +10,9 @@ namespace SenAIS
     {
         private string connectionString;
 
-        public SQLHelper(string connectionString)
+        public SQLHelper()
         {
-            this.connectionString = connectionString;
+            this.connectionString = ConfigurationManager.ConnectionStrings["SenAISDBConnectionString"].ConnectionString;
         }
 
         public void ExecuteQuery(string query, params SqlParameter[] parameters)
@@ -485,6 +482,33 @@ namespace SenAIS
                 }
             }
         }
+        public void SaveSteerAngleData(string serialNumber, decimal leftSteerLW, decimal rightSteerLW, decimal leftSteerRW, decimal rightSteerRW)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"IF EXISTS (SELECT 1 FROM SteerAngle WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE SteerAngle 
+                             SET LeftSteerLW = @LeftSteerLW, RightSteerLW = @RightSteerLW, LeftSteerRW = @LeftSteerRW, RightSteerRW = @RightSteerRW
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO SteerAngle (SerialNumber, LeftSteerLW, RightSteerLW, LeftSteerRW, RightSteerRW)
+                             VALUES (@SerialNumber, @LeftSteerLW, @RightSteerLW, @LeftSteerRW, @RightSteerRW)
+                         END";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@LeftSteerLW", leftSteerLW);
+                    cmd.Parameters.AddWithValue("@RightSteerLW", rightSteerLW);
+                    cmd.Parameters.AddWithValue("@LeftSteerRW", leftSteerRW);
+                    cmd.Parameters.AddWithValue("@RightSteerRW", rightSteerRW);
+                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public void SaveVehicleInfo(string vehicleType, string inspector, string frameNumber, string serialNumber, DateTime inspectionDate, string fuelType)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -609,7 +633,11 @@ namespace SenAIS
                             de.[HSU2],
                             de.[MinSpeed3],
                             de.[MaxSpeed3],
-                            de.[HSU3]
+                            de.[HSU3],
+                            sa.LeftSteerLW,
+                            sa.LeftSteerRW,
+                            sa.RightSteerLW,
+                            sa.RightSteerRW
 
                         FROM 
                             VehicleInfo vi
@@ -629,6 +657,8 @@ namespace SenAIS
                             GasEmission_Petrol pe ON vi.SerialNumber = pe.SerialNumber
                         LEFT JOIN 
                             GasEmission_Diesel de ON vi.SerialNumber = de.SerialNumber
+                        LEFT JOIN 
+                            SteerAngle sa ON vi.SerialNumber = sa.SerialNumber
                         WHERE 
                             vi.SerialNumber = @SerialNumber";
 
@@ -692,182 +722,252 @@ namespace SenAIS
             };
             return TableExecuteQuery(query, parameters);
         }
-        public void UpdateSpeed(string serialNumber, decimal speed)
+        public void UpdateSpeed(string serialNumber, decimal? speed)
         {
-            string query = @"UPDATE Speed 
-                     SET Speed = @Speed
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM Speed WHERE SerialNumber = @SerialNumber)
+                UPDATE Speed 
+                SET Speed = @Speed
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO Speed (SerialNumber, Speed)
+                VALUES (@SerialNumber, @Speed);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@Speed", speed)
+        new SqlParameter("@Speed", speed ?? (object)DBNull.Value)
             };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateSideSlip(string serialNumber, decimal sideSlip)
+        public void UpdateSideSlip(string serialNumber, decimal? sideSlip)
         {
-            string query = @"UPDATE SideSlip 
-                     SET SideSlip = @SideSlip
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM SideSlip WHERE SerialNumber = @SerialNumber)
+                UPDATE SideSlip 
+                SET SideSlip = @SideSlip
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO SideSlip (SerialNumber, SideSlip)
+                VALUES (@SerialNumber, @SideSlip);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@SideSlip", sideSlip)
+        new SqlParameter("@SideSlip", sideSlip ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateWeight(string serialNumber, decimal frontLeftWeight, decimal frontRightWeight, decimal rearLeftWeight, decimal rearRightWeight)
+        public void UpdateWeight(string serialNumber, decimal? frontLeftWeight, decimal? frontRightWeight, decimal? rearLeftWeight, decimal? rearRightWeight)
         {
-            string query = @"UPDATE Weight 
-                     SET FrontLeftWeight = @FrontLeftWeight, 
-                         FrontRightWeight = @FrontRightWeight, 
-                         RearLeftWeight = @RearLeftWeight, 
-                         RearRightWeight = @RearRightWeight
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM Weight WHERE SerialNumber = @SerialNumber)
+                UPDATE Weight 
+                SET FrontLeftWeight = @FrontLeftWeight, 
+                    FrontRightWeight = @FrontRightWeight, 
+                    RearLeftWeight = @RearLeftWeight, 
+                    RearRightWeight = @RearRightWeight
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO Weight (SerialNumber, FrontLeftWeight, FrontRightWeight, RearLeftWeight, RearRightWeight)
+                VALUES (@SerialNumber, @FrontLeftWeight, @FrontRightWeight, @RearLeftWeight, @RearRightWeight);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@FrontLeftWeight", frontLeftWeight),
-        new SqlParameter("@FrontRightWeight", frontRightWeight),
-        new SqlParameter("@RearLeftWeight", rearLeftWeight),
-        new SqlParameter("@RearRightWeight", rearRightWeight)
+        new SqlParameter("@FrontLeftWeight", frontLeftWeight ?? (object)DBNull.Value),
+        new SqlParameter("@FrontRightWeight", frontRightWeight ?? (object)DBNull.Value),
+        new SqlParameter("@RearLeftWeight", rearLeftWeight ?? (object)DBNull.Value),
+        new SqlParameter("@RearRightWeight", rearRightWeight ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateBrakeForce(string serialNumber, decimal frontLeftBrake, decimal frontRightBrake, decimal rearLeftBrake, decimal rearRightBrake, decimal handBrakeLeft, decimal handBrakeRight)
+        public void UpdateBrakeForce(string serialNumber, decimal? frontLeftBrake, decimal? frontRightBrake, decimal? rearLeftBrake, decimal? rearRightBrake, decimal? handBrakeLeft, decimal? handBrakeRight)
         {
-            string query = @"UPDATE BrakeForce 
-                     SET FrontLeftBrake = @FrontLeftBrake, 
-                         FrontRightBrake = @FrontRightBrake, 
-                         RearLeftBrake = @RearLeftBrake, 
-                         RearRightBrake = @RearRightBrake, 
-                         HandBrakeLeft = @HandBrakeLeft, 
-                         HandBrakeRight = @HandBrakeRight
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM BrakeForce WHERE SerialNumber = @SerialNumber)
+                UPDATE BrakeForce 
+                SET FrontLeftBrake = @FrontLeftBrake, 
+                    FrontRightBrake = @FrontRightBrake, 
+                    RearLeftBrake = @RearLeftBrake, 
+                    RearRightBrake = @RearRightBrake, 
+                    HandBrakeLeft = @HandBrakeLeft, 
+                    HandBrakeRight = @HandBrakeRight
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO BrakeForce (SerialNumber, FrontLeftBrake, FrontRightBrake, RearLeftBrake, RearRightBrake, HandBrakeLeft, HandBrakeRight)
+                VALUES (@SerialNumber, @FrontLeftBrake, @FrontRightBrake, @RearLeftBrake, @RearRightBrake, @HandBrakeLeft, @HandBrakeRight);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@FrontLeftBrake", frontLeftBrake),
-        new SqlParameter("@FrontRightBrake", frontRightBrake),
-        new SqlParameter("@RearLeftBrake", rearLeftBrake),
-        new SqlParameter("@RearRightBrake", rearRightBrake),
-        new SqlParameter("@HandBrakeLeft", handBrakeLeft),
-        new SqlParameter("@HandBrakeRight", handBrakeRight)
+        new SqlParameter("@FrontLeftBrake", frontLeftBrake ??(object) DBNull.Value),
+        new SqlParameter("@FrontRightBrake", frontRightBrake ??(object) DBNull.Value),
+        new SqlParameter("@RearLeftBrake", rearLeftBrake ??(object) DBNull.Value),
+        new SqlParameter("@RearRightBrake", rearRightBrake ??(object) DBNull.Value),
+        new SqlParameter("@HandBrakeLeft", handBrakeLeft ??(object) DBNull.Value),
+        new SqlParameter("@HandBrakeRight", handBrakeRight ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateNoise(string serialNumber, decimal noise, decimal whistle)
+        public void UpdateNoise(string serialNumber, decimal? noise, decimal? whistle)
         {
-            string query = @"UPDATE Noise 
-                     SET Noise = @Noise, 
-                         Whistle = @Whistle
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM Noise WHERE SerialNumber = @SerialNumber)
+                UPDATE Noise 
+                SET Noise = @Noise, 
+                    Whistle = @Whistle
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO Noise (SerialNumber, Noise, Whistle)
+                VALUES (@SerialNumber, @Noise, @Whistle);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@Noise", noise),
-        new SqlParameter("@Whistle", whistle)
+        new SqlParameter("@Noise", noise ?? (object)DBNull.Value),
+        new SqlParameter("@Whistle", whistle ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateHeadlights(string serialNumber, decimal leftHBIntensity, decimal leftHBVertical, decimal leftHBHorizontal, decimal rightHBIntensity, decimal rightHBVertical, decimal rightHBHorizontal, decimal leftLBIntensity, decimal leftLBVertical, decimal leftLBHorizontal, decimal rightLBIntensity, decimal rightLBVertical, decimal rightLBHorizontal)
+        public void UpdateHeadlights(string serialNumber, decimal? leftHBIntensity, decimal? leftHBVertical, decimal? leftHBHorizontal,
+            decimal? rightHBIntensity, decimal? rightHBVertical, decimal? rightHBHorizontal,
+            decimal? leftLBIntensity, decimal? leftLBVertical, decimal? leftLBHorizontal,
+            decimal? rightLBIntensity, decimal? rightLBVertical, decimal? rightLBHorizontal)
         {
-            string query = @"UPDATE Headlights 
-                     SET LeftHBIntensity = @LeftHBIntensity, 
-                         LeftHBVerticalDeviation = @LeftHBVertical, 
-                         LeftHBHorizontalDeviation = @LeftHBHorizontal, 
-                         RightHBIntensity = @RightHBIntensity, 
-                         RightHBVerticalDeviation = @RightHBVertical, 
-                         RightHBHorizontalDeviation = @RightHBHorizontal,
-                         LeftLBIntensity = @LeftLBIntensity,
-                         LeftLBVerticalDeviation = @LeftLBVertical,
-                         LeftLBHorizontalDeviation = @LeftLBHorizontal,
-                         RightLBIntensity = @RightLBIntensity,
-                         RightLBVerticalDeviation = @RightLBVertical,
-                         RightLBHorizontalDeviation = @RightLBHorizontal
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM Headlights WHERE SerialNumber = @SerialNumber)
+                UPDATE Headlights 
+                SET LeftHBIntensity = @LeftHBIntensity, 
+                    LeftHBVerticalDeviation = @LeftHBVertical, 
+                    LeftHBHorizontalDeviation = @LeftHBHorizontal, 
+                    RightHBIntensity = @RightHBIntensity, 
+                    RightHBVerticalDeviation = @RightHBVertical, 
+                    RightHBHorizontalDeviation = @RightHBHorizontal,
+                    LeftLBIntensity = @LeftLBIntensity,
+                    LeftLBVerticalDeviation = @LeftLBVertical,
+                    LeftLBHorizontalDeviation = @LeftLBHorizontal,
+                    RightLBIntensity = @RightLBIntensity,
+                    RightLBVerticalDeviation = @RightLBVertical,
+                    RightLBHorizontalDeviation = @RightLBHorizontal
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO Headlights (SerialNumber, LeftHBIntensity, LeftHBVerticalDeviation, LeftHBHorizontalDeviation, RightHBIntensity, RightHBVerticalDeviation, RightHBHorizontalDeviation, LeftLBIntensity, LeftLBVerticalDeviation, LeftLBHorizontalDeviation, RightLBIntensity, RightLBVerticalDeviation, RightLBHorizontalDeviation)
+                VALUES (@SerialNumber, @LeftHBIntensity, @LeftHBVertical, @LeftHBHorizontal, @RightHBIntensity, @RightHBVertical, @RightHBHorizontal, @LeftLBIntensity, @LeftLBVertical, @LeftLBHorizontal, @RightLBIntensity, @RightLBVertical, @RightLBHorizontal);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@LeftHBIntensity", leftHBIntensity),
-        new SqlParameter("@LeftHBVertical", leftHBVertical),
-        new SqlParameter("@LeftHBHorizontal", leftHBHorizontal),
-        new SqlParameter("@RightHBIntensity", rightHBIntensity),
-        new SqlParameter("@RightHBVertical", rightHBVertical),
-        new SqlParameter("@RightHBHorizontal", rightHBHorizontal),
-        new SqlParameter("@LeftLBIntensity", leftLBIntensity),
-        new SqlParameter("@LeftLBVertical", leftLBVertical),
-        new SqlParameter("@LeftLBHorizontal", leftLBHorizontal),
-        new SqlParameter("@RightLBIntensity", rightLBIntensity),
-        new SqlParameter("@RightLBVertical", rightLBVertical),
-        new SqlParameter("@RightLBHorizontal", rightLBHorizontal)
+        new SqlParameter("@LeftHBIntensity", leftHBIntensity ?? (object)DBNull.Value),
+        new SqlParameter("@LeftHBVertical", leftHBVertical ?? (object)DBNull.Value),
+        new SqlParameter("@LeftHBHorizontal", leftHBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@RightHBIntensity", rightHBIntensity ?? (object)DBNull.Value),
+        new SqlParameter("@RightHBVertical", rightHBVertical ?? (object)DBNull.Value),
+        new SqlParameter("@RightHBHorizontal", rightHBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@LeftLBIntensity", leftLBIntensity ?? (object)DBNull.Value),
+        new SqlParameter("@LeftLBVertical", leftLBVertical ?? (object)DBNull.Value),
+        new SqlParameter("@LeftLBHorizontal", leftLBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@RightLBIntensity", rightLBIntensity ?? (object)DBNull.Value),
+        new SqlParameter("@RightLBVertical", rightLBVertical ?? (object)DBNull.Value),
+        new SqlParameter("@RightLBHorizontal", rightLBHorizontal ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateGasEmissionPetrol(string serialNumber, decimal hc, decimal co, decimal co2, decimal o2, decimal no, decimal oilTemp, decimal rpm)
+        public void UpdateGasEmissionPetrol(string serialNumber, decimal? hc, decimal? co, decimal? co2, decimal? o2, decimal? no, decimal? oilTemp, decimal? rpm)
         {
-            string query = @"UPDATE GasEmission_Petrol 
-                     SET HC = @HC, 
-                         CO = @CO, 
-                         CO2 = @CO2, 
-                         O2 = @O2, 
-                         NO = @NO, 
-                         OilTemp = @OilTemp, 
-                         RPM = @RPM
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM GasEmission_Petrol WHERE SerialNumber = @SerialNumber)
+                UPDATE GasEmission_Petrol 
+                SET HC = @HC, 
+                    CO = @CO, 
+                    CO2 = @CO2, 
+                    O2 = @O2, 
+                    NO = @NO, 
+                    OilTemp = @OilTemp, 
+                    RPM = @RPM
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO GasEmission_Petrol (SerialNumber, HC, CO, CO2, O2, NO, OilTemp, RPM)
+                VALUES (@SerialNumber, @HC, @CO, @CO2, @O2, @NO, @OilTemp, @RPM);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@HC", hc),
-        new SqlParameter("@CO", co),
-        new SqlParameter("@CO2", co2),
-        new SqlParameter("@O2", o2),
-        new SqlParameter("@NO", no),
-        new SqlParameter("@OilTemp", oilTemp),
-        new SqlParameter("@RPM", rpm)
+        new SqlParameter("@HC", hc ?? (object)DBNull.Value),
+        new SqlParameter("@CO", co ?? (object)DBNull.Value),
+        new SqlParameter("@CO2", co2 ?? (object)DBNull.Value),
+        new SqlParameter("@O2", o2 ?? (object)DBNull.Value),
+        new SqlParameter("@NO", no ?? (object)DBNull.Value),
+        new SqlParameter("@OilTemp", oilTemp ?? (object)DBNull.Value),
+        new SqlParameter("@RPM", rpm ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateGasEmissionDiesel(string serialNumber, decimal minSpeed1, decimal maxSpeed1, decimal hsu1, decimal minSpeed2, decimal maxSpeed2, decimal hsu2, decimal minSpeed3, decimal maxSpeed3, decimal hsu3)
+        public void UpdateGasEmissionDiesel(string serialNumber, decimal? minSpeed1, decimal? maxSpeed1, decimal? hsu1,
+            decimal? minSpeed2, decimal? maxSpeed2, decimal? hsu2,
+            decimal? minSpeed3, decimal? maxSpeed3, decimal? hsu3)
         {
-            string query = @"UPDATE GasEmission_Diesel 
-                     SET MinSpeed1 = @MinSpeed1, 
-                         MaxSpeed1 = @MaxSpeed1, 
-                         HSU1 = @HSU1, 
-                         MinSpeed2 = @MinSpeed2, 
-                         MaxSpeed2 = @MaxSpeed2, 
-                         HSU2 = @HSU2, 
-                         MinSpeed3 = @MinSpeed3, 
-                         MaxSpeed3 = @MaxSpeed3, 
-                         HSU3 = @HSU3
-                     WHERE SerialNumber = @SerialNumber";
+            string query = @"
+            IF EXISTS (SELECT 1 FROM GasEmission_Diesel WHERE SerialNumber = @SerialNumber)
+                UPDATE GasEmission_Diesel 
+                SET MinSpeed1 = @MinSpeed1, 
+                    MaxSpeed1 = @MaxSpeed1, 
+                    HSU1 = @HSU1, 
+                    MinSpeed2 = @MinSpeed2, 
+                    MaxSpeed2 = @MaxSpeed2, 
+                    HSU2 = @HSU2, 
+                    MinSpeed3 = @MinSpeed3, 
+                    MaxSpeed3 = @MaxSpeed3, 
+                    HSU3 = @HSU3
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO GasEmission_Diesel (SerialNumber, MinSpeed1, MaxSpeed1, HSU1, MinSpeed2, MaxSpeed2, HSU2, MinSpeed3, MaxSpeed3, HSU3)
+                VALUES (@SerialNumber, @MinSpeed1, @MaxSpeed1, @HSU1, @MinSpeed2, @MaxSpeed2, @HSU2, @MinSpeed3, @MaxSpeed3, @HSU3);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
-        new SqlParameter("@MinSpeed1", minSpeed1),
-        new SqlParameter("@MaxSpeed1", maxSpeed1),
-        new SqlParameter("@HSU1", hsu1),
-        new SqlParameter("@MinSpeed2", minSpeed2),
-        new SqlParameter("@MaxSpeed2", maxSpeed2),
-        new SqlParameter("@HSU2", hsu2),
-        new SqlParameter("@MinSpeed3", minSpeed3),
-        new SqlParameter("@MaxSpeed3", maxSpeed3),
-        new SqlParameter("@HSU3", hsu3)
+        new SqlParameter("@MinSpeed1", minSpeed1 ?? (object)DBNull.Value),
+        new SqlParameter("@MaxSpeed1", maxSpeed1 ?? (object)DBNull.Value),
+        new SqlParameter("@HSU1", hsu1 ?? (object)DBNull.Value),
+        new SqlParameter("@MinSpeed2", minSpeed2 ?? (object)DBNull.Value),
+        new SqlParameter("@MaxSpeed2", maxSpeed2 ??(object) DBNull.Value),
+        new SqlParameter("@HSU2", hsu2 ??(object) DBNull.Value),
+        new SqlParameter("@MinSpeed3", minSpeed3 ??(object) DBNull.Value),
+        new SqlParameter("@MaxSpeed3", maxSpeed3 ??(object) DBNull.Value),
+        new SqlParameter("@HSU3", hsu3 ??(object) DBNull.Value)
+    };
+
+            ExecuteQuery(query, parameters);
+        }
+        public void UpdateSteerAngle(string serialNumber, decimal? leftSteerLW, decimal? leftSteerRW, decimal? rightSteerLW, decimal? rightSteerRW)
+        {
+            string query = @"
+            IF EXISTS (SELECT 1 FROM SteerAngle WHERE SerialNumber = @SerialNumber)
+                UPDATE SteerAngle 
+                SET LeftSteerLW = @LeftSteerLW, 
+                    LeftSteerRW = @LeftSteerRW, 
+                    RightSteerLW = @RightSteerLW, 
+                    RightSteerRW = @RightSteerRW
+                WHERE SerialNumber = @SerialNumber;
+            ELSE
+                INSERT INTO SteerAngle (SerialNumber, LeftSteerLW, LeftSteerRW, RightSteerLW, RightSteerRW)
+                VALUES (@SerialNumber, @LeftSteerLW, @LeftSteerRW, @RightSteerLW, @RightSteerRW);";
+
+            var parameters = new[]
+            {
+        new SqlParameter("@SerialNumber", serialNumber),
+        new SqlParameter("@LeftSteerLW", leftSteerLW ?? (object)DBNull.Value),
+        new SqlParameter("@LeftSteerRW", leftSteerRW ?? (object)DBNull.Value),
+        new SqlParameter("@RightSteerLW", rightSteerLW ??(object) DBNull.Value),
+        new SqlParameter("@RightSteerRW", rightSteerRW ??(object) DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
@@ -919,11 +1019,41 @@ namespace SenAIS
                 case "Noise":
                     query = "SELECT MaxNoise FROM VehicleStandards WHERE VehicleType = @VehicleType";
                     break;
+                case "Whistle":
+                    query = "SELECT MinWhistle, MaxWhistle FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
                 case "Speed":
                     query = "SELECT MinSpeed, MaxSpeed FROM VehicleStandards WHERE VehicleType = @VehicleType";
                     break;
                 case "SideSlip":
                     query = "SELECT MinSideSlip, MaxSideSlip FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "HSU":
+                    query = "SELECT MaxHSU FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "DiffFrontBrake":
+                    query = "SELECT MaxDiffFrontBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "FrontBrake":
+                    query = "SELECT MinFrontBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "DiffHandBrake":
+                    query = "SELECT MaxDiffHandBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "HandBrake":
+                    query = "SELECT MinHandBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "DiffRearBrake":
+                    query = "SELECT MaxDiffRearBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "RearBrake":
+                    query = "SELECT MinRearBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "HC":
+                    query = "SELECT MaxHC FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    break;
+                case "CO":
+                    query = "SELECT MaxCO FROM VehicleStandards WHERE VehicleType = @VehicleType";
                     break;
                     // Thêm các loại giá trị khác nếu cần
             }

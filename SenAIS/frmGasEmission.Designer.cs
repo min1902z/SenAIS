@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.EmissionPanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
@@ -70,7 +71,7 @@
             this.button1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button1.Location = new System.Drawing.Point(9, 954);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 37);
             this.button1.TabIndex = 3;
@@ -83,7 +84,7 @@
             this.button2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button2.Location = new System.Drawing.Point(1719, 954);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 37);
             this.button2.TabIndex = 4;
@@ -92,6 +93,7 @@
             // 
             // EmissionPanel
             // 
+            this.EmissionPanel.Controls.Add(this.lbEngineNumber);
             this.EmissionPanel.Controls.Add(this.cbReady);
             this.EmissionPanel.Controls.Add(this.btnNext);
             this.EmissionPanel.Controls.Add(this.btnPre);
@@ -102,6 +104,17 @@
             this.EmissionPanel.Name = "EmissionPanel";
             this.EmissionPanel.Size = new System.Drawing.Size(1443, 862);
             this.EmissionPanel.TabIndex = 5;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 52;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -125,7 +138,7 @@
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnNext.Location = new System.Drawing.Point(1349, 817);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 40;
@@ -139,7 +152,7 @@
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPre.Location = new System.Drawing.Point(10, 817);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 39;
@@ -424,12 +437,12 @@
             // 
             this.lbEmissionTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbEmissionTitle.AutoSize = true;
-            this.lbEmissionTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmissionTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmissionTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEmissionTitle.Location = new System.Drawing.Point(245, 8);
+            this.lbEmissionTitle.Location = new System.Drawing.Point(491, 9);
             this.lbEmissionTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbEmissionTitle.Name = "lbEmissionTitle";
-            this.lbEmissionTitle.Size = new System.Drawing.Size(1048, 117);
+            this.lbEmissionTitle.Size = new System.Drawing.Size(696, 78);
             this.lbEmissionTitle.TabIndex = 37;
             this.lbEmissionTitle.Text = "KHÍ XẢ - ĐỘNG CƠ XĂNG";
             this.lbEmissionTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -496,5 +509,6 @@
         private System.Windows.Forms.Label lbEmissionTitle;
         private System.Windows.Forms.CheckBox cbReady;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

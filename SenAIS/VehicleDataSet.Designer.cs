@@ -469,6 +469,22 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnFinalResult;
             
+            private global::System.Data.DataColumn columnLeftSteerLW;
+            
+            private global::System.Data.DataColumn columnLeftSteerRW;
+            
+            private global::System.Data.DataColumn columnRightSteerLW;
+            
+            private global::System.Data.DataColumn columnRightSteerRW;
+            
+            private global::System.Data.DataColumn columnMinLeftSteer;
+            
+            private global::System.Data.DataColumn columnMinRightSteer;
+            
+            private global::System.Data.DataColumn columnSteerAngleResult;
+            
+            private global::System.Data.DataColumn columnFuel;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1264,6 +1280,70 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LeftSteerLWColumn {
+                get {
+                    return this.columnLeftSteerLW;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LeftSteerRWColumn {
+                get {
+                    return this.columnLeftSteerRW;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RightSteerLWColumn {
+                get {
+                    return this.columnRightSteerLW;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RightSteerRWColumn {
+                get {
+                    return this.columnRightSteerRW;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinLeftSteerColumn {
+                get {
+                    return this.columnMinLeftSteer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinRightSteerColumn {
+                get {
+                    return this.columnMinRightSteer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SteerAngleResultColumn {
+                get {
+                    return this.columnSteerAngleResult;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FuelColumn {
+                get {
+                    return this.columnFuel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1394,7 +1474,15 @@ namespace SenAIS {
                         string HLResult, 
                         string NoiseResult, 
                         string WhistleResult, 
-                        string FinalResult) {
+                        string FinalResult, 
+                        string LeftSteerLW, 
+                        string LeftSteerRW, 
+                        string RightSteerLW, 
+                        string RightSteerRW, 
+                        string MinLeftSteer, 
+                        string MinRightSteer, 
+                        string SteerAngleResult, 
+                        string Fuel) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1491,7 +1579,15 @@ namespace SenAIS {
                         HLResult,
                         NoiseResult,
                         WhistleResult,
-                        FinalResult};
+                        FinalResult,
+                        LeftSteerLW,
+                        LeftSteerRW,
+                        RightSteerLW,
+                        RightSteerRW,
+                        MinLeftSteer,
+                        MinRightSteer,
+                        SteerAngleResult,
+                        Fuel};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -1609,6 +1705,14 @@ namespace SenAIS {
                 this.columnNoiseResult = base.Columns["NoiseResult"];
                 this.columnWhistleResult = base.Columns["WhistleResult"];
                 this.columnFinalResult = base.Columns["FinalResult"];
+                this.columnLeftSteerLW = base.Columns["LeftSteerLW"];
+                this.columnLeftSteerRW = base.Columns["LeftSteerRW"];
+                this.columnRightSteerLW = base.Columns["RightSteerLW"];
+                this.columnRightSteerRW = base.Columns["RightSteerRW"];
+                this.columnMinLeftSteer = base.Columns["MinLeftSteer"];
+                this.columnMinRightSteer = base.Columns["MinRightSteer"];
+                this.columnSteerAngleResult = base.Columns["SteerAngleResult"];
+                this.columnFuel = base.Columns["Fuel"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1804,6 +1908,22 @@ namespace SenAIS {
                 base.Columns.Add(this.columnWhistleResult);
                 this.columnFinalResult = new global::System.Data.DataColumn("FinalResult", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFinalResult);
+                this.columnLeftSteerLW = new global::System.Data.DataColumn("LeftSteerLW", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeftSteerLW);
+                this.columnLeftSteerRW = new global::System.Data.DataColumn("LeftSteerRW", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeftSteerRW);
+                this.columnRightSteerLW = new global::System.Data.DataColumn("RightSteerLW", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRightSteerLW);
+                this.columnRightSteerRW = new global::System.Data.DataColumn("RightSteerRW", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRightSteerRW);
+                this.columnMinLeftSteer = new global::System.Data.DataColumn("MinLeftSteer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinLeftSteer);
+                this.columnMinRightSteer = new global::System.Data.DataColumn("MinRightSteer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinRightSteer);
+                this.columnSteerAngleResult = new global::System.Data.DataColumn("SteerAngleResult", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSteerAngleResult);
+                this.columnFuel = new global::System.Data.DataColumn("Fuel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFuel);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3466,6 +3586,134 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LeftSteerLW {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LeftSteerLWColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeftSteerLW\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LeftSteerLWColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LeftSteerRW {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LeftSteerRWColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeftSteerRW\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LeftSteerRWColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RightSteerLW {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RightSteerLWColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RightSteerLW\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RightSteerLWColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RightSteerRW {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RightSteerRWColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RightSteerRW\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RightSteerRWColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinLeftSteer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinLeftSteerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinLeftSteer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinLeftSteerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinRightSteer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinRightSteerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinRightSteer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinRightSteerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SteerAngleResult {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.SteerAngleResultColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SteerAngleResult\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.SteerAngleResultColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Fuel {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.FuelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Fuel\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.FuelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -4602,6 +4850,102 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFinalResultNull() {
                 this[this.tableVehicleReportData.FinalResultColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLeftSteerLWNull() {
+                return this.IsNull(this.tableVehicleReportData.LeftSteerLWColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLeftSteerLWNull() {
+                this[this.tableVehicleReportData.LeftSteerLWColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLeftSteerRWNull() {
+                return this.IsNull(this.tableVehicleReportData.LeftSteerRWColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLeftSteerRWNull() {
+                this[this.tableVehicleReportData.LeftSteerRWColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRightSteerLWNull() {
+                return this.IsNull(this.tableVehicleReportData.RightSteerLWColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRightSteerLWNull() {
+                this[this.tableVehicleReportData.RightSteerLWColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRightSteerRWNull() {
+                return this.IsNull(this.tableVehicleReportData.RightSteerRWColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRightSteerRWNull() {
+                this[this.tableVehicleReportData.RightSteerRWColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinLeftSteerNull() {
+                return this.IsNull(this.tableVehicleReportData.MinLeftSteerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinLeftSteerNull() {
+                this[this.tableVehicleReportData.MinLeftSteerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinRightSteerNull() {
+                return this.IsNull(this.tableVehicleReportData.MinRightSteerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinRightSteerNull() {
+                this[this.tableVehicleReportData.MinRightSteerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSteerAngleResultNull() {
+                return this.IsNull(this.tableVehicleReportData.SteerAngleResultColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSteerAngleResultNull() {
+                this[this.tableVehicleReportData.SteerAngleResultColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFuelNull() {
+                return this.IsNull(this.tableVehicleReportData.FuelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFuelNull() {
+                this[this.tableVehicleReportData.FuelColumn] = global::System.Convert.DBNull;
             }
         }
         

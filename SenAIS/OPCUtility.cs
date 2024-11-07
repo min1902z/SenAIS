@@ -1,9 +1,5 @@
 ﻿using OPCAutomation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -39,6 +35,8 @@ namespace SenAIS
                 opcServer.Connect("Kepware.KEPServerEX.V4"); // Kết nối tới OPC server
                 opcGroup = opcServer.OPCGroups.Add("Group1");
                 opcGroup.IsActive = true;
+                opcGroup.IsSubscribed = true;
+                opcGroup.UpdateRate = 1000;
                 isConnected = true; // Đánh dấu kết nối thành công
                 opcErrorShown = false; // Reset cờ lỗi
                 retryCount = 0; // Reset lại số lần thử nếu kết nối thành công
@@ -60,12 +58,12 @@ namespace SenAIS
             {
                 if (!isConnected)
                 {
-                        if (!opcErrorShown)
-                        {
-                            MessageBox.Show("Không thể kết nối tới OPC server. Sử dụng giá trị mặc định.");
-                            opcErrorShown = true;
-                        }
-                        return 0; // Giá trị mặc định
+                    if (!opcErrorShown)
+                    {
+                        opcErrorShown = true;
+                        MessageBox.Show("Không thể kết nối tới OPC server. Sử dụng giá trị mặc định.");
+                    }
+                    return 0; // Giá trị mặc định
                 }
                 OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
                 object value;
@@ -77,8 +75,8 @@ namespace SenAIS
             {
                 if (!opcErrorShown)
                 {
-                    MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
                     opcErrorShown = true;
+                    MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
                 }
                 return 0; // Trả về giá trị mặc định nếu đọc thất bại
             }
@@ -88,7 +86,7 @@ namespace SenAIS
         {
             try
             {
-                OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);               
+                OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
                 item.Write(value);
             }
             catch (Exception ex)

@@ -32,6 +32,7 @@
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.TSHeThong = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDangKiem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSTruyCapAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDuLieu = new System.Windows.Forms.ToolStripMenuItem();
             this.TSTruyXuat = new System.Windows.Forms.ToolStripMenuItem();
             this.tsVehicleStandard = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +51,9 @@
             this.TSReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.tsSteerAngleCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsLeftSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsRightSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +77,8 @@
             // TSHeThong
             // 
             this.TSHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSDangKiem});
+            this.TSDangKiem,
+            this.TSTruyCapAdmin});
             this.TSHeThong.Name = "TSHeThong";
             this.TSHeThong.Size = new System.Drawing.Size(81, 23);
             this.TSHeThong.Text = "Hệ Thống";
@@ -81,9 +86,16 @@
             // TSDangKiem
             // 
             this.TSDangKiem.Name = "TSDangKiem";
-            this.TSDangKiem.Size = new System.Drawing.Size(145, 24);
+            this.TSDangKiem.Size = new System.Drawing.Size(196, 24);
             this.TSDangKiem.Text = "Đăng Kiểm";
             this.TSDangKiem.Click += new System.EventHandler(this.TSDangKiem_Click);
+            // 
+            // TSTruyCapAdmin
+            // 
+            this.TSTruyCapAdmin.Name = "TSTruyCapAdmin";
+            this.TSTruyCapAdmin.Size = new System.Drawing.Size(196, 24);
+            this.TSTruyCapAdmin.Text = "Truy Cập Hệ Thống";
+            this.TSTruyCapAdmin.Click += new System.EventHandler(this.TSTruyCapAdmin_Click);
             // 
             // TSDuLieu
             // 
@@ -123,7 +135,8 @@
             this.tsCalibration,
             this.tsSpeedCalib,
             this.tsSideSlipCalib,
-            this.tsBrakeCalib});
+            this.tsBrakeCalib,
+            this.tsSteerAngleCalib});
             this.điềuChỉnhToolStripMenuItem.Name = "điềuChỉnhToolStripMenuItem";
             this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
             this.điềuChỉnhToolStripMenuItem.Text = "Điều Chỉnh";
@@ -177,14 +190,14 @@
             // tsLBrakeCalib
             // 
             this.tsLBrakeCalib.Name = "tsLBrakeCalib";
-            this.tsLBrakeCalib.Size = new System.Drawing.Size(172, 24);
+            this.tsLBrakeCalib.Size = new System.Drawing.Size(180, 24);
             this.tsLBrakeCalib.Text = "Lực Phanh Trái";
             this.tsLBrakeCalib.Click += new System.EventHandler(this.tsLBrakeCalib_Click);
             // 
             // tsRBrakeCalib
             // 
             this.tsRBrakeCalib.Name = "tsRBrakeCalib";
-            this.tsRBrakeCalib.Size = new System.Drawing.Size(172, 24);
+            this.tsRBrakeCalib.Size = new System.Drawing.Size(180, 24);
             this.tsRBrakeCalib.Text = "Lực Phanh Phải";
             this.tsRBrakeCalib.Click += new System.EventHandler(this.tsRBrakeCalib_Click);
             // 
@@ -230,6 +243,29 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(886, 487);
             this.panelBody.TabIndex = 7;
+            // 
+            // tsSteerAngleCalib
+            // 
+            this.tsSteerAngleCalib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLeftSteerCalib,
+            this.tsRightSteerCalib});
+            this.tsSteerAngleCalib.Name = "tsSteerAngleCalib";
+            this.tsSteerAngleCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsSteerAngleCalib.Text = "Hiệu Chỉnh Góc Lái";
+            // 
+            // tsLeftSteerCalib
+            // 
+            this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
+            this.tsLeftSteerCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsLeftSteerCalib.Text = "Góc Lái Trái";
+            this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
+            // 
+            // tsRightSteerCalib
+            // 
+            this.tsRightSteerCalib.Name = "tsRightSteerCalib";
+            this.tsRightSteerCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsRightSteerCalib.Text = "Góc Lái Phải";
+            this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
             // 
             // SenAIS
             // 
@@ -277,6 +313,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsExit;
         private System.Windows.Forms.ToolStripMenuItem tsVehicleStandard;
         private System.Windows.Forms.ToolStripMenuItem tsInspector;
+        private System.Windows.Forms.ToolStripMenuItem TSTruyCapAdmin;
+        private System.Windows.Forms.ToolStripMenuItem tsSteerAngleCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsLeftSteerCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsRightSteerCalib;
     }
 }
 

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFrontBrake));
             this.FBrakePanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             // 
             // FBrakePanel
             // 
+            this.FBrakePanel.Controls.Add(this.lbEngineNumber);
             this.FBrakePanel.Controls.Add(this.cbReady);
             this.FBrakePanel.Controls.Add(this.tableLayoutPanel1);
             this.FBrakePanel.Controls.Add(this.btnNext);
@@ -63,6 +65,17 @@
             this.FBrakePanel.Name = "FBrakePanel";
             this.FBrakePanel.Size = new System.Drawing.Size(1904, 1041);
             this.FBrakePanel.TabIndex = 0;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 9);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 50;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -288,7 +301,7 @@
             this.lbFrontBrakeTitle.AutoSize = true;
             this.lbFrontBrakeTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFrontBrakeTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbFrontBrakeTitle.Location = new System.Drawing.Point(510, 0);
+            this.lbFrontBrakeTitle.Location = new System.Drawing.Point(569, 0);
             this.lbFrontBrakeTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFrontBrakeTitle.Name = "lbFrontBrakeTitle";
             this.lbFrontBrakeTitle.Size = new System.Drawing.Size(839, 117);
@@ -336,5 +349,6 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbFrontBrakeTitle;
         private System.Windows.Forms.CheckBox cbReady;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

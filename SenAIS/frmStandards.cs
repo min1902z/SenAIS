@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -17,7 +11,7 @@ namespace SenAIS
         public frmStandards()
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            sqlHelper = new SQLHelper();
             LoadStandardsData();
         }
         private void LoadStandardsData()
@@ -51,18 +45,20 @@ namespace SenAIS
             dgStandards.Columns["MaxHSU"].HeaderText = "HSU tối đa";
             dgStandards.Columns["MaxDiesel"].HeaderText = "Hệ số Diesel";
             dgStandards.Columns["MinHLIntensity"].HeaderText = "Cường độ chiếu sáng tối thiểu";
-            dgStandards .Columns["MinDiffHoriLeftHB"].HeaderText = "Chênh lệch ngang đèn pha trái tối thiểu";
+            dgStandards.Columns["MinDiffHoriLeftHB"].HeaderText = "Chênh lệch ngang đèn pha trái tối thiểu";
             dgStandards.Columns["MaxDiffHoriLeftHB"].HeaderText = "Chênh lệch ngang đèn pha trái tối đa";
             dgStandards.Columns["MinDiffHoriHB"].HeaderText = "Chênh lệch ngang đèn pha tối thiểu";
             dgStandards.Columns["MaxDiffHoriHB"].HeaderText = "Chênh lệch ngang đèn pha tối đa";
             dgStandards.Columns["MinDiffVertiHB"].HeaderText = "Chênh lệch dọc đèn pha tối thiểu";
             dgStandards.Columns["MaxDiffVertiHB"].HeaderText = "Chênh lệch dọc đèn pha tối đa";
-            dgStandards.Columns["MinDiffHoriLB"].HeaderText = "Chênh lệch ngang đèn cos tối thiểu";
-            dgStandards.Columns["MaxDiffHoriLB"].HeaderText = "Chênh lệch ngang đèn cos tối đa";
+            dgStandards.Columns["MinDiffHoriLB"].HeaderText = "Chênh lệch ngang đèn cốt tối thiểu";
+            dgStandards.Columns["MaxDiffHoriLB"].HeaderText = "Chênh lệch ngang đèn cốt tối đa";
             dgStandards.Columns["MinDiffVertiLB"].HeaderText = "Chênh lệch dọc đèn cốt tối thiểu";
             dgStandards.Columns["MaxDiffVertiLB"].HeaderText = "Chênh lệch dọc đèn cốt tối đa";
             dgStandards.Columns["MinLBIntensity"].HeaderText = "Cường độ đèn cốt tối thiểu";
             dgStandards.Columns["MinLightHeight"].HeaderText = "Độ cao đèn";
+            dgStandards.Columns["MinLeftSteer"].HeaderText = "Độ góc lái trái tối thiểu";
+            dgStandards.Columns["MinRightSteer"].HeaderText = "Độ góc lái trái tối đa";
         }
 
         private void btnSave_Click(object sender, EventArgs e)

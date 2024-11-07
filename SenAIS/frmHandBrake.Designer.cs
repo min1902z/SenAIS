@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHandBrake));
             this.HandBrakePanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.tbHandBrake = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             // 
             // HandBrakePanel
             // 
+            this.HandBrakePanel.Controls.Add(this.lbEngineNumber);
             this.HandBrakePanel.Controls.Add(this.cbReady);
             this.HandBrakePanel.Controls.Add(this.tbHandBrake);
             this.HandBrakePanel.Controls.Add(this.btnNext);
@@ -63,6 +65,17 @@
             this.HandBrakePanel.Name = "HandBrakePanel";
             this.HandBrakePanel.Size = new System.Drawing.Size(1904, 1041);
             this.HandBrakePanel.TabIndex = 0;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(128, 17);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 53;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -335,5 +348,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbHandBrakeTitle;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

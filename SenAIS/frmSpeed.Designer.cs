@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpeed));
             this.SpeedPanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNextSpeed = new System.Windows.Forms.Button();
             this.btnPreSpeed = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             // 
             // SpeedPanel
             // 
+            this.SpeedPanel.Controls.Add(this.lbEngineNumber);
             this.SpeedPanel.Controls.Add(this.cbReady);
             this.SpeedPanel.Controls.Add(this.btnNextSpeed);
             this.SpeedPanel.Controls.Add(this.btnPreSpeed);
@@ -49,10 +51,21 @@
             this.SpeedPanel.Controls.Add(this.lbTitleSpeed);
             this.SpeedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpeedPanel.Location = new System.Drawing.Point(0, 0);
-            this.SpeedPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.SpeedPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SpeedPanel.Name = "SpeedPanel";
             this.SpeedPanel.Size = new System.Drawing.Size(1443, 862);
             this.SpeedPanel.TabIndex = 37;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(126, 11);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 50;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -76,7 +89,7 @@
             this.btnNextSpeed.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNextSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnNextSpeed.Location = new System.Drawing.Point(1348, 816);
-            this.btnNextSpeed.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNextSpeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNextSpeed.Name = "btnNextSpeed";
             this.btnNextSpeed.Size = new System.Drawing.Size(86, 37);
             this.btnNextSpeed.TabIndex = 42;
@@ -91,7 +104,7 @@
             this.btnPreSpeed.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPreSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPreSpeed.Location = new System.Drawing.Point(9, 816);
-            this.btnPreSpeed.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPreSpeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPreSpeed.Name = "btnPreSpeed";
             this.btnPreSpeed.Size = new System.Drawing.Size(86, 37);
             this.btnPreSpeed.TabIndex = 41;
@@ -105,7 +118,7 @@
             this.lbSpeed.AutoSize = true;
             this.lbSpeed.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSpeed.Location = new System.Drawing.Point(71, 211);
+            this.lbSpeed.Location = new System.Drawing.Point(191, 208);
             this.lbSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbSpeed.Name = "lbSpeed";
             this.lbSpeed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -132,12 +145,12 @@
             // 
             this.lbTitleSpeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbTitleSpeed.AutoSize = true;
-            this.lbTitleSpeed.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitleSpeed.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitleSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbTitleSpeed.Location = new System.Drawing.Point(523, 11);
+            this.lbTitleSpeed.Location = new System.Drawing.Point(590, 7);
             this.lbTitleSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTitleSpeed.Name = "lbTitleSpeed";
-            this.lbTitleSpeed.Size = new System.Drawing.Size(596, 195);
+            this.lbTitleSpeed.Size = new System.Drawing.Size(359, 117);
             this.lbTitleSpeed.TabIndex = 37;
             this.lbTitleSpeed.Text = "TỐC ĐỘ";
             this.lbTitleSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -150,7 +163,7 @@
             this.ClientSize = new System.Drawing.Size(1443, 862);
             this.Controls.Add(this.SpeedPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MinimumSize = new System.Drawing.Size(1204, 657);
             this.Name = "frmSpeed";
             this.Text = "Tốc Độ";
@@ -170,5 +183,6 @@
         private System.Windows.Forms.Button btnNextSpeed;
         private System.Windows.Forms.Button btnPreSpeed;
         private System.Windows.Forms.CheckBox cbReady;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

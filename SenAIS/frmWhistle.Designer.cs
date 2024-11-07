@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWhistle));
             this.WhistlePanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             // 
             // WhistlePanel
             // 
+            this.WhistlePanel.Controls.Add(this.lbEngineNumber);
             this.WhistlePanel.Controls.Add(this.cbReady);
             this.WhistlePanel.Controls.Add(this.btnNext);
             this.WhistlePanel.Controls.Add(this.btnPre);
@@ -50,8 +52,19 @@
             this.WhistlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WhistlePanel.Location = new System.Drawing.Point(0, 0);
             this.WhistlePanel.Name = "WhistlePanel";
-            this.WhistlePanel.Size = new System.Drawing.Size(1904, 1041);
+            this.WhistlePanel.Size = new System.Drawing.Size(1443, 862);
             this.WhistlePanel.TabIndex = 0;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 49;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -73,8 +86,8 @@
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1807, 993);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Location = new System.Drawing.Point(1346, 814);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 29;
@@ -87,8 +100,8 @@
             this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(11, 993);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPre.Location = new System.Drawing.Point(11, 814);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 28;
@@ -102,7 +115,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(1530, 562);
+            this.label2.Location = new System.Drawing.Point(1300, 473);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(215, 163);
@@ -116,7 +129,7 @@
             this.lbWhistle.AutoSize = true;
             this.lbWhistle.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistle.Location = new System.Drawing.Point(263, 308);
+            this.lbWhistle.Location = new System.Drawing.Point(229, 266);
             this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
             this.lbWhistle.Name = "lbWhistle";
             this.lbWhistle.Size = new System.Drawing.Size(920, 488);
@@ -130,7 +143,7 @@
             this.lbWhistleTitle.AutoSize = true;
             this.lbWhistleTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistleTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistleTitle.Location = new System.Drawing.Point(658, 0);
+            this.lbWhistleTitle.Location = new System.Drawing.Point(532, 0);
             this.lbWhistleTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbWhistleTitle.Name = "lbWhistleTitle";
             this.lbWhistleTitle.Size = new System.Drawing.Size(678, 117);
@@ -145,7 +158,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1443, 862);
             this.Controls.Add(this.WhistlePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmWhistle";
@@ -168,5 +181,6 @@
         private System.Windows.Forms.Label lbWhistle;
         private System.Windows.Forms.Label lbWhistleTitle;
         private System.Windows.Forms.CheckBox cbReady;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

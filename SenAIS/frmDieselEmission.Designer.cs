@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDieselEmission));
             this.DieselPanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.lbNotice = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,6 +62,7 @@
             // 
             // DieselPanel
             // 
+            this.DieselPanel.Controls.Add(this.lbEngineNumber);
             this.DieselPanel.Controls.Add(this.lbNotice);
             this.DieselPanel.Controls.Add(this.cbReady);
             this.DieselPanel.Controls.Add(this.tableLayoutPanel1);
@@ -72,6 +74,17 @@
             this.DieselPanel.Name = "DieselPanel";
             this.DieselPanel.Size = new System.Drawing.Size(1904, 1041);
             this.DieselPanel.TabIndex = 0;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(128, 13);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 52;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // lbNotice
             // 
@@ -291,6 +304,7 @@
             // lbMinSpeed1
             // 
             this.lbMinSpeed1.AutoSize = true;
+            this.lbMinSpeed1.BackColor = System.Drawing.SystemColors.Control;
             this.lbMinSpeed1.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMinSpeed1.Location = new System.Drawing.Point(501, 78);
             this.lbMinSpeed1.Name = "lbMinSpeed1";
@@ -435,5 +449,6 @@
         private System.Windows.Forms.Label lbMinAvg;
         private System.Windows.Forms.Label lbAvg;
         private System.Windows.Forms.Label lbNotice;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

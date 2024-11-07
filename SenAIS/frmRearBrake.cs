@@ -1,14 +1,8 @@
 ﻿using OPCAutomation;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SenAIS
 {
@@ -21,6 +15,8 @@ namespace SenAIS
         private string serialNumber;
         public decimal rearLeftBrake;
         public decimal rearRightBrake;
+        public decimal diffRearBrake;
+        public decimal sumRearBrake;
         private bool isReady = false;
         public frmRearBrake(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
@@ -28,7 +24,7 @@ namespace SenAIS
             this.parentForm = parent;
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            sqlHelper = new SQLHelper();
             InitializeTimer();
         }
         private void InitializeTimer()
@@ -40,80 +36,148 @@ namespace SenAIS
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            int checkStatus = OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
-
-            if (checkStatus == 1)
+            lbEngineNumber.Text = this.serialNumber;
+            // Lấy giá trị OPC
+            //int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
+            int checkStatus = 1;
+            switch (checkStatus)
             {
-                cbReady.BackColor = Color.Green;
-                await Task.Delay(10000); // Chờ 10 giây
-                isReady = true;
+                case 1: // Xe vào vị trí
+                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                    isReady = false; // Chưa sẵn sàng lưu
+                    break;
 
-                double brakeRightA = 1.0;
-                brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
-                double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
-                double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
-                double leftBrake = leftBrakeResult / brakeRightA;
-                double rightBrake = rightBrakeResult / brakeRightA;
-                double diffBrake = 0.0;
-                if (leftBrake > rightBrake)
-                {
-                    diffBrake = 100 * (leftBrake - rightBrake) / leftBrake;
-                }
-                else
-                {
-                    diffBrake = 100 * (rightBrake - leftBrake) / rightBrake;
-                }
+                case 2: // Bắt đầu đo
+                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                    isReady = true; // Sẵn sàng lưu sau khi đo
+                    await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
+                    double brakeRightA = 1.0;
+                    brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
+                    double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
+                    double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
+                    double leftBrake = leftBrakeResult / brakeRightA;
+                    double rightBrake = rightBrakeResult / brakeRightA;
+                    double diffBrake = 0.0;
+                    if (leftBrake > rightBrake)
+                    {
+                        diffBrake = 100 * (leftBrake - rightBrake) / leftBrake;
+                    }
+                    else
+                    {
+                        diffBrake = 100 * (rightBrake - leftBrake) / rightBrake;
+                    }
 
-                double sumBrake = leftBrake + rightBrake;
+                    double sumBrake = leftBrake + rightBrake;
 
-                lbLeft_Brake.Text = leftBrake.ToString("F2");
-                lbRight_Brake.Text = rightBrake.ToString("F2");
-                lbDiff_Brake.Text = diffBrake.ToString("F2");
-                lbSum_Brake.Text = sumBrake.ToString("F2");
+                    lbLeft_Brake.Text = leftBrake.ToString("F2");
+                    lbRight_Brake.Text = rightBrake.ToString("F2");
+                    lbDiff_Brake.Text = diffBrake.ToString("F2");
+                    lbSum_Brake.Text = sumBrake.ToString("F2");
 
-                this.rearLeftBrake = Convert.ToDecimal(leftBrake.ToString("F1"));
-                this.rearRightBrake = Convert.ToDecimal(rightBrake.ToString("F1"));
-                CheckCounterPosition();
+                    this.rearLeftBrake = Convert.ToDecimal(leftBrake.ToString("F1"));
+                    this.rearRightBrake = Convert.ToDecimal(rightBrake.ToString("F1"));
+                    this.diffRearBrake = Convert.ToDecimal(diffBrake.ToString("F1"));
+                    this.sumRearBrake = Convert.ToDecimal(sumBrake.ToString("F1"));
+                    // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
+                    bool isSumStandard = sqlHelper.CheckValueAgainstStandard("RearBrake", sumRearBrake, this.serialNumber);
+                    bool isDiffStandard = sqlHelper.CheckValueAgainstStandard("DiffRearBrake", diffRearBrake, this.serialNumber);
+
+                    if (isSumStandard && isDiffStandard)
+                    {
+                        lbSum_Brake.BackColor = SystemColors.ControlLight;
+                        lbDiff_Brake.BackColor = SystemColors.ControlLight;
+                        await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
+                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
+                    }
+                    else
+                    {
+                        lbSum_Brake.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbDiff_Brake.BackColor = Color.DarkRed;
+                    }
+                    break;
+
+                case 3: // Quá trình đo hoàn tất, lưu vào DB
+                    cbReady.BackColor = Color.Green; // Đèn xanh
+                    if (isReady)
+                    {
+                        CheckCounterPosition(); // Ghi dữ liệu vào DB
+                        isReady = false; // Đặt lại trạng thái
+
+                        await Task.Delay(15000); // Chờ 15 giây trước khi tăng SerialNumber
+
+                        string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
+                        if (!string.IsNullOrEmpty(nextSerialNumber))
+                        {
+                            this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
+                            lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có xe tiếp theo để đo.");
+                        }
+                    }
+                    break;
+
+                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
+                    isReady = false;
+                    break;
             }
-            else
-            {
-                cbReady.BackColor = SystemColors.Control;
-                isReady = false;
-            }
+
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
-            // Thay đổi giá trị CounterPosition và mở form trước
             try
             {
-                opcCounterPos.Write(7); // Giá trị cho form chờ hoặc giá trị tương ứng
+                // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu đèn đã sáng 10 giây
+                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
                 }
-                ((frmInspection)parentForm).ProcessMeasurement(7);
+                // Lấy SerialNumber trước đó
+                string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
+                if (!string.IsNullOrEmpty(previousSerialNumber))
+                {
+                    // Cập nhật serialNumber mới
+                    this.serialNumber = previousSerialNumber;
+                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    isReady = false; // Đặt lại trạng thái
+                }
+                else
+                {
+                    MessageBox.Show("Không có xe trước đó.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi giá trị CounterPosition: " + ex.Message);
+                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            // Thay đổi giá trị CounterPosition và mở form tiếp theo
             try
             {
-                opcCounterPos.Write(9); // Giá trị cho form tiếp theo hoặc giá trị tương ứng
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu đèn đã sáng 10 giây
+                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
                 }
-                ((frmInspection)parentForm).ProcessMeasurement(9);
+
+                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                if (!string.IsNullOrEmpty(nextSerialNumber))
+                {
+                    this.serialNumber = nextSerialNumber; // Cập nhật serial number
+                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    isReady = false; // Đặt lại trạng thái
+                }
+                else
+                {
+                    MessageBox.Show("Không có xe tiếp theo.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi giá trị CounterPosition: " + ex.Message);
+                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
         private void SaveDataToDatabase()
@@ -124,7 +188,7 @@ namespace SenAIS
         {
             int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
 
-            if (currentPosition != 1)
+            if (currentPosition == 3)
             {
                 SaveDataToDatabase();
             }

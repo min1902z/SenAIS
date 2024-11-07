@@ -37,6 +37,17 @@
             this.StaticTitlePanel = new System.Windows.Forms.Panel();
             this.lbReportTitle = new System.Windows.Forms.Label();
             this.StaticPanel = new System.Windows.Forms.Panel();
+            this.SteerAnglePanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtLeftSteerRW = new System.Windows.Forms.TextBox();
+            this.txtLeftSteerLW = new System.Windows.Forms.TextBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txtRightSteerLW = new System.Windows.Forms.TextBox();
+            this.txtRightSteerRW = new System.Windows.Forms.TextBox();
+            this.lbSteerAngleTitle = new System.Windows.Forms.Label();
             this.DieselPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label51 = new System.Windows.Forms.Label();
@@ -179,6 +190,8 @@
             this.ReportPanel.SuspendLayout();
             this.StaticTitlePanel.SuspendLayout();
             this.StaticPanel.SuspendLayout();
+            this.SteerAnglePanel.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.DieselPanel.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.LBPanel.SuspendLayout();
@@ -245,6 +258,7 @@
             // 
             resources.ApplyResources(this.StaticPanel, "StaticPanel");
             this.StaticPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.StaticPanel.Controls.Add(this.SteerAnglePanel);
             this.StaticPanel.Controls.Add(this.DieselPanel);
             this.StaticPanel.Controls.Add(this.LBPanel);
             this.StaticPanel.Controls.Add(this.HLPanel);
@@ -254,6 +268,92 @@
             this.StaticPanel.Controls.Add(this.SpeedPanel);
             this.StaticPanel.Controls.Add(this.VehiclePanel);
             this.StaticPanel.Name = "StaticPanel";
+            // 
+            // SteerAnglePanel
+            // 
+            this.SteerAnglePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SteerAnglePanel.Controls.Add(this.tableLayoutPanel6);
+            this.SteerAnglePanel.Controls.Add(this.lbSteerAngleTitle);
+            resources.ApplyResources(this.SteerAnglePanel, "SteerAnglePanel");
+            this.SteerAnglePanel.Name = "SteerAnglePanel";
+            this.SteerAnglePanel.Tag = "";
+            // 
+            // tableLayoutPanel6
+            // 
+            resources.ApplyResources(this.tableLayoutPanel6, "tableLayoutPanel6");
+            this.tableLayoutPanel6.Controls.Add(this.label19, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtLeftSteerRW, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.txtLeftSteerLW, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label52, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label53, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label54, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtRightSteerLW, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.txtRightSteerRW, 2, 2);
+            this.tableLayoutPanel6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label19.Name = "label19";
+            // 
+            // txtLeftSteerRW
+            // 
+            this.txtLeftSteerRW.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLeftSteerRW, "txtLeftSteerRW");
+            this.txtLeftSteerRW.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLeftSteerRW.Name = "txtLeftSteerRW";
+            this.txtLeftSteerRW.ReadOnly = true;
+            // 
+            // txtLeftSteerLW
+            // 
+            this.txtLeftSteerLW.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLeftSteerLW, "txtLeftSteerLW");
+            this.txtLeftSteerLW.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLeftSteerLW.Name = "txtLeftSteerLW";
+            this.txtLeftSteerLW.ReadOnly = true;
+            // 
+            // label52
+            // 
+            resources.ApplyResources(this.label52, "label52");
+            this.label52.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label52.Name = "label52";
+            // 
+            // label53
+            // 
+            resources.ApplyResources(this.label53, "label53");
+            this.label53.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label53.Name = "label53";
+            // 
+            // label54
+            // 
+            resources.ApplyResources(this.label54, "label54");
+            this.label54.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label54.Name = "label54";
+            // 
+            // txtRightSteerLW
+            // 
+            this.txtRightSteerLW.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRightSteerLW, "txtRightSteerLW");
+            this.txtRightSteerLW.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRightSteerLW.Name = "txtRightSteerLW";
+            this.txtRightSteerLW.ReadOnly = true;
+            // 
+            // txtRightSteerRW
+            // 
+            this.txtRightSteerRW.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRightSteerRW, "txtRightSteerRW");
+            this.txtRightSteerRW.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRightSteerRW.Name = "txtRightSteerRW";
+            this.txtRightSteerRW.ReadOnly = true;
+            // 
+            // lbSteerAngleTitle
+            // 
+            resources.ApplyResources(this.lbSteerAngleTitle, "lbSteerAngleTitle");
+            this.lbSteerAngleTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lbSteerAngleTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbSteerAngleTitle.Name = "lbSteerAngleTitle";
             // 
             // DieselPanel
             // 
@@ -1347,6 +1447,8 @@
             this.dgVehicleInfo.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgVehicleInfo.Name = "dgVehicleInfo";
             this.dgVehicleInfo.ReadOnly = true;
+            this.dgVehicleInfo.RowHeadersVisible = false;
+            this.dgVehicleInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgVehicleInfo.SelectionChanged += new System.EventHandler(this.dgVehicleInfo_SelectionChanged);
             // 
             // btnSearch
@@ -1378,11 +1480,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmReport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmReport_Load);
             this.ReportPanel.ResumeLayout(false);
             this.ReportPanel.PerformLayout();
             this.StaticTitlePanel.ResumeLayout(false);
             this.StaticTitlePanel.PerformLayout();
             this.StaticPanel.ResumeLayout(false);
+            this.SteerAnglePanel.ResumeLayout(false);
+            this.SteerAnglePanel.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.DieselPanel.ResumeLayout(false);
             this.DieselPanel.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -1569,5 +1676,16 @@
         private System.Windows.Forms.Label lbVehicleTitle;
         private System.Windows.Forms.Button btnExportReport;
         private System.Windows.Forms.Button btnEditSave;
+        private System.Windows.Forms.Panel SteerAnglePanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtLeftSteerRW;
+        private System.Windows.Forms.TextBox txtLeftSteerLW;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox txtRightSteerLW;
+        private System.Windows.Forms.TextBox txtRightSteerRW;
+        private System.Windows.Forms.Label lbSteerAngleTitle;
     }
 }

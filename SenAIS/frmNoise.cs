@@ -1,10 +1,6 @@
 ﻿using OPCAutomation;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,7 +24,7 @@ namespace SenAIS
             this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
             comConnect = new COMConnect("COM7", 300, this);
-            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            sqlHelper = new SQLHelper();
             InitializeTimer();
         }
         private void InitializeTimer()
@@ -41,7 +37,6 @@ namespace SenAIS
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
             lbEngineNumber.Text = this.serialNumber;
-
             // Lấy giá trị OPC
             int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
 
@@ -64,6 +59,7 @@ namespace SenAIS
 
                     if (isValueInStandard)
                     {
+                        lbNoise.BackColor = SystemColors.ControlLight;
                         await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
                         OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
                     }
@@ -100,7 +96,6 @@ namespace SenAIS
                     isReady = false;
                     break;
             }
-            OPCUtility.ResetErrorFlag(); // Reset lại lỗi sau khi xử lý
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -145,7 +140,6 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    opcCounterPos.Write(4); // Chuyển vị trí OPC về form tiếp theo
                     isReady = false; // Đặt lại trạng thái
                 }
                 else

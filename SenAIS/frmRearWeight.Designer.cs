@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRearWeight));
             this.BWeightPanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
@@ -50,6 +51,7 @@
             // 
             // BWeightPanel
             // 
+            this.BWeightPanel.Controls.Add(this.lbEngineNumber);
             this.BWeightPanel.Controls.Add(this.cbReady);
             this.BWeightPanel.Controls.Add(this.tableLayoutPanel1);
             this.BWeightPanel.Controls.Add(this.btnNext);
@@ -60,6 +62,17 @@
             this.BWeightPanel.Name = "BWeightPanel";
             this.BWeightPanel.Size = new System.Drawing.Size(1904, 1041);
             this.BWeightPanel.TabIndex = 0;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 55;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -245,7 +258,7 @@
             this.lbRearWeightTitle.AutoSize = true;
             this.lbRearWeightTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRearWeightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbRearWeightTitle.Location = new System.Drawing.Point(508, 7);
+            this.lbRearWeightTitle.Location = new System.Drawing.Point(599, 0);
             this.lbRearWeightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbRearWeightTitle.Name = "lbRearWeightTitle";
             this.lbRearWeightTitle.Size = new System.Drawing.Size(848, 117);
@@ -290,5 +303,6 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbRearWeightTitle;
         private System.Windows.Forms.CheckBox cbReady;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SenAIS
 {
-    partial class frmCosLightL
+    partial class frmHeadlights
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCosLightL));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHeadlights));
             this.CosLightPanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.tbHeadLights = new System.Windows.Forms.TableLayoutPanel();
             this.lbLBRHorizontalDeviation = new System.Windows.Forms.Label();
@@ -60,6 +61,7 @@
             // 
             // CosLightPanel
             // 
+            this.CosLightPanel.Controls.Add(this.lbEngineNumber);
             this.CosLightPanel.Controls.Add(this.cbReady);
             this.CosLightPanel.Controls.Add(this.tbHeadLights);
             this.CosLightPanel.Controls.Add(this.btnNext);
@@ -70,6 +72,17 @@
             this.CosLightPanel.Name = "CosLightPanel";
             this.CosLightPanel.Size = new System.Drawing.Size(1904, 1041);
             this.CosLightPanel.TabIndex = 0;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 54;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -381,7 +394,7 @@
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnNext.Location = new System.Drawing.Point(1807, 993);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 42;
@@ -396,7 +409,7 @@
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPre.Location = new System.Drawing.Point(11, 993);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 41;
@@ -418,7 +431,7 @@
             this.lbCosLightTitle.Text = "Đèn Pha - Cốt";
             this.lbCosLightTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // frmCosLightL
+            // frmHeadlights
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -428,7 +441,7 @@
             this.Controls.Add(this.CosLightPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "frmCosLightL";
+            this.Name = "frmHeadlights";
             this.Text = "Dữ liệu đèn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCosLightL_FormClosing);
@@ -468,5 +481,6 @@
         private System.Windows.Forms.Label lbHBRHorizontalDeviation;
         private System.Windows.Forms.Label lbHBRIntensity;
         private System.Windows.Forms.Label lbHBRVerticalDeviation;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

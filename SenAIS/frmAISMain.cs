@@ -1,12 +1,4 @@
-﻿using OPCAutomation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -59,10 +51,10 @@ namespace SenAIS
 
             // Thiết lập tiêu đề và các thông tin khác
             calibrationForm.Text = "Kiểm Chuẩn Tham Số - T.Lượng Trái";
-            calibrationForm.lbCalibA.Text = "Calib\\WeightLeftA";
-            calibrationForm.lbCalibB.Text = "Calib\\WeightLeftB";
-            calibrationForm.lbParaA.Text = "Para\\WeightLeftA";
-            calibrationForm.lbParaB.Text = "Para\\WeightLeftB";
+            calibrationForm.lbCalibA.Text = "Calib\\LeftWeightA";
+            calibrationForm.lbCalibB.Text = "Calib\\LeftWeightB";
+            calibrationForm.lbParaA.Text = "Para\\LeftWeightA";
+            calibrationForm.lbParaB.Text = "Para\\LeftWeightB";
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
@@ -76,10 +68,10 @@ namespace SenAIS
 
             // Thiết lập tiêu đề và các thông tin khác
             calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - T.Lượng Phải";
-            calibrationForm.lbCalibA.Text = "Calib\\WeightRightA";
-            calibrationForm.lbCalibB.Text = "Calib\\WeightRightB";
-            calibrationForm.lbParaA.Text = "Para\\WeightRightA";
-            calibrationForm.lbParaB.Text = "Para\\WeightRightB";
+            calibrationForm.lbCalibA.Text = "Calib\\RightWeightA";
+            calibrationForm.lbCalibB.Text = "Calib\\RightWeightB";
+            calibrationForm.lbParaA.Text = "Para\\RightWeightA";
+            calibrationForm.lbParaB.Text = "Para\\RightWeightB";
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
@@ -88,7 +80,7 @@ namespace SenAIS
 
         private void tsSpeedCalib_Click(object sender, EventArgs e)
         {
-            string calibrationType  = "Speed";
+            string calibrationType = "Speed";
             frmCalibration calibrationForm = new frmCalibration(calibrationType);
 
             // Thiết lập tiêu đề và các thông tin khác
@@ -105,15 +97,15 @@ namespace SenAIS
 
         private void tsSideSlipCalib_Click(object sender, EventArgs e)
         {
-            string calibrationType  = "SideSlip";
+            string calibrationType = "SideSlip";
             frmCalibration calibrationForm = new frmCalibration(calibrationType);
 
             // Thiết lập tiêu đề và các thông tin khác
             calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - Trượt Ngang";
-            calibrationForm.lbCalibA.Text = "Calib\\AlignA";
-            calibrationForm.lbCalibB.Text = "Calib\\AlignB";
-            calibrationForm.lbParaA.Text = "Para\\AlignA";
-            calibrationForm.lbParaB.Text = "Para\\AlignB";
+            calibrationForm.lbCalibA.Text = "Calib\\SideSlipA";
+            calibrationForm.lbCalibB.Text = "Calib\\SideSlipB";
+            calibrationForm.lbParaA.Text = "Para\\SideSlipA";
+            calibrationForm.lbParaB.Text = "Para\\SideSlipB";
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
@@ -127,10 +119,10 @@ namespace SenAIS
 
             // Thiết lập tiêu đề và các thông tin khác
             calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái";
-            calibrationForm.lbCalibA.Text = "Calib\\BrakeLeftA";
-            calibrationForm.lbCalibB.Text = "Calib\\BrakeLeftB";
-            calibrationForm.lbParaA.Text = "Para\\BrakeLeftA";
-            calibrationForm.lbParaB.Text = "Para\\BrakeLeftB";
+            calibrationForm.lbCalibA.Text = "Calib\\LeftBrakeA";
+            calibrationForm.lbCalibB.Text = "Calib\\LeftBrakeB";
+            calibrationForm.lbParaA.Text = "Para\\LeftBrakeA";
+            calibrationForm.lbParaB.Text = "Para\\LeftBrakeB";
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
@@ -144,10 +136,10 @@ namespace SenAIS
 
             // Thiết lập tiêu đề và các thông tin khác
             calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải";
-            calibrationForm.lbCalibA.Text = "Calib\\BrakeRightA";
-            calibrationForm.lbCalibB.Text = "Calib\\BrakeRightB";
-            calibrationForm.lbParaA.Text = "Para\\BrakeRightA";
-            calibrationForm.lbParaB.Text = "Para\\BrakeRightB";
+            calibrationForm.lbCalibA.Text = "Calib\\RightBrakeA";
+            calibrationForm.lbCalibB.Text = "Calib\\RightBrakeB";
+            calibrationForm.lbParaA.Text = "Para\\RightBrakeA";
+            calibrationForm.lbParaB.Text = "Para\\RightBrakeB";
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
@@ -205,6 +197,62 @@ namespace SenAIS
         private void tsInspector_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmInspector());
+        }
+
+        private void TSTruyCapAdmin_Click(object sender, EventArgs e)
+        {
+            string password = Prompt.ShowDialog("Vui lòng nhập mật khẩu để truy cập quyền:", "Xác nhận mật khẩu");
+            if (password == "Sentek.vn")
+            {
+                // Tạo đối tượng formReport hoặc tìm kiếm nếu đã tồn tại
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is frmReport reportForm)
+                    {
+                        reportForm.EnableEditButton(); // Gọi hàm hiển thị nút "Chỉnh sửa"
+                        return;
+                    }
+                }
+                MessageBox.Show("Vui lòng truy cập tính năng này khi cần thiết.");
+            }
+            else
+            {
+                MessageBox.Show("Mật khẩu không đúng!", "Lỗi xác thực", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsLeftSteerCalib_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "LeftSteer";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - Góc Lái Trái";
+            calibrationForm.lbCalibA.Text = "Calib\\LeftSteerA";
+            calibrationForm.lbCalibB.Text = "Calib\\LeftSteerB";
+            calibrationForm.lbParaA.Text = "Para\\LeftSteerA";
+            calibrationForm.lbParaB.Text = "Para\\LeftSteerB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+        }
+
+        private void tsRightSteerCalib_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "RightSteer";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - Góc Lái Phải";
+            calibrationForm.lbCalibA.Text = "Calib\\RightSteerA";
+            calibrationForm.lbCalibB.Text = "Calib\\RightSteerB";
+            calibrationForm.lbParaA.Text = "Para\\RightSteerA";
+            calibrationForm.lbParaB.Text = "Para\\RightSteerB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
         }
     }
 }

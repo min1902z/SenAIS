@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.FWeightPanel = new System.Windows.Forms.Panel();
+            this.lbEngineNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@
             // 
             // FWeightPanel
             // 
+            this.FWeightPanel.Controls.Add(this.lbEngineNumber);
             this.FWeightPanel.Controls.Add(this.cbReady);
             this.FWeightPanel.Controls.Add(this.btnNext);
             this.FWeightPanel.Controls.Add(this.btnPre);
@@ -105,6 +107,17 @@
             this.FWeightPanel.Name = "FWeightPanel";
             this.FWeightPanel.Size = new System.Drawing.Size(1428, 846);
             this.FWeightPanel.TabIndex = 29;
+            // 
+            // lbEngineNumber
+            // 
+            this.lbEngineNumber.AutoSize = true;
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
+            this.lbEngineNumber.Name = "lbEngineNumber";
+            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.TabIndex = 50;
+            this.lbEngineNumber.Text = "Số Máy";
             // 
             // cbReady
             // 
@@ -341,5 +354,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbFrontWeightTitle;
         private System.Windows.Forms.CheckBox cbReady;
+        private System.Windows.Forms.Label lbEngineNumber;
     }
 }

@@ -1,25 +1,18 @@
 ﻿using OPCAutomation;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SenAIS
 {
     public partial class frmInspection : Form
     {
-        private SenAIS senAIS;
         private OPCServer opcServer;
         private OPCGroup opcGroup;
         private OPCItem opcCounterPos;
         private SQLHelper sqlHelper;
-        private Form currentMeasurementForm;
         private bool isMeasuring = false; // Cờ để xác định khi nào bắt đầu theo dõi
         private string vehicleType;
         private string inspector;
@@ -30,7 +23,7 @@ namespace SenAIS
         public frmInspection()
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True");
+            sqlHelper = new SQLHelper();
             LoadVehicleInfo();
             InitializeOPC();
         }
@@ -110,16 +103,7 @@ namespace SenAIS
                     formToOpen = new frmHandBrake(this, opcCounterPos, this.serialNumber);
                     break;
                 case 10:
-                    formToOpen = new frmHeadLightL(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 11:
-                    formToOpen = new frmHeadLightR(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 12:
-                    formToOpen = new frmCosLightL(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 13:
-                    formToOpen = new frmCosLightR(this, opcCounterPos, this.serialNumber);
+                    formToOpen = new frmHeadlights(this, opcCounterPos, this.serialNumber);
                     break;
                 case 14:
                     formToOpen = new frmGasEmission(this, opcCounterPos, this.serialNumber);
@@ -198,16 +182,10 @@ namespace SenAIS
                 OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
         }
 
-        private void btnLeftHeadLight_Click(object sender, EventArgs e)
+        private void btnHeadlights_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmHeadLightL(this, opcCounterPos, this.serialNumber));
-        }
-
-        private void btnLeftCosLight_Click(object sender, EventArgs e)
-        {
-            if (CheckSerialNumber())
-                OpenNewForm(new frmCosLightL(this, opcCounterPos, this.serialNumber));
+                OpenNewForm(new frmHeadlights(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnEmission_Click(object sender, EventArgs e)
@@ -226,21 +204,6 @@ namespace SenAIS
                     OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
             }
         }
-
-        private void chkToggleFuelType_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkToggleFuelType.Checked)
-            {
-                chkToggleFuelType.Text = "Nhiên Liệu: Dầu";
-                btnEmission.Text = "Khí Xả Diesel";
-            }
-            else
-            {
-                chkToggleFuelType.Text = "Nhiên Liệu: Xăng";
-                btnEmission.Text = "Khí Xả Xăng";
-            }
-        }
-
         private void btnReport_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
@@ -303,7 +266,7 @@ namespace SenAIS
                 MessageBox.Show("Vui lòng điền đầy đủ tất cả các trường thông tin của phương tiện", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            SQLHelper sqlHelper = new SQLHelper("Server=LAPTOP-MinhNCN\\MSSQLSERVER01;Database=SenAISDB;Trusted_Connection=True;");
+            SQLHelper sqlHelper = new SQLHelper();
             sqlHelper.SaveVehicleInfo(vehicleType, inspector, frameNumber, serialNumber, inspectionDate, fuelType);
             return true;
         }
@@ -337,16 +300,22 @@ namespace SenAIS
                 OpenNewForm(new frmHandBrake(this, opcCounterPos, this.serialNumber));
         }
 
-        private void btnRightHeadLight_Click(object sender, EventArgs e)
+        private void btnSteerAngle_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmHeadLightR(this, opcCounterPos, this.serialNumber));
+                OpenNewForm(new frmSteerAngle(this, opcCounterPos, this.serialNumber));
         }
 
-        private void btnRightCosLight_Click(object sender, EventArgs e)
+        private void cbFuel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CheckSerialNumber())
-                OpenNewForm(new frmCosLightR(this, opcCounterPos, this.serialNumber));
+            if (cbFuel.SelectedItem.ToString() == "Xăng")
+            {
+                btnEmission.Text = "Khí Xả Xăng";
+            }
+            else if (cbFuel.SelectedItem.ToString() == "Dầu")
+            {
+                btnEmission.Text = "Khí Xả Diesel";
+            }
         }
     }
 }

@@ -6,19 +6,19 @@ using System.Windows.Forms;
 
 namespace SenAIS
 {
-    public partial class frmHandBrake : Form
+    public partial class frmSteerAngle : Form
     {
         private Form parentForm;
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
-        public decimal handLeftBrake;
-        public decimal handRightBrake;
-        public decimal diffHandBrake;
-        public decimal sumHandBrake;
+        public decimal leftSteerLW = 0;
+        public decimal rightSteerLW = 0;
+        public decimal leftSteerRW = 0;
+        public decimal rightSteerRW = 0;
         private bool isReady = false;
-        public frmHandBrake(Form parent, OPCItem opcCounterPos, string serialNumber)
+        public frmSteerAngle(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
             InitializeComponent();
             this.parentForm = parent;
@@ -51,48 +51,48 @@ namespace SenAIS
                     cbReady.BackColor = Color.Green; // Đèn xanh sáng
                     isReady = true; // Sẵn sàng lưu sau khi đo
                     await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    double brakeRightA = 1.0;
-                    brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
-                    double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
-                    double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
-                    double leftBrake = leftBrakeResult / brakeRightA;
-                    double rightBrake = rightBrakeResult / brakeRightA;
-                    double diffBrake = 0.0;
-                    if (leftBrake > rightBrake)
-                    {
-                        diffBrake = 100 * (leftBrake - rightBrake) / leftBrake;
-                    }
-                    else
-                    {
-                        diffBrake = 100 * (rightBrake - leftBrake) / rightBrake;
-                    }
-
-                    double sumBrake = leftBrake + rightBrake;
-
-                    lbLeft_Brake.Text = leftBrake.ToString("F1");
-                    lbRight_Brake.Text = rightBrake.ToString("F1");
-                    lbDiff_Brake.Text = diffBrake.ToString("F1");
-                    lbSum_Brake.Text = sumBrake.ToString("F1");
-
-                    this.handLeftBrake = Convert.ToDecimal(leftBrake.ToString("F1"));
-                    this.handRightBrake = Convert.ToDecimal(rightBrake.ToString("F1"));
-                    this.diffHandBrake = Convert.ToDecimal(diffBrake.ToString("F1"));
-                    this.sumHandBrake = Convert.ToDecimal(sumBrake.ToString("F1"));
+                    double leftSteerLWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double rightSteerLWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double leftSteerRWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double rightSteerRWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    lbLeftSteerLW.Text = leftSteerLWResult.ToString("F1");
+                    lbRightSteerLW.Text = rightSteerLWResult.ToString("F1");
+                    lbLeftSteerRW.Text = leftSteerRWResult.ToString("F1");
+                    lbRightSteerRW.Text = rightSteerRWResult.ToString("F1");
+                    this.leftSteerLW = Convert.ToDecimal(leftSteerLWResult.ToString("F1"));
+                    this.rightSteerLW = Convert.ToDecimal(rightSteerLWResult.ToString("F1"));
+                    this.leftSteerRW = Convert.ToDecimal(leftSteerRWResult.ToString("F1"));
+                    this.rightSteerRW = Convert.ToDecimal(rightSteerRWResult.ToString("F1"));
                     // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                    bool isSumStandard = sqlHelper.CheckValueAgainstStandard("HandBrake", sumHandBrake, this.serialNumber);
-                    bool isDiffStandard = sqlHelper.CheckValueAgainstStandard("DiffHandBrake", diffHandBrake, this.serialNumber);
+                    bool isLeftSteerLWInStandard = sqlHelper.CheckValueAgainstStandard("LeftSteer", leftSteerLW, this.serialNumber);
+                    bool isLeftSteerRWInStandard = sqlHelper.CheckValueAgainstStandard("LeftSteer", leftSteerRW, this.serialNumber);
+                    bool isRightSteerLWInStandard = sqlHelper.CheckValueAgainstStandard("RightSteer", rightSteerLW, this.serialNumber);
+                    bool isRightSteerRWInStandard = sqlHelper.CheckValueAgainstStandard("RightSteer", rightSteerRW, this.serialNumber);
 
-                    if (isSumStandard && isDiffStandard)
+                    if (isLeftSteerLWInStandard && isLeftSteerRWInStandard && isRightSteerLWInStandard && isRightSteerRWInStandard)
                     {
-                        lbSum_Brake.BackColor = SystemColors.ControlLight;
-                        lbDiff_Brake.BackColor = SystemColors.ControlLight;
+                        lbLeftSteerLW.BackColor = SystemColors.ControlLight;
+                        lbLeftSteerRW.BackColor = SystemColors.ControlLight;
+                        lbRightSteerLW.BackColor = SystemColors.ControlLight;
+                        lbRightSteerRW.BackColor = SystemColors.ControlLight;
                         await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
                         OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
                     }
-                    else
+                    else if (!isLeftSteerLWInStandard)
                     {
-                        lbSum_Brake.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
-                        lbDiff_Brake.BackColor = Color.DarkRed;
+                        lbLeftSteerLW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                    }
+                    else if (!isLeftSteerRWInStandard)
+                    {
+                        lbLeftSteerRW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                    }
+                    else if (!isRightSteerLWInStandard)
+                    {
+                        lbRightSteerLW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                    }
+                    else if (!isRightSteerRWInStandard)
+                    {
+                        lbRightSteerRW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
                     }
                     break;
 
@@ -125,6 +125,7 @@ namespace SenAIS
             }
 
         }
+
         private void btnPre_Click(object sender, EventArgs e)
         {
             try
@@ -183,7 +184,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveHandBrakeData(this.serialNumber, this.handLeftBrake, this.handRightBrake);
+            sqlHelper.SaveSteerAngleData(this.serialNumber, this.leftSteerLW, this.rightSteerLW, this.leftSteerRW, this.rightSteerRW);
         }
         private void CheckCounterPosition()
         {
@@ -193,6 +194,15 @@ namespace SenAIS
             {
                 SaveDataToDatabase();
             }
+        }
+
+        private void tbSteerAngle_Resize(object sender, EventArgs e)
+        {
+            // Căn giữa TextBox theo chiều ngang
+            tbSteerAngle.Left = (this.ClientSize.Width - tbSteerAngle.Width) / 2;
+
+            // Căn giữa TextBox theo chiều dọc nếu muốn
+            tbSteerAngle.Top = (this.ClientSize.Height - tbSteerAngle.Height) / 2;
         }
     }
 }
