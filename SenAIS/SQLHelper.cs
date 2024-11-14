@@ -12,7 +12,11 @@ namespace SenAIS
 
         public SQLHelper()
         {
-            this.connectionString = ConfigurationManager.ConnectionStrings["SenAISDBConnectionString"].ConnectionString;
+            this.connectionString = ConfigurationManager.ConnectionStrings["SenAISDBConnectionString"]?.ConnectionString;
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("Chuỗi kết nối không được tìm thấy hoặc rỗng.");
+            }
         }
 
         public void ExecuteQuery(string query, params SqlParameter[] parameters)

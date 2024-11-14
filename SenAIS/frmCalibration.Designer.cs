@@ -105,6 +105,7 @@ namespace SenAIS
             // 
             // CalibrationPanel
             // 
+            this.CalibrationPanel.AutoScroll = true;
             this.CalibrationPanel.AutoSize = true;
             this.CalibrationPanel.Controls.Add(this.RightCalibPanel);
             this.CalibrationPanel.Controls.Add(this.LeftCalibPanel);
@@ -122,7 +123,7 @@ namespace SenAIS
             this.RightCalibPanel.Controls.Add(this.panelAfterCalibration);
             this.RightCalibPanel.Location = new System.Drawing.Point(736, 82);
             this.RightCalibPanel.Name = "RightCalibPanel";
-            this.RightCalibPanel.Size = new System.Drawing.Size(709, 763);
+            this.RightCalibPanel.Size = new System.Drawing.Size(709, 746);
             this.RightCalibPanel.TabIndex = 53;
             // 
             // panelAfterCalibration
@@ -167,10 +168,11 @@ namespace SenAIS
             // 
             this.LeftCalibPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.LeftCalibPanel.AutoScroll = true;
             this.LeftCalibPanel.Controls.Add(this.tbCalibration);
             this.LeftCalibPanel.Location = new System.Drawing.Point(3, 80);
             this.LeftCalibPanel.Name = "LeftCalibPanel";
-            this.LeftCalibPanel.Size = new System.Drawing.Size(727, 765);
+            this.LeftCalibPanel.Size = new System.Drawing.Size(727, 748);
             this.LeftCalibPanel.TabIndex = 52;
             // 
             // tbCalibration
@@ -535,7 +537,7 @@ namespace SenAIS
             this.lbCalibrateTitle.AutoSize = true;
             this.lbCalibrateTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCalibrateTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbCalibrateTitle.Location = new System.Drawing.Point(199, 0);
+            this.lbCalibrateTitle.Location = new System.Drawing.Point(200, 0);
             this.lbCalibrateTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibrateTitle.Name = "lbCalibrateTitle";
             this.lbCalibrateTitle.Size = new System.Drawing.Size(970, 78);
