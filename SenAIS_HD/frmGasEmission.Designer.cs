@@ -162,6 +162,7 @@
             // tbGasEmission
             // 
             this.tbGasEmission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbGasEmission.AutoScroll = true;
             this.tbGasEmission.ColumnCount = 6;
             this.tbGasEmission.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.40825F));
             this.tbGasEmission.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.07555F));

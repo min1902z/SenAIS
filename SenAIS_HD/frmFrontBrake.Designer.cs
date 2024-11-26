@@ -54,6 +54,7 @@
             // 
             // FBrakePanel
             // 
+            this.FBrakePanel.AutoScroll = true;
             this.FBrakePanel.Controls.Add(this.lbEngineNumber);
             this.FBrakePanel.Controls.Add(this.cbReady);
             this.FBrakePanel.Controls.Add(this.tableLayoutPanel1);
@@ -63,7 +64,7 @@
             this.FBrakePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FBrakePanel.Location = new System.Drawing.Point(0, 0);
             this.FBrakePanel.Name = "FBrakePanel";
-            this.FBrakePanel.Size = new System.Drawing.Size(1904, 1041);
+            this.FBrakePanel.Size = new System.Drawing.Size(1443, 857);
             this.FBrakePanel.TabIndex = 0;
             // 
             // lbEngineNumber
@@ -71,11 +72,11 @@
             this.lbEngineNumber.AutoSize = true;
             this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbEngineNumber.Location = new System.Drawing.Point(129, 9);
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
             this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.Size = new System.Drawing.Size(199, 78);
             this.lbEngineNumber.TabIndex = 50;
-            this.lbEngineNumber.Text = "Số Máy";
+            this.lbEngineNumber.Text = "Số Vin";
             // 
             // cbReady
             // 
@@ -94,11 +95,14 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.71445F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.35869F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.87281F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label11, 2, 1);
@@ -111,14 +115,14 @@
             this.tableLayoutPanel1.Controls.Add(this.label10, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbSum_Brake, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label13, 2, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(105, 120);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(105, 116);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1709, 868);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1238, 730);
             this.tableLayoutPanel1.TabIndex = 39;
             // 
             // label8
@@ -127,7 +131,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label8.Location = new System.Drawing.Point(3, 701);
+            this.label8.Location = new System.Drawing.Point(3, 624);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(234, 117);
             this.label8.TabIndex = 31;
@@ -139,7 +143,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label12.Location = new System.Drawing.Point(1285, 503);
+            this.label12.Location = new System.Drawing.Point(691, 448);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 78);
@@ -152,7 +156,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label11.Location = new System.Drawing.Point(1285, 286);
+            this.label11.Location = new System.Drawing.Point(691, 253);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(75, 78);
@@ -165,7 +169,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label7.Location = new System.Drawing.Point(3, 484);
+            this.label7.Location = new System.Drawing.Point(3, 429);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(363, 117);
             this.label7.TabIndex = 11;
@@ -177,7 +181,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(3, 50);
+            this.label2.Location = new System.Drawing.Point(3, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(362, 117);
             this.label2.TabIndex = 6;
@@ -189,7 +193,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(3, 267);
+            this.label3.Location = new System.Drawing.Point(3, 234);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(390, 117);
             this.label3.TabIndex = 7;
@@ -198,33 +202,33 @@
             // lbLeft_Brake
             // 
             this.lbLeft_Brake.AutoSize = true;
-            this.lbLeft_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLeft_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLeft_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLeft_Brake.Location = new System.Drawing.Point(545, 0);
+            this.lbLeft_Brake.Location = new System.Drawing.Point(399, 0);
             this.lbLeft_Brake.Name = "lbLeft_Brake";
-            this.lbLeft_Brake.Size = new System.Drawing.Size(284, 195);
+            this.lbLeft_Brake.Size = new System.Drawing.Size(287, 195);
             this.lbLeft_Brake.TabIndex = 8;
             this.lbLeft_Brake.Text = "0.0";
             // 
             // lbDiff_Brake
             // 
             this.lbDiff_Brake.AutoSize = true;
-            this.lbDiff_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDiff_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDiff_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDiff_Brake.Location = new System.Drawing.Point(545, 434);
+            this.lbDiff_Brake.Location = new System.Drawing.Point(399, 390);
             this.lbDiff_Brake.Name = "lbDiff_Brake";
-            this.lbDiff_Brake.Size = new System.Drawing.Size(284, 195);
+            this.lbDiff_Brake.Size = new System.Drawing.Size(287, 195);
             this.lbDiff_Brake.TabIndex = 10;
             this.lbDiff_Brake.Text = "0.0";
             // 
             // lbRight_Brake
             // 
             this.lbRight_Brake.AutoSize = true;
-            this.lbRight_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRight_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRight_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbRight_Brake.Location = new System.Drawing.Point(545, 217);
+            this.lbRight_Brake.Location = new System.Drawing.Point(399, 195);
             this.lbRight_Brake.Name = "lbRight_Brake";
-            this.lbRight_Brake.Size = new System.Drawing.Size(284, 195);
+            this.lbRight_Brake.Size = new System.Drawing.Size(287, 195);
             this.lbRight_Brake.TabIndex = 9;
             this.lbRight_Brake.Text = "0.0";
             // 
@@ -234,7 +238,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label10.Location = new System.Drawing.Point(1285, 69);
+            this.label10.Location = new System.Drawing.Point(691, 58);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 78);
@@ -244,11 +248,11 @@
             // lbSum_Brake
             // 
             this.lbSum_Brake.AutoSize = true;
-            this.lbSum_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSum_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSum_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSum_Brake.Location = new System.Drawing.Point(545, 651);
+            this.lbSum_Brake.Location = new System.Drawing.Point(399, 585);
             this.lbSum_Brake.Name = "lbSum_Brake";
-            this.lbSum_Brake.Size = new System.Drawing.Size(284, 195);
+            this.lbSum_Brake.Size = new System.Drawing.Size(287, 195);
             this.lbSum_Brake.TabIndex = 13;
             this.lbSum_Brake.Text = "0.0";
             // 
@@ -258,7 +262,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label13.Location = new System.Drawing.Point(1285, 720);
+            this.label13.Location = new System.Drawing.Point(691, 643);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 78);
@@ -271,8 +275,8 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1807, 993);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Location = new System.Drawing.Point(1348, 811);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 38;
@@ -286,8 +290,8 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(11, 993);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPre.Location = new System.Drawing.Point(9, 811);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 37;
@@ -301,7 +305,7 @@
             this.lbFrontBrakeTitle.AutoSize = true;
             this.lbFrontBrakeTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFrontBrakeTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbFrontBrakeTitle.Location = new System.Drawing.Point(569, 0);
+            this.lbFrontBrakeTitle.Location = new System.Drawing.Point(406, 0);
             this.lbFrontBrakeTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFrontBrakeTitle.Name = "lbFrontBrakeTitle";
             this.lbFrontBrakeTitle.Size = new System.Drawing.Size(839, 117);
@@ -313,12 +317,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.FBrakePanel);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.Name = "frmFrontBrake";
+            this.ShowIcon = false;
             this.Text = "Lực Phanh Trước";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FBrakePanel.ResumeLayout(false);

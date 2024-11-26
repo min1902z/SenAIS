@@ -31,8 +31,8 @@ namespace SenAIS
 
             // Hiển thị kết quả tìm kiếm trong DataGridView
             dgVehicleInfo.DataSource = results;
-            dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số máy";
-            dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số khung";
+            dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số vin";
+            dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
             dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
             dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
             dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";

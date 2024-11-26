@@ -111,6 +111,30 @@ namespace SenAIS
 
             ExecuteQuery(query, parameters);
         }
+        public void SavePetrolEmissionData(string serialNumber, decimal hcValue, decimal coValue, decimal oilTemp, decimal rpm)
+        {
+            string query = @"IF EXISTS (SELECT 1 FROM GasEmission_Petrol WHERE SerialNumber = @SerialNumber)
+                         BEGIN
+                             UPDATE GasEmission_Petrol 
+                             SET HC = @HC, CO = @CO, OilTemp = @OilTemp, RPM = @RPM 
+                             WHERE SerialNumber = @SerialNumber
+                         END
+                         ELSE
+                         BEGIN
+                             INSERT INTO GasEmission_Petrol (SerialNumber, HC, CO, OilTemp, RPM)
+                             VALUES (@SerialNumber, @HC, @CO, @OilTemp, @RPM)
+                         END";
+            var parameters = new[]
+            {
+            new SqlParameter("@HC", hcValue),
+            new SqlParameter("@CO", coValue),
+            new SqlParameter("@OilTemp", oilTemp),
+            new SqlParameter("@RPM", rpm),
+            new SqlParameter("@SerialNumber", serialNumber)
+        };
+
+            ExecuteQuery(query, parameters);
+        }
         public void SaveDieselEmissionData(string serialNumber, decimal minSpeed1, decimal maxSpeed1, decimal hsu1, decimal minSpeed2, decimal maxSpeed2, decimal hsu2, decimal minSpeed3, decimal maxSpeed3, decimal hsu3)
         {
             string query = @"IF EXISTS (SELECT 1 FROM GasEmission_Diesel WHERE SerialNumber = @SerialNumber)
@@ -122,7 +146,7 @@ namespace SenAIS
                          ELSE
                          BEGIN
                              INSERT INTO GasEmission_Diesel (SerialNumber, MinSpeed1, MaxSpeed1, HSU1, MinSpeed2, MaxSpeed2, HSU2,MinSpeed3, MaxSpeed3, HSU3)
-                             VALUES (@SerialNumber, @MinSpeed1, @MaxSpeed1, @HSU1, MinSpeed2, @MaxSpeed2, @HSU2, MinSpeed3, @MaxSpeed3, @HSU3)
+                             VALUES (@SerialNumber, @MinSpeed1, @MaxSpeed1, @HSU1, @MinSpeed2, @MaxSpeed2, @HSU2, @MinSpeed3, @MaxSpeed3, @HSU3)
                          END";
             var parameters = new[]
             {
@@ -716,6 +740,15 @@ namespace SenAIS
         {
             string query = "SELECT InspectorName FROM Inspector";
             return TableExecuteQuery(query);
+        }
+        public DataTable GetFuelTypeBySerialNumber(string serialNumber)
+        {
+            string query = "SELECT Fuel FROM VehicleInfo WHERE SerialNumber = @SerialNumber";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@SerialNumber", serialNumber)
+            };
+            return TableExecuteQuery(query, parameters);
         }
         public DataTable GetVehicleStandardsByTypeCar(string vehicleType)
         {

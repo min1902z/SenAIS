@@ -42,6 +42,7 @@
             // 
             // SideSlipPanel
             // 
+            this.SideSlipPanel.AutoScroll = true;
             this.SideSlipPanel.Controls.Add(this.lbEngineNumber);
             this.SideSlipPanel.Controls.Add(this.cbReady);
             this.SideSlipPanel.Controls.Add(this.btnNext);
@@ -52,7 +53,7 @@
             this.SideSlipPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SideSlipPanel.Location = new System.Drawing.Point(0, 0);
             this.SideSlipPanel.Name = "SideSlipPanel";
-            this.SideSlipPanel.Size = new System.Drawing.Size(1443, 862);
+            this.SideSlipPanel.Size = new System.Drawing.Size(1443, 857);
             this.SideSlipPanel.TabIndex = 0;
             // 
             // lbEngineNumber
@@ -62,9 +63,9 @@
             this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
             this.lbEngineNumber.Location = new System.Drawing.Point(128, 12);
             this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.Size = new System.Drawing.Size(199, 78);
             this.lbEngineNumber.TabIndex = 49;
-            this.lbEngineNumber.Text = "Số Máy";
+            this.lbEngineNumber.Text = "Số Vin";
             // 
             // cbReady
             // 
@@ -85,9 +86,9 @@
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1346, 814);
+            this.btnNext.Location = new System.Drawing.Point(1346, 809);
             this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
@@ -100,9 +101,9 @@
             // 
             this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPre.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(11, 814);
+            this.btnPre.Location = new System.Drawing.Point(11, 809);
             this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
@@ -113,11 +114,11 @@
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(1280, 544);
+            this.label2.Location = new System.Drawing.Point(1128, 544);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(333, 131);
@@ -128,16 +129,15 @@
             // lbSideSlip
             // 
             this.lbSideSlip.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbSideSlip.AutoSize = true;
             this.lbSideSlip.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSideSlip.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSideSlip.Location = new System.Drawing.Point(377, 264);
+            this.lbSideSlip.Location = new System.Drawing.Point(340, 262);
             this.lbSideSlip.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbSideSlip.Name = "lbSideSlip";
-            this.lbSideSlip.Size = new System.Drawing.Size(807, 488);
+            this.lbSideSlip.Size = new System.Drawing.Size(756, 496);
             this.lbSideSlip.TabIndex = 11;
             this.lbSideSlip.Text = "0.0 ";
-            this.lbSideSlip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbSideSlip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbSideSlipTitle
             // 
@@ -157,12 +157,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1443, 862);
+            this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.SideSlipPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.Name = "frmSideSlip";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trượt Ngang";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

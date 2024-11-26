@@ -174,7 +174,6 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    opcCounterPos.Write(4); // Chuyển vị trí OPC về form tiếp theo
                     isReady = false; // Đặt lại trạng thái
                 }
                 else

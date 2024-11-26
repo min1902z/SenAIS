@@ -25,7 +25,7 @@ namespace SenAIS
             InitializeComponent();
             sqlHelper = new SQLHelper();
             LoadVehicleInfo();
-            InitializeOPC();
+            //InitializeOPC();
         }
 
         //public frmInspection(SenAIS senAIS)
@@ -195,13 +195,13 @@ namespace SenAIS
             {
                 if (CheckSerialNumber())
                     // Open the Gas Emission form
-                    OpenNewForm(new frmGasEmission(this, opcCounterPos, this.serialNumber));
+                    OpenNewForm(new frmPetrolPDF(this, this.serialNumber));
             }
             else
             {
                 if (CheckSerialNumber())
                     // Open the Diesel Emission form
-                    OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
+                    OpenNewForm(new frmDieselPDF(this, this.serialNumber));
             }
         }
         private void btnReport_Click(object sender, EventArgs e)
@@ -215,26 +215,9 @@ namespace SenAIS
             isMeasuring = true; // Bắt đầu theo dõi sự thay đổi
             if (!SaveDataToDB())
             {
-                return; // Dừng lại nếu dữ liệu không đủ và không lưu được
+                tbVehicleInfo.Focus();
+                //return; // Dừng lại nếu dữ liệu không đủ và không lưu được
             }
-            //try
-            //{
-            //    if (opcCounterPos != null)
-            //    {
-            //        object value;
-            //        opcCounterPos.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
-            //        int t99Value = Convert.ToInt32(value);
-            //        ProcessMeasurement(t99Value);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("CounterPosition chưa được khởi tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi khi đọc giá trị CounterPosition: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
         private void LoadVehicleInfo()
         {
@@ -249,15 +232,33 @@ namespace SenAIS
             cbInspector.DataSource = inspectorTable;
             cbInspector.DisplayMember = "InspectorName"; // Hiển thị InspectorName trong ComboBox
             cbInspector.ValueMember = "InspectorName";   // Sử dụng InspectorName làm giá trị
+
+            // Kiểm tra nếu có SerialNumber, tải thông tin về FuelType
+            if (!string.IsNullOrEmpty(txtSerialNum.Text))
+            {
+                DataTable result = sqlHelper.GetFuelTypeBySerialNumber(txtSerialNum.Text);
+                if (result.Rows.Count > 0)
+                {
+                    cbFuel.SelectedItem = result.Rows[0]["Fuel"].ToString();
+                }
+                else
+                {
+                    cbFuel.SelectedIndex = -1; // Không chọn gì nếu không tìm thấy SerialNumber
+                }
+            }
+            else
+            {
+                cbFuel.SelectedIndex = -1; // Reset nếu SerialNumber bị xóa
+            }
         }
         private bool SaveDataToDB()
         {
-            vehicleType = cbTypeCar.SelectedValue.ToString();
-            inspector = cbInspector.SelectedValue.ToString();
+            vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
+            inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty;
             frameNumber = txtFrameNum.Text;
             serialNumber = txtSerialNum.Text;
             inspectionDate = dateInSpec.Value;
-            fuelType = cbFuel.SelectedItem.ToString();
+            fuelType = cbFuel.SelectedItem?.ToString() ?? string.Empty;
 
             if (string.IsNullOrEmpty(vehicleType) || string.IsNullOrEmpty(inspector) ||
                    string.IsNullOrEmpty(frameNumber) || string.IsNullOrEmpty(fuelType) ||
@@ -266,7 +267,6 @@ namespace SenAIS
                 MessageBox.Show("Vui lòng điền đầy đủ tất cả các trường thông tin của phương tiện", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            SQLHelper sqlHelper = new SQLHelper();
             sqlHelper.SaveVehicleInfo(vehicleType, inspector, frameNumber, serialNumber, inspectionDate, fuelType);
             return true;
         }
@@ -317,5 +317,7 @@ namespace SenAIS
                 btnEmission.Text = "Khí Xả Diesel";
             }
         }
+
+        
     }
 }
