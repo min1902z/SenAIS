@@ -31,16 +31,16 @@
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
             this.cbFuel = new System.Windows.Forms.ComboBox();
             this.lbFuelTitle = new System.Windows.Forms.Label();
-            this.cbInspector = new System.Windows.Forms.ComboBox();
-            this.txtFrameNum = new System.Windows.Forms.TextBox();
-            this.lbTypeCarTitle = new System.Windows.Forms.Label();
-            this.lbFrameNumTitle = new System.Windows.Forms.Label();
-            this.lbInspectorTitle = new System.Windows.Forms.Label();
-            this.cbTypeCar = new System.Windows.Forms.ComboBox();
-            this.lbSerialNumTitle = new System.Windows.Forms.Label();
-            this.txtSerialNum = new System.Windows.Forms.TextBox();
             this.lbInspecDateTitle = new System.Windows.Forms.Label();
             this.dateInSpec = new System.Windows.Forms.DateTimePicker();
+            this.txtSerialNum = new System.Windows.Forms.TextBox();
+            this.lbInspectorTitle = new System.Windows.Forms.Label();
+            this.lbSerialNumTitle = new System.Windows.Forms.Label();
+            this.cbInspector = new System.Windows.Forms.ComboBox();
+            this.lbFrameNumTitle = new System.Windows.Forms.Label();
+            this.txtFrameNum = new System.Windows.Forms.TextBox();
+            this.lbTypeCarTitle = new System.Windows.Forms.Label();
+            this.cbTypeCar = new System.Windows.Forms.ComboBox();
             this.btnReport = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnHeadlights = new System.Windows.Forms.Button();
@@ -70,7 +70,7 @@
             this.tbVehicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tbVehicleInfo.ColumnCount = 2;
             this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 288F));
+            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
             this.tbVehicleInfo.Controls.Add(this.cbFuel, 1, 5);
             this.tbVehicleInfo.Controls.Add(this.lbFuelTitle, 0, 5);
             this.tbVehicleInfo.Controls.Add(this.lbInspecDateTitle, 0, 4);
@@ -123,94 +123,6 @@
             this.lbFuelTitle.TabIndex = 8;
             this.lbFuelTitle.Text = "Nhiên Liệu";
             // 
-            // cbInspector
-            // 
-            this.cbInspector.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.cbInspector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbInspector.FormattingEnabled = true;
-            this.cbInspector.Location = new System.Drawing.Point(204, 175);
-            this.cbInspector.Margin = new System.Windows.Forms.Padding(2);
-            this.cbInspector.Name = "cbInspector";
-            this.cbInspector.Size = new System.Drawing.Size(223, 37);
-            this.cbInspector.TabIndex = 19;
-            // 
-            // txtFrameNum
-            // 
-            this.txtFrameNum.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.txtFrameNum.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrameNum.Location = new System.Drawing.Point(204, 61);
-            this.txtFrameNum.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFrameNum.Name = "txtFrameNum";
-            this.txtFrameNum.Size = new System.Drawing.Size(223, 37);
-            this.txtFrameNum.TabIndex = 15;
-            // 
-            // lbTypeCarTitle
-            // 
-            this.lbTypeCarTitle.AutoSize = true;
-            this.lbTypeCarTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTypeCarTitle.Location = new System.Drawing.Point(4, 116);
-            this.lbTypeCarTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbTypeCarTitle.Name = "lbTypeCarTitle";
-            this.lbTypeCarTitle.Size = new System.Drawing.Size(91, 33);
-            this.lbTypeCarTitle.TabIndex = 0;
-            this.lbTypeCarTitle.Text = "Loại Xe";
-            // 
-            // lbFrameNumTitle
-            // 
-            this.lbFrameNumTitle.AutoSize = true;
-            this.lbFrameNumTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFrameNumTitle.Location = new System.Drawing.Point(4, 59);
-            this.lbFrameNumTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbFrameNumTitle.Name = "lbFrameNumTitle";
-            this.lbFrameNumTitle.Size = new System.Drawing.Size(95, 33);
-            this.lbFrameNumTitle.TabIndex = 2;
-            this.lbFrameNumTitle.Text = "Số Máy";
-            // 
-            // lbInspectorTitle
-            // 
-            this.lbInspectorTitle.AutoSize = true;
-            this.lbInspectorTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInspectorTitle.Location = new System.Drawing.Point(4, 173);
-            this.lbInspectorTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbInspectorTitle.Name = "lbInspectorTitle";
-            this.lbInspectorTitle.Size = new System.Drawing.Size(194, 33);
-            this.lbInspectorTitle.TabIndex = 1;
-            this.lbInspectorTitle.Text = "Người Phụ Trách";
-            // 
-            // cbTypeCar
-            // 
-            this.cbTypeCar.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.cbTypeCar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTypeCar.FormattingEnabled = true;
-            this.cbTypeCar.Location = new System.Drawing.Point(204, 118);
-            this.cbTypeCar.Margin = new System.Windows.Forms.Padding(2);
-            this.cbTypeCar.Name = "cbTypeCar";
-            this.cbTypeCar.Size = new System.Drawing.Size(223, 37);
-            this.cbTypeCar.TabIndex = 18;
-            // 
-            // lbSerialNumTitle
-            // 
-            this.lbSerialNumTitle.AutoSize = true;
-            this.lbSerialNumTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSerialNumTitle.Location = new System.Drawing.Point(4, 2);
-            this.lbSerialNumTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbSerialNumTitle.Name = "lbSerialNumTitle";
-            this.lbSerialNumTitle.Size = new System.Drawing.Size(86, 33);
-            this.lbSerialNumTitle.TabIndex = 4;
-            this.lbSerialNumTitle.Text = "Số Vin";
-            // 
-            // txtSerialNum
-            // 
-            this.txtSerialNum.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.txtSerialNum.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSerialNum.ForeColor = System.Drawing.Color.IndianRed;
-            this.txtSerialNum.Location = new System.Drawing.Point(204, 4);
-            this.txtSerialNum.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSerialNum.Name = "txtSerialNum";
-            this.txtSerialNum.Size = new System.Drawing.Size(223, 37);
-            this.txtSerialNum.TabIndex = 17;
-            this.txtSerialNum.Text = "SN333";
-            // 
             // lbInspecDateTitle
             // 
             this.lbInspecDateTitle.AutoSize = true;
@@ -234,7 +146,95 @@
             this.dateInSpec.Name = "dateInSpec";
             this.dateInSpec.Size = new System.Drawing.Size(222, 37);
             this.dateInSpec.TabIndex = 8;
-            this.dateInSpec.Value = new System.DateTime(2024, 8, 25, 0, 0, 0, 0);
+            this.dateInSpec.Value = new System.DateTime(2025, 2, 19, 0, 0, 0, 0);
+            // 
+            // txtSerialNum
+            // 
+            this.txtSerialNum.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtSerialNum.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSerialNum.ForeColor = System.Drawing.Color.IndianRed;
+            this.txtSerialNum.Location = new System.Drawing.Point(204, 4);
+            this.txtSerialNum.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSerialNum.Name = "txtSerialNum";
+            this.txtSerialNum.Size = new System.Drawing.Size(223, 37);
+            this.txtSerialNum.TabIndex = 17;
+            this.txtSerialNum.Text = "VIN1234";
+            // 
+            // lbInspectorTitle
+            // 
+            this.lbInspectorTitle.AutoSize = true;
+            this.lbInspectorTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInspectorTitle.Location = new System.Drawing.Point(4, 173);
+            this.lbInspectorTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbInspectorTitle.Name = "lbInspectorTitle";
+            this.lbInspectorTitle.Size = new System.Drawing.Size(194, 33);
+            this.lbInspectorTitle.TabIndex = 1;
+            this.lbInspectorTitle.Text = "Người Phụ Trách";
+            // 
+            // lbSerialNumTitle
+            // 
+            this.lbSerialNumTitle.AutoSize = true;
+            this.lbSerialNumTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSerialNumTitle.Location = new System.Drawing.Point(4, 2);
+            this.lbSerialNumTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbSerialNumTitle.Name = "lbSerialNumTitle";
+            this.lbSerialNumTitle.Size = new System.Drawing.Size(86, 33);
+            this.lbSerialNumTitle.TabIndex = 4;
+            this.lbSerialNumTitle.Text = "Số Vin";
+            // 
+            // cbInspector
+            // 
+            this.cbInspector.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cbInspector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbInspector.FormattingEnabled = true;
+            this.cbInspector.Location = new System.Drawing.Point(204, 175);
+            this.cbInspector.Margin = new System.Windows.Forms.Padding(2);
+            this.cbInspector.Name = "cbInspector";
+            this.cbInspector.Size = new System.Drawing.Size(223, 37);
+            this.cbInspector.TabIndex = 19;
+            // 
+            // lbFrameNumTitle
+            // 
+            this.lbFrameNumTitle.AutoSize = true;
+            this.lbFrameNumTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFrameNumTitle.Location = new System.Drawing.Point(4, 59);
+            this.lbFrameNumTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbFrameNumTitle.Name = "lbFrameNumTitle";
+            this.lbFrameNumTitle.Size = new System.Drawing.Size(95, 33);
+            this.lbFrameNumTitle.TabIndex = 2;
+            this.lbFrameNumTitle.Text = "Số Máy";
+            // 
+            // txtFrameNum
+            // 
+            this.txtFrameNum.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtFrameNum.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFrameNum.Location = new System.Drawing.Point(204, 61);
+            this.txtFrameNum.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFrameNum.Name = "txtFrameNum";
+            this.txtFrameNum.Size = new System.Drawing.Size(223, 37);
+            this.txtFrameNum.TabIndex = 15;
+            // 
+            // lbTypeCarTitle
+            // 
+            this.lbTypeCarTitle.AutoSize = true;
+            this.lbTypeCarTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTypeCarTitle.Location = new System.Drawing.Point(4, 116);
+            this.lbTypeCarTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbTypeCarTitle.Name = "lbTypeCarTitle";
+            this.lbTypeCarTitle.Size = new System.Drawing.Size(91, 33);
+            this.lbTypeCarTitle.TabIndex = 0;
+            this.lbTypeCarTitle.Text = "Loại Xe";
+            // 
+            // cbTypeCar
+            // 
+            this.cbTypeCar.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cbTypeCar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTypeCar.FormattingEnabled = true;
+            this.cbTypeCar.Location = new System.Drawing.Point(204, 118);
+            this.cbTypeCar.Margin = new System.Windows.Forms.Padding(2);
+            this.cbTypeCar.Name = "cbTypeCar";
+            this.cbTypeCar.Size = new System.Drawing.Size(223, 37);
+            this.cbTypeCar.TabIndex = 18;
             // 
             // btnReport
             // 

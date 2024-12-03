@@ -216,39 +216,83 @@ namespace SenAIS
             if (!SaveDataToDB())
             {
                 tbVehicleInfo.Focus();
-                //return; // Dừng lại nếu dữ liệu không đủ và không lưu được
             }
+            MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void LoadVehicleInfo()
         {
-            // Tải dữ liệu cho cbTypeCar
-            DataTable typeCarTable = sqlHelper.GetTypeCarList();
-            cbTypeCar.DataSource = typeCarTable;
-            cbTypeCar.DisplayMember = "VehicleType"; // Hiển thị TypeCar trong ComboBox
-            cbTypeCar.ValueMember = "VehicleType";   // Sử dụng TypeCar làm giá trị
-
-            // Tải dữ liệu cho cbInspector
-            DataTable inspectorTable = sqlHelper.GetInspectorList();
-            cbInspector.DataSource = inspectorTable;
-            cbInspector.DisplayMember = "InspectorName"; // Hiển thị InspectorName trong ComboBox
-            cbInspector.ValueMember = "InspectorName";   // Sử dụng InspectorName làm giá trị
-
-            // Kiểm tra nếu có SerialNumber, tải thông tin về FuelType
-            if (!string.IsNullOrEmpty(txtSerialNum.Text))
+            try
             {
-                DataTable result = sqlHelper.GetFuelTypeBySerialNumber(txtSerialNum.Text);
-                if (result.Rows.Count > 0)
+                // Tải dữ liệu cho cbTypeCar
+                DataTable typeCarTable = sqlHelper.GetTypeCarList();
+                if (typeCarTable != null && typeCarTable.Rows.Count > 0)
                 {
-                    cbFuel.SelectedItem = result.Rows[0]["Fuel"].ToString();
+                    cbTypeCar.DataSource = typeCarTable;
+                    cbTypeCar.DisplayMember = "VehicleType"; // Hiển thị TypeCar trong ComboBox
+                    cbTypeCar.ValueMember = "VehicleType";   // Sử dụng TypeCar làm giá trị
                 }
                 else
                 {
-                    cbFuel.SelectedIndex = -1; // Không chọn gì nếu không tìm thấy SerialNumber
+                    // Thêm giá trị mặc định nếu không có dữ liệu
+                    cbTypeCar.DataSource = null;
+                    cbTypeCar.Items.Clear();
+                    cbTypeCar.Items.Add(" ");
+                    cbTypeCar.SelectedIndex = 0;
                 }
+
+                // Tải dữ liệu cho cbInspector
+                DataTable inspectorTable = sqlHelper.GetInspectorList();
+                if (inspectorTable != null && inspectorTable.Rows.Count > 0)
+                {
+                    cbInspector.DataSource = inspectorTable;
+                    cbInspector.DisplayMember = "InspectorName"; // Hiển thị InspectorName trong ComboBox
+                    cbInspector.ValueMember = "InspectorName";   // Sử dụng InspectorName làm giá trị
+                }
+                else
+                {
+                    // Thêm giá trị mặc định nếu không có dữ liệu
+                    cbInspector.DataSource = null;
+                    cbInspector.Items.Clear();
+                    cbInspector.Items.Add(" ");
+                    cbInspector.SelectedIndex = 0;
+                }
+
+                // Kiểm tra nếu có SerialNumber, tải thông tin về FuelType
+                if (!string.IsNullOrEmpty(txtSerialNum.Text))
+                {
+                    DataTable result = sqlHelper.GetFuelTypeBySerialNumber(txtSerialNum.Text);
+                    if (result != null && result.Rows.Count > 0)
+                    {
+                        cbFuel.SelectedItem = result.Rows[0]["Fuel"].ToString();
+                    }
+                    else
+                    {
+                        cbFuel.SelectedIndex = -1; // Không chọn gì nếu không tìm thấy SerialNumber
+                    }
+                }
+                else
+                {
+                    cbFuel.SelectedIndex = -1; // Reset nếu SerialNumber bị xóa
+                }
+                dateInSpec.Value = DateTime.Now;
             }
-            else
+            catch (Exception)
             {
-                cbFuel.SelectedIndex = -1; // Reset nếu SerialNumber bị xóa
+                // Xử lý lỗi DB và đặt giá trị mặc định
+                MessageBox.Show("Lỗi khi tải dữ liệu: Vui lòng kiểm tra lại cơ sở dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                cbTypeCar.DataSource = null;
+                cbTypeCar.Items.Clear();
+                cbTypeCar.Items.Add(" ");
+                cbTypeCar.SelectedIndex = 0;
+
+                cbInspector.DataSource = null;
+                cbInspector.Items.Clear();
+                cbInspector.Items.Add(" ");
+                cbInspector.SelectedIndex = 0;
+
+                cbFuel.SelectedIndex = -1;
+                dateInSpec.Value = DateTime.Now;
             }
         }
         private bool SaveDataToDB()

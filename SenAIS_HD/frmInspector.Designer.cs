@@ -41,6 +41,7 @@
             // 
             // InspectorPanel
             // 
+            this.InspectorPanel.AutoScroll = true;
             this.InspectorPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.InspectorPanel.Controls.Add(this.btnDelete);
             this.InspectorPanel.Controls.Add(this.btnSave);
@@ -48,8 +49,9 @@
             this.InspectorPanel.Controls.Add(this.lbStandardTitle);
             this.InspectorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InspectorPanel.Location = new System.Drawing.Point(0, 0);
+            this.InspectorPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InspectorPanel.Name = "InspectorPanel";
-            this.InspectorPanel.Size = new System.Drawing.Size(800, 450);
+            this.InspectorPanel.Size = new System.Drawing.Size(600, 366);
             this.InspectorPanel.TabIndex = 0;
             // 
             // btnDelete
@@ -57,9 +59,10 @@
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDelete.Location = new System.Drawing.Point(679, 220);
+            this.btnDelete.Location = new System.Drawing.Point(509, 179);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(95, 56);
+            this.btnDelete.Size = new System.Drawing.Size(71, 46);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -70,9 +73,10 @@
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSave.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSave.Location = new System.Drawing.Point(679, 138);
+            this.btnSave.Location = new System.Drawing.Point(509, 112);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(95, 56);
+            this.btnSave.Size = new System.Drawing.Size(71, 46);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -102,11 +106,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgInspector.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgInspector.Location = new System.Drawing.Point(140, 138);
+            this.dgInspector.Location = new System.Drawing.Point(105, 112);
+            this.dgInspector.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgInspector.Name = "dgInspector";
             this.dgInspector.RowHeadersWidth = 51;
             this.dgInspector.RowTemplate.Height = 24;
-            this.dgInspector.Size = new System.Drawing.Size(520, 279);
+            this.dgInspector.Size = new System.Drawing.Size(390, 227);
             this.dgInspector.TabIndex = 3;
             // 
             // lbStandardTitle
@@ -116,8 +121,7 @@
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbStandardTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbStandardTitle.Location = new System.Drawing.Point(123, 9);
-            this.lbStandardTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbStandardTitle.Location = new System.Drawing.Point(92, 7);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(449, 78);
             this.lbStandardTitle.TabIndex = 2;
@@ -126,10 +130,12 @@
             // 
             // frmInspector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.InspectorPanel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmInspector";
             this.Text = "Người Kiểm Tra";
             this.InspectorPanel.ResumeLayout(false);

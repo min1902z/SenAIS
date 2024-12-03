@@ -254,5 +254,12 @@ namespace SenAIS
             OpenChildForm(calibrationForm);
             calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
         }
+
+        private void tsMMSConfig_Click(object sender, EventArgs e)
+        {
+            //OpenChildForm(new frmMMSConfig());
+            var editConfigForm = new frmMMSConfig();
+            editConfigForm.Show();
+        }
     }
 }

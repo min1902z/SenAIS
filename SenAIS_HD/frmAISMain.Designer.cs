@@ -54,6 +54,7 @@
             this.TSReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.tsMMSConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,7 +80,8 @@
             // 
             this.TSHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSDangKiem,
-            this.TSTruyCapAdmin});
+            this.TSTruyCapAdmin,
+            this.tsMMSConfig});
             this.TSHeThong.Name = "TSHeThong";
             this.TSHeThong.Size = new System.Drawing.Size(81, 23);
             this.TSHeThong.Text = "Hệ Thống";
@@ -192,14 +194,14 @@
             // tsLBrakeCalib
             // 
             this.tsLBrakeCalib.Name = "tsLBrakeCalib";
-            this.tsLBrakeCalib.Size = new System.Drawing.Size(172, 24);
+            this.tsLBrakeCalib.Size = new System.Drawing.Size(180, 24);
             this.tsLBrakeCalib.Text = "Lực Phanh Trái";
             this.tsLBrakeCalib.Click += new System.EventHandler(this.tsLBrakeCalib_Click);
             // 
             // tsRBrakeCalib
             // 
             this.tsRBrakeCalib.Name = "tsRBrakeCalib";
-            this.tsRBrakeCalib.Size = new System.Drawing.Size(172, 24);
+            this.tsRBrakeCalib.Size = new System.Drawing.Size(180, 24);
             this.tsRBrakeCalib.Text = "Lực Phanh Phải";
             this.tsRBrakeCalib.Click += new System.EventHandler(this.tsRBrakeCalib_Click);
             // 
@@ -216,14 +218,14 @@
             // tsLeftSteerCalib
             // 
             this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
-            this.tsLeftSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsLeftSteerCalib.Size = new System.Drawing.Size(180, 24);
             this.tsLeftSteerCalib.Text = "Góc Lái Trái";
             this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
             // 
             // tsRightSteerCalib
             // 
             this.tsRightSteerCalib.Name = "tsRightSteerCalib";
-            this.tsRightSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsRightSteerCalib.Size = new System.Drawing.Size(180, 24);
             this.tsRightSteerCalib.Text = "Góc Lái Phải";
             this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
             // 
@@ -241,27 +243,28 @@
             // TSAuboutMe
             // 
             this.TSAuboutMe.Name = "TSAuboutMe";
-            this.TSAuboutMe.Size = new System.Drawing.Size(164, 24);
+            this.TSAuboutMe.Size = new System.Drawing.Size(180, 24);
             this.TSAuboutMe.Text = "Giới Thiệu";
             this.TSAuboutMe.Click += new System.EventHandler(this.TSAuboutMe_Click);
             // 
             // TSReset
             // 
             this.TSReset.Name = "TSReset";
-            this.TSReset.Size = new System.Drawing.Size(164, 24);
+            this.TSReset.Size = new System.Drawing.Size(180, 24);
             this.TSReset.Text = "Khởi Động Lại";
             this.TSReset.Click += new System.EventHandler(this.TSReset_Click);
             // 
             // tsExit
             // 
             this.tsExit.Name = "tsExit";
-            this.tsExit.Size = new System.Drawing.Size(164, 24);
+            this.tsExit.Size = new System.Drawing.Size(180, 24);
             this.tsExit.Text = "Thoát ";
             this.tsExit.Click += new System.EventHandler(this.tsExit_Click);
             // 
             // panelBody
             // 
             this.panelBody.AutoScroll = true;
+            this.panelBody.AutoSize = true;
             this.panelBody.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(0, 27);
@@ -269,6 +272,13 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(886, 487);
             this.panelBody.TabIndex = 7;
+            // 
+            // tsMMSConfig
+            // 
+            this.tsMMSConfig.Name = "tsMMSConfig";
+            this.tsMMSConfig.Size = new System.Drawing.Size(196, 24);
+            this.tsMMSConfig.Text = "Tùy Chỉnh MMS";
+            this.tsMMSConfig.Click += new System.EventHandler(this.tsMMSConfig_Click);
             // 
             // SenAIS
             // 
@@ -289,6 +299,7 @@
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -318,6 +329,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsSteerAngleCalib;
         private System.Windows.Forms.ToolStripMenuItem tsLeftSteerCalib;
         private System.Windows.Forms.ToolStripMenuItem tsRightSteerCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsMMSConfig;
     }
 }
 

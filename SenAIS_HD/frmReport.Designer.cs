@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportPanel = new System.Windows.Forms.Panel();
+            this.btnSaveMMS = new System.Windows.Forms.Button();
             this.btnEditSave = new System.Windows.Forms.Button();
             this.btnExportReport = new System.Windows.Forms.Button();
             this.StaticTitlePanel = new System.Windows.Forms.Panel();
@@ -216,12 +217,22 @@
             // 
             resources.ApplyResources(this.ReportPanel, "ReportPanel");
             this.ReportPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ReportPanel.Controls.Add(this.btnSaveMMS);
             this.ReportPanel.Controls.Add(this.btnEditSave);
             this.ReportPanel.Controls.Add(this.btnExportReport);
             this.ReportPanel.Controls.Add(this.StaticTitlePanel);
             this.ReportPanel.Controls.Add(this.StaticPanel);
             this.ReportPanel.Controls.Add(this.SearchPanel);
             this.ReportPanel.Name = "ReportPanel";
+            // 
+            // btnSaveMMS
+            // 
+            resources.ApplyResources(this.btnSaveMMS, "btnSaveMMS");
+            this.btnSaveMMS.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSaveMMS.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSaveMMS.Name = "btnSaveMMS";
+            this.btnSaveMMS.UseVisualStyleBackColor = false;
+            this.btnSaveMMS.Click += new System.EventHandler(this.btnSaveMMS_Click);
             // 
             // btnEditSave
             // 
@@ -1686,5 +1697,6 @@
         private System.Windows.Forms.TextBox txtRightSteerLW;
         private System.Windows.Forms.TextBox txtRightSteerRW;
         private System.Windows.Forms.Label lbSteerAngleTitle;
+        private System.Windows.Forms.Button btnSaveMMS;
     }
 }

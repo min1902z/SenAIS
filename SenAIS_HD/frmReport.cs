@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -26,18 +32,26 @@ namespace SenAIS
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchTerm = txtSearch.Text.Trim();
-            DataTable results = sqlHelper.SearchVehicleInfo(searchTerm);
-
-            // Hiển thị kết quả tìm kiếm trong DataGridView
-            dgVehicleInfo.DataSource = results;
-            dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số vin";
-            dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
-            dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
-            dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
-            dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
-            dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
-
+            try
+            {
+                string searchTerm = txtSearch.Text.Trim();
+                DataTable results = sqlHelper.SearchVehicleInfo(searchTerm);
+                if (results != null && results.Rows.Count != 0)
+                {
+                    // Hiển thị kết quả tìm kiếm trong DataGridView
+                    dgVehicleInfo.DataSource = results;
+                    dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số vin";
+                    dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
+                    dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
+                    dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
+                    dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
+                    dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không tìm thấy dữ liệu danh sách xe.", "Thông báo");
+            }
         }
         // Hiển thị chi tiết của phương tiện trong các TextBox
         private void DisplayVehicleDetails(string serialNumber)
@@ -924,5 +938,387 @@ namespace SenAIS
         {
             btnEditSave.Visible = false; // Ẩn nút "Chỉnh sửa" khi mở form
         }
+
+        private async void btnSaveMMS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy VIN từ txtSerialNum
+                string vin = txtSerialNum.Text.Trim();
+                if (string.IsNullOrEmpty(vin))
+                {
+                    MessageBox.Show("VIN không được để trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy thông tin xe từ cơ sở dữ liệu
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(vin);
+                if (vehicleDetails == null)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin xe.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                // Tạo danh sách testDetails
+                var testDetails = BuildTestDetails(vehicleDetails);
+
+                // Tổng hợp dữ liệu gửi MMS
+                string inspectionDate = vehicleDetails["InspectionDate"].ToString();
+                var dataToSend = new
+                {
+                    VIN = vin,
+                    TestRptDTime = inspectionDate,
+                    TestResult = "1", // Mặc định pass
+                    ListQC_TestReportDtl = testDetails
+                };
+
+                // Chuỗi JSON để gửi lên MMS
+                string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(dataToSend);
+
+                // Lấy sessionid từ MMS
+                string apiLoginUrl = ConfigurationManager.AppSettings["ApiLoginUrl"];
+                string username = ConfigurationManager.AppSettings["UsernameMMS"];
+                string password = ConfigurationManager.AppSettings["PasswordMMS"];
+                string sessionId = await GetSessionIdFromMMS(apiLoginUrl, username, password);
+                if (string.IsNullOrEmpty(sessionId))
+                {
+                    MessageBox.Show("Không lấy được session key từ MMS.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Gửi dữ liệu lên MMS
+                string apiSaveUrl = ConfigurationManager.AppSettings["ApiSaveUrl"];
+                bool isSaved = await SaveDataToMMS(apiSaveUrl, sessionId, jsonData);
+                if (isSaved)
+                {
+                    MessageBox.Show("Lưu dữ liệu thành công lên MMS.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Lưu dữ liệu thất bại lên MMS.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        // Hàm tạo danh sách testDetails (tùy chỉnh được nội dung)
+        private List<object> BuildTestDetails(DataRow vehicleDetails)
+        {
+            string vehicleType = vehicleDetails["VehicleType"].ToString();
+            DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+            if (vehicleStandards == null || vehicleStandards.Rows.Count == 0)
+            {
+                throw new Exception("Không tìm thấy tiêu chuẩn kiểm tra cho loại xe."); 
+            }
+
+            DataRow standard = vehicleStandards.Rows[0];
+            decimal speed = Convert.ToDecimal(vehicleDetails["Speed"]);
+            decimal minSpeed = Convert.ToDecimal(standard["MinSpeed"]);
+            decimal maxSpeed = Convert.ToDecimal(standard["MaxSpeed"]);
+            string speedTestResult = (speed >= minSpeed && speed <= maxSpeed) ? "1" : "0";
+
+            // Giá trị SideSlip
+            decimal sideSlipMeasure = Convert.ToDecimal(vehicleDetails["SideSlip"]);
+            decimal minSideSlip = Convert.ToDecimal(standard["MinSpeed"]);
+            decimal maxSideSlip = Convert.ToDecimal(standard["MaxSideSlip"]);
+            string sideSlipTestResult = (Math.Abs(sideSlipMeasure) <= maxSideSlip) ? "1" : "0";
+
+            // Giá trị Brake Force
+            decimal frontLeftBrake = ConvertToDecimal(vehicleDetails["FrontLeftBrake"]);
+            decimal frontRightBrake = ConvertToDecimal(vehicleDetails["FrontRightBrake"]);
+            decimal frontDiffBrake = ConvertToDecimal(txtFrontDiffBrake.Text);
+            decimal maxDiffFrontBrake = ConvertToDecimal(standard["MaxDiffFrontBrake"]);
+            decimal frontSumBrake = frontLeftBrake + frontRightBrake;
+            decimal minFrontBrake = ConvertToDecimal(standard["MinFrontBrake"]);
+            string frontBrakeResult = "0";
+            if (txtFrontSumBrake.BackColor == Color.LightGreen && txtFrontDiffBrake.BackColor == Color.LightGreen)
+                frontBrakeResult = "1";
+            else
+                frontBrakeResult = "0";
+
+            decimal rearLeftBrake = ConvertToDecimal(vehicleDetails["RearLeftBrake"]);
+            decimal rearRightBrake = ConvertToDecimal(vehicleDetails["RearRightBrake"]);
+            decimal rearDiffBrake = ConvertToDecimal(txtRearDiffBrake.Text);
+            decimal maxDiffRearBrake = ConvertToDecimal(standard["MaxDiffRearBrake"]);
+            decimal rearSumBrake = rearLeftBrake + rearRightBrake;
+            decimal minRearBrake = ConvertToDecimal(standard["MinRearBrake"]);
+            string rearBrakeResult = "0";
+            if (txtRearSumBrake.BackColor == Color.LightGreen && txtRearDiffBrake.BackColor == Color.LightGreen)
+                rearBrakeResult = "1";
+            else
+                rearBrakeResult = "0";
+
+            decimal mainSumBrake = frontSumBrake + rearSumBrake;
+            decimal minMainSum = minFrontBrake + minRearBrake;
+            string mainBrakeResult = "0";
+            if (frontBrakeResult == "1" && rearBrakeResult == "1")
+                mainBrakeResult = "1";
+            else
+                mainBrakeResult = "0";
+
+            decimal handLeftBrake = ConvertToDecimal(vehicleDetails["HandBrakeLeft"]);
+            decimal handRightBrake = ConvertToDecimal(vehicleDetails["HandBrakeRight"]);
+            decimal handDiffBrake = ConvertToDecimal(txtHandDiffBrake.Text);
+            decimal handSumBrake = handLeftBrake + handRightBrake;
+            decimal minHandBrake = ConvertToDecimal(standard["MinHandBrake"]);
+            string handBrakeResult = "0";
+            if (txtHandSumBrake.BackColor == Color.LightGreen && txtHandDiffBrake.BackColor == Color.LightGreen)
+                handBrakeResult = "1";
+            else
+                handBrakeResult = "0";
+
+            // Giá trị Petrol Emision
+            decimal coValue = ConvertToDecimal(vehicleDetails["CO"]);
+            decimal maxCO = ConvertToDecimal(standard["MaxCO"]);
+            string coResult = (coValue <= maxCO) ? "1" : "0";
+
+            decimal hcValue = ConvertToDecimal(vehicleDetails["CO"]);
+            decimal maxHC = ConvertToDecimal(standard["MaxCO"]);
+            string hcResult = (hcValue <= maxHC) ? "1" : "0";
+
+            decimal otValue = ConvertToDecimal(vehicleDetails["OilTemp"]);
+            decimal eSpeedValue = ConvertToDecimal(vehicleDetails["RPM"]);
+
+            // Giá trị Diesel Emission
+            decimal minspeed1 = ConvertToDecimal(vehicleDetails["MinSpeed1"]);
+            decimal minspeed2 = ConvertToDecimal(vehicleDetails["MinSpeed2"]);
+            decimal minspeed3 = ConvertToDecimal(vehicleDetails["MinSpeed3"]);
+            decimal maxspeed1 = ConvertToDecimal(vehicleDetails["MaxSpeed1"]);
+            decimal maxspeed2 = ConvertToDecimal(vehicleDetails["MaxSpeed2"]);
+            decimal maxspeed3 = ConvertToDecimal(vehicleDetails["MaxSpeed3"]);
+            decimal hsu1 = ConvertToDecimal(vehicleDetails["HSU1"]);
+            decimal hsu2 = ConvertToDecimal(vehicleDetails["HSU2"]);
+            decimal hsu3 = ConvertToDecimal(vehicleDetails["HSU3"]);
+            decimal avgHSU = (hsu1+hsu2+hsu3)/ 3;
+            decimal maxHSU = ConvertToDecimal(standard["MaxHSU"]);
+            string hsuResult = (avgHSU <= maxHSU) ? "1" : "0";
+            
+            return new List<object>
+            {
+                new
+                {
+                    TestTypeCode = "SPEED",
+                    TestDtlCode = "SPEED_S",
+                    MeasureValue = speed.ToString("F1"),
+                    StandardValue = $"{minSpeed} - {maxSpeed}",
+                    TestDtlResult = speedTestResult
+                },
+                // SideSlip Measure
+                new
+                {
+                    TestTypeCode = "SIDESLIP",
+                    TestDtlCode = "SIDESLIP_F",
+                    MeasureValue = sideSlipMeasure.ToString("F1"),
+                    StandardValue = $"{minSideSlip} - {maxSideSlip}",
+                    TestDtlResult = sideSlipTestResult
+                },
+                //Brake Force
+                new
+                {
+                    TestTypeCode = "BRAKEFORCE",
+                    TestDtlCode = "BRAKEFORCE_F",
+                    LeftValue = frontLeftBrake.ToString("F1"),
+                    RightValue = frontRightBrake.ToString("F1"),
+                    DifferentValue = frontDiffBrake.ToString("F1"),
+                    LimitValue = maxDiffFrontBrake.ToString("F1"),
+                    TotalValue = frontSumBrake.ToString("F1"),
+                    TotalLimitValue = minFrontBrake.ToString("F1"),
+                    TestDtlResult = frontBrakeResult
+                },
+                new
+                {
+                    TestTypeCode = "BRAKEFORCE",
+                    TestDtlCode = "BRAKEFORCE_R",
+                    LeftValue = rearLeftBrake.ToString("F1"),
+                    RightValue = rearRightBrake.ToString("F1"),
+                    DifferentValue = rearDiffBrake.ToString("F1"),
+                    LimitValue = maxDiffRearBrake.ToString("F1"),
+                    TotalValue = rearSumBrake.ToString("F1"),
+                    TotalLimitValue = minRearBrake.ToString("F1"),
+                    TestDtlResult = rearBrakeResult
+                },
+                new
+                {
+                    TestTypeCode = "BRAKEFORCE",
+                    TestDtlCode = "BRAKEFORCE_M",
+                    TotalValue = mainSumBrake.ToString("F1"),
+                    TotalLimitValue = minRearBrake.ToString("F1"),
+                    TestDtlResult = mainBrakeResult
+                },
+                new
+                {
+                    TestTypeCode = "BRAKEFORCE",
+                    TestDtlCode = "BRAKEFORCE_H",
+                    LeftValue = handLeftBrake.ToString("F1"),
+                    RightValue = handRightBrake.ToString("F1"),
+                    TotalValue = handSumBrake.ToString("F1"),
+                    TotalLimitValue = minHandBrake.ToString("F1"),
+                    TestDtlResult = handBrakeResult
+                },
+                new
+                {
+                    TestTypeCode = "EXHAUSTGA",
+                    TestDtlCode = "EXHAUSTGA_CO",
+                    MeasureValue = coValue.ToString("F1"),
+                    LimitValue = maxCO.ToString("F1"),
+                    TestDtlResult = coResult
+                },
+                new
+                {
+                    TestTypeCode = "EXHAUSTGA",
+                    TestDtlCode = "EXHAUSTGA_HC",
+                    MeasureValue = hcValue.ToString("F1"),
+                    LimitValue = maxHC.ToString("F1"),
+                    TestDtlResult = hcResult
+                },
+                new
+                {
+                    TestTypeCode = "EXHAUSTGA",
+                    TestDtlCode = "EXHAUSTGA_E",
+                    MeasureValue = eSpeedValue.ToString("F1"),
+                    TestDtlResult = "1"
+                },
+                new
+                {
+                    TestTypeCode = "EXHAUSTGA",
+                    TestDtlCode = "EXHAUSTGA_O",
+                    MeasureValue = otValue.ToString("F1"),
+                    TestDtlResult = "1"
+                },
+                // Diesel Emission
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "RPMMIN_1",
+                    MeasureValue = minspeed1.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "RPMMIN_2",
+                    MeasureValue = minspeed2.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "RPMMIN_3",
+                    MeasureValue = minspeed3.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "RPMMAX_1",
+                    MeasureValue = maxspeed1.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "RPMMAX_2",
+                    MeasureValue = maxspeed2.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "RPMMAX_3",
+                    MeasureValue = maxspeed3.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "OPACITY_1",
+                    MeasureValue = hsu1.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "OPACITY_2",
+                    MeasureValue = hsu2.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "OPACITY_3",
+                    MeasureValue = hsu3.ToString("F1"),
+                    TestDtlResult = "0"
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "DIESELOPACITY_A",
+                    AverageValue = avgHSU.ToString("F1"),
+                    TestDtlResult = hsuResult
+                },
+                new
+                {
+                    TestTypeCode = "DIESELOPACITY",
+                    TestDtlCode = "DIESELOPACITY_L",
+                    LimitValue = maxHSU.ToString("F1"),
+                    TestDtlResult = hsuResult
+                }
+            };
+        }
+        // Hàm gọi API Login để lấy sessionid
+        private async Task<string> GetSessionIdFromMMS(string apiUrl, string username, string password)
+        {
+            try
+            {
+                var loginData = new { username, password };
+                string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(loginData);
+
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string result = await response.Content.ReadAsStringAsync();
+                        dynamic responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject(result);
+                        return responseObject?.sessionid; // Trả về sessionid từ phản hồi
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi login vào MMS: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        // Hàm gọi API QC_TestReport_Save để lưu dữ liệu lên MMS
+        private async Task<bool> SaveDataToMMS(string apiUrl, string sessionId, string jsonData)
+        {
+            try
+            {
+                var requestData = new
+                {
+                    sessionid = sessionId,
+                    flagisdelete = "0", // Mặc định là lưu
+                    strQC_TestReport = jsonData
+                };
+                string requestJson = Newtonsoft.Json.JsonConvert.SerializeObject(requestData);
+
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(requestJson, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                    return response.IsSuccessStatusCode; // Trả về true nếu thành công
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi lưu dữ liệu lên MMS: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
     }
 }

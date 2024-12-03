@@ -122,10 +122,43 @@
     <value>True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnEditSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnSaveMMS.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnSaveMMS.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 15.75pt, style=Bold</value>
+  </data>
+  <data name="btnSaveMMS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSaveMMS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1289, 67</value>
+  </data>
+  <data name="btnSaveMMS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 52</value>
+  </data>
+  <data name="btnSaveMMS.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnSaveMMS.Text" xml:space="preserve">
+    <value>Lưu MMS</value>
+  </data>
+  <data name="&gt;&gt;btnSaveMMS.Name" xml:space="preserve">
+    <value>btnSaveMMS</value>
+  </data>
+  <data name="&gt;&gt;btnSaveMMS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSaveMMS.Parent" xml:space="preserve">
+    <value>ReportPanel</value>
+  </data>
+  <data name="&gt;&gt;btnSaveMMS.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnEditSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="btnEditSave.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt, style=Bold</value>
   </data>
@@ -133,7 +166,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnEditSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1156, 67</value>
+    <value>1144, 67</value>
   </data>
   <data name="btnEditSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 52</value>
@@ -154,7 +187,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;btnEditSave.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnExportReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -166,7 +199,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnExportReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1305, 67</value>
+    <value>1289, 9</value>
   </data>
   <data name="btnExportReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 52</value>
@@ -176,6 +209,9 @@
   </data>
   <data name="btnExportReport.Text" xml:space="preserve">
     <value>Xuất Report</value>
+  </data>
+  <data name="btnExportReport.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;btnExportReport.Name" xml:space="preserve">
     <value>btnExportReport</value>
@@ -187,7 +223,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;btnExportReport.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="StaticTitlePanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
@@ -247,7 +283,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;StaticTitlePanel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="StaticPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -724,19 +760,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 0</value>
+    <value>396, 0</value>
   </data>
   <data name="label45.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 26</value>
+    <value>162, 26</value>
   </data>
   <data name="label45.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="label45.Text" xml:space="preserve">
-    <value>Tốc độ Max</value>
+    <value>Tốc độ Max (rpm)</value>
   </data>
   <data name="&gt;&gt;label45.Name" xml:space="preserve">
     <value>label45</value>
@@ -886,19 +922,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 0</value>
+    <value>186, 0</value>
   </data>
   <data name="label48.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 26</value>
+    <value>159, 26</value>
   </data>
   <data name="label48.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="label48.Text" xml:space="preserve">
-    <value>Tốc độ Min</value>
+    <value>Tốc độ Min (rpm)</value>
   </data>
   <data name="&gt;&gt;label48.Name" xml:space="preserve">
     <value>label48</value>
@@ -982,19 +1018,19 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
-    <value>739, 0</value>
+    <value>707, 0</value>
   </data>
   <data name="label49.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 26</value>
+    <value>80, 26</value>
   </data>
   <data name="label49.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="label49.Text" xml:space="preserve">
-    <value>HSU</value>
+    <value>HSU (%)</value>
   </data>
   <data name="&gt;&gt;label49.Name" xml:space="preserve">
     <value>label49</value>
@@ -4882,7 +4918,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;StaticPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="SearchPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -5014,7 +5050,7 @@
     <value>ReportPanel</value>
   </data>
   <data name="&gt;&gt;SearchPanel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="ReportPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
