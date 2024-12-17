@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -201,8 +202,14 @@ namespace SenAIS
 
         private void TSTruyCapAdmin_Click(object sender, EventArgs e)
         {
+            string adminPassword = ConfigurationManager.AppSettings["PasswordAdmin"];
+            if (string.IsNullOrEmpty(adminPassword))
+            {
+                MessageBox.Show("Không tìm thấy cấu hình mật khẩu trong app.config.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string password = Prompt.ShowDialog("Vui lòng nhập mật khẩu để truy cập quyền:", "Xác nhận mật khẩu");
-            if (password == "Sentek.vn")
+            if (password == adminPassword)
             {
                 // Tạo đối tượng formReport hoặc tìm kiếm nếu đã tồn tại
                 foreach (Form form in Application.OpenForms)

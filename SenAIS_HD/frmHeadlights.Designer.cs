@@ -77,7 +77,7 @@
             // 
             this.lbEngineNumber.AutoSize = true;
             this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.DarkRed;
             this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
             this.lbEngineNumber.Name = "lbEngineNumber";
             this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
@@ -152,7 +152,7 @@
             this.lbLBRHorizontalDeviation.Name = "lbLBRHorizontalDeviation";
             this.lbLBRHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBRHorizontalDeviation.TabIndex = 45;
-            this.lbLBRHorizontalDeviation.Text = "0.0";
+            this.lbLBRHorizontalDeviation.Text = "1.5";
             this.lbLBRHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLBRIntensity
@@ -161,11 +161,11 @@
             this.lbLBRIntensity.AutoSize = true;
             this.lbLBRIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBRIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBRIntensity.Location = new System.Drawing.Point(356, 668);
+            this.lbLBRIntensity.Location = new System.Drawing.Point(295, 668);
             this.lbLBRIntensity.Name = "lbLBRIntensity";
-            this.lbLBRIntensity.Size = new System.Drawing.Size(174, 192);
+            this.lbLBRIntensity.Size = new System.Drawing.Size(295, 192);
             this.lbLBRIntensity.TabIndex = 45;
-            this.lbLBRIntensity.Text = "0.0";
+            this.lbLBRIntensity.Text = "10000";
             this.lbLBRIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLBLIntensity
@@ -174,11 +174,11 @@
             this.lbLBLIntensity.AutoSize = true;
             this.lbLBLIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLBLIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLBLIntensity.Location = new System.Drawing.Point(356, 476);
+            this.lbLBLIntensity.Location = new System.Drawing.Point(295, 476);
             this.lbLBLIntensity.Name = "lbLBLIntensity";
-            this.lbLBLIntensity.Size = new System.Drawing.Size(174, 192);
+            this.lbLBLIntensity.Size = new System.Drawing.Size(295, 192);
             this.lbLBLIntensity.TabIndex = 45;
-            this.lbLBLIntensity.Text = "0.0";
+            this.lbLBLIntensity.Text = "10000";
             this.lbLBLIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLBLHorizontalDeviation
@@ -191,7 +191,7 @@
             this.lbLBLHorizontalDeviation.Name = "lbLBLHorizontalDeviation";
             this.lbLBLHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBLHorizontalDeviation.TabIndex = 45;
-            this.lbLBLHorizontalDeviation.Text = "0.0";
+            this.lbLBLHorizontalDeviation.Text = "1.5";
             this.lbLBLHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbHBRHorizontalDeviation
@@ -204,7 +204,7 @@
             this.lbHBRHorizontalDeviation.Name = "lbHBRHorizontalDeviation";
             this.lbHBRHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBRHorizontalDeviation.TabIndex = 45;
-            this.lbHBRHorizontalDeviation.Text = "0.0";
+            this.lbHBRHorizontalDeviation.Text = "1.5";
             this.lbHBRHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -306,7 +306,7 @@
             this.lbHBLVerticalDeviation.Name = "lbHBLVerticalDeviation";
             this.lbHBLVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBLVerticalDeviation.TabIndex = 9;
-            this.lbHBLVerticalDeviation.Text = "0.0";
+            this.lbHBLVerticalDeviation.Text = "2.0";
             this.lbHBLVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbHBLHorizontalDeviation
@@ -319,7 +319,7 @@
             this.lbHBLHorizontalDeviation.Name = "lbHBLHorizontalDeviation";
             this.lbHBLHorizontalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBLHorizontalDeviation.TabIndex = 10;
-            this.lbHBLHorizontalDeviation.Text = "0.0";
+            this.lbHBLHorizontalDeviation.Text = "1.5";
             this.lbHBLHorizontalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbHBLIntensity
@@ -328,11 +328,11 @@
             this.lbHBLIntensity.AutoSize = true;
             this.lbHBLIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBLIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBLIntensity.Location = new System.Drawing.Point(356, 92);
+            this.lbHBLIntensity.Location = new System.Drawing.Point(295, 92);
             this.lbHBLIntensity.Name = "lbHBLIntensity";
-            this.lbHBLIntensity.Size = new System.Drawing.Size(174, 192);
+            this.lbHBLIntensity.Size = new System.Drawing.Size(295, 192);
             this.lbHBLIntensity.TabIndex = 8;
-            this.lbHBLIntensity.Text = "0.0";
+            this.lbHBLIntensity.Text = "12000";
             this.lbHBLIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbHBRVerticalDeviation
@@ -345,7 +345,7 @@
             this.lbHBRVerticalDeviation.Name = "lbHBRVerticalDeviation";
             this.lbHBRVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbHBRVerticalDeviation.TabIndex = 49;
-            this.lbHBRVerticalDeviation.Text = "0.0";
+            this.lbHBRVerticalDeviation.Text = "2.0";
             this.lbHBRVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbHBRIntensity
@@ -354,11 +354,11 @@
             this.lbHBRIntensity.AutoSize = true;
             this.lbHBRIntensity.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHBRIntensity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbHBRIntensity.Location = new System.Drawing.Point(356, 284);
+            this.lbHBRIntensity.Location = new System.Drawing.Point(295, 284);
             this.lbHBRIntensity.Name = "lbHBRIntensity";
-            this.lbHBRIntensity.Size = new System.Drawing.Size(174, 192);
+            this.lbHBRIntensity.Size = new System.Drawing.Size(295, 192);
             this.lbHBRIntensity.TabIndex = 48;
-            this.lbHBRIntensity.Text = "0.0";
+            this.lbHBRIntensity.Text = "12000";
             this.lbHBRIntensity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLBLVerticalDeviation
@@ -371,7 +371,7 @@
             this.lbLBLVerticalDeviation.Name = "lbLBLVerticalDeviation";
             this.lbLBLVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBLVerticalDeviation.TabIndex = 45;
-            this.lbLBLVerticalDeviation.Text = "0.0";
+            this.lbLBLVerticalDeviation.Text = "2.0";
             this.lbLBLVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLBRVerticalDeviation
@@ -384,7 +384,7 @@
             this.lbLBRVerticalDeviation.Name = "lbLBRVerticalDeviation";
             this.lbLBRVerticalDeviation.Size = new System.Drawing.Size(174, 192);
             this.lbLBRVerticalDeviation.TabIndex = 45;
-            this.lbLBRVerticalDeviation.Text = "0.0";
+            this.lbLBRVerticalDeviation.Text = "2.0";
             this.lbLBRVerticalDeviation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnNext
@@ -442,6 +442,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmHeadlights";
+            this.ShowIcon = false;
             this.Text = "Dữ liệu đèn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCosLightL_FormClosing);

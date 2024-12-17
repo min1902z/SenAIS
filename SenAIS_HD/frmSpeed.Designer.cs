@@ -30,7 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpeed));
             this.SpeedPanel = new System.Windows.Forms.Panel();
-            this.lbEngineNumber = new System.Windows.Forms.Label();
+            this.lbStandard = new System.Windows.Forms.Label();
+            this.lbStandardTitle = new System.Windows.Forms.Label();
+            this.lbNotice = new System.Windows.Forms.Label();
+            this.lbVinNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNextSpeed = new System.Windows.Forms.Button();
             this.btnPreSpeed = new System.Windows.Forms.Button();
@@ -43,7 +46,10 @@
             // SpeedPanel
             // 
             this.SpeedPanel.AutoScroll = true;
-            this.SpeedPanel.Controls.Add(this.lbEngineNumber);
+            this.SpeedPanel.Controls.Add(this.lbStandard);
+            this.SpeedPanel.Controls.Add(this.lbStandardTitle);
+            this.SpeedPanel.Controls.Add(this.lbNotice);
+            this.SpeedPanel.Controls.Add(this.lbVinNumber);
             this.SpeedPanel.Controls.Add(this.cbReady);
             this.SpeedPanel.Controls.Add(this.btnNextSpeed);
             this.SpeedPanel.Controls.Add(this.btnPreSpeed);
@@ -52,21 +58,60 @@
             this.SpeedPanel.Controls.Add(this.lbTitleSpeed);
             this.SpeedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpeedPanel.Location = new System.Drawing.Point(0, 0);
-            this.SpeedPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SpeedPanel.Margin = new System.Windows.Forms.Padding(2);
             this.SpeedPanel.Name = "SpeedPanel";
             this.SpeedPanel.Size = new System.Drawing.Size(1443, 857);
             this.SpeedPanel.TabIndex = 37;
             // 
-            // lbEngineNumber
+            // lbStandard
             // 
-            this.lbEngineNumber.AutoSize = true;
-            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbEngineNumber.Location = new System.Drawing.Point(126, 11);
-            this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(199, 78);
-            this.lbEngineNumber.TabIndex = 50;
-            this.lbEngineNumber.Text = "Số Vin";
+            this.lbStandard.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbStandard.AutoSize = true;
+            this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandard.Location = new System.Drawing.Point(502, 700);
+            this.lbStandard.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbStandard.Name = "lbStandard";
+            this.lbStandard.Size = new System.Drawing.Size(189, 78);
+            this.lbStandard.TabIndex = 54;
+            this.lbStandard.Text = "--  -  --";
+            // 
+            // lbStandardTitle
+            // 
+            this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbStandardTitle.AutoSize = true;
+            this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandardTitle.Location = new System.Drawing.Point(125, 700);
+            this.lbStandardTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbStandardTitle.Name = "lbStandardTitle";
+            this.lbStandardTitle.Size = new System.Drawing.Size(361, 78);
+            this.lbStandardTitle.TabIndex = 53;
+            this.lbStandardTitle.Text = "Tiêu Chuẩn: ";
+            // 
+            // lbNotice
+            // 
+            this.lbNotice.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbNotice.AutoSize = true;
+            this.lbNotice.Font = new System.Drawing.Font("Calibri", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNotice.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbNotice.Location = new System.Drawing.Point(245, 801);
+            this.lbNotice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbNotice.Name = "lbNotice";
+            this.lbNotice.Size = new System.Drawing.Size(182, 45);
+            this.lbNotice.TabIndex = 52;
+            this.lbNotice.Text = "Thông báo";
+            // 
+            // lbVinNumber
+            // 
+            this.lbVinNumber.AutoSize = true;
+            this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.Location = new System.Drawing.Point(126, 11);
+            this.lbVinNumber.Name = "lbVinNumber";
+            this.lbVinNumber.Size = new System.Drawing.Size(199, 78);
+            this.lbVinNumber.TabIndex = 50;
+            this.lbVinNumber.Text = "Số Vin";
             // 
             // cbReady
             // 
@@ -90,7 +135,7 @@
             this.btnNextSpeed.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNextSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnNextSpeed.Location = new System.Drawing.Point(1348, 811);
-            this.btnNextSpeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNextSpeed.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextSpeed.Name = "btnNextSpeed";
             this.btnNextSpeed.Size = new System.Drawing.Size(86, 37);
             this.btnNextSpeed.TabIndex = 42;
@@ -105,7 +150,7 @@
             this.btnPreSpeed.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPreSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPreSpeed.Location = new System.Drawing.Point(9, 811);
-            this.btnPreSpeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPreSpeed.Margin = new System.Windows.Forms.Padding(2);
             this.btnPreSpeed.Name = "btnPreSpeed";
             this.btnPreSpeed.Size = new System.Drawing.Size(86, 37);
             this.btnPreSpeed.TabIndex = 41;
@@ -115,11 +160,11 @@
             // 
             // lbSpeed
             // 
-            this.lbSpeed.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbSpeed.AutoSize = true;
             this.lbSpeed.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSpeed.Location = new System.Drawing.Point(191, 206);
+            this.lbSpeed.Location = new System.Drawing.Point(300, 160);
             this.lbSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbSpeed.Name = "lbSpeed";
             this.lbSpeed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -130,14 +175,14 @@
             // 
             // lbKmh
             // 
-            this.lbKmh.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbKmh.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbKmh.AutoSize = true;
-            this.lbKmh.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbKmh.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbKmh.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbKmh.Location = new System.Drawing.Point(1064, 462);
+            this.lbKmh.Location = new System.Drawing.Point(962, 670);
             this.lbKmh.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbKmh.Name = "lbKmh";
-            this.lbKmh.Size = new System.Drawing.Size(377, 163);
+            this.lbKmh.Size = new System.Drawing.Size(273, 117);
             this.lbKmh.TabIndex = 38;
             this.lbKmh.Text = "Km/h";
             this.lbKmh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -148,7 +193,7 @@
             this.lbTitleSpeed.AutoSize = true;
             this.lbTitleSpeed.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitleSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbTitleSpeed.Location = new System.Drawing.Point(590, 7);
+            this.lbTitleSpeed.Location = new System.Drawing.Point(588, 11);
             this.lbTitleSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTitleSpeed.Name = "lbTitleSpeed";
             this.lbTitleSpeed.Size = new System.Drawing.Size(359, 117);
@@ -164,7 +209,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.SpeedPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1203, 656);
             this.Name = "frmSpeed";
             this.ShowIcon = false;
@@ -185,6 +230,9 @@
         private System.Windows.Forms.Button btnNextSpeed;
         private System.Windows.Forms.Button btnPreSpeed;
         private System.Windows.Forms.CheckBox cbReady;
-        private System.Windows.Forms.Label lbEngineNumber;
+        private System.Windows.Forms.Label lbVinNumber;
+        private System.Windows.Forms.Label lbNotice;
+        private System.Windows.Forms.Label lbStandard;
+        private System.Windows.Forms.Label lbStandardTitle;
     }
 }

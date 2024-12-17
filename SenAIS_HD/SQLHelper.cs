@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -320,18 +321,18 @@ namespace SenAIS
                 string query = @"IF EXISTS (SELECT 1 FROM BrakeForce WHERE SerialNumber = @SerialNumber)
                          BEGIN
                              UPDATE BrakeForce 
-                             SET HandLeftBrake = @HandLeftBrake, HandRightBrake = @HandRightBrake
+                             SET HandBrakeLeft = @HandBrakeLeft, HandBrakeRight = @HandBrakeRight
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
                          BEGIN
-                             INSERT INTO BrakeForce (SerialNumber, HandLeftBrake, HandRightBrake)
-                             VALUES (@SerialNumber, @HandLeftBrake, @HandRightBrake)
+                             INSERT INTO BrakeForce (SerialNumber, HandBrakeLeft, HandBrakeRight)
+                             VALUES (@SerialNumber, @HandBrakeLeft, @HandBrakeRight)
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@HandLeftBrake", leftBrake);
-                    cmd.Parameters.AddWithValue("@HandRightBrake", rightBrake);
+                    cmd.Parameters.AddWithValue("@HandBrakeLeft", leftBrake);
+                    cmd.Parameters.AddWithValue("@HandBrakeRight", rightBrake);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }
@@ -1049,72 +1050,99 @@ namespace SenAIS
 
             string vehicleType = vehicleTypeResult.Rows[0]["VehicleType"].ToString();
 
-            // Bước 2: Lấy tiêu chuẩn từ VehicleStandards dựa trên VehicleType
-            string query = "";
+            string minColumn = "";
+            string maxColumn = "";
+
             switch (valueType)
             {
-                case "Noise":
-                    query = "SELECT MaxNoise FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "Whistle":
-                    query = "SELECT MinWhistle, MaxWhistle FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
                 case "Speed":
-                    query = "SELECT MinSpeed, MaxSpeed FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "SideSlip":
-                    query = "SELECT MinSideSlip, MaxSideSlip FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "HSU":
-                    query = "SELECT MaxHSU FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "DiffFrontBrake":
-                    query = "SELECT MaxDiffFrontBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    minColumn = "MinSpeed";
+                    maxColumn = "MaxSpeed";
                     break;
                 case "FrontBrake":
-                    query = "SELECT MinFrontBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "DiffHandBrake":
-                    query = "SELECT MaxDiffHandBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "HandBrake":
-                    query = "SELECT MinHandBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
-                    break;
-                case "DiffRearBrake":
-                    query = "SELECT MaxDiffRearBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    minColumn = "MinFrontBrake";
                     break;
                 case "RearBrake":
-                    query = "SELECT MinRearBrake FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    minColumn = "MinRearBrake";
+                    break;
+                case "HandBrake":
+                    minColumn = "MinHandBrake";
+                    break;
+                case "DiffFrontBrake":
+                    maxColumn = "MaxDiffFrontBrake";
+                    break;
+                case "DiffRearBrake":
+                    maxColumn = "MaxDiffRearBrake";
+                    break;
+                case "DiffHandBrake":
+                    maxColumn = "MaxDiffHandBrake";
+                    break;
+                case "Noise":
+                    maxColumn = "MaxNoise";
+                    break;
+                case "Whistle":
+                    minColumn = "MinWhistle";
+                    maxColumn = "MaxWhistle";
+                    break;
+                case "SideSlip":
+                    minColumn = "MinSideSlip";
+                    maxColumn = "MaxSideSlip";
                     break;
                 case "HC":
-                    query = "SELECT MaxHC FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    maxColumn = "MaxHC";
                     break;
                 case "CO":
-                    query = "SELECT MaxCO FROM VehicleStandards WHERE VehicleType = @VehicleType";
+                    maxColumn = "MaxCO";
                     break;
-                    // Thêm các loại giá trị khác nếu cần
+                default:
+                    MessageBox.Show($"Không hỗ trợ kiểm tra cho loại {valueType}.");
+                    return false;
             }
+
+            // Bước 3: Tạo câu truy vấn linh hoạt dựa trên các cột xác định
+            var queryColumns = new List<string>();
+            if (!string.IsNullOrEmpty(minColumn)) queryColumns.Add(minColumn);
+            if (!string.IsNullOrEmpty(maxColumn)) queryColumns.Add(maxColumn);
+
+            string query = $"SELECT {string.Join(", ", queryColumns)} FROM VehicleStandards WHERE VehicleType = @VehicleType";
 
             var standardParams = new[]
             {
-                new SqlParameter("@VehicleType", vehicleType)
-            };
+        new SqlParameter("@VehicleType", vehicleType)
+    };
 
             DataTable result = TableExecuteQuery(query, standardParams);
             if (result.Rows.Count == 0)
             {
-                MessageBox.Show("Không tìm thấy tiêu chuẩn cho loại xe này.");
+                // Không tìm thấy tiêu chuẩn cho loại xe này => coi như đạt
+                return true;
+            }
+
+            // Bước 4: Lấy giá trị Min và Max (nếu có)
+            decimal? minValue = !string.IsNullOrEmpty(minColumn) ? result.Rows[0].Field<decimal?>(minColumn) : null;
+            decimal? maxValue = !string.IsNullOrEmpty(maxColumn) ? result.Rows[0].Field<decimal?>(maxColumn) : null;
+
+            // Bước 5: Kiểm tra giá trị theo tiêu chuẩn
+            if (!minValue.HasValue && !maxValue.HasValue)
+            {
+                // Nếu không có cả Min và Max => đạt
+                return true;
+            }
+
+            if (minValue.HasValue && value < minValue.Value)
+            {
+                // Nếu có Min và giá trị nhỏ hơn Min => không đạt
                 return false;
             }
 
-            // Bước 3: Kiểm tra giá trị so với tiêu chuẩn
-            decimal? minValue = result.Rows[0].Field<decimal?>("Min" + valueType);
-            decimal? maxValue = result.Rows[0].Field<decimal?>("Max" + valueType);
+            if (maxValue.HasValue && value > maxValue.Value)
+            {
+                // Nếu có Max và giá trị lớn hơn Max => không đạt
+                return false;
+            }
 
-            if (minValue.HasValue && value < minValue.Value) return false;
-            if (maxValue.HasValue && value > maxValue.Value) return false;
-
-            return true; // Nếu giá trị nằm trong tiêu chuẩn
+            // Nếu vượt qua tất cả kiểm tra => đạt
+            return true;
         }
     }
 }

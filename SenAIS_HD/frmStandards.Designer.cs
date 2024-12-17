@@ -49,19 +49,17 @@
             this.StandardPanel.Controls.Add(this.dgStandards);
             this.StandardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StandardPanel.Location = new System.Drawing.Point(0, 0);
-            this.StandardPanel.Margin = new System.Windows.Forms.Padding(4);
             this.StandardPanel.Name = "StandardPanel";
-            this.StandardPanel.Size = new System.Drawing.Size(1924, 1055);
+            this.StandardPanel.Size = new System.Drawing.Size(1443, 857);
             this.StandardPanel.TabIndex = 0;
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDelete.Location = new System.Drawing.Point(213, 174);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Location = new System.Drawing.Point(160, 141);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(152, 50);
+            this.btnDelete.Size = new System.Drawing.Size(114, 41);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -71,10 +69,9 @@
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSave.Location = new System.Drawing.Point(17, 174);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Location = new System.Drawing.Point(13, 141);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(152, 50);
+            this.btnSave.Size = new System.Drawing.Size(114, 41);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -87,8 +84,7 @@
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold);
             this.lbStandardTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbStandardTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbStandardTitle.Location = new System.Drawing.Point(97, 0);
-            this.lbStandardTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbStandardTitle.Location = new System.Drawing.Point(73, 0);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(1446, 117);
             this.lbStandardTitle.TabIndex = 1;
@@ -116,20 +112,19 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgStandards.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgStandards.Location = new System.Drawing.Point(17, 249);
-            this.dgStandards.Margin = new System.Windows.Forms.Padding(4);
+            this.dgStandards.Location = new System.Drawing.Point(13, 202);
             this.dgStandards.Name = "dgStandards";
             this.dgStandards.RowHeadersWidth = 51;
-            this.dgStandards.Size = new System.Drawing.Size(1890, 705);
+            this.dgStandards.Size = new System.Drawing.Size(1418, 573);
             this.dgStandards.TabIndex = 0;
             // 
             // frmStandards
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.StandardPanel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmStandards";
             this.Text = "Tiêu Chuẩn Chất Lượng Xe";
             this.StandardPanel.ResumeLayout(false);

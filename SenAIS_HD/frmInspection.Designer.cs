@@ -70,7 +70,7 @@
             this.tbVehicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tbVehicleInfo.ColumnCount = 2;
             this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
+            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 294F));
             this.tbVehicleInfo.Controls.Add(this.cbFuel, 1, 5);
             this.tbVehicleInfo.Controls.Add(this.lbFuelTitle, 0, 5);
             this.tbVehicleInfo.Controls.Add(this.lbInspecDateTitle, 0, 4);
@@ -140,8 +140,9 @@
             this.dateInSpec.CalendarMonthBackground = System.Drawing.SystemColors.InactiveCaption;
             this.dateInSpec.CalendarTitleForeColor = System.Drawing.SystemColors.HotTrack;
             this.dateInSpec.CalendarTrailingForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dateInSpec.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dateInSpec.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateInSpec.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateInSpec.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateInSpec.Location = new System.Drawing.Point(205, 233);
             this.dateInSpec.Name = "dateInSpec";
             this.dateInSpec.Size = new System.Drawing.Size(222, 37);
@@ -264,12 +265,12 @@
             this.tableLayoutPanel2.Controls.Add(this.btnFrontBrake, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnHandBrake, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnRearBrake, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnSteerAngle, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 2, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnFrontWeight, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnRearWeight, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnSpeed, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.btnEmission, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnSteerAngle, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 2, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(111, 47);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
@@ -365,7 +366,7 @@
             // 
             this.btnSteerAngle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnSteerAngle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerAngle.Location = new System.Drawing.Point(374, 30);
+            this.btnSteerAngle.Location = new System.Drawing.Point(188, 144);
             this.btnSteerAngle.Margin = new System.Windows.Forms.Padding(2);
             this.btnSteerAngle.Name = "btnSteerAngle";
             this.btnSteerAngle.Size = new System.Drawing.Size(129, 53);
@@ -379,7 +380,7 @@
             // 
             this.btnNoise.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnNoise.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNoise.Location = new System.Drawing.Point(374, 487);
+            this.btnNoise.Location = new System.Drawing.Point(374, 30);
             this.btnNoise.Margin = new System.Windows.Forms.Padding(2);
             this.btnNoise.Name = "btnNoise";
             this.btnNoise.Size = new System.Drawing.Size(129, 53);
@@ -481,6 +482,7 @@
             // 
             this.panelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelButton.AutoScroll = true;
             this.panelButton.Controls.Add(this.tableLayoutPanel2);
             this.panelButton.Location = new System.Drawing.Point(494, 0);
             this.panelButton.Name = "panelButton";

@@ -68,7 +68,7 @@ namespace SenAIS
                 DateTime inspectionDate;
                 if (DateTime.TryParse(vehicleDetails["InspectionDate"].ToString(), out inspectionDate))
                 {
-                    txtDateInspec.Text = inspectionDate.ToShortDateString();
+                    txtDateInspec.Text = inspectionDate.ToString();
                 }
 
                 txtSpeed.Text = vehicleDetails["Speed"]?.ToString();
@@ -1013,15 +1013,15 @@ namespace SenAIS
             }
 
             DataRow standard = vehicleStandards.Rows[0];
-            decimal speed = Convert.ToDecimal(vehicleDetails["Speed"]);
-            decimal minSpeed = Convert.ToDecimal(standard["MinSpeed"]);
-            decimal maxSpeed = Convert.ToDecimal(standard["MaxSpeed"]);
+            decimal speed = ConvertToDecimal(vehicleDetails["Speed"]);
+            decimal minSpeed = ConvertToDecimal(standard["MinSpeed"]);
+            decimal maxSpeed = ConvertToDecimal(standard["MaxSpeed"]);
             string speedTestResult = (speed >= minSpeed && speed <= maxSpeed) ? "1" : "0";
 
             // Giá trị SideSlip
-            decimal sideSlipMeasure = Convert.ToDecimal(vehicleDetails["SideSlip"]);
-            decimal minSideSlip = Convert.ToDecimal(standard["MinSpeed"]);
-            decimal maxSideSlip = Convert.ToDecimal(standard["MaxSideSlip"]);
+            decimal sideSlipMeasure = ConvertToDecimal(vehicleDetails["SideSlip"]);
+            decimal minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
+            decimal maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
             string sideSlipTestResult = (Math.Abs(sideSlipMeasure) <= maxSideSlip) ? "1" : "0";
 
             // Giá trị Brake Force

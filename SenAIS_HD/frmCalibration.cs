@@ -1,5 +1,6 @@
 ﻿using OPCAutomation;
 using System;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -205,7 +206,8 @@ namespace SenAIS
         }
         private bool ValidatePassword(string enteredPassword)
         {
-            return enteredPassword == "Sentek.vn";
+            string adminPassword = ConfigurationManager.AppSettings["PasswordAdmin"];
+            return enteredPassword == adminPassword;
         }
         private void frmCalibration_Load(object sender, EventArgs e)
         {

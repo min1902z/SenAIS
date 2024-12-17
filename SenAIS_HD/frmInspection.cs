@@ -12,6 +12,9 @@ namespace SenAIS
         private OPCServer opcServer;
         private OPCGroup opcGroup;
         private OPCItem opcCounterPos;
+        private OPCItem opcCounterSpeed;
+        private OPCItem opcCounterSideSlip;
+        private OPCItem opcCounterBrake;
         private SQLHelper sqlHelper;
         private bool isMeasuring = false; // Cờ để xác định khi nào bắt đầu theo dõi
         private string vehicleType;
@@ -25,13 +28,8 @@ namespace SenAIS
             InitializeComponent();
             sqlHelper = new SQLHelper();
             LoadVehicleInfo();
-            //InitializeOPC();
+            InitializeOPC();
         }
-
-        //public frmInspection(SenAIS senAIS)
-        //{
-        //    this.senAIS = senAIS;
-        //}
 
         private void InitializeOPC()
         {
@@ -45,7 +43,10 @@ namespace SenAIS
                 opcGroup.IsSubscribed = true;
                 opcGroup.UpdateRate = 1000;
 
-                opcCounterPos = opcGroup.OPCItems.AddItem("Hyundai.OCS10.T99", 1);
+                // Thêm các OPCItems tương ứng với các Counter
+                opcCounterSpeed = opcGroup.OPCItems.AddItem("Hyundai.OCS10.Speed_Counter", 1);
+                opcCounterSideSlip = opcGroup.OPCItems.AddItem("Hyundai.OCS10.SideSlip_Counter", 2);
+                opcCounterBrake = opcGroup.OPCItems.AddItem("Hyundai.OCS10.Brake_Counter", 3);
                 opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
             catch (Exception ex)
@@ -59,68 +60,25 @@ namespace SenAIS
 
             for (int i = 1; i <= NumItems; i++)
             {
-                if (ClientHandles.GetValue(i).Equals(opcCounterPos.ClientHandle))
+                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
+                if (ClientHandles.GetValue(i).Equals(opcCounterSpeed.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
                 {
-                    int counterPos = Convert.ToInt32(ItemValues.GetValue(i));
-                    ProcessMeasurement(counterPos);
+                    OpenForm(new frmSpeed(this.serialNumber));
                 }
+                else if (ClientHandles.GetValue(i).Equals(opcCounterSideSlip.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
+                {
+                    OpenForm(new frmSideSlip(this.serialNumber));
+                }
+                
             }
         }
-        public void ProcessMeasurement(int counterPos)
+        // Hàm mở form và đưa lên đầu
+        private void OpenForm(Form formToOpen)
         {
-            // Select the form to open based on the counter position
-            Form formToOpen = null;
-            switch (counterPos)
-            {
-                case 0:
-                    formToOpen = new frmWaiting();
-                    break;
-                case 1:
-                    formToOpen = new frmSpeed(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 2:
-                    formToOpen = new frmSideSlip(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 3:
-                    formToOpen = new frmNoise(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 4:
-                    formToOpen = new frmFrontWeight(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 5:
-                    formToOpen = new frmRearWeight(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 6:
-                    formToOpen = new frmWhistle(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 7:
-                    formToOpen = new frmFrontBrake(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 8:
-                    formToOpen = new frmRearBrake(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 9:
-                    formToOpen = new frmHandBrake(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 10:
-                    formToOpen = new frmHeadlights(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 14:
-                    formToOpen = new frmGasEmission(this, opcCounterPos, this.serialNumber);
-                    break;
-                case 15:
-                    formToOpen = new frmDieselEmission(this, opcCounterPos, this.serialNumber);
-                    break;
-                default:
-                    MessageBox.Show("Invalid counter position.");
-                    break;
-            }
-
-            // If a form was determined to open, show it
             if (formToOpen != null)
             {
                 formToOpen.Show();
-                formToOpen.BringToFront();  // Bring the new form to the front
+                formToOpen.BringToFront(); // Đưa form lên trên
             }
         }
         private List<Form> openForms = new List<Form>();
@@ -141,19 +99,21 @@ namespace SenAIS
                 newForm.FormClosed += (s, e) => openForms.Remove(newForm);  // Gỡ form khỏi danh sách khi đóng
                 newForm.Show();  // Hiển thị form mới
             }
+
         }
         private void btnSpeed_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
             {
-                OpenNewForm(new frmSpeed(this, opcCounterPos, this.serialNumber));
+                var frmSpeed = new frmSpeed(serialNumber);
+                OpenNewForm(frmSpeed);
             }
         }
 
         private void btnSideSlip_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmSideSlip(this, opcCounterPos, this.serialNumber));
+                OpenNewForm(new frmSideSlip(this.serialNumber));
         }
 
         private void btnNoise_Click(object sender, EventArgs e)
@@ -179,7 +139,7 @@ namespace SenAIS
         private void btnFrontBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
+                OpenNewForm(new frmFrontBrake(this.serialNumber));
         }
 
         private void btnHeadlights_Click(object sender, EventArgs e)
@@ -335,13 +295,13 @@ namespace SenAIS
         private void btnRearBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmRearBrake(this, opcCounterPos, this.serialNumber));
+                OpenNewForm(new frmRearBrake(this.serialNumber));
         }
 
         private void btnHandBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmHandBrake(this, opcCounterPos, this.serialNumber));
+                OpenNewForm(new frmHandBrake(this.serialNumber));
         }
 
         private void btnSteerAngle_Click(object sender, EventArgs e)
