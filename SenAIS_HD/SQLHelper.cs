@@ -694,7 +694,7 @@ namespace SenAIS
             var parameters = new[]
             {
             new SqlParameter("@SerialNumber", serialNumber)
-        };
+            };
 
             DataTable result = TableExecuteQuery(query, parameters);
 

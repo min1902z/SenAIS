@@ -104,7 +104,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1238, 685);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1238, 696);
             this.tableLayoutPanel1.TabIndex = 57;
             // 
             // label9

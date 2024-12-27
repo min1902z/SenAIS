@@ -43,7 +43,7 @@ namespace SenAIS
             {
                 lbEngineNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99"));
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Counter"));
                 Invoke((Action)(async () =>
                 {
                     switch (checkStatus)
@@ -91,7 +91,7 @@ namespace SenAIS
                                 else if ((!isSumStandard3 || !isDiffStandard3)&& retryCount < 2)
                                 {
                                     CheckCounterPosition(); // Lưu dữ liệu
-                                    OPCUtility.SetOPCValue("Hyundai.OCS10.T99", 5); // Đặt lại trạng thái để đo lại
+                                    OPCUtility.SetOPCValue("Hyundai.OCS10.Brake_Counter", 5); // Đặt lại trạng thái để đo lại
                                     retryCount++; // Tăng số lần đo lại
                                 }
                             }
@@ -108,7 +108,7 @@ namespace SenAIS
                             retryCount = 0; // Reset đếm số lần đo lại khi đạt chuẩn
                             lbNotice.Visible = true;
                             lbNotice.Text = "Chuẩn bị kiểm tra xe tiếp theo.";
-                            OPCUtility.SetOPCValue("Hyundai.OCS10.T99", 10);
+                            OPCUtility.SetOPCValue("Hyundai.OCS10.Brake_Counter", 10);
                             var formBrake = new frmHandBrake(this.serialNumber);
                             formBrake.Show();
                             this.Close();
@@ -197,29 +197,6 @@ namespace SenAIS
             }
             return Task.CompletedTask;
         }
-        private async Task<bool> CheckValueFor10SecondsAsync()
-        {
-            const int checkInterval = 1000; // Kiểm tra mỗi giây
-            const int stabilityDuration = 10000; // Tổng thời gian kiểm tra (10 giây)
-            var stopwatch = Stopwatch.StartNew();
-
-            while (stopwatch.ElapsedMilliseconds < stabilityDuration)
-            {
-                await Task.Delay(checkInterval); // Chờ 1 giây
-
-                bool isSumStandard = sqlHelper.CheckValueAgainstStandard("RearBrake", sumRearBrake, this.serialNumber);
-                bool isDiffStandard = sqlHelper.CheckValueAgainstStandard("DiffRearBrake", diffRearBrake, this.serialNumber);
-
-                // Nếu bất kỳ giá trị nào không đạt chuẩn, reset thời gian kiểm tra
-                if (!isSumStandard || !isDiffStandard)
-                {
-                    stopwatch.Restart(); // Đặt lại thời gian nếu giá trị không đạt
-                }
-            }
-            stopwatch.Stop();
-            // Nếu hoàn thành 10 giây mà không reset, coi như ổn định
-            return true;
-        }
         private void btnPre_Click(object sender, EventArgs e)
         {
             try
@@ -248,7 +225,6 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             try
@@ -281,9 +257,9 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Counter");
 
-            if (currentPosition == 3)
+            if (currentPosition == 8)
             {
                 SaveDataToDatabase();
             }

@@ -537,7 +537,7 @@ namespace SenAIS
             this.lbCalibrateTitle.AutoSize = true;
             this.lbCalibrateTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCalibrateTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbCalibrateTitle.Location = new System.Drawing.Point(200, 0);
+            this.lbCalibrateTitle.Location = new System.Drawing.Point(201, 0);
             this.lbCalibrateTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibrateTitle.Name = "lbCalibrateTitle";
             this.lbCalibrateTitle.Size = new System.Drawing.Size(970, 78);

@@ -34,7 +34,7 @@ namespace SenAIS
             {
                 // Kết nối tới OPC Server
                 opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V4", "");
+                opcServer.Connect("Kepware.KEPServerEX.V6", "");
 
                 // Tạo một nhóm OPC
                 opcGroup = opcServer.OPCGroups.Add("OPCGroup1");

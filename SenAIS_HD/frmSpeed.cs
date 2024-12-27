@@ -42,7 +42,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99"));
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Counter"));
 
                 Invoke((Action)(() =>
                 {
@@ -107,7 +107,7 @@ namespace SenAIS
                                 else if (!isValueInStandard3 && retryCount < 2)
                                 {
                                     CheckCounterPosition(); // Lưu dữ liệu
-                                    OPCUtility.SetOPCValue("Hyundai.OCS10.T99", 0); // Đặt lại trạng thái để đo lại
+                                    OPCUtility.SetOPCValue("Hyundai.OCS10.Speed_Counter", 0); // Đặt lại trạng thái để đo lại
                                     retryCount++; // Tăng số lần đo lại
                                 }
                             }
@@ -175,28 +175,6 @@ namespace SenAIS
                 }
             }
         }
-        private async Task<bool> CheckValueFor10SecondsAsync()
-        {
-            const int checkInterval = 1000; // Kiểm tra mỗi giây
-            const int stabilityDuration = 10000; // Tổng thời gian kiểm tra (10 giây)
-            var stopwatch = Stopwatch.StartNew();
-
-            while (stopwatch.ElapsedMilliseconds < stabilityDuration)
-            {
-                await Task.Delay(checkInterval); // Chờ 1 giây
-
-                bool isValueInStandard = sqlHelper.CheckValueAgainstStandard("Speed", this.speedValue, this.serialNumber);
-
-                // Nếu bất kỳ giá trị nào không đạt chuẩn, reset thời gian kiểm tra
-                if (!isValueInStandard)
-                {
-                    stopwatch.Restart(); // Đặt lại thời gian nếu giá trị không đạt
-                }
-            }
-            stopwatch.Stop();
-            // Nếu hoàn thành 10 giây mà không reset, coi như ổn định
-            return true;
-        }
         private void btnPreSpeed_Click(object sender, EventArgs e)
         {
             try
@@ -258,7 +236,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Counter");
 
             if (currentPosition == 3)
             {

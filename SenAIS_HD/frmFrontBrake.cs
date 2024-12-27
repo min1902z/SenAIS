@@ -43,7 +43,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99"));
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Counter"));
                 Invoke((Action)(async () =>
                 {
                     switch (checkStatus)
@@ -91,7 +91,7 @@ namespace SenAIS
                                 else if ((!isSumStandard3 || !isDiffStandard3) && retryCount < 2)
                                 {
                                     CheckCounterPosition(); // Lưu dữ liệu
-                                    OPCUtility.SetOPCValue("Hyundai.OCS10.T99", 0); // Đặt lại trạng thái để đo lại
+                                    OPCUtility.SetOPCValue("Hyundai.OCS10.Brake_Counter", 0); // Đặt lại trạng thái để đo lại
                                     retryCount++; // Tăng số lần đo lại
                                 }
                             }
@@ -108,7 +108,7 @@ namespace SenAIS
                             retryCount = 0; // Reset đếm số lần đo lại khi đạt chuẩn
                             lbNotice.Visible = true;
                             lbNotice.Text = "Chuẩn bị kiểm tra xe tiếp theo.";
-                            OPCUtility.SetOPCValue("Hyundai.OCS10.T99", 5);
+                            OPCUtility.SetOPCValue("Hyundai.OCS10.Brake_Counter", 5);
                             var formBrake = new frmRearBrake(this.serialNumber);
                             formBrake.Show();
                             this.Close();

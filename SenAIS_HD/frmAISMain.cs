@@ -25,11 +25,6 @@ namespace SenAIS
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Show();
         }
-        //public void ShowFormInNewWindow(Form form)
-        //{
-        //    form.FormClosed += (s, args) => activeChildForm = null;
-        //    form.Show();
-        //}
         private void TSHoTro_Click(object sender, EventArgs e)
         {
         }
@@ -93,7 +88,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+            calibrationForm.SetOPCItem("Hyundai.OCS10.HSC_Speed");
         }
 
         private void tsSideSlipCalib_Click(object sender, EventArgs e)
@@ -110,7 +105,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+            calibrationForm.SetOPCItem("Hyundai.OCS10.AI_Align");
         }
 
         private void tsLBrakeCalib_Click(object sender, EventArgs e)
@@ -127,7 +122,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+            calibrationForm.SetOPCItem("Hyundai.OCS10.AI_BrakeL");
         }
 
         private void tsRBrakeCalib_Click(object sender, EventArgs e)
@@ -144,7 +139,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+            calibrationForm.SetOPCItem("Hyundai.OCS10.AI_BrakeR");
         }
 
         private void TSDuLieu_Click(object sender, EventArgs e)
@@ -267,6 +262,11 @@ namespace SenAIS
             //OpenChildForm(new frmMMSConfig());
             var editConfigForm = new frmMMSConfig();
             editConfigForm.Show();
+        }
+
+        private void SenAIS_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            OPCUtility.DisconnectOPC();
         }
     }
 }

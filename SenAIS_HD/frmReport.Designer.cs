@@ -32,11 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportPanel = new System.Windows.Forms.Panel();
+            this.StaticTitlePanel = new System.Windows.Forms.Panel();
             this.btnSaveMMS = new System.Windows.Forms.Button();
             this.btnEditSave = new System.Windows.Forms.Button();
-            this.btnExportReport = new System.Windows.Forms.Button();
-            this.StaticTitlePanel = new System.Windows.Forms.Panel();
             this.lbReportTitle = new System.Windows.Forms.Label();
+            this.btnExportReport = new System.Windows.Forms.Button();
             this.StaticPanel = new System.Windows.Forms.Panel();
             this.SteerAnglePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -217,13 +217,21 @@
             // 
             resources.ApplyResources(this.ReportPanel, "ReportPanel");
             this.ReportPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ReportPanel.Controls.Add(this.btnSaveMMS);
-            this.ReportPanel.Controls.Add(this.btnEditSave);
-            this.ReportPanel.Controls.Add(this.btnExportReport);
             this.ReportPanel.Controls.Add(this.StaticTitlePanel);
             this.ReportPanel.Controls.Add(this.StaticPanel);
             this.ReportPanel.Controls.Add(this.SearchPanel);
             this.ReportPanel.Name = "ReportPanel";
+            // 
+            // StaticTitlePanel
+            // 
+            this.StaticTitlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.StaticTitlePanel.Controls.Add(this.btnSaveMMS);
+            this.StaticTitlePanel.Controls.Add(this.btnEditSave);
+            this.StaticTitlePanel.Controls.Add(this.lbReportTitle);
+            this.StaticTitlePanel.Controls.Add(this.btnExportReport);
+            this.StaticTitlePanel.ForeColor = System.Drawing.SystemColors.HotTrack;
+            resources.ApplyResources(this.StaticTitlePanel, "StaticTitlePanel");
+            this.StaticTitlePanel.Name = "StaticTitlePanel";
             // 
             // btnSaveMMS
             // 
@@ -243,6 +251,11 @@
             this.btnEditSave.UseVisualStyleBackColor = false;
             this.btnEditSave.Click += new System.EventHandler(this.btnEditSave_Click);
             // 
+            // lbReportTitle
+            // 
+            resources.ApplyResources(this.lbReportTitle, "lbReportTitle");
+            this.lbReportTitle.Name = "lbReportTitle";
+            // 
             // btnExportReport
             // 
             resources.ApplyResources(this.btnExportReport, "btnExportReport");
@@ -251,19 +264,6 @@
             this.btnExportReport.Name = "btnExportReport";
             this.btnExportReport.UseVisualStyleBackColor = false;
             this.btnExportReport.Click += new System.EventHandler(this.btnExportReport_Click);
-            // 
-            // StaticTitlePanel
-            // 
-            resources.ApplyResources(this.StaticTitlePanel, "StaticTitlePanel");
-            this.StaticTitlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.StaticTitlePanel.Controls.Add(this.lbReportTitle);
-            this.StaticTitlePanel.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.StaticTitlePanel.Name = "StaticTitlePanel";
-            // 
-            // lbReportTitle
-            // 
-            resources.ApplyResources(this.lbReportTitle, "lbReportTitle");
-            this.lbReportTitle.Name = "lbReportTitle";
             // 
             // StaticPanel
             // 
@@ -1426,7 +1426,6 @@
             // 
             resources.ApplyResources(this.SearchPanel, "SearchPanel");
             this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.SearchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SearchPanel.Controls.Add(this.dgVehicleInfo);
             this.SearchPanel.Controls.Add(this.btnSearch);
             this.SearchPanel.Controls.Add(this.txtSearch);
@@ -1493,6 +1492,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmReport_Load);
             this.ReportPanel.ResumeLayout(false);
+            this.ReportPanel.PerformLayout();
             this.StaticTitlePanel.ResumeLayout(false);
             this.StaticTitlePanel.PerformLayout();
             this.StaticPanel.ResumeLayout(false);

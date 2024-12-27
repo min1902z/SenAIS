@@ -50,7 +50,7 @@
             this.StandardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StandardPanel.Location = new System.Drawing.Point(0, 0);
             this.StandardPanel.Name = "StandardPanel";
-            this.StandardPanel.Size = new System.Drawing.Size(1443, 857);
+            this.StandardPanel.Size = new System.Drawing.Size(1364, 749);
             this.StandardPanel.TabIndex = 0;
             // 
             // btnDelete
@@ -79,21 +79,21 @@
             // 
             // lbStandardTitle
             // 
-            this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbStandardTitle.AutoSize = true;
-            this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold);
+            this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbStandardTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbStandardTitle.Location = new System.Drawing.Point(73, 0);
+            this.lbStandardTitle.Location = new System.Drawing.Point(147, 0);
             this.lbStandardTitle.Name = "lbStandardTitle";
-            this.lbStandardTitle.Size = new System.Drawing.Size(1446, 117);
+            this.lbStandardTitle.Size = new System.Drawing.Size(954, 78);
             this.lbStandardTitle.TabIndex = 1;
             this.lbStandardTitle.Text = "Điều Chỉnh Tiêu Chuẩn Chất Lượng";
             this.lbStandardTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dgStandards
             // 
-            this.dgStandards.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgStandards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -115,7 +115,7 @@
             this.dgStandards.Location = new System.Drawing.Point(13, 202);
             this.dgStandards.Name = "dgStandards";
             this.dgStandards.RowHeadersWidth = 51;
-            this.dgStandards.Size = new System.Drawing.Size(1418, 573);
+            this.dgStandards.Size = new System.Drawing.Size(1348, 547);
             this.dgStandards.TabIndex = 0;
             // 
             // frmStandards
@@ -123,7 +123,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1443, 857);
+            this.ClientSize = new System.Drawing.Size(1364, 749);
             this.Controls.Add(this.StandardPanel);
             this.Name = "frmStandards";
             this.Text = "Tiêu Chuẩn Chất Lượng Xe";

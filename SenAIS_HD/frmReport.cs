@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -339,7 +340,7 @@ namespace SenAIS
                 {
                     if (value < minValue.Value)
                     {
-                        txtBox.BackColor = Color.LightYellow; // Dưới mức chuẩn
+                        txtBox.BackColor = Color.Gold; // Dưới mức chuẩn
                     }
                     else
                     {
@@ -351,7 +352,7 @@ namespace SenAIS
                 {
                     if (value > maxValue.Value)
                     {
-                        txtBox.BackColor = Color.LightYellow; // Vượt quá mức chuẩn
+                        txtBox.BackColor = Color.Gold; // Vượt quá mức chuẩn
                     }
                     else
                     {
@@ -363,11 +364,11 @@ namespace SenAIS
                 {
                     if (value < minValue.Value)
                     {
-                        txtBox.BackColor = Color.LightYellow; // Dưới mức chuẩn
+                        txtBox.BackColor = Color.Gold; // Dưới mức chuẩn
                     }
                     else if (value > maxValue.Value)
                     {
-                        txtBox.BackColor = Color.LightYellow; // Vượt quá mức chuẩn
+                        txtBox.BackColor = Color.Gold; // Vượt quá mức chuẩn
                     }
                     else
                     {
@@ -1278,16 +1279,33 @@ namespace SenAIS
                 {
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                    string result = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
                     {
-                        string result = await response.Content.ReadAsStringAsync();
                         dynamic responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject(result);
-                        return responseObject?.sessionid; // Trả về sessionid từ phản hồi
+                        string sessionId = responseObject?.SessionId;
+
+                        if (!string.IsNullOrEmpty(sessionId))
+                        {
+                            LogToFile("LoginLog.txt", $"[{DateTime.Now}] Login Success: Username={username}, SessionId={sessionId}");
+                            return sessionId; // Trả về SessionId
+                        }
+                        else
+                        {
+                            LogToFile("LoginLog.txt", $"[{DateTime.Now}] Login Failed: Username={username}, Error=SessionId not found");
+                            throw new Exception("Không tìm thấy SessionId trong phản hồi từ server.");
+                        }
+                    }
+                    else
+                    {
+                        LogToFile("LoginLog.txt", $"[{DateTime.Now}] Login Failed: Username={username}, Error={response.StatusCode}, Response={result}");
+                        throw new Exception($"Yêu cầu đăng nhập thất bại: {response.StatusCode}");
                     }
                 }
             }
             catch (Exception ex)
             {
+                LogToFile("LoginLog.txt", $"[{DateTime.Now}] Login Exception: Username={username}, Error={ex.Message}");
                 MessageBox.Show($"Lỗi khi login vào MMS: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return null;
@@ -1302,23 +1320,51 @@ namespace SenAIS
                 {
                     sessionid = sessionId,
                     flagisdelete = "0", // Mặc định là lưu
-                    strQC_TestReport = jsonData
+                    strQC_TestReport = Newtonsoft.Json.JsonConvert.SerializeObject(jsonData)
                 };
                 string requestJson = Newtonsoft.Json.JsonConvert.SerializeObject(requestData);
+                LogToFile("SaveDataLog.txt", $"[{DateTime.Now}] Request Sent: {requestJson}");
 
                 using (var client = new HttpClient())
                 {
                     var content = new StringContent(requestJson, Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-                    return response.IsSuccessStatusCode; // Trả về true nếu thành công
+                    string responseResult = await response.Content.ReadAsStringAsync();
+                    // Kiểm tra phản hồi
+                    if (response.IsSuccessStatusCode)
+                    {
+                        LogToFile("SaveDataLog.txt", $"[{DateTime.Now}] Save Success: sessionid={sessionId}, Request={requestJson}");
+                        return true; // Thành công
+                    }
+                    else
+                    {
+                        LogToFile("SaveDataLog.txt", $"[{DateTime.Now}] Save Failed: sessionid={sessionId}, Error={response.StatusCode}, Response={responseResult}, Request={requestJson}");
+                        MessageBox.Show($"Lỗi từ server: {responseResult}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
             {
+                LogToFile("SaveDataLog.txt", $"[{DateTime.Now}] Save Exception: sessionid={sessionId}, Error={ex.Message}, Request={jsonData}");
                 MessageBox.Show($"Lỗi khi lưu dữ liệu lên MMS: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
         }
-
+        private void LogToFile(string fileName, string logContent)
+        {
+            try
+            {
+                string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+                using (StreamWriter writer = new StreamWriter(logFilePath, true))
+                {
+                    string singleLineLog = logContent.Replace(Environment.NewLine, "").Replace("\n", "").Replace("\r", "");
+                    writer.WriteLine(singleLineLog);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể ghi log: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

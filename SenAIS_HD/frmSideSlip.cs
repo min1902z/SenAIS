@@ -40,7 +40,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99"));
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Counter_SS"));
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
@@ -69,8 +69,8 @@ namespace SenAIS
 
                             double alignA = 1.0;
                             alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
-                            double sideSlipSign = OPCUtility.GetOPCValue("Hyundai.OCS10.SideSlip_Sign");
-                            double sideSlipResult = OPCUtility.GetOPCValue("Hyundai.OCS10.SideSlip_Result");
+                            double sideSlipSign = OPCUtility.GetOPCValue("Hyundai.OCS10.Align_Front_Sign");
+                            double sideSlipResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Align_Front_Result");
                             double sideSlip = 0.0;
 
                             if (sideSlipSign == 0)
@@ -117,10 +117,10 @@ namespace SenAIS
                                     retryCount = 0; // Reset đếm số lần đo lại khi đạt chuẩn
                                     isReady = false;
                                 }
-                                else if (!isValueInStandard3 && retryCount < 1)
+                                else if (!isValueInStandard3 && retryCount < 2)
                                 {
                                     CheckCounterPosition(); // Lưu dữ liệu
-                                    OPCUtility.SetOPCValue("Hyundai.OCS10.T99", 0); // Đặt lại trạng thái để đo lại
+                                    OPCUtility.SetOPCValue("Hyundai.OCS10.Counter_SS", 0); // Đặt lại trạng thái để đo lại
                                     retryCount++; // Tăng số lần đo lại
                                 }
                             }
@@ -267,7 +267,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Counter_SS");
 
             if (currentPosition == 3)
             {

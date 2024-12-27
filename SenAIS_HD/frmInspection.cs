@@ -36,16 +36,16 @@ namespace SenAIS
             try
             {
                 opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V4", "");
+                opcServer.Connect("Kepware.KEPServerEX.V6", "");
 
                 opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
                 opcGroup.IsActive = true;
                 opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 1000;
+                opcGroup.UpdateRate = 500;
 
                 // Thêm các OPCItems tương ứng với các Counter
                 opcCounterSpeed = opcGroup.OPCItems.AddItem("Hyundai.OCS10.Speed_Counter", 1);
-                opcCounterSideSlip = opcGroup.OPCItems.AddItem("Hyundai.OCS10.SideSlip_Counter", 2);
+                opcCounterSideSlip = opcGroup.OPCItems.AddItem("Hyundai.OCS10.Counter_SS", 2);
                 opcCounterBrake = opcGroup.OPCItems.AddItem("Hyundai.OCS10.Brake_Counter", 3);
                 opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
@@ -113,7 +113,10 @@ namespace SenAIS
         private void btnSideSlip_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmSideSlip(this.serialNumber));
+                OPCUtility.SetOPCValue("Hyundai.OCS10.Counter_SS", 1);
+            }
         }
 
         private void btnNoise_Click(object sender, EventArgs e)
