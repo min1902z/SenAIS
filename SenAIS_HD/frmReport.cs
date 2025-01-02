@@ -1023,7 +1023,16 @@ namespace SenAIS
             decimal sideSlipMeasure = ConvertToDecimal(vehicleDetails["SideSlip"]);
             decimal minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
             decimal maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
-            string sideSlipTestResult = (Math.Abs(sideSlipMeasure) <= maxSideSlip) ? "1" : "0";
+            string sideSlipTestResult = (sideSlipMeasure >= minSideSlip && sideSlipMeasure <= maxSideSlip) ? "1" : "0";
+
+            decimal whistle = ConvertToDecimal(vehicleDetails["Whistle"]);
+            decimal minWhistle = ConvertToDecimal(standard["MinWhistle"]);
+            decimal maxWhistle = ConvertToDecimal(standard["MaxWhistle"]);
+            string whistleTestResult = (whistle >= minWhistle && whistle <= maxWhistle) ? "1" : "0";
+
+            decimal noiseMeasure = ConvertToDecimal(vehicleDetails["Noise"]);
+            decimal maxNoise = ConvertToDecimal(standard["MaxNoise"]);
+            string noiseTestResult = (noiseMeasure <= maxNoise) ? "1" : "0";
 
             // Giá trị Brake Force
             decimal frontLeftBrake = ConvertToDecimal(vehicleDetails["FrontLeftBrake"]);
@@ -1113,6 +1122,24 @@ namespace SenAIS
                     MeasureValue = sideSlipMeasure.ToString("F1"),
                     StandardValue = $"{minSideSlip} - {maxSideSlip}",
                     TestDtlResult = sideSlipTestResult
+                },
+                // Whistle Measure
+                new
+                {
+                    TestTypeCode = "HORNLOADNESS",
+                    TestDtlCode = "HORNLOADNESS_H",
+                    MeasureValue = whistle.ToString("F1"),
+                    LimitValue = $"{minWhistle} - {maxWhistle}",
+                    TestDtlResult = whistleTestResult
+                },
+                // Noise Measure
+                new
+                {
+                    TestTypeCode = "SOUND",
+                    TestDtlCode = "SOUND_S",
+                    MeasureValue = noiseMeasure.ToString("F1"),
+                    LimitValue = maxNoise.ToString("F1"),
+                    TestDtlResult = noiseTestResult
                 },
                 //Brake Force
                 new
@@ -1320,7 +1347,7 @@ namespace SenAIS
                 {
                     sessionid = sessionId,
                     flagisdelete = "0", // Mặc định là lưu
-                    strQC_TestReport = Newtonsoft.Json.JsonConvert.SerializeObject(jsonData)
+                    strQC_TestReport = jsonData
                 };
                 string requestJson = Newtonsoft.Json.JsonConvert.SerializeObject(requestData);
                 LogToFile("SaveDataLog.txt", $"[{DateTime.Now}] Request Sent: {requestJson}");
@@ -1364,6 +1391,16 @@ namespace SenAIS
             catch (Exception ex)
             {
                 MessageBox.Show($"Không thể ghi log: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick(); // Kích hoạt nút Search
+                e.Handled = true;         // Ngăn Enter thực hiện hành động mặc định
+                e.SuppressKeyPress = true; // Ngăn âm báo "ding"
             }
         }
     }

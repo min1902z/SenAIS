@@ -5032,7 +5032,7 @@
     <value>0, 125</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 832</value>
+    <value>256, 1062</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>

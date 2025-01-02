@@ -1,5 +1,6 @@
 ﻿using OPCAutomation;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -20,6 +21,8 @@ namespace SenAIS
         private decimal maxSpeed = 0;
         private int retryCount = 0; // Đếm số lần đo lại
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
+        private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
+        private static readonly string opcSpeedResult = ConfigurationManager.AppSettings["Speed_Result"];
 
         public frmSpeed(string serialNumber)
         {
@@ -42,7 +45,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Counter"));
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcSpeedCounter));
 
                 Invoke((Action)(() =>
                 {
@@ -50,8 +53,7 @@ namespace SenAIS
                     {
                         case 0: // Mặc định
                             cbReady.BackColor = SystemColors.Control;
-                            lbSpeed.Text = "0.0";
-                            lbNotice.Visible = false;
+                            lbSpeed.Visible = false;
                             lbStandard.Visible = false;
                             isReady = false;
                             hasProcessedNextVin = false; // Reset cờ chuyển số VIN
@@ -60,8 +62,7 @@ namespace SenAIS
                         case 1: // Xe vào vị trí
                                 cbReady.BackColor = Color.Green; // Đèn xanh sáng
                                 isReady = false; // Chưa sẵn sàng lưu
-                                lbNotice.Visible = true;
-                                lbNotice.Text = $"Phương tiện có số VIN '{this.serialNumber}' đã vào vị trí, chuẩn bị kiểm tra.";
+                                lbSpeed.Visible = false;
                                 lbStandard.Visible = true;
                                 lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")}  -  {maxSpeed.ToString("F0")}]" : "--  -  --";
                             break;
@@ -69,84 +70,86 @@ namespace SenAIS
                         case 2: // Bắt đầu đo
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
                             isReady = true; // Sẵn sàng lưu sau khi đo
-
+                            lbTitleSpeed.Visible = false;
+                            lbSpeed.Visible = true;
                             double speedA = sqlHelper.GetParaValue("Speed", "ParaA");
-                            double speedResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Result");
+                            double speedResult = OPCUtility.GetOPCValue(opcSpeedResult);
                             double speed = speedResult / speedA;
-                            lbSpeed.Text = speed.ToString("F1");
+                            lbSpeed.Text = speed.ToString("F0");
 
-                            this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
+                            this.speedValue = Convert.ToDecimal(speed.ToString("F0"));
 
                             // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                            bool isValueInStandard = sqlHelper.CheckValueAgainstStandard("Speed", this.speedValue, this.serialNumber);
+                            bool isValueInStandard = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
 
                             if (isValueInStandard)
                             {
                                 lbSpeed.ForeColor = SystemColors.HotTrack;
-                                lbNotice.Visible = true;
-                                lbNotice.Text = "Giá trị kiểm tra đã đạt tiêu chuẩn. Vui lòng chờ ...";
                             }
                             else
                             {
                                 lbSpeed.ForeColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
-                                lbNotice.Visible = false;
                             }
                             break;
 
                         case 3: // Quá trình đo hoàn tất, lưu vào DB
                             cbReady.BackColor = Color.Green; // Đèn xanh
+                            lbTitleSpeed.Visible = false;
+                            lbSpeed.Visible = true;
                             if (isReady)
                             {
-                                bool isValueInStandard3 = sqlHelper.CheckValueAgainstStandard("Speed", this.speedValue, this.serialNumber);
-
-                                if (isValueInStandard3)
-                                {
-                                    CheckCounterPosition(); // Lưu dữ liệu
-                                    isReady = false;
-                                }
-                                else if (!isValueInStandard3 && retryCount < 2)
-                                {
-                                    CheckCounterPosition(); // Lưu dữ liệu
-                                    OPCUtility.SetOPCValue("Hyundai.OCS10.Speed_Counter", 0); // Đặt lại trạng thái để đo lại
-                                    retryCount++; // Tăng số lần đo lại
-                                }
+                                CheckCounterPosition();
+                                isReady = false;
                             }
+                            //if (isReady)
+                            //{
+                            //    bool isValueInStandard3 = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
+
+                            //    if (isValueInStandard3)
+                            //    {
+                            //        CheckCounterPosition(); // Lưu dữ liệu
+                            //        isReady = false;
+                            //    }
+                            //    else if (!isValueInStandard3 && retryCount < 2)
+                            //    {
+                            //        CheckCounterPosition(); // Lưu dữ liệu
+                            //        OPCUtility.SetOPCValue(opcSpeedCounter, 0); // Đặt lại trạng thái để đo lại
+                            //        retryCount++; // Tăng số lần đo lại
+                            //    }
+                            //}
                             break;
 
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
-                            lbSpeed.Text = "0.0";
                             retryCount = 0; // Reset đếm số lần đo lại khi đạt chuẩn
-                            lbNotice.Visible = true;
-                            lbNotice.Text = "Chuẩn bị kiểm tra xe tiếp theo.";
                             lbStandard.Visible = false;
-                            if(!hasProcessedNextVin)
-                            {
-                                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                                if (!string.IsNullOrEmpty(nextSerialNumber))
-                                {
-                                    this.serialNumber = nextSerialNumber;
-                                    lbVinNumber.Text = this.serialNumber;
+                            lbTitleSpeed.Visible = true;
+                            lbTitleSpeed.Text = "Xe tiếp theo";
+                            this.Close();
+                            //if(!hasProcessedNextVin)
+                            //{
+                            //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                            //    if (!string.IsNullOrEmpty(nextSerialNumber))
+                            //    {
+                            //        this.serialNumber = nextSerialNumber;
+                            //        lbVinNumber.Text = this.serialNumber;
 
-                                    // Lấy và hiển thị tiêu chuẩn mới
-                                    LoadVehicleStandards(this.serialNumber);
-                                    lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")} - {maxSpeed.ToString("F0")}]" : "-- - --";
-                                    lbStandard.Visible = true;
-                                    hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
-                                }
-
-                            }
+                            //        // Lấy và hiển thị tiêu chuẩn mới
+                            //        LoadVehicleStandards(this.serialNumber);
+                            //        lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")} - {maxSpeed.ToString("F0")}]" : "-- - --";
+                            //        lbStandard.Visible = true;
+                            //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
+                            //    }
+                            //    else
+                            //    {
+                            //        MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
+                            //    }
+                            //}
                             break;
 
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
                                 cbReady.BackColor = SystemColors.Control; // Màu mặc định
                                 isReady = false;
-                                lbNotice.Visible = false;
-                                lbStandard.Visible = false;
                             break;
 
                     }
@@ -236,7 +239,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Speed_Counter");
+            int currentPosition = (int)OPCUtility.GetOPCValue(opcSpeedCounter);
 
             if (currentPosition == 3)
             {

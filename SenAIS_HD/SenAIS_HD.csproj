@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo_sentek.ico</ApplicationIcon>
+    <ApplicationIcon>Slogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -338,6 +338,12 @@
     <Compile Include="frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSideSlip2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSideSlip2.Designer.cs">
+      <DependentUpon>frmSideSlip2.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSpeed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -447,6 +453,9 @@
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSideSlip2.resx">
+      <DependentUpon>frmSideSlip2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSpeed.resx">
       <DependentUpon>frmSpeed.cs</DependentUpon>
     </EmbeddedResource>
@@ -524,6 +533,7 @@
     <Content Include="Image\Logo_sentek.ico" />
     <Content Include="Image\QR_Sentek.png" />
     <Content Include="Logo_sentek.ico" />
+    <Content Include="Slogo.ico" />
     <None Include="Resources\sentek_NoBG1.png" />
     <None Include="Resources\sentek_NoBG.png" />
     <None Include="Resources\sentek.jpg" />

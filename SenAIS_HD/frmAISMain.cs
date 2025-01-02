@@ -7,6 +7,10 @@ namespace SenAIS
     public partial class SenAIS : Form
     {
         //private Form activeChildForm;
+        private static readonly string calibSpeed = ConfigurationManager.AppSettings["Calib_Speed"];
+        private static readonly string calibSS = ConfigurationManager.AppSettings["Calib_SS"];
+        private static readonly string calibLBrake = ConfigurationManager.AppSettings["Calib_LBrake"];
+        private static readonly string calibRBrake = ConfigurationManager.AppSettings["Calib_RBrake"];
         public SenAIS()
         {
             InitializeComponent();
@@ -88,7 +92,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.HSC_Speed");
+            calibrationForm.SetOPCItem(calibSpeed);
         }
 
         private void tsSideSlipCalib_Click(object sender, EventArgs e)
@@ -105,7 +109,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.AI_Align");
+            calibrationForm.SetOPCItem(calibSS);
         }
 
         private void tsLBrakeCalib_Click(object sender, EventArgs e)
@@ -122,7 +126,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.AI_BrakeL");
+            calibrationForm.SetOPCItem(calibLBrake);
         }
 
         private void tsRBrakeCalib_Click(object sender, EventArgs e)
@@ -139,7 +143,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.AI_BrakeR");
+            calibrationForm.SetOPCItem(calibRBrake);
         }
 
         private void TSDuLieu_Click(object sender, EventArgs e)
