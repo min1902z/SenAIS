@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Slogo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -164,6 +167,12 @@
     <Compile Include="frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSideSlip2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSideSlip2.Designer.cs">
+      <DependentUpon>frmSideSlip2.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSpeed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +273,9 @@
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSideSlip2.resx">
+      <DependentUpon>frmSideSlip2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSpeed.resx">
       <DependentUpon>frmSpeed.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,6 +351,7 @@
   <ItemGroup>
     <Content Include="Image\Logo_sentek.ico" />
     <Content Include="Image\QR_Sentek.png" />
+    <Content Include="Slogo.ico" />
     <None Include="Resources\sentek_NoBG1.png" />
     <None Include="Resources\sentek_NoBG.png" />
     <None Include="Resources\sentek.jpg" />

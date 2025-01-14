@@ -37,11 +37,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbNoise = new System.Windows.Forms.Label();
             this.lbNoiseTitle = new System.Windows.Forms.Label();
+            this.lbStandard = new System.Windows.Forms.Label();
+            this.lbStandardTitle = new System.Windows.Forms.Label();
             this.NoisePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // NoisePanel
             // 
+            this.NoisePanel.AutoSize = true;
+            this.NoisePanel.Controls.Add(this.lbStandard);
+            this.NoisePanel.Controls.Add(this.lbStandardTitle);
             this.NoisePanel.Controls.Add(this.lbEngineNumber);
             this.NoisePanel.Controls.Add(this.cbReady);
             this.NoisePanel.Controls.Add(this.btnNext);
@@ -51,18 +56,20 @@
             this.NoisePanel.Controls.Add(this.lbNoiseTitle);
             this.NoisePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NoisePanel.Location = new System.Drawing.Point(0, 0);
+            this.NoisePanel.Margin = new System.Windows.Forms.Padding(4);
             this.NoisePanel.Name = "NoisePanel";
-            this.NoisePanel.Size = new System.Drawing.Size(1443, 862);
+            this.NoisePanel.Size = new System.Drawing.Size(1924, 1055);
             this.NoisePanel.TabIndex = 0;
             // 
             // lbEngineNumber
             // 
             this.lbEngineNumber.AutoSize = true;
-            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
+            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbEngineNumber.Location = new System.Drawing.Point(172, -6);
+            this.lbEngineNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
+            this.lbEngineNumber.Size = new System.Drawing.Size(477, 163);
             this.lbEngineNumber.TabIndex = 48;
             this.lbEngineNumber.Text = "Số Máy";
             // 
@@ -75,9 +82,10 @@
             this.cbReady.Checked = true;
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
-            this.cbReady.Location = new System.Drawing.Point(12, 12);
+            this.cbReady.Location = new System.Drawing.Point(16, 15);
+            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
             this.cbReady.Name = "cbReady";
-            this.cbReady.Size = new System.Drawing.Size(111, 88);
+            this.cbReady.Size = new System.Drawing.Size(148, 108);
             this.cbReady.TabIndex = 47;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
@@ -87,10 +95,10 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1346, 814);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Location = new System.Drawing.Point(1795, 996);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(86, 37);
+            this.btnNext.Size = new System.Drawing.Size(115, 46);
             this.btnNext.TabIndex = 46;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -102,10 +110,10 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(11, 814);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPre.Location = new System.Drawing.Point(15, 996);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(86, 37);
+            this.btnPre.Size = new System.Drawing.Size(115, 46);
             this.btnPre.TabIndex = 45;
             this.btnPre.Text = "Trở Lại";
             this.btnPre.UseVisualStyleBackColor = false;
@@ -117,24 +125,22 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(1311, 543);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(1680, 669);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 131);
+            this.label2.Size = new System.Drawing.Size(216, 164);
             this.label2.TabIndex = 22;
             this.label2.Text = "dB";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbNoise
             // 
-            this.lbNoise.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbNoise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbNoise.AutoSize = true;
             this.lbNoise.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNoise.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNoise.Location = new System.Drawing.Point(163, 263);
-            this.lbNoise.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbNoise.Location = new System.Drawing.Point(217, 321);
             this.lbNoise.Name = "lbNoise";
-            this.lbNoise.Size = new System.Drawing.Size(807, 488);
+            this.lbNoise.Size = new System.Drawing.Size(1008, 610);
             this.lbNoise.TabIndex = 21;
             this.lbNoise.Text = "0.0 ";
             this.lbNoise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,22 +151,46 @@
             this.lbNoiseTitle.AutoSize = true;
             this.lbNoiseTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNoiseTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNoiseTitle.Location = new System.Drawing.Point(602, 9);
-            this.lbNoiseTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbNoiseTitle.Location = new System.Drawing.Point(803, 11);
             this.lbNoiseTitle.Name = "lbNoiseTitle";
-            this.lbNoiseTitle.Size = new System.Drawing.Size(326, 117);
+            this.lbNoiseTitle.Size = new System.Drawing.Size(407, 146);
             this.lbNoiseTitle.TabIndex = 20;
             this.lbNoiseTitle.Text = "ĐỘ ỒN";
             this.lbNoiseTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lbStandard
+            // 
+            this.lbStandard.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbStandard.AutoSize = true;
+            this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandard.Location = new System.Drawing.Point(658, 958);
+            this.lbStandard.Name = "lbStandard";
+            this.lbStandard.Size = new System.Drawing.Size(239, 97);
+            this.lbStandard.TabIndex = 56;
+            this.lbStandard.Text = "--  -  --";
+            // 
+            // lbStandardTitle
+            // 
+            this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbStandardTitle.AutoSize = true;
+            this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandardTitle.Location = new System.Drawing.Point(156, 958);
+            this.lbStandardTitle.Name = "lbStandardTitle";
+            this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
+            this.lbStandardTitle.TabIndex = 55;
+            this.lbStandardTitle.Text = "Tiêu Chuẩn: ";
+            // 
             // frmNoise
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1443, 862);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.NoisePanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNoise";
             this.Text = "Đo Độ Ồn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -169,6 +199,7 @@
             this.NoisePanel.ResumeLayout(false);
             this.NoisePanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,5 +213,7 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.CheckBox cbReady;
         private System.Windows.Forms.Label lbEngineNumber;
+        private System.Windows.Forms.Label lbStandard;
+        private System.Windows.Forms.Label lbStandardTitle;
     }
 }

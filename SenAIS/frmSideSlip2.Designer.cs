@@ -1,6 +1,6 @@
 ﻿namespace SenAIS
 {
-    partial class frmSideSlip
+    partial class frmSideSlip2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSideSlip));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSideSlip2));
             this.SideSlipPanel = new System.Windows.Forms.Panel();
             this.lbStandard = new System.Windows.Forms.Label();
             this.lbStandardTitle = new System.Windows.Forms.Label();
@@ -57,8 +57,8 @@
             this.SideSlipPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SideSlipPanel.Location = new System.Drawing.Point(0, 0);
             this.SideSlipPanel.Name = "SideSlipPanel";
-            this.SideSlipPanel.Size = new System.Drawing.Size(1370, 749);
-            this.SideSlipPanel.TabIndex = 1;
+            this.SideSlipPanel.Size = new System.Drawing.Size(1284, 749);
+            this.SideSlipPanel.TabIndex = 2;
             // 
             // lbStandard
             // 
@@ -66,7 +66,7 @@
             this.lbStandard.AutoSize = true;
             this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandard.Location = new System.Drawing.Point(524, 660);
+            this.lbStandard.Location = new System.Drawing.Point(480, 659);
             this.lbStandard.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbStandard.Name = "lbStandard";
             this.lbStandard.Size = new System.Drawing.Size(189, 78);
@@ -79,7 +79,7 @@
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandardTitle.Location = new System.Drawing.Point(144, 660);
+            this.lbStandardTitle.Location = new System.Drawing.Point(100, 659);
             this.lbStandardTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(361, 78);
@@ -118,7 +118,7 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1275, 699);
+            this.btnNext.Location = new System.Drawing.Point(1189, 702);
             this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
@@ -132,7 +132,7 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(9, 699);
+            this.btnPre.Location = new System.Drawing.Point(9, 702);
             this.btnPre.Margin = new System.Windows.Forms.Padding(2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
@@ -146,7 +146,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(968, 630);
+            this.label2.Location = new System.Drawing.Point(886, 629);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(299, 117);
@@ -160,7 +160,7 @@
             this.lbSideSlip.AutoSize = true;
             this.lbSideSlip.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSideSlip.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSideSlip.Location = new System.Drawing.Point(301, 120);
+            this.lbSideSlip.Location = new System.Drawing.Point(234, 120);
             this.lbSideSlip.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbSideSlip.Name = "lbSideSlip";
             this.lbSideSlip.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -176,29 +176,26 @@
             this.lbSideSlipTitle.AutoSize = true;
             this.lbSideSlipTitle.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSideSlipTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSideSlipTitle.Location = new System.Drawing.Point(-10, 302);
+            this.lbSideSlipTitle.Location = new System.Drawing.Point(36, 283);
             this.lbSideSlipTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbSideSlipTitle.Name = "lbSideSlipTitle";
-            this.lbSideSlipTitle.Size = new System.Drawing.Size(1360, 163);
+            this.lbSideSlipTitle.Size = new System.Drawing.Size(1185, 163);
             this.lbSideSlipTitle.TabIndex = 10;
-            this.lbSideSlipTitle.Text = "TRƯỢT NGANG TRƯỚC";
+            this.lbSideSlipTitle.Text = "TRƯỢT NGANG SAU";
             this.lbSideSlipTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // frmSideSlip
+            // frmSideSlip2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(1284, 749);
             this.Controls.Add(this.SideSlipPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "frmSideSlip";
+            this.Name = "frmSideSlip2";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Trượt Ngang Trước";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "Trượt Ngang Sau";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSideSlip2_FormClosing);
             this.SideSlipPanel.ResumeLayout(false);
             this.SideSlipPanel.PerformLayout();
             this.ResumeLayout(false);

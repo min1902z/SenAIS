@@ -6,18 +6,19 @@ using System.Windows.Forms;
 
 namespace SenAIS
 {
-    public partial class frmFrontWeight : Form
+    public partial class frmRearBrake : Form
     {
         private Form parentForm;
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
-        public decimal frontLeftWeight;
-        public decimal frontRightWeight;
+        public decimal rearLeftBrake;
+        public decimal rearRightBrake;
+        public decimal diffRearBrake;
+        public decimal sumRearBrake;
         private bool isReady = false;
-
-        public frmFrontWeight(Form parent, OPCItem opcCounterPos, string serialNumber)
+        public frmRearBrake(Form parent, OPCItem opcCounterPos, string serialNumber)
         {
             InitializeComponent();
             this.parentForm = parent;
@@ -35,7 +36,7 @@ namespace SenAIS
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            lbVinNumber.Text = this.serialNumber;
+            lbEngineNumber.Text = this.serialNumber;
             // Lấy giá trị OPC
             //int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
             int checkStatus = 1;
@@ -50,20 +51,49 @@ namespace SenAIS
                     cbReady.BackColor = Color.Green; // Đèn xanh sáng
                     isReady = true; // Sẵn sàng lưu sau khi đo
                     await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    double weightRightA = 1.0;
-                    weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
-                    double leftWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Front_Result");
-                    double rightWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Front_Result");
-                    double leftWeight = leftWeightResult / weightRightA;
-                    double rightWeight = rightWeightResult / weightRightA;
-                    double sumWeight = leftWeight + rightWeight;
+                    double brakeRightA = 1.0;
+                    brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
+                    double leftBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
+                    double rightBrakeResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Brake_Rear_Result");
+                    double leftBrake = leftBrakeResult / brakeRightA;
+                    double rightBrake = rightBrakeResult / brakeRightA;
+                    double diffBrake = 0.0;
+                    if (leftBrake > rightBrake)
+                    {
+                        diffBrake = 100 * (leftBrake - rightBrake) / leftBrake;
+                    }
+                    else
+                    {
+                        diffBrake = 100 * (rightBrake - leftBrake) / rightBrake;
+                    }
 
-                    lbLeft_Weight.Text = leftWeight.ToString("F1");
-                    lbRight_Weight.Text = rightWeight.ToString("F1");
-                    lbSum_Weight.Text = sumWeight.ToString("F1");
+                    double sumBrake = leftBrake + rightBrake;
 
-                    this.frontLeftWeight = Convert.ToDecimal(leftWeight.ToString("F1"));
-                    this.frontRightWeight = Convert.ToDecimal(rightWeight.ToString("F1"));
+                    lbLeft_Brake.Text = leftBrake.ToString("F2");
+                    lbRight_Brake.Text = rightBrake.ToString("F2");
+                    lbDiff_Brake.Text = diffBrake.ToString("F2");
+                    lbSum_Brake.Text = sumBrake.ToString("F2");
+
+                    this.rearLeftBrake = Convert.ToDecimal(leftBrake.ToString("F1"));
+                    this.rearRightBrake = Convert.ToDecimal(rightBrake.ToString("F1"));
+                    this.diffRearBrake = Convert.ToDecimal(diffBrake.ToString("F1"));
+                    this.sumRearBrake = Convert.ToDecimal(sumBrake.ToString("F1"));
+                    // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
+                    bool isSumStandard = sqlHelper.CheckValueAgainstStandard("RearBrake", sumRearBrake, this.serialNumber);
+                    bool isDiffStandard = sqlHelper.CheckValueAgainstStandard("DiffRearBrake", diffRearBrake, this.serialNumber);
+
+                    if (isSumStandard && isDiffStandard)
+                    {
+                        lbSum_Brake.BackColor = SystemColors.ControlLight;
+                        lbDiff_Brake.BackColor = SystemColors.ControlLight;
+                        await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
+                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
+                    }
+                    else
+                    {
+                        lbSum_Brake.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbDiff_Brake.BackColor = Color.DarkRed;
+                    }
                     break;
 
                 case 3: // Quá trình đo hoàn tất, lưu vào DB
@@ -79,7 +109,7 @@ namespace SenAIS
                         if (!string.IsNullOrEmpty(nextSerialNumber))
                         {
                             this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                            lbVinNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
+                            lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
                         }
                         else
                         {
@@ -110,7 +140,7 @@ namespace SenAIS
                 {
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
-                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                 }
                 else
@@ -137,8 +167,7 @@ namespace SenAIS
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
-                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    opcCounterPos.Write(4); // Chuyển vị trí OPC về form tiếp theo
+                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                 }
                 else
@@ -153,7 +182,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveFrontWeightData(this.serialNumber, this.frontLeftWeight, this.frontRightWeight);
+            sqlHelper.SaveRearBrakeData(this.serialNumber, this.rearLeftBrake, this.rearRightBrake);
         }
         private void CheckCounterPosition()
         {

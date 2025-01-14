@@ -16,34 +16,15 @@ namespace SenAIS
         }
         private void LoadInspectorData()
         {
-            try
-            {
-                // Tải dữ liệu từ cơ sở dữ liệu
-                inspectorTable = sqlHelper.GetInspectorData();
+            inspectorTable = sqlHelper.GetInspectorData();
+            dgInspector.DataSource = inspectorTable;
 
-                if (inspectorTable == null || inspectorTable.Rows.Count == 0)
-                {
-                    // Nếu không có dữ liệu, tạo bảng trống với header
-                    inspectorTable = new DataTable();
-                    inspectorTable.Columns.Add("InspectorID", typeof(string));
-                    inspectorTable.Columns.Add("InspectorName", typeof(string));
-                }
+            // Đổi tên cột cho thân thiện (nếu cần)
+            dgInspector.Columns["InspectorID"].HeaderText = "Mã Thanh tra";
+            dgInspector.Columns["InspectorName"].HeaderText = "Tên Thanh tra";
 
-                // Gán bảng dữ liệu cho DataGridView
-                dgInspector.DataSource = inspectorTable;
-
-                // Đổi tên các cột thành tiếng Việt
-                dgInspector.Columns["InspectorID"].HeaderText = "Mã Thanh tra";
-                dgInspector.Columns["InspectorName"].HeaderText = "Tên Thanh tra";
-
-                // Đặt trạng thái chỉ đọc cho các cột
-                dgInspector.Columns["InspectorID"].ReadOnly = true;
-                dgInspector.Columns["InspectorName"].ReadOnly = false;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Lỗi khi tải dữ liệu thanh tra.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            dgInspector.Columns["InspectorID"].ReadOnly = true;
+            dgInspector.Columns["InspectorName"].ReadOnly = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

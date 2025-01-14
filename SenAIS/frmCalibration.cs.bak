@@ -1,6 +1,5 @@
 ﻿using OPCAutomation;
 using System;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -34,7 +33,7 @@ namespace SenAIS
             {
                 // Kết nối tới OPC Server
                 opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V6", "");
+                opcServer.Connect("Kepware.KEPServerEX.V4", "");
 
                 // Tạo một nhóm OPC
                 opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
@@ -206,8 +205,7 @@ namespace SenAIS
         }
         private bool ValidatePassword(string enteredPassword)
         {
-            string adminPassword = ConfigurationManager.AppSettings["PasswordAdmin"];
-            return enteredPassword == adminPassword;
+            return enteredPassword == "Sentek.vn";
         }
         private void frmCalibration_Load(object sender, EventArgs e)
         {

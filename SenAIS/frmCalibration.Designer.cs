@@ -105,7 +105,6 @@ namespace SenAIS
             // 
             // CalibrationPanel
             // 
-            this.CalibrationPanel.AutoScroll = true;
             this.CalibrationPanel.AutoSize = true;
             this.CalibrationPanel.Controls.Add(this.RightCalibPanel);
             this.CalibrationPanel.Controls.Add(this.LeftCalibPanel);
@@ -113,7 +112,7 @@ namespace SenAIS
             this.CalibrationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CalibrationPanel.Location = new System.Drawing.Point(0, 0);
             this.CalibrationPanel.Name = "CalibrationPanel";
-            this.CalibrationPanel.Size = new System.Drawing.Size(1443, 857);
+            this.CalibrationPanel.Size = new System.Drawing.Size(1370, 749);
             this.CalibrationPanel.TabIndex = 53;
             // 
             // RightCalibPanel
@@ -123,18 +122,19 @@ namespace SenAIS
             this.RightCalibPanel.Controls.Add(this.panelAfterCalibration);
             this.RightCalibPanel.Location = new System.Drawing.Point(736, 82);
             this.RightCalibPanel.Name = "RightCalibPanel";
-            this.RightCalibPanel.Size = new System.Drawing.Size(709, 746);
+            this.RightCalibPanel.Size = new System.Drawing.Size(632, 655);
             this.RightCalibPanel.TabIndex = 53;
             // 
             // panelAfterCalibration
             // 
-            this.panelAfterCalibration.AutoSize = true;
+            this.panelAfterCalibration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelAfterCalibration.Controls.Add(this.lbAfterCalbTitle);
             this.panelAfterCalibration.Controls.Add(this.lbCalibResult);
             this.panelAfterCalibration.Location = new System.Drawing.Point(15, 5);
             this.panelAfterCalibration.Margin = new System.Windows.Forms.Padding(2);
             this.panelAfterCalibration.Name = "panelAfterCalibration";
-            this.panelAfterCalibration.Size = new System.Drawing.Size(681, 305);
+            this.panelAfterCalibration.Size = new System.Drawing.Size(617, 305);
             this.panelAfterCalibration.TabIndex = 51;
             // 
             // lbAfterCalbTitle
@@ -172,7 +172,7 @@ namespace SenAIS
             this.LeftCalibPanel.Controls.Add(this.tbCalibration);
             this.LeftCalibPanel.Location = new System.Drawing.Point(3, 80);
             this.LeftCalibPanel.Name = "LeftCalibPanel";
-            this.LeftCalibPanel.Size = new System.Drawing.Size(727, 748);
+            this.LeftCalibPanel.Size = new System.Drawing.Size(727, 657);
             this.LeftCalibPanel.TabIndex = 52;
             // 
             // tbCalibration
@@ -205,7 +205,7 @@ namespace SenAIS
             this.tbCalibration.Controls.Add(this.txtCalibrateInput1, 1, 1);
             this.tbCalibration.Controls.Add(this.label4, 0, 2);
             this.tbCalibration.Controls.Add(this.label2, 0, 0);
-            this.tbCalibration.Location = new System.Drawing.Point(228, 20);
+            this.tbCalibration.Location = new System.Drawing.Point(211, 20);
             this.tbCalibration.Margin = new System.Windows.Forms.Padding(2);
             this.tbCalibration.Name = "tbCalibration";
             this.tbCalibration.RowCount = 13;
@@ -537,7 +537,7 @@ namespace SenAIS
             this.lbCalibrateTitle.AutoSize = true;
             this.lbCalibrateTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCalibrateTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbCalibrateTitle.Location = new System.Drawing.Point(200, 0);
+            this.lbCalibrateTitle.Location = new System.Drawing.Point(164, 0);
             this.lbCalibrateTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibrateTitle.Name = "lbCalibrateTitle";
             this.lbCalibrateTitle.Size = new System.Drawing.Size(970, 78);
@@ -549,7 +549,8 @@ namespace SenAIS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 857);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.CalibrationPanel);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -558,13 +559,13 @@ namespace SenAIS
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmCalibration";
+            this.ShowIcon = false;
             this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCalibration_Load);
             this.CalibrationPanel.ResumeLayout(false);
             this.CalibrationPanel.PerformLayout();
             this.RightCalibPanel.ResumeLayout(false);
-            this.RightCalibPanel.PerformLayout();
             this.panelAfterCalibration.ResumeLayout(false);
             this.panelAfterCalibration.PerformLayout();
             this.LeftCalibPanel.ResumeLayout(false);

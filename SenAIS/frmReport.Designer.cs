@@ -32,10 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportPanel = new System.Windows.Forms.Panel();
-            this.btnEditSave = new System.Windows.Forms.Button();
-            this.btnExportReport = new System.Windows.Forms.Button();
             this.StaticTitlePanel = new System.Windows.Forms.Panel();
+            this.btnEditSave = new System.Windows.Forms.Button();
             this.lbReportTitle = new System.Windows.Forms.Label();
+            this.btnExportReport = new System.Windows.Forms.Button();
             this.StaticPanel = new System.Windows.Forms.Panel();
             this.SteerAnglePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -134,25 +134,25 @@
             this.tbEmissionPetrol = new System.Windows.Forms.TableLayoutPanel();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtNO = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.txtOT = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtRPM = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtO2 = new System.Windows.Forms.TextBox();
-            this.txtCO2 = new System.Windows.Forms.TextBox();
             this.txtCO = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtHC = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtOT = new System.Windows.Forms.TextBox();
-            this.txtRPM = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtNO = new System.Windows.Forms.TextBox();
+            this.txtO2 = new System.Windows.Forms.TextBox();
+            this.txtCO2 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lbEmissionPetTitle = new System.Windows.Forms.Label();
             this.SpeedPanel = new System.Windows.Forms.Panel();
             this.tbSpeed = new System.Windows.Forms.TableLayoutPanel();
@@ -171,16 +171,16 @@
             this.lbSpeedPanelTitle = new System.Windows.Forms.Label();
             this.VehiclePanel = new System.Windows.Forms.Panel();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
-            this.txtFrameNum = new System.Windows.Forms.TextBox();
-            this.txtInspector = new System.Windows.Forms.TextBox();
-            this.lbTypeCarTitle = new System.Windows.Forms.Label();
-            this.lbFrameNumTitle = new System.Windows.Forms.Label();
-            this.txtTypeCar = new System.Windows.Forms.TextBox();
-            this.lbInspectorTitle = new System.Windows.Forms.Label();
-            this.lbSerialNumTitle = new System.Windows.Forms.Label();
-            this.txtSerialNum = new System.Windows.Forms.TextBox();
             this.lbDateInspecTitle = new System.Windows.Forms.Label();
+            this.lbSerialNumTitle = new System.Windows.Forms.Label();
+            this.txtTypeCar = new System.Windows.Forms.TextBox();
             this.txtDateInspec = new System.Windows.Forms.TextBox();
+            this.lbInspectorTitle = new System.Windows.Forms.Label();
+            this.lbFrameNumTitle = new System.Windows.Forms.Label();
+            this.lbTypeCarTitle = new System.Windows.Forms.Label();
+            this.txtSerialNum = new System.Windows.Forms.TextBox();
+            this.txtInspector = new System.Windows.Forms.TextBox();
+            this.txtFrameNum = new System.Windows.Forms.TextBox();
             this.lbVehicleTitle = new System.Windows.Forms.Label();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
@@ -216,12 +216,20 @@
             // 
             resources.ApplyResources(this.ReportPanel, "ReportPanel");
             this.ReportPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ReportPanel.Controls.Add(this.btnEditSave);
-            this.ReportPanel.Controls.Add(this.btnExportReport);
             this.ReportPanel.Controls.Add(this.StaticTitlePanel);
             this.ReportPanel.Controls.Add(this.StaticPanel);
             this.ReportPanel.Controls.Add(this.SearchPanel);
             this.ReportPanel.Name = "ReportPanel";
+            // 
+            // StaticTitlePanel
+            // 
+            this.StaticTitlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.StaticTitlePanel.Controls.Add(this.btnEditSave);
+            this.StaticTitlePanel.Controls.Add(this.lbReportTitle);
+            this.StaticTitlePanel.Controls.Add(this.btnExportReport);
+            this.StaticTitlePanel.ForeColor = System.Drawing.SystemColors.HotTrack;
+            resources.ApplyResources(this.StaticTitlePanel, "StaticTitlePanel");
+            this.StaticTitlePanel.Name = "StaticTitlePanel";
             // 
             // btnEditSave
             // 
@@ -232,6 +240,11 @@
             this.btnEditSave.UseVisualStyleBackColor = false;
             this.btnEditSave.Click += new System.EventHandler(this.btnEditSave_Click);
             // 
+            // lbReportTitle
+            // 
+            resources.ApplyResources(this.lbReportTitle, "lbReportTitle");
+            this.lbReportTitle.Name = "lbReportTitle";
+            // 
             // btnExportReport
             // 
             resources.ApplyResources(this.btnExportReport, "btnExportReport");
@@ -240,19 +253,6 @@
             this.btnExportReport.Name = "btnExportReport";
             this.btnExportReport.UseVisualStyleBackColor = false;
             this.btnExportReport.Click += new System.EventHandler(this.btnExportReport_Click);
-            // 
-            // StaticTitlePanel
-            // 
-            resources.ApplyResources(this.StaticTitlePanel, "StaticTitlePanel");
-            this.StaticTitlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.StaticTitlePanel.Controls.Add(this.lbReportTitle);
-            this.StaticTitlePanel.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.StaticTitlePanel.Name = "StaticTitlePanel";
-            // 
-            // lbReportTitle
-            // 
-            resources.ApplyResources(this.lbReportTitle, "lbReportTitle");
-            this.lbReportTitle.Name = "lbReportTitle";
             // 
             // StaticPanel
             // 
@@ -1024,27 +1024,27 @@
             // tbEmissionPetrol
             // 
             resources.ApplyResources(this.tbEmissionPetrol, "tbEmissionPetrol");
-            this.tbEmissionPetrol.Controls.Add(this.label18, 2, 6);
-            this.tbEmissionPetrol.Controls.Add(this.label17, 2, 5);
-            this.tbEmissionPetrol.Controls.Add(this.label16, 2, 4);
-            this.tbEmissionPetrol.Controls.Add(this.txtNO, 1, 4);
-            this.tbEmissionPetrol.Controls.Add(this.label15, 0, 5);
-            this.tbEmissionPetrol.Controls.Add(this.label14, 0, 4);
-            this.tbEmissionPetrol.Controls.Add(this.label13, 0, 6);
-            this.tbEmissionPetrol.Controls.Add(this.label1, 2, 3);
-            this.tbEmissionPetrol.Controls.Add(this.label2, 2, 2);
+            this.tbEmissionPetrol.Controls.Add(this.label18, 2, 3);
+            this.tbEmissionPetrol.Controls.Add(this.label17, 2, 2);
+            this.tbEmissionPetrol.Controls.Add(this.txtOT, 1, 2);
+            this.tbEmissionPetrol.Controls.Add(this.label13, 0, 3);
+            this.tbEmissionPetrol.Controls.Add(this.txtRPM, 1, 3);
+            this.tbEmissionPetrol.Controls.Add(this.label15, 0, 2);
             this.tbEmissionPetrol.Controls.Add(this.label3, 2, 1);
             this.tbEmissionPetrol.Controls.Add(this.label6, 2, 0);
-            this.tbEmissionPetrol.Controls.Add(this.txtO2, 1, 3);
-            this.tbEmissionPetrol.Controls.Add(this.txtCO2, 1, 2);
             this.tbEmissionPetrol.Controls.Add(this.txtCO, 1, 1);
             this.tbEmissionPetrol.Controls.Add(this.label9, 0, 0);
-            this.tbEmissionPetrol.Controls.Add(this.label10, 0, 2);
-            this.tbEmissionPetrol.Controls.Add(this.label11, 0, 3);
             this.tbEmissionPetrol.Controls.Add(this.txtHC, 1, 0);
             this.tbEmissionPetrol.Controls.Add(this.label12, 0, 1);
-            this.tbEmissionPetrol.Controls.Add(this.txtOT, 1, 5);
-            this.tbEmissionPetrol.Controls.Add(this.txtRPM, 1, 6);
+            this.tbEmissionPetrol.Controls.Add(this.label14, 0, 6);
+            this.tbEmissionPetrol.Controls.Add(this.label11, 0, 5);
+            this.tbEmissionPetrol.Controls.Add(this.label10, 0, 4);
+            this.tbEmissionPetrol.Controls.Add(this.txtNO, 1, 6);
+            this.tbEmissionPetrol.Controls.Add(this.txtO2, 1, 5);
+            this.tbEmissionPetrol.Controls.Add(this.txtCO2, 1, 4);
+            this.tbEmissionPetrol.Controls.Add(this.label16, 2, 6);
+            this.tbEmissionPetrol.Controls.Add(this.label1, 2, 5);
+            this.tbEmissionPetrol.Controls.Add(this.label2, 2, 4);
             this.tbEmissionPetrol.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tbEmissionPetrol.Name = "tbEmissionPetrol";
             // 
@@ -1060,31 +1060,13 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label17.Name = "label17";
             // 
-            // label16
+            // txtOT
             // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label16.Name = "label16";
-            // 
-            // txtNO
-            // 
-            this.txtNO.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtNO, "txtNO");
-            this.txtNO.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtNO.Name = "txtNO";
-            this.txtNO.ReadOnly = true;
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label15.Name = "label15";
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label14.Name = "label14";
+            this.txtOT.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtOT, "txtOT");
+            this.txtOT.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtOT.Name = "txtOT";
+            this.txtOT.ReadOnly = true;
             // 
             // label13
             // 
@@ -1092,17 +1074,19 @@
             this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label13.Name = "label13";
             // 
-            // label1
+            // txtRPM
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Name = "label1";
+            this.txtRPM.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRPM, "txtRPM");
+            this.txtRPM.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRPM.Name = "txtRPM";
+            this.txtRPM.ReadOnly = true;
             // 
-            // label2
+            // label15
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label15.Name = "label15";
             // 
             // label3
             // 
@@ -1115,6 +1099,60 @@
             resources.ApplyResources(this.label6, "label6");
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label6.Name = "label6";
+            // 
+            // txtCO
+            // 
+            this.txtCO.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtCO, "txtCO");
+            this.txtCO.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtCO.Name = "txtCO";
+            this.txtCO.ReadOnly = true;
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label9.Name = "label9";
+            // 
+            // txtHC
+            // 
+            this.txtHC.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtHC, "txtHC");
+            this.txtHC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtHC.Name = "txtHC";
+            this.txtHC.ReadOnly = true;
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label12.Name = "label12";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label14.Name = "label14";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label11.Name = "label11";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Name = "label10";
+            // 
+            // txtNO
+            // 
+            this.txtNO.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtNO, "txtNO");
+            this.txtNO.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtNO.Name = "txtNO";
+            this.txtNO.ReadOnly = true;
             // 
             // txtO2
             // 
@@ -1132,61 +1170,23 @@
             this.txtCO2.Name = "txtCO2";
             this.txtCO2.ReadOnly = true;
             // 
-            // txtCO
+            // label16
             // 
-            this.txtCO.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtCO, "txtCO");
-            this.txtCO.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtCO.Name = "txtCO";
-            this.txtCO.ReadOnly = true;
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label16.Name = "label16";
             // 
-            // label9
+            // label1
             // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.Name = "label9";
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Name = "label1";
             // 
-            // label10
+            // label2
             // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Name = "label10";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Name = "label11";
-            // 
-            // txtHC
-            // 
-            this.txtHC.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtHC, "txtHC");
-            this.txtHC.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtHC.Name = "txtHC";
-            this.txtHC.ReadOnly = true;
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.Name = "label12";
-            // 
-            // txtOT
-            // 
-            this.txtOT.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtOT, "txtOT");
-            this.txtOT.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtOT.Name = "txtOT";
-            this.txtOT.ReadOnly = true;
-            // 
-            // txtRPM
-            // 
-            this.txtRPM.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRPM, "txtRPM");
-            this.txtRPM.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRPM.Name = "txtRPM";
-            this.txtRPM.ReadOnly = true;
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Name = "label2";
             // 
             // lbEmissionPetTitle
             // 
@@ -1321,46 +1321,30 @@
             // tbVehicleInfo
             // 
             resources.ApplyResources(this.tbVehicleInfo, "tbVehicleInfo");
-            this.tbVehicleInfo.Controls.Add(this.txtFrameNum, 1, 2);
-            this.tbVehicleInfo.Controls.Add(this.txtInspector, 1, 1);
-            this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 0);
-            this.tbVehicleInfo.Controls.Add(this.lbFrameNumTitle, 0, 2);
-            this.tbVehicleInfo.Controls.Add(this.txtTypeCar, 1, 0);
-            this.tbVehicleInfo.Controls.Add(this.lbInspectorTitle, 0, 1);
-            this.tbVehicleInfo.Controls.Add(this.lbSerialNumTitle, 0, 3);
-            this.tbVehicleInfo.Controls.Add(this.txtSerialNum, 1, 3);
             this.tbVehicleInfo.Controls.Add(this.lbDateInspecTitle, 0, 4);
+            this.tbVehicleInfo.Controls.Add(this.lbSerialNumTitle, 0, 0);
+            this.tbVehicleInfo.Controls.Add(this.txtTypeCar, 1, 2);
             this.tbVehicleInfo.Controls.Add(this.txtDateInspec, 1, 4);
+            this.tbVehicleInfo.Controls.Add(this.lbInspectorTitle, 0, 3);
+            this.tbVehicleInfo.Controls.Add(this.lbFrameNumTitle, 0, 1);
+            this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 2);
+            this.tbVehicleInfo.Controls.Add(this.txtSerialNum, 1, 0);
+            this.tbVehicleInfo.Controls.Add(this.txtInspector, 1, 3);
+            this.tbVehicleInfo.Controls.Add(this.txtFrameNum, 1, 1);
             this.tbVehicleInfo.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tbVehicleInfo.Name = "tbVehicleInfo";
             // 
-            // txtFrameNum
+            // lbDateInspecTitle
             // 
-            this.txtFrameNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtFrameNum, "txtFrameNum");
-            this.txtFrameNum.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtFrameNum.Name = "txtFrameNum";
-            this.txtFrameNum.ReadOnly = true;
+            resources.ApplyResources(this.lbDateInspecTitle, "lbDateInspecTitle");
+            this.lbDateInspecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbDateInspecTitle.Name = "lbDateInspecTitle";
             // 
-            // txtInspector
+            // lbSerialNumTitle
             // 
-            this.txtInspector.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtInspector, "txtInspector");
-            this.txtInspector.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtInspector.Name = "txtInspector";
-            this.txtInspector.ReadOnly = true;
-            // 
-            // lbTypeCarTitle
-            // 
-            resources.ApplyResources(this.lbTypeCarTitle, "lbTypeCarTitle");
-            this.lbTypeCarTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTypeCarTitle.Name = "lbTypeCarTitle";
-            // 
-            // lbFrameNumTitle
-            // 
-            resources.ApplyResources(this.lbFrameNumTitle, "lbFrameNumTitle");
-            this.lbFrameNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbFrameNumTitle.Name = "lbFrameNumTitle";
+            resources.ApplyResources(this.lbSerialNumTitle, "lbSerialNumTitle");
+            this.lbSerialNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbSerialNumTitle.Name = "lbSerialNumTitle";
             // 
             // txtTypeCar
             // 
@@ -1370,17 +1354,31 @@
             this.txtTypeCar.Name = "txtTypeCar";
             this.txtTypeCar.ReadOnly = true;
             // 
+            // txtDateInspec
+            // 
+            this.txtDateInspec.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtDateInspec, "txtDateInspec");
+            this.txtDateInspec.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtDateInspec.Name = "txtDateInspec";
+            this.txtDateInspec.ReadOnly = true;
+            // 
             // lbInspectorTitle
             // 
             resources.ApplyResources(this.lbInspectorTitle, "lbInspectorTitle");
             this.lbInspectorTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbInspectorTitle.Name = "lbInspectorTitle";
             // 
-            // lbSerialNumTitle
+            // lbFrameNumTitle
             // 
-            resources.ApplyResources(this.lbSerialNumTitle, "lbSerialNumTitle");
-            this.lbSerialNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbSerialNumTitle.Name = "lbSerialNumTitle";
+            resources.ApplyResources(this.lbFrameNumTitle, "lbFrameNumTitle");
+            this.lbFrameNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbFrameNumTitle.Name = "lbFrameNumTitle";
+            // 
+            // lbTypeCarTitle
+            // 
+            resources.ApplyResources(this.lbTypeCarTitle, "lbTypeCarTitle");
+            this.lbTypeCarTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbTypeCarTitle.Name = "lbTypeCarTitle";
             // 
             // txtSerialNum
             // 
@@ -1390,19 +1388,21 @@
             this.txtSerialNum.Name = "txtSerialNum";
             this.txtSerialNum.ReadOnly = true;
             // 
-            // lbDateInspecTitle
+            // txtInspector
             // 
-            resources.ApplyResources(this.lbDateInspecTitle, "lbDateInspecTitle");
-            this.lbDateInspecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbDateInspecTitle.Name = "lbDateInspecTitle";
+            this.txtInspector.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtInspector, "txtInspector");
+            this.txtInspector.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtInspector.Name = "txtInspector";
+            this.txtInspector.ReadOnly = true;
             // 
-            // txtDateInspec
+            // txtFrameNum
             // 
-            this.txtDateInspec.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtDateInspec, "txtDateInspec");
-            this.txtDateInspec.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtDateInspec.Name = "txtDateInspec";
-            this.txtDateInspec.ReadOnly = true;
+            this.txtFrameNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtFrameNum, "txtFrameNum");
+            this.txtFrameNum.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFrameNum.Name = "txtFrameNum";
+            this.txtFrameNum.ReadOnly = true;
             // 
             // lbVehicleTitle
             // 
@@ -1415,7 +1415,6 @@
             // 
             resources.ApplyResources(this.SearchPanel, "SearchPanel");
             this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.SearchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SearchPanel.Controls.Add(this.dgVehicleInfo);
             this.SearchPanel.Controls.Add(this.btnSearch);
             this.SearchPanel.Controls.Add(this.txtSearch);
@@ -1424,7 +1423,7 @@
             // 
             // dgVehicleInfo
             // 
-            resources.ApplyResources(this.dgVehicleInfo, "dgVehicleInfo");
+            this.dgVehicleInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgVehicleInfo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgVehicleInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -1445,6 +1444,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgVehicleInfo.DefaultCellStyle = dataGridViewCellStyle2;
+            resources.ApplyResources(this.dgVehicleInfo, "dgVehicleInfo");
             this.dgVehicleInfo.Name = "dgVehicleInfo";
             this.dgVehicleInfo.ReadOnly = true;
             this.dgVehicleInfo.RowHeadersVisible = false;
@@ -1479,6 +1479,7 @@
             this.Controls.Add(this.ReportPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmReport";
+            this.ShowIcon = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmReport_Load);
             this.ReportPanel.ResumeLayout(false);
@@ -1532,9 +1533,22 @@
         #endregion
 
         private System.Windows.Forms.Panel ReportPanel;
-        private System.Windows.Forms.Panel SearchPanel;
-        private System.Windows.Forms.Label lbSearchTitle;
+        private System.Windows.Forms.Panel StaticTitlePanel;
+        private System.Windows.Forms.Button btnEditSave;
+        private System.Windows.Forms.Label lbReportTitle;
+        private System.Windows.Forms.Button btnExportReport;
         private System.Windows.Forms.Panel StaticPanel;
+        private System.Windows.Forms.Panel SteerAnglePanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtLeftSteerRW;
+        private System.Windows.Forms.TextBox txtLeftSteerLW;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox txtRightSteerLW;
+        private System.Windows.Forms.TextBox txtRightSteerRW;
+        private System.Windows.Forms.Label lbSteerAngleTitle;
         private System.Windows.Forms.Panel DieselPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label51;
@@ -1621,25 +1635,25 @@
         private System.Windows.Forms.TableLayoutPanel tbEmissionPetrol;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtNO;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtOT;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtRPM;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtO2;
-        private System.Windows.Forms.TextBox txtCO2;
         private System.Windows.Forms.TextBox txtCO;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtHC;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtOT;
-        private System.Windows.Forms.TextBox txtRPM;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtNO;
+        private System.Windows.Forms.TextBox txtO2;
+        private System.Windows.Forms.TextBox txtCO2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbEmissionPetTitle;
         private System.Windows.Forms.Panel SpeedPanel;
         private System.Windows.Forms.TableLayoutPanel tbSpeed;
@@ -1658,34 +1672,21 @@
         private System.Windows.Forms.Label lbSpeedPanelTitle;
         private System.Windows.Forms.Panel VehiclePanel;
         private System.Windows.Forms.TableLayoutPanel tbVehicleInfo;
-        private System.Windows.Forms.TextBox txtDateInspec;
-        private System.Windows.Forms.TextBox txtSerialNum;
-        private System.Windows.Forms.TextBox txtFrameNum;
-        private System.Windows.Forms.TextBox txtInspector;
-        private System.Windows.Forms.Label lbTypeCarTitle;
-        private System.Windows.Forms.Label lbFrameNumTitle;
-        private System.Windows.Forms.Label lbSerialNumTitle;
         private System.Windows.Forms.Label lbDateInspecTitle;
+        private System.Windows.Forms.Label lbSerialNumTitle;
         private System.Windows.Forms.TextBox txtTypeCar;
+        private System.Windows.Forms.TextBox txtDateInspec;
         private System.Windows.Forms.Label lbInspectorTitle;
-        private System.Windows.Forms.Panel StaticTitlePanel;
-        private System.Windows.Forms.Label lbReportTitle;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView dgVehicleInfo;
+        private System.Windows.Forms.Label lbFrameNumTitle;
+        private System.Windows.Forms.Label lbTypeCarTitle;
+        private System.Windows.Forms.TextBox txtSerialNum;
+        private System.Windows.Forms.TextBox txtInspector;
+        private System.Windows.Forms.TextBox txtFrameNum;
         private System.Windows.Forms.Label lbVehicleTitle;
-        private System.Windows.Forms.Button btnExportReport;
-        private System.Windows.Forms.Button btnEditSave;
-        private System.Windows.Forms.Panel SteerAnglePanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtLeftSteerRW;
-        private System.Windows.Forms.TextBox txtLeftSteerLW;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.TextBox txtRightSteerLW;
-        private System.Windows.Forms.TextBox txtRightSteerRW;
-        private System.Windows.Forms.Label lbSteerAngleTitle;
+        private System.Windows.Forms.Panel SearchPanel;
+        private System.Windows.Forms.DataGridView dgVehicleInfo;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label lbSearchTitle;
     }
 }

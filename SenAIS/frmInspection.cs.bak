@@ -1,7 +1,6 @@
 ﻿using OPCAutomation;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,19 +12,14 @@ namespace SenAIS
         private OPCServer opcServer;
         private OPCGroup opcGroup;
         private OPCItem opcCounterPos;
-        private OPCItem opcCounterSpeed;
-        private OPCItem opcCounterSideSlip;
-        private OPCItem opcCounterBrake;
         private SQLHelper sqlHelper;
+        private bool isMeasuring = false; // Cờ để xác định khi nào bắt đầu theo dõi
         private string vehicleType;
         private string inspector;
         private string frameNumber;
         public string serialNumber { get; set; }
         private DateTime inspectionDate;
         private string fuelType;
-        private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
-        private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
-        private static readonly string opcBrakeCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
         public frmInspection()
         {
             InitializeComponent();
@@ -33,6 +27,11 @@ namespace SenAIS
             LoadVehicleInfo();
             InitializeOPC();
         }
+
+        //public frmInspection(SenAIS senAIS)
+        //{
+        //    this.senAIS = senAIS;
+        //}
 
         private void InitializeOPC()
         {
@@ -44,12 +43,9 @@ namespace SenAIS
                 opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
                 opcGroup.IsActive = true;
                 opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 500;
+                opcGroup.UpdateRate = 1000;
 
-                // Thêm các OPCItems tương ứng với các Counter
-                opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeCounter, 3);
+                opcCounterPos = opcGroup.OPCItems.AddItem("Hyundai.OCS10.T99", 1);
                 opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
             catch (Exception ex)
@@ -59,26 +55,68 @@ namespace SenAIS
         }
         private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
         {
+            if (!isMeasuring) return; // Nếu chưa bắt đầu đo, bỏ qua
+
             for (int i = 1; i <= NumItems; i++)
             {
-                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                if (ClientHandles.GetValue(i).Equals(opcCounterSpeed.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
+                if (ClientHandles.GetValue(i).Equals(opcCounterPos.ClientHandle))
                 {
-                    OpenNewForm(new frmSpeed(this.serialNumber));
-                }
-                else if (ClientHandles.GetValue(i).Equals(opcCounterSideSlip.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
-                {
-                    OpenNewForm(new frmSideSlip(this.serialNumber));
-                }
-                else if (ClientHandles.GetValue(i).Equals(opcCounterBrake.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
-                {
-                    OpenNewForm(new frmFrontBrake(this.serialNumber));
+                    int counterPos = Convert.ToInt32(ItemValues.GetValue(i));
+                    ProcessMeasurement(counterPos);
                 }
             }
         }
-        // Hàm mở form và đưa lên đầu
-        private void OpenForm(Form formToOpen)
+        public void ProcessMeasurement(int counterPos)
         {
+            // Select the form to open based on the counter position
+            Form formToOpen = null;
+            switch (counterPos)
+            {
+                case 0:
+                    formToOpen = new frmWaiting();
+                    break;
+                case 1:
+                    formToOpen = new frmSpeed(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 2:
+                    formToOpen = new frmSideSlip(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 3:
+                    formToOpen = new frmNoise(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 4:
+                    formToOpen = new frmFrontWeight(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 5:
+                    formToOpen = new frmRearWeight(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 6:
+                    formToOpen = new frmWhistle(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 7:
+                    formToOpen = new frmFrontBrake(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 8:
+                    formToOpen = new frmRearBrake(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 9:
+                    formToOpen = new frmHandBrake(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 10:
+                    formToOpen = new frmHeadlights(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 14:
+                    formToOpen = new frmGasEmission(this, opcCounterPos, this.serialNumber);
+                    break;
+                case 15:
+                    formToOpen = new frmDieselEmission(this, opcCounterPos, this.serialNumber);
+                    break;
+                default:
+                    MessageBox.Show("Invalid counter position.");
+                    break;
+            }
+
+            // If a form was determined to open, show it
             if (formToOpen != null)
             {
                 formToOpen.Show();
@@ -103,24 +141,19 @@ namespace SenAIS
                 newForm.FormClosed += (s, e) => openForms.Remove(newForm);  // Gỡ form khỏi danh sách khi đóng
                 newForm.Show();  // Hiển thị form mới
             }
-
         }
         private void btnSpeed_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
             {
-                var frmSpeed = new frmSpeed(serialNumber);
-                OpenNewForm(frmSpeed);
+                OpenNewForm(new frmSpeed(this, opcCounterPos, this.serialNumber));
             }
         }
 
         private void btnSideSlip_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-            {
-                OpenNewForm(new frmSideSlip(this.serialNumber));
-                OPCUtility.SetOPCValue("Hyundai.OCS10.Counter_SS", 1);
-            }
+                OpenNewForm(new frmSideSlip(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnNoise_Click(object sender, EventArgs e)
@@ -146,13 +179,13 @@ namespace SenAIS
         private void btnFrontBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmFrontBrake(this.serialNumber));
+                OpenNewForm(new frmFrontBrake(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnHeadlights_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmHeadlights(this.serialNumber));
+                OpenNewForm(new frmHeadlights(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnEmission_Click(object sender, EventArgs e)
@@ -162,13 +195,13 @@ namespace SenAIS
             {
                 if (CheckSerialNumber())
                     // Open the Gas Emission form
-                    OpenNewForm(new frmGasEmission(this.serialNumber));
+                    OpenNewForm(new frmGasEmission(this, opcCounterPos, this.serialNumber));
             }
             else
             {
                 if (CheckSerialNumber())
                     // Open the Diesel Emission form
-                    OpenNewForm(new frmDieselEmission(this.serialNumber));
+                    OpenNewForm(new frmDieselEmission(this, opcCounterPos, this.serialNumber));
             }
         }
         private void btnReport_Click(object sender, EventArgs e)
@@ -179,11 +212,11 @@ namespace SenAIS
 
         private void btnInspecProgress_Click(object sender, EventArgs e)
         {
+            isMeasuring = true; // Bắt đầu theo dõi sự thay đổi
             if (!SaveDataToDB())
             {
-                tbVehicleInfo.Focus();
+                return; // Dừng lại nếu dữ liệu không đủ và không lưu được
             }
-            MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //try
             //{
             //    if (opcCounterPos != null)
@@ -205,88 +238,26 @@ namespace SenAIS
         }
         private void LoadVehicleInfo()
         {
-            try
-            {
-                // Tải dữ liệu cho cbTypeCar
-                DataTable typeCarTable = sqlHelper.GetTypeCarList();
-                if (typeCarTable != null && typeCarTable.Rows.Count > 0)
-                {
-                    cbTypeCar.DataSource = typeCarTable;
-                    cbTypeCar.DisplayMember = "VehicleType"; // Hiển thị TypeCar trong ComboBox
-                    cbTypeCar.ValueMember = "VehicleType";   // Sử dụng TypeCar làm giá trị
-                }
-                else
-                {
-                    // Thêm giá trị mặc định nếu không có dữ liệu
-                    cbTypeCar.DataSource = null;
-                    cbTypeCar.Items.Clear();
-                    cbTypeCar.Items.Add(" ");
-                    cbTypeCar.SelectedIndex = 0;
-                }
+            // Tải dữ liệu cho cbTypeCar
+            DataTable typeCarTable = sqlHelper.GetTypeCarList();
+            cbTypeCar.DataSource = typeCarTable;
+            cbTypeCar.DisplayMember = "VehicleType"; // Hiển thị TypeCar trong ComboBox
+            cbTypeCar.ValueMember = "VehicleType";   // Sử dụng TypeCar làm giá trị
 
-                // Tải dữ liệu cho cbInspector
-                DataTable inspectorTable = sqlHelper.GetInspectorList();
-                if (inspectorTable != null && inspectorTable.Rows.Count > 0)
-                {
-                    cbInspector.DataSource = inspectorTable;
-                    cbInspector.DisplayMember = "InspectorName"; // Hiển thị InspectorName trong ComboBox
-                    cbInspector.ValueMember = "InspectorName";   // Sử dụng InspectorName làm giá trị
-                }
-                else
-                {
-                    // Thêm giá trị mặc định nếu không có dữ liệu
-                    cbInspector.DataSource = null;
-                    cbInspector.Items.Clear();
-                    cbInspector.Items.Add(" ");
-                    cbInspector.SelectedIndex = 0;
-                }
-
-                // Kiểm tra nếu có SerialNumber, tải thông tin về FuelType
-                if (!string.IsNullOrEmpty(txtVinNum.Text))
-                {
-                    DataTable result = sqlHelper.GetFuelTypeBySerialNumber(txtVinNum.Text);
-                    if (result != null && result.Rows.Count > 0)
-                    {
-                        cbFuel.SelectedItem = result.Rows[0]["Fuel"].ToString();
-                    }
-                    else
-                    {
-                        cbFuel.SelectedIndex = -1; // Không chọn gì nếu không tìm thấy SerialNumber
-                    }
-                }
-                else
-                {
-                    cbFuel.SelectedIndex = -1; // Reset nếu SerialNumber bị xóa
-                }
-                dateInSpec.Value = DateTime.Now;
-            }
-            catch (Exception)
-            {
-                // Xử lý lỗi DB và đặt giá trị mặc định
-                MessageBox.Show("Lỗi khi tải dữ liệu: Vui lòng kiểm tra lại cơ sở dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                cbTypeCar.DataSource = null;
-                cbTypeCar.Items.Clear();
-                cbTypeCar.Items.Add(" ");
-                cbTypeCar.SelectedIndex = 0;
-
-                cbInspector.DataSource = null;
-                cbInspector.Items.Clear();
-                cbInspector.Items.Add(" ");
-                cbInspector.SelectedIndex = 0;
-
-                cbFuel.SelectedIndex = -1;
-                dateInSpec.Value = DateTime.Now;
-            }
+            // Tải dữ liệu cho cbInspector
+            DataTable inspectorTable = sqlHelper.GetInspectorList();
+            cbInspector.DataSource = inspectorTable;
+            cbInspector.DisplayMember = "InspectorName"; // Hiển thị InspectorName trong ComboBox
+            cbInspector.ValueMember = "InspectorName";   // Sử dụng InspectorName làm giá trị
         }
         private bool SaveDataToDB()
         {
-            vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
-            inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty;
-            frameNumber = txtEngineNum.Text;
-            serialNumber = txtVinNum.Text;
+            vehicleType = cbTypeCar.SelectedValue.ToString();
+            inspector = cbInspector.SelectedValue.ToString();
+            frameNumber = txtFrameNum.Text;
+            serialNumber = txtSerialNum.Text;
             inspectionDate = dateInSpec.Value;
-            fuelType = cbFuel.SelectedItem?.ToString() ?? string.Empty;
+            fuelType = cbFuel.SelectedItem.ToString();
 
             if (string.IsNullOrEmpty(vehicleType) || string.IsNullOrEmpty(inspector) ||
                    string.IsNullOrEmpty(frameNumber) || string.IsNullOrEmpty(fuelType) ||
@@ -295,18 +266,19 @@ namespace SenAIS
                 MessageBox.Show("Vui lòng điền đầy đủ tất cả các trường thông tin của phương tiện", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            SQLHelper sqlHelper = new SQLHelper();
             sqlHelper.SaveVehicleInfo(vehicleType, inspector, frameNumber, serialNumber, inspectionDate, fuelType);
             return true;
         }
         private bool CheckSerialNumber()
         {
-            if (string.IsNullOrWhiteSpace(txtVinNum.Text))
+            if (string.IsNullOrWhiteSpace(txtSerialNum.Text))
             {
-                MessageBox.Show("Vui lòng nhập Vin Number trước khi tiếp tục.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtVinNum.Focus();
+                MessageBox.Show("Vui lòng nhập Serial Number trước khi tiếp tục.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSerialNum.Focus();
                 return false;
             }
-            this.serialNumber = txtVinNum.Text;
+            this.serialNumber = txtSerialNum.Text;
             return true;
         }
 
@@ -319,13 +291,13 @@ namespace SenAIS
         private void btnRearBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmRearBrake(this.serialNumber));
+                OpenNewForm(new frmRearBrake(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnHandBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
-                OpenNewForm(new frmHandBrake(this.serialNumber));
+                OpenNewForm(new frmHandBrake(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnSteerAngle_Click(object sender, EventArgs e)
@@ -345,7 +317,5 @@ namespace SenAIS
                 btnEmission.Text = "Khí Xả Diesel";
             }
         }
-
-
     }
 }

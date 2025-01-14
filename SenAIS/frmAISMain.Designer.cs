@@ -46,14 +46,14 @@
             this.tsBrakeCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.tsLBrakeCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.tsRBrakeCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsSteerAngleCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsLeftSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsRightSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.TSHoTro = new System.Windows.Forms.ToolStripMenuItem();
             this.TSAuboutMe = new System.Windows.Forms.ToolStripMenuItem();
             this.TSReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.tsSteerAngleCalib = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsLeftSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsRightSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,16 +190,39 @@
             // tsLBrakeCalib
             // 
             this.tsLBrakeCalib.Name = "tsLBrakeCalib";
-            this.tsLBrakeCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsLBrakeCalib.Size = new System.Drawing.Size(172, 24);
             this.tsLBrakeCalib.Text = "Lực Phanh Trái";
             this.tsLBrakeCalib.Click += new System.EventHandler(this.tsLBrakeCalib_Click);
             // 
             // tsRBrakeCalib
             // 
             this.tsRBrakeCalib.Name = "tsRBrakeCalib";
-            this.tsRBrakeCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsRBrakeCalib.Size = new System.Drawing.Size(172, 24);
             this.tsRBrakeCalib.Text = "Lực Phanh Phải";
             this.tsRBrakeCalib.Click += new System.EventHandler(this.tsRBrakeCalib_Click);
+            // 
+            // tsSteerAngleCalib
+            // 
+            this.tsSteerAngleCalib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLeftSteerCalib,
+            this.tsRightSteerCalib});
+            this.tsSteerAngleCalib.Name = "tsSteerAngleCalib";
+            this.tsSteerAngleCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsSteerAngleCalib.Text = "Hiệu Chỉnh Góc Lái";
+            // 
+            // tsLeftSteerCalib
+            // 
+            this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
+            this.tsLeftSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsLeftSteerCalib.Text = "Góc Lái Trái";
+            this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
+            // 
+            // tsRightSteerCalib
+            // 
+            this.tsRightSteerCalib.Name = "tsRightSteerCalib";
+            this.tsRightSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsRightSteerCalib.Text = "Góc Lái Phải";
+            this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
             // 
             // TSHoTro
             // 
@@ -244,29 +267,6 @@
             this.panelBody.Size = new System.Drawing.Size(886, 487);
             this.panelBody.TabIndex = 7;
             // 
-            // tsSteerAngleCalib
-            // 
-            this.tsSteerAngleCalib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsLeftSteerCalib,
-            this.tsRightSteerCalib});
-            this.tsSteerAngleCalib.Name = "tsSteerAngleCalib";
-            this.tsSteerAngleCalib.Size = new System.Drawing.Size(228, 24);
-            this.tsSteerAngleCalib.Text = "Hiệu Chỉnh Góc Lái";
-            // 
-            // tsLeftSteerCalib
-            // 
-            this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
-            this.tsLeftSteerCalib.Size = new System.Drawing.Size(180, 24);
-            this.tsLeftSteerCalib.Text = "Góc Lái Trái";
-            this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
-            // 
-            // tsRightSteerCalib
-            // 
-            this.tsRightSteerCalib.Name = "tsRightSteerCalib";
-            this.tsRightSteerCalib.Size = new System.Drawing.Size(180, 24);
-            this.tsRightSteerCalib.Text = "Góc Lái Phải";
-            this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
-            // 
             // SenAIS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,7 +276,6 @@
             this.ClientSize = new System.Drawing.Size(886, 514);
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.msMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
             this.Margin = new System.Windows.Forms.Padding(2);

@@ -26,26 +26,18 @@ namespace SenAIS
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string searchTerm = txtSearch.Text.Trim();
-                DataTable results = sqlHelper.SearchVehicleInfo(searchTerm);
-                if (results != null && results.Rows.Count != 0)
-                {
-                    // Hiển thị kết quả tìm kiếm trong DataGridView
-                    dgVehicleInfo.DataSource = results;
-                    dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số vin";
-                    dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
-                    dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
-                    dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
-                    dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
-                    dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Không tìm thấy dữ liệu danh sách xe.", "Thông báo");
-            }
+            string searchTerm = txtSearch.Text.Trim();
+            DataTable results = sqlHelper.SearchVehicleInfo(searchTerm);
+
+            // Hiển thị kết quả tìm kiếm trong DataGridView
+            dgVehicleInfo.DataSource = results;
+            dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số máy";
+            dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số khung";
+            dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
+            dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
+            dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
+            dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
+
         }
         // Hiển thị chi tiết của phương tiện trong các TextBox
         private void DisplayVehicleDetails(string serialNumber)
@@ -62,7 +54,7 @@ namespace SenAIS
                 DateTime inspectionDate;
                 if (DateTime.TryParse(vehicleDetails["InspectionDate"].ToString(), out inspectionDate))
                 {
-                    txtDateInspec.Text = inspectionDate.ToString();
+                    txtDateInspec.Text = inspectionDate.ToShortDateString();
                 }
 
                 txtSpeed.Text = vehicleDetails["Speed"]?.ToString();
@@ -333,7 +325,7 @@ namespace SenAIS
                 {
                     if (value < minValue.Value)
                     {
-                        txtBox.BackColor = Color.Gold; // Dưới mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Dưới mức chuẩn
                     }
                     else
                     {
@@ -345,7 +337,7 @@ namespace SenAIS
                 {
                     if (value > maxValue.Value)
                     {
-                        txtBox.BackColor = Color.Gold; // Vượt quá mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Vượt quá mức chuẩn
                     }
                     else
                     {
@@ -357,11 +349,11 @@ namespace SenAIS
                 {
                     if (value < minValue.Value)
                     {
-                        txtBox.BackColor = Color.Gold; // Dưới mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Dưới mức chuẩn
                     }
                     else if (value > maxValue.Value)
                     {
-                        txtBox.BackColor = Color.Gold; // Vượt quá mức chuẩn
+                        txtBox.BackColor = Color.LightYellow; // Vượt quá mức chuẩn
                     }
                     else
                     {

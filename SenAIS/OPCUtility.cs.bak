@@ -32,11 +32,11 @@ namespace SenAIS
                     return;
                 }
                 opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V6"); // Kết nối tới OPC server
+                opcServer.Connect("Kepware.KEPServerEX.V4"); // Kết nối tới OPC server
                 opcGroup = opcServer.OPCGroups.Add("Group1");
                 opcGroup.IsActive = true;
                 opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 500;
+                opcGroup.UpdateRate = 1000;
                 isConnected = true; // Đánh dấu kết nối thành công
                 opcErrorShown = false; // Reset cờ lỗi
                 retryCount = 0; // Reset lại số lần thử nếu kết nối thành công
@@ -50,30 +50,6 @@ namespace SenAIS
                     MessageBox.Show($"Kết nối đến OPC server thất bại: {ex.Message}");
                     opcErrorShown = true; // Đánh dấu đã hiển thị lỗi
                 }
-            }
-        }
-        public static void DisconnectOPC()
-        {
-            try
-            {
-                if (opcServer != null && isConnected)
-                {
-                    // Hủy kích hoạt Group nếu cần
-                    if (opcGroup != null)
-                    {
-                        opcGroup.IsActive = false;
-                        opcGroup = null; // Giải phóng Group
-                    }
-
-                    // Ngắt kết nối OPC server
-                    opcServer.Disconnect();
-                    opcServer = null; // Giải phóng server
-                    isConnected = false; // Đánh dấu đã ngắt kết nối
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi ngắt kết nối OPC: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static int GetOPCValue(string opcItem)

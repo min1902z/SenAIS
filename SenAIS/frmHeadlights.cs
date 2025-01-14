@@ -1,5 +1,5 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
+using System.Configuration;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +9,6 @@ namespace SenAIS
 {
     public partial class frmHeadlights : Form
     {
-        private Form parentForm;
-        private OPCItem opcCounterPos;
         private Timer updateTimer;
         private COMConnect comConnect;
         private SQLHelper sqlHelper;
@@ -30,13 +28,12 @@ namespace SenAIS
         private bool isReady = false;
         private bool autoTestCheck = false;
         public bool isDataCollected = false;
-        public frmHeadlights(Form parent, OPCItem opcCounterPos, string serialNumber)
+        private static readonly string opcHLCounter = ConfigurationManager.AppSettings["Headlights_Counter"];
+        public frmHeadlights(string serialNumber)
         {
             InitializeComponent();
-            this.parentForm = parent;
-            this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", 2400, this);
+            comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_PetrolEmission"], 2400, this);
             sqlHelper = new SQLHelper();
             InitializeTimer();
         }
@@ -49,68 +46,103 @@ namespace SenAIS
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            lbEngineNumber.Text = this.serialNumber;
-            // Lấy giá trị OPC
-            //int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
-            int checkStatus = 1;
-            switch (checkStatus)
+            try
             {
-                case 1: // Xe vào vị trí
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = false; // Chưa sẵn sàng lưu
-                    break;
-
-                case 2: // Bắt đầu đo
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = true; // Sẵn sàng lưu sau khi đo
-                    await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    if (!autoTestCheck)
+                lbEngineNumber.Text = this.serialNumber;
+                // Lấy giá trị OPC
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcHLCounter));
+                Invoke((Action)(async () =>
+                {
+                    switch (checkStatus)
                     {
-                        await Task.Delay(1000); // Đợi 10 giây lần đầu
+                        case 0:
+                            cbReady.BackColor = SystemColors.Control;
+                            lbHBRIntensity.Text = "0.0";
+                            lbHBRVerticalDeviation.Text = "0.0";
+                            lbHBRHorizontalDeviation.Text = "0.0";
 
-                        byte[] autoTest = { 0x41 };
-                        comConnect.SendRequest(autoTest);
-                        autoTestCheck = true;
+                            lbLBRIntensity.Text = "0.0";
+                            lbLBRVerticalDeviation.Text = "0.0";
+                            lbLBRHorizontalDeviation.Text = "0.0";
+
+                            lbHBLIntensity.Text = "0.0";
+                            lbHBLVerticalDeviation.Text = "0.0";
+                            lbHBLHorizontalDeviation.Text = "0.0";
+
+                            lbLBLIntensity.Text = "0.0";
+                            lbLBLVerticalDeviation.Text = "0.0";
+                            lbLBLHorizontalDeviation.Text = "0.0";
+                            tbHeadLights.Visible = false;
+                            isReady = false;
+                            break;
+                        case 1: // Xe vào vị trí
+                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                            isReady = false; // Chưa sẵn sàng lưu
+                            tbHeadLights.Visible = false;
+                            break;
+
+                        case 2: // Bắt đầu đo
+                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                            isReady = true; // Sẵn sàng lưu sau khi đo
+                            lbTitle.Visible = false;
+                            tbHeadLights.Visible = true;
+                            if (!autoTestCheck)
+                            {
+                                await Task.Delay(1000); // Đợi 10 giây lần đầu
+
+                                byte[] autoTest = { 0x41 };
+                                comConnect.SendRequest(autoTest);
+                                autoTestCheck = true;
+                            }
+                            // Gửi request đến NHD6109 để lấy dữ liệu
+                            if (comConnect.respone47H == true && !isDataCollected)
+                            {
+                                byte[] request = { 0x4E, 0x4D };
+                                comConnect.SendRequest(request);
+                            }
+
+                            if (isDataCollected)
+                            {
+                                OPCUtility.SetOPCValue(opcHLCounter, 3); // Đặt Test1 thành 3
+                            }
+                            break;
+
+                        case 3: // Quá trình đo hoàn tất, lưu vào DB
+                            cbReady.BackColor = Color.Green; // Đèn xanh
+                            tbHeadLights.Visible = true;
+                            lbTitle.Visible = false;
+                            if (isReady)
+                            {
+                                CheckCounterPosition(); // Ghi dữ liệu vào DB
+                                isReady = false; // Đặt lại trạng thái
+                            }
+                            break;
+                        case 4: // Xe tiếp theo
+                            cbReady.BackColor = SystemColors.Control;
+                            isReady = false; // Đặt lại trạng thái
+                            tbHeadLights.Visible = true;
+                            lbTitle.Visible = false;
+                            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
+                            if (!string.IsNullOrEmpty(nextSerialNumber))
+                            {
+                                this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
+                                lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không có xe tiếp theo để đo.");
+                            }
+                            break;
+
+                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
+                            isReady = false;
+                            break;
                     }
-                    // Gửi request đến NHD6109 để lấy dữ liệu
-                    if (comConnect.respone47H == true && !isDataCollected)
-                    {
-                        byte[] request = { 0x4E, 0x4D };
-                        comConnect.SendRequest(request);
-                    }
-
-                    if (isDataCollected)
-                    {
-                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
-                    }
-                    break;
-
-                case 3: // Quá trình đo hoàn tất, lưu vào DB
-                    cbReady.BackColor = Color.Green; // Đèn xanh
-                    if (isReady)
-                    {
-                        CheckCounterPosition(); // Ghi dữ liệu vào DB
-                        isReady = false; // Đặt lại trạng thái
-
-                        await Task.Delay(15000); // Chờ 15 giây trước khi tăng SerialNumber
-
-                        string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
-                        if (!string.IsNullOrEmpty(nextSerialNumber))
-                        {
-                            this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                            lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không có xe tiếp theo để đo.");
-                        }
-                    }
-                    break;
-
-                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                    isReady = false;
-                    break;
+                }));
+            }
+            catch (Exception)
+            {
             }
 
         }
@@ -218,7 +250,6 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    opcCounterPos.Write(4); // Chuyển vị trí OPC về form tiếp theo
                     isReady = false; // Đặt lại trạng thái
                 }
                 else
@@ -240,7 +271,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)OPCUtility.GetOPCValue(opcHLCounter);
 
             if (currentPosition == 3)
             {

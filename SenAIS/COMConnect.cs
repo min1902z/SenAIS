@@ -147,5 +147,9 @@ namespace SenAIS
                 serialPort.Write(request, 0, request.Length);
             }
         }
+        public bool IsConnected()
+        {
+            return serialPort != null && serialPort.IsOpen;
+        }
     }
 }

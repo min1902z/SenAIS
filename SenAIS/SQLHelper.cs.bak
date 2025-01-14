@@ -122,7 +122,7 @@ namespace SenAIS
                          ELSE
                          BEGIN
                              INSERT INTO GasEmission_Diesel (SerialNumber, MinSpeed1, MaxSpeed1, HSU1, MinSpeed2, MaxSpeed2, HSU2,MinSpeed3, MaxSpeed3, HSU3)
-                             VALUES (@SerialNumber, @MinSpeed1, @MaxSpeed1, @HSU1, @MinSpeed2, @MaxSpeed2, @HSU2, @MinSpeed3, @MaxSpeed3, @HSU3)
+                             VALUES (@SerialNumber, @MinSpeed1, @MaxSpeed1, @HSU1, MinSpeed2, @MaxSpeed2, @HSU2, MinSpeed3, @MaxSpeed3, @HSU3)
                          END";
             var parameters = new[]
             {
@@ -296,18 +296,18 @@ namespace SenAIS
                 string query = @"IF EXISTS (SELECT 1 FROM BrakeForce WHERE SerialNumber = @SerialNumber)
                          BEGIN
                              UPDATE BrakeForce 
-                             SET HandBrakeLeft = @HandBrakeLeft, HandBrakeRight = @HandBrakeRight
+                             SET HandLeftBrake = @HandLeftBrake, HandRightBrake = @HandRightBrake
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
                          BEGIN
-                             INSERT INTO BrakeForce (SerialNumber, HandBrakeLeft, HandBrakeRight)
-                             VALUES (@SerialNumber, @HandBrakeLeft, @HandBrakeRight)
+                             INSERT INTO BrakeForce (SerialNumber, HandLeftBrake, HandRightBrake)
+                             VALUES (@SerialNumber, @HandLeftBrake, @HandRightBrake)
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@HandBrakeLeft", leftBrake);
-                    cmd.Parameters.AddWithValue("@HandBrakeRight", rightBrake);
+                    cmd.Parameters.AddWithValue("@HandLeftBrake", leftBrake);
+                    cmd.Parameters.AddWithValue("@HandRightBrake", rightBrake);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }
@@ -716,15 +716,6 @@ namespace SenAIS
         {
             string query = "SELECT InspectorName FROM Inspector";
             return TableExecuteQuery(query);
-        }
-        public DataTable GetFuelTypeBySerialNumber(string serialNumber)
-        {
-            string query = "SELECT Fuel FROM VehicleInfo WHERE SerialNumber = @SerialNumber";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@SerialNumber", serialNumber)
-            };
-            return TableExecuteQuery(query, parameters);
         }
         public DataTable GetVehicleStandardsByTypeCar(string vehicleType)
         {
