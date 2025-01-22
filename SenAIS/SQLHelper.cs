@@ -327,7 +327,7 @@ namespace SenAIS
                              SET LeftHBIntensity = @LeftHBIntensity, LeftHBVerticalDeviation = @LeftHBVerticalDeviation, LeftHBHorizontalDeviation = @LeftHBHorizontalDeviation, 
                                     RightHBIntensity = RightHBIntensity, RightHBVerticalDeviation = @RightHBVerticalDeviation, RightHBHorizontalDeviation = @RightHBHorizontalDeviation,
                                     LeftLBIntensity = @LeftLBIntensity, LeftLBVerticalDeviation = @LeftLBVerticalDeviation, LeftLBHorizontalDeviation = @LeftLBHorizontalDeviation, 
-                                    RightLBIntensity = RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation,
+                                    RightLBIntensity = RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE

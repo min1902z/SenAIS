@@ -40,6 +40,7 @@ namespace SenAIS
                     dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
                     dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                     dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
+                    // Thêm Màu xe
                 }
             }
             catch (Exception)
@@ -62,7 +63,11 @@ namespace SenAIS
                 DateTime inspectionDate;
                 if (DateTime.TryParse(vehicleDetails["InspectionDate"].ToString(), out inspectionDate))
                 {
-                    txtDateInspec.Text = inspectionDate.ToString();
+                    txtDateInspec.Text = inspectionDate.ToString("dd/MM/yyyy"); // Định dạng ngày thành dd/MM/yyyy
+                }
+                else
+                {
+                    txtDateInspec.Text = string.Empty; // Để trống nếu không parse được ngày
                 }
 
                 txtSpeed.Text = vehicleDetails["Speed"]?.ToString();
@@ -246,11 +251,23 @@ namespace SenAIS
 
             // Tính diff
             decimal diff = 0;
-            if (value1 > value2)
+            // Kiểm tra các trường hợp
+            if (value1 == 0 && value2 == 0)
+            {
+                diff = 0; // Trường hợp cả hai giá trị bằng 0
+            }
+            else if (value1 == 0 || value2 == 0)
+            {
+                diff = 100; // Trường hợp một trong hai giá trị bằng 0
+            }
+            else if (value1 > value2)
+            {
                 diff = 100 * (value1 - value2) / value1;
+            }
             else
+            {
                 diff = 100 * (value2 - value1) / value2;
-
+            }
             // Hiển thị kết quả vào resultTextBox
             resultTextBox.Text = diff.ToString("F2"); // Định dạng 2 chữ số thập phân
 

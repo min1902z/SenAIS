@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -46,14 +47,11 @@ namespace SenAIS
         {
             try
             {
-                // Đọc các byte dữ liệu có sẵn
-                while (serialPort.BytesToRead > 0)
-                {
+                //while (serialPort.BytesToRead > 0) // Đảm bảo đọc hết buffer
+                //{
                     byte[] buffer = new byte[serialPort.BytesToRead];
                     serialPort.Read(buffer, 0, buffer.Length);
                     dataBuffer.AddRange(buffer);
-                    string receivedData = BitConverter.ToString(buffer);
-                    Console.WriteLine("Received (Hex): " + receivedData);
                     if (activeForm is frmDieselEmission)
                     {
                         if (dataBuffer.Count >= 9 && dataBuffer[0] == 0xA5)
@@ -82,11 +80,16 @@ namespace SenAIS
                     }
                     if (activeForm is frmGasEmission)
                     {
-                        if (dataBuffer.Count >= 21 && dataBuffer[0] == 0x06)
+                        while (dataBuffer.Count >= 1 && dataBuffer[0] != 0x06)
+                        {
+                            dataBuffer.RemoveAt(0); // Xóa byte không hợp lệ
+                        }
+                        if (dataBuffer[0] == 0x06)
                         {
                             byte[] completeData = dataBuffer.Take(21).ToArray();
                             ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
-                            dataBuffer.RemoveRange(0, 21);
+                            //dataBuffer.RemoveRange(0, 21);
+                            dataBuffer.Clear();
                         }
                     }
 
@@ -106,37 +109,105 @@ namespace SenAIS
                     }
                     if (activeForm is frmWhistle)
                     {
-                        if (dataBuffer.Count > 0 && dataBuffer[0] == 0x06)
-                        {
-                            dataBuffer.RemoveAt(0);
-                        }
-                        if (dataBuffer.Count >= 9 && dataBuffer[0] == 0x01)
-                        {
-                            byte[] completeData = dataBuffer.Take(9).ToArray();
-                            ((frmWhistle)activeForm).ProcessMaxSoundData(completeData);
-                            dataBuffer.RemoveRange(0, 9);
-                        }
-                    }
-                    if (activeForm is frmHeadlights)
+                    while (dataBuffer.Count > 0)
                     {
-                        if (dataBuffer.Contains(0x47))
+                        int startIndex = dataBuffer.FindIndex(b => b == 0x01);
+
+                        if (startIndex == -1)
                         {
-                            respone47H = true;
+                            dataBuffer.Clear();
+                            break;
                         }
-                        if (dataBuffer.Count >= 68 && dataBuffer[0] == 0x01 && dataBuffer[1] == 0x12 && dataBuffer[34] == 0x01)
+                        if (dataBuffer.Count >= startIndex + 6)
                         {
-                            byte[] completeData = dataBuffer.Take(68).ToArray();
-                            ((frmHeadlights)activeForm).ProcessNHD6109Data(completeData);
-                            dataBuffer.RemoveRange(0, 68);
+                            byte[] soundData = dataBuffer.Skip(startIndex).Take(6).ToArray();
+
+                            // Xử lý dữ liệu âm thanh
+                            ((frmWhistle)activeForm).ProcessMaxSoundData(soundData);
+
+                            // Xóa các byte đã xử lý khỏi buffer
+                            dataBuffer.RemoveRange(0, startIndex + 6);
                         }
                         else
-                            dataBuffer.RemoveAt(0);
+                        {
+                            // Nếu không đủ dữ liệu, thoát vòng lặp
+                            break;
+                        }
                     }
+                    //if (dataBuffer.Count > 0 && dataBuffer[0] == 0x06)
+                    //{
+                    //    dataBuffer.RemoveAt(0);
+                    //}
+                    //if (dataBuffer.Count >= 9 && dataBuffer[0] == 0x01)
+                    //{
+                    //    byte[] completeData = dataBuffer.Take(9).ToArray();
+                    //    ((frmWhistle)activeForm).ProcessMaxSoundData(completeData);
+                    //    dataBuffer.RemoveRange(0, 9);
+                    //}
                 }
+                    if (activeForm is frmHeadlights)
+                    {
+                        while (dataBuffer.Count > 0)
+                        {
+                            // Nếu phát hiện byte 0x47
+                            if (dataBuffer.Contains(0x47))
+                            {
+                                dataBuffer.Clear();
+                                byte[] request = { 0x4E, 0x4D };
+                                SendRequest(request);
+                            }
+                            // Xử lý dữ liệu đèn (68 bytes)
+                            if (dataBuffer.Count >= 68)
+                            {
+                                // Tìm vị trí đầu tiên của byte bắt đầu là 0x01
+                                int startIndex = dataBuffer.FindIndex(b => b == 0x01);
+
+                                if (startIndex == -1)
+                                {
+                                    // Nếu không tìm thấy 0x01, xóa toàn bộ buffer
+                                    dataBuffer.Clear();
+                                    break;
+                                }
+
+                                // Kiểm tra nếu có đủ dữ liệu từ vị trí tìm thấy
+                                if (dataBuffer.Count >= startIndex + 68)
+                                {
+                                    // Kiểm tra cấu trúc dữ liệu hợp lệ
+                                    if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 34] == 0x01)
+                                    {
+                                        // Lấy 68 byte từ vị trí hợp lệ
+                                        byte[] completeData = dataBuffer.Skip(startIndex).Take(68).ToArray();
+
+                                        // Xử lý dữ liệu với hàm ProcessNHD6109Data
+                                        ((frmHeadlights)activeForm).ProcessNHD6109Data(completeData);
+
+                                        // Xóa các byte đã xử lý khỏi buffer
+                                        dataBuffer.RemoveRange(0, startIndex + 68);
+                                    }
+                                    else
+                                    {
+                                        // Nếu cấu trúc không hợp lệ, bỏ qua byte đầu tiên và tiếp tục tìm kiếm
+                                        dataBuffer.RemoveAt(0);
+                                    }
+                                }
+                                else
+                                {
+                                    // Nếu không đủ dữ liệu từ vị trí hợp lệ, xóa toàn bộ buffer
+                                    dataBuffer.Clear();
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                // Nếu không đủ dữ liệu trong buffer, thoát vòng lặp
+                                break;
+                            }
+                        }
+                    }
+                //}
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show("Lỗi nhận dữ liệu:  " + ex.Message);
             }
         }
 

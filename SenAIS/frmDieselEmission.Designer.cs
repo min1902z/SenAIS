@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDieselEmission));
             this.DieselPanel = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnReMeasure = new System.Windows.Forms.Button();
             this.lbVinNumber = new System.Windows.Forms.Label();
             this.lbNotice = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
@@ -63,6 +65,8 @@
             // DieselPanel
             // 
             this.DieselPanel.AutoSize = true;
+            this.DieselPanel.Controls.Add(this.btnExit);
+            this.DieselPanel.Controls.Add(this.btnReMeasure);
             this.DieselPanel.Controls.Add(this.lbVinNumber);
             this.DieselPanel.Controls.Add(this.lbNotice);
             this.DieselPanel.Controls.Add(this.cbReady);
@@ -72,18 +76,54 @@
             this.DieselPanel.Controls.Add(this.lbDieselTitle);
             this.DieselPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DieselPanel.Location = new System.Drawing.Point(0, 0);
+            this.DieselPanel.Margin = new System.Windows.Forms.Padding(4);
             this.DieselPanel.Name = "DieselPanel";
-            this.DieselPanel.Size = new System.Drawing.Size(1904, 1041);
+            this.DieselPanel.Size = new System.Drawing.Size(1924, 1055);
             this.DieselPanel.TabIndex = 0;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnExit.Location = new System.Drawing.Point(1795, 8);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(117, 104);
+            this.btnExit.TabIndex = 57;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnReMeasure
+            // 
+            this.btnReMeasure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReMeasure.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReMeasure.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReMeasure.BackgroundImage")));
+            this.btnReMeasure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReMeasure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReMeasure.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReMeasure.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnReMeasure.Location = new System.Drawing.Point(1668, 10);
+            this.btnReMeasure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReMeasure.Name = "btnReMeasure";
+            this.btnReMeasure.Size = new System.Drawing.Size(117, 104);
+            this.btnReMeasure.TabIndex = 56;
+            this.btnReMeasure.UseVisualStyleBackColor = false;
+            this.btnReMeasure.Click += new System.EventHandler(this.btnReMeasure_Click);
             // 
             // lbVinNumber
             // 
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVinNumber.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbVinNumber.Location = new System.Drawing.Point(128, -11);
+            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.Location = new System.Drawing.Point(171, -14);
+            this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
-            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
+            this.lbVinNumber.Size = new System.Drawing.Size(418, 164);
             this.lbVinNumber.TabIndex = 52;
             this.lbVinNumber.Text = "Số Vin";
             // 
@@ -93,12 +133,11 @@
             this.lbNotice.AutoSize = true;
             this.lbNotice.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNotice.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbNotice.Location = new System.Drawing.Point(305, 924);
-            this.lbNotice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbNotice.Location = new System.Drawing.Point(162, 913);
             this.lbNotice.Name = "lbNotice";
-            this.lbNotice.Size = new System.Drawing.Size(1281, 117);
+            this.lbNotice.Size = new System.Drawing.Size(589, 146);
             this.lbNotice.TabIndex = 51;
-            this.lbNotice.Text = "Chuẩn bị đạp ga 3 lần liên tiếp.";
+            this.lbNotice.Text = "Thông Báo";
             // 
             // cbReady
             // 
@@ -109,9 +148,10 @@
             this.cbReady.Checked = true;
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
-            this.cbReady.Location = new System.Drawing.Point(11, 13);
+            this.cbReady.Location = new System.Drawing.Point(15, 16);
+            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
             this.cbReady.Name = "cbReady";
-            this.cbReady.Size = new System.Drawing.Size(111, 88);
+            this.cbReady.Size = new System.Drawing.Size(148, 108);
             this.cbReady.TabIndex = 50;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
@@ -147,24 +187,27 @@
             this.tbEmission.Controls.Add(this.lbMaxAvg, 4, 2);
             this.tbEmission.Font = new System.Drawing.Font("Calibri", 200.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbEmission.Location = new System.Drawing.Point(26, 179);
+            this.tbEmission.Location = new System.Drawing.Point(35, 132);
+            this.tbEmission.Margin = new System.Windows.Forms.Padding(4);
             this.tbEmission.Name = "tbEmission";
             this.tbEmission.RowCount = 4;
             this.tbEmission.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbEmission.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbEmission.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbEmission.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbEmission.Size = new System.Drawing.Size(1849, 668);
+            this.tbEmission.Size = new System.Drawing.Size(1861, 787);
             this.tbEmission.TabIndex = 49;
+            this.tbEmission.Visible = false;
             // 
             // lbHsuAvg
             // 
             this.lbHsuAvg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbHsuAvg.AutoSize = true;
-            this.lbHsuAvg.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHsuAvg.Location = new System.Drawing.Point(1666, 468);
+            this.lbHsuAvg.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHsuAvg.Location = new System.Drawing.Point(1670, 481);
+            this.lbHsuAvg.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHsuAvg.Name = "lbHsuAvg";
-            this.lbHsuAvg.Size = new System.Drawing.Size(180, 195);
+            this.lbHsuAvg.Size = new System.Drawing.Size(187, 204);
             this.lbHsuAvg.TabIndex = 51;
             this.lbHsuAvg.Text = "--";
             // 
@@ -172,10 +215,11 @@
             // 
             this.lbMinAvg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbMinAvg.AutoSize = true;
-            this.lbMinAvg.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMinAvg.Location = new System.Drawing.Point(1666, 78);
+            this.lbMinAvg.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMinAvg.Location = new System.Drawing.Point(1670, 73);
+            this.lbMinAvg.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMinAvg.Name = "lbMinAvg";
-            this.lbMinAvg.Size = new System.Drawing.Size(180, 195);
+            this.lbMinAvg.Size = new System.Drawing.Size(187, 204);
             this.lbMinAvg.TabIndex = 51;
             this.lbMinAvg.Text = "--";
             // 
@@ -183,20 +227,22 @@
             // 
             this.lbAvg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbAvg.AutoSize = true;
-            this.lbAvg.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAvg.Location = new System.Drawing.Point(1535, 0);
+            this.lbAvg.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAvg.Location = new System.Drawing.Point(1563, 0);
+            this.lbAvg.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAvg.Name = "lbAvg";
-            this.lbAvg.Size = new System.Drawing.Size(311, 78);
+            this.lbAvg.Size = new System.Drawing.Size(294, 73);
             this.lbAvg.TabIndex = 51;
             this.lbAvg.Text = "Trung bình";
             // 
             // lbHSU3
             // 
             this.lbHSU3.AutoSize = true;
-            this.lbHSU3.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHSU3.Location = new System.Drawing.Point(914, 468);
+            this.lbHSU3.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHSU3.Location = new System.Drawing.Point(1030, 481);
+            this.lbHSU3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHSU3.Name = "lbHSU3";
-            this.lbHSU3.Size = new System.Drawing.Size(284, 195);
+            this.lbHSU3.Size = new System.Drawing.Size(297, 204);
             this.lbHSU3.TabIndex = 51;
             this.lbHSU3.Text = "0.0";
             // 
@@ -205,9 +251,10 @@
             this.lbMaxSpeedTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbMaxSpeedTitle.AutoSize = true;
             this.lbMaxSpeedTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMaxSpeedTitle.Location = new System.Drawing.Point(3, 331);
+            this.lbMaxSpeedTitle.Location = new System.Drawing.Point(4, 330);
+            this.lbMaxSpeedTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMaxSpeedTitle.Name = "lbMaxSpeedTitle";
-            this.lbMaxSpeedTitle.Size = new System.Drawing.Size(325, 78);
+            this.lbMaxSpeedTitle.Size = new System.Drawing.Size(408, 97);
             this.lbMaxSpeedTitle.TabIndex = 23;
             this.lbMaxSpeedTitle.Text = "Tốc độ max";
             this.lbMaxSpeedTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -215,60 +262,66 @@
             // lbHSU1
             // 
             this.lbHSU1.AutoSize = true;
-            this.lbHSU1.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHSU1.Location = new System.Drawing.Point(334, 468);
+            this.lbHSU1.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHSU1.Location = new System.Drawing.Point(420, 481);
+            this.lbHSU1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHSU1.Name = "lbHSU1";
-            this.lbHSU1.Size = new System.Drawing.Size(284, 195);
+            this.lbHSU1.Size = new System.Drawing.Size(297, 204);
             this.lbHSU1.TabIndex = 21;
             this.lbHSU1.Text = "0.0";
             // 
             // lbHSU2
             // 
             this.lbHSU2.AutoSize = true;
-            this.lbHSU2.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHSU2.Location = new System.Drawing.Point(624, 468);
+            this.lbHSU2.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHSU2.Location = new System.Drawing.Point(725, 481);
+            this.lbHSU2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHSU2.Name = "lbHSU2";
-            this.lbHSU2.Size = new System.Drawing.Size(284, 195);
+            this.lbHSU2.Size = new System.Drawing.Size(297, 204);
             this.lbHSU2.TabIndex = 20;
             this.lbHSU2.Text = "0.0";
             // 
             // lbMaxSpeed3
             // 
             this.lbMaxSpeed3.AutoSize = true;
-            this.lbMaxSpeed3.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMaxSpeed3.Location = new System.Drawing.Point(914, 273);
+            this.lbMaxSpeed3.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMaxSpeed3.Location = new System.Drawing.Point(1030, 277);
+            this.lbMaxSpeed3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMaxSpeed3.Name = "lbMaxSpeed3";
-            this.lbMaxSpeed3.Size = new System.Drawing.Size(284, 195);
+            this.lbMaxSpeed3.Size = new System.Drawing.Size(297, 204);
             this.lbMaxSpeed3.TabIndex = 18;
             this.lbMaxSpeed3.Text = "0.0";
             // 
             // lbMaxSpeed2
             // 
             this.lbMaxSpeed2.AutoSize = true;
-            this.lbMaxSpeed2.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMaxSpeed2.Location = new System.Drawing.Point(624, 273);
+            this.lbMaxSpeed2.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMaxSpeed2.Location = new System.Drawing.Point(725, 277);
+            this.lbMaxSpeed2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMaxSpeed2.Name = "lbMaxSpeed2";
-            this.lbMaxSpeed2.Size = new System.Drawing.Size(284, 195);
+            this.lbMaxSpeed2.Size = new System.Drawing.Size(297, 204);
             this.lbMaxSpeed2.TabIndex = 17;
             this.lbMaxSpeed2.Text = "0.0";
             // 
             // lbMinSpeed3
             // 
             this.lbMinSpeed3.AutoSize = true;
-            this.lbMinSpeed3.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMinSpeed3.Location = new System.Drawing.Point(914, 78);
+            this.lbMinSpeed3.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMinSpeed3.Location = new System.Drawing.Point(1030, 73);
+            this.lbMinSpeed3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMinSpeed3.Name = "lbMinSpeed3";
-            this.lbMinSpeed3.Size = new System.Drawing.Size(284, 195);
+            this.lbMinSpeed3.Size = new System.Drawing.Size(297, 204);
             this.lbMinSpeed3.TabIndex = 16;
             this.lbMinSpeed3.Text = "0.0";
             // 
             // lbMinSpeed2
             // 
             this.lbMinSpeed2.AutoSize = true;
-            this.lbMinSpeed2.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMinSpeed2.Location = new System.Drawing.Point(624, 78);
+            this.lbMinSpeed2.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMinSpeed2.Location = new System.Drawing.Point(725, 73);
+            this.lbMinSpeed2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMinSpeed2.Name = "lbMinSpeed2";
-            this.lbMinSpeed2.Size = new System.Drawing.Size(284, 195);
+            this.lbMinSpeed2.Size = new System.Drawing.Size(297, 204);
             this.lbMinSpeed2.TabIndex = 15;
             this.lbMinSpeed2.Text = "0.0";
             // 
@@ -276,10 +329,11 @@
             // 
             this.lbL3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbL3.AutoSize = true;
-            this.lbL3.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbL3.Location = new System.Drawing.Point(970, 0);
+            this.lbL3.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbL3.Location = new System.Drawing.Point(1097, 0);
+            this.lbL3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbL3.Name = "lbL3";
-            this.lbL3.Size = new System.Drawing.Size(171, 78);
+            this.lbL3.Size = new System.Drawing.Size(162, 73);
             this.lbL3.TabIndex = 14;
             this.lbL3.Text = "Lần 3";
             // 
@@ -287,20 +341,22 @@
             // 
             this.lbL2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbL2.AutoSize = true;
-            this.lbL2.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbL2.Location = new System.Drawing.Point(680, 0);
+            this.lbL2.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbL2.Location = new System.Drawing.Point(792, 0);
+            this.lbL2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbL2.Name = "lbL2";
-            this.lbL2.Size = new System.Drawing.Size(171, 78);
+            this.lbL2.Size = new System.Drawing.Size(162, 73);
             this.lbL2.TabIndex = 13;
             this.lbL2.Text = "Lần 2";
             // 
             // lbMaxSpeed1
             // 
             this.lbMaxSpeed1.AutoSize = true;
-            this.lbMaxSpeed1.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMaxSpeed1.Location = new System.Drawing.Point(334, 273);
+            this.lbMaxSpeed1.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMaxSpeed1.Location = new System.Drawing.Point(420, 277);
+            this.lbMaxSpeed1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMaxSpeed1.Name = "lbMaxSpeed1";
-            this.lbMaxSpeed1.Size = new System.Drawing.Size(284, 195);
+            this.lbMaxSpeed1.Size = new System.Drawing.Size(297, 204);
             this.lbMaxSpeed1.TabIndex = 12;
             this.lbMaxSpeed1.Text = "0.0";
             // 
@@ -308,10 +364,11 @@
             // 
             this.lbMinSpeed1.AutoSize = true;
             this.lbMinSpeed1.BackColor = System.Drawing.SystemColors.Control;
-            this.lbMinSpeed1.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMinSpeed1.Location = new System.Drawing.Point(334, 78);
+            this.lbMinSpeed1.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMinSpeed1.Location = new System.Drawing.Point(420, 73);
+            this.lbMinSpeed1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMinSpeed1.Name = "lbMinSpeed1";
-            this.lbMinSpeed1.Size = new System.Drawing.Size(284, 195);
+            this.lbMinSpeed1.Size = new System.Drawing.Size(297, 204);
             this.lbMinSpeed1.TabIndex = 7;
             this.lbMinSpeed1.Text = "0.0";
             // 
@@ -319,10 +376,11 @@
             // 
             this.lbL1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbL1.AutoSize = true;
-            this.lbL1.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbL1.Location = new System.Drawing.Point(390, 0);
+            this.lbL1.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbL1.Location = new System.Drawing.Point(487, 0);
+            this.lbL1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbL1.Name = "lbL1";
-            this.lbL1.Size = new System.Drawing.Size(171, 78);
+            this.lbL1.Size = new System.Drawing.Size(162, 73);
             this.lbL1.TabIndex = 7;
             this.lbL1.Text = "Lần 1";
             // 
@@ -331,9 +389,10 @@
             this.lbMinTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbMinTitle.AutoSize = true;
             this.lbMinTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMinTitle.Location = new System.Drawing.Point(3, 136);
+            this.lbMinTitle.Location = new System.Drawing.Point(4, 126);
+            this.lbMinTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMinTitle.Name = "lbMinTitle";
-            this.lbMinTitle.Size = new System.Drawing.Size(316, 78);
+            this.lbMinTitle.Size = new System.Drawing.Size(396, 97);
             this.lbMinTitle.TabIndex = 5;
             this.lbMinTitle.Text = "Tốc độ min";
             this.lbMinTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -343,9 +402,10 @@
             this.lbHsuTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbHsuTitle.AutoSize = true;
             this.lbHsuTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHsuTitle.Location = new System.Drawing.Point(3, 529);
+            this.lbHsuTitle.Location = new System.Drawing.Point(4, 585);
+            this.lbHsuTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHsuTitle.Name = "lbHsuTitle";
-            this.lbHsuTitle.Size = new System.Drawing.Size(143, 78);
+            this.lbHsuTitle.Size = new System.Drawing.Size(180, 97);
             this.lbHsuTitle.TabIndex = 22;
             this.lbHsuTitle.Text = "HSU";
             this.lbHsuTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -354,10 +414,11 @@
             // 
             this.lbMaxAvg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbMaxAvg.AutoSize = true;
-            this.lbMaxAvg.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMaxAvg.Location = new System.Drawing.Point(1666, 273);
+            this.lbMaxAvg.Font = new System.Drawing.Font("Calibri", 100.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMaxAvg.Location = new System.Drawing.Point(1670, 277);
+            this.lbMaxAvg.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMaxAvg.Name = "lbMaxAvg";
-            this.lbMaxAvg.Size = new System.Drawing.Size(180, 195);
+            this.lbMaxAvg.Size = new System.Drawing.Size(187, 204);
             this.lbMaxAvg.TabIndex = 51;
             this.lbMaxAvg.Text = "--";
             // 
@@ -367,10 +428,10 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1807, 994);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Location = new System.Drawing.Point(1794, 997);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(86, 37);
+            this.btnNext.Size = new System.Drawing.Size(115, 46);
             this.btnNext.TabIndex = 48;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -382,10 +443,10 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(11, 994);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPre.Location = new System.Drawing.Point(15, 997);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(86, 37);
+            this.btnPre.Size = new System.Drawing.Size(115, 46);
             this.btnPre.TabIndex = 47;
             this.btnPre.Text = "Trở Lại";
             this.btnPre.UseVisualStyleBackColor = false;
@@ -393,32 +454,30 @@
             // 
             // lbDieselTitle
             // 
-            this.lbDieselTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbDieselTitle.AutoSize = true;
-            this.lbDieselTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDieselTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbDieselTitle.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDieselTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDieselTitle.Location = new System.Drawing.Point(523, 3);
-            this.lbDieselTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbDieselTitle.Location = new System.Drawing.Point(15, 317);
             this.lbDieselTitle.Name = "lbDieselTitle";
-            this.lbDieselTitle.Size = new System.Drawing.Size(1079, 117);
+            this.lbDieselTitle.Size = new System.Drawing.Size(1894, 242);
             this.lbDieselTitle.TabIndex = 46;
             this.lbDieselTitle.Text = "KHÍ XẢ - ĐỘNG CƠ DIESEL";
-            this.lbDieselTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbDieselTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmDieselEmission
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.DieselPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDieselEmission";
             this.ShowIcon = false;
             this.Text = "Khí xả - Động cơ Diesel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDieselEmission_FormClosing);
-            this.Load += new System.EventHandler(this.frmDieselEmission_Load);
+            this.Load += new System.EventHandler(this.frmDieselEmission_LoadAsync);
             this.DieselPanel.ResumeLayout(false);
             this.DieselPanel.PerformLayout();
             this.tbEmission.ResumeLayout(false);
@@ -457,5 +516,7 @@
         private System.Windows.Forms.Label lbAvg;
         private System.Windows.Forms.Label lbNotice;
         private System.Windows.Forms.Label lbVinNumber;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnReMeasure;
     }
 }

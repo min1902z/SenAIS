@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpeed));
             this.SpeedPanel = new System.Windows.Forms.Panel();
+            this.lbEnd = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbStandard = new System.Windows.Forms.Label();
             this.lbStandardTitle = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             // SpeedPanel
             // 
             this.SpeedPanel.AutoSize = true;
+            this.SpeedPanel.Controls.Add(this.lbEnd);
             this.SpeedPanel.Controls.Add(this.label1);
             this.SpeedPanel.Controls.Add(this.lbStandard);
             this.SpeedPanel.Controls.Add(this.lbStandardTitle);
@@ -60,6 +62,21 @@
             this.SpeedPanel.Name = "SpeedPanel";
             this.SpeedPanel.Size = new System.Drawing.Size(1924, 1055);
             this.SpeedPanel.TabIndex = 38;
+            // 
+            // lbEnd
+            // 
+            this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbEnd.AutoSize = true;
+            this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbEnd.Location = new System.Drawing.Point(673, 129);
+            this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbEnd.Name = "lbEnd";
+            this.lbEnd.Size = new System.Drawing.Size(549, 164);
+            this.lbEnd.TabIndex = 56;
+            this.lbEnd.Text = "Kết Thúc";
+            this.lbEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbEnd.Visible = false;
             // 
             // label1
             // 
@@ -119,7 +136,7 @@
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
             this.cbReady.Location = new System.Drawing.Point(12, 14);
-            this.cbReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
             this.cbReady.Name = "cbReady";
             this.cbReady.Size = new System.Drawing.Size(148, 108);
             this.cbReady.TabIndex = 43;
@@ -155,16 +172,17 @@
             // 
             // lbSpeed
             // 
-            this.lbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbSpeed.AutoSize = true;
+            this.lbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSpeed.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSpeed.Location = new System.Drawing.Point(425, 160);
+            this.lbSpeed.Location = new System.Drawing.Point(49, 168);
             this.lbSpeed.Name = "lbSpeed";
             this.lbSpeed.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbSpeed.Size = new System.Drawing.Size(1008, 610);
+            this.lbSpeed.Size = new System.Drawing.Size(1823, 610);
             this.lbSpeed.TabIndex = 40;
-            this.lbSpeed.Text = "0.0 ";
+            this.lbSpeed.Text = "0.0";
             this.lbSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbSpeed.Visible = false;
             // 
@@ -216,5 +234,6 @@
         private System.Windows.Forms.Button btnPreSpeed;
         private System.Windows.Forms.Label lbSpeed;
         private System.Windows.Forms.Label lbTitleSpeed;
+        private System.Windows.Forms.Label lbEnd;
     }
 }

@@ -8,8 +8,6 @@ namespace SenAIS
 {
     public partial class frmFrontWeight : Form
     {
-        private Form parentForm;
-        private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
@@ -17,11 +15,9 @@ namespace SenAIS
         public decimal frontRightWeight;
         private bool isReady = false;
 
-        public frmFrontWeight(Form parent, OPCItem opcCounterPos, string serialNumber)
+        public frmFrontWeight(string serialNumber)
         {
             InitializeComponent();
-            this.parentForm = parent;
-            this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
             InitializeTimer();
@@ -138,7 +134,6 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    opcCounterPos.Write(4); // Chuyển vị trí OPC về form tiếp theo
                     isReady = false; // Đặt lại trạng thái
                 }
                 else

@@ -1,5 +1,6 @@
 ﻿using OPCAutomation;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -12,7 +13,6 @@ namespace SenAIS
         private static bool isConnected = false;
         private static int retryCount = 0;
         private static int maxRetry = 3;
-
         static OPCUtility()
         {
             // Kết nối tới OPC Server khi khởi tạo lớp
@@ -36,7 +36,7 @@ namespace SenAIS
                 opcGroup = opcServer.OPCGroups.Add("Group1");
                 opcGroup.IsActive = true;
                 opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 500;
+                opcGroup.UpdateRate = 200;
                 isConnected = true; // Đánh dấu kết nối thành công
                 opcErrorShown = false; // Reset cờ lỗi
                 retryCount = 0; // Reset lại số lần thử nếu kết nối thành công
@@ -50,6 +50,20 @@ namespace SenAIS
                     MessageBox.Show($"Kết nối đến OPC server thất bại: {ex.Message}");
                     opcErrorShown = true; // Đánh dấu đã hiển thị lỗi
                 }
+            }
+        }
+        public static void AddItem(string itemName, int clientHandle)
+        {
+            try
+            {
+                if (isConnected)
+                {
+                    opcGroup.OPCItems.AddItem(itemName, clientHandle);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding OPC item {itemName}: {ex.Message}");
             }
         }
         public static void DisconnectOPC()
@@ -122,6 +136,24 @@ namespace SenAIS
                 }
                 //throw;
             }
+        }
+        public static Dictionary<string, decimal> GetMultipleOPCValues(List<string> opcItems)
+        {
+            var result = new Dictionary<string, decimal>();
+
+            foreach (var item in opcItems)
+            {
+                try
+                {
+                    result[item] = GetOPCValue(item);
+                }
+                catch
+                {
+                    result[item] = -1; // Trả về giá trị mặc định khi lỗi
+                }
+            }
+
+            return result;
         }
         public static void ResetErrorFlag()
         {

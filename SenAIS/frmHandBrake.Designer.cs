@@ -45,6 +45,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
             this.lbBrakeTitle = new System.Windows.Forms.Label();
+            this.cbBrake = new System.Windows.Forms.CheckBox();
             this.FBrakePanel.SuspendLayout();
             this.tbRight.SuspendLayout();
             this.tbLeft.SuspendLayout();
@@ -53,6 +54,7 @@
             // FBrakePanel
             // 
             this.FBrakePanel.AutoSize = true;
+            this.FBrakePanel.Controls.Add(this.cbBrake);
             this.FBrakePanel.Controls.Add(this.tbRight);
             this.FBrakePanel.Controls.Add(this.tbLeft);
             this.FBrakePanel.Controls.Add(this.lbVinNumber);
@@ -84,7 +86,7 @@
             this.tbRight.RowCount = 2;
             this.tbRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbRight.Size = new System.Drawing.Size(919, 862);
+            this.tbRight.Size = new System.Drawing.Size(919, 813);
             this.tbRight.TabIndex = 52;
             this.tbRight.Visible = false;
             // 
@@ -99,7 +101,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(152, 146);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Phải \r\n(N)";
+            this.label3.Text = "Phải \r\n(kG)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbRight_Brake
@@ -122,7 +124,7 @@
             this.lbDiff_Brake.AutoSize = true;
             this.lbDiff_Brake.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDiff_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbDiff_Brake.Location = new System.Drawing.Point(4, 431);
+            this.lbDiff_Brake.Location = new System.Drawing.Point(4, 406);
             this.lbDiff_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDiff_Brake.Name = "lbDiff_Brake";
             this.lbDiff_Brake.Size = new System.Drawing.Size(449, 305);
@@ -136,7 +138,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label7.Location = new System.Drawing.Point(676, 510);
+            this.label7.Location = new System.Drawing.Point(676, 486);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(243, 146);
@@ -161,7 +163,7 @@
             this.tbLeft.RowCount = 2;
             this.tbLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbLeft.Size = new System.Drawing.Size(793, 862);
+            this.tbLeft.Size = new System.Drawing.Size(793, 813);
             this.tbLeft.TabIndex = 51;
             this.tbLeft.Visible = false;
             // 
@@ -174,9 +176,9 @@
             this.label2.Location = new System.Drawing.Point(4, 79);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 146);
+            this.label2.Size = new System.Drawing.Size(133, 146);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Trái\r\n(N)";
+            this.label2.Text = "Trái\r\n(kG)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
@@ -185,12 +187,12 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label8.Location = new System.Drawing.Point(4, 510);
+            this.label8.Location = new System.Drawing.Point(4, 486);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(162, 146);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Tổng \r\n(N)";
+            this.label8.Text = "Tổng \r\n(kG)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbSum_Brake
@@ -199,7 +201,7 @@
             this.lbSum_Brake.AutoSize = true;
             this.lbSum_Brake.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSum_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSum_Brake.Location = new System.Drawing.Point(174, 431);
+            this.lbSum_Brake.Location = new System.Drawing.Point(174, 406);
             this.lbSum_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSum_Brake.Name = "lbSum_Brake";
             this.lbSum_Brake.Size = new System.Drawing.Size(449, 305);
@@ -290,6 +292,23 @@
             this.lbBrakeTitle.Text = "LỰC PHANH TAY";
             this.lbBrakeTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // cbBrake
+            // 
+            this.cbBrake.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cbBrake.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbBrake.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbBrake.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbBrake.BackgroundImage")));
+            this.cbBrake.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbBrake.Checked = true;
+            this.cbBrake.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBrake.Enabled = false;
+            this.cbBrake.Location = new System.Drawing.Point(663, 951);
+            this.cbBrake.Margin = new System.Windows.Forms.Padding(4);
+            this.cbBrake.Name = "cbBrake";
+            this.cbBrake.Size = new System.Drawing.Size(474, 104);
+            this.cbBrake.TabIndex = 55;
+            this.cbBrake.UseVisualStyleBackColor = false;
+            // 
             // frmHandBrake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -332,5 +351,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbBrakeTitle;
+        private System.Windows.Forms.CheckBox cbBrake;
     }
 }

@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,7 +10,6 @@ namespace SenAIS
 {
     public partial class frmSpeed : Form
     {
-        // private Form parentForm;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
@@ -17,7 +17,6 @@ namespace SenAIS
         private bool isReady = false;
         private decimal minSpeed = 0;
         private decimal maxSpeed = 0;
-        private int retryCount = 0; // Đếm số lần đo lại
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSpeedResult = ConfigurationManager.AppSettings["Speed_Result"];
@@ -52,6 +51,7 @@ namespace SenAIS
                         case 0: // Mặc định
                             cbReady.BackColor = SystemColors.Control;
                             lbSpeed.Visible = false;
+                            lbEnd.Visible = false;
                             lbStandard.Visible = false;
                             isReady = false;
                             hasProcessedNextVin = false; // Reset cờ chuyển số VIN
@@ -61,6 +61,7 @@ namespace SenAIS
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
                             isReady = false; // Chưa sẵn sàng lưu
                             lbSpeed.Visible = false;
+                            lbEnd.Visible = false;
                             lbStandard.Visible = true;
                             lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")}  -  {maxSpeed.ToString("F0")}]" : "--  -  --";
                             break;
@@ -69,13 +70,14 @@ namespace SenAIS
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
                             isReady = true; // Sẵn sàng lưu sau khi đo
                             lbTitleSpeed.Visible = false;
+                            lbEnd.Visible = false;
                             lbSpeed.Visible = true;
                             double speedA = sqlHelper.GetParaValue("Speed", "ParaA");
                             double speedResult = OPCUtility.GetOPCValue(opcSpeedResult);
                             double speed = speedResult / speedA;
-                            lbSpeed.Text = speed.ToString("F0");
+                            lbSpeed.Text = speed.ToString("F1");
 
-                            this.speedValue = Convert.ToDecimal(speed.ToString("F0"));
+                            this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
 
                             // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
                             bool isValueInStandard = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
@@ -93,61 +95,55 @@ namespace SenAIS
                         case 3: // Quá trình đo hoàn tất, lưu vào DB
                             cbReady.BackColor = Color.Green; // Đèn xanh
                             lbTitleSpeed.Visible = false;
+                            lbEnd.Visible = true;
                             lbSpeed.Visible = true;
                             if (isReady)
                             {
-                                CheckCounterPosition();
+                                SaveDataToDatabase();
                                 isReady = false;
                             }
-                            //if (isReady)
-                            //{
-                            //    bool isValueInStandard3 = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
-
-                            //    if (isValueInStandard3)
-                            //    {
-                            //        CheckCounterPosition(); // Lưu dữ liệu
-                            //        isReady = false;
-                            //    }
-                            //    else if (!isValueInStandard3 && retryCount < 2)
-                            //    {
-                            //        CheckCounterPosition(); // Lưu dữ liệu
-                            //        OPCUtility.SetOPCValue(opcSpeedCounter, 0); // Đặt lại trạng thái để đo lại
-                            //        retryCount++; // Tăng số lần đo lại
-                            //    }
-                            //}
                             break;
 
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
-                            retryCount = 0; // Reset đếm số lần đo lại khi đạt chuẩn
                             lbStandard.Visible = false;
                             lbTitleSpeed.Visible = true;
-                            lbTitleSpeed.Text = "Xe tiếp theo";
-                            this.Close();
-                            //if(!hasProcessedNextVin)
-                            //{
-                            //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                            //    if (!string.IsNullOrEmpty(nextSerialNumber))
-                            //    {
-                            //        this.serialNumber = nextSerialNumber;
-                            //        lbVinNumber.Text = this.serialNumber;
+                            if (!hasProcessedNextVin)
+                            {
+                                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                                if (!string.IsNullOrEmpty(nextSerialNumber))
+                                {
+                                    this.serialNumber = nextSerialNumber;
+                                    lbVinNumber.Text = this.serialNumber;
 
-                            //        // Lấy và hiển thị tiêu chuẩn mới
-                            //        LoadVehicleStandards(this.serialNumber);
-                            //        lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")} - {maxSpeed.ToString("F0")}]" : "-- - --";
-                            //        lbStandard.Visible = true;
-                            //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                            //    }
-                            //    else
-                            //    {
-                            //        MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
-                            //    }
-                            //}
+                                    // Lấy và hiển thị tiêu chuẩn mới
+                                    LoadVehicleStandards(this.serialNumber);
+                                    lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")} - {maxSpeed.ToString("F0")}]" : "-- - --";
+                                    lbStandard.Visible = true;
+                                    var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                                    if (frmMain != null)
+                                    {
+                                        var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+                                        if (txtVinNumber != null)
+                                        {
+                                            txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
+                                        }
+                                    }
+                                    hasProcessedNextVin = true; // Đánh dấu đã xử lý
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
+                                    this.Close();
+                                }
+                            }
                             break;
 
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
                             cbReady.BackColor = SystemColors.Control; // Màu mặc định
                             isReady = false;
+                            lbTitleSpeed.Visible = true;
                             break;
 
                     }

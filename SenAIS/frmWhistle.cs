@@ -1,6 +1,9 @@
 ﻿using OPCAutomation;
 using System;
+using System.Configuration;
+using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,97 +12,131 @@ namespace SenAIS
 {
     public partial class frmWhistle : Form
     {
-        private Form parentForm;
-        private OPCItem opcCounterPos;
         private COMConnect comConnect;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
         private double maxSoundValue = 0;
         public decimal whistle;
+        public decimal minWhistle;
+        public decimal maxWhistle;
         private bool isReady = false;
-        public frmWhistle(Form parent, OPCItem opcCounterPos, string serialNumber)
+        private static readonly string opcWhistleCounter = ConfigurationManager.AppSettings["Whistle_Counter"];
+        public frmWhistle(string serialNumber)
         {
             InitializeComponent();
-            this.parentForm = parent;
-            this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", 300, this);
+            comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Whistle"], 300, this);
             sqlHelper = new SQLHelper();
+            LoadVehicleStandards(serialNumber);
             InitializeTimer();
         }
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
-            updateTimer.Tick += new EventHandler(UpdateReadyStatus);
+            updateTimer.Interval = 200; // Kiểm tra mỗi giây
+            updateTimer.Tick += UpdateReadyStatus;
             updateTimer.Start();
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            lbEngineNumber.Text = this.serialNumber;
-
-            // Lấy giá trị OPC
-            int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
-
-            switch (checkStatus)
+            try
             {
-                case 1: // Xe vào vị trí
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = false; // Chưa sẵn sàng lưu
-                    break;
+                lbEngineNumber.Text = this.serialNumber;
+                // Lấy giá trị OPC
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcWhistleCounter));
+                Invoke((Action)(() =>
+                {
+                    switch (checkStatus)
+                {
+                        case 0: // Mặc định
+                            cbReady.BackColor = SystemColors.Control;
+                            lbWhistle.Visible = false;
+                            lbStandard.Visible = false;
+                            lbWhistleTitle.Visible = true;
+                            isReady = false;
+                            break;
+                        case 1: // Xe vào vị trí
+                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                            lbWhistle.Visible = false;
+                            lbStandard.Visible = true;
+                            lbWhistleTitle.Visible = true;
+                            isReady = false; // Chưa sẵn sàng lưu
+                        break;
 
-                case 2: // Bắt đầu đo
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = true; // Sẵn sàng lưu sau khi đo
-                    await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    //Lấy giá trị Còi
-                    byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
-                    comConnect.SendRequest(startcommand);
+                        case 2: // Bắt đầu đo
+                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                            isReady = true; // Sẵn sàng lưu sau khi đo
+                            lbWhistleTitle.Visible = false;
+                            lbWhistle.Visible = true;
 
-                    // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                    bool isValueInStandard = sqlHelper.CheckValueAgainstStandard("Whistle", this.whistle, this.serialNumber);
+                            byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
+                            comConnect.SendRequest(startcommand);
+                            lbEnd.Text = "Bấm Còi...";
+                            lbEnd.Visible = true;
+                            // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
+                            bool isValueInStandard = this.whistle >= minWhistle && (maxWhistle == 0 || this.whistle <= maxWhistle);
 
-                    if (isValueInStandard)
-                    {
-                        lbWhistle.BackColor = SystemColors.Control;
-                        await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
-                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
-                    }
-                    else
-                    {
-                        lbWhistle.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
-                    }
-                    break;
+                            if (isValueInStandard)
+                            {
+                                lbWhistle.ForeColor = SystemColors.HotTrack;
+                            }
+                            else
+                            {
+                                lbWhistle.ForeColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                            }
+                            break;
 
-                case 3: // Quá trình đo hoàn tất, lưu vào DB
-                    cbReady.BackColor = Color.Green; // Đèn xanh
-                    if (isReady)
-                    {
-                        CheckCounterPosition(); // Ghi dữ liệu vào DB
-                        isReady = false; // Đặt lại trạng thái
+                        case 3: // Quá trình đo hoàn tất, lưu vào DB
+                            cbReady.BackColor = Color.Green; // Đèn xanh
+                            lbWhistleTitle.Visible = false;
+                            lbWhistle.Visible = true;
+                            lbEnd.Text = "Kết Thúc";
+                            if (isReady)
+                            {
+                                SaveDataToDatabase(); // Ghi dữ liệu vào DB
+                                isReady = false; // Đặt lại trạng thái
+                            }
+                            break;
+                        case 4: // Xe tiếp theo
+                            cbReady.BackColor = SystemColors.Control;
+                            lbStandard.Visible = false;
+                            lbEnd.Visible = false;
+                            lbWhistleTitle.Visible = true;
+                            this.Close();
+                            break;
 
-                        await Task.Delay(15000); // Chờ 15 giây trước khi tăng SerialNumber
+                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
+                            isReady = false;
+                            lbWhistleTitle.Visible = true;
+                            break;
+                }
+                }));
 
-                        string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
-                        if (!string.IsNullOrEmpty(nextSerialNumber))
-                        {
-                            this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                            lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không có xe tiếp theo để đo.");
-                        }
-                    }
-                    break;
-
-                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                    isReady = false;
-                    break;
             }
-
+            catch (Exception)
+            {
+            }
+        }
+        private decimal ConvertToDecimal(object value)
+        {
+            return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
+        }
+        private void LoadVehicleStandards(string serialNumber)
+        {
+            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+            if (vehicleDetails != null)
+            {
+                string vehicleType = vehicleDetails["VehicleType"].ToString();
+                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                if (vehicleStandards.Rows.Count > 0)
+                {
+                    DataRow standard = vehicleStandards.Rows[0];
+                    minWhistle = ConvertToDecimal(standard["MinWhistle"]);
+                    maxWhistle = ConvertToDecimal(standard["MaxWhistle"]);
+                }
+            }
         }
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -107,7 +144,7 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase();// Lưu dữ liệu nếu sẵn sàng
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -135,7 +172,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -160,20 +197,11 @@ namespace SenAIS
         {
             sqlHelper.SaveWhistleData(this.serialNumber, this.whistle);
         }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
-
-            if (currentPosition == 3)
-            {
-                SaveDataToDatabase();
-            }
-        }
         public void ProcessMaxSoundData(byte[] data)
         {
             try
             {
-                if (data.Length == 9 && data[0] == 0x01) // Check start and end byte
+                if (data[0] == 0x01) // Check start and end byte
                 {
                     // Xử lý và hiển thị giá trị max sound
                     string maxSoundLevel = Encoding.ASCII.GetString(data, 1, 5); // 5 bytes ASCII
@@ -205,6 +233,13 @@ namespace SenAIS
 
         private void frmWhistle_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (updateTimer != null)
+            {
+                updateTimer.Stop(); // Dừng Timer
+                updateTimer.Dispose(); // Giải phóng tài nguyên
+                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+            }
+            e.Cancel = false;
             comConnect.CloseConnection();
         }
     }

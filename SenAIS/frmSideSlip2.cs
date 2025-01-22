@@ -13,14 +13,11 @@ namespace SenAIS
         private SQLHelper sqlHelper;
         private string serialNumber;
         public decimal sideSlip;
-        private bool isReady = false;
         private decimal minSideSlip = 0;
         private decimal maxSideSlip = 0;
-        private int retryCount = 0; // Đếm số lần đo lại
-        private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
-        private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip_Result"];
-        private static readonly string opcSSSign = ConfigurationManager.AppSettings["SideSlip_Sign"];
+        private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip2_Result"];
+        private static readonly string opcSSSign = ConfigurationManager.AppSettings["SideSlip2_Sign"];
         public frmSideSlip2(string serialNumber)
         {
             InitializeComponent();
@@ -51,14 +48,11 @@ namespace SenAIS
                             cbReady.BackColor = SystemColors.Control;
                             lbSideSlip.Visible = false;
                             lbStandard.Visible = false;
-                            isReady = false;
-                            hasProcessedNextVin = false; // Reset cờ chuyển số VIN
                             break;
 
                         case 1: // Xe vào vị trí
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
                             lbSideSlip.Visible = false;
-                            isReady = false; // Chưa sẵn sàng lưu
                             lbStandard.Visible = true;
                             lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
                             break;
@@ -67,7 +61,6 @@ namespace SenAIS
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
                             lbSideSlipTitle.Visible = false;
                             lbSideSlip.Visible = true;
-                            isReady = true; // Sẵn sàng lưu sau khi đo
 
                             double alignA = 1.0;
                             alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
@@ -100,37 +93,11 @@ namespace SenAIS
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
                             lbSideSlipTitle.Visible = true;
-                            lbSideSlipTitle.Text = "Xe tiếp theo";
-                            lbSideSlipTitle.Visible = true;
                             lbStandard.Visible = false;
-                            var formBrake = new frmFrontBrake(this.serialNumber);
-                            formBrake.Show();
                             this.Close();
-                            //if (!hasProcessedNextVin)
-                            //{
-                            //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                            //    if (!string.IsNullOrEmpty(nextSerialNumber))
-                            //    {
-                            //        this.serialNumber = nextSerialNumber;
-                            //        lbVinNumber.Text = this.serialNumber;
-
-                            //        // Lấy và hiển thị tiêu chuẩn mới
-                            //        LoadVehicleStandards(this.serialNumber);
-                            //        lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
-                            //        lbStandard.Visible = true;
-                            //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                            //        this.Close();
-                            //    }
-                            //    else
-                            //    {
-                            //        MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
-                            //        break;
-                            //    }
-                            //}
                             break;
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
                             cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                            isReady = false;
                             lbStandard.Visible = false;
                             break;
                     }

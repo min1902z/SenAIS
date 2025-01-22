@@ -1,7 +1,10 @@
-﻿using System;
+﻿using OPCAutomation;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +20,12 @@ namespace SenAIS
         private decimal minSideSlip = 0;
         private decimal maxSideSlip = 0;
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
+        private readonly List<string> opcItems = new List<string>
+        {
+            opcSSCounter,
+            opcSSResult,
+            opcSSSign
+        };
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
         private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip_Result"];
         private static readonly string opcSSSign = ConfigurationManager.AppSettings["SideSlip_Sign"];
@@ -31,130 +40,140 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
-            updateTimer.Tick += new EventHandler(UpdateReadyStatus);
+            updateTimer.Interval = 200; // Kiểm tra mỗi giây
+            updateTimer.Tick += PollOPCValues;
             updateTimer.Start();
         }
-        private async void UpdateReadyStatus(object sender, EventArgs e)
+        private void PollOPCValues(object sender, EventArgs e)
+        {
+            updateTimer.Stop();
+            try
+            {
+                // Lấy tất cả giá trị OPC trong một lần
+                var values = OPCUtility.GetMultipleOPCValues(opcItems);
+
+                // Xử lý trạng thái dựa trên SideSlipCounter
+                int ssCounter = values.ContainsKey(opcSSCounter) ? (int)values[opcSSCounter] : 0;
+                UpdateReadyStatus(ssCounter, values);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in PollOPCValues: {ex.Message}");
+            }
+            finally
+            {
+                updateTimer.Start(); // Khởi động lại Timer
+            }
+        }
+        private void UpdateReadyStatus(int ssCounter, Dictionary<string, decimal> values)
         {
             try
             {
-                lbVinNumber.Text = this.serialNumber;
-                // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcSSCounter));
-                Invoke((Action)(() =>
+                Task.Run(() =>
                 {
-                    switch (checkStatus)
+                    // Tính toán giá trị cần thiết trước
+                    double alignA = 1.0;
+                    alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
+                    double sideSlipSign = values.ContainsKey(opcSSSign) ? (double)values[opcSSSign] : 0;
+                    double sideSlipResult = values.ContainsKey(opcSSResult) ? (double)values[opcSSResult] : 0;
+                    double sideSlip = sideSlipSign == 0
+                        ? sideSlipResult / alignA
+                        : -1 * (sideSlipResult / alignA);
+                    bool isValueInStandard = this.sideSlip >= minSideSlip && (maxSideSlip == 0 || this.sideSlip <= maxSideSlip);
+                    // Lấy giá trị OPC
+                    this.Invoke(new Action(() =>
                     {
-                        case 0: // Mặc định
-                            cbReady.BackColor = SystemColors.Control;
-                            lbSideSlip.Visible = false;
-                            lbStandard.Visible = false;
-                            isReady = false;
-                            hasProcessedNextVin = false; // Reset cờ chuyển số VIN
-                            break;
-
-                        case 1: // Xe vào vị trí
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            lbSideSlip.Visible = false;
-                            isReady = false; // Chưa sẵn sàng lưu
-                            lbStandard.Visible = true;
-                            lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
-                            break;
-
-                        case 2: // Bắt đầu đo
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            lbSideSlipTitle.Visible = false;
-                            lbSideSlip.Visible = true;
-                            isReady = true; // Sẵn sàng lưu sau khi đo
-
-                            double alignA = 1.0;
-                            alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
-                            double sideSlipSign = (double)OPCUtility.GetOPCValue(opcSSSign);
-                            double sideSlipResult = (double)OPCUtility.GetOPCValue(opcSSResult);
-                            double sideSlip = 0.0;
-
-                            if (sideSlipSign == 0)
-                            {
-                                sideSlip = sideSlipResult / alignA;
-                            }
-                            else if (sideSlipSign == 1)
-                            {
-                                sideSlip = -1 * (sideSlipResult / alignA);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Lỗi giá trị SideSlip_Sign. ");
-                            }
-                            lbSideSlip.Text = sideSlip.ToString("F1");
-
-                            this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
-
-                            // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                            bool isValueInStandard = this.sideSlip >= minSideSlip && (maxSideSlip == 0 || this.sideSlip <= maxSideSlip);
-
-                            if (isValueInStandard)
-                            {
-                                lbSideSlip.ForeColor = SystemColors.HotTrack;
-                            }
-                            else
-                            {
-                                lbSideSlip.ForeColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
-                            }
-                            break;
-
-                        case 3: // Quá trình đo hoàn tất, lưu vào DB
-                            cbReady.BackColor = Color.Green; // Đèn xanh
-                            lbSideSlipTitle.Visible = false;
-                            lbSideSlip.Visible = true;
-                            if (isReady)
-                            {
-                                CheckCounterPosition();
+                        lbVinNumber.Text = this.serialNumber;
+                        switch (ssCounter)
+                        {
+                            case 0: // Mặc định
+                                cbReady.BackColor = SystemColors.Control;
+                                lbSideSlip.Visible = false;
+                                lbStandard.Visible = false;
+                                lbEnd.Visible = false;
+                                lbSideSlipTitle.Visible = true;
                                 isReady = false;
-                                var formSideSlip2 = new frmSideSlip2(this.serialNumber);
-                                formSideSlip2.Show();
-                                OPCUtility.SetOPCValue(opcSSCounter, 2);
-                                this.Close();
-                            }
-                            break;
-                        case 4: // Xe tiếp theo
-                            cbReady.BackColor = SystemColors.Control;
-                            lbSideSlipTitle.Visible = true;
-                            lbSideSlipTitle.Text = "Xe tiếp theo";
-                            lbSideSlipTitle.Visible = true;
-                            lbStandard.Visible = false;
-                            if (!hasProcessedNextVin)
-                            {
-                                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                                if (!string.IsNullOrEmpty(nextSerialNumber))
-                                {
-                                    this.serialNumber = nextSerialNumber;
-                                    lbVinNumber.Text = this.serialNumber;
+                                hasProcessedNextVin = false; // Reset cờ chuyển số VIN
+                                break;
 
-                                    // Lấy và hiển thị tiêu chuẩn mới
-                                    LoadVehicleStandards(this.serialNumber);
-                                    lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
-                                    lbStandard.Visible = true;
-                                    hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                                    this.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
-                                    break;
-                                }
+                            case 1: // Xe vào vị trí
+                                cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                                lbSideSlip.Visible = false;
+                                lbEnd.Visible = false;
+                                lbSideSlipTitle.Visible = true;
+                                isReady = false; // Chưa sẵn sàng lưu
+                                lbStandard.Visible = true;
+                                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
+                                break;
 
-                            }
-                            break;
-                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                            isReady = false;
-                            lbStandard.Visible = false;
-                            break;
-                    }
-                }));
+                            case 2: // Bắt đầu đo
+                                cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                                lbSideSlipTitle.Visible = false;
+                                lbEnd.Visible = false;
+                                lbSideSlip.Visible = true;
+                                isReady = true; // Sẵn sàng lưu sau khi đo
+
+                                lbSideSlip.Text = sideSlip.ToString("F1");
+                                lbSideSlip.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                                this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
+                                break;
+
+                            case 3: // Quá trình đo hoàn tất, lưu vào DB
+                                cbReady.BackColor = Color.Green; // Đèn xanh
+                                lbSideSlipTitle.Visible = false;
+                                lbSideSlip.Visible = true;
+                                lbEnd.Visible = true;
+                                if (isReady)
+                                {
+                                    SaveDataToDatabase();
+                                    isReady = false;
+                                }
+                                break;
+                            case 4: // Xe tiếp theo
+                                cbReady.BackColor = SystemColors.Control;
+                                lbSideSlipTitle.Visible = true;
+                                lbStandard.Visible = false;
+                                if (!hasProcessedNextVin)
+                                {
+                                    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                                    if (!string.IsNullOrEmpty(nextSerialNumber))
+                                    {
+                                        this.serialNumber = nextSerialNumber;
+                                        lbVinNumber.Text = this.serialNumber;
+
+                                        // Lấy và hiển thị tiêu chuẩn mới
+                                        LoadVehicleStandards(this.serialNumber);
+                                        lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
+                                        lbStandard.Visible = true;
+                                        var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                                        if (frmMain != null)
+                                        {
+                                            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+                                            if (txtVinNumber != null)
+                                            {
+                                                txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
+                                            }
+                                        }
+                                        hasProcessedNextVin = true; // Đánh dấu đã xử lý
+                                        this.Close();
+                                    }
+                                    else
+                                    {
+                                        this.Close();
+                                    }
+
+                                }
+                                break;
+                            default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+                                cbReady.BackColor = SystemColors.Control; // Màu mặc định
+                                isReady = false;
+                                lbSideSlipTitle.Visible = true;
+                                break;
+                        }
+                    }));
+                });
             }
-            catch (Exception)
+            catch
             {
             }
         }
@@ -184,7 +203,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -212,7 +231,7 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase(); // Lưu dữ liệu nếu sẵn sàng
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -236,16 +255,6 @@ namespace SenAIS
         {
             sqlHelper.SaveSideSlipData(this.serialNumber, this.sideSlip);
         }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue(opcSSCounter);
-
-            if (currentPosition == 3)
-            {
-                SaveDataToDatabase();
-            }
-        }
-
         private void frmSideSlip_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (updateTimer != null)
@@ -254,6 +263,7 @@ namespace SenAIS
                 updateTimer.Dispose(); // Giải phóng tài nguyên
                 updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
             }
+            OPCUtility.DisconnectOPC();
             e.Cancel = false;
         }
     }

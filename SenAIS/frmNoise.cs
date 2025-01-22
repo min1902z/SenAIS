@@ -1,5 +1,6 @@
 ﻿using OPCAutomation;
 using System;
+using System.Configuration;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,21 +10,19 @@ namespace SenAIS
 {
     public partial class frmNoise : Form
     {
-        private Form parentForm;
-        private OPCItem opcCounterPos;
         private COMConnect comConnect;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
         public decimal noiseValue = 0;
         private bool isReady = false;
-        public frmNoise(Form parent, OPCItem opcCounterPos, string serialNumber)
+        private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
+        private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Noise_Counter"];
+        public frmNoise(string serialNumber)
         {
             InitializeComponent();
-            this.parentForm = parent;
-            this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
-            comConnect = new COMConnect("COM7", 300, this);
+            comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Noise"], 300, this);
             sqlHelper = new SQLHelper();
             InitializeTimer();
         }
@@ -73,7 +72,7 @@ namespace SenAIS
                     cbReady.BackColor = Color.Green; // Đèn xanh
                     if (isReady)
                     {
-                        CheckCounterPosition(); // Ghi dữ liệu vào DB
+                        SaveDataToDatabase(); // Ghi dữ liệu vào DB
                         isReady = false; // Đặt lại trạng thái
 
                         await Task.Delay(15000); // Chờ 15 giây trước khi tăng SerialNumber
@@ -101,11 +100,6 @@ namespace SenAIS
         {
             try
             {
-                // Lưu dữ liệu hiện tại
-                if (isReady)
-                {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
-                }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(previousSerialNumber))
@@ -130,11 +124,6 @@ namespace SenAIS
         {
             try
             {
-                if (isReady)
-                {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
-                }
-
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
@@ -155,15 +144,6 @@ namespace SenAIS
         private void SaveDataToDatabase()
         {
             sqlHelper.SaveNoiseData(this.serialNumber, this.noiseValue);
-        }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
-
-            if (currentPosition == 3)
-            {
-                SaveDataToDatabase();
-            }
         }
         public void ProcessNoiseData(byte[] data)
         {

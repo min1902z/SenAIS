@@ -19,7 +19,6 @@ namespace SenAIS
         private bool isReady = false;
         private decimal minSumBrake = 0;
         private decimal maxDiffBrake = 0;
-        private int retryCount = 0; // Đếm số lần đo lại
         private static readonly string opcBrakeCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
         private static readonly string opcLBrakeResult = ConfigurationManager.AppSettings["Front_LBrake_Result"];
         private static readonly string opcRBrakeRResult = ConfigurationManager.AppSettings["Front_RBrake_Result"];
@@ -34,7 +33,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 500; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -44,14 +43,14 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                //int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcBrakeCounter));
-                int checkStatus = (int)OPCUtility.GetOPCValue(opcBrakeCounter);
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcBrakeCounter));
                 Invoke((Action)(async () =>
                 {
                     switch (checkStatus)
                     {
                         case 0: // Mặc định
                             cbReady.BackColor = SystemColors.Control;
+                            cbBrake.BackColor = SystemColors.Control;
                             lbLeft_Brake.Text = "0.0";
                             lbRight_Brake.Text = "0.0";
                             lbDiff_Brake.Text = "0.0";
@@ -75,17 +74,19 @@ namespace SenAIS
                             lbBrakeTitle.Visible = false;
                             tbLeft.Visible = true;
                             tbRight.Visible = true;
+                            cbBrake.BackColor = Color.Red;
                             await HandleMeasurement(); // Đo và xử lý dữ liệu
                             break;
 
                         case 3: // Quá trình đo hoàn tất, lưu vào DB
                             cbReady.BackColor = Color.Green; // Đèn xanh
+                            cbBrake.BackColor = SystemColors.Control;
                             lbBrakeTitle.Visible = false;
                             tbLeft.Visible = true;
                             tbRight.Visible = true;
                             if (isReady)
                             {
-                                CheckCounterPosition(); // Lưu dữ liệu
+                                SaveDataToDatabase(); // Lưu dữ liệu
                                 isReady = false;
                             }
                             break;
@@ -106,7 +107,7 @@ namespace SenAIS
                     }
                 }));
             }
-            catch (Exception)
+            catch
             {
             }
         }
@@ -187,7 +188,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -215,7 +216,7 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase(); // Lưu dữ liệu nếu sẵn sàng
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -235,18 +236,12 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-        private void SaveDataToDatabase()
+        private async void SaveDataToDatabase()
         {
-            sqlHelper.SaveFrontBrakeData(this.serialNumber, this.frontLeftBrake, this.frontRightBrake);
-        }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue(opcBrakeCounter);
-
-            if (currentPosition == 3)
+            await Task.Run(() =>
             {
-                SaveDataToDatabase();
-            }
+                sqlHelper.SaveFrontBrakeData(this.serialNumber, this.frontLeftBrake, this.frontRightBrake);
+            });
         }
         private void frmFrontBrake_FormClosing(object sender, FormClosingEventArgs e)
         {

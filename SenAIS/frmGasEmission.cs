@@ -12,7 +12,6 @@ namespace SenAIS
     {
         private SQLHelper sqlHelper;
         private COMConnect comConnect;
-        private bool isReady = false;
         private decimal hcValue;
         private decimal coValue;
         private decimal co2Value;
@@ -20,6 +19,7 @@ namespace SenAIS
         private decimal noValue;
         private decimal oilTemp;
         private decimal rpm;
+        private decimal lamda;
         private decimal maxHC;
         private decimal maxCO;
         private string serialNumber;
@@ -40,29 +40,28 @@ namespace SenAIS
             try
             {
                 // Trạng thái 1: Hiển thị tiêu đề và chờ 2 giây
-                UpdateTitle("Khi Xả - Động Cơ Xăng");
-                await Task.Delay(2000, cancellationToken);
+                UpdateTitle("Khí Xả - Động Cơ Xăng");
+                await Task.Delay(3000, cancellationToken);
 
                 // Trạng thái 2: Chờ 30 giây chuẩn bị đầu dò
-                UpdateTitle("Trang bị đầu dò");
+                UpdateTitle("Trang bị đầu dò ...");
                 await Task.Delay(30000, cancellationToken);
 
                 // Trạng thái 3: Hiển thị thông báo bắt đầu đo, gửi request đo
                 UpdateTitle("Ấn KMeas để bắt đầu");
-                cbReady.BackColor = Color.Green;
                 await Task.Delay(5000, cancellationToken);
+                lbEmissionTitle.Visible = false;
                 tbGasEmission.Visible = true; // Hiển thị bảng đo
+                tbEmission2.Visible = true;
                 byte[] request = { 0x03 }; // Lệnh gửi đo
                 comConnect.SendRequest(request);
 
                 // Dừng cập nhật và lưu kết quả
-                hasMeasured = true;
-                SaveDataToDatabase(); // Lưu DB
-                UpdateTitle("Kết Thúc");
-
-                // Trạng thái 4: Kết thúc, chờ 2 giây trước khi reset
-                await Task.Delay(2000, cancellationToken);
-                ResetToDefault(); // Đặt lại mặc định
+                await Task.Delay(10000, cancellationToken);
+               if(hasMeasured == true)
+                {
+                    SaveDataToDatabase(); // Lưu DB
+                }
             }
             catch (TaskCanceledException)
             {
@@ -75,9 +74,8 @@ namespace SenAIS
         }
         private void ResetToDefault()
         {
-            cbReady.BackColor = SystemColors.Control;
-            tbGasEmission.Visible = false; // Ẩn bảng đo
-            UpdateTitle("Khi Xả - Động Cơ Xăng");
+            tbGasEmission.Visible = false;
+            tbEmission2.Visible = false;
             lbHCValue.Text = "0.0";
             lbCOValue.Text = "0.0";
             lbCO2Value.Text = "0.0";
@@ -85,7 +83,6 @@ namespace SenAIS
             lbNOValue.Text = "0.0";
             lbOTValue.Text = "0.0";
             lbRPMValue.Text = "0.0";
-            isReady = false; // Đặt trạng thái không sẵn sàng
             hasMeasured = false; // Đặt lại cờ đã đo
         }
         private void UpdateTitle(string title)
@@ -134,7 +131,7 @@ namespace SenAIS
         }
         public void ProcessNHA506Data(byte[] data)
         {
-            if (data.Length == 21 && data[0] == 0x06)
+            if (data[0] == 0x06)
             {
                 // Lưu lại dữ liệu cuối cùng
                 lastReceivedData = data;
@@ -145,10 +142,11 @@ namespace SenAIS
                 double? co2Value = ConvertToDouble(data[5], data[6], 100);
                 double? o2Value = ConvertToDouble(data[7], data[8], 100);
                 double? noValue = ConvertToDouble(data[9], data[10], 100);
-                double? otValue = ConvertToDouble(data[11], data[12], 1); // Không chia scale
-                double? rpmValue = ConvertToDouble(data[13], data[14], 1); // Không chia scale
+                double? otValue = ConvertToDouble(data[13], data[14], 1); // Không chia scale
+                double? rpmValue = ConvertToDouble(data[11], data[12], 1); // Không chia scale
+                double? lamdaValue = ConvertToDouble(data[15], data[16], 100); 
 
-                this.Invoke(new Action(() =>
+                this.Invoke(new Action(async () =>
                 {
                     // Cập nhật giá trị mới chỉ khi giá trị không phải là null (không phải giá trị lỗi)
                     if (hcValue != null)
@@ -165,12 +163,28 @@ namespace SenAIS
                         SetOilTempValue(otValue.ToString());
                     if (rpmValue != null)
                         SetRPMValue(rpmValue.ToString());
+                    if (lamdaValue != null)
+                        SetLamdaValue(lamdaValue.Value.ToString("F3"));
                     // Kiểm tra tiêu chuẩn và đổi màu
                     bool isHCInStandard = maxHC == 0 || this.hcValue <= maxHC;
                     bool isCOInStandard = maxCO == 0 || this.coValue <= maxCO;
 
-                    lbHCValue.BackColor = isHCInStandard ? SystemColors.HotTrack : Color.DarkRed;
-                    lbCOValue.BackColor = isCOInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                    lbHCValue.ForeColor = isHCInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                    lbCOValue.ForeColor = isCOInStandard ? SystemColors.HotTrack : Color.DarkRed;
+
+                    if (isHCInStandard && isCOInStandard)
+                    {
+                        await Task.Delay(2000);
+                        hasMeasured = true; // Đạt tiêu chuẩn, gán cờ hoàn tất đo
+                        cbPass.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        // Gửi lại lệnh đo nếu chưa đạt tiêu chuẩn
+                        cbPass.BackColor = Color.Red;
+                        byte[] measureCommand = { 0x03 }; // Lệnh đo (tùy chỉnh theo giao thức của bạn)
+                        comConnect.SendRequest(measureCommand);
+                    }
                 }));
             }
             else if (data.Length == 0)
@@ -196,7 +210,7 @@ namespace SenAIS
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    isReady = false; // Đặt lại trạng thái
+                    hasMeasured = false; // Đặt lại trạng thái
                 }
                 else
                 {
@@ -218,7 +232,7 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    isReady = false; // Đặt lại trạng thái
+                    hasMeasured = false; // Đặt lại trạng thái
                 }
                 else
                 {
@@ -286,6 +300,14 @@ namespace SenAIS
             }
             this.rpm = Convert.ToDecimal(value);
         }
+        public void SetLamdaValue(string value)
+        {
+            if (lbLamdaValue.Text != value)
+            {
+                lbLamdaValue.Text = value;
+            }
+            this.lamda = Convert.ToDecimal(value);
+        }
 
         private void frmGasEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -311,6 +333,19 @@ namespace SenAIS
             {
                 cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
             }
+        }
+
+        private async void btnReMeasure_Click(object sender, EventArgs e)
+        {
+            ResetToDefault();
+            cts = new CancellationTokenSource();
+            await StartEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            comConnect.CloseConnection();
+            this.Close();
         }
     }
 
