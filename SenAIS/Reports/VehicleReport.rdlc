@@ -14,6 +14,21 @@
               </Border>
             </Style>
           </Line>
+          <Image Name="Logo3">
+            <Source>Embedded</Source>
+            <Value>logodaehan2</Value>
+            <Sizing>Fit</Sizing>
+            <Top>0.3125in</Top>
+            <Left>0.6782in</Left>
+            <Height>0.36459in</Height>
+            <Width>0.66257in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
           <Textbox Name="txtCompany3">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -21,49 +36,37 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Công ty CP Sentek</Value>
+                    <Value>Công ty TNHH Daehan Motors</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <Top>0.00694in</Top>
-            <Left>0.11334in</Left>
+            <Left>0.09772in</Left>
             <Height>0.25in</Height>
-            <Width>1.63542in</Width>
-            <ZIndex>1</ZIndex>
+            <Width>1.99131in</Width>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Image Name="Logo3">
-            <Source>Embedded</Source>
-            <Value>sentek</Value>
-            <Sizing>Fit</Sizing>
-            <Top>0.27083in</Top>
-            <Left>0.51786in</Left>
-            <Height>0.46528in</Height>
-            <Width>0.625in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
           <Line Name="Line26">
-            <Left>1.89459in</Left>
+            <Left>2.14459in</Left>
             <Height>0.76389in</Height>
             <Width>0in</Width>
             <ZIndex>3</ZIndex>
@@ -74,7 +77,7 @@
             </Style>
           </Line>
           <Line Name="Line27">
-            <Left>5.92584in</Left>
+            <Left>6.30084in</Left>
             <Height>0.76389in</Height>
             <Width>0in</Width>
             <ZIndex>4</ZIndex>
@@ -104,7 +107,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>0.125in</Top>
-            <Left>2.0873in</Left>
+            <Left>2.4623in</Left>
             <Height>0.40972in</Height>
             <Width>3.66667in</Width>
             <ZIndex>5</ZIndex>
@@ -125,7 +128,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ST.19 - TT 02/KQKT</Value>
+                    <Value>=Fields!PublishSeri.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -133,9 +136,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Left>6.05084in</Left>
+            <Left>6.37028in</Left>
             <Height>0.25in</Height>
-            <Width>1.86458in</Width>
+            <Width>1.93229in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -154,7 +157,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Lần ban hành: 01</Value>
+                    <Value>=Fields!PublishVer.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -163,9 +166,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.26389in</Top>
-            <Left>6.05084in</Left>
+            <Left>6.37028in</Left>
             <Height>0.25in</Height>
-            <Width>1.86458in</Width>
+            <Width>1.93229in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -184,7 +187,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Ngày ban hành: 29/08/2024</Value>
+                    <Value>=Fields!PublishDate.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -193,9 +196,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.51389in</Top>
-            <Left>6.05084in</Left>
+            <Left>6.37028in</Left>
             <Height>0.25in</Height>
-            <Width>1.86458in</Width>
+            <Width>1.93229in</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -238,7 +241,7 @@
             <Top>0.74653in</Top>
             <Left>0.10293in</Left>
             <Height>0.25in</Height>
-            <Width>1.08681in</Width>
+            <Width>1.03125in</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -270,7 +273,7 @@
             <Top>1.00521in</Top>
             <Left>0.10292in</Left>
             <Height>0.25in</Height>
-            <Width>1.09723in</Width>
+            <Width>1.04167in</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -300,7 +303,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.74653in</Top>
-            <Left>1.25918in</Left>
+            <Left>1.13418in</Left>
             <Height>0.25in</Height>
             <Width>1.78472in</Width>
             <ZIndex>12</ZIndex>
@@ -332,7 +335,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>1.00521in</Top>
-            <Left>1.26959in</Left>
+            <Left>1.14459in</Left>
             <Height>0.25in</Height>
             <Width>1.78472in</Width>
             <ZIndex>13</ZIndex>
@@ -364,7 +367,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>0.74653in</Top>
-            <Left>3.09771in</Left>
+            <Left>2.97271in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>14</ZIndex>
@@ -396,7 +399,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>1.00521in</Top>
-            <Left>3.09771in</Left>
+            <Left>2.97271in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>15</ZIndex>
@@ -428,7 +431,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.74653in</Top>
-            <Left>3.94841in</Left>
+            <Left>3.82341in</Left>
             <Height>0.25in</Height>
             <Width>2.10243in</Width>
             <ZIndex>16</ZIndex>
@@ -460,7 +463,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>1.00521in</Top>
-            <Left>3.94841in</Left>
+            <Left>3.82341in</Left>
             <Height>0.25in</Height>
             <Width>2.10243in</Width>
             <ZIndex>17</ZIndex>
@@ -481,7 +484,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Kết quả cân trọng lượng</Value>
+                    <Value>Kết quả cân trọng lượng (kg)</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -494,7 +497,7 @@
             <Top>1.30035in</Top>
             <Left>0.11334in</Left>
             <Height>0.25in</Height>
-            <Width>1.78125in</Width>
+            <Width>2.04166in</Width>
             <ZIndex>18</ZIndex>
             <Style>
               <Border>
@@ -1026,7 +1029,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>2.47049in</Top>
+            <Top>2.42882in</Top>
             <Left>0.09772in</Left>
             <Height>0.25in</Height>
             <Width>1.98264in</Width>
@@ -1056,8 +1059,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.78439in</Top>
-            <Left>1.69112in</Left>
+            <Top>2.7066in</Top>
+            <Left>1.69945in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>37</ZIndex>
@@ -1086,7 +1089,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.77257in</Top>
+            <Top>2.72049in</Top>
             <Left>2.59424in</Left>
             <Height>0.25in</Height>
             <Width>1.73016in</Width>
@@ -1118,7 +1121,7 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>2.41493in</Top>
             <Left>2.09424in</Left>
-            <Height>0.27778in</Height>
+            <Height>0.25in</Height>
             <Width>0.38541in</Width>
             <ZIndex>39</ZIndex>
             <Style>
@@ -1151,7 +1154,7 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>2.42882in</Top>
             <Left>2.5584in</Left>
-            <Height>0.20834in</Height>
+            <Height>0.20625in</Height>
             <Width>0.2174in</Width>
             <ZIndex>40</ZIndex>
             <Style>
@@ -1244,8 +1247,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.06217in</Top>
-            <Left>1.69112in</Left>
+            <Top>3.01215in</Top>
+            <Left>1.69945in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>43</ZIndex>
@@ -1336,7 +1339,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.31772in</Top>
+            <Top>3.30034in</Top>
             <Left>1.69945in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
@@ -1366,9 +1369,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.03646in</Top>
-            <Left>2.59424in</Left>
-            <Height>0.25in</Height>
+            <Top>3.01215in</Top>
+            <Left>2.5675in</Left>
+            <Height>0.24652in</Height>
             <Width>0.85416in</Width>
             <ZIndex>47</ZIndex>
             <Style>
@@ -1396,9 +1399,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.03646in</Top>
+            <Top>3.01215in</Top>
             <Left>3.44754in</Left>
-            <Height>0.25in</Height>
+            <Height>0.26041in</Height>
             <Width>0.85416in</Width>
             <ZIndex>48</ZIndex>
             <Style>
@@ -1428,8 +1431,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.27813in</Top>
-            <Left>2.60257in</Left>
+            <Top>3.30034in</Top>
+            <Left>2.59424in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>49</ZIndex>
@@ -1460,7 +1463,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.29202in</Top>
+            <Top>3.30035in</Top>
             <Left>3.45587in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
@@ -1493,7 +1496,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Kết quả kiểm tra phanh</Value>
+                    <Value>Kết quả kiểm tra phanh (N)</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1568,8 +1571,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.64757in</Top>
             <Left>5.57341in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.24342in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>54</ZIndex>
             <Style>
               <Border>
@@ -1631,8 +1634,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.64757in</Top>
             <Left>7.06299in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.24342in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>56</ZIndex>
             <Style>
               <Border>
@@ -1662,7 +1665,7 @@
             <Top>4.19965in</Top>
             <Left>0.10292in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>1.09723in</Width>
             <ZIndex>57</ZIndex>
             <Style>
               <Border>
@@ -1692,7 +1695,7 @@
             <Top>4.5191in</Top>
             <Left>0.10292in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>1.09723in</Width>
             <ZIndex>58</ZIndex>
             <Style>
               <Border>
@@ -1722,7 +1725,7 @@
             <Top>3.88021in</Top>
             <Left>0.10292in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>1.09723in</Width>
             <ZIndex>59</ZIndex>
             <Style>
               <Border>
@@ -1752,7 +1755,7 @@
             <Top>4.83854in</Top>
             <Left>0.10292in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>1.09723in</Width>
             <ZIndex>60</ZIndex>
             <Style>
               <Border>
@@ -1780,7 +1783,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.88021in</Top>
-            <Left>1.80779in</Left>
+            <Left>1.30779in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>61</ZIndex>
@@ -1812,7 +1815,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.19132in</Top>
-            <Left>1.81612in</Left>
+            <Left>1.31612in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>62</ZIndex>
@@ -1844,7 +1847,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.5191in</Top>
-            <Left>1.81612in</Left>
+            <Left>1.31612in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>63</ZIndex>
@@ -1876,7 +1879,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.83854in</Top>
-            <Left>1.81612in</Left>
+            <Left>1.31612in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>64</ZIndex>
@@ -1906,7 +1909,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.88021in</Top>
-            <Left>2.80605in</Left>
+            <Left>2.18105in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>65</ZIndex>
@@ -1938,7 +1941,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.19965in</Top>
-            <Left>2.80605in</Left>
+            <Left>2.18105in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>66</ZIndex>
@@ -1970,7 +1973,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.5191in</Top>
-            <Left>2.80605in</Left>
+            <Left>2.18105in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>67</ZIndex>
@@ -2002,7 +2005,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.83854in</Top>
-            <Left>2.81438in</Left>
+            <Left>2.18938in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>68</ZIndex>
@@ -2023,7 +2026,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Sai lệch</Value>
+                    <Value>Sai lệch (%)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2032,7 +2035,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.88021in</Top>
-            <Left>3.7748in</Left>
+            <Left>3.1498in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>69</ZIndex>
@@ -2064,7 +2067,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.19965in</Top>
-            <Left>3.7748in</Left>
+            <Left>3.1498in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>70</ZIndex>
@@ -2096,7 +2099,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.5191in</Top>
-            <Left>3.7748in</Left>
+            <Left>3.1498in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>71</ZIndex>
@@ -2128,7 +2131,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.83854in</Top>
-            <Left>3.7748in</Left>
+            <Left>3.1498in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>72</ZIndex>
@@ -2149,7 +2152,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tiêu chuẩn</Value>
+                    <Value>Tiêu chuẩn (%)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2158,9 +2161,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.88021in</Top>
-            <Left>4.69841in</Left>
+            <Left>4.07341in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.97396in</Width>
             <ZIndex>73</ZIndex>
             <Style>
               <Border>
@@ -2190,9 +2193,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.19965in</Top>
-            <Left>4.69841in</Left>
+            <Left>4.30713in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.74024in</Width>
             <ZIndex>74</ZIndex>
             <Style>
               <Border>
@@ -2222,9 +2225,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.5191in</Top>
-            <Left>4.69841in</Left>
+            <Left>4.30713in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.74024in</Width>
             <ZIndex>75</ZIndex>
             <Style>
               <Border>
@@ -2254,9 +2257,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.83854in</Top>
-            <Left>4.69841in</Left>
+            <Left>4.30713in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.74024in</Width>
             <ZIndex>76</ZIndex>
             <Style>
               <Border>
@@ -2275,7 +2278,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tổng</Value>
+                    <Value>Tổng (N)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2284,7 +2287,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.88021in</Top>
-            <Left>5.72793in</Left>
+            <Left>5.10293in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>77</ZIndex>
@@ -2316,7 +2319,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.19965in</Top>
-            <Left>5.72793in</Left>
+            <Left>5.10293in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>78</ZIndex>
@@ -2348,7 +2351,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.5191in</Top>
-            <Left>5.72793in</Left>
+            <Left>5.10293in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>79</ZIndex>
@@ -2380,7 +2383,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.83854in</Top>
-            <Left>5.72793in</Left>
+            <Left>5.10293in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>80</ZIndex>
@@ -2401,7 +2404,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tiêu chuẩn</Value>
+                    <Value>Tiêu chuẩn (N)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2410,9 +2413,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.88021in</Top>
-            <Left>6.83209in</Left>
+            <Left>5.95709in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.95658in</Width>
             <ZIndex>81</ZIndex>
             <Style>
               <Border>
@@ -2442,9 +2445,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.19965in</Top>
-            <Left>6.82376in</Left>
+            <Left>5.94876in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.95658in</Width>
             <ZIndex>82</ZIndex>
             <Style>
               <Border>
@@ -2474,9 +2477,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.5191in</Top>
-            <Left>6.82376in</Left>
+            <Left>5.94876in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.95658in</Width>
             <ZIndex>83</ZIndex>
             <Style>
               <Border>
@@ -2506,9 +2509,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>4.83854in</Top>
-            <Left>6.82376in</Left>
+            <Left>5.94876in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.95658in</Width>
             <ZIndex>84</ZIndex>
             <Style>
               <Border>
@@ -2549,7 +2552,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>2.44271in</Top>
-            <Left>4.43551in</Left>
+            <Left>4.44552in</Left>
             <Height>0.25in</Height>
             <Width>1.65043in</Width>
             <ZIndex>86</ZIndex>
@@ -2578,8 +2581,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.69271in</Top>
-            <Left>4.49366in</Left>
+            <Top>3.01215in</Top>
+            <Left>4.45667in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>87</ZIndex>
@@ -2644,7 +2647,7 @@
             <Top>2.43091in</Top>
             <Left>6.60412in</Left>
             <Height>0.20625in</Height>
-            <Width>0.23128in</Width>
+            <Width>0.2174in</Width>
             <ZIndex>89</ZIndex>
             <Style>
               <Border>
@@ -2707,7 +2710,7 @@
             <Top>2.43091in</Top>
             <Left>8.05723in</Left>
             <Height>0.20625in</Height>
-            <Width>0.23128in</Width>
+            <Width>0.2174in</Width>
             <ZIndex>91</ZIndex>
             <Style>
               <Border>
@@ -2734,8 +2737,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.69271in</Top>
-            <Left>6.1128in</Left>
+            <Top>3.01215in</Top>
+            <Left>6.04199in</Left>
             <Height>0.25in</Height>
             <Width>2.20176in</Width>
             <ZIndex>92</ZIndex>
@@ -2765,8 +2768,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.96216in</Top>
-            <Left>4.49366in</Left>
+            <Top>3.2934in</Top>
+            <Left>4.46328in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>93</ZIndex>
@@ -2797,10 +2800,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.96216in</Top>
-            <Left>6.11281in</Left>
+            <Top>3.30382in</Top>
+            <Left>6.04861in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.74045in</Width>
             <ZIndex>94</ZIndex>
             <Style>
               <Border>
@@ -2862,7 +2865,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>HC</Value>
+                    <Value>HC (ppm)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2870,8 +2873,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.35243in</Top>
-            <Left>2.29649in</Left>
+            <Top>6.38021in</Top>
+            <Left>1.07654in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>97</ZIndex>
@@ -2892,7 +2895,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tốc độ động cơ</Value>
+                    <Value>Tốc độ động cơ (rpm)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -2900,10 +2903,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.35243in</Top>
-            <Left>5.09423in</Left>
+            <Top>6.38021in</Top>
+            <Left>5.60293in</Left>
             <Height>0.25in</Height>
-            <Width>1.06422in</Width>
+            <Width>1.51389in</Width>
             <ZIndex>98</ZIndex>
             <Style>
               <Border>
@@ -2965,8 +2968,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>6.04688in</Top>
             <Left>5.59597in</Left>
-            <Height>0.19097in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>100</ZIndex>
             <Style>
               <Border>
@@ -3028,8 +3031,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>6.04688in</Top>
             <Left>7.07513in</Left>
-            <Height>0.19097in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>102</ZIndex>
             <Style>
               <Border>
@@ -3058,8 +3061,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.63577in</Top>
-            <Left>2.29649in</Left>
+            <Top>6.67743in</Top>
+            <Left>1.07654in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>103</ZIndex>
@@ -3091,7 +3094,7 @@
             <Top>6.6441in</Top>
             <Left>0.10291in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>0.85418in</Width>
             <ZIndex>104</ZIndex>
             <Style>
               <Border>
@@ -3121,7 +3124,7 @@
             <Top>6.92187in</Top>
             <Left>0.10291in</Left>
             <Height>0.25in</Height>
-            <Width>1.61458in</Width>
+            <Width>0.85418in</Width>
             <ZIndex>105</ZIndex>
             <Style>
               <Border>
@@ -3150,8 +3153,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.91354in</Top>
-            <Left>2.29649in</Left>
+            <Top>6.94132in</Top>
+            <Left>1.07654in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>106</ZIndex>
@@ -3182,10 +3185,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.65798in</Top>
-            <Left>5.11679in</Left>
+            <Top>6.67743in</Top>
+            <Left>5.63763in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>1.28384in</Width>
             <ZIndex>107</ZIndex>
             <Style>
               <Border>
@@ -3214,10 +3217,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.63021in</Top>
-            <Left>6.57253in</Left>
+            <Top>6.67743in</Top>
+            <Left>7.18627in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.60415in</Width>
             <ZIndex>108</ZIndex>
             <Style>
               <Border>
@@ -3236,7 +3239,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>CO</Value>
+                    <Value>CO (%)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -3244,10 +3247,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.35243in</Top>
-            <Left>3.49526in</Left>
+            <Top>6.38021in</Top>
+            <Left>2.00014in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.75309in</Width>
             <ZIndex>109</ZIndex>
             <Style>
               <Border>
@@ -3276,10 +3279,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.64965in</Top>
-            <Left>3.49526in</Left>
+            <Top>6.67743in</Top>
+            <Left>2.00014in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.75309in</Width>
             <ZIndex>110</ZIndex>
             <Style>
               <Border>
@@ -3308,10 +3311,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.91354in</Top>
-            <Left>3.49526in</Left>
+            <Top>6.94132in</Top>
+            <Left>2.00014in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.75309in</Width>
             <ZIndex>111</ZIndex>
             <Style>
               <Border>
@@ -3338,10 +3341,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>6.35243in</Top>
-            <Left>6.57253in</Left>
+            <Top>6.38019in</Top>
+            <Left>7.18627in</Left>
             <Height>0.25in</Height>
-            <Width>1.06422in</Width>
+            <Width>0.9396in</Width>
             <ZIndex>112</ZIndex>
             <Style>
               <Border>
@@ -3444,10 +3447,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>7.22743in</Top>
+            <Top>7.24132in</Top>
             <Left>5.5584in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>116</ZIndex>
             <Style>
               <Border>
@@ -3507,10 +3510,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>7.22743in</Top>
-            <Left>7.04799in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.23128in</Width>
+            <Top>7.24132in</Top>
+            <Left>7.03758in</Left>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>118</ZIndex>
             <Style>
               <Border>
@@ -3533,11 +3536,13 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>7.75174in</Top>
+            <Top>7.73785in</Top>
             <Left>0.09833in</Left>
             <Height>0.25in</Height>
             <Width>0.55667in</Width>
@@ -3563,7 +3568,9 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -3619,7 +3626,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tốc độ động cơ min</Value>
+                    <Value>Tốc độ động cơ min (rpm)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -3630,7 +3637,7 @@
             <Top>7.47396in</Top>
             <Left>0.8032in</Left>
             <Height>0.25in</Height>
-            <Width>1.34721in</Width>
+            <Width>1.67645in</Width>
             <ZIndex>122</ZIndex>
             <Style>
               <Border>
@@ -3713,7 +3720,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tốc độ động cơ max</Value>
+                    <Value>Tốc độ động cơ max (rpm)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -3722,9 +3729,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.47396in</Top>
-            <Left>2.2965in</Left>
+            <Left>2.6715in</Left>
             <Height>0.25in</Height>
-            <Width>1.35912in</Width>
+            <Width>1.72234in</Width>
             <ZIndex>125</ZIndex>
             <Style>
               <Border>
@@ -3754,7 +3761,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.75174in</Top>
-            <Left>2.2965in</Left>
+            <Left>2.6715in</Left>
             <Height>0.25in</Height>
             <Width>1.35912in</Width>
             <ZIndex>126</ZIndex>
@@ -3786,7 +3793,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.01563in</Top>
-            <Left>2.2965in</Left>
+            <Left>2.6715in</Left>
             <Height>0.25in</Height>
             <Width>1.35912in</Width>
             <ZIndex>127</ZIndex>
@@ -3807,7 +3814,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Độ khói</Value>
+                    <Value>Độ khói (%HSU)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -3816,9 +3823,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.47396in</Top>
-            <Left>3.77021in</Left>
+            <Left>4.52021in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>1.07576in</Width>
             <ZIndex>128</ZIndex>
             <Style>
               <Border>
@@ -3848,7 +3855,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.75174in</Top>
-            <Left>3.77021in</Left>
+            <Left>4.52021in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>129</ZIndex>
@@ -3880,7 +3887,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.01563in</Top>
-            <Left>3.77021in</Left>
+            <Left>4.52021in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>130</ZIndex>
@@ -3910,7 +3917,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.47396in</Top>
-            <Left>4.69382in</Left>
+            <Left>5.69382in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>131</ZIndex>
@@ -3942,7 +3949,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.75174in</Top>
-            <Left>4.69382in</Left>
+            <Left>5.69382in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>132</ZIndex>
@@ -3974,7 +3981,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.01563in</Top>
-            <Left>4.69382in</Left>
+            <Left>5.69382in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>133</ZIndex>
@@ -4004,7 +4011,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.47396in</Top>
-            <Left>5.72334in</Left>
+            <Left>6.72334in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>134</ZIndex>
@@ -4036,7 +4043,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.75174in</Top>
-            <Left>5.72334in</Left>
+            <Left>6.72334in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>135</ZIndex>
@@ -4068,7 +4075,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.01563in</Top>
-            <Left>5.72334in</Left>
+            <Left>6.72334in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>136</ZIndex>
@@ -4093,7 +4100,9 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -4162,7 +4171,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.2934in</Top>
-            <Left>2.2965in</Left>
+            <Left>2.6715in</Left>
             <Height>0.25in</Height>
             <Width>1.35912in</Width>
             <ZIndex>139</ZIndex>
@@ -4194,7 +4203,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.2934in</Top>
-            <Left>3.77021in</Left>
+            <Left>4.52021in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>140</ZIndex>
@@ -4226,7 +4235,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.2934in</Top>
-            <Left>4.69382in</Left>
+            <Left>5.69382in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>141</ZIndex>
@@ -4258,7 +4267,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.2934in</Top>
-            <Left>5.72334in</Left>
+            <Left>6.72334in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>142</ZIndex>
@@ -4303,7 +4312,7 @@
             <Top>8.58507in</Top>
             <Left>0.09833in</Left>
             <Height>0.25in</Height>
-            <Width>2.29166in</Width>
+            <Width>2.31054in</Width>
             <ZIndex>144</ZIndex>
             <Style>
               <Border>
@@ -4365,8 +4374,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.60937in</Top>
             <Left>5.54799in</Left>
-            <Height>0.19097in</Height>
-            <Width>0.24169in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>146</ZIndex>
             <Style>
               <Border>
@@ -4426,10 +4435,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.59548in</Top>
+            <Top>8.60798in</Top>
             <Left>7.03758in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.24169in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>148</ZIndex>
             <Style>
               <Border>
@@ -4448,7 +4457,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Cường độ</Value>
+                    <Value>Cường độ (kcd)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -4478,7 +4487,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Độ lệch trên dưới</Value>
+                    <Value>Độ lệch trên dưới (%)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -4489,7 +4498,7 @@
             <Top>9.36979in</Top>
             <Left>0.09833in</Left>
             <Height>0.25in</Height>
-            <Width>1.24244in</Width>
+            <Width>1.39931in</Width>
             <ZIndex>150</ZIndex>
             <Style>
               <Border>
@@ -4517,7 +4526,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.82812in</Top>
-            <Left>1.4282in</Left>
+            <Left>1.5532in</Left>
             <Height>0.25in</Height>
             <Width>1.72742in</Width>
             <ZIndex>151</ZIndex>
@@ -4549,7 +4558,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09548in</Top>
-            <Left>1.4282in</Left>
+            <Left>1.5532in</Left>
             <Height>0.25in</Height>
             <Width>0.72221in</Width>
             <ZIndex>152</ZIndex>
@@ -4581,7 +4590,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>1.4282in</Left>
+            <Left>1.5532in</Left>
             <Height>0.25in</Height>
             <Width>0.72221in</Width>
             <ZIndex>153</ZIndex>
@@ -4611,7 +4620,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.82812in</Top>
-            <Left>3.1715in</Left>
+            <Left>3.2965in</Left>
             <Height>0.25in</Height>
             <Width>0.76125in</Width>
             <ZIndex>154</ZIndex>
@@ -4643,7 +4652,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.1059in</Top>
-            <Left>3.1715in</Left>
+            <Left>3.2965in</Left>
             <Height>0.25in</Height>
             <Width>1.07132in</Width>
             <ZIndex>155</ZIndex>
@@ -4675,7 +4684,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36146in</Top>
-            <Left>3.1715in</Left>
+            <Left>3.2965in</Left>
             <Height>0.25in</Height>
             <Width>0.45461in</Width>
             <ZIndex>156</ZIndex>
@@ -4852,7 +4861,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Độ lệch trái phải</Value>
+                    <Value>Độ lệch trái phải (%)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -4861,9 +4870,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>0.09833in</Left>
+            <Left>0.09772in</Left>
             <Height>0.25in</Height>
-            <Width>1.24244in</Width>
+            <Width>1.39992in</Width>
             <ZIndex>162</ZIndex>
             <Style>
               <Border>
@@ -4893,7 +4902,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>1.4282in</Left>
+            <Left>1.5532in</Left>
             <Height>0.25in</Height>
             <Width>0.72221in</Width>
             <ZIndex>163</ZIndex>
@@ -4925,7 +4934,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.63923in</Top>
-            <Left>3.1715in</Left>
+            <Left>3.2965in</Left>
             <Height>0.25in</Height>
             <Width>0.45461in</Width>
             <ZIndex>164</ZIndex>
@@ -5000,7 +5009,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09548in</Top>
-            <Left>2.43105in</Left>
+            <Left>2.55605in</Left>
             <Height>0.25in</Height>
             <Width>0.67101in</Width>
             <ZIndex>167</ZIndex>
@@ -5032,7 +5041,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>2.43105in</Left>
+            <Left>2.55605in</Left>
             <Height>0.25in</Height>
             <Width>0.67101in</Width>
             <ZIndex>168</ZIndex>
@@ -5064,7 +5073,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>2.43105in</Left>
+            <Left>2.55605in</Left>
             <Height>0.25in</Height>
             <Width>0.67101in</Width>
             <ZIndex>169</ZIndex>
@@ -5094,7 +5103,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09201in</Top>
-            <Left>2.26091in</Left>
+            <Left>2.38591in</Left>
             <Height>0.25in</Height>
             <Width>0.15103in</Width>
             <ZIndex>170</ZIndex>
@@ -5124,7 +5133,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36632in</Top>
-            <Left>2.26091in</Left>
+            <Left>2.38591in</Left>
             <Height>0.25in</Height>
             <Width>0.15103in</Width>
             <ZIndex>171</ZIndex>
@@ -5154,7 +5163,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64409in</Top>
-            <Left>2.26091in</Left>
+            <Left>2.38591in</Left>
             <Height>0.25in</Height>
             <Width>0.15103in</Width>
             <ZIndex>172</ZIndex>
@@ -5437,8 +5446,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.94617in</Top>
             <Left>2.17759in</Left>
-            <Height>0.20485in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>181</ZIndex>
             <Style>
               <Border>
@@ -5500,8 +5509,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.94617in</Top>
             <Left>3.66718in</Left>
-            <Height>0.20485in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>183</ZIndex>
             <Style>
               <Border>
@@ -5520,7 +5529,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Giá trị đo</Value>
+                    <Value>Giá trị đo (dB(A))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -5531,7 +5540,7 @@
             <Top>10.21005in</Top>
             <Left>0.10293in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>1.16666in</Width>
             <ZIndex>184</ZIndex>
             <Style>
               <Border>
@@ -5550,7 +5559,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tiêu chuẩn</Value>
+                    <Value>Tiêu chuẩn (dB(A))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -5561,7 +5570,7 @@
             <Top>10.21005in</Top>
             <Left>1.77567in</Left>
             <Height>0.25in</Height>
-            <Width>0.85417in</Width>
+            <Width>1.26823in</Width>
             <ZIndex>185</ZIndex>
             <Style>
               <Border>
@@ -5623,7 +5632,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.48783in</Top>
-            <Left>1.77568in</Left>
+            <Left>2.02568in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>187</ZIndex>
@@ -5719,8 +5728,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.94617in</Top>
             <Left>6.405in</Left>
-            <Height>0.20485in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>190</ZIndex>
             <Style>
               <Border>
@@ -5782,8 +5791,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.94617in</Top>
             <Left>7.89459in</Left>
-            <Height>0.20485in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>192</ZIndex>
             <Style>
               <Border>
@@ -5802,7 +5811,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Giá trị đo</Value>
+                    <Value>Giá trị đo (dB(A))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -5813,7 +5822,7 @@
             <Top>10.1788in</Top>
             <Left>4.31993in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>1.15513in</Width>
             <ZIndex>193</ZIndex>
             <Style>
               <Border>
@@ -5832,7 +5841,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tiêu chuẩn</Value>
+                    <Value>Tiêu chuẩn (dB(A))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -5843,7 +5852,7 @@
             <Top>10.1788in</Top>
             <Left>5.99267in</Left>
             <Height>0.25in</Height>
-            <Width>0.87238in</Width>
+            <Width>1.5113in</Width>
             <ZIndex>194</ZIndex>
             <Style>
               <Border>
@@ -6024,8 +6033,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.7795in</Top>
             <Left>2.52195in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>201</ZIndex>
             <Style>
               <Border>
@@ -6087,8 +6096,8 @@
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.7795in</Top>
             <Left>4.01154in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.23128in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>203</ZIndex>
             <Style>
               <Border>
@@ -6107,7 +6116,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Người kiểm tra</Value>
+                    <Value>Kiểm tra viên</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6125,7 +6134,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.73436in</Top>
-            <Left>6.55084in</Left>
+            <Left>6.67584in</Left>
             <Height>0.38542in</Height>
             <Width>1.36458in</Width>
             <ZIndex>204</ZIndex>
@@ -6246,7 +6255,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>9.12326in</Top>
+            <Top>9.37326in</Top>
             <Left>7.44841in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
@@ -6279,7 +6288,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36146in</Top>
-            <Left>3.84972in</Left>
+            <Left>3.97472in</Left>
             <Height>0.25in</Height>
             <Width>0.48581in</Width>
             <ZIndex>209</ZIndex>
@@ -6311,7 +6320,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64061in</Top>
-            <Left>3.86361in</Left>
+            <Left>3.98861in</Left>
             <Height>0.25in</Height>
             <Width>0.48581in</Width>
             <ZIndex>210</ZIndex>
@@ -6341,7 +6350,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.37326in</Top>
-            <Left>3.66778in</Left>
+            <Left>3.79278in</Left>
             <Height>0.25in</Height>
             <Width>0.18194in</Width>
             <ZIndex>211</ZIndex>
@@ -6371,7 +6380,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>3.65389in</Left>
+            <Left>3.77889in</Left>
             <Height>0.25in</Height>
             <Width>0.16805in</Width>
             <ZIndex>212</ZIndex>
@@ -6588,9 +6597,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.97049in</Top>
-            <Left>6.99475in</Left>
-            <Height>0.25in</Height>
+            <Top>3.30382in</Top>
+            <Left>6.80555in</Left>
+            <Height>0.26041in</Height>
             <Width>0.16806in</Width>
             <ZIndex>219</ZIndex>
             <Style>
@@ -6620,10 +6629,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.96216in</Top>
-            <Left>7.20447in</Left>
+            <Top>3.30382in</Top>
+            <Left>7.01527in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.77515in</Width>
             <ZIndex>220</ZIndex>
             <Style>
               <Border>
@@ -6704,8 +6713,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Người phụ trách</Value>
-                    <Style />
+                    <Value>Cty TNHH Daehan Motors</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -6713,9 +6725,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.73436in</Top>
-            <Left>4.82341in</Left>
+            <Left>4.52021in</Left>
             <Height>0.25in</Height>
-            <Width>1.36458in</Width>
+            <Width>1.97801in</Width>
             <ZIndex>223</ZIndex>
             <Style>
               <Border>
@@ -6734,7 +6746,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!Inspector.Value</Value>
+                    <Value>....., ngày ..., tháng ..., năm 20...</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6744,10 +6756,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>11.01214in</Top>
-            <Left>4.82341in</Left>
-            <Height>0.25in</Height>
-            <Width>1.36458in</Width>
+            <Top>10.99825in</Top>
+            <Left>4.45667in</Left>
+            <Height>0.23611in</Height>
+            <Width>2.15912in</Width>
             <ZIndex>224</ZIndex>
             <Style>
               <Border>
@@ -6810,7 +6822,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Lái trái</Value>
+                    <Value>Lái trái (°)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6818,7 +6830,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>5.4302in</Top>
+            <Top>5.42187in</Top>
             <Left>0.11334in</Left>
             <Height>0.25in</Height>
             <Width>1.61458in</Width>
@@ -6840,7 +6852,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Lái phải</Value>
+                    <Value>Lái phải (°)</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -7193,10 +7205,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>5.1441in</Top>
+            <Top>5.15798in</Top>
             <Left>5.56882in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.22087in</Width>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>239</ZIndex>
             <Style>
               <Border>
@@ -7256,10 +7268,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>5.1441in</Top>
-            <Left>7.0584in</Left>
-            <Height>0.20486in</Height>
-            <Width>0.22087in</Width>
+            <Top>5.15798in</Top>
+            <Left>7.06299in</Left>
+            <Height>0.20625in</Height>
+            <Width>0.2174in</Width>
             <ZIndex>241</ZIndex>
             <Style>
               <Border>
@@ -7289,7 +7301,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>0.74653in</Top>
-            <Left>6.1064in</Left>
+            <Left>5.9814in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>242</ZIndex>
@@ -7321,7 +7333,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.74653in</Top>
-            <Left>6.9571in</Left>
+            <Left>6.8321in</Left>
             <Height>0.25in</Height>
             <Width>1.03733in</Width>
             <ZIndex>243</ZIndex>
@@ -7335,11 +7347,743 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox601">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Màu:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>1.01042in</Top>
+            <Left>5.98781in</Left>
+            <Height>0.25in</Height>
+            <Width>0.81116in</Width>
+            <ZIndex>244</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox602">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!Color.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox11</rd:DefaultName>
+            <Top>1.01042in</Top>
+            <Left>6.8321in</Left>
+            <Height>0.25in</Height>
+            <Width>1.03733in</Width>
+            <ZIndex>245</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox603">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>(m/Km)</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>2.7066in</Top>
+            <Left>0.09772in</Left>
+            <Height>0.25in</Height>
+            <Width>1.52396in</Width>
+            <ZIndex>246</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox604">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>(Km/h)</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>2.7066in</Top>
+            <Left>4.44552in</Left>
+            <Height>0.25in</Height>
+            <Width>0.87192in</Width>
+            <ZIndex>247</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox605">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.67743in</Top>
+            <Left>4.93213in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>248</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox606">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>λ</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.38021in</Top>
+            <Left>4.93213in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>249</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox607">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>NO (%)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.38021in</Top>
+            <Left>4.19493in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>250</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox608">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!NO.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.67743in</Top>
+            <Left>4.19493in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>251</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox609">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>O₂ </Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>(%)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.38021in</Top>
+            <Left>3.47161in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>252</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox610">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!O2.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.67743in</Top>
+            <Left>3.47161in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>253</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox611">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>CO₂ </Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>(%)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.38021in</Top>
+            <Left>2.76895in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>254</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox612">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!CO2.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.67743in</Top>
+            <Left>2.76895in</Left>
+            <Height>0.25in</Height>
+            <Width>0.67772in</Width>
+            <ZIndex>255</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox613">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>(℃)</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>6.67743in</Top>
+            <Left>7.87464in</Left>
+            <Height>0.25in</Height>
+            <Width>0.29078in</Width>
+            <ZIndex>256</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox614">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>(cm)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.1059in</Top>
+            <Left>7.44841in</Left>
+            <Height>0.25in</Height>
+            <Width>0.85416in</Width>
+            <ZIndex>257</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox615">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Số Km xe đã chạy: ___ km.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>11.30798in</Top>
+            <Left>0.09772in</Left>
+            <Height>0.25in</Height>
+            <Width>1.92188in</Width>
+            <ZIndex>258</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox616">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>≤</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>4.19965in</Top>
+            <Left>4.07959in</Left>
+            <Height>0.25in</Height>
+            <Width>0.16806in</Width>
+            <ZIndex>259</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox617">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>≤</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>4.5191in</Top>
+            <Left>4.07959in</Left>
+            <Height>0.25in</Height>
+            <Width>0.16806in</Width>
+            <ZIndex>260</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox618">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>≤</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>4.83854in</Top>
+            <Left>4.06963in</Left>
+            <Height>0.25in</Height>
+            <Width>0.16806in</Width>
+            <ZIndex>261</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox619">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>≤</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>10.5052in</Top>
+            <Left>1.77567in</Left>
+            <Height>0.25in</Height>
+            <Width>0.16806in</Width>
+            <ZIndex>262</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox620">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Tổng lực phanh chính</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>3.88021in</Top>
+            <Left>7.00708in</Left>
+            <Height>0.25in</Height>
+            <Width>1.39793in</Width>
+            <ZIndex>263</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox621">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>4.19965in</Top>
+            <Left>7.13208in</Left>
+            <Height>0.25in</Height>
+            <Width>1.01755in</Width>
+            <ZIndex>264</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox622">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!FrontSumBrake.Value + Fields!RearSumBrake.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>4.5191in</Top>
+            <Left>7.13208in</Left>
+            <Height>0.25in</Height>
+            <Width>1.01755in</Width>
+            <ZIndex>265</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox623">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>4.83854in</Top>
+            <Left>7.13208in</Left>
+            <Height>0.25in</Height>
+            <Width>1.01755in</Width>
+            <ZIndex>266</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>0.03855in</Top>
-        <Left>0.06996in</Left>
-        <Height>11.5847in</Height>
+        <Left>0.19496in</Left>
+        <Height>11.56387in</Height>
         <Width>8.43278in</Width>
         <Style>
           <Border>
@@ -7349,14 +8093,14 @@
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>11.76527in</Height>
+    <Height>11.63366in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
     </Style>
   </Body>
-  <Width>8.63591in</Width>
+  <Width>8.66716in</Width>
   <Page>
     <PageHeight>11.8in</PageHeight>
     <PageWidth>8.8in</PageWidth>
@@ -7798,6 +8542,26 @@
           <DataField>Fuel</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EngineType">
+          <DataField>EngineType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PublishDate">
+          <DataField>PublishDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PublishVer">
+          <DataField>PublishVer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PublishSeri">
+          <DataField>PublishSeri</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>VehicleDataSet</rd:DataSetName>
@@ -7838,6 +8602,37 @@ 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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logodaehan">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logodaehan1">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logodaehan2">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>

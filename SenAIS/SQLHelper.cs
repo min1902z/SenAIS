@@ -84,18 +84,18 @@ namespace SenAIS
             // Trả về giá trị mặc định nếu không có kết quả hoặc không thể chuyển đổi
             return defaultValue;
         }
-        public void SaveGasEmissionData(string serialNumber, decimal hcValue, decimal coValue, decimal co2Value, decimal o2Value, decimal noValue, decimal oilTemp, decimal rpm)
+        public void SaveGasEmissionData(string serialNumber, decimal hcValue, decimal coValue, decimal co2Value, decimal o2Value, decimal noValue, decimal oilTemp, decimal rpm, decimal lamda)
         {
             string query = @"IF EXISTS (SELECT 1 FROM GasEmission_Petrol WHERE SerialNumber = @SerialNumber)
                          BEGIN
                              UPDATE GasEmission_Petrol 
-                             SET HC = @HC, CO = @CO, CO2 = @CO2, O2 = @O2, NO = @NO, OilTemp = @OilTemp, RPM = @RPM 
+                             SET HC = @HC, CO = @CO, CO2 = @CO2, O2 = @O2, NO = @NO, OilTemp = @OilTemp, RPM = @RPM , Lambda = @Lambda
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
                          BEGIN
-                             INSERT INTO GasEmission_Petrol (SerialNumber, HC, CO, CO2, O2, NO, OilTemp, RPM)
-                             VALUES (@SerialNumber, @HC, @CO, @CO2, @O2, @NO, @OilTemp, @RPM)
+                             INSERT INTO GasEmission_Petrol (SerialNumber, HC, CO, CO2, O2, NO, OilTemp, RPM, Lambda)
+                             VALUES (@SerialNumber, @HC, @CO, @CO2, @O2, @NO, @OilTemp, @RPM, @Lambda)
                          END";
             var parameters = new[]
             {
@@ -106,6 +106,7 @@ namespace SenAIS
             new SqlParameter("@NO", noValue),
             new SqlParameter("@OilTemp", oilTemp),
             new SqlParameter("@RPM", rpm),
+            new SqlParameter("@Lambda", lamda),
             new SqlParameter("@SerialNumber", serialNumber)
         };
 
@@ -569,7 +570,7 @@ namespace SenAIS
         public DataTable SearchVehicleInfo(string searchTerm)
         {
             string query = @"
-            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel
+            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel, Color, EngineType
             FROM VehicleInfo 
             WHERE 
                 SerialNumber LIKE @SearchTerm OR
@@ -577,7 +578,9 @@ namespace SenAIS
                 VehicleType LIKE @SearchTerm OR
                 Inspector LIKE @SearchTerm OR
                 InspectionDate LIKE @SearchTerm OR
-                Fuel LIKE @SearchTerm";
+                Fuel LIKE @SearchTerm OR
+                Color LIKE @SearchTerm OR
+                EngineType LIKE @SearchTerm";
 
             var parameters = new[]
             {
@@ -596,6 +599,8 @@ namespace SenAIS
                             vi.Inspector,
                             vi.InspectionDate,
                             vi.Fuel,
+                            vi.Color,
+                            vi.EngineType,
                             sp.Speed,
                             ss.SideSlip,
 	                        we.FrontLeftWeight,

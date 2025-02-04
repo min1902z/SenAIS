@@ -96,17 +96,36 @@ namespace SenAIS
                     // Xử lý gói dữ liệu trả về từ HY114 (nếu có)
                     if (activeForm is frmNoise)
                     {
-                        if (dataBuffer.Count > 0 && dataBuffer[0] == 0x06)
+                    while (dataBuffer.Count > 0)
+                    {
+                        int startIndex = dataBuffer.FindIndex(b => b == 0x01);
+
+                        if (startIndex == -1)
                         {
-                            dataBuffer.RemoveAt(0);
+                            dataBuffer.Clear(); // Nếu không tìm thấy 0x01, xóa toàn bộ buffer
+                            break;
                         }
-                        if (dataBuffer.Count >= 9 && dataBuffer[0] == 0x01)
+
+                        if (dataBuffer.Count >= startIndex + 6) // Đảm bảo đủ 6 byte dữ liệu
                         {
-                            byte[] completeData = dataBuffer.Take(9).ToArray();
-                            ((frmNoise)activeForm).ProcessNoiseData(completeData);
-                            dataBuffer.RemoveRange(0, 9);
+                            byte[] soundData = dataBuffer.Skip(startIndex).Take(6).ToArray();
+
+                            // Xử lý dữ liệu âm thanh
+                            ((frmNoise)activeForm).ProcessNoiseData(soundData);
+
+                            // Xóa dữ liệu đã xử lý khỏi buffer
+                            dataBuffer.RemoveRange(0, startIndex + 6);
+
+                            // Gửi request 0xB8 ngay sau khi xử lý xong dữ liệu
+                            byte[] startCommand = { 0xB8 };
+                            SendRequest(startCommand);
+                        }
+                        else
+                        {
+                            break; // Nếu không đủ dữ liệu, thoát vòng lặp
                         }
                     }
+                }
                     if (activeForm is frmWhistle)
                     {
                     while (dataBuffer.Count > 0)
@@ -127,6 +146,9 @@ namespace SenAIS
 
                             // Xóa các byte đã xử lý khỏi buffer
                             dataBuffer.RemoveRange(0, startIndex + 6);
+                            // Gửi request 0xB8 ngay sau khi xử lý xong dữ liệu
+                            byte[] startCommand = { 0xB8 };
+                            SendRequest(startCommand);
                         }
                         else
                         {
@@ -134,16 +156,6 @@ namespace SenAIS
                             break;
                         }
                     }
-                    //if (dataBuffer.Count > 0 && dataBuffer[0] == 0x06)
-                    //{
-                    //    dataBuffer.RemoveAt(0);
-                    //}
-                    //if (dataBuffer.Count >= 9 && dataBuffer[0] == 0x01)
-                    //{
-                    //    byte[] completeData = dataBuffer.Take(9).ToArray();
-                    //    ((frmWhistle)activeForm).ProcessMaxSoundData(completeData);
-                    //    dataBuffer.RemoveRange(0, 9);
-                    //}
                 }
                     if (activeForm is frmHeadlights)
                     {

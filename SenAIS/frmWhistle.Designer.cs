@@ -58,21 +58,18 @@
             this.WhistlePanel.Controls.Add(this.lbWhistleTitle);
             this.WhistlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WhistlePanel.Location = new System.Drawing.Point(0, 0);
-            this.WhistlePanel.Margin = new System.Windows.Forms.Padding(4);
             this.WhistlePanel.Name = "WhistlePanel";
-            this.WhistlePanel.Size = new System.Drawing.Size(1924, 1055);
+            this.WhistlePanel.Size = new System.Drawing.Size(1443, 857);
             this.WhistlePanel.TabIndex = 0;
             // 
             // lbEnd
             // 
             this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbEnd.AutoSize = true;
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEnd.Location = new System.Drawing.Point(657, 133);
-            this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbEnd.Location = new System.Drawing.Point(37, 108);
             this.lbEnd.Name = "lbEnd";
-            this.lbEnd.Size = new System.Drawing.Size(549, 164);
+            this.lbEnd.Size = new System.Drawing.Size(1361, 131);
             this.lbEnd.TabIndex = 58;
             this.lbEnd.Text = "Kết Thúc";
             this.lbEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -84,9 +81,10 @@
             this.lbStandard.AutoSize = true;
             this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandard.Location = new System.Drawing.Point(713, 945);
+            this.lbStandard.Location = new System.Drawing.Point(535, 768);
+            this.lbStandard.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbStandard.Name = "lbStandard";
-            this.lbStandard.Size = new System.Drawing.Size(239, 97);
+            this.lbStandard.Size = new System.Drawing.Size(189, 78);
             this.lbStandard.TabIndex = 56;
             this.lbStandard.Text = "--  -  --";
             // 
@@ -96,9 +94,10 @@
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandardTitle.Location = new System.Drawing.Point(209, 950);
+            this.lbStandardTitle.Location = new System.Drawing.Point(157, 772);
+            this.lbStandardTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbStandardTitle.Name = "lbStandardTitle";
-            this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
+            this.lbStandardTitle.Size = new System.Drawing.Size(361, 78);
             this.lbStandardTitle.TabIndex = 55;
             this.lbStandardTitle.Text = "Tiêu Chuẩn: ";
             // 
@@ -107,10 +106,9 @@
             this.lbEngineNumber.AutoSize = true;
             this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEngineNumber.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbEngineNumber.Location = new System.Drawing.Point(172, -19);
-            this.lbEngineNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbEngineNumber.Location = new System.Drawing.Point(129, -15);
             this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(417, 163);
+            this.lbEngineNumber.Size = new System.Drawing.Size(334, 131);
             this.lbEngineNumber.TabIndex = 49;
             this.lbEngineNumber.Text = "Số Vin";
             // 
@@ -123,10 +121,9 @@
             this.cbReady.Checked = true;
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
-            this.cbReady.Location = new System.Drawing.Point(16, 15);
-            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
+            this.cbReady.Location = new System.Drawing.Point(12, 12);
             this.cbReady.Name = "cbReady";
-            this.cbReady.Size = new System.Drawing.Size(148, 108);
+            this.cbReady.Size = new System.Drawing.Size(111, 88);
             this.cbReady.TabIndex = 44;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
@@ -135,10 +132,10 @@
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1797, 996);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNext.Location = new System.Drawing.Point(1348, 809);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(115, 46);
+            this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 29;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -149,10 +146,10 @@
             this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(12, 996);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPre.Location = new System.Drawing.Point(9, 809);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(115, 46);
+            this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 28;
             this.btnPre.Text = "Quay Lại";
             this.btnPre.UseVisualStyleBackColor = true;
@@ -164,9 +161,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(1453, 867);
+            this.label2.Location = new System.Drawing.Point(1090, 704);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 204);
+            this.label2.Size = new System.Drawing.Size(215, 163);
             this.label2.TabIndex = 27;
             this.label2.Text = "dB";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -178,10 +176,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbWhistle.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistle.Location = new System.Drawing.Point(52, 172);
+            this.lbWhistle.Location = new System.Drawing.Point(39, 140);
             this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
             this.lbWhistle.Name = "lbWhistle";
-            this.lbWhistle.Size = new System.Drawing.Size(1802, 695);
+            this.lbWhistle.Size = new System.Drawing.Size(1359, 565);
             this.lbWhistle.TabIndex = 26;
             this.lbWhistle.Text = "0.0";
             this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -190,26 +188,25 @@
             // lbWhistleTitle
             // 
             this.lbWhistleTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbWhistleTitle.AutoSize = true;
             this.lbWhistleTitle.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistleTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistleTitle.Location = new System.Drawing.Point(444, 419);
+            this.lbWhistleTitle.Location = new System.Drawing.Point(12, 281);
+            this.lbWhistleTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbWhistleTitle.Name = "lbWhistleTitle";
-            this.lbWhistleTitle.Size = new System.Drawing.Size(937, 163);
+            this.lbWhistleTitle.Size = new System.Drawing.Size(1420, 243);
             this.lbWhistleTitle.TabIndex = 25;
             this.lbWhistleTitle.Text = "ÂM LƯỢNG CÒI";
-            this.lbWhistleTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbWhistleTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmWhistle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.WhistlePanel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmWhistle";
             this.ShowIcon = false;
             this.Text = "Âm Lượng Còi";

@@ -485,6 +485,16 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnFuel;
             
+            private global::System.Data.DataColumn columnColor;
+            
+            private global::System.Data.DataColumn columnEngineType;
+            
+            private global::System.Data.DataColumn columnPublishDate;
+            
+            private global::System.Data.DataColumn columnPublishVer;
+            
+            private global::System.Data.DataColumn columnPublishSeri;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1344,6 +1354,46 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ColorColumn {
+                get {
+                    return this.columnColor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn EngineTypeColumn {
+                get {
+                    return this.columnEngineType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PublishDateColumn {
+                get {
+                    return this.columnPublishDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PublishVerColumn {
+                get {
+                    return this.columnPublishVer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PublishSeriColumn {
+                get {
+                    return this.columnPublishSeri;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1482,7 +1532,12 @@ namespace SenAIS {
                         string MinLeftSteer, 
                         string MinRightSteer, 
                         string SteerAngleResult, 
-                        string Fuel) {
+                        string Fuel, 
+                        string Color, 
+                        string EngineType, 
+                        string PublishDate, 
+                        string PublishVer, 
+                        string PublishSeri) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1587,7 +1642,12 @@ namespace SenAIS {
                         MinLeftSteer,
                         MinRightSteer,
                         SteerAngleResult,
-                        Fuel};
+                        Fuel,
+                        Color,
+                        EngineType,
+                        PublishDate,
+                        PublishVer,
+                        PublishSeri};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -1713,6 +1773,11 @@ namespace SenAIS {
                 this.columnMinRightSteer = base.Columns["MinRightSteer"];
                 this.columnSteerAngleResult = base.Columns["SteerAngleResult"];
                 this.columnFuel = base.Columns["Fuel"];
+                this.columnColor = base.Columns["Color"];
+                this.columnEngineType = base.Columns["EngineType"];
+                this.columnPublishDate = base.Columns["PublishDate"];
+                this.columnPublishVer = base.Columns["PublishVer"];
+                this.columnPublishSeri = base.Columns["PublishSeri"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1924,6 +1989,16 @@ namespace SenAIS {
                 base.Columns.Add(this.columnSteerAngleResult);
                 this.columnFuel = new global::System.Data.DataColumn("Fuel", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFuel);
+                this.columnColor = new global::System.Data.DataColumn("Color", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColor);
+                this.columnEngineType = new global::System.Data.DataColumn("EngineType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEngineType);
+                this.columnPublishDate = new global::System.Data.DataColumn("PublishDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPublishDate);
+                this.columnPublishVer = new global::System.Data.DataColumn("PublishVer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPublishVer);
+                this.columnPublishSeri = new global::System.Data.DataColumn("PublishSeri", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPublishSeri);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3714,6 +3789,86 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Color {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.ColorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Color\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.ColorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string EngineType {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.EngineTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EngineType\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.EngineTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PublishDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.PublishDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PublishDate\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.PublishDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PublishVer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.PublishVerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PublishVer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.PublishVerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PublishSeri {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.PublishSeriColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PublishSeri\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.PublishSeriColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -4946,6 +5101,66 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFuelNull() {
                 this[this.tableVehicleReportData.FuelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsColorNull() {
+                return this.IsNull(this.tableVehicleReportData.ColorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetColorNull() {
+                this[this.tableVehicleReportData.ColorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsEngineTypeNull() {
+                return this.IsNull(this.tableVehicleReportData.EngineTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetEngineTypeNull() {
+                this[this.tableVehicleReportData.EngineTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPublishDateNull() {
+                return this.IsNull(this.tableVehicleReportData.PublishDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPublishDateNull() {
+                this[this.tableVehicleReportData.PublishDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPublishVerNull() {
+                return this.IsNull(this.tableVehicleReportData.PublishVerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPublishVerNull() {
+                this[this.tableVehicleReportData.PublishVerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPublishSeriNull() {
+                return this.IsNull(this.tableVehicleReportData.PublishSeriColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPublishSeriNull() {
+                this[this.tableVehicleReportData.PublishSeriColumn] = global::System.Convert.DBNull;
             }
         }
         

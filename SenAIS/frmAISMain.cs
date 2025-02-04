@@ -263,5 +263,9 @@ namespace SenAIS
             OpenChildForm(calibrationForm);
             calibrationForm.SetOPCItem(calibRSteer);
         }
+
+        internal class VehicleDataSet : global::SenAIS.VehicleDataSet
+        {
+        }
     }
 }

@@ -532,7 +532,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="tableLayoutPanel6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 29</value>
+    <value>22, 25</value>
   </data>
   <data name="tableLayoutPanel6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -598,10 +598,10 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="SteerAnglePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 693</value>
+    <value>11, 700</value>
   </data>
   <data name="SteerAnglePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>378, 136</value>
+    <value>378, 129</value>
   </data>
   <data name="SteerAnglePanel.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1213,7 +1213,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLLBHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 48</value>
+    <value>492, 28</value>
   </data>
   <data name="txtLLBHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1243,7 +1243,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLLBIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 48</value>
+    <value>150, 28</value>
   </data>
   <data name="txtLLBIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1276,25 +1276,25 @@
     <value>True</value>
   </data>
   <data name="label39.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 15.75pt</value>
   </data>
   <data name="label39.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
-    <value>378, 0</value>
+    <value>337, 0</value>
   </data>
   <data name="label39.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 46</value>
+    <value>151, 26</value>
   </data>
   <data name="label39.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="label39.Text" xml:space="preserve">
-    <value>L. Trên/Dưới (cm/dam)</value>
+    <value>L. Trên/Dưới (%)</value>
   </data>
   <data name="&gt;&gt;label39.Name" xml:space="preserve">
     <value>label39</value>
@@ -1312,7 +1312,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRLBIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 85</value>
+    <value>150, 65</value>
   </data>
   <data name="txtRLBIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1348,7 +1348,7 @@
     <value>NoControl</value>
   </data>
   <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 83</value>
+    <value>2, 63</value>
   </data>
   <data name="label40.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1384,7 +1384,7 @@
     <value>NoControl</value>
   </data>
   <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 46</value>
+    <value>2, 26</value>
   </data>
   <data name="label41.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1417,25 +1417,25 @@
     <value>True</value>
   </data>
   <data name="label42.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 15.75pt</value>
   </data>
   <data name="label42.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 0</value>
+    <value>173, 0</value>
   </data>
   <data name="label42.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label42.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 23</value>
+    <value>144, 26</value>
   </data>
   <data name="label42.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="label42.Text" xml:space="preserve">
-    <value>Cường độ (100xcd)</value>
+    <value>Cường độ (kcd)</value>
   </data>
   <data name="&gt;&gt;label42.Name" xml:space="preserve">
     <value>label42</value>
@@ -1453,7 +1453,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLLBVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 48</value>
+    <value>321, 28</value>
   </data>
   <data name="txtLLBVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1483,7 +1483,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRLBVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 85</value>
+    <value>321, 65</value>
   </data>
   <data name="txtRLBVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1516,25 +1516,25 @@
     <value>True</value>
   </data>
   <data name="label43.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 15.75pt</value>
   </data>
   <data name="label43.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
-    <value>560, 0</value>
+    <value>520, 0</value>
   </data>
   <data name="label43.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label43.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 46</value>
+    <value>139, 26</value>
   </data>
   <data name="label43.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="label43.Text" xml:space="preserve">
-    <value>L. Trái/Phải (cm/dam)</value>
+    <value>L. Trái/Phải (%)</value>
   </data>
   <data name="&gt;&gt;label43.Name" xml:space="preserve">
     <value>label43</value>
@@ -1552,7 +1552,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRLBHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 85</value>
+    <value>492, 65</value>
   </data>
   <data name="txtRLBHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1678,25 +1678,25 @@
     <value>True</value>
   </data>
   <data name="label33.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 15.75pt</value>
   </data>
   <data name="label33.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>378, 0</value>
+    <value>337, 0</value>
   </data>
   <data name="label33.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 46</value>
+    <value>151, 26</value>
   </data>
   <data name="label33.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="label33.Text" xml:space="preserve">
-    <value>L. Trên/Dưới (cm/dam)</value>
+    <value>L. Trên/Dưới (%)</value>
   </data>
   <data name="&gt;&gt;label33.Name" xml:space="preserve">
     <value>label33</value>
@@ -1714,7 +1714,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRHLIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 85</value>
+    <value>150, 65</value>
   </data>
   <data name="txtRHLIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1750,7 +1750,7 @@
     <value>NoControl</value>
   </data>
   <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 83</value>
+    <value>2, 63</value>
   </data>
   <data name="label34.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1786,7 +1786,7 @@
     <value>NoControl</value>
   </data>
   <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 46</value>
+    <value>2, 26</value>
   </data>
   <data name="label35.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1819,25 +1819,25 @@
     <value>True</value>
   </data>
   <data name="label36.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 15.75pt</value>
   </data>
   <data name="label36.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 0</value>
+    <value>173, 0</value>
   </data>
   <data name="label36.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 23</value>
+    <value>144, 26</value>
   </data>
   <data name="label36.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="label36.Text" xml:space="preserve">
-    <value>Cường độ (100xcd)</value>
+    <value>Cường độ (kcd)</value>
   </data>
   <data name="&gt;&gt;label36.Name" xml:space="preserve">
     <value>label36</value>
@@ -1855,7 +1855,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLHLVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 48</value>
+    <value>321, 28</value>
   </data>
   <data name="txtLHLVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1888,25 +1888,25 @@
     <value>True</value>
   </data>
   <data name="label37.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 15.75pt</value>
   </data>
   <data name="label37.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
-    <value>560, 0</value>
+    <value>520, 0</value>
   </data>
   <data name="label37.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 46</value>
+    <value>139, 26</value>
   </data>
   <data name="label37.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="label37.Text" xml:space="preserve">
-    <value>L. Trái/Phải (cm/dam)</value>
+    <value>L. Trái/Phải (%)</value>
   </data>
   <data name="&gt;&gt;label37.Name" xml:space="preserve">
     <value>label37</value>
@@ -1924,7 +1924,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLHLHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 48</value>
+    <value>492, 28</value>
   </data>
   <data name="txtLHLHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1954,7 +1954,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRHLHorizontal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 85</value>
+    <value>492, 65</value>
   </data>
   <data name="txtRHLHorizontal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1984,7 +1984,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtLHLIntensity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 48</value>
+    <value>150, 28</value>
   </data>
   <data name="txtLHLIntensity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -2014,7 +2014,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="txtRHLVertical.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 85</value>
+    <value>321, 65</value>
   </data>
   <data name="txtRHLVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -3312,6 +3312,72 @@
   <data name="tbEmissionPetrol.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="txtLamda.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 14.25pt</value>
+  </data>
+  <data name="txtLamda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 247</value>
+  </data>
+  <data name="txtLamda.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="txtLamda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 31</value>
+  </data>
+  <data name="txtLamda.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="txtLamda.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtLamda.Name" xml:space="preserve">
+    <value>txtLamda</value>
+  </data>
+  <data name="&gt;&gt;txtLamda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtLamda.Parent" xml:space="preserve">
+    <value>tbEmissionPetrol</value>
+  </data>
+  <data name="&gt;&gt;txtLamda.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label55.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label55.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 14.25pt</value>
+  </data>
+  <data name="label55.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 245</value>
+  </data>
+  <data name="label55.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 23</value>
+  </data>
+  <data name="label55.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>λ</value>
+  </data>
+  <data name="&gt;&gt;label55.Name" xml:space="preserve">
+    <value>label55</value>
+  </data>
+  <data name="&gt;&gt;label55.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label55.Parent" xml:space="preserve">
+    <value>tbEmissionPetrol</value>
+  </data>
+  <data name="&gt;&gt;label55.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3346,7 +3412,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label17.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3382,7 +3448,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="txtOT.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3412,13 +3478,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtOT.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label13.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3430,7 +3496,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 26</value>
+    <value>46, 23</value>
   </data>
   <data name="label13.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3448,7 +3514,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="txtRPM.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3478,13 +3544,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtRPM.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3496,7 +3562,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 26</value>
+    <value>75, 23</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -3514,7 +3580,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3550,7 +3616,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3586,7 +3652,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="txtCO.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3616,13 +3682,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtCO.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3634,7 +3700,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 26</value>
+    <value>32, 23</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3652,7 +3718,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="txtHC.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3682,13 +3748,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtHC.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label12.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3700,7 +3766,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 26</value>
+    <value>33, 23</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3718,13 +3784,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label14.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3736,7 +3802,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 26</value>
+    <value>35, 23</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -3754,13 +3820,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3772,7 +3838,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 26</value>
+    <value>29, 23</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3790,13 +3856,13 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 14.25pt</value>
   </data>
   <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3808,7 +3874,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 26</value>
+    <value>39, 23</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3826,7 +3892,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="txtNO.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3856,7 +3922,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtNO.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="txtO2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3886,7 +3952,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtO2.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="txtCO2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 14.25pt</value>
@@ -3916,7 +3982,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;txtCO2.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3955,7 +4021,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3991,7 +4057,7 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4027,22 +4093,22 @@
     <value>tbEmissionPetrol</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="tbEmissionPetrol.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="tbEmissionPetrol.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 38</value>
+    <value>22, 25</value>
   </data>
   <data name="tbEmissionPetrol.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="tbEmissionPetrol.RowCount" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="tbEmissionPetrol.Size" type="System.Drawing.Size, System.Drawing">
-    <value>343, 244</value>
+    <value>343, 281</value>
   </data>
   <data name="tbEmissionPetrol.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -4060,7 +4126,7 @@
     <value>0</value>
   </data>
   <data name="tbEmissionPetrol.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label18" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtOT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtRPM" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtCO" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtHC" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtNO" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtO2" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,113,Absolute,174" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtLamda" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label55" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtOT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtRPM" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtCO" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtHC" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtNO" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtO2" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,113,Absolute,174" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbEmissionPetTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4099,10 +4165,10 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="EmissionPetrolPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 397</value>
+    <value>11, 387</value>
   </data>
   <data name="EmissionPetrolPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>378, 290</value>
+    <value>378, 311</value>
   </data>
   <data name="EmissionPetrolPanel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -4543,7 +4609,7 @@
     <value>4</value>
   </data>
   <data name="tbSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>343, 143</value>
+    <value>343, 140</value>
   </data>
   <data name="tbSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -4603,7 +4669,7 @@
     <value>11, 217</value>
   </data>
   <data name="SpeedPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>378, 174</value>
+    <value>378, 167</value>
   </data>
   <data name="SpeedPanel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -5191,7 +5257,7 @@
     <value>0, 122</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 938</value>
+    <value>256, 1571</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>

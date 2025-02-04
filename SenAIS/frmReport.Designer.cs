@@ -132,6 +132,8 @@
             this.lbWeightPanelTitle = new System.Windows.Forms.Label();
             this.EmissionPetrolPanel = new System.Windows.Forms.Panel();
             this.tbEmissionPetrol = new System.Windows.Forms.TableLayoutPanel();
+            this.txtLamda = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtOT = new System.Windows.Forms.TextBox();
@@ -1024,6 +1026,8 @@
             // tbEmissionPetrol
             // 
             resources.ApplyResources(this.tbEmissionPetrol, "tbEmissionPetrol");
+            this.tbEmissionPetrol.Controls.Add(this.txtLamda, 1, 7);
+            this.tbEmissionPetrol.Controls.Add(this.label55, 0, 7);
             this.tbEmissionPetrol.Controls.Add(this.label18, 2, 3);
             this.tbEmissionPetrol.Controls.Add(this.label17, 2, 2);
             this.tbEmissionPetrol.Controls.Add(this.txtOT, 1, 2);
@@ -1047,6 +1051,20 @@
             this.tbEmissionPetrol.Controls.Add(this.label2, 2, 4);
             this.tbEmissionPetrol.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tbEmissionPetrol.Name = "tbEmissionPetrol";
+            // 
+            // txtLamda
+            // 
+            this.txtLamda.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLamda, "txtLamda");
+            this.txtLamda.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLamda.Name = "txtLamda";
+            this.txtLamda.ReadOnly = true;
+            // 
+            // label55
+            // 
+            resources.ApplyResources(this.label55, "label55");
+            this.label55.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label55.Name = "label55";
             // 
             // label18
             // 
@@ -1464,6 +1482,7 @@
             this.txtSearch.BackColor = System.Drawing.SystemColors.ControlLightLight;
             resources.ApplyResources(this.txtSearch, "txtSearch");
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // lbSearchTitle
             // 
@@ -1688,5 +1707,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lbSearchTitle;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox txtLamda;
     }
 }

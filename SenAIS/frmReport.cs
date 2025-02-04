@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,6 +41,8 @@ namespace SenAIS
                     dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
                     dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                     dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
+                    dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
+                    dgVehicleInfo.Columns["EngineType"].HeaderText = "Loại động cơ";
                     // Thêm Màu xe
                 }
             }
@@ -58,7 +61,21 @@ namespace SenAIS
             {
                 txtSerialNum.Text = vehicleDetails["SerialNumber"].ToString();
                 txtFrameNum.Text = vehicleDetails["FrameNumber"].ToString();
-                txtTypeCar.Text = vehicleDetails["VehicleType"].ToString();
+                string vehicleType = vehicleDetails["VehicleType"].ToString();
+                string colorValue = vehicleDetails["Color"]?.ToString();
+                // Gán thông tin vào txtTypeCar theo định dạng "Type - Màu"
+                if (!string.IsNullOrEmpty(vehicleType) && !string.IsNullOrEmpty(colorValue))
+                {
+                    txtTypeCar.Text = $"{vehicleType} - {colorValue}";
+                }
+                else if (!string.IsNullOrEmpty(vehicleType))
+                {
+                    txtTypeCar.Text = vehicleType; // Nếu không có màu, chỉ hiển thị loại xe
+                }
+                else
+                {
+                    txtTypeCar.Text = string.Empty; // Nếu không có dữ liệu, để trống
+                }
                 txtInspector.Text = vehicleDetails["Inspector"].ToString();
                 DateTime inspectionDate;
                 if (DateTime.TryParse(vehicleDetails["InspectionDate"].ToString(), out inspectionDate))
@@ -401,6 +418,9 @@ namespace SenAIS
             // Tạo DataTable để chứa dữ liệu báo cáo
             DataTable reportDataTable = new DataTable();
 
+            reportDataTable.Columns.Add("PublishSeri", typeof(string));
+            reportDataTable.Columns.Add("PublishVer", typeof(string));
+            reportDataTable.Columns.Add("PublishDate", typeof(string));
             // Thêm các cột cho báo cáo
             reportDataTable.Columns.Add("SerialNumber", typeof(string));
             reportDataTable.Columns.Add("FrameNumber", typeof(string));
@@ -408,6 +428,8 @@ namespace SenAIS
             reportDataTable.Columns.Add("Inspector", typeof(string));
             reportDataTable.Columns.Add("InspectionDate", typeof(DateTime));
             reportDataTable.Columns.Add("Fuel", typeof(string));
+            reportDataTable.Columns.Add("Color", typeof(string));
+            reportDataTable.Columns.Add("EngineType", typeof(string));
 
             reportDataTable.Columns.Add("Speed", typeof(decimal));
             reportDataTable.Columns.Add("MinSpeed", typeof(decimal));
@@ -647,12 +669,19 @@ namespace SenAIS
 
                 // Thêm dữ liệu vào DataTable
                 DataRow reportRow = reportDataTable.NewRow();
+
+                reportRow["PublishSeri"] = ConfigurationManager.AppSettings["PublishSeri"];
+                reportRow["PublishVer"] = ConfigurationManager.AppSettings["PublishVer"];
+                reportRow["PublishDate"] = ConfigurationManager.AppSettings["PublishDate"];
+
                 reportRow["SerialNumber"] = vehicleDetails["SerialNumber"].ToString();
                 reportRow["FrameNumber"] = vehicleDetails["FrameNumber"].ToString();
                 reportRow["VehicleType"] = vehicleDetails["VehicleType"].ToString();
                 reportRow["Inspector"] = vehicleDetails["Inspector"].ToString();
                 reportRow["InspectionDate"] = Convert.ToDateTime(vehicleDetails["InspectionDate"]).ToShortDateString();
                 reportRow["Fuel"] = vehicleDetails["Fuel"].ToString();
+                reportRow["Color"] = vehicleDetails["Color"].ToString();
+                reportRow["EngineType"] = vehicleDetails["EngineType"].ToString();
 
                 reportRow["Speed"] = ConvertToDecimal(vehicleDetails["Speed"]).ToString("F1");
                 reportRow["MinSpeed"] = ConvertToDecimal(standard["MinSpeed"]).ToString("F1");
@@ -794,7 +823,7 @@ namespace SenAIS
             string serialNumber = txtSerialNum.Text; // Lấy số serial từ TextBox
             DataTable reportDataList = GetVehicleReportData(serialNumber);
             TestReport exportReportForm = new TestReport(reportDataList);
-            exportReportForm.Show();
+            exportReportForm.ShowDialog();
         }
 
         private decimal? GetDecimalFromTextBox(TextBox textBox)
@@ -948,6 +977,16 @@ namespace SenAIS
         private void frmReport_Load(object sender, EventArgs e)
         {
             btnEditSave.Visible = false; // Ẩn nút "Chỉnh sửa" khi mở form
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick(); // Kích hoạt nút Search
+                e.Handled = true;         // Ngăn Enter thực hiện hành động mặc định
+                e.SuppressKeyPress = true; // Ngăn âm báo "ding"
+            }
         }
     }
 }

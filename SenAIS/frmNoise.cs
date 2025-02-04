@@ -1,8 +1,11 @@
 ﻿using OPCAutomation;
 using System;
 using System.Configuration;
+using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,89 +14,69 @@ namespace SenAIS
     public partial class frmNoise : Form
     {
         private COMConnect comConnect;
-        private Timer updateTimer;
         private SQLHelper sqlHelper;
         private string serialNumber;
         public decimal noiseValue = 0;
-        private bool isReady = false;
-        private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
-        private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Noise_Counter"];
+        public decimal maxNoise;
+        private bool isMeasuring = false;
+        private CancellationTokenSource cancellationTokenSource;
         public frmNoise(string serialNumber)
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Noise"], 300, this);
             sqlHelper = new SQLHelper();
-            InitializeTimer();
-        }
-        private void InitializeTimer()
-        {
-            updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
-            updateTimer.Tick += new EventHandler(UpdateReadyStatus);
-            updateTimer.Start();
-        }
-        private async void UpdateReadyStatus(object sender, EventArgs e)
-        {
-            lbEngineNumber.Text = this.serialNumber;
-            // Lấy giá trị OPC
-            int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
+            LoadVehicleStandards(serialNumber);
 
-            switch (checkStatus)
+        }
+        private async void StartMeasurementProcess()
+        {
+            lbNoiseTitle.Text = "Độ ồn";
+            await Task.Delay(3000); // Quãng nghỉ 3 giây trước khi bắt đầu đo
+
+            lbNoiseTitle.Text = "Chuẩn bị quá trình đo...";
+            await Task.Delay(5000); // Đợi 10 giây trước khi gửi lệnh đo
+
+            lbNoise.Visible = true;
+            isMeasuring = true;
+            byte[] startCommand = { 0xB8 };
+            comConnect.SendRequest(startCommand);
+            lbEnd.Visible = true;
+            lbEnd.Text = "Bắt đầu";
+            //await Task.Delay(10000); // Chờ dữ liệu về
+            for (int countdown = 10; countdown >= 0; countdown--)
             {
-                case 1: // Xe vào vị trí
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = false; // Chưa sẵn sàng lưu
-                    break;
+                lbEnd.Text = $"Giá trị sẽ lấy sau {countdown}s...";
+                await Task.Delay(1000); // Chờ 1 giây
+            }
 
-                case 2: // Bắt đầu đo
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = true; // Sẵn sàng lưu sau khi đo
-                    await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    byte[] startCommand = { 0xB8 };
-                    comConnect.SendRequest(startCommand); // Gửi request để lấy giá trị
-
-                    // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                    bool isValueInStandard = sqlHelper.CheckValueAgainstStandard("Noise", noiseValue, this.serialNumber);
-
-                    if (isValueInStandard)
-                    {
-                        lbNoise.BackColor = SystemColors.ControlLight;
-                        await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
-                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
-                    }
-                    else
-                    {
-                        lbNoise.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
-                    }
-                    break;
-
-                case 3: // Quá trình đo hoàn tất, lưu vào DB
-                    cbReady.BackColor = Color.Green; // Đèn xanh
-                    if (isReady)
-                    {
-                        SaveDataToDatabase(); // Ghi dữ liệu vào DB
-                        isReady = false; // Đặt lại trạng thái
-
-                        await Task.Delay(15000); // Chờ 15 giây trước khi tăng SerialNumber
-
-                        string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
-                        if (!string.IsNullOrEmpty(nextSerialNumber))
-                        {
-                            this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                            lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không có xe tiếp theo để đo.");
-                        }
-                    }
-                    break;
-
-                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                    isReady = false;
-                    break;
+            isMeasuring = false;
+            lbEnd.Text = "Kết thúc";
+            SaveDataToDatabase();
+         }
+        private void ResetToDefault()
+        {
+            lbNoise.Visible = false;
+            lbNoise.Text = "0.0";
+            lbEnd.Visible = false; 
+        }
+        private decimal ConvertToDecimal(object value)
+        {
+            return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
+        }
+        private void LoadVehicleStandards(string serialNumber)
+        {
+            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+            if (vehicleDetails != null)
+            {
+                string vehicleType = vehicleDetails["VehicleType"].ToString();
+                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                if (vehicleStandards.Rows.Count > 0)
+                {
+                    DataRow standard = vehicleStandards.Rows[0];
+                    maxNoise = ConvertToDecimal(standard["MaxNoise"]);
+                    lbStandard.Text = (maxNoise > 0) ? $"≤ {maxNoise.ToString("F1")}" : "--";
+                }
             }
         }
         private void btnPre_Click(object sender, EventArgs e)
@@ -106,8 +89,8 @@ namespace SenAIS
                 {
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
-                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    isReady = false; // Đặt lại trạng thái
+                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -119,7 +102,6 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             try
@@ -128,8 +110,8 @@ namespace SenAIS
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
-                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    isReady = false; // Đặt lại trạng thái
+                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -158,9 +140,13 @@ namespace SenAIS
                     {
                         this.Invoke(new Action(() =>
                         {
-                            // Update UI with the sound level value
-                            lbNoise.Text = soundLevel.ToString("F1");
-                            this.noiseValue = Convert.ToDecimal(lbNoise.Text);
+                            if (isMeasuring) // Chỉ cập nhật UI nếu còn trong quá trình đo
+                            {
+                                lbNoise.Text = soundLevel.ToString("F1");
+                                this.noiseValue = Convert.ToDecimal(lbNoise.Text);
+                                bool isValueInStandard = maxNoise == 0 || noiseValue <= maxNoise;
+                                lbNoise.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                            }
                         }));
                     }
                 }
@@ -172,11 +158,33 @@ namespace SenAIS
         }
         private void frmNoise_Load(object sender, EventArgs e)
         {
+            lbVinNumber.Text = this.serialNumber;
             comConnect.OpenConnection();
+            if (comConnect.IsConnected())
+            {
+                cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
+                StartMeasurementProcess();
+            }
+            else
+            {
+                cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+            }
         }
         private void frmNoise_FormClosing(object sender, FormClosingEventArgs e)
         {
             comConnect.CloseConnection();
+        }
+
+        private void btnReMeasure_Click(object sender, EventArgs e)
+        {
+            ResetToDefault();
+            StartMeasurementProcess();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            comConnect.CloseConnection();
+            this.Close();
         }
     }
 }

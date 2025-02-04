@@ -316,7 +316,7 @@ namespace SenAIS
         private void SaveDataToDatabase()
         {
             if (hasMeasured)
-                sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm);
+                sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm, lamda);
         }
 
         private async void frmGasEmission_Load(object sender, EventArgs e)

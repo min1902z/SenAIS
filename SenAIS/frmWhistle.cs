@@ -21,6 +21,7 @@ namespace SenAIS
         public decimal minWhistle;
         public decimal maxWhistle;
         private bool isReady = false;
+        private bool isMeasuring = false;
         private static readonly string opcWhistleCounter = ConfigurationManager.AppSettings["Whistle_Counter"];
         public frmWhistle(string serialNumber)
         {
@@ -55,6 +56,7 @@ namespace SenAIS
                             lbStandard.Visible = false;
                             lbWhistleTitle.Visible = true;
                             isReady = false;
+                            isMeasuring = false;
                             break;
                         case 1: // Xe vào vị trí
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
@@ -62,33 +64,27 @@ namespace SenAIS
                             lbStandard.Visible = true;
                             lbWhistleTitle.Visible = true;
                             isReady = false; // Chưa sẵn sàng lưu
-                        break;
+                            isMeasuring = false;
+                            break;
 
                         case 2: // Bắt đầu đo
                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
                             isReady = true; // Sẵn sàng lưu sau khi đo
                             lbWhistleTitle.Visible = false;
                             lbWhistle.Visible = true;
-
-                            byte[] startcommand = { 0xB8 }; // gửi lệnh bắt đầu phát hiện
-                            comConnect.SendRequest(startcommand);
-                            lbEnd.Text = "Bấm Còi...";
-                            lbEnd.Visible = true;
-                            // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                            bool isValueInStandard = this.whistle >= minWhistle && (maxWhistle == 0 || this.whistle <= maxWhistle);
-
-                            if (isValueInStandard)
+                            if (!isMeasuring) // Chỉ gửi lệnh đo 1 lần
                             {
-                                lbWhistle.ForeColor = SystemColors.HotTrack;
-                            }
-                            else
-                            {
-                                lbWhistle.ForeColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                                byte[] startCommand = { 0xB8 };
+                                comConnect.SendRequest(startCommand);
+                                lbEnd.Text = "Bấm Còi...";
+                                lbEnd.Visible = true;
+                                isMeasuring = true; // Đánh dấu đang đo
                             }
                             break;
 
                         case 3: // Quá trình đo hoàn tất, lưu vào DB
                             cbReady.BackColor = Color.Green; // Đèn xanh
+                            isMeasuring = false;
                             lbWhistleTitle.Visible = false;
                             lbWhistle.Visible = true;
                             lbEnd.Text = "Kết Thúc";
@@ -136,6 +132,7 @@ namespace SenAIS
                     minWhistle = ConvertToDecimal(standard["MinWhistle"]);
                     maxWhistle = ConvertToDecimal(standard["MaxWhistle"]);
                 }
+                lbStandard.Text = (minWhistle > 0 && maxWhistle > 0) ? $"{minWhistle.ToString("F1")}  -  {maxWhistle.ToString("F1")}" : "--  -  --";
             }
         }
         private void btnNext_Click(object sender, EventArgs e)
@@ -153,6 +150,7 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -182,6 +180,7 @@ namespace SenAIS
                     this.serialNumber = previousSerialNumber;
                     lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -201,7 +200,7 @@ namespace SenAIS
         {
             try
             {
-                if (data[0] == 0x01) // Check start and end byte
+                if (data.Length >= 6 && data[0] == 0x01) // Check start and end byte
                 {
                     // Xử lý và hiển thị giá trị max sound
                     string maxSoundLevel = Encoding.ASCII.GetString(data, 1, 5); // 5 bytes ASCII
@@ -210,11 +209,13 @@ namespace SenAIS
                     {
                         this.Invoke(new Action(() =>
                         {
-                            if (soundLevel > maxSoundValue)
+                            if (isMeasuring && soundLevel > maxSoundValue) // Chỉ cập nhật nếu đang đo
                             {
                                 maxSoundValue = soundLevel;
                                 lbWhistle.Text = maxSoundValue.ToString("F1");
                                 this.whistle = Convert.ToDecimal(maxSoundValue);
+                                bool isValueInStandard = this.whistle >= minWhistle && (maxWhistle == 0 || this.whistle <= maxWhistle);
+                                lbWhistle.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
                             }
                         }));
                     }
