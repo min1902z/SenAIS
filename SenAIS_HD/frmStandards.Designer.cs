@@ -79,13 +79,13 @@
             // 
             // lbStandardTitle
             // 
-            this.lbStandardTitle.AutoSize = true;
+            this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbStandardTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbStandardTitle.Location = new System.Drawing.Point(147, 0);
+            this.lbStandardTitle.Location = new System.Drawing.Point(13, 0);
             this.lbStandardTitle.Name = "lbStandardTitle";
-            this.lbStandardTitle.Size = new System.Drawing.Size(954, 78);
+            this.lbStandardTitle.Size = new System.Drawing.Size(1339, 88);
             this.lbStandardTitle.TabIndex = 1;
             this.lbStandardTitle.Text = "Điều Chỉnh Tiêu Chuẩn Chất Lượng";
             this.lbStandardTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -115,7 +115,7 @@
             this.dgStandards.Location = new System.Drawing.Point(13, 202);
             this.dgStandards.Name = "dgStandards";
             this.dgStandards.RowHeadersWidth = 51;
-            this.dgStandards.Size = new System.Drawing.Size(1348, 547);
+            this.dgStandards.Size = new System.Drawing.Size(1339, 535);
             this.dgStandards.TabIndex = 0;
             // 
             // frmStandards
@@ -128,7 +128,6 @@
             this.Name = "frmStandards";
             this.Text = "Tiêu Chuẩn Chất Lượng Xe";
             this.StandardPanel.ResumeLayout(false);
-            this.StandardPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgStandards)).EndInit();
             this.ResumeLayout(false);
 

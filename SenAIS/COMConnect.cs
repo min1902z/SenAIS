@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -49,53 +48,58 @@ namespace SenAIS
             {
                 //while (serialPort.BytesToRead > 0) // Đảm bảo đọc hết buffer
                 //{
-                    byte[] buffer = new byte[serialPort.BytesToRead];
-                    serialPort.Read(buffer, 0, buffer.Length);
-                    dataBuffer.AddRange(buffer);
-                    if (activeForm is frmDieselEmission)
+                byte[] buffer = new byte[serialPort.BytesToRead];
+                serialPort.Read(buffer, 0, buffer.Length);
+                dataBuffer.AddRange(buffer);
+                if (activeForm is frmDieselEmission)
+                {
+                    // Tìm vị trí byte đầu tiên là A5 hoặc A6
+                    int startIndexA5 = dataBuffer.IndexOf(0xA5);
+                    int startIndexA6 = dataBuffer.IndexOf(0xA6);
+                    if (startIndexA5 != -1 && dataBuffer.Count >= startIndexA5 + 9)
                     {
-                        if (dataBuffer.Count >= 9 && dataBuffer[0] == 0xA5)
-                        {
-                            byte[] completeData = dataBuffer.Take(9).ToArray();
-                            ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
-                            // dataBuffer.RemoveRange(0, 9);
-                            dataBuffer.Clear();
-                        }
-                        else if (dataBuffer.Count >= 7 && dataBuffer[0] == 0xA6)
-                        {
-                            byte[] completeData = dataBuffer.Take(7).ToArray();
-                            ((frmDieselEmission)activeForm).ProcessNHT6MaxData(completeData);
-                            //dataBuffer.RemoveRange(0, 7);
-                            dataBuffer.Clear();
-                        }
-                        else // Nếu không đủ dữ liệu
-                        {
-                            dataBuffer.Clear(); // Xóa dữ liệu hiện tại trong buffer
-
-                            byte[] commandA5 = { 0xA5, 0x5B };
-                            byte[] commandA6 = { 0xA6, 0x5A };
-                            SendRequest(commandA5);
-                            //SendRequest(commandA6);
-                        }
+                        // Xử lý dữ liệu A5 (9 bytes)
+                        byte[] completeData = dataBuffer.Skip(startIndexA5).Take(9).ToArray();
+                        ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
+                        dataBuffer.RemoveRange(startIndexA5, 9);
+                        byte[] commandA6 = { 0xA6, 0x5A };
+                        SendRequest(commandA6);
                     }
-                    if (activeForm is frmGasEmission)
+                    else if (startIndexA6 != -1 && dataBuffer.Count >= startIndexA6 + 7)
                     {
-                        while (dataBuffer.Count >= 1 && dataBuffer[0] != 0x06)
-                        {
-                            dataBuffer.RemoveAt(0); // Xóa byte không hợp lệ
-                        }
-                        if (dataBuffer[0] == 0x06)
-                        {
-                            byte[] completeData = dataBuffer.Take(21).ToArray();
-                            ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
-                            //dataBuffer.RemoveRange(0, 21);
-                            dataBuffer.Clear();
-                        }
-                    }
+                        // Xử lý dữ liệu A6 (7 bytes)
+                        byte[] completeData = dataBuffer.Skip(startIndexA6).Take(7).ToArray();
+                        ((frmDieselEmission)activeForm).ProcessNHT6MaxData(completeData);
+                        dataBuffer.RemoveRange(startIndexA6, 7);
+                        byte[] commandA5 = { 0xA5, 0xB5 };
+                        SendRequest(commandA5);
 
-                    // Xử lý gói dữ liệu trả về từ HY114 (nếu có)
-                    if (activeForm is frmNoise)
+                    }
+                    else
                     {
+                        dataBuffer.Clear(); // Xóa dữ liệu hiện tại trong buffer
+                        byte[] commandA5 = { 0xA5, 0x5B };
+                        SendRequest(commandA5);
+                    }
+                }
+                if (activeForm is frmGasEmission)
+                {
+                    while (dataBuffer.Count >= 1 && dataBuffer[0] != 0x06)
+                    {
+                        dataBuffer.RemoveAt(0); // Xóa byte không hợp lệ
+                    }
+                    if (dataBuffer[0] == 0x06)
+                    {
+                        byte[] completeData = dataBuffer.Take(21).ToArray();
+                        ((frmGasEmission)activeForm).ProcessNHA506Data(completeData);
+                        //dataBuffer.RemoveRange(0, 21);
+                        dataBuffer.Clear();
+                    }
+                }
+
+                // Xử lý gói dữ liệu trả về từ HY114 (nếu có)
+                if (activeForm is frmNoise)
+                {
                     while (dataBuffer.Count > 0)
                     {
                         int startIndex = dataBuffer.FindIndex(b => b == 0x01);
@@ -126,8 +130,8 @@ namespace SenAIS
                         }
                     }
                 }
-                    if (activeForm is frmWhistle)
-                    {
+                if (activeForm is frmWhistle)
+                {
                     while (dataBuffer.Count > 0)
                     {
                         int startIndex = dataBuffer.FindIndex(b => b == 0x01);
@@ -157,68 +161,68 @@ namespace SenAIS
                         }
                     }
                 }
-                    if (activeForm is frmHeadlights)
+                if (activeForm is frmHeadlights)
+                {
+                    while (dataBuffer.Count > 0)
                     {
-                        while (dataBuffer.Count > 0)
+                        // Nếu phát hiện byte 0x47
+                        if (dataBuffer.Contains(0x47))
                         {
-                            // Nếu phát hiện byte 0x47
-                            if (dataBuffer.Contains(0x47))
+                            dataBuffer.Clear();
+                            byte[] request = { 0x4E, 0x4D };
+                            SendRequest(request);
+                        }
+                        // Xử lý dữ liệu đèn (68 bytes)
+                        if (dataBuffer.Count >= 68)
+                        {
+                            // Tìm vị trí đầu tiên của byte bắt đầu là 0x01
+                            int startIndex = dataBuffer.FindIndex(b => b == 0x01);
+
+                            if (startIndex == -1)
                             {
+                                // Nếu không tìm thấy 0x01, xóa toàn bộ buffer
                                 dataBuffer.Clear();
-                                byte[] request = { 0x4E, 0x4D };
-                                SendRequest(request);
+                                break;
                             }
-                            // Xử lý dữ liệu đèn (68 bytes)
-                            if (dataBuffer.Count >= 68)
+
+                            // Kiểm tra nếu có đủ dữ liệu từ vị trí tìm thấy
+                            if (dataBuffer.Count >= startIndex + 68)
                             {
-                                // Tìm vị trí đầu tiên của byte bắt đầu là 0x01
-                                int startIndex = dataBuffer.FindIndex(b => b == 0x01);
-
-                                if (startIndex == -1)
+                                // Kiểm tra cấu trúc dữ liệu hợp lệ
+                                if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 34] == 0x01)
                                 {
-                                    // Nếu không tìm thấy 0x01, xóa toàn bộ buffer
-                                    dataBuffer.Clear();
-                                    break;
-                                }
+                                    // Lấy 68 byte từ vị trí hợp lệ
+                                    byte[] completeData = dataBuffer.Skip(startIndex).Take(68).ToArray();
 
-                                // Kiểm tra nếu có đủ dữ liệu từ vị trí tìm thấy
-                                if (dataBuffer.Count >= startIndex + 68)
-                                {
-                                    // Kiểm tra cấu trúc dữ liệu hợp lệ
-                                    if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 34] == 0x01)
-                                    {
-                                        // Lấy 68 byte từ vị trí hợp lệ
-                                        byte[] completeData = dataBuffer.Skip(startIndex).Take(68).ToArray();
+                                    // Xử lý dữ liệu với hàm ProcessNHD6109Data
+                                    ((frmHeadlights)activeForm).ProcessNHD6109Data(completeData);
 
-                                        // Xử lý dữ liệu với hàm ProcessNHD6109Data
-                                        ((frmHeadlights)activeForm).ProcessNHD6109Data(completeData);
-
-                                        // Xóa các byte đã xử lý khỏi buffer
-                                        dataBuffer.RemoveRange(0, startIndex + 68);
-                                    }
-                                    else
-                                    {
-                                        // Nếu cấu trúc không hợp lệ, bỏ qua byte đầu tiên và tiếp tục tìm kiếm
-                                        dataBuffer.RemoveAt(0);
-                                    }
+                                    // Xóa các byte đã xử lý khỏi buffer
+                                    dataBuffer.RemoveRange(0, startIndex + 68);
                                 }
                                 else
                                 {
-                                    // Nếu không đủ dữ liệu từ vị trí hợp lệ, xóa toàn bộ buffer
-                                    dataBuffer.Clear();
-                                    break;
+                                    // Nếu cấu trúc không hợp lệ, bỏ qua byte đầu tiên và tiếp tục tìm kiếm
+                                    dataBuffer.RemoveAt(0);
                                 }
                             }
                             else
                             {
-                                // Nếu không đủ dữ liệu trong buffer, thoát vòng lặp
+                                // Nếu không đủ dữ liệu từ vị trí hợp lệ, xóa toàn bộ buffer
+                                dataBuffer.Clear();
                                 break;
                             }
                         }
+                        else
+                        {
+                            // Nếu không đủ dữ liệu trong buffer, thoát vòng lặp
+                            break;
+                        }
                     }
+                }
                 //}
             }
-            catch 
+            catch
             {
             }
         }

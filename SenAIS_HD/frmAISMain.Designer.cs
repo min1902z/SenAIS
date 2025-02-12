@@ -50,11 +50,15 @@
             this.tsSteerAngleCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.tsLeftSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.tsRightSteerCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsSpeedMovingCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.TSHoTro = new System.Windows.Forms.ToolStripMenuItem();
             this.TSAuboutMe = new System.Windows.Forms.ToolStripMenuItem();
             this.TSReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.tsSpeedAxis = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsLeftAxisCalib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsRightAxisCalib = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +150,9 @@
             this.tsSpeedCalib,
             this.tsSideSlipCalib,
             this.tsBrakeCalib,
-            this.tsSteerAngleCalib});
+            this.tsSteerAngleCalib,
+            this.tsSpeedAxis,
+            this.tsSpeedMovingCalib});
             this.điềuChỉnhToolStripMenuItem.Name = "điềuChỉnhToolStripMenuItem";
             this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
             this.điềuChỉnhToolStripMenuItem.Text = "Điều Chỉnh";
@@ -225,16 +231,23 @@
             // tsLeftSteerCalib
             // 
             this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
-            this.tsLeftSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsLeftSteerCalib.Size = new System.Drawing.Size(180, 24);
             this.tsLeftSteerCalib.Text = "Góc Lái Trái";
             this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
             // 
             // tsRightSteerCalib
             // 
             this.tsRightSteerCalib.Name = "tsRightSteerCalib";
-            this.tsRightSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsRightSteerCalib.Size = new System.Drawing.Size(180, 24);
             this.tsRightSteerCalib.Text = "Góc Lái Phải";
             this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
+            // 
+            // tsSpeedMovingCalib
+            // 
+            this.tsSpeedMovingCalib.Name = "tsSpeedMovingCalib";
+            this.tsSpeedMovingCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsSpeedMovingCalib.Text = "Điều Chỉnh Trục Sau";
+            this.tsSpeedMovingCalib.Click += new System.EventHandler(this.tsSpeedMovingCalib_Click);
             // 
             // TSHoTro
             // 
@@ -271,6 +284,7 @@
             // panelBody
             // 
             this.panelBody.AutoScroll = true;
+            this.panelBody.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelBody.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(0, 27);
@@ -278,6 +292,29 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(886, 487);
             this.panelBody.TabIndex = 7;
+            // 
+            // tsSpeedAxis
+            // 
+            this.tsSpeedAxis.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLeftAxisCalib,
+            this.tsRightAxisCalib});
+            this.tsSpeedAxis.Name = "tsSpeedAxis";
+            this.tsSpeedAxis.Size = new System.Drawing.Size(228, 24);
+            this.tsSpeedAxis.Text = "Hiệu Chỉnh Trục Tốc Độ";
+            // 
+            // tsLeftAxisCalib
+            // 
+            this.tsLeftAxisCalib.Name = "tsLeftAxisCalib";
+            this.tsLeftAxisCalib.Size = new System.Drawing.Size(205, 24);
+            this.tsLeftAxisCalib.Text = "Hiệu Chỉnh Trục Trái";
+            this.tsLeftAxisCalib.Click += new System.EventHandler(this.tsLeftAxisCalib_Click);
+            // 
+            // tsRightAxisCalib
+            // 
+            this.tsRightAxisCalib.Name = "tsRightAxisCalib";
+            this.tsRightAxisCalib.Size = new System.Drawing.Size(205, 24);
+            this.tsRightAxisCalib.Text = "Hiệu Chỉnh Trục Phải";
+            this.tsRightAxisCalib.Click += new System.EventHandler(this.tsRightAxisCalib_Click);
             // 
             // SenAIS
             // 
@@ -329,6 +366,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsLeftSteerCalib;
         private System.Windows.Forms.ToolStripMenuItem tsRightSteerCalib;
         private System.Windows.Forms.ToolStripMenuItem tsMMSConfig;
+        private System.Windows.Forms.ToolStripMenuItem tsSpeedMovingCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsSpeedAxis;
+        private System.Windows.Forms.ToolStripMenuItem tsLeftAxisCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsRightAxisCalib;
     }
 }
 

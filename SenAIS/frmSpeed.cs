@@ -17,6 +17,7 @@ namespace SenAIS
         private bool isReady = false;
         private decimal minSpeed = 0;
         private decimal maxSpeed = 0;
+        private double speedA = 1.0;
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSpeedResult = ConfigurationManager.AppSettings["Speed_Result"];
@@ -63,7 +64,6 @@ namespace SenAIS
                             lbSpeed.Visible = false;
                             lbEnd.Visible = false;
                             lbStandard.Visible = true;
-                            lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")}  -  {maxSpeed.ToString("F0")}]" : "--  -  --";
                             break;
 
                         case 2: // Bắt đầu đo
@@ -72,7 +72,6 @@ namespace SenAIS
                             lbTitleSpeed.Visible = false;
                             lbEnd.Visible = false;
                             lbSpeed.Visible = true;
-                            double speedA = sqlHelper.GetParaValue("Speed", "ParaA");
                             double speedResult = OPCUtility.GetOPCValue(opcSpeedResult);
                             double speed = speedResult / speedA;
                             lbSpeed.Text = speed.ToString("F1");
@@ -114,12 +113,7 @@ namespace SenAIS
                                 if (!string.IsNullOrEmpty(nextSerialNumber))
                                 {
                                     this.serialNumber = nextSerialNumber;
-                                    lbVinNumber.Text = this.serialNumber;
 
-                                    // Lấy và hiển thị tiêu chuẩn mới
-                                    LoadVehicleStandards(this.serialNumber);
-                                    lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")} - {maxSpeed.ToString("F0")}]" : "-- - --";
-                                    lbStandard.Visible = true;
                                     var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
                                     if (frmMain != null)
                                     {
@@ -170,7 +164,9 @@ namespace SenAIS
                     minSpeed = ConvertToDecimal(standard["MinSpeed"]);
                     maxSpeed = ConvertToDecimal(standard["MaxSpeed"]);
                 }
+                lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")}  -  {maxSpeed.ToString("F0")}]" : "--  -  --";
             }
+            speedA = sqlHelper.GetParaValue("Speed", "ParaA");
         }
         private void btnPreSpeed_Click(object sender, EventArgs e)
         {
@@ -179,7 +175,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase();
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -207,7 +203,7 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase();
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -231,16 +227,6 @@ namespace SenAIS
         {
             sqlHelper.SaveSpeedData(this.serialNumber, this.speedValue);
         }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue(opcSpeedCounter);
-
-            if (currentPosition == 3)
-            {
-                SaveDataToDatabase();
-            }
-        }
-
         private void frmSpeed_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (updateTimer != null)

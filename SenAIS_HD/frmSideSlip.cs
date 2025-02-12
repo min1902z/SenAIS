@@ -1,8 +1,6 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -61,7 +59,6 @@ namespace SenAIS
                             lbSideSlip.Visible = false;
                             isReady = false; // Chưa sẵn sàng lưu
                             lbStandard.Visible = true;
-                            lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
                             break;
 
                         case 2: // Bắt đầu đo
@@ -111,14 +108,14 @@ namespace SenAIS
                             lbSideSlip.Visible = true;
                             if (isReady)
                             {
-                                CheckCounterPosition();
+                                SaveDataToDatabase();
                                 isReady = false;
                                 var formSideSlip2 = new frmSideSlip2(this.serialNumber);
                                 formSideSlip2.Show();
                                 OPCUtility.SetOPCValue(opcSSCounter, 2);
                                 this.Close();
                             }
-                                break;
+                            break;
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
                             lbSideSlipTitle.Visible = true;
@@ -156,7 +153,7 @@ namespace SenAIS
                     }
                 }));
             }
-            catch (Exception)
+            catch
             {
             }
         }
@@ -177,6 +174,7 @@ namespace SenAIS
                     minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
                     maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
                 }
+                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
             }
         }
         private void btnPre_Click(object sender, EventArgs e)
@@ -186,7 +184,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -214,7 +212,7 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase(); // Lưu dữ liệu nếu sẵn sàng
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -238,16 +236,6 @@ namespace SenAIS
         {
             sqlHelper.SaveSideSlipData(this.serialNumber, this.sideSlip);
         }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue(opcSSCounter);
-
-            if (currentPosition == 3)
-            {
-                SaveDataToDatabase();
-            }
-        }
-
         private void frmSideSlip_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (updateTimer != null)

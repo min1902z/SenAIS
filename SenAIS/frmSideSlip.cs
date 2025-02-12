@@ -19,6 +19,7 @@ namespace SenAIS
         private bool isReady = false;
         private decimal minSideSlip = 0;
         private decimal maxSideSlip = 0;
+        private double alignA = 1.0;
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private readonly List<string> opcItems = new List<string>
         {
@@ -72,8 +73,6 @@ namespace SenAIS
                 Task.Run(() =>
                 {
                     // Tính toán giá trị cần thiết trước
-                    double alignA = 1.0;
-                    alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
                     double sideSlipSign = values.ContainsKey(opcSSSign) ? (double)values[opcSSSign] : 0;
                     double sideSlipResult = values.ContainsKey(opcSSResult) ? (double)values[opcSSResult] : 0;
                     double sideSlip = sideSlipSign == 0
@@ -103,7 +102,6 @@ namespace SenAIS
                                 lbSideSlipTitle.Visible = true;
                                 isReady = false; // Chưa sẵn sàng lưu
                                 lbStandard.Visible = true;
-                                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
                                 break;
 
                             case 2: // Bắt đầu đo
@@ -112,7 +110,6 @@ namespace SenAIS
                                 lbEnd.Visible = false;
                                 lbSideSlip.Visible = true;
                                 isReady = true; // Sẵn sàng lưu sau khi đo
-
                                 lbSideSlip.Text = sideSlip.ToString("F1");
                                 lbSideSlip.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
                                 this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
@@ -194,7 +191,9 @@ namespace SenAIS
                     minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
                     maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
                 }
+                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
             }
+            alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -213,6 +212,7 @@ namespace SenAIS
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -240,6 +240,7 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {

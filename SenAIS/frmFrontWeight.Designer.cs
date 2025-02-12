@@ -113,7 +113,7 @@
             // 
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVinNumber.ForeColor = System.Drawing.Color.IndianRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
             this.lbVinNumber.Location = new System.Drawing.Point(129, -11);
             this.lbVinNumber.Name = "lbVinNumber";
             this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
@@ -187,8 +187,9 @@
             this.tbFrontWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this.tbFrontWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tbFrontWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tbFrontWeight.Size = new System.Drawing.Size(1170, 605);
+            this.tbFrontWeight.Size = new System.Drawing.Size(1167, 605);
             this.tbFrontWeight.TabIndex = 42;
+            this.tbFrontWeight.Visible = false;
             // 
             // label12
             // 
@@ -196,7 +197,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label12.Location = new System.Drawing.Point(1018, 445);
+            this.label12.Location = new System.Drawing.Point(1015, 445);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(149, 117);
@@ -220,7 +221,7 @@
             this.lbLeft_Weight.AutoSize = true;
             this.lbLeft_Weight.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLeft_Weight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLeft_Weight.Location = new System.Drawing.Point(376, 0);
+            this.lbLeft_Weight.Location = new System.Drawing.Point(375, 0);
             this.lbLeft_Weight.Name = "lbLeft_Weight";
             this.lbLeft_Weight.Size = new System.Drawing.Size(354, 201);
             this.lbLeft_Weight.TabIndex = 8;
@@ -231,7 +232,7 @@
             this.lbSum_Weight.AutoSize = true;
             this.lbSum_Weight.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSum_Weight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSum_Weight.Location = new System.Drawing.Point(376, 402);
+            this.lbSum_Weight.Location = new System.Drawing.Point(375, 402);
             this.lbSum_Weight.Name = "lbSum_Weight";
             this.lbSum_Weight.Size = new System.Drawing.Size(354, 203);
             this.lbSum_Weight.TabIndex = 10;
@@ -243,7 +244,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label10.Location = new System.Drawing.Point(1018, 42);
+            this.label10.Location = new System.Drawing.Point(1015, 42);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(149, 117);
@@ -267,7 +268,7 @@
             this.lbRight_Weight.AutoSize = true;
             this.lbRight_Weight.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRight_Weight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbRight_Weight.Location = new System.Drawing.Point(376, 201);
+            this.lbRight_Weight.Location = new System.Drawing.Point(375, 201);
             this.lbRight_Weight.Name = "lbRight_Weight";
             this.lbRight_Weight.Size = new System.Drawing.Size(354, 201);
             this.lbRight_Weight.TabIndex = 9;
@@ -279,7 +280,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label11.Location = new System.Drawing.Point(1018, 243);
+            this.label11.Location = new System.Drawing.Point(1015, 243);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(149, 117);
@@ -301,16 +302,15 @@
             // lbWeightTitle
             // 
             this.lbWeightTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbWeightTitle.AutoSize = true;
             this.lbWeightTitle.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWeightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWeightTitle.Location = new System.Drawing.Point(168, 327);
+            this.lbWeightTitle.Location = new System.Drawing.Point(12, 307);
             this.lbWeightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbWeightTitle.Name = "lbWeightTitle";
-            this.lbWeightTitle.Size = new System.Drawing.Size(1079, 131);
+            this.lbWeightTitle.Size = new System.Drawing.Size(1347, 159);
             this.lbWeightTitle.TabIndex = 41;
             this.lbWeightTitle.Text = "TRỌNG LƯỢNG TRƯỚC";
-            this.lbWeightTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbWeightTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmFrontWeight
             // 
@@ -328,6 +328,7 @@
             this.ShowIcon = false;
             this.Text = "Trọng Lượng Trước";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFrontWeight_FormClosing);
             this.FWeightPanel.ResumeLayout(false);
             this.FWeightPanel.PerformLayout();
             this.tbFrontWeight.ResumeLayout(false);

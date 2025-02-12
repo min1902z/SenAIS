@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,7 +68,7 @@ namespace SenAIS
                 DateTime inspectionDate;
                 if (DateTime.TryParse(vehicleDetails["InspectionDate"].ToString(), out inspectionDate))
                 {
-                    txtDateInspec.Text = inspectionDate.ToString("dd/MM/yyyy HH:mm");
+                    txtDateInspec.Text = inspectionDate.ToString();
                 }
 
                 txtSpeed.Text = vehicleDetails["Speed"]?.ToString();
@@ -253,23 +252,11 @@ namespace SenAIS
 
             // Tính diff
             decimal diff = 0;
-            // Kiểm tra các trường hợp
-            if (value1 == 0 && value2 == 0)
-            {
-                diff = 0; // Trường hợp cả hai giá trị bằng 0
-            }
-            else if (value1 == 0 || value2 == 0)
-            {
-                diff = 100; // Trường hợp một trong hai giá trị bằng 0
-            }
-            else if (value1 > value2)
-            {
+            if (value1 > value2)
                 diff = 100 * (value1 - value2) / value1;
-            }
             else
-            {
                 diff = 100 * (value2 - value1) / value2;
-            }
+
             // Hiển thị kết quả vào resultTextBox
             resultTextBox.Text = diff.ToString("F2"); // Định dạng 2 chữ số thập phân
 
@@ -796,7 +783,7 @@ namespace SenAIS
             string serialNumber = txtSerialNum.Text; // Lấy số serial từ TextBox
             DataTable reportDataList = GetVehicleReportData(serialNumber);
             TestReport exportReportForm = new TestReport(reportDataList);
-            exportReportForm.ShowDialog();
+            exportReportForm.Show();
         }
 
         private decimal? GetDecimalFromTextBox(TextBox textBox)
@@ -980,7 +967,7 @@ namespace SenAIS
                 {
                     VIN = vin,
                     TestRptDTime = inspectionDate,
-                    TestResult = EvaluateTestResult().ToString(),
+                    TestResult = "1", // Mặc định pass
                     ListQC_TestReportDtl = testDetails
                 };
 
@@ -1014,20 +1001,6 @@ namespace SenAIS
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private int EvaluateTestResult()
-        {
-            // Danh sách các TextBox cần kiểm tra
-            List<TextBox> textBoxes = new List<TextBox>
-            {
-                txtSpeed, txtSideSlip, txtNoise, txtWhistle,
-                txtHC, txtCO, txtFrontSumBrake, txtRearSumBrake, txtHandSumBrake,
-                txtFrontDiffBrake, txtRearDiffBrake, txtHandDiffBrake
-            };
-            // Kiểm tra tất cả các TextBox có nền màu xanh lá không
-            bool allGreen = textBoxes.All(tb => tb.BackColor == Color.LightGreen);
-
-            return allGreen ? 1 : 0;
         }
         // Hàm tạo danh sách testDetails (tùy chỉnh được nội dung)
         private List<object> BuildTestDetails(DataRow vehicleDetails)

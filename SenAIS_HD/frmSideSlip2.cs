@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,7 +16,6 @@ namespace SenAIS
         private bool isReady = false;
         private decimal minSideSlip = 0;
         private decimal maxSideSlip = 0;
-        private int retryCount = 0; // Đếm số lần đo lại
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
         private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip_Result"];
@@ -64,7 +59,6 @@ namespace SenAIS
                             lbSideSlip.Visible = false;
                             isReady = false; // Chưa sẵn sàng lưu
                             lbStandard.Visible = true;
-                            lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
                             break;
 
                         case 2: // Bắt đầu đo
@@ -104,8 +98,6 @@ namespace SenAIS
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
                             lbSideSlipTitle.Visible = true;
-                            lbSideSlipTitle.Text = "Xe tiếp theo";
-                            lbSideSlipTitle.Visible = true;
                             lbStandard.Visible = false;
                             var formBrake = new frmFrontBrake(this.serialNumber);
                             formBrake.Show();
@@ -140,7 +132,7 @@ namespace SenAIS
                     }
                 }));
             }
-            catch (Exception)
+            catch
             {
             }
         }
@@ -161,6 +153,7 @@ namespace SenAIS
                     minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
                     maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
                 }
+                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
             }
         }
 

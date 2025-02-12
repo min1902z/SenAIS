@@ -180,7 +180,7 @@
             this.lbSpeed.Location = new System.Drawing.Point(49, 168);
             this.lbSpeed.Name = "lbSpeed";
             this.lbSpeed.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbSpeed.Size = new System.Drawing.Size(1823, 610);
+            this.lbSpeed.Size = new System.Drawing.Size(1823, 660);
             this.lbSpeed.TabIndex = 40;
             this.lbSpeed.Text = "0.0";
             this.lbSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

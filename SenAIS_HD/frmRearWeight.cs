@@ -16,11 +16,9 @@ namespace SenAIS
         public decimal rearLeftWeight;
         public decimal rearRightWeight;
         private bool isReady = false;
-        public frmRearWeight(Form parent, OPCItem opcCounterPos, string serialNumber)
+        public frmRearWeight(string serialNumber)
         {
             InitializeComponent();
-            this.parentForm = parent;
-            this.opcCounterPos = opcCounterPos;
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
             InitializeTimer();

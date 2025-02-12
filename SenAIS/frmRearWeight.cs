@@ -1,5 +1,6 @@
 ﻿using OPCAutomation;
 using System;
+using System.Configuration;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,81 +15,101 @@ namespace SenAIS
         public decimal rearLeftWeight;
         public decimal rearRightWeight;
         private bool isReady = false;
+        private double weightLeftA = 1.0;
+        private double weightRightA = 1.0;
+        private static readonly string opcWeightCounter = ConfigurationManager.AppSettings["Weight_Counter"];
+        private static readonly string opcLWeightResult = ConfigurationManager.AppSettings["Rear_LWeight_Result"];
+        private static readonly string opcRWeightResult = ConfigurationManager.AppSettings["Rear_RWeight_Result"];
         public frmRearWeight(string serialNumber)
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
+            weightLeftA = sqlHelper.GetParaValue("LeftWeight", "ParaA");
+            weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
             InitializeTimer();
         }
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 500; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
         private async void UpdateReadyStatus(object sender, EventArgs e)
         {
-            lbEngineNumber.Text = this.serialNumber;
-            // Lấy giá trị OPC
-            //int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
-            int checkStatus = 1;
-            switch (checkStatus)
+            try
             {
-                case 1: // Xe vào vị trí
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = false; // Chưa sẵn sàng lưu
-                    break;
-
-                case 2: // Bắt đầu đo
-                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                    isReady = true; // Sẵn sàng lưu sau khi đo
-                    await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    double weightRightA = 1.0;
-                    weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
-                    double leftWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Rear_Result");
-                    double rightWeightResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Weight_Rear_Result");
-                    double leftWeight = leftWeightResult / weightRightA;
-                    double rightWeight = rightWeightResult / weightRightA;
-                    double sumWeight = leftWeight + rightWeight;
-
-                    lbLeft_Weight.Text = leftWeight.ToString("F1");
-                    lbRight_Weight.Text = rightWeight.ToString("F1");
-                    lbSum_Weight.Text = sumWeight.ToString("F1");
-
-                    this.rearLeftWeight = Convert.ToDecimal(leftWeight.ToString("F1"));
-                    this.rearRightWeight = Convert.ToDecimal(rightWeight.ToString("F1"));
-                    break;
-
-                case 3: // Quá trình đo hoàn tất, lưu vào DB
-                    cbReady.BackColor = Color.Green; // Đèn xanh
-                    if (isReady)
+                lbVinNumber.Text = this.serialNumber;
+                // Lấy giá trị OPC
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcWeightCounter));
+                Invoke((Action)(() =>
+                {
+                    switch (checkStatus)
                     {
-                        CheckCounterPosition(); // Ghi dữ liệu vào DB
-                        isReady = false; // Đặt lại trạng thái
+                        case 0: // Mặc định
+                            cbReady.BackColor = SystemColors.Control;
+                            lbLeft_Weight.Text = "0.0";
+                            lbRight_Weight.Text = "0.0";
+                            lbSum_Weight.Text = "0.0";
+                            tbWeight.Visible = false;
+                            lbWeightTitle.Visible = true;
+                            isReady = false;
+                            break;
+                        case 1: // Xe vào vị trí
+                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                            tbWeight.Visible = false;
+                            lbWeightTitle.Visible = true;
+                            isReady = false; // Chưa sẵn sàng lưu
+                            break;
 
-                        await Task.Delay(15000); // Chờ 15 giây trước khi tăng SerialNumber
+                        case 2: // Bắt đầu đo
+                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                            isReady = true; // Sẵn sàng lưu sau khi đo
+                            lbWeightTitle.Visible = false;
+                            tbWeight.Visible = true;
+                            double leftWeightResult = OPCUtility.GetOPCValue(opcLWeightResult);
+                            double rightWeightResult = OPCUtility.GetOPCValue(opcRWeightResult);
+                            double leftWeight = leftWeightResult / weightLeftA;
+                            double rightWeight = rightWeightResult / weightRightA;
+                            double sumWeight = leftWeight + rightWeight;
 
-                        string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
-                        if (!string.IsNullOrEmpty(nextSerialNumber))
-                        {
-                            this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                            lbEngineNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không có xe tiếp theo để đo.");
-                        }
+                            lbLeft_Weight.Text = leftWeight.ToString("F1");
+                            lbRight_Weight.Text = rightWeight.ToString("F1");
+                            lbSum_Weight.Text = sumWeight.ToString("F1");
+
+                            this.rearLeftWeight = Convert.ToDecimal(leftWeight.ToString("F1"));
+                            this.rearRightWeight = Convert.ToDecimal(rightWeight.ToString("F1"));
+                            break;
+
+                        case 3: // Quá trình đo hoàn tất, lưu vào DB
+                            cbReady.BackColor = Color.Green; // Đèn xanh
+                            tbWeight.Visible = true;
+                            if (isReady)
+                            {
+                                SaveDataToDatabase(); // Ghi dữ liệu vào DB
+                                isReady = false; // Đặt lại trạng thái
+                            }
+                            break;
+                        case 4: // Xe tiếp theo
+                            cbReady.BackColor = SystemColors.Control;
+                            lbWeightTitle.Visible = false;
+                            //var formWeight = new frmRearWeight(this.serialNumber);
+                            //formWeight.Show();
+                            this.Close();
+                            break;
+
+                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
+                            isReady = false;
+                            lbWeightTitle.Visible = false;
+                            break;
                     }
-                    break;
-
-                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                    isReady = false;
-                    break;
+                }));
             }
-
+            catch
+            {
+            }
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -97,7 +118,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase();
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -105,7 +126,7 @@ namespace SenAIS
                 {
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
-                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                 }
                 else
@@ -125,14 +146,14 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase();
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
-                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                 }
                 else
@@ -149,14 +170,16 @@ namespace SenAIS
         {
             sqlHelper.SaveRearWeightData(this.serialNumber, this.rearLeftWeight, this.rearRightWeight);
         }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
 
-            if (currentPosition == 3)
+        private void frmRearWeight_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (updateTimer != null)
             {
-                SaveDataToDatabase();
+                updateTimer.Stop(); // Dừng Timer
+                updateTimer.Dispose(); // Giải phóng tài nguyên
+                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
             }
+            e.Cancel = false;
         }
     }
 }

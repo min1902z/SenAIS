@@ -15,19 +15,53 @@ namespace SenAIS
         {
             InitializeComponent();
         }
+        //private void OpenChildForm(Form childForm)
+        //{
+        //    // Đóng form con hiện tại nếu có
+        //    if (panelBody.Controls.Count > 0)
+        //        panelBody.Controls[0].Dispose();
+
+        //    // Thiết lập form con mới
+        //    childForm.TopLevel = false;
+        //    childForm.Dock = DockStyle.Fill;
+        //    panelBody.Controls.Add(childForm);
+        //    panelBody.Tag = childForm;
+        //    childForm.FormBorderStyle = FormBorderStyle.None;
+        //    childForm.Show();
+        //}
         private void OpenChildForm(Form childForm)
         {
             // Đóng form con hiện tại nếu có
             if (panelBody.Controls.Count > 0)
                 panelBody.Controls[0].Dispose();
 
+            // Cấu hình panel chứa form
+            panelBody.AutoScroll = true; // Bật thanh cuộn khi nội dung vượt quá kích thước
+            panelBody.HorizontalScroll.Enabled = true;
+            panelBody.VerticalScroll.Enabled = true;
+
             // Thiết lập form con mới
             childForm.TopLevel = false;
-            childForm.Dock = DockStyle.Fill;
+            childForm.Dock = DockStyle.Fill; // Form con luôn fill panelBody
+            childForm.FormBorderStyle = FormBorderStyle.None;
+
             panelBody.Controls.Add(childForm);
             panelBody.Tag = childForm;
-            childForm.FormBorderStyle = FormBorderStyle.None;
+
+            // Cập nhật kích thước form con khi thay đổi kích thước MainForm
+            this.Resize += (s, e) => AdjustChildFormSize(childForm);
+
             childForm.Show();
+            panelBody.PerformLayout();
+        }
+        private void AdjustChildFormSize(Form childForm)
+        {
+            if (panelBody.Controls.Count > 0)
+            {
+                // Cập nhật kích thước của childForm để phù hợp với panelBody
+                childForm = (Form)panelBody.Controls[0];
+                childForm.Size = panelBody.ClientSize;
+            }
         }
         private void TSHoTro_Click(object sender, EventArgs e)
         {
@@ -263,7 +297,6 @@ namespace SenAIS
 
         private void tsMMSConfig_Click(object sender, EventArgs e)
         {
-            //OpenChildForm(new frmMMSConfig());
             var editConfigForm = new frmMMSConfig();
             editConfigForm.Show();
         }
@@ -271,6 +304,46 @@ namespace SenAIS
         private void SenAIS_FormClosing(object sender, FormClosingEventArgs e)
         {
             OPCUtility.DisconnectOPC();
+        }
+
+        private void tsSpeedMovingCalib_Click(object sender, EventArgs e)
+        {
+            var speedMoving = new frmSpeedMoving();
+            speedMoving.Show();
+        }
+
+        private void tsLeftAxisCalib_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "LeftAxis";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - Trục Tốc Độ Trái";
+            calibrationForm.lbCalibA.Text = "Calib\\LeftAxisA";
+            calibrationForm.lbCalibB.Text = "Calib\\LeftAxisB";
+            calibrationForm.lbParaA.Text = "Para\\LeftAxisA";
+            calibrationForm.lbParaB.Text = "Para\\LeftAxisB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem("Hyundai.OCS10.SPM_PosL_AI");
+        }
+
+        private void tsRightAxisCalib_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "LeftAxis";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - Trục Tốc Độ Phải";
+            calibrationForm.lbCalibA.Text = "Calib\\RightAxisA";
+            calibrationForm.lbCalibB.Text = "Calib\\RightAxisB";
+            calibrationForm.lbParaA.Text = "Para\\RightAxisA";
+            calibrationForm.lbParaB.Text = "Para\\RightAxisB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem("Hyundai.OCS10.SPM_PosR_AI");
         }
     }
 }

@@ -67,7 +67,7 @@
             this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEnd.Location = new System.Drawing.Point(37, 108);
+            this.lbEnd.Location = new System.Drawing.Point(37, 103);
             this.lbEnd.Name = "lbEnd";
             this.lbEnd.Size = new System.Drawing.Size(1361, 131);
             this.lbEnd.TabIndex = 58;
@@ -133,7 +133,7 @@
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnNext.Location = new System.Drawing.Point(1348, 809);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 29;
@@ -147,7 +147,7 @@
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPre.Location = new System.Drawing.Point(9, 809);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 28;
@@ -179,7 +179,7 @@
             this.lbWhistle.Location = new System.Drawing.Point(39, 140);
             this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
             this.lbWhistle.Name = "lbWhistle";
-            this.lbWhistle.Size = new System.Drawing.Size(1359, 565);
+            this.lbWhistle.Size = new System.Drawing.Size(1359, 577);
             this.lbWhistle.TabIndex = 26;
             this.lbWhistle.Text = "0.0";
             this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

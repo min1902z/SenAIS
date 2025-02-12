@@ -273,6 +273,7 @@ namespace SenAIS
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -300,6 +301,7 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {

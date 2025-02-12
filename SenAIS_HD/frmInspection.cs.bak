@@ -50,10 +50,10 @@ namespace SenAIS
                 opcGroup.UpdateRate = 500;
 
                 // Thêm các OPCItems tương ứng với các Counter
-                opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
-
+                    opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
+                    opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
+                    opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
+unter", 3);
                 opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
             catch (Exception)
@@ -70,16 +70,16 @@ namespace SenAIS
                 }
             for (int i = 1; i <= NumItems; i++)
             {
-                int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
                 // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false) && itemValue == 1)
+                if (ClientHandles.GetValue(i).Equals(opcCounterSpeed.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
                 {
                     OpenNewForm(new frmSpeed(this.serialNumber));
                 }
-                else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false) && itemValue == 1)
+                else if (ClientHandles.GetValue(i).Equals(opcCounterSideSlip.ClientHandle) && Convert.ToInt32(ItemValues.GetValue(i)) == 1)
                 {
-                    OpenNewForm(new frmFrontBrake(this.serialNumber));
+                    OpenNewForm(new frmSideSlip(this.serialNumber));
                 }
+
             }
         }
         // Hàm mở form và đưa lên đầu
@@ -273,7 +273,7 @@ namespace SenAIS
         {
             vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
             inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty;
-            frameNumber = txtEngineNum.Text;
+            frameNumber = txtFrameNum.Text;
             serialNumber = txtVinNum.Text;
             inspectionDate = dateInSpec.Value;
             fuelType = cbFuel.SelectedItem?.ToString() ?? string.Empty;
@@ -338,7 +338,7 @@ namespace SenAIS
 
         private void txtVinNum_TextChanged(object sender, EventArgs e)
         {
-            txtVinShow.Text = txtVinNum.Text;
+
         }
     }
 }

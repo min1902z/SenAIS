@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRearWeight));
             this.BWeightPanel = new System.Windows.Forms.Panel();
-            this.lbEngineNumber = new System.Windows.Forms.Label();
+            this.lbVinNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbWeight = new System.Windows.Forms.TableLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,35 +44,35 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
-            this.lbRearWeightTitle = new System.Windows.Forms.Label();
+            this.lbWeightTitle = new System.Windows.Forms.Label();
             this.BWeightPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tbWeight.SuspendLayout();
             this.SuspendLayout();
             // 
             // BWeightPanel
             // 
-            this.BWeightPanel.Controls.Add(this.lbEngineNumber);
+            this.BWeightPanel.Controls.Add(this.lbVinNumber);
             this.BWeightPanel.Controls.Add(this.cbReady);
-            this.BWeightPanel.Controls.Add(this.tableLayoutPanel1);
+            this.BWeightPanel.Controls.Add(this.tbWeight);
             this.BWeightPanel.Controls.Add(this.btnNext);
             this.BWeightPanel.Controls.Add(this.btnPre);
-            this.BWeightPanel.Controls.Add(this.lbRearWeightTitle);
+            this.BWeightPanel.Controls.Add(this.lbWeightTitle);
             this.BWeightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BWeightPanel.Location = new System.Drawing.Point(0, 0);
             this.BWeightPanel.Name = "BWeightPanel";
             this.BWeightPanel.Size = new System.Drawing.Size(1904, 1041);
             this.BWeightPanel.TabIndex = 0;
             // 
-            // lbEngineNumber
+            // lbVinNumber
             // 
-            this.lbEngineNumber.AutoSize = true;
-            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineNumber.ForeColor = System.Drawing.Color.IndianRed;
-            this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
-            this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);
-            this.lbEngineNumber.TabIndex = 55;
-            this.lbEngineNumber.Text = "Số Máy";
+            this.lbVinNumber.AutoSize = true;
+            this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.Location = new System.Drawing.Point(129, -7);
+            this.lbVinNumber.Name = "lbVinNumber";
+            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
+            this.lbVinNumber.TabIndex = 55;
+            this.lbVinNumber.Text = "Số Vin";
             // 
             // cbReady
             // 
@@ -89,30 +89,31 @@
             this.cbReady.TabIndex = 44;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel1
+            // tbWeight
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.86467F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.55653F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.51054F));
-            this.tableLayoutPanel1.Controls.Add(this.label12, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lbLeft_Weight, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lbSum_Weight, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbRight_Weight, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(98, 127);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1707, 861);
-            this.tableLayoutPanel1.TabIndex = 35;
+            this.tbWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbWeight.ColumnCount = 3;
+            this.tbWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.86467F));
+            this.tbWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.55653F));
+            this.tbWeight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.51054F));
+            this.tbWeight.Controls.Add(this.label12, 2, 2);
+            this.tbWeight.Controls.Add(this.label11, 2, 1);
+            this.tbWeight.Controls.Add(this.label7, 0, 2);
+            this.tbWeight.Controls.Add(this.label2, 0, 0);
+            this.tbWeight.Controls.Add(this.label3, 0, 1);
+            this.tbWeight.Controls.Add(this.lbLeft_Weight, 1, 0);
+            this.tbWeight.Controls.Add(this.lbSum_Weight, 1, 2);
+            this.tbWeight.Controls.Add(this.lbRight_Weight, 1, 1);
+            this.tbWeight.Controls.Add(this.label10, 2, 0);
+            this.tbWeight.Location = new System.Drawing.Point(98, 127);
+            this.tbWeight.Name = "tbWeight";
+            this.tbWeight.RowCount = 3;
+            this.tbWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbWeight.Size = new System.Drawing.Size(1707, 861);
+            this.tbWeight.TabIndex = 35;
+            this.tbWeight.Visible = false;
             // 
             // label12
             // 
@@ -252,19 +253,18 @@
             this.btnPre.UseVisualStyleBackColor = false;
             this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
-            // lbRearWeightTitle
+            // lbWeightTitle
             // 
-            this.lbRearWeightTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbRearWeightTitle.AutoSize = true;
-            this.lbRearWeightTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRearWeightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbRearWeightTitle.Location = new System.Drawing.Point(599, 0);
-            this.lbRearWeightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbRearWeightTitle.Name = "lbRearWeightTitle";
-            this.lbRearWeightTitle.Size = new System.Drawing.Size(848, 117);
-            this.lbRearWeightTitle.TabIndex = 32;
-            this.lbRearWeightTitle.Text = "TRỌNG LƯỢNG SAU";
-            this.lbRearWeightTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbWeightTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbWeightTitle.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWeightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbWeightTitle.Location = new System.Drawing.Point(27, 414);
+            this.lbWeightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbWeightTitle.Name = "lbWeightTitle";
+            this.lbWeightTitle.Size = new System.Drawing.Size(1837, 144);
+            this.lbWeightTitle.TabIndex = 32;
+            this.lbWeightTitle.Text = "TRỌNG LƯỢNG SAU";
+            this.lbWeightTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmRearWeight
             // 
@@ -276,12 +276,14 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmRearWeight";
+            this.ShowIcon = false;
             this.Text = "Trọng Lượng Sau";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRearWeight_FormClosing);
             this.BWeightPanel.ResumeLayout(false);
             this.BWeightPanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tbWeight.ResumeLayout(false);
+            this.tbWeight.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -289,7 +291,7 @@
         #endregion
 
         private System.Windows.Forms.Panel BWeightPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tbWeight;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
@@ -301,8 +303,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
-        private System.Windows.Forms.Label lbRearWeightTitle;
+        private System.Windows.Forms.Label lbWeightTitle;
         private System.Windows.Forms.CheckBox cbReady;
-        private System.Windows.Forms.Label lbEngineNumber;
+        private System.Windows.Forms.Label lbVinNumber;
     }
 }

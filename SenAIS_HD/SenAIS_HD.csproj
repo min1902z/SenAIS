@@ -368,11 +368,11 @@
     <Compile Include="frmSteerAngle.Designer.cs">
       <DependentUpon>frmSteerAngle.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmWaiting.cs">
+    <Compile Include="frmSpeedMoving.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmWaiting.Designer.cs">
-      <DependentUpon>frmWaiting.cs</DependentUpon>
+    <Compile Include="frmSpeedMoving.Designer.cs">
+      <DependentUpon>frmSpeedMoving.cs</DependentUpon>
     </Compile>
     <Compile Include="frmWhistle.cs">
       <SubType>Form</SubType>
@@ -468,8 +468,8 @@
     <EmbeddedResource Include="frmSteerAngle.resx">
       <DependentUpon>frmSteerAngle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmWaiting.resx">
-      <DependentUpon>frmWaiting.cs</DependentUpon>
+    <EmbeddedResource Include="frmSpeedMoving.resx">
+      <DependentUpon>frmSpeedMoving.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWhistle.resx">
       <DependentUpon>frmWhistle.cs</DependentUpon>

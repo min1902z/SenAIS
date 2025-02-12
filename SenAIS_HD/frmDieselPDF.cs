@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Metrics;
 using System.Windows.Forms;
-using PdfiumViewer;
 
 namespace SenAIS
 {
@@ -203,7 +201,7 @@ namespace SenAIS
         {
             try
             {
-                if(isReady == true)
+                if (isReady == true)
                 {
                     // Lưu vào cơ sở dữ liệu
                     SaveDataToDatabase();

@@ -16,8 +16,8 @@ namespace SenAIS
         private decimal minSideSlip = 0;
         private decimal maxSideSlip = 0;
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
-        private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip2_Result"];
-        private static readonly string opcSSSign = ConfigurationManager.AppSettings["SideSlip2_Sign"];
+        private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip_Result"];
+        private static readonly string opcSSSign = ConfigurationManager.AppSettings["SideSlip_Sign"];
         public frmSideSlip2(string serialNumber)
         {
             InitializeComponent();
