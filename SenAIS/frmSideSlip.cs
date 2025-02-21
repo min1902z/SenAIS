@@ -36,6 +36,7 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
             LoadVehicleStandards(serialNumber);
+            OPCUtility.SetOPCValue(opcSSCounter, 1);
             InitializeTimer();
         }
         private void InitializeTimer()

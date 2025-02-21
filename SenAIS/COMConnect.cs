@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
@@ -163,17 +164,22 @@ namespace SenAIS
                 }
                 if (activeForm is frmHeadlights)
                 {
+                    string logFilePath = "headlights_data.log";  // File log
+
+                    // Ghi log toàn bộ dataBuffer vào file
+                    File.AppendAllText(logFilePath, $"{DateTime.Now}: Received DataBuffer - {BitConverter.ToString(dataBuffer.ToArray())}{Environment.NewLine}");
                     while (dataBuffer.Count > 0)
                     {
                         // Nếu phát hiện byte 0x47
                         if (dataBuffer.Contains(0x47))
                         {
                             dataBuffer.Clear();
-                            byte[] request = { 0x4E, 0x4D };
+                            //byte[] request = { 0x4E, 0x4D };
+                            byte[] request = { 0x79, 0x7A };
                             SendRequest(request);
                         }
                         // Xử lý dữ liệu đèn (68 bytes)
-                        if (dataBuffer.Count >= 68)
+                        if (dataBuffer.Count >= 84)
                         {
                             // Tìm vị trí đầu tiên của byte bắt đầu là 0x01
                             int startIndex = dataBuffer.FindIndex(b => b == 0x01);
@@ -186,19 +192,19 @@ namespace SenAIS
                             }
 
                             // Kiểm tra nếu có đủ dữ liệu từ vị trí tìm thấy
-                            if (dataBuffer.Count >= startIndex + 68)
+                            if (dataBuffer.Count >= startIndex + 86)
                             {
                                 // Kiểm tra cấu trúc dữ liệu hợp lệ
-                                if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 34] == 0x01)
+                                if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 43] == 0x01)
                                 {
                                     // Lấy 68 byte từ vị trí hợp lệ
-                                    byte[] completeData = dataBuffer.Skip(startIndex).Take(68).ToArray();
+                                    byte[] completeData = dataBuffer.Skip(startIndex).Take(86).ToArray();
 
                                     // Xử lý dữ liệu với hàm ProcessNHD6109Data
                                     ((frmHeadlights)activeForm).ProcessNHD6109Data(completeData);
 
                                     // Xóa các byte đã xử lý khỏi buffer
-                                    dataBuffer.RemoveRange(0, startIndex + 68);
+                                    dataBuffer.RemoveRange(0, startIndex + 86);
                                 }
                                 else
                                 {
@@ -218,6 +224,63 @@ namespace SenAIS
                             // Nếu không đủ dữ liệu trong buffer, thoát vòng lặp
                             break;
                         }
+
+                    }
+                }
+                if (activeForm is frmFogLights)
+                {
+                    string logFilePath = "headlights_data.log";  // File log
+
+                    // Ghi log toàn bộ dataBuffer vào file
+                    File.AppendAllText(logFilePath, $"{DateTime.Now}: Received DataBuffer - {BitConverter.ToString(dataBuffer.ToArray())}{Environment.NewLine}");
+                    while (dataBuffer.Count > 0)
+                    {
+                        // Nếu phát hiện byte 0x47
+                        if (dataBuffer.Contains(0x47))
+                        {
+                            dataBuffer.Clear();
+                            byte[] request = { 0x79, 0x7A };
+                            SendRequest(request);
+                        }
+                        if (dataBuffer.Count >= 84)
+                        {
+                            // Tìm vị trí đầu tiên của byte bắt đầu là 0x01
+                            int startIndex = dataBuffer.FindIndex(b => b == 0x01);
+                            if (startIndex == -1)
+                            {
+                                // Nếu không tìm thấy 0x01, xóa toàn bộ buffer
+                                dataBuffer.Clear();
+                                break;
+                            }
+                            // Kiểm tra nếu có đủ dữ liệu từ vị trí tìm thấy
+                            if (dataBuffer.Count >= startIndex + 86)
+                            {
+                                // Kiểm tra cấu trúc dữ liệu hợp lệ
+                                if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 43] == 0x01)
+                                {
+                                    byte[] completeData = dataBuffer.Skip(startIndex).Take(86).ToArray();
+                                    // Xử lý dữ liệu với hàm ProcessNHD6109Data
+                                    ((frmFogLights)activeForm).ProcessNHD6109Data(completeData);
+                                    // Xóa các byte đã xử lý khỏi buffer
+                                    dataBuffer.RemoveRange(0, startIndex + 86);
+                                }
+                                else
+                                {
+                                    dataBuffer.RemoveAt(0);
+                                }
+                            }
+                            else
+                            {
+                                dataBuffer.Clear();
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            // Nếu không đủ dữ liệu trong buffer, thoát vòng lặp
+                            break;
+                        }
+
                     }
                 }
                 //}

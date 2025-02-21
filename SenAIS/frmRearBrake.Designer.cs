@@ -263,7 +263,7 @@
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnNext.Location = new System.Drawing.Point(1348, 812);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 37);
             this.btnNext.TabIndex = 38;
@@ -277,7 +277,7 @@
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPre.Location = new System.Drawing.Point(9, 812);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(86, 37);
             this.btnPre.TabIndex = 37;
@@ -307,10 +307,9 @@
             this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.FBrakePanel);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.MaximizeBox = false;
             this.Name = "frmRearBrake";
             this.ShowIcon = false;
-            this.Text = "Phanh Sau";
+            this.Text = "Lực Phanh Sau";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRearBrake_FormClosing);
             this.FBrakePanel.ResumeLayout(false);

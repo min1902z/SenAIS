@@ -66,9 +66,9 @@ namespace SenAIS
                     opcCounterSteer = opcGroup.OPCItems.AddItem(opcSteerCounter, 6);
                     opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng kiểm tra dữ liệu từ OPC Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Vui lòng kiểm tra dữ liệu từ OPC Server: {ex.Message} ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
@@ -180,7 +180,6 @@ namespace SenAIS
             if (CheckSerialNumber())
             {
                 OpenNewForm(new frmWhistle(this.serialNumber));
-                OPCUtility.SetOPCValue(opcWhistleCounter, 1);
             }
         }
 
@@ -380,6 +379,35 @@ namespace SenAIS
         private void txtVinNum_TextChanged(object sender, EventArgs e)
         {
             txtVinShow.Text = txtVinNum.Text;
+        }
+
+        public void UpdateCarInfo(string vin, string engine, string model, string color)
+        {
+            txtVinNum.Text = vin;
+            txtEngineNum.Text = engine;
+            int index = cbTypeCar.FindStringExact(model);
+            if (index != -1)
+            {
+                cbTypeCar.SelectedIndex = index;
+            }
+            else
+            {
+                cbTypeCar.SelectedIndex = -1;  // Không chọn gì cả
+            }
+            txtColor.Text = color;
+        }
+        private void btnAddList_Click(object sender, EventArgs e)
+        {
+            frmCarList carListForm = new frmCarList(this);
+            carListForm.ShowDialog();
+        }
+
+        private void btnFoglights_Click(object sender, EventArgs e)
+        {
+            if (CheckSerialNumber())
+            {
+                OpenNewForm(new frmFogLights(this.serialNumber));
+            }
         }
     }
 }

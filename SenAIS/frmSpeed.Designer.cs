@@ -66,16 +66,15 @@
             // lbEnd
             // 
             this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbEnd.AutoSize = true;
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEnd.Location = new System.Drawing.Point(673, 129);
+            this.lbEnd.Location = new System.Drawing.Point(69, 129);
             this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEnd.Name = "lbEnd";
-            this.lbEnd.Size = new System.Drawing.Size(549, 164);
+            this.lbEnd.Size = new System.Drawing.Size(1803, 174);
             this.lbEnd.TabIndex = 56;
             this.lbEnd.Text = "Kết Thúc";
-            this.lbEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbEnd.Visible = false;
             // 
             // label1
@@ -172,15 +171,13 @@
             // 
             // lbSpeed
             // 
-            this.lbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbSpeed.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSpeed.Location = new System.Drawing.Point(49, 168);
+            this.lbSpeed.Location = new System.Drawing.Point(69, 167);
             this.lbSpeed.Name = "lbSpeed";
             this.lbSpeed.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbSpeed.Size = new System.Drawing.Size(1823, 660);
+            this.lbSpeed.Size = new System.Drawing.Size(1803, 692);
             this.lbSpeed.TabIndex = 40;
             this.lbSpeed.Text = "0.0";
             this.lbSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -188,13 +185,12 @@
             // 
             // lbTitleSpeed
             // 
-            this.lbTitleSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbTitleSpeed.AutoSize = true;
-            this.lbTitleSpeed.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitleSpeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbTitleSpeed.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitleSpeed.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbTitleSpeed.Location = new System.Drawing.Point(480, 331);
+            this.lbTitleSpeed.Location = new System.Drawing.Point(15, 274);
             this.lbTitleSpeed.Name = "lbTitleSpeed";
-            this.lbTitleSpeed.Size = new System.Drawing.Size(932, 305);
+            this.lbTitleSpeed.Size = new System.Drawing.Size(1875, 456);
             this.lbTitleSpeed.TabIndex = 37;
             this.lbTitleSpeed.Text = "TỐC ĐỘ";
             this.lbTitleSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -209,7 +205,7 @@
             this.Controls.Add(this.SpeedPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1599, 798);
+            this.MinimumSize = new System.Drawing.Size(1598, 797);
             this.Name = "frmSpeed";
             this.ShowIcon = false;
             this.Text = "Tốc Độ";

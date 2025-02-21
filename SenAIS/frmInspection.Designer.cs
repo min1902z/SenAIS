@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInspection));
             this.btnReport = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnFoglights = new System.Windows.Forms.Button();
             this.btnHeadlights = new System.Windows.Forms.Button();
-            this.btnWhistle = new System.Windows.Forms.Button();
             this.btnEmission = new System.Windows.Forms.Button();
             this.btnNoise = new System.Windows.Forms.Button();
             this.btnSideSlip = new System.Windows.Forms.Button();
@@ -42,8 +43,10 @@
             this.btnHandBrake = new System.Windows.Forms.Button();
             this.btnRearWeight = new System.Windows.Forms.Button();
             this.btnRearBrake = new System.Windows.Forms.Button();
+            this.btnWhistle = new System.Windows.Forms.Button();
             this.btnInspecProgress = new System.Windows.Forms.Button();
             this.InspectionPanel = new System.Windows.Forms.Panel();
+            this.btnAddList = new System.Windows.Forms.Button();
             this.txtVinShow = new System.Windows.Forms.TextBox();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
             this.txtColor = new System.Windows.Forms.TextBox();
@@ -87,8 +90,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Controls.Add(this.btnFoglights, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnHeadlights, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnEmission, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnNoise, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnSideSlip, 0, 1);
@@ -99,7 +102,8 @@
             this.tableLayoutPanel2.Controls.Add(this.btnHandBrake, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnRearWeight, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.btnRearBrake, 1, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(746, 131);
+            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 2, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(747, 130);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
@@ -110,6 +114,18 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(725, 694);
             this.tableLayoutPanel2.TabIndex = 6;
+            // 
+            // btnFoglights
+            // 
+            this.btnFoglights.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFoglights.Location = new System.Drawing.Point(244, 2);
+            this.btnFoglights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFoglights.Name = "btnFoglights";
+            this.btnFoglights.Size = new System.Drawing.Size(184, 65);
+            this.btnFoglights.TabIndex = 19;
+            this.btnFoglights.Text = "Đèn Sương Mù";
+            this.btnFoglights.UseVisualStyleBackColor = true;
+            this.btnFoglights.Click += new System.EventHandler(this.btnFoglights_Click);
             // 
             // btnHeadlights
             // 
@@ -122,18 +138,6 @@
             this.btnHeadlights.Text = "Đèn Pha-Cốt";
             this.btnHeadlights.UseVisualStyleBackColor = true;
             this.btnHeadlights.Click += new System.EventHandler(this.btnHeadlights_Click);
-            // 
-            // btnWhistle
-            // 
-            this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWhistle.Location = new System.Drawing.Point(244, 2);
-            this.btnWhistle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnWhistle.Name = "btnWhistle";
-            this.btnWhistle.Size = new System.Drawing.Size(172, 65);
-            this.btnWhistle.TabIndex = 11;
-            this.btnWhistle.Text = "Còi";
-            this.btnWhistle.UseVisualStyleBackColor = true;
-            this.btnWhistle.Click += new System.EventHandler(this.btnWhistle_Click);
             // 
             // btnEmission
             // 
@@ -256,6 +260,18 @@
             this.btnRearBrake.UseVisualStyleBackColor = true;
             this.btnRearBrake.Click += new System.EventHandler(this.btnRearBrake_Click);
             // 
+            // btnWhistle
+            // 
+            this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWhistle.Location = new System.Drawing.Point(485, 2);
+            this.btnWhistle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnWhistle.Name = "btnWhistle";
+            this.btnWhistle.Size = new System.Drawing.Size(172, 65);
+            this.btnWhistle.TabIndex = 11;
+            this.btnWhistle.Text = "Còi";
+            this.btnWhistle.UseVisualStyleBackColor = true;
+            this.btnWhistle.Click += new System.EventHandler(this.btnWhistle_Click);
+            // 
             // btnInspecProgress
             // 
             this.btnInspecProgress.AutoSize = true;
@@ -277,6 +293,7 @@
             this.InspectionPanel.AutoScroll = true;
             this.InspectionPanel.AutoSize = true;
             this.InspectionPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.InspectionPanel.Controls.Add(this.btnAddList);
             this.InspectionPanel.Controls.Add(this.txtVinShow);
             this.InspectionPanel.Controls.Add(this.tbVehicleInfo);
             this.InspectionPanel.Controls.Add(this.btnInspecProgress);
@@ -291,6 +308,19 @@
             this.InspectionPanel.Size = new System.Drawing.Size(1600, 837);
             this.InspectionPanel.TabIndex = 1;
             // 
+            // btnAddList
+            // 
+            this.btnAddList.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAddList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddList.BackgroundImage")));
+            this.btnAddList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddList.Location = new System.Drawing.Point(53, 133);
+            this.btnAddList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddList.Name = "btnAddList";
+            this.btnAddList.Size = new System.Drawing.Size(69, 55);
+            this.btnAddList.TabIndex = 19;
+            this.btnAddList.UseVisualStyleBackColor = true;
+            this.btnAddList.Click += new System.EventHandler(this.btnAddList_Click);
+            // 
             // txtVinShow
             // 
             this.txtVinShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -298,11 +328,12 @@
             this.txtVinShow.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtVinShow.Font = new System.Drawing.Font("Calibri", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVinShow.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtVinShow.Location = new System.Drawing.Point(988, 2);
+            this.txtVinShow.Location = new System.Drawing.Point(572, 2);
             this.txtVinShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtVinShow.Name = "txtVinShow";
             this.txtVinShow.ReadOnly = true;
-            this.txtVinShow.Size = new System.Drawing.Size(596, 123);
+            this.txtVinShow.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtVinShow.Size = new System.Drawing.Size(1012, 123);
             this.txtVinShow.TabIndex = 18;
             this.txtVinShow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -312,7 +343,7 @@
             this.tbVehicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tbVehicleInfo.ColumnCount = 2;
             this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 414F));
+            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 426F));
             this.tbVehicleInfo.Controls.Add(this.txtColor, 1, 6);
             this.tbVehicleInfo.Controls.Add(this.lbColor, 0, 6);
             this.tbVehicleInfo.Controls.Add(this.cbFuel, 1, 5);
@@ -328,7 +359,7 @@
             this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 2);
             this.tbVehicleInfo.Controls.Add(this.cbTypeCar, 1, 2);
             this.tbVehicleInfo.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbVehicleInfo.Location = new System.Drawing.Point(53, 211);
+            this.tbVehicleInfo.Location = new System.Drawing.Point(53, 210);
             this.tbVehicleInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbVehicleInfo.Name = "tbVehicleInfo";
             this.tbVehicleInfo.RowCount = 7;
@@ -496,6 +527,7 @@
             this.cbTypeCar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTypeCar.Name = "cbTypeCar";
             this.cbTypeCar.Size = new System.Drawing.Size(296, 45);
+            this.cbTypeCar.Sorted = true;
             this.cbTypeCar.TabIndex = 18;
             // 
             // frmInspection
@@ -553,5 +585,7 @@
         private System.Windows.Forms.TextBox txtVinShow;
         private System.Windows.Forms.TextBox txtColor;
         private System.Windows.Forms.Label lbColor;
+        private System.Windows.Forms.Button btnAddList;
+        private System.Windows.Forms.Button btnFoglights;
     }
 }

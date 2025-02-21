@@ -19,7 +19,6 @@ namespace SenAIS
         public decimal noiseValue = 0;
         public decimal maxNoise;
         private bool isMeasuring = false;
-        private CancellationTokenSource cancellationTokenSource;
         public frmNoise(string serialNumber)
         {
             InitializeComponent();
@@ -31,7 +30,7 @@ namespace SenAIS
         }
         private async void StartMeasurementProcess()
         {
-            lbNoiseTitle.Text = "Độ ồn";
+            lbNoiseTitle.Text = "Độ Ồn";
             await Task.Delay(3000); // Quãng nghỉ 3 giây trước khi bắt đầu đo
 
             lbNoiseTitle.Text = "Chuẩn bị quá trình đo...";

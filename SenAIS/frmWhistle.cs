@@ -230,6 +230,7 @@ namespace SenAIS
         private void frmWhistle_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
+            OPCUtility.SetOPCValue(opcWhistleCounter, 1);
         }
 
         private void frmWhistle_FormClosing(object sender, FormClosingEventArgs e)

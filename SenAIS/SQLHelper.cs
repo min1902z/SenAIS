@@ -317,7 +317,8 @@ namespace SenAIS
         public void SaveHeadlightsData(string serialNumber, decimal leftHBIntensityValue, decimal leftHBVerticalValue, decimal leftHBHorizontalValue,
                                                                     decimal rightHBIntensityValue, decimal rightHBVerticalValue, decimal rightHBHorizontalValue,
                                                                     decimal leftLBIntensityValue, decimal leftLBVerticalValue, decimal leftLBHorizontalValue,
-                                                                    decimal rightLBIntensityValue, decimal rightLBVerticalValue, decimal rightLBHorizontalValue)
+                                                                    decimal rightLBIntensityValue, decimal rightLBVerticalValue, decimal rightLBHorizontalValue,
+                                                                    decimal rightHBHeightValue, decimal rightLBHeightValue, decimal leftHBHeightValue, decimal leftLBHeightValue)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -326,9 +327,10 @@ namespace SenAIS
                          BEGIN
                              UPDATE Headlights 
                              SET LeftHBIntensity = @LeftHBIntensity, LeftHBVerticalDeviation = @LeftHBVerticalDeviation, LeftHBHorizontalDeviation = @LeftHBHorizontalDeviation, 
-                                    RightHBIntensity = RightHBIntensity, RightHBVerticalDeviation = @RightHBVerticalDeviation, RightHBHorizontalDeviation = @RightHBHorizontalDeviation,
+                                    RightHBIntensity = @RightHBIntensity, RightHBVerticalDeviation = @RightHBVerticalDeviation, RightHBHorizontalDeviation = @RightHBHorizontalDeviation,
                                     LeftLBIntensity = @LeftLBIntensity, LeftLBVerticalDeviation = @LeftLBVerticalDeviation, LeftLBHorizontalDeviation = @LeftLBHorizontalDeviation, 
-                                    RightLBIntensity = RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation
+                                    RightLBIntensity = @RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation,
+                                    RightHBHeight = @RightHBHeight, RightLBHeight = @RightLBHeight, LeftHBHeight = @LeftHBHeight, LeftLBHeight = @LeftLBHeight
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
@@ -336,11 +338,13 @@ namespace SenAIS
                              INSERT INTO Headlights (SerialNumber, LeftHBIntensity, LeftHBVerticalDeviation, LeftHBHorizontalDeviation, 
                                                                                                     RightHBIntensity, RightHBVerticalDeviation, RightHBHorizontalDeviation, 
                                                                                                     LeftLBIntensity, LeftLBVerticalDeviation, LeftLBHorizontalDeviation, 
-                                                                                                    RightLBIntensity, RightLBVerticalDeviation, RightLBHorizontalDeviation)
+                                                                                                    RightLBIntensity, RightLBVerticalDeviation, RightLBHorizontalDeviation,
+                                                                                                    RightHBHeight, RightLBHeight, LeftHBHeight, LeftLBHeight)
                              VALUES (@SerialNumber, @LeftHBIntensity, @LeftHBVerticalDeviation, @LeftHBHorizontalDeviation, 
                                                                             @RightHBIntensity, @RightHBVerticalDeviation, @RightHBHorizontalDeviation, 
                                                                             @LeftLBIntensity, @LeftLBVerticalDeviation, @LeftLBHorizontalDeviation, 
-                                                                            @RightLBIntensity, @RightLBVerticalDeviation, @RightLBHorizontalDeviation)
+                                                                            @RightLBIntensity, @RightLBVerticalDeviation, @RightLBHorizontalDeviation,
+                                                                            @RightHBHeight, @RightLBHeight, @LeftHBHeight, LeftLBHeight)
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -356,84 +360,47 @@ namespace SenAIS
                     cmd.Parameters.AddWithValue("@RightLBIntensity", leftHBIntensityValue);
                     cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", leftHBVerticalValue);
                     cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", leftHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightHBHeight", rightHBHeightValue);
+                    cmd.Parameters.AddWithValue("@RightLBHeight", rightLBHeightValue);
+                    cmd.Parameters.AddWithValue("@LeftHBHeight", leftHBHeightValue);
+                    cmd.Parameters.AddWithValue("@LeftLBHeight", leftLBHeightValue);
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-        public void SaveLeftHeadLightData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
+        public void SaveFogLightsData(string serialNumber, decimal rightFLIntensityValue, decimal rightFLVerticalValue, decimal rightFLHorizontalValue, decimal rightFLHeightValue,
+                                                                                        decimal leftFLIntensityValue, decimal leftFLVerticalValue, decimal leftFLHorizontalValue, decimal leftFLHeightValue)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string query = @"IF EXISTS (SELECT 1 FROM HeadLights WHERE SerialNumber = @SerialNumber)
-                         BEGIN
-                             UPDATE HeadLights 
-                             SET LeftIntensity = @LeftIntensity, LeftVerticalDeviation = @LeftVerticalDeviation, LeftHorizontalDeviation = @LeftHorizontalDeviation
-                             WHERE SerialNumber = @SerialNumber
-                         END
-                         ELSE
-                         BEGIN
-                             INSERT INTO HeadLights (SerialNumber, LeftIntensity, LeftVerticalDeviation, LeftHorizontalDeviation)
-                             VALUES (@SerialNumber, @LeftIntensity, @LeftVerticalDeviation, @LeftHorizontalDeviation)
-                         END";
+                string query = @"IF EXISTS (SELECT 1 FROM Headlights WHERE SerialNumber = @SerialNumber)
+                 BEGIN
+                     UPDATE Headlights 
+                     SET LeftFLIntensity = @LeftFLIntensity, LeftFLVerticalDeviation = @LeftFLVerticalDeviation, LeftFLHorizontalDeviation = @LeftFLHorizontalDeviation, LeftFLHeight = @LeftFLHeight,
+                            RightFLIntensity = @RightFLIntensity, RightFLVerticalDeviation = @RightFLVerticalDeviation, RightFLHorizontalDeviation = @RightFLHorizontalDeviation, RightFLHeight = @RightFLHeight
+                     WHERE SerialNumber = @SerialNumber
+                 END
+                 ELSE
+                 BEGIN
+                     INSERT INTO Headlights (SerialNumber, LeftFLIntensity, LeftFLVerticalDeviation, LeftFLHorizontalDeviation, LeftFLHeight,
+                                                       RightFLIntensity, RightFLVerticalDeviation, RightFLHorizontalDeviation, RightFLHeight)
+                     VALUES (@SerialNumber, @LeftFLIntensity, @LeftFLVerticalDeviation, @LeftFLHorizontalDeviation, @LeftFLHeight,
+                                    @RightFLIntensity, @RightFLVerticalDeviation, @RightFLHorizontalDeviation, @RightFLHeight)
+                 END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@LeftIntensity", intensity);
-                    cmd.Parameters.AddWithValue("@LeftVerticalDeviation", veritiDeviation);
-                    cmd.Parameters.AddWithValue("@LeftHorizontalDeviation", horiDeviation);
-                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void SaveRightLowBeamData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = @"IF EXISTS (SELECT 1 FROM LowBeam WHERE SerialNumber = @SerialNumber)
-                         BEGIN
-                             UPDATE LowBeam 
-                             SET RightIntensity = @RightIntensity, RightVerticalDeviation = @RightVerticalDeviation, RightHorizontalDeviation = @RightHorizontalDeviation
-                             WHERE SerialNumber = @SerialNumber
-                         END
-                         ELSE
-                         BEGIN
-                             INSERT INTO LowBeam (SerialNumber, RightIntensity, RightVerticalDeviation, RightHorizontalDeviation)
-                             VALUES (@SerialNumber, @RightIntensity, @RightVerticalDeviation, @RightHorizontalDeviation)
-                         END";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@RightIntensity", intensity);
-                    cmd.Parameters.AddWithValue("@RightVerticalDeviation", veritiDeviation);
-                    cmd.Parameters.AddWithValue("@RightHorizontalDeviation", horiDeviation);
-                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void SaveRightHeadLightData(string serialNumber, decimal intensity, decimal veritiDeviation, decimal horiDeviation)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = @"IF EXISTS (SELECT 1 FROM HeadLights WHERE SerialNumber = @SerialNumber)
-                         BEGIN
-                             UPDATE HeadLights 
-                             SET RightIntensity = @RightIntensity, RightVerticalDeviation = @RightVerticalDeviation, RightHorizontalDeviation = @RightHorizontalDeviation
-                             WHERE SerialNumber = @SerialNumber
-                         END
-                         ELSE
-                         BEGIN
-                             INSERT INTO HeadLights (SerialNumber, RightIntensity, RightVerticalDeviation, RightHorizontalDeviation)
-                             VALUES (@SerialNumber, @RightIntensity, @RightVerticalDeviation, @RightHorizontalDeviation)
-                         END";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@RightIntensity", intensity);
-                    cmd.Parameters.AddWithValue("@RightVerticalDeviation", veritiDeviation);
-                    cmd.Parameters.AddWithValue("@RightHorizontalDeviation", horiDeviation);
+                    cmd.Parameters.AddWithValue("@LeftFLIntensity", leftFLIntensityValue);
+                    cmd.Parameters.AddWithValue("@LeftFLVerticalDeviation", leftFLVerticalValue);
+                    cmd.Parameters.AddWithValue("@LeftFLHorizontalDeviation", leftFLHorizontalValue);
+                    cmd.Parameters.AddWithValue("@LeftFLHeight", leftFLHeightValue);
+
+                    cmd.Parameters.AddWithValue("@RightFLIntensity", rightFLIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightFLVerticalDeviation", rightFLVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightFLHorizontalDeviation", rightFLHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightFLHeight", rightFLHeightValue);
+
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.ExecuteNonQuery();
                 }
@@ -627,6 +594,18 @@ namespace SenAIS
                             hl.[RightLBIntensity] AS RLBIntensity,
                             hl.[RightLBVerticalDeviation] AS RLBVertical,
                             hl.[RightLBHorizontalDeviation] AS RLBHorizontal,
+                            hl.[RightHBHeight] AS RHBHeight,
+                            hl.[RightLBHeight] AS RLBHeight,
+                            hl.[LeftHBHeight] AS LHBHeight,
+                            hl.[LeftLBHeight] AS LLBHeight,
+                            hl.[LeftFLHeight] AS LFLHeight,
+	                        hl.[LeftFLIntensity] AS LFLIntensity,
+                            hl.[LeftFLVerticalDeviation] AS LFLVertical,
+                            hl.[LeftFLHorizontalDeviation] AS LFLHorizontal,
+                            hl.[RightFLHeight] AS RFLHeight,
+	                        hl.[RightFLIntensity] AS RFLIntensity,
+                            hl.[RightFLVerticalDeviation] AS RFLVertical,
+                            hl.[RightFLHorizontalDeviation] AS RFLHorizontal,
 	                        pe.[HC],
                             pe.[CO],
                             pe.[CO2],
@@ -634,6 +613,7 @@ namespace SenAIS
                             pe.[NO],
                             pe.[OilTemp],
                             pe.[RPM],
+                            pe.[Lambda],
 	                        de.[MinSpeed1],
                             de.[MaxSpeed1],
                             de.[HSU1],
@@ -853,51 +833,97 @@ namespace SenAIS
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateHeadlights(string serialNumber, decimal? leftHBIntensity, decimal? leftHBVertical, decimal? leftHBHorizontal,
-            decimal? rightHBIntensity, decimal? rightHBVertical, decimal? rightHBHorizontal,
-            decimal? leftLBIntensity, decimal? leftLBVertical, decimal? leftLBHorizontal,
-            decimal? rightLBIntensity, decimal? rightLBVertical, decimal? rightLBHorizontal)
+        public void UpdateHeadlights(string serialNumber, decimal? leftHBIntensity, decimal? leftHBVertical, decimal? leftHBHorizontal, decimal? leftHBHeight,
+            decimal? rightHBIntensity, decimal? rightHBVertical, decimal? rightHBHorizontal, decimal? rightHBHeight,
+            decimal? leftLBIntensity, decimal? leftLBVertical, decimal? leftLBHorizontal, decimal? leftLBHeight,
+            decimal? rightLBIntensity, decimal? rightLBVertical, decimal? rightLBHorizontal, decimal? rightLBHeight,
+            decimal? leftFLIntensity, decimal? leftFLVertical, decimal? leftFLHorizontal, decimal? leftFLHeight,
+            decimal? rightFLIntensity, decimal? rightFLVertical, decimal? rightFLHorizontal, decimal? rightFLHeight)
         {
             string query = @"
             IF EXISTS (SELECT 1 FROM Headlights WHERE SerialNumber = @SerialNumber)
                 UPDATE Headlights 
                 SET LeftHBIntensity = @LeftHBIntensity, 
                     LeftHBVerticalDeviation = @LeftHBVertical, 
-                    LeftHBHorizontalDeviation = @LeftHBHorizontal, 
+                    LeftHBHorizontalDeviation = @LeftHBHorizontal,
+                    LeftHBHeight = @LeftHBHeight, 
                     RightHBIntensity = @RightHBIntensity, 
                     RightHBVerticalDeviation = @RightHBVertical, 
                     RightHBHorizontalDeviation = @RightHBHorizontal,
+                    RightHBHeight = @RightHBHeight,
                     LeftLBIntensity = @LeftLBIntensity,
                     LeftLBVerticalDeviation = @LeftLBVertical,
                     LeftLBHorizontalDeviation = @LeftLBHorizontal,
+                    LeftLBHeight = @LeftLBHeight,
                     RightLBIntensity = @RightLBIntensity,
                     RightLBVerticalDeviation = @RightLBVertical,
-                    RightLBHorizontalDeviation = @RightLBHorizontal
+                    RightLBHorizontalDeviation = @RightLBHorizontal,
+                    RightLBHeight = @RightLBHeight,
+                    LeftFLIntensity = @LeftFLIntensity,
+                    LeftFLVerticalDeviation = @LeftFLVertical,
+                    LeftFLHorizontalDeviation = @LeftFLHorizontal,
+                    LeftFLHeight = @LeftFLHeight,
+                    RightFLIntensity = @RightFLIntensity,
+                    RightFLVerticalDeviation = @RightFLVertical,
+                    RightFLHorizontalDeviation = @RightFLHorizontal,
+                    RightFLHeight = @RightFLHeight
                 WHERE SerialNumber = @SerialNumber;
             ELSE
-                INSERT INTO Headlights (SerialNumber, LeftHBIntensity, LeftHBVerticalDeviation, LeftHBHorizontalDeviation, RightHBIntensity, RightHBVerticalDeviation, RightHBHorizontalDeviation, LeftLBIntensity, LeftLBVerticalDeviation, LeftLBHorizontalDeviation, RightLBIntensity, RightLBVerticalDeviation, RightLBHorizontalDeviation)
-                VALUES (@SerialNumber, @LeftHBIntensity, @LeftHBVertical, @LeftHBHorizontal, @RightHBIntensity, @RightHBVertical, @RightHBHorizontal, @LeftLBIntensity, @LeftLBVertical, @LeftLBHorizontal, @RightLBIntensity, @RightLBVertical, @RightLBHorizontal);";
+                INSERT INTO Headlights 
+                (SerialNumber, 
+                LeftHBIntensity, LeftHBVerticalDeviation, LeftHBHorizontalDeviation, LeftHBHeight, 
+                RightHBIntensity, RightHBVerticalDeviation, RightHBHorizontalDeviation, RightHBHeight,
+                LeftLBIntensity, LeftLBVerticalDeviation, LeftLBHorizontalDeviation, LeftLBHeight,
+                RightLBIntensity, RightLBVerticalDeviation, RightLBHorizontalDeviation, RightLBHeight,
+                LeftFLIntensity, LeftFLVerticalDeviation, LeftFLHorizontalDeviation, LeftFLHeight,
+                RightFLIntensity, RightFLVerticalDeviation, RightFLHorizontalDeviation, RightFLHeight)
+                VALUES 
+                (@SerialNumber, 
+                @LeftHBIntensity, @LeftHBVertical, @LeftHBHorizontal, @LeftHBHeight,
+                @RightHBIntensity, @RightHBVertical, @RightHBHorizontal, @RightHBHeight,
+                @LeftLBIntensity, @LeftLBVertical, @LeftLBHorizontal, @LeftLBHeight,
+                @RightLBIntensity, @RightLBVertical, @RightLBHorizontal, @RightLBHeight,
+                @LeftFLIntensity, @LeftFLVertical, @LeftFLHorizontal, @LeftFLHeight,
+                @RightFLIntensity, @RightFLVertical, @RightFLHorizontal, @RightFLHeight);";
 
             var parameters = new[]
             {
         new SqlParameter("@SerialNumber", serialNumber),
+
         new SqlParameter("@LeftHBIntensity", leftHBIntensity ?? (object)DBNull.Value),
         new SqlParameter("@LeftHBVertical", leftHBVertical ?? (object)DBNull.Value),
         new SqlParameter("@LeftHBHorizontal", leftHBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@LeftHBHeight", leftHBHeight ?? (object)DBNull.Value),
+
         new SqlParameter("@RightHBIntensity", rightHBIntensity ?? (object)DBNull.Value),
         new SqlParameter("@RightHBVertical", rightHBVertical ?? (object)DBNull.Value),
         new SqlParameter("@RightHBHorizontal", rightHBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@RightHBHeight", rightHBHeight ?? (object)DBNull.Value),
+
         new SqlParameter("@LeftLBIntensity", leftLBIntensity ?? (object)DBNull.Value),
         new SqlParameter("@LeftLBVertical", leftLBVertical ?? (object)DBNull.Value),
         new SqlParameter("@LeftLBHorizontal", leftLBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@LeftLBHeight", leftLBHeight ?? (object)DBNull.Value),
+
         new SqlParameter("@RightLBIntensity", rightLBIntensity ?? (object)DBNull.Value),
         new SqlParameter("@RightLBVertical", rightLBVertical ?? (object)DBNull.Value),
-        new SqlParameter("@RightLBHorizontal", rightLBHorizontal ?? (object)DBNull.Value)
+        new SqlParameter("@RightLBHorizontal", rightLBHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@RightLBHeight", rightLBHeight ?? (object)DBNull.Value),
+
+        new SqlParameter("@LeftFLIntensity", leftFLIntensity ?? (object)DBNull.Value),
+        new SqlParameter("@LeftFLVertical", leftFLVertical ?? (object)DBNull.Value),
+        new SqlParameter("@LeftFLHorizontal", leftFLHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@LeftFLHeight", leftFLHeight ?? (object)DBNull.Value),
+
+        new SqlParameter("@RightFLIntensity", rightFLIntensity ?? (object)DBNull.Value),
+        new SqlParameter("@RightFLVertical", rightFLVertical ?? (object)DBNull.Value),
+        new SqlParameter("@RightFLHorizontal", rightFLHorizontal ?? (object)DBNull.Value),
+        new SqlParameter("@RightFLHeight", rightFLHeight ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);
         }
-        public void UpdateGasEmissionPetrol(string serialNumber, decimal? hc, decimal? co, decimal? co2, decimal? o2, decimal? no, decimal? oilTemp, decimal? rpm)
+        public void UpdateGasEmissionPetrol(string serialNumber, decimal? hc, decimal? co, decimal? co2, decimal? o2, decimal? no, decimal? oilTemp, decimal? rpm, decimal? lambda)
         {
             string query = @"
             IF EXISTS (SELECT 1 FROM GasEmission_Petrol WHERE SerialNumber = @SerialNumber)
@@ -908,11 +934,12 @@ namespace SenAIS
                     O2 = @O2, 
                     NO = @NO, 
                     OilTemp = @OilTemp, 
-                    RPM = @RPM
+                    RPM = @RPM,
+                    Lambda = @Lambda
                 WHERE SerialNumber = @SerialNumber;
             ELSE
-                INSERT INTO GasEmission_Petrol (SerialNumber, HC, CO, CO2, O2, NO, OilTemp, RPM)
-                VALUES (@SerialNumber, @HC, @CO, @CO2, @O2, @NO, @OilTemp, @RPM);";
+                INSERT INTO GasEmission_Petrol (SerialNumber, HC, CO, CO2, O2, NO, OilTemp, RPM, Lambda)
+                VALUES (@SerialNumber, @HC, @CO, @CO2, @O2, @NO, @OilTemp, @RPM, @Lambda);";
 
             var parameters = new[]
             {
@@ -923,7 +950,8 @@ namespace SenAIS
         new SqlParameter("@O2", o2 ?? (object)DBNull.Value),
         new SqlParameter("@NO", no ?? (object)DBNull.Value),
         new SqlParameter("@OilTemp", oilTemp ?? (object)DBNull.Value),
-        new SqlParameter("@RPM", rpm ?? (object)DBNull.Value)
+        new SqlParameter("@RPM", rpm ?? (object)DBNull.Value),
+        new SqlParameter("@Lambda", lambda ?? (object)DBNull.Value)
     };
 
             ExecuteQuery(query, parameters);

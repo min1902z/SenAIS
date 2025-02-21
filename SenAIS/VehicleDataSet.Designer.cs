@@ -495,6 +495,42 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnPublishSeri;
             
+            private global::System.Data.DataColumn columnMaxLeftSteer;
+            
+            private global::System.Data.DataColumn columnMaxRightSteer;
+            
+            private global::System.Data.DataColumn columnLambda;
+            
+            private global::System.Data.DataColumn columnLFLIntensity;
+            
+            private global::System.Data.DataColumn columnRFLIntensity;
+            
+            private global::System.Data.DataColumn columnMinFLIntensity;
+            
+            private global::System.Data.DataColumn columnMaxFLIntensity;
+            
+            private global::System.Data.DataColumn columnLFLVertical;
+            
+            private global::System.Data.DataColumn columnRFLVertical;
+            
+            private global::System.Data.DataColumn columnMinDiffVertiFL;
+            
+            private global::System.Data.DataColumn columnMaxDiffVertiFL;
+            
+            private global::System.Data.DataColumn columnLFLHorizontal;
+            
+            private global::System.Data.DataColumn columnRFLHorizontal;
+            
+            private global::System.Data.DataColumn columnMinDiffHoriFL;
+            
+            private global::System.Data.DataColumn columnMaxDiffHoriFL;
+            
+            private global::System.Data.DataColumn columnLHBHeight;
+            
+            private global::System.Data.DataColumn columnRHBHeight;
+            
+            private global::System.Data.DataColumn columnMaxLightHeight;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1394,6 +1430,150 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxLeftSteerColumn {
+                get {
+                    return this.columnMaxLeftSteer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxRightSteerColumn {
+                get {
+                    return this.columnMaxRightSteer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LambdaColumn {
+                get {
+                    return this.columnLambda;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LFLIntensityColumn {
+                get {
+                    return this.columnLFLIntensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RFLIntensityColumn {
+                get {
+                    return this.columnRFLIntensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinFLIntensityColumn {
+                get {
+                    return this.columnMinFLIntensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxFLIntensityColumn {
+                get {
+                    return this.columnMaxFLIntensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LFLVerticalColumn {
+                get {
+                    return this.columnLFLVertical;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RFLVerticalColumn {
+                get {
+                    return this.columnRFLVertical;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinDiffVertiFLColumn {
+                get {
+                    return this.columnMinDiffVertiFL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxDiffVertiFLColumn {
+                get {
+                    return this.columnMaxDiffVertiFL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LFLHorizontalColumn {
+                get {
+                    return this.columnLFLHorizontal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RFLHorizontalColumn {
+                get {
+                    return this.columnRFLHorizontal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinDiffHoriFLColumn {
+                get {
+                    return this.columnMinDiffHoriFL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxDiffHoriFLColumn {
+                get {
+                    return this.columnMaxDiffHoriFL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LHBHeightColumn {
+                get {
+                    return this.columnLHBHeight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RHBHeightColumn {
+                get {
+                    return this.columnRHBHeight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxLightHeightColumn {
+                get {
+                    return this.columnMaxLightHeight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1537,7 +1717,25 @@ namespace SenAIS {
                         string EngineType, 
                         string PublishDate, 
                         string PublishVer, 
-                        string PublishSeri) {
+                        string PublishSeri, 
+                        string MaxLeftSteer, 
+                        string MaxRightSteer, 
+                        string Lambda, 
+                        string LFLIntensity, 
+                        string RFLIntensity, 
+                        string MinFLIntensity, 
+                        string MaxFLIntensity, 
+                        string LFLVertical, 
+                        string RFLVertical, 
+                        string MinDiffVertiFL, 
+                        string MaxDiffVertiFL, 
+                        string LFLHorizontal, 
+                        string RFLHorizontal, 
+                        string MinDiffHoriFL, 
+                        string MaxDiffHoriFL, 
+                        string LHBHeight, 
+                        string RHBHeight, 
+                        string MaxLightHeight) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1647,7 +1845,25 @@ namespace SenAIS {
                         EngineType,
                         PublishDate,
                         PublishVer,
-                        PublishSeri};
+                        PublishSeri,
+                        MaxLeftSteer,
+                        MaxRightSteer,
+                        Lambda,
+                        LFLIntensity,
+                        RFLIntensity,
+                        MinFLIntensity,
+                        MaxFLIntensity,
+                        LFLVertical,
+                        RFLVertical,
+                        MinDiffVertiFL,
+                        MaxDiffVertiFL,
+                        LFLHorizontal,
+                        RFLHorizontal,
+                        MinDiffHoriFL,
+                        MaxDiffHoriFL,
+                        LHBHeight,
+                        RHBHeight,
+                        MaxLightHeight};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -1778,6 +1994,24 @@ namespace SenAIS {
                 this.columnPublishDate = base.Columns["PublishDate"];
                 this.columnPublishVer = base.Columns["PublishVer"];
                 this.columnPublishSeri = base.Columns["PublishSeri"];
+                this.columnMaxLeftSteer = base.Columns["MaxLeftSteer"];
+                this.columnMaxRightSteer = base.Columns["MaxRightSteer"];
+                this.columnLambda = base.Columns["Lambda"];
+                this.columnLFLIntensity = base.Columns["LFLIntensity"];
+                this.columnRFLIntensity = base.Columns["RFLIntensity"];
+                this.columnMinFLIntensity = base.Columns["MinFLIntensity"];
+                this.columnMaxFLIntensity = base.Columns["MaxFLIntensity"];
+                this.columnLFLVertical = base.Columns["LFLVertical"];
+                this.columnRFLVertical = base.Columns["RFLVertical"];
+                this.columnMinDiffVertiFL = base.Columns["MinDiffVertiFL"];
+                this.columnMaxDiffVertiFL = base.Columns["MaxDiffVertiFL"];
+                this.columnLFLHorizontal = base.Columns["LFLHorizontal"];
+                this.columnRFLHorizontal = base.Columns["RFLHorizontal"];
+                this.columnMinDiffHoriFL = base.Columns["MinDiffHoriFL"];
+                this.columnMaxDiffHoriFL = base.Columns["MaxDiffHoriFL"];
+                this.columnLHBHeight = base.Columns["LHBHeight"];
+                this.columnRHBHeight = base.Columns["RHBHeight"];
+                this.columnMaxLightHeight = base.Columns["MaxLightHeight"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1999,6 +2233,42 @@ namespace SenAIS {
                 base.Columns.Add(this.columnPublishVer);
                 this.columnPublishSeri = new global::System.Data.DataColumn("PublishSeri", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPublishSeri);
+                this.columnMaxLeftSteer = new global::System.Data.DataColumn("MaxLeftSteer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxLeftSteer);
+                this.columnMaxRightSteer = new global::System.Data.DataColumn("MaxRightSteer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxRightSteer);
+                this.columnLambda = new global::System.Data.DataColumn("Lambda", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLambda);
+                this.columnLFLIntensity = new global::System.Data.DataColumn("LFLIntensity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLFLIntensity);
+                this.columnRFLIntensity = new global::System.Data.DataColumn("RFLIntensity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRFLIntensity);
+                this.columnMinFLIntensity = new global::System.Data.DataColumn("MinFLIntensity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinFLIntensity);
+                this.columnMaxFLIntensity = new global::System.Data.DataColumn("MaxFLIntensity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxFLIntensity);
+                this.columnLFLVertical = new global::System.Data.DataColumn("LFLVertical", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLFLVertical);
+                this.columnRFLVertical = new global::System.Data.DataColumn("RFLVertical", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRFLVertical);
+                this.columnMinDiffVertiFL = new global::System.Data.DataColumn("MinDiffVertiFL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinDiffVertiFL);
+                this.columnMaxDiffVertiFL = new global::System.Data.DataColumn("MaxDiffVertiFL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxDiffVertiFL);
+                this.columnLFLHorizontal = new global::System.Data.DataColumn("LFLHorizontal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLFLHorizontal);
+                this.columnRFLHorizontal = new global::System.Data.DataColumn("RFLHorizontal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRFLHorizontal);
+                this.columnMinDiffHoriFL = new global::System.Data.DataColumn("MinDiffHoriFL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinDiffHoriFL);
+                this.columnMaxDiffHoriFL = new global::System.Data.DataColumn("MaxDiffHoriFL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxDiffHoriFL);
+                this.columnLHBHeight = new global::System.Data.DataColumn("LHBHeight", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLHBHeight);
+                this.columnRHBHeight = new global::System.Data.DataColumn("RHBHeight", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRHBHeight);
+                this.columnMaxLightHeight = new global::System.Data.DataColumn("MaxLightHeight", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxLightHeight);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3869,6 +4139,294 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxLeftSteer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxLeftSteerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxLeftSteer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxLeftSteerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxRightSteer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxRightSteerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxRightSteer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxRightSteerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Lambda {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LambdaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Lambda\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LambdaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LFLIntensity {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LFLIntensityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LFLIntensity\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LFLIntensityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RFLIntensity {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RFLIntensityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RFLIntensity\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RFLIntensityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinFLIntensity {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinFLIntensityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinFLIntensity\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinFLIntensityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxFLIntensity {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxFLIntensityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxFLIntensity\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxFLIntensityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LFLVertical {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LFLVerticalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LFLVertical\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LFLVerticalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RFLVertical {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RFLVerticalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RFLVertical\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RFLVerticalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinDiffVertiFL {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinDiffVertiFLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinDiffVertiFL\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinDiffVertiFLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxDiffVertiFL {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxDiffVertiFLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxDiffVertiFL\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxDiffVertiFLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LFLHorizontal {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LFLHorizontalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LFLHorizontal\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LFLHorizontalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RFLHorizontal {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RFLHorizontalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RFLHorizontal\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RFLHorizontalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinDiffHoriFL {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinDiffHoriFLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinDiffHoriFL\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinDiffHoriFLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxDiffHoriFL {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxDiffHoriFLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxDiffHoriFL\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxDiffHoriFLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LHBHeight {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LHBHeightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LHBHeight\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LHBHeightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RHBHeight {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RHBHeightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RHBHeight\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RHBHeightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxLightHeight {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxLightHeightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxLightHeight\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxLightHeightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -5161,6 +5719,222 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPublishSeriNull() {
                 this[this.tableVehicleReportData.PublishSeriColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxLeftSteerNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxLeftSteerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxLeftSteerNull() {
+                this[this.tableVehicleReportData.MaxLeftSteerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxRightSteerNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxRightSteerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxRightSteerNull() {
+                this[this.tableVehicleReportData.MaxRightSteerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLambdaNull() {
+                return this.IsNull(this.tableVehicleReportData.LambdaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLambdaNull() {
+                this[this.tableVehicleReportData.LambdaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLFLIntensityNull() {
+                return this.IsNull(this.tableVehicleReportData.LFLIntensityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLFLIntensityNull() {
+                this[this.tableVehicleReportData.LFLIntensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRFLIntensityNull() {
+                return this.IsNull(this.tableVehicleReportData.RFLIntensityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRFLIntensityNull() {
+                this[this.tableVehicleReportData.RFLIntensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinFLIntensityNull() {
+                return this.IsNull(this.tableVehicleReportData.MinFLIntensityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinFLIntensityNull() {
+                this[this.tableVehicleReportData.MinFLIntensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxFLIntensityNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxFLIntensityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxFLIntensityNull() {
+                this[this.tableVehicleReportData.MaxFLIntensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLFLVerticalNull() {
+                return this.IsNull(this.tableVehicleReportData.LFLVerticalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLFLVerticalNull() {
+                this[this.tableVehicleReportData.LFLVerticalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRFLVerticalNull() {
+                return this.IsNull(this.tableVehicleReportData.RFLVerticalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRFLVerticalNull() {
+                this[this.tableVehicleReportData.RFLVerticalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinDiffVertiFLNull() {
+                return this.IsNull(this.tableVehicleReportData.MinDiffVertiFLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinDiffVertiFLNull() {
+                this[this.tableVehicleReportData.MinDiffVertiFLColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxDiffVertiFLNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxDiffVertiFLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxDiffVertiFLNull() {
+                this[this.tableVehicleReportData.MaxDiffVertiFLColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLFLHorizontalNull() {
+                return this.IsNull(this.tableVehicleReportData.LFLHorizontalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLFLHorizontalNull() {
+                this[this.tableVehicleReportData.LFLHorizontalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRFLHorizontalNull() {
+                return this.IsNull(this.tableVehicleReportData.RFLHorizontalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRFLHorizontalNull() {
+                this[this.tableVehicleReportData.RFLHorizontalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinDiffHoriFLNull() {
+                return this.IsNull(this.tableVehicleReportData.MinDiffHoriFLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinDiffHoriFLNull() {
+                this[this.tableVehicleReportData.MinDiffHoriFLColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxDiffHoriFLNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxDiffHoriFLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxDiffHoriFLNull() {
+                this[this.tableVehicleReportData.MaxDiffHoriFLColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLHBHeightNull() {
+                return this.IsNull(this.tableVehicleReportData.LHBHeightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLHBHeightNull() {
+                this[this.tableVehicleReportData.LHBHeightColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRHBHeightNull() {
+                return this.IsNull(this.tableVehicleReportData.RHBHeightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRHBHeightNull() {
+                this[this.tableVehicleReportData.RHBHeightColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxLightHeightNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxLightHeightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxLightHeightNull() {
+                this[this.tableVehicleReportData.MaxLightHeightColumn] = global::System.Convert.DBNull;
             }
         }
         

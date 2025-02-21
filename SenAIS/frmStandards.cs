@@ -60,9 +60,20 @@ namespace SenAIS
                     dgStandards.Columns["MinDiffVertiLB"].HeaderText = "Chênh lệch dọc đèn Cốt tối thiểu";
                     dgStandards.Columns["MaxDiffVertiLB"].HeaderText = "Chênh lệch dọc đèn Cốt tối đa";
                     dgStandards.Columns["MinLBIntensity"].HeaderText = "Cường độ đèn Cốt tối thiểu";
-                    dgStandards.Columns["MinLightHeight"].HeaderText = "Độ cao đèn";
+                    dgStandards.Columns["MinLightHeight"].HeaderText = "Độ cao đèn tối thiểu";
+                    dgStandards.Columns["MaxLightHeight"].HeaderText = "Độ cao đèn tối đa";
                     dgStandards.Columns["MinLeftSteer"].HeaderText = "Độ góc lái trái tối thiểu";
-                    dgStandards.Columns["MinRightSteer"].HeaderText = "Độ góc lái trái tối đa";
+                    dgStandards.Columns["MinRightSteer"].HeaderText = "Độ góc lái phải tối thiểu";
+                    dgStandards.Columns["MaxLeftSteer"].HeaderText = "Độ góc lái trái tối đa";
+                    dgStandards.Columns["MaxRightSteer"].HeaderText = "Độ góc lái phải tối đa";
+                    dgStandards.Columns["MinFLIntensity"].HeaderText = "Cường độ đèn Sương mù tối thiểu";
+                    dgStandards.Columns["MaxFLIntensity"].HeaderText = "Cường độ đèn Sương mù tối đa";
+                    dgStandards.Columns["MinDiffVertiFL"].HeaderText = "Chênh lệch dọc đèn Sương mù tối thiểu";
+                    dgStandards.Columns["MaxDiffVertiFL"].HeaderText = "Chênh lệch dọc đèn Sương mù tối đa";
+                    dgStandards.Columns["MinDiffHoriFL"].HeaderText = "Chênh lệch ngang đèn Sương mù tối thiểu";
+                    dgStandards.Columns["MaxDiffHoriFL"].HeaderText = "Chênh lệch ngang đèn Sương mù tối đa";
+                    dgStandards.Columns["MinFLHeight"].HeaderText = "Độ cao đèn Sương mù tối thiểu";
+                    dgStandards.Columns["MaxFLHeight"].HeaderText = "Độ cao đèn Sương mù tối đa";
                 }
             }
             catch (Exception)

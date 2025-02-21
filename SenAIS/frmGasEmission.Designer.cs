@@ -34,9 +34,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.EmissionPanel = new System.Windows.Forms.Panel();
             this.tbEmission2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbLamdaValue = new System.Windows.Forms.Label();
+            this.lbLamda = new System.Windows.Forms.Label();
             this.cbPass = new System.Windows.Forms.CheckBox();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnReMeasure = new System.Windows.Forms.Button();
             this.lbNOValue = new System.Windows.Forms.Label();
             this.lbOTValue = new System.Windows.Forms.Label();
             this.lbNO = new System.Windows.Forms.Label();
@@ -46,7 +46,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lbRPMValue = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.lbVinNumber = new System.Windows.Forms.Label();
+            this.btnReMeasure = new System.Windows.Forms.Button();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
@@ -65,8 +67,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lbEmissionTitle = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lbLamda = new System.Windows.Forms.Label();
-            this.lbLamdaValue = new System.Windows.Forms.Label();
             this.EmissionPanel.SuspendLayout();
             this.tbEmission2.SuspendLayout();
             this.tbGasEmission.SuspendLayout();
@@ -138,16 +138,44 @@
             this.tbEmission2.Controls.Add(this.label14, 2, 1);
             this.tbEmission2.Controls.Add(this.label15, 2, 2);
             this.tbEmission2.Controls.Add(this.lbRPMValue, 1, 2);
-            this.tbEmission2.Location = new System.Drawing.Point(960, 129);
+            this.tbEmission2.Location = new System.Drawing.Point(871, 129);
+            this.tbEmission2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbEmission2.Name = "tbEmission2";
             this.tbEmission2.RowCount = 4;
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tbEmission2.Size = new System.Drawing.Size(952, 855);
+            this.tbEmission2.Size = new System.Drawing.Size(1022, 855);
             this.tbEmission2.TabIndex = 53;
             this.tbEmission2.Visible = false;
+            // 
+            // lbLamdaValue
+            // 
+            this.lbLamdaValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbLamdaValue.AutoSize = true;
+            this.lbLamdaValue.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLamdaValue.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbLamdaValue.Location = new System.Drawing.Point(260, 645);
+            this.lbLamdaValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLamdaValue.Name = "lbLamdaValue";
+            this.lbLamdaValue.Size = new System.Drawing.Size(382, 204);
+            this.lbLamdaValue.TabIndex = 58;
+            this.lbLamdaValue.Text = "0.00";
+            // 
+            // lbLamda
+            // 
+            this.lbLamda.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbLamda.AutoSize = true;
+            this.lbLamda.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLamda.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbLamda.Location = new System.Drawing.Point(4, 710);
+            this.lbLamda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbLamda.Name = "lbLamda";
+            this.lbLamda.Size = new System.Drawing.Size(60, 73);
+            this.lbLamda.TabIndex = 57;
+            this.lbLamda.Text = "λ";
+            this.lbLamda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbPass
             // 
@@ -165,40 +193,6 @@
             this.cbPass.Size = new System.Drawing.Size(148, 108);
             this.cbPass.TabIndex = 56;
             this.cbPass.UseVisualStyleBackColor = false;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExit.Location = new System.Drawing.Point(1795, 9);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(117, 104);
-            this.btnExit.TabIndex = 55;
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnReMeasure
-            // 
-            this.btnReMeasure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReMeasure.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnReMeasure.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReMeasure.BackgroundImage")));
-            this.btnReMeasure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReMeasure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReMeasure.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReMeasure.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnReMeasure.Location = new System.Drawing.Point(1668, 11);
-            this.btnReMeasure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReMeasure.Name = "btnReMeasure";
-            this.btnReMeasure.Size = new System.Drawing.Size(117, 104);
-            this.btnReMeasure.TabIndex = 54;
-            this.btnReMeasure.UseVisualStyleBackColor = false;
-            this.btnReMeasure.Click += new System.EventHandler(this.btnReMeasure_Click);
             // 
             // lbNOValue
             // 
@@ -304,9 +298,9 @@
             this.label15.Location = new System.Drawing.Point(650, 496);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(175, 73);
+            this.label15.Size = new System.Drawing.Size(133, 73);
             this.label15.TabIndex = 16;
-            this.label15.Text = "vg/ph";
+            this.label15.Text = "rpm";
             // 
             // lbRPMValue
             // 
@@ -321,6 +315,23 @@
             this.lbRPMValue.TabIndex = 8;
             this.lbRPMValue.Text = "0.00";
             // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnExit.Location = new System.Drawing.Point(1795, 9);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(117, 103);
+            this.btnExit.TabIndex = 55;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // lbVinNumber
             // 
             this.lbVinNumber.AutoSize = true;
@@ -332,6 +343,23 @@
             this.lbVinNumber.Size = new System.Drawing.Size(375, 146);
             this.lbVinNumber.TabIndex = 52;
             this.lbVinNumber.Text = "Số Vin";
+            // 
+            // btnReMeasure
+            // 
+            this.btnReMeasure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReMeasure.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReMeasure.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReMeasure.BackgroundImage")));
+            this.btnReMeasure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReMeasure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReMeasure.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReMeasure.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnReMeasure.Location = new System.Drawing.Point(1668, 11);
+            this.btnReMeasure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReMeasure.Name = "btnReMeasure";
+            this.btnReMeasure.Size = new System.Drawing.Size(117, 103);
+            this.btnReMeasure.TabIndex = 54;
+            this.btnReMeasure.UseVisualStyleBackColor = false;
+            this.btnReMeasure.Click += new System.EventHandler(this.btnReMeasure_Click);
             // 
             // cbReady
             // 
@@ -355,7 +383,7 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1799, 1000);
+            this.btnNext.Location = new System.Drawing.Point(1799, 999);
             this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(115, 46);
@@ -369,7 +397,7 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(13, 1000);
+            this.btnPre.Location = new System.Drawing.Point(13, 999);
             this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(115, 46);
@@ -402,7 +430,7 @@
             this.tbGasEmission.Controls.Add(this.label12, 2, 3);
             this.tbGasEmission.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbGasEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbGasEmission.Location = new System.Drawing.Point(16, 131);
+            this.tbGasEmission.Location = new System.Drawing.Point(16, 130);
             this.tbGasEmission.Margin = new System.Windows.Forms.Padding(4);
             this.tbGasEmission.Name = "tbGasEmission";
             this.tbGasEmission.RowCount = 4;
@@ -564,12 +592,12 @@
             // 
             // lbEmissionTitle
             // 
-            this.lbEmissionTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbEmissionTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbEmissionTitle.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmissionTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEmissionTitle.Location = new System.Drawing.Point(33, 346);
+            this.lbEmissionTitle.Location = new System.Drawing.Point(33, 304);
             this.lbEmissionTitle.Name = "lbEmissionTitle";
-            this.lbEmissionTitle.Size = new System.Drawing.Size(1852, 281);
+            this.lbEmissionTitle.Size = new System.Drawing.Size(1852, 361);
             this.lbEmissionTitle.TabIndex = 37;
             this.lbEmissionTitle.Text = "KHÍ XẢ - ĐỘNG CƠ XĂNG";
             this.lbEmissionTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -579,33 +607,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // lbLamda
-            // 
-            this.lbLamda.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbLamda.AutoSize = true;
-            this.lbLamda.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLamda.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLamda.Location = new System.Drawing.Point(4, 710);
-            this.lbLamda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbLamda.Name = "lbLamda";
-            this.lbLamda.Size = new System.Drawing.Size(60, 73);
-            this.lbLamda.TabIndex = 57;
-            this.lbLamda.Text = "λ";
-            this.lbLamda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbLamdaValue
-            // 
-            this.lbLamdaValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lbLamdaValue.AutoSize = true;
-            this.lbLamdaValue.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLamdaValue.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLamdaValue.Location = new System.Drawing.Point(260, 645);
-            this.lbLamdaValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbLamdaValue.Name = "lbLamdaValue";
-            this.lbLamdaValue.Size = new System.Drawing.Size(382, 204);
-            this.lbLamdaValue.TabIndex = 58;
-            this.lbLamdaValue.Text = "0.00";
             // 
             // frmGasEmission
             // 

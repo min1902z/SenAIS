@@ -273,8 +273,6 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.BWeightPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.Name = "frmRearWeight";
             this.ShowIcon = false;
             this.Text = "Trọng Lượng Sau";

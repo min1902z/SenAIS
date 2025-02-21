@@ -2803,7 +2803,7 @@
             <Top>3.30382in</Top>
             <Left>6.04861in</Left>
             <Height>0.25in</Height>
-            <Width>0.74045in</Width>
+            <Width>0.47915in</Width>
             <ZIndex>94</ZIndex>
             <Style>
               <Border>
@@ -4526,9 +4526,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.82812in</Top>
-            <Left>1.5532in</Left>
+            <Left>1.51467in</Left>
             <Height>0.25in</Height>
-            <Width>1.72742in</Width>
+            <Width>0.95477in</Width>
             <ZIndex>151</ZIndex>
             <Style>
               <Border>
@@ -4558,9 +4558,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09548in</Top>
-            <Left>1.5532in</Left>
+            <Left>1.51467in</Left>
             <Height>0.25in</Height>
-            <Width>0.72221in</Width>
+            <Width>0.42906in</Width>
             <ZIndex>152</ZIndex>
             <Style>
               <Border>
@@ -4590,9 +4590,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>1.5532in</Left>
+            <Left>1.51467in</Left>
             <Height>0.25in</Height>
-            <Width>0.72221in</Width>
+            <Width>0.39053in</Width>
             <ZIndex>153</ZIndex>
             <Style>
               <Border>
@@ -4620,7 +4620,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.82812in</Top>
-            <Left>3.2965in</Left>
+            <Left>2.51665in</Left>
             <Height>0.25in</Height>
             <Width>0.76125in</Width>
             <ZIndex>154</ZIndex>
@@ -4652,9 +4652,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.1059in</Top>
-            <Left>3.2965in</Left>
+            <Left>2.51665in</Left>
             <Height>0.25in</Height>
-            <Width>1.07132in</Width>
+            <Width>0.94632in</Width>
             <ZIndex>155</ZIndex>
             <Style>
               <Border>
@@ -4684,9 +4684,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36146in</Top>
-            <Left>3.2965in</Left>
+            <Left>2.51665in</Left>
             <Height>0.25in</Height>
-            <Width>0.45461in</Width>
+            <Width>0.34801in</Width>
             <ZIndex>156</ZIndex>
             <Style>
               <Border>
@@ -4714,9 +4714,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.82812in</Top>
-            <Left>4.69841in</Left>
+            <Left>3.44841in</Left>
             <Height>0.25in</Height>
-            <Width>1.55269in</Width>
+            <Width>1.02796in</Width>
             <ZIndex>157</ZIndex>
             <Style>
               <Border>
@@ -4746,9 +4746,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.1059in</Top>
-            <Left>4.69841in</Left>
+            <Left>3.44841in</Left>
             <Height>0.25in</Height>
-            <Width>0.7361in</Width>
+            <Width>0.49999in</Width>
             <ZIndex>158</ZIndex>
             <Style>
               <Border>
@@ -4778,9 +4778,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>4.69841in</Left>
+            <Left>3.44841in</Left>
             <Height>0.25in</Height>
-            <Width>0.7361in</Width>
+            <Width>0.45149in</Width>
             <ZIndex>159</ZIndex>
             <Style>
               <Border>
@@ -4808,7 +4808,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.82812in</Top>
-            <Left>6.34834in</Left>
+            <Left>4.55749in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
             <ZIndex>160</ZIndex>
@@ -4840,9 +4840,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.1059in</Top>
-            <Left>6.34834in</Left>
+            <Left>4.55749in</Left>
             <Height>0.25in</Height>
-            <Width>1.03063in</Width>
+            <Width>0.87972in</Width>
             <ZIndex>161</ZIndex>
             <Style>
               <Border>
@@ -4902,9 +4902,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>1.5532in</Left>
+            <Left>1.51467in</Left>
             <Height>0.25in</Height>
-            <Width>0.72221in</Width>
+            <Width>0.39053in</Width>
             <ZIndex>163</ZIndex>
             <Style>
               <Border>
@@ -4934,9 +4934,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.63923in</Top>
-            <Left>3.2965in</Left>
+            <Left>2.51665in</Left>
             <Height>0.25in</Height>
-            <Width>0.45461in</Width>
+            <Width>0.34801in</Width>
             <ZIndex>164</ZIndex>
             <Style>
               <Border>
@@ -4966,9 +4966,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>4.69841in</Left>
+            <Left>3.44841in</Left>
             <Height>0.25in</Height>
-            <Width>0.7361in</Width>
+            <Width>0.45149in</Width>
             <ZIndex>165</ZIndex>
             <Style>
               <Border>
@@ -5009,9 +5009,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09548in</Top>
-            <Left>2.55605in</Left>
+            <Left>2.14252in</Left>
             <Height>0.25in</Height>
-            <Width>0.67101in</Width>
+            <Width>0.36545in</Width>
             <ZIndex>167</ZIndex>
             <Style>
               <Border>
@@ -5041,9 +5041,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>2.55605in</Left>
+            <Left>2.14252in</Left>
             <Height>0.25in</Height>
-            <Width>0.67101in</Width>
+            <Width>0.32692in</Width>
             <ZIndex>168</ZIndex>
             <Style>
               <Border>
@@ -5073,9 +5073,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>2.55605in</Left>
+            <Left>2.14252in</Left>
             <Height>0.25in</Height>
-            <Width>0.67101in</Width>
+            <Width>0.32692in</Width>
             <ZIndex>169</ZIndex>
             <Style>
               <Border>
@@ -5103,7 +5103,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09201in</Top>
-            <Left>2.38591in</Left>
+            <Left>1.97238in</Left>
             <Height>0.25in</Height>
             <Width>0.15103in</Width>
             <ZIndex>170</ZIndex>
@@ -5133,7 +5133,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36632in</Top>
-            <Left>2.38591in</Left>
+            <Left>1.97238in</Left>
             <Height>0.25in</Height>
             <Width>0.15103in</Width>
             <ZIndex>171</ZIndex>
@@ -5163,7 +5163,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64409in</Top>
-            <Left>2.38591in</Left>
+            <Left>1.97238in</Left>
             <Height>0.25in</Height>
             <Width>0.15103in</Width>
             <ZIndex>172</ZIndex>
@@ -5193,7 +5193,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09548in</Top>
-            <Left>5.47618in</Left>
+            <Left>3.97618in</Left>
             <Height>0.25in</Height>
             <Width>0.11979in</Width>
             <ZIndex>173</ZIndex>
@@ -5225,9 +5225,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.09895in</Top>
-            <Left>5.59597in</Left>
+            <Left>4.08764in</Left>
             <Height>0.25in</Height>
-            <Width>0.65513in</Width>
+            <Width>0.42891in</Width>
             <ZIndex>174</ZIndex>
             <Style>
               <Border>
@@ -5257,9 +5257,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.37326in</Top>
-            <Left>5.59597in</Left>
+            <Left>4.08764in</Left>
             <Height>0.25in</Height>
-            <Width>0.65513in</Width>
+            <Width>0.3804in</Width>
             <ZIndex>175</ZIndex>
             <Style>
               <Border>
@@ -5287,7 +5287,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>5.47618in</Left>
+            <Left>3.97618in</Left>
             <Height>0.25in</Height>
             <Width>0.11979in</Width>
             <ZIndex>176</ZIndex>
@@ -5317,7 +5317,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>5.47618in</Left>
+            <Left>3.97618in</Left>
             <Height>0.25in</Height>
             <Width>0.11979in</Width>
             <ZIndex>177</ZIndex>
@@ -5349,9 +5349,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.65103in</Top>
-            <Left>5.59597in</Left>
+            <Left>4.09597in</Left>
             <Height>0.25in</Height>
-            <Width>0.65513in</Width>
+            <Width>0.3804in</Width>
             <ZIndex>178</ZIndex>
             <Style>
               <Border>
@@ -5916,7 +5916,7 @@
             <Top>10.45658in</Top>
             <Left>5.99268in</Left>
             <Height>0.25in</Height>
-            <Width>0.68204in</Width>
+            <Width>0.48657in</Width>
             <ZIndex>196</ZIndex>
             <Style>
               <Border>
@@ -6224,9 +6224,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.84548in</Top>
-            <Left>7.45362in</Left>
+            <Left>7.37052in</Left>
             <Height>0.25in</Height>
-            <Width>0.95139in</Width>
+            <Width>0.9618in</Width>
             <ZIndex>207</ZIndex>
             <Style>
               <Border>
@@ -6245,7 +6245,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!MinLightHeight.Value</Value>
+                    <Value>=Fields!LHBHeight.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -6255,10 +6255,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>9.37326in</Top>
-            <Left>7.44841in</Left>
+            <Top>9.38021in</Top>
+            <Left>7.37586in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.41281in</Width>
             <ZIndex>208</ZIndex>
             <Style>
               <Border>
@@ -6288,9 +6288,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36146in</Top>
-            <Left>3.97472in</Left>
+            <Left>3.06987in</Left>
             <Height>0.25in</Height>
-            <Width>0.48581in</Width>
+            <Width>0.37921in</Width>
             <ZIndex>209</ZIndex>
             <Style>
               <Border>
@@ -6320,9 +6320,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64061in</Top>
-            <Left>3.98861in</Left>
+            <Left>3.08376in</Left>
             <Height>0.25in</Height>
-            <Width>0.48581in</Width>
+            <Width>0.37921in</Width>
             <ZIndex>210</ZIndex>
             <Style>
               <Border>
@@ -6350,7 +6350,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.37326in</Top>
-            <Left>3.79278in</Left>
+            <Left>2.88793in</Left>
             <Height>0.25in</Height>
             <Width>0.18194in</Width>
             <ZIndex>211</ZIndex>
@@ -6380,7 +6380,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64756in</Top>
-            <Left>3.77889in</Left>
+            <Left>2.87404in</Left>
             <Height>0.25in</Height>
             <Width>0.16805in</Width>
             <ZIndex>212</ZIndex>
@@ -6412,9 +6412,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36632in</Top>
-            <Left>6.34834in</Left>
+            <Left>4.55749in</Left>
             <Height>0.25in</Height>
-            <Width>0.44072in</Width>
+            <Width>0.35875in</Width>
             <ZIndex>213</ZIndex>
             <Style>
               <Border>
@@ -6444,9 +6444,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64409in</Top>
-            <Left>6.34834in</Left>
+            <Left>4.55749in</Left>
             <Height>0.25in</Height>
-            <Width>0.44072in</Width>
+            <Width>0.35875in</Width>
             <ZIndex>214</ZIndex>
             <Style>
               <Border>
@@ -6476,9 +6476,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.38021in</Top>
-            <Left>7.02656in</Left>
+            <Left>5.11071in</Left>
             <Height>0.25in</Height>
-            <Width>0.40847in</Width>
+            <Width>0.3265in</Width>
             <ZIndex>215</ZIndex>
             <Style>
               <Border>
@@ -6508,9 +6508,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.65798in</Top>
-            <Left>7.02656in</Left>
+            <Left>5.11071in</Left>
             <Height>0.25in</Height>
-            <Width>0.40847in</Width>
+            <Width>0.3265in</Width>
             <ZIndex>216</ZIndex>
             <Style>
               <Border>
@@ -6538,7 +6538,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.36979in</Top>
-            <Left>6.84462in</Left>
+            <Left>4.92877in</Left>
             <Height>0.25in</Height>
             <Width>0.13849in</Width>
             <ZIndex>217</ZIndex>
@@ -6568,7 +6568,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>9.64409in</Top>
-            <Left>6.83073in</Left>
+            <Left>4.91488in</Left>
             <Height>0.25in</Height>
             <Width>0.13849in</Width>
             <ZIndex>218</ZIndex>
@@ -6598,7 +6598,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.30382in</Top>
-            <Left>6.80555in</Left>
+            <Left>6.55555in</Left>
             <Height>0.26041in</Height>
             <Width>0.16806in</Width>
             <ZIndex>219</ZIndex>
@@ -6630,7 +6630,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>3.30382in</Top>
-            <Left>7.01527in</Left>
+            <Left>6.76527in</Left>
             <Height>0.25in</Height>
             <Width>0.77515in</Width>
             <ZIndex>220</ZIndex>
@@ -6660,7 +6660,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.45658in</Top>
-            <Left>6.71639in</Left>
+            <Left>6.46639in</Left>
             <Height>0.25in</Height>
             <Width>0.14029in</Width>
             <ZIndex>221</ZIndex>
@@ -6692,7 +6692,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>10.45658in</Top>
-            <Left>6.92612in</Left>
+            <Left>6.67612in</Left>
             <Height>0.25in</Height>
             <Width>0.57785in</Width>
             <ZIndex>222</ZIndex>
@@ -7081,7 +7081,7 @@
             <Top>5.17188in</Top>
             <Left>3.91467in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>1.1327in</Width>
             <ZIndex>235</ZIndex>
             <Style>
               <Border>
@@ -7113,7 +7113,7 @@
             <Top>5.4302in</Top>
             <Left>3.91022in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.43872in</Width>
             <ZIndex>236</ZIndex>
             <Style>
               <Border>
@@ -7145,7 +7145,7 @@
             <Top>5.74965in</Top>
             <Left>3.91022in</Left>
             <Height>0.25in</Height>
-            <Width>0.85416in</Width>
+            <Width>0.45309in</Width>
             <ZIndex>237</ZIndex>
             <Style>
               <Border>
@@ -7482,7 +7482,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Fields!Lambda.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -7771,38 +7771,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox614">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>(cm)</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>9.1059in</Top>
-            <Left>7.44841in</Left>
-            <Height>0.25in</Height>
-            <Width>0.85416in</Width>
-            <ZIndex>257</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox615">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -7822,7 +7790,7 @@
             <Left>0.09772in</Left>
             <Height>0.25in</Height>
             <Width>1.92188in</Width>
-            <ZIndex>258</ZIndex>
+            <ZIndex>257</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7852,7 +7820,7 @@
             <Left>4.07959in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>259</ZIndex>
+            <ZIndex>258</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7882,7 +7850,7 @@
             <Left>4.07959in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>260</ZIndex>
+            <ZIndex>259</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7912,7 +7880,7 @@
             <Left>4.06963in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>261</ZIndex>
+            <ZIndex>260</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7942,7 +7910,7 @@
             <Left>1.77567in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>262</ZIndex>
+            <ZIndex>261</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7972,7 +7940,7 @@
             <Left>7.00708in</Left>
             <Height>0.25in</Height>
             <Width>1.39793in</Width>
-            <ZIndex>263</ZIndex>
+            <ZIndex>262</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8004,7 +7972,7 @@
             <Left>7.13208in</Left>
             <Height>0.25in</Height>
             <Width>1.01755in</Width>
-            <ZIndex>264</ZIndex>
+            <ZIndex>263</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8036,7 +8004,7 @@
             <Left>7.13208in</Left>
             <Height>0.25in</Height>
             <Width>1.01755in</Width>
-            <ZIndex>265</ZIndex>
+            <ZIndex>264</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8068,7 +8036,885 @@
             <Left>7.13208in</Left>
             <Height>0.25in</Height>
             <Width>1.01755in</Width>
+            <ZIndex>265</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox624">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>-</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>5.4302in</Top>
+            <Left>4.36331in</Left>
+            <Height>0.25in</Height>
+            <Width>0.14198in</Width>
             <ZIndex>266</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox625">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>-</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>5.74965in</Top>
+            <Left>4.36331in</Left>
+            <Height>0.25in</Height>
+            <Width>0.14198in</Width>
+            <ZIndex>267</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox626">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MaxLeftSteer.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>5.43577in</Top>
+            <Left>4.51306in</Left>
+            <Height>0.25in</Height>
+            <Width>0.5642in</Width>
+            <ZIndex>268</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox627">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MaxRightSteer.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>5.74965in</Top>
+            <Left>4.51306in</Left>
+            <Height>0.25in</Height>
+            <Width>0.55031in</Width>
+            <ZIndex>269</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox628">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Trái/Phải (mm)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.1059in</Top>
+            <Left>7.37586in</Left>
+            <Height>0.25in</Height>
+            <Width>0.99601in</Width>
+            <ZIndex>270</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox629">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>/</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.38021in</Top>
+            <Left>7.80976in</Left>
+            <Height>0.25in</Height>
+            <Width>0.11979in</Width>
+            <ZIndex>271</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox630">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!RHBHeight.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.38021in</Top>
+            <Left>7.97122in</Left>
+            <Height>0.25in</Height>
+            <Width>0.4128in</Width>
+            <ZIndex>272</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox614">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Sương mù(T/P)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>8.84548in</Top>
+            <Left>5.47424in</Left>
+            <Height>0.25in</Height>
+            <Width>1.05352in</Width>
+            <ZIndex>273</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox631">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!LFLIntensity.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.13159in</Top>
+            <Left>5.59924in</Left>
+            <Height>0.25in</Height>
+            <Width>0.38763in</Width>
+            <ZIndex>274</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox632">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!LFLVertical.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.39548in</Top>
+            <Left>5.59924in</Left>
+            <Height>0.25in</Height>
+            <Width>0.33913in</Width>
+            <ZIndex>275</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox633">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Tiêu chuẩn</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>8.84548in</Top>
+            <Left>6.56409in</Left>
+            <Height>0.25in</Height>
+            <Width>0.7392in</Width>
+            <ZIndex>276</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox634">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MinFLIntensity.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.12326in</Top>
+            <Left>6.56409in</Left>
+            <Height>0.25in</Height>
+            <Width>0.76476in</Width>
+            <ZIndex>277</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox635">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!LFLHorizontal.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.67325in</Top>
+            <Left>5.59924in</Left>
+            <Height>0.25in</Height>
+            <Width>0.33913in</Width>
+            <ZIndex>278</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox636">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>/</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.12117in</Top>
+            <Left>6.00201in</Left>
+            <Height>0.25in</Height>
+            <Width>0.10517in</Width>
+            <ZIndex>279</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox637">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!RFLIntensity.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.12464in</Top>
+            <Left>6.11347in</Left>
+            <Height>0.25in</Height>
+            <Width>0.41429in</Width>
+            <ZIndex>280</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox638">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!RFLVertical.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.39895in</Top>
+            <Left>6.11347in</Left>
+            <Height>0.25in</Height>
+            <Width>0.36578in</Width>
+            <ZIndex>281</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox639">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>/</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.39548in</Top>
+            <Left>6.00201in</Left>
+            <Height>0.25in</Height>
+            <Width>0.10517in</Width>
+            <ZIndex>282</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox640">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>/</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.67325in</Top>
+            <Left>6.00201in</Left>
+            <Height>0.25in</Height>
+            <Width>0.10517in</Width>
+            <ZIndex>283</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox641">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!RFLHorizontal.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.67672in</Top>
+            <Left>6.1218in</Left>
+            <Height>0.25in</Height>
+            <Width>0.36578in</Width>
+            <ZIndex>284</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox642">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MinDiffVertiFL.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.38368in</Top>
+            <Left>6.56409in</Left>
+            <Height>0.25in</Height>
+            <Width>0.30184in</Width>
+            <ZIndex>285</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox643">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MinDiffHoriFL.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.66978in</Top>
+            <Left>6.56409in</Left>
+            <Height>0.25in</Height>
+            <Width>0.30184in</Width>
+            <ZIndex>286</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox644">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MaxDiffVertiFL.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.38021in</Top>
+            <Left>7.01758in</Left>
+            <Height>0.25in</Height>
+            <Width>0.29739in</Width>
+            <ZIndex>287</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox645">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MaxDiffHoriFL.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.65798in</Top>
+            <Left>7.01758in</Left>
+            <Height>0.25in</Height>
+            <Width>0.29739in</Width>
+            <ZIndex>288</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox646">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>-</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.39548in</Top>
+            <Left>6.90759in</Left>
+            <Height>0.25in</Height>
+            <Width>0.12387in</Width>
+            <ZIndex>289</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox647">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>-</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.66978in</Top>
+            <Left>6.8937in</Left>
+            <Height>0.25in</Height>
+            <Width>0.12387in</Width>
+            <ZIndex>290</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox648">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MinLightHeight.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.64061in</Top>
+            <Left>7.37052in</Left>
+            <Height>0.25in</Height>
+            <Width>0.41281in</Width>
+            <ZIndex>291</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox649">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>-</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.64061in</Top>
+            <Left>7.80442in</Left>
+            <Height>0.25in</Height>
+            <Width>0.11979in</Width>
+            <ZIndex>292</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox650">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!MaxLightHeight.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>9.64061in</Top>
+            <Left>7.96588in</Left>
+            <Height>0.25in</Height>
+            <Width>0.4128in</Width>
+            <ZIndex>293</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8560,6 +9406,78 @@
         </Field>
         <Field Name="PublishSeri">
           <DataField>PublishSeri</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaxLeftSteer">
+          <DataField>MaxLeftSteer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaxRightSteer">
+          <DataField>MaxRightSteer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Lambda">
+          <DataField>Lambda</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LFLIntensity">
+          <DataField>LFLIntensity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RFLIntensity">
+          <DataField>RFLIntensity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MinFLIntensity">
+          <DataField>MinFLIntensity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaxFLIntensity">
+          <DataField>MaxFLIntensity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LFLVertical">
+          <DataField>LFLVertical</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RFLVertical">
+          <DataField>RFLVertical</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MinDiffVertiFL">
+          <DataField>MinDiffVertiFL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaxDiffVertiFL">
+          <DataField>MaxDiffVertiFL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LFLHorizontal">
+          <DataField>LFLHorizontal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RFLHorizontal">
+          <DataField>RFLHorizontal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MinDiffHoriFL">
+          <DataField>MinDiffHoriFL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaxDiffHoriFL">
+          <DataField>MaxDiffHoriFL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LHBHeight">
+          <DataField>LHBHeight</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RHBHeight">
+          <DataField>RHBHeight</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaxLightHeight">
+          <DataField>MaxLightHeight</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
