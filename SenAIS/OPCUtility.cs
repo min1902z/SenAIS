@@ -12,7 +12,6 @@ namespace SenAIS
         private static bool opcErrorShown = false;
         private static bool isConnected = false;
         private static int retryCount = 0;
-        private static int maxRetry = 3;
         static OPCUtility()
         {
             // Kết nối tới OPC Server khi khởi tạo lớp
@@ -22,7 +21,7 @@ namespace SenAIS
         {
             try
             {
-                if (retryCount >= maxRetry)
+                if (retryCount >= 3)
                 {
                     if (!opcErrorShown)
                     {

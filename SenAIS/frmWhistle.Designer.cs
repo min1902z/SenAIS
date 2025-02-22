@@ -58,14 +58,14 @@
             this.WhistlePanel.Controls.Add(this.lbWhistleTitle);
             this.WhistlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WhistlePanel.Location = new System.Drawing.Point(0, 0);
-            this.WhistlePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WhistlePanel.Margin = new System.Windows.Forms.Padding(4);
             this.WhistlePanel.Name = "WhistlePanel";
             this.WhistlePanel.Size = new System.Drawing.Size(1924, 1055);
             this.WhistlePanel.TabIndex = 0;
             // 
             // lbEnd
             // 
-            this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbEnd.Location = new System.Drawing.Point(49, 127);
@@ -123,7 +123,7 @@
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
             this.cbReady.Location = new System.Drawing.Point(16, 15);
-            this.cbReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
             this.cbReady.Name = "cbReady";
             this.cbReady.Size = new System.Drawing.Size(148, 108);
             this.cbReady.TabIndex = 44;
@@ -172,18 +172,16 @@
             // 
             // lbWhistle
             // 
-            this.lbWhistle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbWhistle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbWhistle.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistle.Location = new System.Drawing.Point(52, 172);
+            this.lbWhistle.Location = new System.Drawing.Point(52, 264);
             this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
             this.lbWhistle.Name = "lbWhistle";
-            this.lbWhistle.Size = new System.Drawing.Size(1812, 710);
+            this.lbWhistle.Size = new System.Drawing.Size(1812, 627);
             this.lbWhistle.TabIndex = 26;
             this.lbWhistle.Text = "0.0";
-            this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbWhistle.Visible = false;
             // 
             // lbWhistleTitle
@@ -207,7 +205,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.WhistlePanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmWhistle";
             this.ShowIcon = false;
             this.Text = "Âm Lượng Còi";

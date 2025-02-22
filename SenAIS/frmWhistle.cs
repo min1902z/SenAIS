@@ -35,7 +35,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 200; // Kiểm tra mỗi giây
+            updateTimer.Interval = 500; // Kiểm tra mỗi giây
             updateTimer.Tick += UpdateReadyStatus;
             updateTimer.Start();
         }
@@ -72,12 +72,12 @@ namespace SenAIS
                             isReady = true; // Sẵn sàng lưu sau khi đo
                             lbWhistleTitle.Visible = false;
                             lbWhistle.Visible = true;
+                            lbEnd.Text = "Bấm Còi...";
+                            lbEnd.Visible = true;
                             if (!isMeasuring) // Chỉ gửi lệnh đo 1 lần
                             {
                                 byte[] startCommand = { 0xB8 };
                                 comConnect.SendRequest(startCommand);
-                                lbEnd.Text = "Bấm Còi...";
-                                lbEnd.Visible = true;
                                 isMeasuring = true; // Đánh dấu đang đo
                             }
                             break;
@@ -99,6 +99,8 @@ namespace SenAIS
                             lbStandard.Visible = false;
                             lbEnd.Visible = false;
                             lbWhistleTitle.Visible = true;
+                            frmSideSlip ssForm = new frmSideSlip(serialNumber);
+                            ssForm.Show();
                             this.Close();
                             break;
 

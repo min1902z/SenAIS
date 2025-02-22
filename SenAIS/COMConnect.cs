@@ -97,7 +97,6 @@ namespace SenAIS
                         dataBuffer.Clear();
                     }
                 }
-
                 // Xử lý gói dữ liệu trả về từ HY114 (nếu có)
                 if (activeForm is frmNoise)
                 {
@@ -167,7 +166,7 @@ namespace SenAIS
                     string logFilePath = "headlights_data.log";  // File log
 
                     // Ghi log toàn bộ dataBuffer vào file
-                    File.AppendAllText(logFilePath, $"{DateTime.Now}: Received DataBuffer - {BitConverter.ToString(dataBuffer.ToArray())}{Environment.NewLine}");
+                    File.AppendAllText(logFilePath, $"{DateTime.Now}: Received DataHeadlights - {BitConverter.ToString(dataBuffer.ToArray())}{Environment.NewLine}");
                     while (dataBuffer.Count > 0)
                     {
                         // Nếu phát hiện byte 0x47
@@ -232,7 +231,7 @@ namespace SenAIS
                     string logFilePath = "headlights_data.log";  // File log
 
                     // Ghi log toàn bộ dataBuffer vào file
-                    File.AppendAllText(logFilePath, $"{DateTime.Now}: Received DataBuffer - {BitConverter.ToString(dataBuffer.ToArray())}{Environment.NewLine}");
+                    File.AppendAllText(logFilePath, $"{DateTime.Now}: Received DataFogLight- {BitConverter.ToString(dataBuffer.ToArray())}{Environment.NewLine}");
                     while (dataBuffer.Count > 0)
                     {
                         // Nếu phát hiện byte 0x47
@@ -256,7 +255,7 @@ namespace SenAIS
                             if (dataBuffer.Count >= startIndex + 86)
                             {
                                 // Kiểm tra cấu trúc dữ liệu hợp lệ
-                                if (dataBuffer[startIndex + 1] == 0x12 && dataBuffer[startIndex + 43] == 0x01)
+                                if ((dataBuffer[startIndex + 1] == 0x12 || dataBuffer[startIndex + 1] == 0x11) && dataBuffer[startIndex + 43] == 0x01)
                                 {
                                     byte[] completeData = dataBuffer.Skip(startIndex).Take(86).ToArray();
                                     // Xử lý dữ liệu với hàm ProcessNHD6109Data

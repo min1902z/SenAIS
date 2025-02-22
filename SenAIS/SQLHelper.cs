@@ -344,22 +344,22 @@ namespace SenAIS
                                                                             @RightHBIntensity, @RightHBVerticalDeviation, @RightHBHorizontalDeviation, 
                                                                             @LeftLBIntensity, @LeftLBVerticalDeviation, @LeftLBHorizontalDeviation, 
                                                                             @RightLBIntensity, @RightLBVerticalDeviation, @RightLBHorizontalDeviation,
-                                                                            @RightHBHeight, @RightLBHeight, @LeftHBHeight, LeftLBHeight)
+                                                                            @RightHBHeight, @RightLBHeight, @LeftHBHeight, @LeftLBHeight)
                          END";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@LeftHBIntensity", leftHBIntensityValue);
                     cmd.Parameters.AddWithValue("@LeftHBVerticalDeviation", leftHBVerticalValue);
                     cmd.Parameters.AddWithValue("@LeftHBHorizontalDeviation", leftHBHorizontalValue);
-                    cmd.Parameters.AddWithValue("@RightHBIntensity", leftHBIntensityValue);
-                    cmd.Parameters.AddWithValue("@RightHBVerticalDeviation", leftHBVerticalValue);
-                    cmd.Parameters.AddWithValue("@RightHBHorizontalDeviation", leftHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightHBIntensity", rightHBIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightHBVerticalDeviation", rightHBVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightHBHorizontalDeviation", rightHBHorizontalValue);
                     cmd.Parameters.AddWithValue("@LeftLBIntensity", leftHBIntensityValue);
                     cmd.Parameters.AddWithValue("@LeftLBVerticalDeviation", leftHBVerticalValue);
                     cmd.Parameters.AddWithValue("@LeftLBHorizontalDeviation", leftHBHorizontalValue);
-                    cmd.Parameters.AddWithValue("@RightLBIntensity", leftHBIntensityValue);
-                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", leftHBVerticalValue);
-                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", leftHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightLBIntensity", rightHBIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", rightHBVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", rightHBHorizontalValue);
                     cmd.Parameters.AddWithValue("@RightHBHeight", rightHBHeightValue);
                     cmd.Parameters.AddWithValue("@RightLBHeight", rightLBHeightValue);
                     cmd.Parameters.AddWithValue("@LeftHBHeight", leftHBHeightValue);

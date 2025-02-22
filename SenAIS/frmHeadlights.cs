@@ -184,8 +184,7 @@ namespace SenAIS
                             isReady = false; // Đặt lại trạng thái
                             tbHeadLights.Visible = true;
                             lbTitle.Visible = false;
-                            byte[] exit = { 0x50 };
-                            comConnect.SendRequest(exit);
+                            comConnect.CloseConnection();
                             var formFL = new frmFogLights(this.serialNumber);
                             formFL.Show();
                             this.Close();
@@ -273,6 +272,7 @@ namespace SenAIS
                 this.rightLBHorizontalValue = ConvertToPercentage(rightLBHorizontalDeviation);
                 this.rightLBVerticalValue = ConvertToPercentage(rightLBVerticalDeviation);
                 //this.rightLBIntensityValue = ConvertToCd(rightLBLightIntensity);
+                this.rightLBHeightValue = ConvertToMM(rightLBLightHeight);
 
                 this.leftHBHorizontalValue = ConvertToPercentage(leftHBHorizontalDeviation);
                 this.leftHBVerticalValue = ConvertToPercentage(leftHBVerticalDeviation);
@@ -282,6 +282,7 @@ namespace SenAIS
                 this.leftLBHorizontalValue = ConvertToPercentage(leftLBHorizontalDeviation);
                 this.leftLBVerticalValue = ConvertToPercentage(leftLBVerticalDeviation);
                 //this.leftLBIntensityValue = ConvertToCd(leftLBLightIntensity);
+                this.leftLBHeightValue = ConvertToMM(leftLBLightHeight);
 
                 this.Invoke(new Action(() =>
                 {
@@ -293,6 +294,7 @@ namespace SenAIS
                     //lbLBRIntensity.Text = rightLBIntensityValue.ToString();
                     lbLBRVerticalDeviation.Text = rightLBVerticalValue.ToString();
                     lbLBRHorizontalDeviation.Text = rightLBHorizontalValue.ToString();
+                    lbLBRHeight.Text = rightLBHeightValue.ToString();
 
                     lbHBLIntensity.Text = leftHBIntensityValue.ToString();
                     lbHBLVerticalDeviation.Text = leftHBVerticalValue.ToString();
@@ -302,6 +304,7 @@ namespace SenAIS
                     //lbLBLIntensity.Text = leftLBIntensityValue.ToString();
                     lbLBLVerticalDeviation.Text = leftLBVerticalValue.ToString();
                     lbLBLHorizontalDeviation.Text = leftLBHorizontalValue.ToString();
+                    lbLBLHeight.Text = leftLBHeightValue.ToString();
 
                     // Kiểm tra và đổi màu cho Right High Beam
                     lbHBRIntensity.ForeColor = rightHBIntensityValue >= minHBIntensity ? SystemColors.HotTrack : Color.DarkRed;
@@ -431,7 +434,6 @@ namespace SenAIS
         }
         private void frmCosLightL_FormClosing(object sender, FormClosingEventArgs e)
         {
-            comConnect.CloseConnection();
             if (updateTimer != null)
             {
                 updateTimer.Stop(); // Dừng Timer

@@ -57,14 +57,14 @@ namespace SenAIS
                     opcGroup.IsSubscribed = true;
                     opcGroup.UpdateRate = 500;
 
-                    // Thêm các OPCItems tương ứng với các Counter
-                    opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                    opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                    opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
-                    opcCounterHL = opcGroup.OPCItems.AddItem(opcHLCounter, 4);
-                    opcCounterHL2= opcGroup.OPCItems.AddItem(opcHL2Counter, 5);
-                    opcCounterSteer = opcGroup.OPCItems.AddItem(opcSteerCounter, 6);
-                    opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
+                // Thêm các OPCItems tương ứng với các Counter
+                opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
+                opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
+                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
+                opcCounterHL = opcGroup.OPCItems.AddItem(opcHLCounter, 4);
+                opcCounterHL2 = opcGroup.OPCItems.AddItem(opcHL2Counter, 5);
+                opcCounterSteer = opcGroup.OPCItems.AddItem(opcSteerCounter, 6);
+                opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
             catch (Exception ex)
             {
@@ -88,10 +88,10 @@ namespace SenAIS
                     {
                         OpenNewForm(new frmSpeed(this.serialNumber));
                     }
-                    else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false) && itemValue == 1)
-                    {
-                        OpenNewForm(new frmSideSlip(this.serialNumber));
-                    }
+                    //else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false) && itemValue == 1)
+                    //{
+                    //    OpenNewForm(new frmSideSlip(this.serialNumber));
+                    //}
                     else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle)?? false) && itemValue == 1)
                     {
                         OpenNewForm(new frmFrontBrake(this.serialNumber));

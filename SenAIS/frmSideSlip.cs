@@ -265,7 +265,7 @@ namespace SenAIS
                 updateTimer.Dispose(); // Giải phóng tài nguyên
                 updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
             }
-            OPCUtility.DisconnectOPC();
+            //OPCUtility.DisconnectOPC();
             e.Cancel = false;
         }
     }

@@ -46,7 +46,7 @@ namespace SenAIS
                 autoTestCheck = true;
             }
             // Tạo token giới hạn 3 phút
-            using (var cts = new CancellationTokenSource(TimeSpan.FromMinutes(3)))
+            using (var cts = new CancellationTokenSource(TimeSpan.FromMinutes(6)))
             {
                 try
                 {
@@ -61,8 +61,6 @@ namespace SenAIS
                 }
                 catch (TaskCanceledException)
                 {
-                    byte[] exit = { 0x50 };
-                    comConnect.SendRequest(exit);
                 }
             }
             await Task.Delay(5000);

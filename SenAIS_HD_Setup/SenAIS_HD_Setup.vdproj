@@ -57,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0FA03ADB70E64156B12AD454571F8402"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0FFA61E309E8B4E299A272E81B661B19"
         "OwnerKey" = "8:_9E3DB5A5C51E47B9A5B97C914C88D147"
         "MsmSig" = "8:_UNDEFINED"
@@ -2752,26 +2746,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FA03ADB70E64156B12AD454571F8402"
-            {
-            "SourcePath" = "8:D:\\MinhNCN\\SenAIS\\Logo_sentek.ico"
-            "TargetName" = "8:Logo_sentek.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_3071C7584DDA420785EE6B932D295B42"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0FFA61E309E8B4E299A272E81B661B19"
@@ -7621,20 +7595,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7C73F2E474184A6F8ECA758E0FFC3E92"
-            {
-            "Name" = "8:SenAIS"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_9E3DB5A5C51E47B9A5B97C914C88D147"
-            "Folder" = "8:_E1DADD55256E4CE6B390BC762A4E0D6B"
-            "WorkingFolder" = "8:_3071C7584DDA420785EE6B932D295B42"
-            "Icon" = "8:_0FA03ADB70E64156B12AD454571F8402"
-            "Feature" = "8:"
-            }
         }
         "UserInterface"
         {

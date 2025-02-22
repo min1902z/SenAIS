@@ -48,9 +48,9 @@
             // NoisePanel
             // 
             this.NoisePanel.AutoSize = true;
+            this.NoisePanel.Controls.Add(this.lbEnd);
             this.NoisePanel.Controls.Add(this.btnExit);
             this.NoisePanel.Controls.Add(this.btnReMeasure);
-            this.NoisePanel.Controls.Add(this.lbEnd);
             this.NoisePanel.Controls.Add(this.lbStandard);
             this.NoisePanel.Controls.Add(this.lbStandardTitle);
             this.NoisePanel.Controls.Add(this.lbVinNumber);
@@ -103,7 +103,7 @@
             // 
             // lbEnd
             // 
-            this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbEnd.Location = new System.Drawing.Point(45, 130);
@@ -215,12 +215,12 @@
             this.lbNoise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbNoise.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNoise.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNoise.Location = new System.Drawing.Point(45, 169);
+            this.lbNoise.Location = new System.Drawing.Point(45, 273);
             this.lbNoise.Name = "lbNoise";
-            this.lbNoise.Size = new System.Drawing.Size(1851, 748);
+            this.lbNoise.Size = new System.Drawing.Size(1839, 665);
             this.lbNoise.TabIndex = 21;
             this.lbNoise.Text = "0.0 ";
-            this.lbNoise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbNoise.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbNoise.Visible = false;
             // 
             // lbNoiseTitle
