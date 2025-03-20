@@ -1,5 +1,4 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Drawing;
 using System.Threading.Tasks;

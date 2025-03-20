@@ -58,10 +58,10 @@
             this.button2.AutoSize = true;
             this.button2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button2.Location = new System.Drawing.Point(1717, 897);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(2289, 1104);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 37);
+            this.button2.Size = new System.Drawing.Size(115, 46);
             this.button2.TabIndex = 26;
             this.button2.Text = "Tiếp Tục";
             this.button2.UseVisualStyleBackColor = true;
@@ -72,10 +72,10 @@
             this.button1.AutoSize = true;
             this.button1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(11, 897);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(15, 1104);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 37);
+            this.button1.Size = new System.Drawing.Size(115, 46);
             this.button1.TabIndex = 25;
             this.button1.Text = "Trở Lại";
             this.button1.UseVisualStyleBackColor = true;
@@ -86,10 +86,10 @@
             this.button3.AutoSize = true;
             this.button3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button3.Location = new System.Drawing.Point(1618, 899);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(2157, 1106);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(86, 37);
+            this.button3.Size = new System.Drawing.Size(115, 46);
             this.button3.TabIndex = 28;
             this.button3.Text = "Tiếp Tục";
             this.button3.UseVisualStyleBackColor = true;
@@ -105,8 +105,9 @@
             this.FWeightPanel.Controls.Add(this.lbWeightTitle);
             this.FWeightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FWeightPanel.Location = new System.Drawing.Point(0, 0);
+            this.FWeightPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FWeightPanel.Name = "FWeightPanel";
-            this.FWeightPanel.Size = new System.Drawing.Size(1370, 749);
+            this.FWeightPanel.Size = new System.Drawing.Size(1827, 922);
             this.FWeightPanel.TabIndex = 29;
             // 
             // lbVinNumber
@@ -114,9 +115,10 @@
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbVinNumber.Location = new System.Drawing.Point(129, -11);
+            this.lbVinNumber.Location = new System.Drawing.Point(172, -14);
+            this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
-            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
+            this.lbVinNumber.Size = new System.Drawing.Size(418, 164);
             this.lbVinNumber.TabIndex = 50;
             this.lbVinNumber.Text = "Số Vin";
             // 
@@ -129,9 +131,10 @@
             this.cbReady.Checked = true;
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
-            this.cbReady.Location = new System.Drawing.Point(12, 12);
+            this.cbReady.Location = new System.Drawing.Point(16, 15);
+            this.cbReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbReady.Name = "cbReady";
-            this.cbReady.Size = new System.Drawing.Size(111, 88);
+            this.cbReady.Size = new System.Drawing.Size(148, 108);
             this.cbReady.TabIndex = 45;
             this.cbReady.UseVisualStyleBackColor = false;
             // 
@@ -141,10 +144,10 @@
             this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1273, 701);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Location = new System.Drawing.Point(1697, 863);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(86, 37);
+            this.btnNext.Size = new System.Drawing.Size(115, 46);
             this.btnNext.TabIndex = 44;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -156,10 +159,10 @@
             this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(11, 701);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPre.Location = new System.Drawing.Point(15, 863);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(86, 37);
+            this.btnPre.Size = new System.Drawing.Size(115, 46);
             this.btnPre.TabIndex = 43;
             this.btnPre.Text = "Trở Lại";
             this.btnPre.UseVisualStyleBackColor = false;
@@ -181,13 +184,14 @@
             this.tbFrontWeight.Controls.Add(this.lbRight_Weight, 1, 1);
             this.tbFrontWeight.Controls.Add(this.label11, 2, 1);
             this.tbFrontWeight.Controls.Add(this.label3, 0, 1);
-            this.tbFrontWeight.Location = new System.Drawing.Point(101, 106);
+            this.tbFrontWeight.Location = new System.Drawing.Point(135, 130);
+            this.tbFrontWeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbFrontWeight.Name = "tbFrontWeight";
             this.tbFrontWeight.RowCount = 3;
             this.tbFrontWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this.tbFrontWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tbFrontWeight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tbFrontWeight.Size = new System.Drawing.Size(1167, 605);
+            this.tbFrontWeight.Size = new System.Drawing.Size(1556, 745);
             this.tbFrontWeight.TabIndex = 42;
             this.tbFrontWeight.Visible = false;
             // 
@@ -197,10 +201,9 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label12.Location = new System.Drawing.Point(1015, 445);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(1367, 547);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(149, 117);
+            this.label12.Size = new System.Drawing.Size(185, 146);
             this.label12.TabIndex = 30;
             this.label12.Text = "Kg";
             // 
@@ -210,9 +213,10 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label7.Location = new System.Drawing.Point(3, 464);
+            this.label7.Location = new System.Drawing.Point(4, 572);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(156, 78);
+            this.label7.Size = new System.Drawing.Size(196, 97);
             this.label7.TabIndex = 11;
             this.label7.Text = "Tổng";
             // 
@@ -221,9 +225,10 @@
             this.lbLeft_Weight.AutoSize = true;
             this.lbLeft_Weight.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLeft_Weight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLeft_Weight.Location = new System.Drawing.Point(375, 0);
+            this.lbLeft_Weight.Location = new System.Drawing.Point(505, 0);
+            this.lbLeft_Weight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbLeft_Weight.Name = "lbLeft_Weight";
-            this.lbLeft_Weight.Size = new System.Drawing.Size(354, 201);
+            this.lbLeft_Weight.Size = new System.Drawing.Size(445, 248);
             this.lbLeft_Weight.TabIndex = 8;
             this.lbLeft_Weight.Text = "0.0";
             // 
@@ -232,9 +237,10 @@
             this.lbSum_Weight.AutoSize = true;
             this.lbSum_Weight.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSum_Weight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSum_Weight.Location = new System.Drawing.Point(375, 402);
+            this.lbSum_Weight.Location = new System.Drawing.Point(505, 496);
+            this.lbSum_Weight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSum_Weight.Name = "lbSum_Weight";
-            this.lbSum_Weight.Size = new System.Drawing.Size(354, 203);
+            this.lbSum_Weight.Size = new System.Drawing.Size(445, 249);
             this.lbSum_Weight.TabIndex = 10;
             this.lbSum_Weight.Text = "0.0";
             // 
@@ -244,10 +250,9 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label10.Location = new System.Drawing.Point(1015, 42);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(1367, 51);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(149, 117);
+            this.label10.Size = new System.Drawing.Size(185, 146);
             this.label10.TabIndex = 28;
             this.label10.Text = "Kg";
             // 
@@ -257,9 +262,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(3, 61);
+            this.label2.Location = new System.Drawing.Point(4, 75);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(242, 78);
+            this.label2.Size = new System.Drawing.Size(302, 97);
             this.label2.TabIndex = 6;
             this.label2.Text = "Bên Trái";
             // 
@@ -268,9 +274,10 @@
             this.lbRight_Weight.AutoSize = true;
             this.lbRight_Weight.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRight_Weight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbRight_Weight.Location = new System.Drawing.Point(375, 201);
+            this.lbRight_Weight.Location = new System.Drawing.Point(505, 248);
+            this.lbRight_Weight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbRight_Weight.Name = "lbRight_Weight";
-            this.lbRight_Weight.Size = new System.Drawing.Size(354, 201);
+            this.lbRight_Weight.Size = new System.Drawing.Size(445, 248);
             this.lbRight_Weight.TabIndex = 9;
             this.lbRight_Weight.Text = "0.0";
             // 
@@ -280,10 +287,9 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label11.Location = new System.Drawing.Point(1015, 243);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(1367, 299);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(149, 117);
+            this.label11.Size = new System.Drawing.Size(185, 146);
             this.label11.TabIndex = 29;
             this.label11.Text = "Kg";
             // 
@@ -293,9 +299,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(3, 262);
+            this.label3.Location = new System.Drawing.Point(4, 323);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(261, 78);
+            this.label3.Size = new System.Drawing.Size(325, 97);
             this.label3.TabIndex = 7;
             this.label3.Text = "Bên Phải";
             // 
@@ -304,26 +311,25 @@
             this.lbWeightTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbWeightTitle.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWeightTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWeightTitle.Location = new System.Drawing.Point(12, 307);
-            this.lbWeightTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbWeightTitle.Location = new System.Drawing.Point(16, 378);
             this.lbWeightTitle.Name = "lbWeightTitle";
-            this.lbWeightTitle.Size = new System.Drawing.Size(1347, 159);
+            this.lbWeightTitle.Size = new System.Drawing.Size(1796, 196);
             this.lbWeightTitle.TabIndex = 41;
             this.lbWeightTitle.Text = "TRỌNG LƯỢNG TRƯỚC";
             this.lbWeightTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmFrontWeight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1827, 922);
             this.Controls.Add(this.FWeightPanel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmFrontWeight";
             this.ShowIcon = false;
             this.Text = "Trọng Lượng Trước";

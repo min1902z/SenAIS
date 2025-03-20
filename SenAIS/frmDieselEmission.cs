@@ -29,7 +29,6 @@ namespace SenAIS
         private decimal opacity;
         private decimal lightAbsorption;
         private string oilTemperature;
-        private bool isRequestInProgress = false;  // To prevent sending multiple requests simultaneously
         private int currentDataRequest = 1;        // Keep track of the current request count
         private CancellationTokenSource cts; // Quản lý hủy bỏ task
         private static readonly string comDieselEmission = ConfigurationManager.AppSettings["COM_DieselEmission"];
@@ -49,30 +48,53 @@ namespace SenAIS
                 // Trạng thái 1: Hiển thị tiêu đề và chờ 2 giây
                 UpdateTitle("Khí Xả - Động Cơ Diesel");
                 await Task.Delay(3000, cancellationToken);
+                int probeSetupTime = int.Parse(ConfigurationManager.AppSettings["ProbeSetupTime"] ?? "10") * 1000;
+                int throttleDuration = int.Parse(ConfigurationManager.AppSettings["ThrottleDuration"] ?? "5"); // Số giây đạp ga
+                int restDuration = int.Parse(ConfigurationManager.AppSettings["RestDuration"] ?? "5"); // Thời gian nghỉ giữa các lần đo
 
                 // Trạng thái 2: Chờ 30 giây chuẩn bị đầu dò
                 UpdateTitle("Trang bị đầu dò");
+                await Task.Delay(probeSetupTime, cancellationToken);
+
                 lbNotice.Visible = true;
                 lbNotice.Text = "Chuẩn bị đạp ga 3 lần.";
+                byte[] commandA7 = { 0xA7, CalculateCheckCode(0xA7) };
+                comConnect.SendRequest(commandA7);
                 await Task.Delay(5000, cancellationToken);
 
                 // Trạng thái 3: Hướng dẫn đo và đo 3 lần
                 tbEmission.Visible = true;
                 currentDataRequest = 1;
-                byte[] commandA7 = { 0xA7, CalculateCheckCode(0xA7) };
-                comConnect.SendRequest(commandA7);
+
                 byte[] commandA5 = { 0xA5, 0xB5 };
                 comConnect.SendRequest(commandA5);
-                isRequestInProgress = true;
                 while (currentDataRequest <= 3)
                 {
-                    // Hiển thị đếm ngược
-                    for (int countdown = 5; countdown > 0; countdown--)
+                    for (int countdown = throttleDuration; countdown >= 0; countdown--)
                     {
                         lbNotice.Text = $"Đạp ga lần {currentDataRequest}. Thực hiện trong {countdown} giây...";
                         await Task.Delay(1000, cancellationToken);
                     }
-                    ConfirmMeasurement();
+
+                    // 🔹 Đếm ngược 3 giây
+                    for (int countdown = 3; countdown > 0; countdown--)
+                    {
+                        lbNotice.Text = $"Giữ nguyên, đo kết quả trong {countdown} giây...";
+                        await Task.Delay(1000, cancellationToken);
+
+                        if (countdown == 1)
+                        {
+                            ConfirmMeasurement();
+                        }
+                    }
+                    if (currentDataRequest < 3)
+                    {
+                        for (int restCount = restDuration; restCount > 0; restCount--)
+                        {
+                            lbNotice.Text = $"Chờ {restCount} giây trước lần tiếp theo...";
+                            await Task.Delay(1000, cancellationToken);
+                        }
+                    }
                     currentDataRequest++;
                 }
 
@@ -81,7 +103,6 @@ namespace SenAIS
                 {
                     CalculateAverages();
                     SaveDataToDatabase();
-                    isRequestInProgress = false;
                     lbNotice.Text = "Quá trình lưu dữ liệu hoàn tất.";
                 }
             }
@@ -96,28 +117,18 @@ namespace SenAIS
         }
         public void ProcessNHT6Data(byte[] data)
         {
-            if (data.Length >= 9 && data[0] == 0xA5 && isRequestInProgress)
+            if (data[0] == 0xA5)
             {
                 opacity = ((data[1] << 8) + data[2]) / 10.0m; // Opacity chia 10
                 lightAbsorption = ((data[3] << 8) + data[4]) / 100.0m; // Light absorption chia 100
                 lastRpm = (data[5] << 8) + data[6]; // Lưu tạm tốc độ
                 int oilTempRaw = (data[7] << 8) + data[8];
-                int oilTempCelsius = 0;
-                if (oilTempRaw == 0xFFFF)
-                {
-                    oilTemperature = "--";  // Không có cảm biến nhiệt độ
-                    oilTempCelsius = 0;
-                }
-                else
-                {
-                    oilTempCelsius = oilTempRaw;
-                    oilTemperature = oilTempCelsius.ToString();
-                }
+                oilTemperature = (oilTempRaw == 0xFFFF) ? "--" : oilTempRaw.ToString();
             }
         }
         public void ProcessNHT6MaxData(byte[] data)
         {
-            if (data.Length >= 7 && data[0] == 0xA6 && isRequestInProgress)
+            if (data[0] == 0xA6)
             {
                 lastMaxSpeed = (data[5] << 8) + data[6]; // Lưu tạm tốc độ tối đa
             }
@@ -126,37 +137,53 @@ namespace SenAIS
         {
             this.Invoke(new Action(() =>
             {
-                switch (currentDataRequest)
+                if (currentDataRequest == 1)
                 {
-                    case 1:
-                        minSpeed1 = lastRpm;
-                        maxSpeed1 = lastMaxSpeed;
-                        hsu1 = opacity;
-
-                        lbMinSpeed1.Text = minSpeed1.ToString("F0");
-                        lbMaxSpeed1.Text = maxSpeed1.ToString("F0");
-                        lbHSU1.Text = hsu1.ToString("F1");
-                        break;
-                    case 2:
-                        minSpeed2 = lastRpm;
-                        maxSpeed2 = lastMaxSpeed;
-                        hsu2 = opacity;
-
-                        lbMinSpeed2.Text = minSpeed2.ToString("F0");
-                        lbMaxSpeed2.Text = maxSpeed2.ToString("F0");
-                        lbHSU2.Text = hsu2.ToString("F1");
-                        break;
-                    case 3:
-                        minSpeed3 = lastRpm;
-                        maxSpeed3 = lastMaxSpeed;
-                        hsu3 = opacity;
-
-                        lbMinSpeed3.Text = minSpeed3.ToString("F0");
-                        lbMaxSpeed3.Text = maxSpeed3.ToString("F0");
-                        lbHSU3.Text = hsu3.ToString("F1");
-                        break;
+                    minSpeed1 = lastRpm;
+                    maxSpeed1 = Math.Max(lastRpm, lastMaxSpeed); // Đảm bảo max >= min
+                    hsu1 = opacity;
                 }
+                else if (currentDataRequest == 2)
+                {
+                    minSpeed2 = lastRpm;
+                    maxSpeed2 = Math.Max(lastRpm, lastMaxSpeed);
+                    hsu2 = opacity;
+                }
+                else if (currentDataRequest == 3)
+                {
+                    minSpeed3 = lastRpm;
+                    maxSpeed3 = Math.Max(lastRpm, lastMaxSpeed);
+                    hsu3 = opacity;
+                }
+
+                UpdateUI(currentDataRequest);
             }));
+        }
+        private void UpdateUI(int measurementStep)
+        {
+            switch (measurementStep)
+            {
+                case 1:
+                    if (maxSpeed1 < minSpeed1) maxSpeed1 = minSpeed1;
+                    lbMinSpeed1.Text = minSpeed1.ToString("F0");
+                    lbMaxSpeed1.Text = maxSpeed1.ToString("F0");
+                    lbHSU1.Text = hsu1.ToString("F1");
+                    break;
+
+                case 2:
+                    maxSpeed2 = Math.Max(maxSpeed2, Math.Max(maxSpeed1, minSpeed2));
+                    lbMinSpeed2.Text = minSpeed2.ToString("F0");
+                    lbMaxSpeed2.Text = maxSpeed2.ToString("F0");
+                    lbHSU2.Text = hsu2.ToString("F1");
+                    break;
+
+                case 3:
+                    maxSpeed3 = Math.Max(maxSpeed3, Math.Max(maxSpeed2, minSpeed3));
+                    lbMinSpeed3.Text = minSpeed3.ToString("F0");
+                    lbMaxSpeed3.Text = maxSpeed3.ToString("F0");
+                    lbHSU3.Text = hsu3.ToString("F1");
+                    break;
+            }
         }
         private void UpdateTitle(string message)
         {
@@ -184,18 +211,18 @@ namespace SenAIS
             lastMaxSpeed = 0;
             lastRpm = 0;
             currentDataRequest = 1;
-            isRequestInProgress = false;
         }
         private void CalculateAverages()
         {
             avgHsu = (hsu1 + hsu2 + hsu3) / 3;
-            lbHsuAvg.Text = avgHsu.ToString("F1");
+            avgHsu = (decimal)Math.Max(0.01, Math.Round((double)avgHsu, 2));
+            lbHsuAvg.Text = avgHsu.ToString("F2");
 
             bool isValueInStandard = maxHsu == 0 || avgHsu <= maxHsu;
             lbHsuAvg.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
 
-            lbMinAvg.Text = ((minSpeed1 + minSpeed2 + minSpeed3) / 3).ToString("F1");
-            lbMaxAvg.Text = ((maxSpeed1 + maxSpeed2 + maxSpeed3) / 3).ToString("F1");
+            lbMinAvg.Text = ((minSpeed1 + minSpeed2 + minSpeed3) / 3).ToString("F0");
+            lbMaxAvg.Text = ((maxSpeed1 + maxSpeed2 + maxSpeed3) / 3).ToString("F0");
         }
         private decimal ConvertToDecimal(object value)
         {

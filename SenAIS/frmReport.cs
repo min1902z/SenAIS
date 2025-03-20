@@ -345,6 +345,7 @@ namespace SenAIS
                 CheckAndColorTextBox(txtCO2, null, standard.Field<decimal?>("MaxCO2"));
                 CheckAndColorTextBox(txtO2, null, standard.Field<decimal?>("MaxO2"));
                 CheckAndColorTextBox(txtNO, null, standard.Field<decimal?>("MaxNO"));
+                CheckAndColorTextBox(txtLamda, standard.Field<decimal?>("MinLamda"), standard.Field<decimal?>("MaxLamda"));
                 CheckAndColorTextBox(txtHSU1, null, standard.Field<decimal?>("MaxHSU"));
                 CheckAndColorTextBox(txtHSU2, null, standard.Field<decimal?>("MaxHSU"));
                 CheckAndColorTextBox(txtHSU3, null, standard.Field<decimal?>("MaxHSU"));
@@ -362,15 +363,13 @@ namespace SenAIS
                 CheckAndColorTextBox(txtRLBHorizontal, standard.Field<decimal?>("MinDiffHoriLB"), standard.Field<decimal?>("MaxDiffHoriLB"));
                 CheckAndColorTextBox(txtLLBVertical, standard.Field<decimal?>("MinDiffVertiLB"), standard.Field<decimal?>("MaxDiffVertiLB"));
                 CheckAndColorTextBox(txtRLBVertical, standard.Field<decimal?>("MinDiffVertiLB"), standard.Field<decimal?>("MaxDiffVertiLB"));
-                
+
                 CheckAndColorTextBox(txtLFLIntensity, standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MaxFLIntensity"));
                 CheckAndColorTextBox(txtRFLIntensity, standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MaxFLIntensity"));
                 CheckAndColorTextBox(txtLFLHorizontal, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
                 CheckAndColorTextBox(txtRFLHorizontal, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
                 CheckAndColorTextBox(txtLFLVertical, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
                 CheckAndColorTextBox(txtRFLVertical, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
-                CheckAndColorTextBox(txtLFLHeight, standard.Field<decimal?>("MinFLHeight"), standard.Field<decimal?>("MaxFLHeight"));
-                CheckAndColorTextBox(txtRFLHeight, standard.Field<decimal?>("MinFLHeight"), standard.Field<decimal?>("MaxFLHeight"));
 
                 CheckAndColorTextBox(txtLeftSteerLW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
                 CheckAndColorTextBox(txtLeftSteerRW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
@@ -487,6 +486,8 @@ namespace SenAIS
             reportDataTable.Columns.Add("OilTemp", typeof(decimal));
             reportDataTable.Columns.Add("RPM", typeof(decimal));
             reportDataTable.Columns.Add("Lambda", typeof(decimal));
+            reportDataTable.Columns.Add("MinLamda", typeof(decimal));
+            reportDataTable.Columns.Add("MaxLamda", typeof(decimal));
 
             reportDataTable.Columns.Add("FrontLeftWeight", typeof(decimal));
             reportDataTable.Columns.Add("FrontRightWeight", typeof(decimal));
@@ -661,6 +662,8 @@ namespace SenAIS
 
                 bool petrolResult = CheckStandard(ConvertToDecimal(vehicleDetails["HC"]), null,
                                                   standard.Field<decimal?>("MaxHC"))
+                                     && CheckStandard(ConvertToDecimal(vehicleDetails["Lambda"]), standard.Field<decimal?>("MinLamda"),
+                                                  standard.Field<decimal?>("MaxLamda"))
                                     && CheckStandard(ConvertToDecimal(vehicleDetails["CO"]), null,
                                                      standard.Field<decimal?>("MaxCO"));
 
@@ -712,8 +715,12 @@ namespace SenAIS
                                                    standard.Field<decimal?>("MaxWhistle"));
 
                 // Tính toán kết quả cuối cùng
+                string engineType = vehicleDetails["EngineType"].ToString();
+                bool engineResult = (engineType == "Xăng") ? petrolResult :
+                                    (engineType == "Dầu") ? dieselResult : false;
+
                 bool finalResult = sideSlipResult && brakeResult && speedResult && steerAngleResult &&
-                                   (petrolResult || dieselResult) && hlResult && noiseResult && whistleResult;
+                                   engineResult && hlResult && noiseResult && whistleResult;
 
                 // Thêm dữ liệu vào DataTable
                 DataRow reportRow = reportDataTable.NewRow();
@@ -747,17 +754,19 @@ namespace SenAIS
 
                 reportRow["HC"] = ConvertToDecimal(vehicleDetails["HC"]).ToString("F1");
                 reportRow["MaxHC"] = ConvertToDecimal(standard["MaxHC"]).ToString("F1");
-                reportRow["CO"] = ConvertToDecimal(vehicleDetails["CO"]).ToString("F1");
+                reportRow["CO"] = ConvertToDecimal(vehicleDetails["CO"]).ToString("F2");
                 reportRow["MaxCO"] = ConvertToDecimal(standard["MaxCO"]).ToString("F1");
-                reportRow["CO2"] = ConvertToDecimal(vehicleDetails["CO2"]).ToString("F1");
+                reportRow["CO2"] = ConvertToDecimal(vehicleDetails["CO2"]).ToString("F2");
                 reportRow["MaxCO2"] = ConvertToDecimal(standard["MaxCO2"]).ToString("F1");
-                reportRow["O2"] = ConvertToDecimal(vehicleDetails["O2"]).ToString("F1");
+                reportRow["O2"] = ConvertToDecimal(vehicleDetails["O2"]).ToString("F2");
                 reportRow["MaxO2"] = ConvertToDecimal(standard["MaxO2"]).ToString("F1");
-                reportRow["NO"] = ConvertToDecimal(vehicleDetails["NO"]).ToString("F1");
+                reportRow["NO"] = ConvertToDecimal(vehicleDetails["NO"]).ToString("F2");
                 reportRow["MaxNO"] = ConvertToDecimal(standard["MaxNO"]).ToString("F1");
                 reportRow["OilTemp"] = ConvertToDecimal(vehicleDetails["OilTemp"]).ToString("F1");
                 reportRow["RPM"] = ConvertToDecimal(vehicleDetails["RPM"]).ToString("F1");
                 reportRow["Lambda"] = ConvertToDecimal(vehicleDetails["Lambda"]).ToString("F3");
+                reportRow["MinLamda"] = ConvertToDecimal(standard["MinLamda"]).ToString("F3");
+                reportRow["MaxLamda"] = ConvertToDecimal(standard["MaxLamda"]).ToString("F3");
 
                 reportRow["FrontLeftWeight"] = frontLeftWeight.ToString("F1");
                 reportRow["FrontRightWeight"] = frontRightWeight.ToString("F1");
@@ -833,7 +842,7 @@ namespace SenAIS
                 reportRow["MinSpeed3"] = ConvertToDecimal(vehicleDetails["MinSpeed3"]).ToString("F1");
                 reportRow["MaxSpeed3"] = ConvertToDecimal(vehicleDetails["MaxSpeed3"]).ToString("F1");
                 reportRow["HSU3"] = ConvertToDecimal(hsu3).ToString("F1");
-                reportRow["AvgHSU"] = ConvertToDecimal(avgHSU).ToString("F1");
+                reportRow["AvgHSU"] = ConvertToDecimal(avgHSU).ToString("F2");
                 reportRow["MaxHSU"] = ConvertToDecimal(standard["MaxHSU"]).ToString("F1");
 
                 reportRow["LeftSteerLW"] = ConvertToDecimal(vehicleDetails["LeftSteerLW"]).ToString("F1");
@@ -982,9 +991,9 @@ namespace SenAIS
                     sqlHelper.UpdateSteerAngle(serialNumber, leftSteerLW, leftSteerRW, rightSteerLW, rightSteerRW);
                     sqlHelper.UpdateBrakeForce(serialNumber, frontLeftBrake, frontRightBrake, rearLeftBrake, rearRightBrake, handBrakeLeft, handBrakeRight);
                     sqlHelper.UpdateNoise(serialNumber, noise, whistle);
-                    sqlHelper.UpdateHeadlights(serialNumber, lhlIntensity, lhlVertical, lhlHorizontal, lhlHeight, 
-                        rhlIntensity, rhlVertical, rhlHorizontal, lhlHeight, 
-                        llbIntensity, llbVertical, llbHorizontal, llbHeight, 
+                    sqlHelper.UpdateHeadlights(serialNumber, lhlIntensity, lhlVertical, lhlHorizontal, lhlHeight,
+                        rhlIntensity, rhlVertical, rhlHorizontal, lhlHeight,
+                        llbIntensity, llbVertical, llbHorizontal, llbHeight,
                         rlbIntensity, rlbVertical, rlbHorizontal, rlbHeight,
                     lflIntensity, lflVertical, lflHorizontal, lflHeight,
                     rflIntensity, rflVertical, rflHorizontal, rflHeight);

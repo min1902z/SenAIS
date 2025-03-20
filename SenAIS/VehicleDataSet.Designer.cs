@@ -531,6 +531,10 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnMaxLightHeight;
             
+            private global::System.Data.DataColumn columnMinLamda;
+            
+            private global::System.Data.DataColumn columnMaxLamda;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1574,6 +1578,22 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinLamdaColumn {
+                get {
+                    return this.columnMinLamda;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxLamdaColumn {
+                get {
+                    return this.columnMaxLamda;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1735,7 +1755,9 @@ namespace SenAIS {
                         string MaxDiffHoriFL, 
                         string LHBHeight, 
                         string RHBHeight, 
-                        string MaxLightHeight) {
+                        string MaxLightHeight, 
+                        string MinLamda, 
+                        string MaxLamda) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1863,7 +1885,9 @@ namespace SenAIS {
                         MaxDiffHoriFL,
                         LHBHeight,
                         RHBHeight,
-                        MaxLightHeight};
+                        MaxLightHeight,
+                        MinLamda,
+                        MaxLamda};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -2012,6 +2036,8 @@ namespace SenAIS {
                 this.columnLHBHeight = base.Columns["LHBHeight"];
                 this.columnRHBHeight = base.Columns["RHBHeight"];
                 this.columnMaxLightHeight = base.Columns["MaxLightHeight"];
+                this.columnMinLamda = base.Columns["MinLamda"];
+                this.columnMaxLamda = base.Columns["MaxLamda"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2269,6 +2295,10 @@ namespace SenAIS {
                 base.Columns.Add(this.columnRHBHeight);
                 this.columnMaxLightHeight = new global::System.Data.DataColumn("MaxLightHeight", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaxLightHeight);
+                this.columnMinLamda = new global::System.Data.DataColumn("MinLamda", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinLamda);
+                this.columnMaxLamda = new global::System.Data.DataColumn("MaxLamda", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxLamda);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4427,6 +4457,38 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinLamda {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinLamdaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinLamda\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinLamdaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxLamda {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxLamdaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxLamda\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxLamdaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -5935,6 +5997,30 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaxLightHeightNull() {
                 this[this.tableVehicleReportData.MaxLightHeightColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinLamdaNull() {
+                return this.IsNull(this.tableVehicleReportData.MinLamdaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinLamdaNull() {
+                this[this.tableVehicleReportData.MinLamdaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxLamdaNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxLamdaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxLamdaNull() {
+                this[this.tableVehicleReportData.MaxLamdaColumn] = global::System.Convert.DBNull;
             }
         }
         

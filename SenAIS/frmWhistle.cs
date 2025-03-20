@@ -1,5 +1,4 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -35,7 +34,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 500; // Kiểm tra mỗi giây
+            updateTimer.Interval = 200; // Kiểm tra mỗi giây
             updateTimer.Tick += UpdateReadyStatus;
             updateTimer.Start();
         }
@@ -49,7 +48,7 @@ namespace SenAIS
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
-                {
+                    {
                         case 0: // Mặc định
                             cbReady.BackColor = SystemColors.Control;
                             lbWhistle.Visible = false;
@@ -99,9 +98,13 @@ namespace SenAIS
                             lbStandard.Visible = false;
                             lbEnd.Visible = false;
                             lbWhistleTitle.Visible = true;
-                            frmSideSlip ssForm = new frmSideSlip(serialNumber);
-                            ssForm.Show();
-                            this.Close();
+                            if (updateTimer != null)
+                            {
+                                updateTimer.Stop(); // Dừng Timer
+                                updateTimer.Dispose(); // Giải phóng tài nguyên
+                                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+                            }
+                            OpenOrReplaceFormWithSerial<frmSideSlip>(this.serialNumber);
                             break;
 
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
@@ -109,13 +112,30 @@ namespace SenAIS
                             isReady = false;
                             lbWhistleTitle.Visible = true;
                             break;
-                }
+                    }
                 }));
 
             }
             catch (Exception)
             {
             }
+        }
+        private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
+        {
+            // 🔹 Kiểm tra xem form đã mở chưa
+            var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+
+            if (existingForm != null)
+            {
+                existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
+            }
+
+            // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
+            var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
+            form.Show();
+
+            // 🔹 Đóng form hiện tại
+            this.Close();
         }
         private decimal ConvertToDecimal(object value)
         {
@@ -202,23 +222,24 @@ namespace SenAIS
         {
             try
             {
-                if (data.Length >= 6 && data[0] == 0x01) // Check start and end byte
+                if (data[0] == 0x01) // Check start and end byte
                 {
                     // Xử lý và hiển thị giá trị max sound
                     string maxSoundLevel = Encoding.ASCII.GetString(data, 1, 5); // 5 bytes ASCII
 
                     if (double.TryParse(maxSoundLevel, out double soundLevel))
                     {
-                        this.Invoke(new Action(() =>
+                        if (soundLevel > maxSoundValue) // Cập nhật giá trị lớn nhất trước khi gửi lên UI
                         {
-                            if (isMeasuring && soundLevel > maxSoundValue) // Chỉ cập nhật nếu đang đo
-                            {
-                                maxSoundValue = soundLevel;
-                                lbWhistle.Text = maxSoundValue.ToString("F1");
-                                this.whistle = Convert.ToDecimal(maxSoundValue);
-                                bool isValueInStandard = this.whistle >= minWhistle && (maxWhistle == 0 || this.whistle <= maxWhistle);
-                                lbWhistle.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
-                            }
+                            maxSoundValue = soundLevel;
+                        }
+
+                        this.BeginInvoke(new Action(() =>
+                        {
+                            lbWhistle.Text = maxSoundValue.ToString("F1");
+                            this.whistle = Convert.ToDecimal(maxSoundValue);
+                            bool isValueInStandard = this.whistle >= minWhistle && (maxWhistle == 0 || this.whistle <= maxWhistle);
+                            lbWhistle.ForeColor = isValueInStandard ? SystemColors.HotTrack : Color.DarkRed;
                         }));
                     }
                 }

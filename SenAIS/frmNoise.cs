@@ -1,11 +1,8 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,6 +27,13 @@ namespace SenAIS
         }
         private async void StartMeasurementProcess()
         {
+            int measurementDelay;
+
+            // Đọc thời gian từ App.config, nếu không có thì mặc định là 10 giây
+            if (!int.TryParse(ConfigurationManager.AppSettings["NoiseMeasurementDelay"], out measurementDelay))
+            {
+                measurementDelay = 10; // Mặc định nếu không tìm thấy key
+            }
             lbNoiseTitle.Text = "Độ Ồn";
             await Task.Delay(3000); // Quãng nghỉ 3 giây trước khi bắt đầu đo
 
@@ -42,8 +46,7 @@ namespace SenAIS
             comConnect.SendRequest(startCommand);
             lbEnd.Visible = true;
             lbEnd.Text = "Bắt đầu";
-            //await Task.Delay(10000); // Chờ dữ liệu về
-            for (int countdown = 10; countdown >= 0; countdown--)
+            for (int countdown = measurementDelay; countdown >= 0; countdown--)
             {
                 lbEnd.Text = $"Giá trị sẽ lấy sau {countdown}s...";
                 await Task.Delay(1000); // Chờ 1 giây
@@ -52,12 +55,12 @@ namespace SenAIS
             isMeasuring = false;
             lbEnd.Text = "Kết thúc";
             SaveDataToDatabase();
-         }
+        }
         private void ResetToDefault()
         {
             lbNoise.Visible = false;
             lbNoise.Text = "0.0";
-            lbEnd.Visible = false; 
+            lbEnd.Visible = false;
         }
         private decimal ConvertToDecimal(object value)
         {

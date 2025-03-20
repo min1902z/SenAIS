@@ -1,5 +1,8 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Configuration;
+using System.Data;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -266,6 +269,69 @@ namespace SenAIS
 
         internal class VehicleDataSet : global::SenAIS.VehicleDataSet
         {
+        }
+
+        private void tsReportByDate_Click(object sender, EventArgs e)
+        {
+            SQLHelper sqlHelper = new SQLHelper();
+            DataTable vehicleList = sqlHelper.GetVehicleListByDate();
+            if (vehicleList.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có xe nào trong ngày hôm nay để xuất Excel.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            string sourcePath = @"D:\DanhSachXe.xlsx";  // File mẫu
+            string exportPath = $@"D:\DanhSachXe_{DateTime.Now:yyyy-MM-dd}.xlsx";
+            File.Copy(sourcePath, exportPath, true);
+            ExportToExcel(exportPath, vehicleList);
+        }
+        private void ExportToExcel(string filePath, DataTable vehicleList)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];  // Chọn sheet đầu tiên
+
+                int rowCount = worksheet.Dimension?.Rows ?? 0;
+                int startRow = 0;
+                int totalRow = 0;
+
+                // 4️⃣ Tìm dòng có số "1"
+                for (int row = 1; row <= rowCount; row++)
+                {
+                    var firstCellValue = worksheet.Cells[row, 1].Value?.ToString()?.Trim();
+                    if (firstCellValue == "1")
+                    {
+                        startRow = row;
+                        break;
+                    }
+                }
+
+                // 5️⃣ Ghi dữ liệu vào Excel
+                for (int i = 0; i < vehicleList.Rows.Count; i++)
+                {
+                    worksheet.Cells[startRow + i, 2].Value = vehicleList.Rows[i]["VehicleType"];  // Kiểu Loại
+                    worksheet.Cells[startRow + i, 3].Value = vehicleList.Rows[i]["SerialNumber"]; // Số Khung
+                    worksheet.Cells[startRow + i, 4].Value = vehicleList.Rows[i]["FrameNumber"];  // Số Máy
+                    worksheet.Cells[startRow + i, 5].Value = vehicleList.Rows[i]["Color"];        // Màu Sơn
+                }
+
+                // 6️⃣ Ghi tổng số xe vào dòng cuối cùng
+                totalRow = vehicleList.Rows.Count;
+                for (int row = 1; row <= rowCount; row++)
+                {
+                    var cellValue = worksheet.Cells[row, 1].Value?.ToString();
+                    if (cellValue != null && cellValue.Contains("Tổng cộng/ Total:"))
+                    {
+                        worksheet.Cells[row, 1].Value = $"Tổng cộng/ Total: {totalRow} Xe/ Vehicle";
+                        break;
+                    }
+                }
+
+                // 7️⃣ Lưu file
+                package.Save();
+                MessageBox.Show("Xuất dữ liệu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

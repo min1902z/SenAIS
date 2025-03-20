@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -102,31 +101,32 @@ namespace SenAIS
                             lbBrakeTitle.Visible = false;
                             tbLeft.Visible = true;
                             tbRight.Visible = true;
-                            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
-                            if (!hasProcessedNextVin)
-                            {
-                                if (!string.IsNullOrEmpty(nextSerialNumber))
-                                {
-                                    this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                                    lbVinNumber.Text = this.serialNumber;
-                                    var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-                                    if (frmMain != null)
-                                    {
-                                        var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-                                        if (txtVinNumber != null)
-                                        {
-                                            txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
-                                        }
-                                    }
-                                    hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                                    this.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Không có xe tiếp theo để đo.");
-                                    this.Close();
-                                }
-                            }
+                            this.Close();
+                            //string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
+                            //if (!hasProcessedNextVin)
+                            //{
+                            //    if (!string.IsNullOrEmpty(nextSerialNumber))
+                            //    {
+                            //        this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
+                            //        lbVinNumber.Text = this.serialNumber;
+                            //        var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                            //        if (frmMain != null)
+                            //        {
+                            //            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+                            //            if (txtVinNumber != null)
+                            //            {
+                            //                txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
+                            //            }
+                            //        }
+                            //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
+                            //        this.Close();
+                            //    }
+                            //    else
+                            //    {
+                            //        MessageBox.Show("Không có xe tiếp theo để đo.");
+                            //        this.Close();
+                            //    }
+                            //}
                             break;
 
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng

@@ -60,7 +60,7 @@
             this.WhistlePanel.Location = new System.Drawing.Point(0, 0);
             this.WhistlePanel.Margin = new System.Windows.Forms.Padding(4);
             this.WhistlePanel.Name = "WhistlePanel";
-            this.WhistlePanel.Size = new System.Drawing.Size(1924, 1055);
+            this.WhistlePanel.Size = new System.Drawing.Size(1902, 1033);
             this.WhistlePanel.TabIndex = 0;
             // 
             // lbEnd
@@ -68,10 +68,10 @@
             this.lbEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEnd.Location = new System.Drawing.Point(49, 127);
+            this.lbEnd.Location = new System.Drawing.Point(33, 127);
             this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEnd.Name = "lbEnd";
-            this.lbEnd.Size = new System.Drawing.Size(1815, 161);
+            this.lbEnd.Size = new System.Drawing.Size(1820, 161);
             this.lbEnd.TabIndex = 58;
             this.lbEnd.Text = "Kết Thúc";
             this.lbEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,7 +83,7 @@
             this.lbStandard.AutoSize = true;
             this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandard.Location = new System.Drawing.Point(713, 945);
+            this.lbStandard.Location = new System.Drawing.Point(702, 923);
             this.lbStandard.Name = "lbStandard";
             this.lbStandard.Size = new System.Drawing.Size(239, 97);
             this.lbStandard.TabIndex = 56;
@@ -95,7 +95,7 @@
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandardTitle.Location = new System.Drawing.Point(209, 950);
+            this.lbStandardTitle.Location = new System.Drawing.Point(198, 928);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
             this.lbStandardTitle.TabIndex = 55;
@@ -134,7 +134,7 @@
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNext.Location = new System.Drawing.Point(1797, 996);
+            this.btnNext.Location = new System.Drawing.Point(1775, 974);
             this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(115, 46);
@@ -148,7 +148,7 @@
             this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPre.Location = new System.Drawing.Point(12, 996);
+            this.btnPre.Location = new System.Drawing.Point(12, 974);
             this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(115, 46);
@@ -163,7 +163,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(1453, 866);
+            this.label2.Location = new System.Drawing.Point(1442, 844);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(269, 204);
             this.label2.TabIndex = 27;
@@ -175,10 +175,10 @@
             this.lbWhistle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbWhistle.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistle.Location = new System.Drawing.Point(52, 264);
+            this.lbWhistle.Location = new System.Drawing.Point(33, 166);
             this.lbWhistle.Margin = new System.Windows.Forms.Padding(0);
             this.lbWhistle.Name = "lbWhistle";
-            this.lbWhistle.Size = new System.Drawing.Size(1812, 627);
+            this.lbWhistle.Size = new System.Drawing.Size(1820, 711);
             this.lbWhistle.TabIndex = 26;
             this.lbWhistle.Text = "0.0";
             this.lbWhistle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -189,9 +189,9 @@
             this.lbWhistleTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbWhistleTitle.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWhistleTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWhistleTitle.Location = new System.Drawing.Point(16, 288);
+            this.lbWhistleTitle.Location = new System.Drawing.Point(12, 288);
             this.lbWhistleTitle.Name = "lbWhistleTitle";
-            this.lbWhistleTitle.Size = new System.Drawing.Size(1893, 424);
+            this.lbWhistleTitle.Size = new System.Drawing.Size(1878, 402);
             this.lbWhistleTitle.TabIndex = 25;
             this.lbWhistleTitle.Text = "ÂM LƯỢNG CÒI";
             this.lbWhistleTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -203,7 +203,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1902, 1033);
             this.Controls.Add(this.WhistlePanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmWhistle";

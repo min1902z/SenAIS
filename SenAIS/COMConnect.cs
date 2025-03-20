@@ -29,9 +29,9 @@ namespace SenAIS
                     serialPort.Open();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Kết nối thất bại: " + ex.Message);
+                //MessageBox.Show("Kết nối thất bại: " + ex.Message);
             }
         }
 
@@ -52,37 +52,81 @@ namespace SenAIS
                 byte[] buffer = new byte[serialPort.BytesToRead];
                 serialPort.Read(buffer, 0, buffer.Length);
                 dataBuffer.AddRange(buffer);
+                //}
                 if (activeForm is frmDieselEmission)
                 {
-                    // Tìm vị trí byte đầu tiên là A5 hoặc A6
-                    int startIndexA5 = dataBuffer.IndexOf(0xA5);
-                    int startIndexA6 = dataBuffer.IndexOf(0xA6);
-                    if (startIndexA5 != -1 && dataBuffer.Count >= startIndexA5 + 9)
+                    while (dataBuffer.Count > 0)
                     {
-                        // Xử lý dữ liệu A5 (9 bytes)
-                        byte[] completeData = dataBuffer.Skip(startIndexA5).Take(9).ToArray();
-                        ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
-                        dataBuffer.RemoveRange(startIndexA5, 9);
-                        byte[] commandA6 = { 0xA6, 0x5A };
-                        SendRequest(commandA6);
-                    }
-                    else if (startIndexA6 != -1 && dataBuffer.Count >= startIndexA6 + 7)
-                    {
-                        // Xử lý dữ liệu A6 (7 bytes)
-                        byte[] completeData = dataBuffer.Skip(startIndexA6).Take(7).ToArray();
-                        ((frmDieselEmission)activeForm).ProcessNHT6MaxData(completeData);
-                        dataBuffer.RemoveRange(startIndexA6, 7);
-                        byte[] commandA5 = { 0xA5, 0xB5 };
-                        SendRequest(commandA5);
-
-                    }
-                    else
-                    {
-                        dataBuffer.Clear(); // Xóa dữ liệu hiện tại trong buffer
+                        int startIndexA5 = dataBuffer.FindIndex(b => b == 0xA5);
+                        int startIndexA6 = dataBuffer.FindIndex(b => b == 0xA6);
                         byte[] commandA5 = { 0xA5, 0x5B };
+                        byte[] commandA6 = { 0xA6, 0x5A };
                         SendRequest(commandA5);
+                        SendRequest(commandA6);
+
+                        if (startIndexA5 == -1 && startIndexA6 == -1)
+                        {
+                            dataBuffer.Clear(); // Nếu không tìm thấy A5/A6, xóa toàn bộ buffer
+                            SendRequest(commandA5);
+                            SendRequest(commandA6);
+                            break;
+                        }
+                        // Xử lý dữ liệu A5 (10 bytes)
+                        if (startIndexA5 != -1 && dataBuffer.Count >= startIndexA5 + 10)
+                        {
+                            byte[] completeData = dataBuffer.Skip(startIndexA5).Take(9).ToArray();
+                            ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
+                            dataBuffer.RemoveRange(0, startIndexA5 + 10); // Xóa dữ liệu đã xử lý
+                        }
+
+                        // Xử lý dữ liệu A6 (8 bytes)
+                        else if (startIndexA6 != -1 && dataBuffer.Count >= startIndexA6 + 8)
+                        {
+                            byte[] completeData = dataBuffer.Skip(startIndexA6).Take(7).ToArray();
+                            ((frmDieselEmission)activeForm).ProcessNHT6MaxData(completeData);
+                            dataBuffer.Clear();
+                            //dataBuffer.RemoveRange(0, startIndexA6 + 8); // Xóa dữ liệu đã xử lý
+                        }
+                        else
+                        {
+                            dataBuffer.Clear();
+                            SendRequest(commandA5);
+                            SendRequest(commandA6);
+                            break;
+                        }
                     }
                 }
+                //if (activeForm is frmDieselEmission)
+                //{
+                //int startIndexA5 = dataBuffer.IndexOf(0xA5);
+                //int startIndexA6 = dataBuffer.IndexOf(0xA6);
+                //if (startIndexA5 != -1 && dataBuffer.Count >= startIndexA5 + 10)
+                //{
+                //    // Xử lý dữ liệu A5 (9 bytes)
+                //    byte[] completeData = dataBuffer.Skip(startIndexA5).Take(9).ToArray();
+                //    ((frmDieselEmission)activeForm).ProcessNHT6Data(completeData);
+                //    dataBuffer.RemoveRange(0, startIndexA5 + 10);
+                //    byte[] commandA6 = { 0xA6, 0x5A };
+                //    SendRequest(commandA6);
+                //}
+                //else if (startIndexA6 != -1 && dataBuffer.Count >= startIndexA6 + 8)
+                //{
+                //    // Xử lý dữ liệu A6 (7 bytes)
+                //    byte[] completeData = dataBuffer.Skip(startIndexA6).Take(7).ToArray();
+                //    ((frmDieselEmission)activeForm).ProcessNHT6MaxData(completeData);
+                //    dataBuffer.RemoveRange(0, startIndexA6 + 8);
+                //    byte[] commandA5 = { 0xA5, 0xB5 };
+                //    SendRequest(commandA5);
+                //}
+                //else
+                //{
+                //    dataBuffer.Clear(); // Xóa dữ liệu hiện tại trong buffer
+                //    byte[] commandA5 = { 0xA5, 0x5B };
+                //    SendRequest(commandA5);
+                //    byte[] commandA6 = { 0xA6, 0x5A };
+                //    SendRequest(commandA6);
+                //}
+                //}
                 if (activeForm is frmGasEmission)
                 {
                     while (dataBuffer.Count >= 1 && dataBuffer[0] != 0x06)
@@ -173,7 +217,6 @@ namespace SenAIS
                         if (dataBuffer.Contains(0x47))
                         {
                             dataBuffer.Clear();
-                            //byte[] request = { 0x4E, 0x4D };
                             byte[] request = { 0x79, 0x7A };
                             SendRequest(request);
                         }

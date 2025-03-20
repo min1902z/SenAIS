@@ -36,7 +36,6 @@
             this.tbEmission2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbLamdaValue = new System.Windows.Forms.Label();
             this.lbLamda = new System.Windows.Forms.Label();
-            this.cbPass = new System.Windows.Forms.CheckBox();
             this.lbNOValue = new System.Windows.Forms.Label();
             this.lbOTValue = new System.Windows.Forms.Label();
             this.lbNO = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lbRPMValue = new System.Windows.Forms.Label();
+            this.pbCorrect = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.lbVinNumber = new System.Windows.Forms.Label();
             this.btnReMeasure = new System.Windows.Forms.Button();
@@ -69,6 +69,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EmissionPanel.SuspendLayout();
             this.tbEmission2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCorrect)).BeginInit();
             this.tbGasEmission.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +129,6 @@
             this.tbEmission2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tbEmission2.Controls.Add(this.lbLamdaValue, 1, 3);
             this.tbEmission2.Controls.Add(this.lbLamda, 0, 3);
-            this.tbEmission2.Controls.Add(this.cbPass, 2, 3);
             this.tbEmission2.Controls.Add(this.lbNOValue, 1, 0);
             this.tbEmission2.Controls.Add(this.lbOTValue, 1, 1);
             this.tbEmission2.Controls.Add(this.lbNO, 0, 0);
@@ -138,7 +138,8 @@
             this.tbEmission2.Controls.Add(this.label14, 2, 1);
             this.tbEmission2.Controls.Add(this.label15, 2, 2);
             this.tbEmission2.Controls.Add(this.lbRPMValue, 1, 2);
-            this.tbEmission2.Location = new System.Drawing.Point(871, 129);
+            this.tbEmission2.Controls.Add(this.pbCorrect, 2, 3);
+            this.tbEmission2.Location = new System.Drawing.Point(892, 129);
             this.tbEmission2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbEmission2.Name = "tbEmission2";
             this.tbEmission2.RowCount = 4;
@@ -146,7 +147,7 @@
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbEmission2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tbEmission2.Size = new System.Drawing.Size(1022, 855);
+            this.tbEmission2.Size = new System.Drawing.Size(1020, 855);
             this.tbEmission2.TabIndex = 53;
             this.tbEmission2.Visible = false;
             // 
@@ -165,34 +166,17 @@
             // 
             // lbLamda
             // 
-            this.lbLamda.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbLamda.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbLamda.AutoSize = true;
             this.lbLamda.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLamda.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLamda.Location = new System.Drawing.Point(4, 710);
+            this.lbLamda.Location = new System.Drawing.Point(192, 710);
             this.lbLamda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbLamda.Name = "lbLamda";
             this.lbLamda.Size = new System.Drawing.Size(60, 73);
             this.lbLamda.TabIndex = 57;
             this.lbLamda.Text = "λ";
             this.lbLamda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cbPass
-            // 
-            this.cbPass.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbPass.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbPass.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.cbPass.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbPass.BackgroundImage")));
-            this.cbPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.cbPass.Checked = true;
-            this.cbPass.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPass.Enabled = false;
-            this.cbPass.Location = new System.Drawing.Point(650, 693);
-            this.cbPass.Margin = new System.Windows.Forms.Padding(4);
-            this.cbPass.Name = "cbPass";
-            this.cbPass.Size = new System.Drawing.Size(148, 108);
-            this.cbPass.TabIndex = 56;
-            this.cbPass.UseVisualStyleBackColor = false;
             // 
             // lbNOValue
             // 
@@ -222,12 +206,12 @@
             // 
             // lbNO
             // 
-            this.lbNO.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbNO.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbNO.AutoSize = true;
             this.lbNO.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lbNO.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNO.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNO.Location = new System.Drawing.Point(4, 70);
+            this.lbNO.Location = new System.Drawing.Point(141, 70);
             this.lbNO.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNO.Name = "lbNO";
             this.lbNO.Size = new System.Drawing.Size(111, 73);
@@ -237,7 +221,7 @@
             // 
             // lbOT
             // 
-            this.lbOT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbOT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbOT.AutoSize = true;
             this.lbOT.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbOT.ForeColor = System.Drawing.SystemColors.HotTrack;
@@ -251,11 +235,11 @@
             // 
             // lbRPM
             // 
-            this.lbRPM.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbRPM.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbRPM.AutoSize = true;
             this.lbRPM.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRPM.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbRPM.Location = new System.Drawing.Point(4, 496);
+            this.lbRPM.Location = new System.Drawing.Point(105, 496);
             this.lbRPM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbRPM.Name = "lbRPM";
             this.lbRPM.Size = new System.Drawing.Size(147, 73);
@@ -265,11 +249,11 @@
             // 
             // label13
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label13.Location = new System.Drawing.Point(650, 70);
+            this.label13.Location = new System.Drawing.Point(941, 70);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 73);
@@ -278,11 +262,11 @@
             // 
             // label14
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label14.Location = new System.Drawing.Point(650, 283);
+            this.label14.Location = new System.Drawing.Point(931, 283);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(85, 73);
@@ -291,11 +275,11 @@
             // 
             // label15
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label15.Location = new System.Drawing.Point(650, 496);
+            this.label15.Location = new System.Drawing.Point(883, 496);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(133, 73);
@@ -314,6 +298,19 @@
             this.lbRPMValue.Size = new System.Drawing.Size(382, 204);
             this.lbRPMValue.TabIndex = 8;
             this.lbRPMValue.Text = "0.00";
+            // 
+            // pbCorrect
+            // 
+            this.pbCorrect.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbCorrect.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pbCorrect.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbCorrect.BackgroundImage")));
+            this.pbCorrect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbCorrect.Location = new System.Drawing.Point(860, 683);
+            this.pbCorrect.Name = "pbCorrect";
+            this.pbCorrect.Size = new System.Drawing.Size(157, 127);
+            this.pbCorrect.TabIndex = 56;
+            this.pbCorrect.TabStop = false;
+            this.pbCorrect.Click += new System.EventHandler(this.pbCorrect_Click);
             // 
             // btnExit
             // 
@@ -438,7 +435,7 @@
             this.tbGasEmission.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbGasEmission.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tbGasEmission.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tbGasEmission.Size = new System.Drawing.Size(864, 853);
+            this.tbGasEmission.Size = new System.Drawing.Size(848, 853);
             this.tbGasEmission.TabIndex = 38;
             this.tbGasEmission.Visible = false;
             // 
@@ -631,6 +628,7 @@
             this.EmissionPanel.PerformLayout();
             this.tbEmission2.ResumeLayout(false);
             this.tbEmission2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCorrect)).EndInit();
             this.tbGasEmission.ResumeLayout(false);
             this.tbGasEmission.PerformLayout();
             this.ResumeLayout(false);
@@ -673,8 +671,8 @@
         private System.Windows.Forms.TableLayoutPanel tbEmission2;
         private System.Windows.Forms.Button btnReMeasure;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.CheckBox cbPass;
         private System.Windows.Forms.Label lbLamdaValue;
         private System.Windows.Forms.Label lbLamda;
+        private System.Windows.Forms.PictureBox pbCorrect;
     }
 }

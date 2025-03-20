@@ -22,15 +22,19 @@ namespace SenAIS
         private decimal lamda;
         private decimal maxHC;
         private decimal maxCO;
+        private decimal minLamda;
         private string serialNumber;
         private byte[] lastReceivedData;
         private bool hasMeasured = false; // Đánh dấu quá trình đo đã hoàn tất
+        private bool isManualStop = false;
+        private bool isManualMode;
         private CancellationTokenSource cts; // Quản lý hủy bỏ task
 
-        public frmGasEmission(string serialNumber)
+        public frmGasEmission(string serialNumber, bool isManualMode)
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
+            this.isManualMode = isManualMode;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_PetrolEmission"], 9600, this);
             sqlHelper = new SQLHelper();
             LoadVehicleStandards(serialNumber);
@@ -43,10 +47,6 @@ namespace SenAIS
                 UpdateTitle("Khí Xả - Động Cơ Xăng");
                 await Task.Delay(3000, cancellationToken);
 
-                // Trạng thái 2: Chờ 30 giây chuẩn bị đầu dò
-                UpdateTitle("Trang bị đầu dò ...");
-                await Task.Delay(30000, cancellationToken);
-
                 // Trạng thái 3: Hiển thị thông báo bắt đầu đo, gửi request đo
                 UpdateTitle("Ấn KMeas để bắt đầu");
                 await Task.Delay(5000, cancellationToken);
@@ -58,7 +58,7 @@ namespace SenAIS
 
                 // Dừng cập nhật và lưu kết quả
                 await Task.Delay(10000, cancellationToken);
-               if(hasMeasured == true)
+                if (hasMeasured == true)
                 {
                     SaveDataToDatabase(); // Lưu DB
                 }
@@ -106,6 +106,7 @@ namespace SenAIS
                     DataRow standard = vehicleStandards.Rows[0];
                     maxHC = ConvertToDecimal(standard["MaxHC"]);
                     maxCO = ConvertToDecimal(standard["MaxCO"]);
+                    minLamda = ConvertToDecimal(standard["MinLamda"]);
                 }
             }
         }
@@ -144,7 +145,7 @@ namespace SenAIS
                 double? noValue = ConvertToDouble(data[9], data[10], 100);
                 double? otValue = ConvertToDouble(data[13], data[14], 1); // Không chia scale
                 double? rpmValue = ConvertToDouble(data[11], data[12], 1); // Không chia scale
-                double? lamdaValue = ConvertToDouble(data[15], data[16], 100); 
+                double? lamdaValue = ConvertToDouble(data[15], data[16], 100);
 
                 this.Invoke(new Action(async () =>
                 {
@@ -152,11 +153,11 @@ namespace SenAIS
                     if (hcValue != null)
                         SetHCValue(hcValue.ToString());
                     if (coValue != null)
-                        SetCOValue(coValue.Value.ToString("F1"));
+                        SetCOValue(coValue.Value.ToString("F2"));
                     if (co2Value != null)
-                        SetCO2Value(co2Value.Value.ToString("F1"));
+                        SetCO2Value(co2Value.Value.ToString("F2"));
                     if (o2Value != null)
-                        SetO2Value(o2Value.Value.ToString("F1"));
+                        SetO2Value(o2Value.Value.ToString("F2"));
                     if (noValue != null)
                         SetNOValue(noValue.Value.ToString("F1"));
                     if (otValue != null)
@@ -168,22 +169,38 @@ namespace SenAIS
                     // Kiểm tra tiêu chuẩn và đổi màu
                     bool isHCInStandard = maxHC == 0 || this.hcValue <= maxHC;
                     bool isCOInStandard = maxCO == 0 || this.coValue <= maxCO;
+                    bool isLamdaInStandard = minLamda == 0 || this.lamda >= minLamda;
 
                     lbHCValue.ForeColor = isHCInStandard ? SystemColors.HotTrack : Color.DarkRed;
                     lbCOValue.ForeColor = isCOInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                    lbLamdaValue.ForeColor = isLamdaInStandard ? SystemColors.HotTrack : Color.DarkRed;
 
-                    if (isHCInStandard && isCOInStandard)
+                    if (!isManualMode) // Nếu đo tự động
                     {
-                        await Task.Delay(2000);
-                        hasMeasured = true; // Đạt tiêu chuẩn, gán cờ hoàn tất đo
-                        cbPass.BackColor = Color.Green;
+                        if (isHCInStandard && isCOInStandard && isLamdaInStandard)
+                        {
+                            await Task.Delay(2000);
+                            hasMeasured = true; // Đạt tiêu chuẩn, gán cờ hoàn tất đo
+                            pbCorrect.BackColor = Color.Green;
+                        }
+                        else
+                        {
+                            // Gửi lại lệnh đo nếu chưa đạt tiêu chuẩn
+                            pbCorrect.BackColor = Color.Red;
+                            if (!isManualStop) // Chỉ gửi lệnh đo tiếp nếu chưa bấm dừng
+                            {
+                                byte[] measureCommand = { 0x03 };
+                                comConnect.SendRequest(measureCommand);
+                            }
+                        }
                     }
                     else
                     {
-                        // Gửi lại lệnh đo nếu chưa đạt tiêu chuẩn
-                        cbPass.BackColor = Color.Red;
-                        byte[] measureCommand = { 0x03 }; // Lệnh đo (tùy chỉnh theo giao thức của bạn)
-                        comConnect.SendRequest(measureCommand);
+                        if (!isManualStop) // Chỉ gửi lệnh đo tiếp nếu chưa bấm dừng
+                        {
+                            byte[] measureCommand = { 0x03 };
+                            comConnect.SendRequest(measureCommand);
+                        }
                     }
                 }));
             }
@@ -317,8 +334,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            if (hasMeasured)
-                sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm, lamda);
+            sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm, lamda);
         }
 
         private async void frmGasEmission_Load(object sender, EventArgs e)
@@ -348,6 +364,12 @@ namespace SenAIS
         {
             comConnect.CloseConnection();
             this.Close();
+        }
+
+        private void pbCorrect_Click(object sender, EventArgs e)
+        {
+            isManualStop = true;
+            SaveDataToDatabase();
         }
     }
 

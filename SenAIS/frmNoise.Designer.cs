@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNoise));
             this.NoisePanel = new System.Windows.Forms.Panel();
+            this.lbEnd = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnReMeasure = new System.Windows.Forms.Button();
-            this.lbEnd = new System.Windows.Forms.Label();
             this.lbStandard = new System.Windows.Forms.Label();
             this.lbStandardTitle = new System.Windows.Forms.Label();
             this.lbVinNumber = new System.Windows.Forms.Label();
@@ -67,6 +67,20 @@
             this.NoisePanel.Size = new System.Drawing.Size(1924, 1055);
             this.NoisePanel.TabIndex = 0;
             // 
+            // lbEnd
+            // 
+            this.lbEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbEnd.Location = new System.Drawing.Point(45, 130);
+            this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbEnd.Name = "lbEnd";
+            this.lbEnd.Size = new System.Drawing.Size(1825, 153);
+            this.lbEnd.TabIndex = 57;
+            this.lbEnd.Text = "Kết Thúc";
+            this.lbEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbEnd.Visible = false;
+            // 
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -100,20 +114,6 @@
             this.btnReMeasure.TabIndex = 58;
             this.btnReMeasure.UseVisualStyleBackColor = false;
             this.btnReMeasure.Click += new System.EventHandler(this.btnReMeasure_Click);
-            // 
-            // lbEnd
-            // 
-            this.lbEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEnd.Location = new System.Drawing.Point(45, 130);
-            this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbEnd.Name = "lbEnd";
-            this.lbEnd.Size = new System.Drawing.Size(1825, 153);
-            this.lbEnd.TabIndex = 57;
-            this.lbEnd.Text = "Kết Thúc";
-            this.lbEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbEnd.Visible = false;
             // 
             // lbStandard
             // 
@@ -215,9 +215,9 @@
             this.lbNoise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbNoise.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNoise.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbNoise.Location = new System.Drawing.Point(45, 273);
+            this.lbNoise.Location = new System.Drawing.Point(45, 171);
             this.lbNoise.Name = "lbNoise";
-            this.lbNoise.Size = new System.Drawing.Size(1839, 665);
+            this.lbNoise.Size = new System.Drawing.Size(1839, 767);
             this.lbNoise.TabIndex = 21;
             this.lbNoise.Text = "0.0 ";
             this.lbNoise.TextAlign = System.Drawing.ContentAlignment.TopCenter;

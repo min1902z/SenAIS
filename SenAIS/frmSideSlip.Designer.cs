@@ -175,10 +175,10 @@
             this.lbSideSlip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.lbSideSlip.Font = new System.Drawing.Font("Calibri", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSideSlip.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSideSlip.Location = new System.Drawing.Point(57, 270);
+            this.lbSideSlip.Location = new System.Drawing.Point(27, 148);
             this.lbSideSlip.Name = "lbSideSlip";
             this.lbSideSlip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbSideSlip.Size = new System.Drawing.Size(1705, 507);
+            this.lbSideSlip.Size = new System.Drawing.Size(1755, 629);
             this.lbSideSlip.TabIndex = 11;
             this.lbSideSlip.Text = "0.0";
             this.lbSideSlip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -186,7 +186,7 @@
             // 
             // lbSideSlipTitle
             // 
-            this.lbSideSlipTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbSideSlipTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbSideSlipTitle.Font = new System.Drawing.Font("Calibri", 98.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSideSlipTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbSideSlipTitle.Location = new System.Drawing.Point(15, 320);

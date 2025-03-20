@@ -9,7 +9,6 @@ namespace SenAIS
     {
         private OPCServer opcServer;
         private OPCGroup opcGroup;
-        //private string opcItem;
 
         private double beforeCalib = 0.0;
         private double refPoint1;
@@ -40,7 +39,7 @@ namespace SenAIS
                 opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
                 opcGroup.IsActive = true;
                 opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 1000;
+                opcGroup.UpdateRate = 500;
 
                 // Đăng ký sự kiện DataChange
                 opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
@@ -184,8 +183,8 @@ namespace SenAIS
                         sqlHelper.UpdateCalibrationData(paraType, paraA, paraB);
 
                         // Cập nhật giá trị lên giao diện
-                        lbParaWeightLA.Text = paraA.ToString("F1");
-                        lbParaWeightLB.Text = paraB.ToString("F1");
+                        lbParaWeightLA.Text = paraA.ToString("F2");
+                        lbParaWeightLB.Text = paraB.ToString("F2");
 
                         MessageBox.Show("Lưu dữ liệu Kiểm Chuẩn Thành Công!");
                     }
@@ -215,6 +214,21 @@ namespace SenAIS
             {
                 this.calibrationType = mainForm.SelectedCalibrationType;
             }
+            SQLHelper sqlHelper = new SQLHelper();
+
+            // Lấy giá trị A và B từ database
+            object paraA = sqlHelper.GetParaValue(this.calibrationType, "ParaA");
+            object paraB = sqlHelper.GetParaValue(this.calibrationType, "ParaB");
+
+            // Kiểm tra nếu dữ liệu null hoặc không hợp lệ thì gán mặc định
+            calibA = (paraA != null && paraA != DBNull.Value) ? Convert.ToDouble(paraA) : 1.0;
+            calibB = (paraB != null && paraB != DBNull.Value) ? Convert.ToDouble(paraB) : 0.0;
+
+            // Hiển thị lên giao diện
+            lbCalibWeightLA.Text = calibA.ToString("F2");
+            lbCalibWeightLB.Text = calibB.ToString("F2");
+            lbParaWeightLA.Text = calibA.ToString("F2");
+            lbParaWeightLB.Text = calibB.ToString("F2");
         }
     }
 }

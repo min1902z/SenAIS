@@ -481,7 +481,7 @@ namespace SenAIS
                 }
             }
         }
-        public void SaveVehicleInfo(string vehicleType, string inspector, string frameNumber, string serialNumber, DateTime inspectionDate, string fuelType)
+        public void SaveVehicleInfo(string vehicleType, string inspector, string frameNumber, string serialNumber, DateTime inspectionDate, string fuelType, string color)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -494,13 +494,14 @@ namespace SenAIS
                             Inspector = @Inspector,
                             FrameNumber = @FrameNumber,
                             InspectionDate = @InspectionDate,
-                            Fuel = @Fuel
+                            Fuel = @Fuel,
+                            Color = @Color
                         WHERE SerialNumber = @SerialNumber
                     END
                     ELSE
                     BEGIN
-                        INSERT INTO VehicleInfo (VehicleType, Inspector, FrameNumber, SerialNumber, InspectionDate, Fuel)
-                        VALUES (@VehicleType, @Inspector, @FrameNumber, @SerialNumber, @InspectionDate, @Fuel)
+                        INSERT INTO VehicleInfo (VehicleType, Inspector, FrameNumber, SerialNumber, InspectionDate, Fuel, Color)
+                        VALUES (@VehicleType, @Inspector, @FrameNumber, @SerialNumber, @InspectionDate, @Fuel, @Color)
                     END";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -511,6 +512,7 @@ namespace SenAIS
                     cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
                     cmd.Parameters.AddWithValue("@InspectionDate", inspectionDate);
                     cmd.Parameters.AddWithValue("@Fuel", fuelType);
+                    cmd.Parameters.AddWithValue("@Color", color);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -1124,6 +1126,43 @@ namespace SenAIS
             if (maxValue.HasValue && value > maxValue.Value) return false;
 
             return true; // Nếu giá trị nằm trong tiêu chuẩn
+        }
+        public DataRow GetVehicleStandardByVin(string vin)
+        {
+            string query = "SELECT VehicleType, SampleEngine FROM VehicleStandards WHERE @vin LIKE SampleVin + '%'";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@vin", vin);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable resultTable = new DataTable();
+                        adapter.Fill(resultTable);
+                        return resultTable.Rows.Count > 0 ? resultTable.Rows[0] : null;
+                    }
+                }
+            }
+        }
+        public DataTable GetVehicleListByDate()
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+        SELECT VehicleType, SerialNumber, FrameNumber, Color
+        FROM VehicleInfo
+        WHERE CAST(InspectionDate AS DATE) = CAST(GETDATE() AS DATE)";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+            }
+            return dt;
         }
     }
 }

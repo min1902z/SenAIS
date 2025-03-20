@@ -37,6 +37,7 @@
             this.TSTruyXuat = new System.Windows.Forms.ToolStripMenuItem();
             this.tsVehicleStandard = new System.Windows.Forms.ToolStripMenuItem();
             this.tsInspector = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsReportByDate = new System.Windows.Forms.ToolStripMenuItem();
             this.điềuChỉnhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsCalibration = new System.Windows.Forms.ToolStripMenuItem();
             this.tsLWeightCalib = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,9 +69,9 @@
             this.TSHoTro});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.msMain.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.msMain.Size = new System.Drawing.Size(886, 27);
+            this.msMain.Size = new System.Drawing.Size(1181, 31);
             this.msMain.TabIndex = 6;
             this.msMain.Text = "menuStrip1";
             // 
@@ -80,20 +81,20 @@
             this.TSDangKiem,
             this.TSTruyCapAdmin});
             this.TSHeThong.Name = "TSHeThong";
-            this.TSHeThong.Size = new System.Drawing.Size(81, 23);
+            this.TSHeThong.Size = new System.Drawing.Size(99, 27);
             this.TSHeThong.Text = "Hệ Thống";
             // 
             // TSDangKiem
             // 
             this.TSDangKiem.Name = "TSDangKiem";
-            this.TSDangKiem.Size = new System.Drawing.Size(196, 24);
+            this.TSDangKiem.Size = new System.Drawing.Size(241, 28);
             this.TSDangKiem.Text = "Đăng Kiểm";
             this.TSDangKiem.Click += new System.EventHandler(this.TSDangKiem_Click);
             // 
             // TSTruyCapAdmin
             // 
             this.TSTruyCapAdmin.Name = "TSTruyCapAdmin";
-            this.TSTruyCapAdmin.Size = new System.Drawing.Size(196, 24);
+            this.TSTruyCapAdmin.Size = new System.Drawing.Size(241, 28);
             this.TSTruyCapAdmin.Text = "Truy Cập Hệ Thống";
             this.TSTruyCapAdmin.Click += new System.EventHandler(this.TSTruyCapAdmin_Click);
             // 
@@ -102,32 +103,40 @@
             this.TSDuLieu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSTruyXuat,
             this.tsVehicleStandard,
-            this.tsInspector});
+            this.tsInspector,
+            this.tsReportByDate});
             this.TSDuLieu.Name = "TSDuLieu";
-            this.TSDuLieu.Size = new System.Drawing.Size(68, 23);
+            this.TSDuLieu.Size = new System.Drawing.Size(82, 27);
             this.TSDuLieu.Text = "Dữ Liệu";
             this.TSDuLieu.Click += new System.EventHandler(this.TSDuLieu_Click);
             // 
             // TSTruyXuat
             // 
             this.TSTruyXuat.Name = "TSTruyXuat";
-            this.TSTruyXuat.Size = new System.Drawing.Size(242, 24);
+            this.TSTruyXuat.Size = new System.Drawing.Size(299, 28);
             this.TSTruyXuat.Text = "Truy Xuất Dữ Liệu";
             this.TSTruyXuat.Click += new System.EventHandler(this.TSTruyXuat_Click);
             // 
             // tsVehicleStandard
             // 
             this.tsVehicleStandard.Name = "tsVehicleStandard";
-            this.tsVehicleStandard.Size = new System.Drawing.Size(242, 24);
+            this.tsVehicleStandard.Size = new System.Drawing.Size(299, 28);
             this.tsVehicleStandard.Text = "Tiêu Chuẩn Chất Lượng Xe";
             this.tsVehicleStandard.Click += new System.EventHandler(this.tsVehicleStandard_Click);
             // 
             // tsInspector
             // 
             this.tsInspector.Name = "tsInspector";
-            this.tsInspector.Size = new System.Drawing.Size(242, 24);
+            this.tsInspector.Size = new System.Drawing.Size(299, 28);
             this.tsInspector.Text = "Người Kiểm Tra";
             this.tsInspector.Click += new System.EventHandler(this.tsInspector_Click);
+            // 
+            // tsReportByDate
+            // 
+            this.tsReportByDate.Name = "tsReportByDate";
+            this.tsReportByDate.Size = new System.Drawing.Size(299, 28);
+            this.tsReportByDate.Text = "Xuất Biên Bản Bàn Giao";
+            this.tsReportByDate.Click += new System.EventHandler(this.tsReportByDate_Click);
             // 
             // điềuChỉnhToolStripMenuItem
             // 
@@ -138,7 +147,7 @@
             this.tsBrakeCalib,
             this.tsSteerAngleCalib});
             this.điềuChỉnhToolStripMenuItem.Name = "điềuChỉnhToolStripMenuItem";
-            this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
+            this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(109, 27);
             this.điềuChỉnhToolStripMenuItem.Text = "Điều Chỉnh";
             // 
             // tsCalibration
@@ -147,34 +156,34 @@
             this.tsLWeightCalib,
             this.tsRWeightCalib});
             this.tsCalibration.Name = "tsCalibration";
-            this.tsCalibration.Size = new System.Drawing.Size(228, 24);
+            this.tsCalibration.Size = new System.Drawing.Size(281, 28);
             this.tsCalibration.Text = "Hiệu Chỉnh Trọng Lượng";
             // 
             // tsLWeightCalib
             // 
             this.tsLWeightCalib.Name = "tsLWeightCalib";
-            this.tsLWeightCalib.Size = new System.Drawing.Size(186, 24);
+            this.tsLWeightCalib.Size = new System.Drawing.Size(229, 28);
             this.tsLWeightCalib.Text = "Trọng Lượng Trái";
             this.tsLWeightCalib.Click += new System.EventHandler(this.tsLWeightCalib_Click);
             // 
             // tsRWeightCalib
             // 
             this.tsRWeightCalib.Name = "tsRWeightCalib";
-            this.tsRWeightCalib.Size = new System.Drawing.Size(186, 24);
+            this.tsRWeightCalib.Size = new System.Drawing.Size(229, 28);
             this.tsRWeightCalib.Text = "Trọng Lượng Phải";
             this.tsRWeightCalib.Click += new System.EventHandler(this.tsRWeightCalib_Click);
             // 
             // tsSpeedCalib
             // 
             this.tsSpeedCalib.Name = "tsSpeedCalib";
-            this.tsSpeedCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsSpeedCalib.Size = new System.Drawing.Size(281, 28);
             this.tsSpeedCalib.Text = "Hiệu Chỉnh Tốc Độ";
             this.tsSpeedCalib.Click += new System.EventHandler(this.tsSpeedCalib_Click);
             // 
             // tsSideSlipCalib
             // 
             this.tsSideSlipCalib.Name = "tsSideSlipCalib";
-            this.tsSideSlipCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsSideSlipCalib.Size = new System.Drawing.Size(281, 28);
             this.tsSideSlipCalib.Text = "Hiệu Chỉnh Trượt Ngang";
             this.tsSideSlipCalib.Click += new System.EventHandler(this.tsSideSlipCalib_Click);
             // 
@@ -184,20 +193,20 @@
             this.tsLBrakeCalib,
             this.tsRBrakeCalib});
             this.tsBrakeCalib.Name = "tsBrakeCalib";
-            this.tsBrakeCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsBrakeCalib.Size = new System.Drawing.Size(281, 28);
             this.tsBrakeCalib.Text = "Hiệu Chỉnh Lực Phanh";
             // 
             // tsLBrakeCalib
             // 
             this.tsLBrakeCalib.Name = "tsLBrakeCalib";
-            this.tsLBrakeCalib.Size = new System.Drawing.Size(172, 24);
+            this.tsLBrakeCalib.Size = new System.Drawing.Size(212, 28);
             this.tsLBrakeCalib.Text = "Lực Phanh Trái";
             this.tsLBrakeCalib.Click += new System.EventHandler(this.tsLBrakeCalib_Click);
             // 
             // tsRBrakeCalib
             // 
             this.tsRBrakeCalib.Name = "tsRBrakeCalib";
-            this.tsRBrakeCalib.Size = new System.Drawing.Size(172, 24);
+            this.tsRBrakeCalib.Size = new System.Drawing.Size(212, 28);
             this.tsRBrakeCalib.Text = "Lực Phanh Phải";
             this.tsRBrakeCalib.Click += new System.EventHandler(this.tsRBrakeCalib_Click);
             // 
@@ -207,20 +216,20 @@
             this.tsLeftSteerCalib,
             this.tsRightSteerCalib});
             this.tsSteerAngleCalib.Name = "tsSteerAngleCalib";
-            this.tsSteerAngleCalib.Size = new System.Drawing.Size(228, 24);
+            this.tsSteerAngleCalib.Size = new System.Drawing.Size(281, 28);
             this.tsSteerAngleCalib.Text = "Hiệu Chỉnh Góc Lái";
             // 
             // tsLeftSteerCalib
             // 
             this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
-            this.tsLeftSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsLeftSteerCalib.Size = new System.Drawing.Size(188, 28);
             this.tsLeftSteerCalib.Text = "Góc Lái Trái";
             this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
             // 
             // tsRightSteerCalib
             // 
             this.tsRightSteerCalib.Name = "tsRightSteerCalib";
-            this.tsRightSteerCalib.Size = new System.Drawing.Size(153, 24);
+            this.tsRightSteerCalib.Size = new System.Drawing.Size(188, 28);
             this.tsRightSteerCalib.Text = "Góc Lái Phải";
             this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
             // 
@@ -231,28 +240,28 @@
             this.TSReset,
             this.tsExit});
             this.TSHoTro.Name = "TSHoTro";
-            this.TSHoTro.Size = new System.Drawing.Size(62, 23);
+            this.TSHoTro.Size = new System.Drawing.Size(75, 27);
             this.TSHoTro.Text = "Hỗ Trợ";
             this.TSHoTro.Click += new System.EventHandler(this.TSHoTro_Click);
             // 
             // TSAuboutMe
             // 
             this.TSAuboutMe.Name = "TSAuboutMe";
-            this.TSAuboutMe.Size = new System.Drawing.Size(164, 24);
+            this.TSAuboutMe.Size = new System.Drawing.Size(201, 28);
             this.TSAuboutMe.Text = "Giới Thiệu";
             this.TSAuboutMe.Click += new System.EventHandler(this.TSAuboutMe_Click);
             // 
             // TSReset
             // 
             this.TSReset.Name = "TSReset";
-            this.TSReset.Size = new System.Drawing.Size(164, 24);
+            this.TSReset.Size = new System.Drawing.Size(201, 28);
             this.TSReset.Text = "Khởi Động Lại";
             this.TSReset.Click += new System.EventHandler(this.TSReset_Click);
             // 
             // tsExit
             // 
             this.tsExit.Name = "tsExit";
-            this.tsExit.Size = new System.Drawing.Size(164, 24);
+            this.tsExit.Size = new System.Drawing.Size(201, 28);
             this.tsExit.Text = "Thoát ";
             this.tsExit.Click += new System.EventHandler(this.tsExit_Click);
             // 
@@ -261,24 +270,24 @@
             this.panelBody.AutoScroll = true;
             this.panelBody.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBody.Location = new System.Drawing.Point(0, 27);
-            this.panelBody.Margin = new System.Windows.Forms.Padding(2);
+            this.panelBody.Location = new System.Drawing.Point(0, 31);
+            this.panelBody.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(886, 487);
+            this.panelBody.Size = new System.Drawing.Size(1181, 602);
             this.panelBody.TabIndex = 7;
             // 
             // SenAIS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(886, 514);
+            this.ClientSize = new System.Drawing.Size(1181, 633);
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.msMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SenAIS";
             this.Text = "SenAIS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -316,6 +325,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsSteerAngleCalib;
         private System.Windows.Forms.ToolStripMenuItem tsLeftSteerCalib;
         private System.Windows.Forms.ToolStripMenuItem tsRightSteerCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsReportByDate;
     }
 }
 

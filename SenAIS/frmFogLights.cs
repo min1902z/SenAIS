@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -19,6 +17,7 @@ namespace SenAIS
         private string serialNumber;
         private bool autoTestCheck = false;
         private bool isDataCollected = false;
+        private bool isCase4Processed = false;
         private decimal rightFLIntensity, rightFLVerticalValue, rightFLHorizontalValue, rightFLHeight;
         private decimal leftFLIntensity, leftFLVerticalValue, leftFLHorizontalValue, leftFLHeight;
         private decimal minFLIntensity, maxFLIntensity, minDiffHoriFL, maxDiffHoriFL, minDiffVertiFL, maxDiffVertiFL, minFLHeight, maxFLHeight;
@@ -46,14 +45,14 @@ namespace SenAIS
                 autoTestCheck = true;
             }
             // Tạo token giới hạn 3 phút
-            using (var cts = new CancellationTokenSource(TimeSpan.FromMinutes(6)))
+            using (var cts = new CancellationTokenSource(TimeSpan.FromMinutes(4)))
             {
                 try
                 {
                     // Chờ đến khi isDataCollected = true hoặc hết 3 phút
                     while (!isDataCollected)
                     {
-                        await Task.Delay(1000, cts.Token); 
+                        await Task.Delay(1000, cts.Token);
                     }
 
                     // Nếu thu thập dữ liệu thành công, lưu DB
@@ -65,9 +64,27 @@ namespace SenAIS
             }
             await Task.Delay(5000);
             // Mở frmWhistle sau khi hoàn thành hoặc hết thời gian
-            frmWhistle whistleForm = new frmWhistle(serialNumber);
-            whistleForm.Show();
-            this.Close(); // Đóng form hiện tại
+            //frmWhistle whistleForm = new frmWhistle(serialNumber);
+            //whistleForm.Show();
+            //this.Close(); // Đóng form hiện tại
+            OpenOrReplaceFormWithSerial<frmWhistle>(this.serialNumber);
+        }
+        private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
+        {
+            // 🔹 Kiểm tra xem form đã mở chưa
+            var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+
+            if (existingForm != null)
+            {
+                existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
+            }
+
+            // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
+            var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
+            form.Show();
+
+            // 🔹 Đóng form hiện tại
+            this.Close();
         }
         public void ProcessNHD6109Data(byte[] data)
         {

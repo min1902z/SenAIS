@@ -74,6 +74,10 @@ namespace SenAIS
                     dgStandards.Columns["MaxDiffHoriFL"].HeaderText = "Chênh lệch ngang đèn Sương mù tối đa";
                     dgStandards.Columns["MinFLHeight"].HeaderText = "Độ cao đèn Sương mù tối thiểu";
                     dgStandards.Columns["MaxFLHeight"].HeaderText = "Độ cao đèn Sương mù tối đa";
+                    dgStandards.Columns["SampleVin"].HeaderText = "Số Vin mẫu";
+                    dgStandards.Columns["SampleEngine"].HeaderText = "Số Máy mẫu";
+                    dgStandards.Columns["MinLamda"].HeaderText = "Lamda tối thiểu";
+                    dgStandards.Columns["MaxLamda"].HeaderText = "Lamda tối đa";
                 }
             }
             catch (Exception)

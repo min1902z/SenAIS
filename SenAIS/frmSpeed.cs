@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,7 +32,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 500; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -107,31 +106,31 @@ namespace SenAIS
                             cbReady.BackColor = SystemColors.Control;
                             lbStandard.Visible = false;
                             lbTitleSpeed.Visible = true;
-                            if (!hasProcessedNextVin)
-                            {
-                                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                                if (!string.IsNullOrEmpty(nextSerialNumber))
-                                {
-                                    this.serialNumber = nextSerialNumber;
+                            this.Close();
+                            //if (!hasProcessedNextVin)
+                            //{
+                            //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                            //    if (!string.IsNullOrEmpty(nextSerialNumber))
+                            //    {
+                            //        this.serialNumber = nextSerialNumber;
 
-                                    var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-                                    if (frmMain != null)
-                                    {
-                                        var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-                                        if (txtVinNumber != null)
-                                        {
-                                            txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
-                                        }
-                                    }
-                                    hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                                    this.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
-                                    this.Close();
-                                }
-                            }
+                            //        var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                            //        if (frmMain != null)
+                            //        {
+                            //            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+                            //            if (txtVinNumber != null)
+                            //            {
+                            //                txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
+                            //            }
+                            //        }
+                            //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
+                            //        this.Close();
+                            //    }
+                            //    else
+                            //    {
+                            //        this.Close();
+                            //    }
+                            //}
                             break;
 
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
