@@ -14,6 +14,7 @@ namespace SenAIS
         private COMConnect comConnect;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
         private string serialNumber;
         private double maxSoundValue = 0;
         public decimal whistle;
@@ -27,6 +28,7 @@ namespace SenAIS
             comConnect = new COMConnect("COM7", 300, this);
             sqlHelper = new SQLHelper();
             InitializeTimer();
+            opcManager = new OPCManager();
         }
         private void InitializeTimer()
         {
@@ -40,7 +42,7 @@ namespace SenAIS
             lbEngineNumber.Text = this.serialNumber;
 
             // Lấy giá trị OPC
-            int checkStatus = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.Test1");
+            int checkStatus = (int)opcManager.GetOPCValue("Hyundai.OCS10.Test1");
 
             switch (checkStatus)
             {
@@ -64,7 +66,7 @@ namespace SenAIS
                     {
                         lbWhistle.BackColor = SystemColors.Control;
                         await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
-                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
+                        opcManager.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
                     }
                     else
                     {
@@ -162,7 +164,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)opcManager.GetOPCValue("Hyundai.OCS10.T99");
 
             if (currentPosition == 3)
             {

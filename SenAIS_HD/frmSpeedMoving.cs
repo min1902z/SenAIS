@@ -14,6 +14,9 @@ namespace SenAIS
         private bool isMotorOn = false;
         private Timer opcUpdateTimer;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
+        private decimal leftParaA = 1, leftParaB = 0;
+        private decimal rightParaA = 1, rightParaB = 0;
         private bool isOPCConnected = true; // Trạng thái kết nối OPC
 
         // OPC Tags từ app.config
@@ -32,9 +35,29 @@ namespace SenAIS
         public frmSpeedMoving()
         {
             InitializeComponent();
-            InitializeOPCUpdater();
             sqlHelper = new SQLHelper();
-            //SetMode(true); // Mặc định là Auto Mode
+            opcManager = new OPCManager();
+            if (opcManager.IsConnected)
+            {
+                LoadParaValues();
+                InitializeOPCUpdater();
+            }
+        }
+        private void LoadParaValues()
+        {
+            try
+            {
+                leftParaA = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaA"));
+                leftParaB = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaB"));
+
+                rightParaA = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaA"));
+                rightParaB = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaB"));
+            }
+            catch (Exception)
+            {
+                leftParaA = 1; leftParaB = 0;
+                rightParaA = 1; rightParaB = 0;
+            }
         }
         private void InitializeOPCUpdater()
         {
@@ -45,41 +68,46 @@ namespace SenAIS
 
         private async Task UpdateOPCValues()
         {
-            await Task.Run(() =>
+            try
             {
-                try
+                decimal leftValue = 0, rightValue = 0;
+                await Task.Run(() =>
                 {
-                    decimal leftValue = Convert.ToDecimal(OPCUtility.GetOPCValue(opcLeftDistance));
-                    decimal rightValue = Convert.ToDecimal(OPCUtility.GetOPCValue(opcRightDistance));
-
-                    decimal leftParaA = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaA"));
-                    decimal leftParaB = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaB"));
-
-                    decimal rightParaA = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaA"));
-                    decimal rightParaB = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaB"));
-
-                    if (leftParaA - leftParaB != 0 && rightParaA - rightParaB != 0)
+                    try
                     {
-                        decimal calculatedLeft = leftValue / (leftParaA - leftParaB);
-                        decimal calculatedRight = rightValue / (rightParaA - rightParaB);
+                        leftValue = Convert.ToDecimal(opcManager.GetOPCValue(opcLeftDistance));
+                        rightValue = Convert.ToDecimal(opcManager.GetOPCValue(opcRightDistance));
+                    }
+                    catch (Exception)
+                    {
+                        if (isOPCConnected)
+                        {
+                            isOPCConnected = false;
+                        }
+                    }
+                });
 
-                        Invoke(new Action(() =>
+                if (leftParaA - leftParaB != 0 && rightParaA - rightParaB != 0)
+                {
+                    decimal calculatedLeft = leftValue / leftParaA - leftParaB;
+                    decimal calculatedRight = rightValue / rightParaA - rightParaB;
+                    if (this.IsHandleCreated && !this.IsDisposed)
+                    {
+                        this.BeginInvoke(new Action(() =>
                         {
                             txtLeftDistance.Text = calculatedLeft.ToString("F0");
                             txtRightDistance.Text = calculatedRight.ToString("F0");
                         }));
                     }
-                    isOPCConnected = true; // Kết nối OPC hoạt động
                 }
-                catch (Exception)
-                {
-                    if (isOPCConnected) // Chỉ hiển thị lỗi 1 lần để tránh spam
-                    {
-                        isOPCConnected = false;
-                        MessageBox.Show("Không thể kết nối với OPC. Vui lòng kiểm tra lại!", "Lỗi Kết Nối", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-            });
+
+                isOPCConnected = true;
+            }
+            catch (Exception)
+            {
+                // Nếu form đóng thì không cần thông báo lỗi nhiều lần
+            }
+
         }
 
         private void btnMode_Click(object sender, EventArgs e)
@@ -89,19 +117,15 @@ namespace SenAIS
         }
         private void SetMode(bool isAuto)
         {
-            AutoPanel.Enabled = isAuto;
-            ManualPanel.Enabled = !isAuto;
             btnMode.Text = isAuto ? "Chế độ: Tự động" : "Chế độ: Thủ công";
             if (isOPCConnected)
             {
-                OPCUtility.SetOPCValue(opcSetAuto, isAuto ? 1 : 0);
+                opcManager.SetOPCValue(opcSetAuto, isAuto ? 0 : 1);
             }
             else
             {
                 // Nếu mất kết nối, đặt mặc định Auto = 1
                 isAutoMode = true;
-                AutoPanel.Enabled = true;
-                ManualPanel.Enabled = false;
                 btnMode.Text = "Chế độ: Tự động";
             }
         }
@@ -129,43 +153,41 @@ namespace SenAIS
         {
             if (decimal.TryParse(txtDistanceValue.Text, out decimal distanceValue))
             {
-                decimal leftParaA = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaA"));
-                decimal leftParaB = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaB"));
-
-                decimal rightParaA = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaA"));
-                decimal rightParaB = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaB"));
-
                 int setLeft = (int)((distanceValue + leftParaB) * leftParaA);
                 int setRight = (int)((distanceValue + rightParaB) * rightParaA);
 
-                OPCUtility.SetOPCValue(opcSetLeft, setLeft);
-                OPCUtility.SetOPCValue(opcSetRight, setRight);
+                opcManager.SetOPCValue(opcSetLeft, setLeft);
+                opcManager.SetOPCValue(opcSetRight, setRight);
             }
         }
-        private void btnStart_MouseDown(object sender, MouseEventArgs e) => OPCUtility.SetOPCValue(opcStart, 1);
-        private void btnStart_MouseUp(object sender, MouseEventArgs e) => OPCUtility.SetOPCValue(opcStart, 0);
+        private void btnStart_MouseDown(object sender, MouseEventArgs e) => opcManager.SetOPCValue(opcStart, 1);
+        private void btnStart_MouseUp(object sender, MouseEventArgs e) => opcManager.SetOPCValue(opcStart, 0);
 
-        private void btnStop_MouseDown(object sender, MouseEventArgs e) => OPCUtility.SetOPCValue(opcStop, 1);
-        private void btnStop_MouseUp(object sender, MouseEventArgs e) => OPCUtility.SetOPCValue(opcStop, 0);
-        private void btnStartMotor_Click(object sender, EventArgs e)
+        private void btnStop_MouseDown(object sender, MouseEventArgs e) => opcManager.SetOPCValue(opcStop, 1);
+        private void btnStop_MouseUp(object sender, MouseEventArgs e) => opcManager.SetOPCValue(opcStop, 0);
+        private async void btnStartMotor_ClickAsync(object sender, EventArgs e)
         {
             isMotorOn = !isMotorOn;
-            OPCUtility.SetOPCValue(opcMotorControl, isMotorOn ? 1 : 0);
             btnStartMotor.Text = isMotorOn ? "Tắt Motor" : "Bật Motor";
             pbMotor.BackColor = isMotorOn ? System.Drawing.Color.Green : SystemColors.Control;
+            await Task.Run(() => opcManager.SetOPCValue(opcMotorControl, isMotorOn ? 1 : 0));
         }
         // Xử lý giữ nút để tăng/giảm khoảng cách
-        private async void btnHoldDown_MouseDown(object sender, MouseEventArgs e)
+        private void btnHoldDown_MouseDown(object sender, MouseEventArgs e)
         {
             isHoldingButton = true;
             Button btn = sender as Button;
             string opcTag = GetOPCTagByButton(btn);
 
-            while (isHoldingButton)
+            Task.Run(async () =>
             {
-                OPCUtility.SetOPCValue(opcTag, 1);
-                await Task.Delay(200);
-            }
+                while (isHoldingButton)
+                {
+                    opcManager.SetOPCValue(opcTag, 1);
+                    await Task.Delay(100);
+                }
+                return Task.CompletedTask;
+            });
         }
 
         private void btnHoldDown_MouseUp(object sender, MouseEventArgs e)
@@ -173,9 +195,8 @@ namespace SenAIS
             isHoldingButton = false;
             Button btn = sender as Button;
             string opcTag = GetOPCTagByButton(btn);
-            OPCUtility.SetOPCValue(opcTag, 0);
+            opcManager.SetOPCValue(opcTag, 0);
         }
-
         private string GetOPCTagByButton(Button btn)
         {
             switch (btn.Name)
@@ -187,6 +208,7 @@ namespace SenAIS
                 default: return "";
             }
         }
+
         private void btnBackMain_Click(object sender, EventArgs e)
         {
             SenAIS mainForm = Application.OpenForms.OfType<SenAIS>().FirstOrDefault();

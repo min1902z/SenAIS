@@ -12,11 +12,11 @@ namespace SenAIS
     {
         private OPCServer opcServer;
         private OPCGroup opcGroup;
-        private OPCItem opcCounterPos;
-        private OPCItem opcCounterSpeed;
-        private OPCItem opcCounterSideSlip;
-        private OPCItem opcCounterBrake;
+        //private OPCItem opcCounterSpeed;
+        //private OPCItem opcCounterSideSlip;
+        //private OPCItem opcCounterBrake;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
         private string vehicleType;
         private string inspector;
         private string frameNumber;
@@ -28,15 +28,32 @@ namespace SenAIS
         private static readonly string opcBrakeFCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
         private static readonly string opcBrakeRCounter = ConfigurationManager.AppSettings["BrakeR_Counter"];
         private static readonly string opcBrakeHCounter = ConfigurationManager.AppSettings["BrakeH_Counter"];
+        private static readonly string opcWeightFCounter = ConfigurationManager.AppSettings["WeightF_Counter"];
+        private static readonly string opcWeightRCounter = ConfigurationManager.AppSettings["WeightR_Counter"];
         public frmInspection()
         {
             InitializeComponent();
             sqlHelper = new SQLHelper();
             this.serialNumber = txtVinNum.Text;
             LoadVehicleInfo();
-            InitializeOPC();
+            opcManager = new OPCManager();
+            //InitializeOPC();
         }
-
+        public frmInspection(string serialNumber)
+        {
+            InitializeComponent();
+            sqlHelper = new SQLHelper();
+            this.serialNumber = serialNumber;
+            txtVinNum.Text = serialNumber;
+            LoadVehicleInfo();
+            UpdateVehicleInfo(serialNumber);
+            opcManager = new OPCManager();
+            //InitializeOPC();
+        }
+        public string GetVinNumber()
+        {
+            return txtVinNum.Text;
+        }
         private void InitializeOPC()
         {
             try
@@ -50,52 +67,45 @@ namespace SenAIS
                 opcGroup.UpdateRate = 500;
 
                 // Thêm các OPCItems tương ứng với các Counter
-                opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
+                //opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
+                //opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
+                //opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
 
-                opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
+                //opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
             }
             catch (Exception)
             {
                 MessageBox.Show("Vui lòng kiểm tra dữ liệu từ OPC Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
-        {
-                this.serialNumber = txtVinNum.Text;
-                if (string.IsNullOrEmpty(serialNumber))
-                {
-                    return;
-                }
-            for (int i = 1; i <= NumItems; i++)
-            {
-                int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
-                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false) && itemValue == 1)
-                {
-                    OpenNewForm(new frmSpeed(this.serialNumber));
-                }
-                else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false) && itemValue == 1)
-                {
-                    OpenNewForm(new frmFrontBrake(this.serialNumber));
-                }
-            }
-        }
+        //private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
+        //{
+        //    this.serialNumber = txtVinNum.Text;
+        //    if (string.IsNullOrEmpty(serialNumber))
+        //    {
+        //        return;
+        //    }
+        //    for (int i = 1; i <= NumItems; i++)
+        //    {
+        //        int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
+        //        // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
+        //        if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false) && itemValue == 1)
+        //        {
+        //            OpenNewForm(new frmSpeed(this.serialNumber));
+        //        }
+        //        else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false) && itemValue == 1)
+        //        {
+        //            OpenNewForm(new frmFrontBrake(this.serialNumber));
+        //        }
+        //    }
+        //}
         // Hàm mở form và đưa lên đầu
-        private void OpenForm(Form formToOpen)
-        {
-            if (formToOpen != null)
-            {
-                formToOpen.Show();
-                formToOpen.BringToFront(); // Đưa form lên trên
-            }
-        }
         private List<Form> openForms = new List<Form>();
         private void OpenNewForm(Form newForm)
         {
             // Kiểm tra nếu form đã mở hay chưa
-            var openedForm = openForms.FirstOrDefault(f => f.GetType() == newForm.GetType());
+            var openedForm = Application.OpenForms.OfType<Form>()
+        .FirstOrDefault(f => f.GetType() == newForm.GetType());
             if (openedForm != null)
             {
                 // Nếu form đã mở, đưa nó lên trước
@@ -104,6 +114,14 @@ namespace SenAIS
             }
             else
             {
+                foreach (var form in openForms.ToList())
+                {
+                    if (form != null && !form.IsDisposed)
+                    {
+                        form.Close();
+                    }
+                    openForms.Remove(form);
+                }
                 // Nếu form chưa mở, mở form mới
                 openForms.Add(newForm);  // Thêm form vào danh sách
                 newForm.FormClosed += (s, e) => openForms.Remove(newForm);  // Gỡ form khỏi danh sách khi đóng
@@ -117,6 +135,7 @@ namespace SenAIS
             {
                 var frmSpeed = new frmSpeed(serialNumber);
                 OpenNewForm(frmSpeed);
+                opcManager.SetOPCValue(opcSpeedCounter, 1);
             }
         }
 
@@ -125,7 +144,7 @@ namespace SenAIS
             if (CheckSerialNumber())
             {
                 OpenNewForm(new frmSideSlip(this.serialNumber));
-                OPCUtility.SetOPCValue(opcSSCounter, 1);
+                opcManager.SetOPCValue(opcSSCounter, 1);
             }
         }
 
@@ -133,32 +152,32 @@ namespace SenAIS
         {
             if (CheckSerialNumber())
             {
-                OpenNewForm(new frmNoise(this, opcCounterPos, this.serialNumber));
             }
         }
 
         private void btnFrontWeight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmFrontWeight(this.serialNumber));
+            }
         }
 
         private void btnWhistle_Click(object sender, EventArgs e)
         {
-            if (CheckSerialNumber())
-                OpenNewForm(new frmWhistle(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnFrontBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmFrontBrake(this.serialNumber));
+                opcManager.SetOPCValue(opcBrakeFCounter, 1);
+            }
         }
 
         private void btnHeadlights_Click(object sender, EventArgs e)
         {
-            if (CheckSerialNumber())
-                OpenNewForm(new frmHeadlights(this, opcCounterPos, this.serialNumber));
         }
 
         private void btnEmission_Click(object sender, EventArgs e)
@@ -190,7 +209,7 @@ namespace SenAIS
                 tbVehicleInfo.Focus();
             }
             else
-            MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void LoadVehicleInfo()
         {
@@ -303,25 +322,32 @@ namespace SenAIS
         private void btnRearWeight_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmRearWeight(this.serialNumber));
+                opcManager.SetOPCValue(opcWeightRCounter, 1);
+            }
         }
 
         private void btnRearBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmRearBrake(this.serialNumber));
+                opcManager.SetOPCValue(opcBrakeRCounter, 1);
+            }
         }
 
         private void btnHandBrake_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmHandBrake(this.serialNumber));
+                opcManager.SetOPCValue(opcBrakeHCounter, 1);
+            }
         }
 
         private void btnSteerAngle_Click(object sender, EventArgs e)
         {
-            if (CheckSerialNumber())
-                OpenNewForm(new frmSteerAngle(this, opcCounterPos, this.serialNumber));
         }
 
         private void cbFuel_SelectedIndexChanged(object sender, EventArgs e)
@@ -339,6 +365,102 @@ namespace SenAIS
         private void txtVinNum_TextChanged(object sender, EventArgs e)
         {
             txtVinShow.Text = txtVinNum.Text;
+        }
+
+        private void txtVinNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string inputVin = txtVinNum.Text.Trim();
+                string vehicleType = sqlHelper.GetVehicleTypeBySampleVin(inputVin);
+
+                if (!string.IsNullOrEmpty(vehicleType))
+                {
+                    cbTypeCar.SelectedValue = vehicleType;
+                }
+                else
+                {
+                    cbTypeCar.SelectedIndex = -1;
+                }
+            }
+        }
+        public void UpdateVehicleInfo(string serialNumber)
+        {
+            if (string.IsNullOrEmpty(serialNumber))
+            {
+                cbTypeCar.SelectedIndex = -1;
+                cbInspector.SelectedIndex = -1;
+                txtEngineNum.Text = string.Empty;
+                txtVinNum.Text = string.Empty;
+                dateInSpec.Value = DateTime.Now;
+                cbFuel.SelectedIndex = -1;
+                return;
+            }
+            var vehicleInfo = sqlHelper.GetVehicleDetails(serialNumber);
+            if (vehicleInfo != null)
+            {
+                cbTypeCar.SelectedValue = vehicleInfo["VehicleType"]?.ToString();
+                cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
+                txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
+                txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
+                dateInSpec.Value = vehicleInfo["InspectionDate"] != DBNull.Value
+                                   ? Convert.ToDateTime(vehicleInfo["InspectionDate"])
+                                   : DateTime.Now;
+                cbFuel.SelectedItem = vehicleInfo["Fuel"]?.ToString();
+            }
+        }
+
+        private void btnSpeedMoving_Click(object sender, EventArgs e)
+        {
+            var speedMoving = new frmSpeedMoving();
+            speedMoving.Show();
+        }
+
+        private void btnResetMain_Click(object sender, EventArgs e)
+        {
+            RestartApplication();
+        }
+        //private void RestartApplication()
+        //{
+        //    // 🔹 Lưu lại số VIN hiện tại
+        //    string currentVin = txtVinNum.Text;
+
+        //    // 🔥 Đóng Main Form để reset
+        //    var mainForm = Application.OpenForms.OfType<SenAIS>().FirstOrDefault();
+        //    if (mainForm != null)
+        //    {
+        //        mainForm.BeginInvoke(new Action(() =>
+        //        {
+        //            mainForm.panelBody.Controls.Clear();
+
+        //            // 🔹 Tạo lại `frmInspection` với VIN đã lưu
+        //            var newInspectionForm = new frmInspection(currentVin);
+        //            mainForm.OpenChildForm(newInspectionForm);
+        //        }));
+        //    }
+        //}
+        private void RestartApplication()
+        {
+            try
+            {
+                // Lấy đường dẫn của ứng dụng hiện tại
+                var applicationPath = Application.ExecutablePath;
+
+                // Khởi động lại ứng dụng
+                System.Diagnostics.Process.Start(applicationPath);
+
+                // Thoát ứng dụng hiện tại
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể khởi động lại ứng dụng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

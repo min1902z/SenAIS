@@ -113,7 +113,6 @@
             this.ManualPanel.Controls.Add(this.btnDownRightDistance);
             this.ManualPanel.Controls.Add(this.btnUpRightDistance);
             this.ManualPanel.Controls.Add(this.btnStartMotor);
-            this.ManualPanel.Enabled = false;
             this.ManualPanel.Location = new System.Drawing.Point(143, 572);
             this.ManualPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ManualPanel.Name = "ManualPanel";
@@ -135,7 +134,7 @@
             // 
             this.btnDownLeftDistance.AutoSize = true;
             this.btnDownLeftDistance.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownLeftDistance.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDownLeftDistance.ForeColor = System.Drawing.Color.Blue;
             this.btnDownLeftDistance.Location = new System.Drawing.Point(403, 138);
             this.btnDownLeftDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDownLeftDistance.Name = "btnDownLeftDistance";
@@ -150,7 +149,7 @@
             // 
             this.btnUpLeftDistance.AutoSize = true;
             this.btnUpLeftDistance.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpLeftDistance.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnUpLeftDistance.ForeColor = System.Drawing.Color.Blue;
             this.btnUpLeftDistance.Location = new System.Drawing.Point(403, 43);
             this.btnUpLeftDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpLeftDistance.Name = "btnUpLeftDistance";
@@ -158,14 +157,14 @@
             this.btnUpLeftDistance.TabIndex = 57;
             this.btnUpLeftDistance.Text = "Tăng Khoảng Cách";
             this.btnUpLeftDistance.UseVisualStyleBackColor = true;
-            this.btnUpLeftDistance.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnHoldDown_MouseUp);
+            this.btnUpLeftDistance.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnHoldDown_MouseDown);
             this.btnUpLeftDistance.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnHoldDown_MouseUp);
             // 
             // btnDownRightDistance
             // 
             this.btnDownRightDistance.AutoSize = true;
             this.btnDownRightDistance.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownRightDistance.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDownRightDistance.ForeColor = System.Drawing.Color.Blue;
             this.btnDownRightDistance.Location = new System.Drawing.Point(1055, 138);
             this.btnDownRightDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDownRightDistance.Name = "btnDownRightDistance";
@@ -173,14 +172,14 @@
             this.btnDownRightDistance.TabIndex = 56;
             this.btnDownRightDistance.Text = "Giảm Khoảng Cách";
             this.btnDownRightDistance.UseVisualStyleBackColor = true;
-            this.btnDownRightDistance.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnStart_MouseDown);
+            this.btnDownRightDistance.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnHoldDown_MouseDown);
             this.btnDownRightDistance.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnHoldDown_MouseUp);
             // 
             // btnUpRightDistance
             // 
             this.btnUpRightDistance.AutoSize = true;
             this.btnUpRightDistance.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpRightDistance.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnUpRightDistance.ForeColor = System.Drawing.Color.Blue;
             this.btnUpRightDistance.Location = new System.Drawing.Point(1055, 43);
             this.btnUpRightDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpRightDistance.Name = "btnUpRightDistance";
@@ -195,7 +194,7 @@
             // 
             this.btnStartMotor.AutoSize = true;
             this.btnStartMotor.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartMotor.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStartMotor.ForeColor = System.Drawing.Color.Blue;
             this.btnStartMotor.Location = new System.Drawing.Point(744, 15);
             this.btnStartMotor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStartMotor.Name = "btnStartMotor";
@@ -203,7 +202,7 @@
             this.btnStartMotor.TabIndex = 54;
             this.btnStartMotor.Text = "Bật Motor";
             this.btnStartMotor.UseVisualStyleBackColor = true;
-            this.btnStartMotor.Click += new System.EventHandler(this.btnStartMotor_Click);
+            this.btnStartMotor.Click += new System.EventHandler(this.btnStartMotor_ClickAsync);
             // 
             // AutoPanel
             // 
@@ -232,7 +231,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label4.ForeColor = System.Drawing.Color.Blue;
             this.label4.Location = new System.Drawing.Point(1143, 133);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
@@ -245,7 +244,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label3.ForeColor = System.Drawing.Color.Blue;
             this.label3.Location = new System.Drawing.Point(85, 133);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -258,7 +257,7 @@
             // 
             this.txtRightDistance.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtRightDistance.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRightDistance.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.txtRightDistance.ForeColor = System.Drawing.Color.Blue;
             this.txtRightDistance.Location = new System.Drawing.Point(1149, 169);
             this.txtRightDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRightDistance.Name = "txtRightDistance";
@@ -271,7 +270,7 @@
             // 
             this.txtLeftDistance.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtLeftDistance.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLeftDistance.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.txtLeftDistance.ForeColor = System.Drawing.Color.Blue;
             this.txtLeftDistance.Location = new System.Drawing.Point(92, 169);
             this.txtLeftDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLeftDistance.Name = "txtLeftDistance";
@@ -297,7 +296,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStart.ForeColor = System.Drawing.Color.Blue;
             this.btnStart.Location = new System.Drawing.Point(608, 322);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStart.Name = "btnStart";
@@ -311,7 +310,7 @@
             // btnAccept
             // 
             this.btnAccept.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccept.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAccept.ForeColor = System.Drawing.Color.Blue;
             this.btnAccept.Location = new System.Drawing.Point(697, 246);
             this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAccept.Name = "btnAccept";
@@ -324,7 +323,7 @@
             // txtDistanceValue
             // 
             this.txtDistanceValue.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistanceValue.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.txtDistanceValue.ForeColor = System.Drawing.Color.Blue;
             this.txtDistanceValue.Location = new System.Drawing.Point(649, 133);
             this.txtDistanceValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDistanceValue.Name = "txtDistanceValue";
@@ -336,7 +335,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label2.ForeColor = System.Drawing.Color.Blue;
             this.label2.Location = new System.Drawing.Point(92, 81);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
@@ -349,7 +348,7 @@
             // 
             this.btnDistance4.AutoSize = true;
             this.btnDistance4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistance4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDistance4.ForeColor = System.Drawing.Color.Blue;
             this.btnDistance4.Location = new System.Drawing.Point(1277, 9);
             this.btnDistance4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDistance4.Name = "btnDistance4";
@@ -363,7 +362,7 @@
             // 
             this.btnDistance3.AutoSize = true;
             this.btnDistance3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistance3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDistance3.ForeColor = System.Drawing.Color.Blue;
             this.btnDistance3.Location = new System.Drawing.Point(877, 9);
             this.btnDistance3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDistance3.Name = "btnDistance3";
@@ -377,7 +376,7 @@
             // 
             this.btnDistance2.AutoSize = true;
             this.btnDistance2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistance2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDistance2.ForeColor = System.Drawing.Color.Blue;
             this.btnDistance2.Location = new System.Drawing.Point(485, 9);
             this.btnDistance2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDistance2.Name = "btnDistance2";
@@ -391,7 +390,7 @@
             // 
             this.btnDistance1.AutoSize = true;
             this.btnDistance1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistance1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDistance1.ForeColor = System.Drawing.Color.Blue;
             this.btnDistance1.Location = new System.Drawing.Point(103, 9);
             this.btnDistance1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDistance1.Name = "btnDistance1";
@@ -420,7 +419,7 @@
             // 
             this.lbTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbTitle.ForeColor = System.Drawing.Color.Blue;
             this.lbTitle.Location = new System.Drawing.Point(143, 0);
             this.lbTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTitle.Name = "lbTitle";

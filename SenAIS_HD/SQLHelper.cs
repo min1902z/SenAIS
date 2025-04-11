@@ -1144,5 +1144,23 @@ namespace SenAIS
             // Nếu vượt qua tất cả kiểm tra => đạt
             return true;
         }
+        public string GetVehicleTypeBySampleVin(string inputVin)
+        {
+            string query = @"
+            SELECT VehicleType 
+            FROM VehicleStandards 
+            WHERE @InputVin LIKE SampleVin + '%'"; // Kiểm tra nếu VIN nhập vào bắt đầu bằng SampleVin
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@InputVin", inputVin);
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString(); // Trả về VehicleType hoặc null nếu không tìm thấy
+                }
+            }
+        }
     }
 }

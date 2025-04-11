@@ -11,11 +11,13 @@ namespace SenAIS
     {
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
         private string serialNumber;
         public decimal sideSlip;
         private bool isReady = false;
         private decimal minSideSlip = 0;
         private decimal maxSideSlip = 0;
+        private double alignA = 1.0;
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
         private static readonly string opcSSResult = ConfigurationManager.AppSettings["SideSlip_Result"];
@@ -27,11 +29,12 @@ namespace SenAIS
             sqlHelper = new SQLHelper();
             LoadVehicleStandards(serialNumber);
             InitializeTimer();
+            opcManager = new OPCManager();
         }
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 500; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -41,7 +44,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcSSCounter));
+                int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcSSCounter));
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
@@ -59,7 +62,6 @@ namespace SenAIS
                             lbSideSlip.Visible = false;
                             isReady = false; // Chưa sẵn sàng lưu
                             lbStandard.Visible = true;
-                            lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
                             break;
 
                         case 2: // Bắt đầu đo
@@ -68,10 +70,8 @@ namespace SenAIS
                             lbSideSlip.Visible = true;
                             isReady = true; // Sẵn sàng lưu sau khi đo
 
-                            double alignA = 1.0;
-                            alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
-                            double sideSlipSign = (double)OPCUtility.GetOPCValue(opcSSSign);
-                            double sideSlipResult = (double)OPCUtility.GetOPCValue(opcSSResult);
+                            double sideSlipSign = (double)opcManager.GetOPCValue(opcSSSign);
+                            double sideSlipResult = (double)opcManager.GetOPCValue(opcSSResult);
                             double sideSlip = 0.0;
 
                             if (sideSlipSign == 0)
@@ -109,18 +109,17 @@ namespace SenAIS
                             lbSideSlip.Visible = true;
                             if (isReady)
                             {
-                                CheckCounterPosition();
+                                SaveDataToDatabase();
                                 isReady = false;
                                 var formSideSlip2 = new frmSideSlip2(this.serialNumber);
                                 formSideSlip2.Show();
-                                OPCUtility.SetOPCValue(opcSSCounter, 2);
+                                opcManager.SetOPCValue(opcSSCounter, 2);
                                 this.Close();
                             }
                             break;
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
                             lbSideSlipTitle.Visible = true;
-                            lbSideSlipTitle.Text = "Xe tiếp theo";
                             lbSideSlipTitle.Visible = true;
                             lbStandard.Visible = false;
                             if (!hasProcessedNextVin)
@@ -154,7 +153,7 @@ namespace SenAIS
                     }
                 }));
             }
-            catch (Exception)
+            catch
             {
             }
         }
@@ -175,7 +174,9 @@ namespace SenAIS
                     minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
                     maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
                 }
+                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
             }
+            this.alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -184,7 +185,7 @@ namespace SenAIS
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -194,6 +195,7 @@ namespace SenAIS
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -212,7 +214,7 @@ namespace SenAIS
             {
                 if (isReady)
                 {
-                    CheckCounterPosition(); // Lưu dữ liệu nếu sẵn sàng
+                    SaveDataToDatabase(); // Lưu dữ liệu nếu sẵn sàng
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -221,6 +223,7 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
                 else
                 {
@@ -236,16 +239,6 @@ namespace SenAIS
         {
             sqlHelper.SaveSideSlipData(this.serialNumber, this.sideSlip);
         }
-        private void CheckCounterPosition()
-        {
-            int currentPosition = (int)OPCUtility.GetOPCValue(opcSSCounter);
-
-            if (currentPosition == 3)
-            {
-                SaveDataToDatabase();
-            }
-        }
-
         private void frmSideSlip_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (updateTimer != null)

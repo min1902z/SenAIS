@@ -6,7 +6,7 @@ namespace SenAIS
 {
     public partial class SenAIS : Form
     {
-        private Form activeForm = null;
+        //private Form activeChildForm;
         private static readonly string calibSpeed = ConfigurationManager.AppSettings["Calib_Speed"];
         private static readonly string calibSS = ConfigurationManager.AppSettings["Calib_SS"];
         private static readonly string calibLBrake = ConfigurationManager.AppSettings["Calib_LBrake"];
@@ -15,7 +15,21 @@ namespace SenAIS
         {
             InitializeComponent();
         }
-        public void OpenChildForm(Form childForm)
+        //private void OpenChildForm(Form childForm)
+        //{
+        //    // Đóng form con hiện tại nếu có
+        //    if (panelBody.Controls.Count > 0)
+        //        panelBody.Controls[0].Dispose();
+
+        //    // Thiết lập form con mới
+        //    childForm.TopLevel = false;
+        //    childForm.Dock = DockStyle.Fill;
+        //    panelBody.Controls.Add(childForm);
+        //    panelBody.Tag = childForm;
+        //    childForm.FormBorderStyle = FormBorderStyle.None;
+        //    childForm.Show();
+        //}
+        private void OpenChildForm(Form childForm)
         {
             // Đóng form con hiện tại nếu có
             if (panelBody.Controls.Count > 0)
@@ -27,7 +41,6 @@ namespace SenAIS
             panelBody.VerticalScroll.Enabled = true;
 
             // Thiết lập form con mới
-            activeForm = childForm;
             childForm.TopLevel = false;
             childForm.Dock = DockStyle.Fill; // Form con luôn fill panelBody
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -56,13 +69,7 @@ namespace SenAIS
 
         private void TSDangKiem_Click(object sender, EventArgs e)
         {
-            string serialNumber = "";
-            if (activeForm is frmInspection currentInspection)
-            {
-                serialNumber = currentInspection.GetVinNumber();
-                currentInspection.Close();
-            }
-            OpenChildForm(new frmInspection(serialNumber));
+            OpenChildForm(new frmInspection());
         }
 
         private void TSTruyXuat_Click(object sender, EventArgs e)

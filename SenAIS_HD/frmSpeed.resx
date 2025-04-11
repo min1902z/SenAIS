@@ -117,7 +117,195 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="SpeedPanel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lbEnd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lbEnd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 80.25pt, style=Bold</value>
+  </data>
+  <data name="lbEnd.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="lbEnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 119</value>
+  </data>
+  <data name="lbEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1286, 124</value>
+  </data>
+  <data name="lbEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="lbEnd.Text" xml:space="preserve">
+    <value>Kết Thúc</value>
+  </data>
+  <data name="lbEnd.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="lbEnd.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lbEnd.Name" xml:space="preserve">
+    <value>lbEnd</value>
+  </data>
+  <data name="&gt;&gt;lbEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbEnd.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;lbEnd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 72pt, style=Bold</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>945, 632</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 117</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Km/h</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbStandard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="lbStandard.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbStandard.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 48pt, style=Bold</value>
+  </data>
+  <data name="lbStandard.Location" type="System.Drawing.Point, System.Drawing">
+    <value>596, 662</value>
+  </data>
+  <data name="lbStandard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbStandard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 78</value>
+  </data>
+  <data name="lbStandard.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="lbStandard.Text" xml:space="preserve">
+    <value>--  -  --</value>
+  </data>
+  <data name="&gt;&gt;lbStandard.Name" xml:space="preserve">
+    <value>lbStandard</value>
+  </data>
+  <data name="&gt;&gt;lbStandard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbStandard.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;lbStandard.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbStandardTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="lbStandardTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbStandardTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 48pt, style=Bold</value>
+  </data>
+  <data name="lbStandardTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 662</value>
+  </data>
+  <data name="lbStandardTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbStandardTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 78</value>
+  </data>
+  <data name="lbStandardTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="lbStandardTitle.Text" xml:space="preserve">
+    <value>Tiêu Chuẩn: </value>
+  </data>
+  <data name="&gt;&gt;lbStandardTitle.Name" xml:space="preserve">
+    <value>lbStandardTitle</value>
+  </data>
+  <data name="&gt;&gt;lbStandardTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbStandardTitle.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;lbStandardTitle.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lbVinNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbVinNumber.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 80.25pt, style=Bold</value>
+  </data>
+  <data name="lbVinNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, -17</value>
+  </data>
+  <data name="lbVinNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>334, 131</value>
+  </data>
+  <data name="lbVinNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lbVinNumber.Text" xml:space="preserve">
+    <value>Số Vin</value>
+  </data>
+  <data name="&gt;&gt;lbVinNumber.Name" xml:space="preserve">
+    <value>lbVinNumber</value>
+  </data>
+  <data name="&gt;&gt;lbVinNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbVinNumber.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;lbVinNumber.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cbReady.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
   <data name="cbReady.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEMAAAAyCAYAAAAHtGYXAAAABGdBTUEAALGPC/xhBQAACs5JREFUaEPt
@@ -169,5 +357,242 @@
         tSIrK2vl3r17Yw4cOBDV1tYGIgY+8DCK+vdAKPABJ/ACd35+/qLW1tZp6kTM878jjMqojMqojIpn8n8u
         nZw+N3UF6AAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="cbReady.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="cbReady.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbReady.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 11</value>
+  </data>
+  <data name="cbReady.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 105</value>
+  </data>
+  <data name="cbReady.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;cbReady.Name" xml:space="preserve">
+    <value>cbReady</value>
+  </data>
+  <data name="&gt;&gt;cbReady.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbReady.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;cbReady.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnNextSpeed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnNextSpeed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnNextSpeed.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnNextSpeed.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 20.25pt, style=Bold</value>
+  </data>
+  <data name="btnNextSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1226, 695</value>
+  </data>
+  <data name="btnNextSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btnNextSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 45</value>
+  </data>
+  <data name="btnNextSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="btnNextSpeed.Text" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="&gt;&gt;btnNextSpeed.Name" xml:space="preserve">
+    <value>btnNextSpeed</value>
+  </data>
+  <data name="&gt;&gt;btnNextSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnNextSpeed.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;btnNextSpeed.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnPreSpeed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnPreSpeed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnPreSpeed.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnPreSpeed.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 20.25pt, style=Bold</value>
+  </data>
+  <data name="btnPreSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 695</value>
+  </data>
+  <data name="btnPreSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btnPreSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 45</value>
+  </data>
+  <data name="btnPreSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="btnPreSpeed.Text" xml:space="preserve">
+    <value>Phanh Trước</value>
+  </data>
+  <data name="&gt;&gt;btnPreSpeed.Name" xml:space="preserve">
+    <value>btnPreSpeed</value>
+  </data>
+  <data name="&gt;&gt;btnPreSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnPreSpeed.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;btnPreSpeed.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lbSpeed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom</value>
+  </data>
+  <data name="lbSpeed.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 300pt, style=Bold</value>
+  </data>
+  <data name="lbSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 153</value>
+  </data>
+  <data name="lbSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbSpeed.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="lbSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1282, 498</value>
+  </data>
+  <data name="lbSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="lbSpeed.Text" xml:space="preserve">
+    <value>0.0</value>
+  </data>
+  <data name="lbSpeed.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="lbSpeed.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lbSpeed.Name" xml:space="preserve">
+    <value>lbSpeed</value>
+  </data>
+  <data name="&gt;&gt;lbSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbSpeed.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;lbSpeed.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="lbTitleSpeed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom</value>
+  </data>
+  <data name="lbTitleSpeed.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 150pt, style=Bold</value>
+  </data>
+  <data name="lbTitleSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 228</value>
+  </data>
+  <data name="lbTitleSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lbTitleSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1326, 315</value>
+  </data>
+  <data name="lbTitleSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="lbTitleSpeed.Text" xml:space="preserve">
+    <value>TỐC ĐỘ</value>
+  </data>
+  <data name="lbTitleSpeed.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbTitleSpeed.Name" xml:space="preserve">
+    <value>lbTitleSpeed</value>
+  </data>
+  <data name="&gt;&gt;lbTitleSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbTitleSpeed.Parent" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;lbTitleSpeed.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="SpeedPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="SpeedPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="SpeedPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="SpeedPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1370, 749</value>
+  </data>
+  <data name="SpeedPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="&gt;&gt;SpeedPanel.Name" xml:space="preserve">
+    <value>SpeedPanel</value>
+  </data>
+  <data name="&gt;&gt;SpeedPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SpeedPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SpeedPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1370, 749</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1202, 655</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Tốc Độ</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmSpeed</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

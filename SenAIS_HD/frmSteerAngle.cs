@@ -12,6 +12,7 @@ namespace SenAIS
         private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
         private string serialNumber;
         public decimal leftSteerLW = 0;
         public decimal rightSteerLW = 0;
@@ -26,6 +27,7 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
             InitializeTimer();
+            opcManager = new OPCManager();
         }
         private void InitializeTimer()
         {
@@ -51,10 +53,10 @@ namespace SenAIS
                     cbReady.BackColor = Color.Green; // Đèn xanh sáng
                     isReady = true; // Sẵn sàng lưu sau khi đo
                     await Task.Delay(10000); // Chờ 10 giây trước khi bắt đầu đo
-                    double leftSteerLWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
-                    double rightSteerLWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
-                    double leftSteerRWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
-                    double rightSteerRWResult = OPCUtility.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double leftSteerLWResult = opcManager.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double rightSteerLWResult = opcManager.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double leftSteerRWResult = opcManager.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
+                    double rightSteerRWResult = opcManager.GetOPCValue("Hyundai.OCS10.Steer_Angle_Result");
                     lbLeftSteerLW.Text = leftSteerLWResult.ToString("F1");
                     lbRightSteerLW.Text = rightSteerLWResult.ToString("F1");
                     lbLeftSteerRW.Text = leftSteerRWResult.ToString("F1");
@@ -76,7 +78,7 @@ namespace SenAIS
                         lbRightSteerLW.BackColor = SystemColors.ControlLight;
                         lbRightSteerRW.BackColor = SystemColors.ControlLight;
                         await Task.Delay(15000); // Đợi thêm 15 giây trước khi đổi trạng thái
-                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
+                        opcManager.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
                     }
                     else if (!isLeftSteerLWInStandard)
                     {
@@ -188,7 +190,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)opcManager.GetOPCValue("Hyundai.OCS10.T99");
 
             if (currentPosition == 3)
             {

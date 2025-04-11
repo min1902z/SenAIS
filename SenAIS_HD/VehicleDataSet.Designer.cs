@@ -485,6 +485,20 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnFuel;
             
+            private global::System.Data.DataColumn columnMaxLeftSteer;
+            
+            private global::System.Data.DataColumn columnMaxRightSteer;
+            
+            private global::System.Data.DataColumn columnMaxHBIntensity;
+            
+            private global::System.Data.DataColumn columnMaxLBIntensity;
+            
+            private global::System.Data.DataColumn columnPublishSeri;
+            
+            private global::System.Data.DataColumn columnPublishVer;
+            
+            private global::System.Data.DataColumn columnPublishDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1344,6 +1358,62 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxLeftSteerColumn {
+                get {
+                    return this.columnMaxLeftSteer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxRightSteerColumn {
+                get {
+                    return this.columnMaxRightSteer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxHBIntensityColumn {
+                get {
+                    return this.columnMaxHBIntensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaxLBIntensityColumn {
+                get {
+                    return this.columnMaxLBIntensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PublishSeriColumn {
+                get {
+                    return this.columnPublishSeri;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PublishVerColumn {
+                get {
+                    return this.columnPublishVer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PublishDateColumn {
+                get {
+                    return this.columnPublishDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1482,7 +1552,14 @@ namespace SenAIS {
                         string MinLeftSteer, 
                         string MinRightSteer, 
                         string SteerAngleResult, 
-                        string Fuel) {
+                        string Fuel, 
+                        string MaxLeftSteer, 
+                        string MaxRightSteer, 
+                        string MaxHBIntensity, 
+                        string MaxLBIntensity, 
+                        string PublishSeri, 
+                        string PublishVer, 
+                        string PublishDate) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1587,7 +1664,14 @@ namespace SenAIS {
                         MinLeftSteer,
                         MinRightSteer,
                         SteerAngleResult,
-                        Fuel};
+                        Fuel,
+                        MaxLeftSteer,
+                        MaxRightSteer,
+                        MaxHBIntensity,
+                        MaxLBIntensity,
+                        PublishSeri,
+                        PublishVer,
+                        PublishDate};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -1713,6 +1797,13 @@ namespace SenAIS {
                 this.columnMinRightSteer = base.Columns["MinRightSteer"];
                 this.columnSteerAngleResult = base.Columns["SteerAngleResult"];
                 this.columnFuel = base.Columns["Fuel"];
+                this.columnMaxLeftSteer = base.Columns["MaxLeftSteer"];
+                this.columnMaxRightSteer = base.Columns["MaxRightSteer"];
+                this.columnMaxHBIntensity = base.Columns["MaxHBIntensity"];
+                this.columnMaxLBIntensity = base.Columns["MaxLBIntensity"];
+                this.columnPublishSeri = base.Columns["PublishSeri"];
+                this.columnPublishVer = base.Columns["PublishVer"];
+                this.columnPublishDate = base.Columns["PublishDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1924,6 +2015,20 @@ namespace SenAIS {
                 base.Columns.Add(this.columnSteerAngleResult);
                 this.columnFuel = new global::System.Data.DataColumn("Fuel", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFuel);
+                this.columnMaxLeftSteer = new global::System.Data.DataColumn("MaxLeftSteer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxLeftSteer);
+                this.columnMaxRightSteer = new global::System.Data.DataColumn("MaxRightSteer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxRightSteer);
+                this.columnMaxHBIntensity = new global::System.Data.DataColumn("MaxHBIntensity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxHBIntensity);
+                this.columnMaxLBIntensity = new global::System.Data.DataColumn("MaxLBIntensity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxLBIntensity);
+                this.columnPublishSeri = new global::System.Data.DataColumn("PublishSeri", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPublishSeri);
+                this.columnPublishVer = new global::System.Data.DataColumn("PublishVer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPublishVer);
+                this.columnPublishDate = new global::System.Data.DataColumn("PublishDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPublishDate);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3714,6 +3819,118 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxLeftSteer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxLeftSteerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxLeftSteer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxLeftSteerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxRightSteer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxRightSteerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxRightSteer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxRightSteerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxHBIntensity {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxHBIntensityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxHBIntensity\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxHBIntensityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaxLBIntensity {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MaxLBIntensityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxLBIntensity\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MaxLBIntensityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PublishSeri {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.PublishSeriColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PublishSeri\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.PublishSeriColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PublishVer {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.PublishVerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PublishVer\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.PublishVerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PublishDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.PublishDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PublishDate\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.PublishDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -4946,6 +5163,90 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFuelNull() {
                 this[this.tableVehicleReportData.FuelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxLeftSteerNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxLeftSteerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxLeftSteerNull() {
+                this[this.tableVehicleReportData.MaxLeftSteerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxRightSteerNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxRightSteerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxRightSteerNull() {
+                this[this.tableVehicleReportData.MaxRightSteerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxHBIntensityNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxHBIntensityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxHBIntensityNull() {
+                this[this.tableVehicleReportData.MaxHBIntensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaxLBIntensityNull() {
+                return this.IsNull(this.tableVehicleReportData.MaxLBIntensityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaxLBIntensityNull() {
+                this[this.tableVehicleReportData.MaxLBIntensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPublishSeriNull() {
+                return this.IsNull(this.tableVehicleReportData.PublishSeriColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPublishSeriNull() {
+                this[this.tableVehicleReportData.PublishSeriColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPublishVerNull() {
+                return this.IsNull(this.tableVehicleReportData.PublishVerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPublishVerNull() {
+                this[this.tableVehicleReportData.PublishVerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPublishDateNull() {
+                return this.IsNull(this.tableVehicleReportData.PublishDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPublishDateNull() {
+                this[this.tableVehicleReportData.PublishDateColumn] = global::System.Convert.DBNull;
             }
         }
         

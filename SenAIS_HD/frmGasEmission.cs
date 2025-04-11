@@ -1,5 +1,4 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -10,10 +9,9 @@ namespace SenAIS
 {
     public partial class frmGasEmission : Form
     {
-        private Form parentForm;
-        private OPCItem opcCounterPos;
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
         private COMConnect comConnect;
         private bool isReady = false;
         private decimal hcValue;
@@ -35,6 +33,7 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(comPetrolEmission, 9600, this);
             sqlHelper = new SQLHelper();
+            opcManager = new OPCManager();
             LoadVehicleStandards(serialNumber);
             InitializeTimer();
         }
@@ -52,8 +51,8 @@ namespace SenAIS
             {
                 lbEngineNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcEmissionCounter));
-                Invoke((Action)(async () =>
+                int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcEmissionCounter));
+                Invoke((Action)(() =>
                 {
                     switch (checkStatus)
                     {
@@ -348,7 +347,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue(opcEmissionCounter);
+            int currentPosition = (int)opcManager.GetOPCValue(opcEmissionCounter);
 
             if (currentPosition == 3)
             {

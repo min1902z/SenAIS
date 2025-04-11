@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,8 @@ namespace SenAIS
         private bool isReady = false;
         private decimal minSumBrake = 0;
         private decimal maxDiffBrake = 0;
+        private double brakeLeftA = 1;
+        private double brakeRightA = 1;
         private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcBrakeCounter = ConfigurationManager.AppSettings["BrakeH_Counter"];
         private static readonly string opcLBrakeResult = ConfigurationManager.AppSettings["Hand_LBrake_Result"];
@@ -34,7 +37,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 500; // Kiểm tra mỗi giây
+            updateTimer.Interval = 200; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }
@@ -45,7 +48,7 @@ namespace SenAIS
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
                 int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcBrakeCounter));
-                Invoke((Action)(async () =>
+                Invoke((Action)(() =>
                 {
                     switch (checkStatus)
                     {
@@ -78,7 +81,7 @@ namespace SenAIS
                             tbLeft.Visible = true;
                             tbRight.Visible = true;
                             cbBrake.BackColor = Color.Red;
-                            await HandleMeasurement(); // Đo và xử lý dữ liệu
+                            HandleMeasurement(); // Đo và xử lý dữ liệu
                             break;
 
                         case 3: // Quá trình đo hoàn tất, lưu vào DB
@@ -96,25 +99,35 @@ namespace SenAIS
 
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
+                            cbBrake.BackColor = SystemColors.Control;
                             var formSpeed = new frmSpeed(this.serialNumber);
                             formSpeed.Show();
                             this.Close();
-                            //string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber); // Lấy SerialNumber tiếp theo
+
                             //if (!hasProcessedNextVin)
                             //{
+                            //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
                             //    if (!string.IsNullOrEmpty(nextSerialNumber))
                             //    {
-                            //        this.serialNumber = nextSerialNumber; // Cập nhật SerialNumber
-                            //        lbVinNumber.Text = this.serialNumber; // Cập nhật lbEngineNumber
+                            //        this.serialNumber = nextSerialNumber;
+                            //        lbVinNumber.Text = this.serialNumber;
+
+                            //        var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                            //        if (frmMain != null)
+                            //        {
+                            //            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+                            //            if (txtVinNumber != null)
+                            //            {
+                            //                txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
+                            //            }
+                            //        }
                             //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                            //        OPCUtility.SetOPCValue(opcBrakeCounter, 0);
-                            //        var formBrake = new frmFrontBrake(this.serialNumber);
-                            //        formBrake.Show();
                             //        this.Close();
                             //    }
                             //    else
                             //    {
-                            //        MessageBox.Show("Không có xe tiếp theo để đo.");
+                            //        MessageBox.Show("Không có xe tiếp theo để kiểm tra.");
+                            //        this.Close();
                             //    }
                             //}
                             break;
@@ -149,13 +162,11 @@ namespace SenAIS
                     maxDiffBrake = ConvertToDecimal(standard["MaxDiffHandBrake"]);
                 }
             }
+            brakeLeftA = sqlHelper.GetParaValue("LeftBrake", "ParaA");
+            brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
         }
         private Task HandleMeasurement()
         {
-            // Đọc hệ số từ cơ sở dữ liệu (nếu không có, mặc định = 1)
-            double brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
-            double brakeLeftA = sqlHelper.GetParaValue("LeftBrake", "ParaA");
-
             // Đảm bảo giá trị ParaA không bằng 0 để tránh lỗi chia 0
             brakeRightA = brakeRightA == 0 ? 1 : brakeRightA;
             brakeLeftA = brakeLeftA == 0 ? 1 : brakeLeftA;
@@ -210,6 +221,7 @@ namespace SenAIS
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(this.serialNumber);
                 }
                 else
                 {
@@ -221,7 +233,6 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             try
@@ -237,6 +248,7 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(this.serialNumber);
                 }
                 else
                 {
@@ -248,12 +260,9 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-        private async void SaveDataToDatabase()
+        private void SaveDataToDatabase()
         {
-            await Task.Run(() =>
-            {
                 sqlHelper.SaveHandBrakeData(this.serialNumber, this.handLeftBrake, this.handRightBrake);
-            });
         }
         private void frmHandBrake_FormClosing(object sender, FormClosingEventArgs e)
         {

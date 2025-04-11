@@ -62,7 +62,14 @@ namespace SenAIS
                     dgStandards.Columns["MinLBIntensity"].HeaderText = "Cường độ đèn Cốt tối thiểu";
                     dgStandards.Columns["MinLightHeight"].HeaderText = "Độ cao đèn";
                     dgStandards.Columns["MinLeftSteer"].HeaderText = "Độ góc lái trái tối thiểu";
-                    dgStandards.Columns["MinRightSteer"].HeaderText = "Độ góc lái trái tối đa";
+                    dgStandards.Columns["MinRightSteer"].HeaderText = "Độ góc lái phải tối thiểu";
+                    dgStandards.Columns["MaxLeftSteer"].HeaderText = "Độ góc lái trái tối đa";
+                    dgStandards.Columns["MaxRightSteer"].HeaderText = "Độ góc lái phải tối đa";
+                    dgStandards.Columns["SampleVin"].HeaderText = "Vin mẫu";
+                    dgStandards.Columns["FrontWeight"].HeaderText = "Trọng lượng trước";
+                    dgStandards.Columns["RearWeight"].HeaderText = "Trọng lượng sau";
+                    dgStandards.Columns["MaxHBIntensity"].HeaderText = "Cường độ đèn pha tối đa";
+                    dgStandards.Columns["MaxLBIntensity"].HeaderText = "Cường độ đèn cốt tối đa";
                 }
             }
             catch (Exception)

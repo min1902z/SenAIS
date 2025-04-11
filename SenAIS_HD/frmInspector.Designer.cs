@@ -49,7 +49,7 @@
             this.InspectorPanel.Controls.Add(this.lbStandardTitle);
             this.InspectorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InspectorPanel.Location = new System.Drawing.Point(0, 0);
-            this.InspectorPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InspectorPanel.Margin = new System.Windows.Forms.Padding(2);
             this.InspectorPanel.Name = "InspectorPanel";
             this.InspectorPanel.Size = new System.Drawing.Size(600, 366);
             this.InspectorPanel.TabIndex = 0;
@@ -58,9 +58,9 @@
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDelete.ForeColor = System.Drawing.Color.Blue;
             this.btnDelete.Location = new System.Drawing.Point(509, 179);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(71, 46);
             this.btnDelete.TabIndex = 5;
@@ -72,9 +72,9 @@
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSave.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSave.ForeColor = System.Drawing.Color.Blue;
             this.btnSave.Location = new System.Drawing.Point(509, 112);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(71, 46);
             this.btnSave.TabIndex = 4;
@@ -107,7 +107,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgInspector.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgInspector.Location = new System.Drawing.Point(105, 112);
-            this.dgInspector.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgInspector.Margin = new System.Windows.Forms.Padding(2);
             this.dgInspector.Name = "dgInspector";
             this.dgInspector.RowHeadersWidth = 51;
             this.dgInspector.RowTemplate.Height = 24;
@@ -119,7 +119,7 @@
             this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStandardTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.Blue;
             this.lbStandardTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lbStandardTitle.Location = new System.Drawing.Point(92, 7);
             this.lbStandardTitle.Name = "lbStandardTitle";
@@ -135,7 +135,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.InspectorPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmInspector";
             this.Text = "Người Kiểm Tra";
             this.InspectorPanel.ResumeLayout(false);

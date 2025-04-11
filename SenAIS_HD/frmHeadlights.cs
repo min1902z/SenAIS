@@ -14,6 +14,7 @@ namespace SenAIS
         private Timer updateTimer;
         private COMConnect comConnect;
         private SQLHelper sqlHelper;
+        private OPCManager opcManager;
         private string serialNumber;
         public decimal rightHBIntensityValue;
         public decimal rightHBVerticalValue;
@@ -39,6 +40,7 @@ namespace SenAIS
             comConnect = new COMConnect("COM7", 2400, this);
             sqlHelper = new SQLHelper();
             InitializeTimer();
+            opcManager = new OPCManager();
         }
         private void InitializeTimer()
         {
@@ -81,7 +83,7 @@ namespace SenAIS
 
                     if (isDataCollected)
                     {
-                        OPCUtility.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
+                        opcManager.SetOPCValue("Hyundai.OCS10.Test1", 3); // Đặt Test1 thành 3
                     }
                     break;
 
@@ -240,7 +242,7 @@ namespace SenAIS
         }
         private void CheckCounterPosition()
         {
-            int currentPosition = (int)OPCUtility.GetOPCValue("Hyundai.OCS10.T99");
+            int currentPosition = (int)opcManager.GetOPCValue("Hyundai.OCS10.T99");
 
             if (currentPosition == 3)
             {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.vehicleDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.vehicleDataSet = new VehicleDataSet();
             this.vehicleDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -58,9 +58,9 @@
             // 
             this.reportViewer1.AutoScroll = true;
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource2.Name = "VehicleDataSet";
-            reportDataSource2.Value = this.vehicleDataSetBindingSource1;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "VehicleDataSet";
+            reportDataSource1.Value = this.vehicleDataSetBindingSource1;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SenAIS.Reports.VehicleReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
@@ -78,6 +78,7 @@
             this.Name = "TestReport";
             this.Text = "Báo Cáo";
             this.TopMost = true;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.TestReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleDataSet)).EndInit();

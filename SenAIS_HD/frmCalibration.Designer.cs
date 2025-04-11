@@ -121,9 +121,9 @@ namespace SenAIS
             this.RightCalibPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.RightCalibPanel.Controls.Add(this.panelAfterCalibration);
-            this.RightCalibPanel.Location = new System.Drawing.Point(736, 82);
+            this.RightCalibPanel.Location = new System.Drawing.Point(690, 82);
             this.RightCalibPanel.Name = "RightCalibPanel";
-            this.RightCalibPanel.Size = new System.Drawing.Size(709, 746);
+            this.RightCalibPanel.Size = new System.Drawing.Size(754, 729);
             this.RightCalibPanel.TabIndex = 53;
             // 
             // panelAfterCalibration
@@ -132,9 +132,9 @@ namespace SenAIS
             this.panelAfterCalibration.Controls.Add(this.lbAfterCalbTitle);
             this.panelAfterCalibration.Controls.Add(this.lbCalibResult);
             this.panelAfterCalibration.Location = new System.Drawing.Point(15, 5);
-            this.panelAfterCalibration.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAfterCalibration.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelAfterCalibration.Name = "panelAfterCalibration";
-            this.panelAfterCalibration.Size = new System.Drawing.Size(681, 305);
+            this.panelAfterCalibration.Size = new System.Drawing.Size(729, 305);
             this.panelAfterCalibration.TabIndex = 51;
             // 
             // lbAfterCalbTitle
@@ -154,15 +154,15 @@ namespace SenAIS
             this.lbCalibResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbCalibResult.AutoSize = true;
             this.lbCalibResult.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCalibResult.ForeColor = System.Drawing.Color.Red;
-            this.lbCalibResult.Location = new System.Drawing.Point(148, 78);
+            this.lbCalibResult.Location = new System.Drawing.Point(6, 78);
             this.lbCalibResult.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibResult.Name = "lbCalibResult";
-            this.lbCalibResult.Size = new System.Drawing.Size(239, 163);
+            this.lbCalibResult.Size = new System.Drawing.Size(679, 189);
             this.lbCalibResult.TabIndex = 26;
             this.lbCalibResult.Text = "0.0";
+            this.lbCalibResult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LeftCalibPanel
             // 
@@ -172,7 +172,7 @@ namespace SenAIS
             this.LeftCalibPanel.Controls.Add(this.tbCalibration);
             this.LeftCalibPanel.Location = new System.Drawing.Point(3, 80);
             this.LeftCalibPanel.Name = "LeftCalibPanel";
-            this.LeftCalibPanel.Size = new System.Drawing.Size(727, 748);
+            this.LeftCalibPanel.Size = new System.Drawing.Size(681, 731);
             this.LeftCalibPanel.TabIndex = 52;
             // 
             // tbCalibration
@@ -205,8 +205,8 @@ namespace SenAIS
             this.tbCalibration.Controls.Add(this.txtCalibrateInput1, 1, 1);
             this.tbCalibration.Controls.Add(this.label4, 0, 2);
             this.tbCalibration.Controls.Add(this.label2, 0, 0);
-            this.tbCalibration.Location = new System.Drawing.Point(228, 20);
-            this.tbCalibration.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCalibration.Location = new System.Drawing.Point(154, 20);
+            this.tbCalibration.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbCalibration.Name = "tbCalibration";
             this.tbCalibration.RowCount = 13;
             this.tbCalibration.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -222,16 +222,15 @@ namespace SenAIS
             this.tbCalibration.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbCalibration.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbCalibration.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbCalibration.Size = new System.Drawing.Size(497, 710);
+            this.tbCalibration.Size = new System.Drawing.Size(497, 821);
             this.tbCalibration.TabIndex = 52;
             // 
             // lbParaB
             // 
-            this.lbParaB.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbParaB.AutoSize = true;
             this.lbParaB.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbParaB.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbParaB.Location = new System.Drawing.Point(4, 662);
+            this.lbParaB.ForeColor = System.Drawing.Color.Blue;
+            this.lbParaB.Location = new System.Drawing.Point(4, 649);
             this.lbParaB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbParaB.Name = "lbParaB";
             this.lbParaB.Size = new System.Drawing.Size(212, 33);
@@ -240,8 +239,9 @@ namespace SenAIS
             // 
             // lbParaWeightLB
             // 
+            this.lbParaWeightLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbParaWeightLB.AutoSize = true;
-            this.lbParaWeightLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbParaWeightLB.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbParaWeightLB.ForeColor = System.Drawing.Color.Red;
             this.lbParaWeightLB.Location = new System.Drawing.Point(290, 649);
@@ -271,7 +271,7 @@ namespace SenAIS
             this.lbParaA.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbParaA.AutoSize = true;
             this.lbParaA.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbParaA.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbParaA.ForeColor = System.Drawing.Color.Blue;
             this.lbParaA.Location = new System.Drawing.Point(4, 601);
             this.lbParaA.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbParaA.Name = "lbParaA";
@@ -286,7 +286,7 @@ namespace SenAIS
             this.txtCalibrateInput2.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCalibrateInput2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.txtCalibrateInput2.Location = new System.Drawing.Point(290, 208);
-            this.txtCalibrateInput2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCalibrateInput2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCalibrateInput2.Name = "txtCalibrateInput2";
             this.txtCalibrateInput2.Size = new System.Drawing.Size(203, 40);
             this.txtCalibrateInput2.TabIndex = 37;
@@ -311,7 +311,7 @@ namespace SenAIS
             this.lbCalibB.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbCalibB.AutoSize = true;
             this.lbCalibB.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCalibB.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbCalibB.ForeColor = System.Drawing.Color.Blue;
             this.lbCalibB.Location = new System.Drawing.Point(4, 489);
             this.lbCalibB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibB.Name = "lbCalibB";
@@ -339,9 +339,9 @@ namespace SenAIS
             this.btnSavePara.BackColor = System.Drawing.SystemColors.Info;
             this.btnSavePara.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSavePara.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSavePara.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSavePara.ForeColor = System.Drawing.Color.Blue;
             this.btnSavePara.Location = new System.Drawing.Point(4, 539);
-            this.btnSavePara.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSavePara.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSavePara.Name = "btnSavePara";
             this.btnSavePara.Size = new System.Drawing.Size(280, 45);
             this.btnSavePara.TabIndex = 47;
@@ -354,9 +354,9 @@ namespace SenAIS
             this.btnAcpCalibrate2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAcpCalibrate2.AutoSize = true;
             this.btnAcpCalibrate2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcpCalibrate2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAcpCalibrate2.ForeColor = System.Drawing.Color.Blue;
             this.btnAcpCalibrate2.Location = new System.Drawing.Point(301, 315);
-            this.btnAcpCalibrate2.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAcpCalibrate2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAcpCalibrate2.Name = "btnAcpCalibrate2";
             this.btnAcpCalibrate2.Size = new System.Drawing.Size(181, 45);
             this.btnAcpCalibrate2.TabIndex = 45;
@@ -386,7 +386,7 @@ namespace SenAIS
             this.txtBeforeCalib.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBeforeCalib.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.txtBeforeCalib.Location = new System.Drawing.Point(290, 4);
-            this.txtBeforeCalib.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBeforeCalib.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBeforeCalib.Name = "txtBeforeCalib";
             this.txtBeforeCalib.Size = new System.Drawing.Size(203, 40);
             this.txtBeforeCalib.TabIndex = 31;
@@ -398,7 +398,7 @@ namespace SenAIS
             this.lbCalibA.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbCalibA.AutoSize = true;
             this.lbCalibA.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCalibA.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbCalibA.ForeColor = System.Drawing.Color.Blue;
             this.lbCalibA.Location = new System.Drawing.Point(4, 428);
             this.lbCalibA.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibA.Name = "lbCalibA";
@@ -412,9 +412,9 @@ namespace SenAIS
             this.btnCalculateCalib.BackColor = System.Drawing.SystemColors.Info;
             this.btnCalculateCalib.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCalculateCalib.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalculateCalib.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnCalculateCalib.ForeColor = System.Drawing.Color.Blue;
             this.btnCalculateCalib.Location = new System.Drawing.Point(4, 366);
-            this.btnCalculateCalib.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalculateCalib.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCalculateCalib.Name = "btnCalculateCalib";
             this.btnCalculateCalib.Size = new System.Drawing.Size(280, 45);
             this.btnCalculateCalib.TabIndex = 46;
@@ -428,7 +428,7 @@ namespace SenAIS
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label5.ForeColor = System.Drawing.Color.Blue;
             this.label5.Location = new System.Drawing.Point(4, 211);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
@@ -441,7 +441,7 @@ namespace SenAIS
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label3.ForeColor = System.Drawing.Color.Blue;
             this.label3.Location = new System.Drawing.Point(4, 53);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
@@ -454,9 +454,9 @@ namespace SenAIS
             this.btnAcpCalibrate1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAcpCalibrate1.AutoSize = true;
             this.btnAcpCalibrate1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcpCalibrate1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAcpCalibrate1.ForeColor = System.Drawing.Color.Blue;
             this.btnAcpCalibrate1.Location = new System.Drawing.Point(301, 157);
-            this.btnAcpCalibrate1.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAcpCalibrate1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAcpCalibrate1.Name = "btnAcpCalibrate1";
             this.btnAcpCalibrate1.Size = new System.Drawing.Size(181, 45);
             this.btnAcpCalibrate1.TabIndex = 44;
@@ -484,7 +484,7 @@ namespace SenAIS
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label6.ForeColor = System.Drawing.Color.Blue;
             this.label6.Location = new System.Drawing.Point(4, 265);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
@@ -499,7 +499,7 @@ namespace SenAIS
             this.txtCalibrateInput1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCalibrateInput1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.txtCalibrateInput1.Location = new System.Drawing.Point(290, 50);
-            this.txtCalibrateInput1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCalibrateInput1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCalibrateInput1.Name = "txtCalibrateInput1";
             this.txtCalibrateInput1.Size = new System.Drawing.Size(203, 40);
             this.txtCalibrateInput1.TabIndex = 33;
@@ -510,7 +510,7 @@ namespace SenAIS
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label4.ForeColor = System.Drawing.Color.Blue;
             this.label4.Location = new System.Drawing.Point(4, 107);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
@@ -534,13 +534,12 @@ namespace SenAIS
             // lbCalibrateTitle
             // 
             this.lbCalibrateTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbCalibrateTitle.AutoSize = true;
             this.lbCalibrateTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCalibrateTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbCalibrateTitle.Location = new System.Drawing.Point(202, 0);
+            this.lbCalibrateTitle.ForeColor = System.Drawing.Color.Blue;
+            this.lbCalibrateTitle.Location = new System.Drawing.Point(4, 0);
             this.lbCalibrateTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCalibrateTitle.Name = "lbCalibrateTitle";
-            this.lbCalibrateTitle.Size = new System.Drawing.Size(970, 78);
+            this.lbCalibrateTitle.Size = new System.Drawing.Size(1431, 79);
             this.lbCalibrateTitle.TabIndex = 49;
             this.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - T.Lượng Trái";
             this.lbCalibrateTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -555,7 +554,7 @@ namespace SenAIS
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmCalibration";
             this.ShowIcon = false;
@@ -563,7 +562,6 @@ namespace SenAIS
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCalibration_Load);
             this.CalibrationPanel.ResumeLayout(false);
-            this.CalibrationPanel.PerformLayout();
             this.RightCalibPanel.ResumeLayout(false);
             this.RightCalibPanel.PerformLayout();
             this.panelAfterCalibration.ResumeLayout(false);

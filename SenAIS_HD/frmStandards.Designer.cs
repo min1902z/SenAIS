@@ -56,7 +56,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDelete.ForeColor = System.Drawing.Color.Blue;
             this.btnDelete.Location = new System.Drawing.Point(160, 141);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(114, 41);
@@ -68,7 +68,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSave.ForeColor = System.Drawing.Color.Blue;
             this.btnSave.Location = new System.Drawing.Point(13, 141);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 41);
@@ -81,7 +81,7 @@
             // 
             this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStandardTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.Blue;
             this.lbStandardTitle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lbStandardTitle.Location = new System.Drawing.Point(13, 0);
             this.lbStandardTitle.Name = "lbStandardTitle";

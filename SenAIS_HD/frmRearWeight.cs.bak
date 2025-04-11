@@ -1,5 +1,5 @@
-﻿using System;
-using System.Configuration;
+﻿using OPCAutomation;
+using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,14 +10,13 @@ namespace SenAIS
     {
         private Timer updateTimer;
         private SQLHelper sqlHelper;
-        private OPCManager opcManager;
         private string serialNumber;
         public decimal rearLeftWeight;
         public decimal rearRightWeight;
         private bool isReady = false;
         private double weightLeftA = 1.0;
         private double weightRightA = 1.0;
-        private static readonly string opcWeightCounter = ConfigurationManager.AppSettings["WeightR_Counter"];
+        private static readonly string opcWeightCounter = ConfigurationManager.AppSettings["Weight_Counter"];
         private static readonly string opcLWeightResult = ConfigurationManager.AppSettings["Rear_LWeight_Result"];
         private static readonly string opcRWeightResult = ConfigurationManager.AppSettings["Rear_RWeight_Result"];
         public frmRearWeight(string serialNumber)
@@ -28,7 +27,6 @@ namespace SenAIS
             weightLeftA = sqlHelper.GetParaValue("LeftWeight", "ParaA");
             weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
             InitializeTimer();
-            opcManager = new OPCManager();
         }
         private void InitializeTimer()
         {
@@ -43,7 +41,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcWeightCounter));
+                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcWeightCounter));
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
@@ -69,8 +67,8 @@ namespace SenAIS
                             isReady = true; // Sẵn sàng lưu sau khi đo
                             lbWeightTitle.Visible = false;
                             tbWeight.Visible = true;
-                            double leftWeightResult = opcManager.GetOPCValue(opcLWeightResult);
-                            double rightWeightResult = opcManager.GetOPCValue(opcRWeightResult);
+                            double leftWeightResult = OPCUtility.GetOPCValue(opcLWeightResult);
+                            double rightWeightResult = OPCUtility.GetOPCValue(opcRWeightResult);
                             double leftWeight = leftWeightResult / weightLeftA;
                             double rightWeight = rightWeightResult / weightRightA;
                             double sumWeight = leftWeight + rightWeight;
@@ -95,8 +93,8 @@ namespace SenAIS
                         case 4: // Xe tiếp theo
                             cbReady.BackColor = SystemColors.Control;
                             lbWeightTitle.Visible = false;
-                            var formSS = new frmSideSlip(this.serialNumber);
-                            formSS.Show();
+                            //var formWeight = new frmRearWeight(this.serialNumber);
+                            //formWeight.Show();
                             this.Close();
                             break;
 
@@ -130,6 +128,10 @@ namespace SenAIS
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                 }
+                else
+                {
+                    MessageBox.Show("Không có xe trước đó.");
+                }
             }
             catch (Exception ex)
             {
@@ -152,6 +154,10 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                }
+                else
+                {
+                    MessageBox.Show("Không có xe tiếp theo.");
                 }
             }
             catch (Exception ex)
