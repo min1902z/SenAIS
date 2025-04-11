@@ -66,26 +66,42 @@
             this.txtHSU2 = new System.Windows.Forms.TextBox();
             this.txtMinSpeed3 = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
-            this.txtLLBHorizontal = new System.Windows.Forms.TextBox();
-            this.txtLLBIntensity = new System.Windows.Forms.TextBox();
-            this.txtRLBIntensity = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.txtLLBVertical = new System.Windows.Forms.TextBox();
-            this.txtRLBVertical = new System.Windows.Forms.TextBox();
-            this.txtRLBHorizontal = new System.Windows.Forms.TextBox();
             this.HLPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtRFLHeight = new System.Windows.Forms.TextBox();
+            this.txtLFLHeight = new System.Windows.Forms.TextBox();
+            this.txtRFLHorizontal = new System.Windows.Forms.TextBox();
+            this.txtLFLHorizontal = new System.Windows.Forms.TextBox();
+            this.txtRFLVertical = new System.Windows.Forms.TextBox();
+            this.txtLFLVertical = new System.Windows.Forms.TextBox();
+            this.txtRFLIntensity = new System.Windows.Forms.TextBox();
+            this.txtLFLIntensity = new System.Windows.Forms.TextBox();
+            this.txtRLBHeight = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.txtLHLHeight = new System.Windows.Forms.TextBox();
+            this.txtRLBIntensity = new System.Windows.Forms.TextBox();
+            this.txtRLBVertical = new System.Windows.Forms.TextBox();
+            this.txtRLBHorizontal = new System.Windows.Forms.TextBox();
+            this.txtLLBHeight = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.txtLLBHorizontal = new System.Windows.Forms.TextBox();
             this.txtRHLIntensity = new System.Windows.Forms.TextBox();
+            this.txtLLBIntensity = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.txtLHLVertical = new System.Windows.Forms.TextBox();
+            this.txtLLBVertical = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.txtLHLHorizontal = new System.Windows.Forms.TextBox();
             this.txtRHLHorizontal = new System.Windows.Forms.TextBox();
             this.txtLHLIntensity = new System.Windows.Forms.TextBox();
             this.txtRHLVertical = new System.Windows.Forms.TextBox();
+            this.txtRHLHeight = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.BrakePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -109,20 +125,6 @@
             this.txtHandDiffBrake = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.WeightPanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtRearLeftWeight = new System.Windows.Forms.TextBox();
-            this.txtFrontLeftWeight = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtFrontRightWeight = new System.Windows.Forms.TextBox();
-            this.txtRearRightWeight = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtFrontSumWeight = new System.Windows.Forms.TextBox();
-            this.txtRearSumWeight = new System.Windows.Forms.TextBox();
-            this.lbWeightPanelTitle = new System.Windows.Forms.Label();
             this.EmissionPetrolPanel = new System.Windows.Forms.Panel();
             this.tbEmissionPetrol = new System.Windows.Forms.TableLayoutPanel();
             this.txtLamda = new System.Windows.Forms.TextBox();
@@ -166,38 +168,26 @@
             this.lbSpeedPanelTitle = new System.Windows.Forms.Label();
             this.VehiclePanel = new System.Windows.Forms.Panel();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
-            this.lbDateInspecTitle = new System.Windows.Forms.Label();
+            this.txtFuel = new System.Windows.Forms.TextBox();
+            this.lbFuel = new System.Windows.Forms.Label();
+            this.txtColor = new System.Windows.Forms.TextBox();
+            this.lbColor = new System.Windows.Forms.Label();
             this.lbSerialNumTitle = new System.Windows.Forms.Label();
-            this.txtTypeCar = new System.Windows.Forms.TextBox();
-            this.txtDateInspec = new System.Windows.Forms.TextBox();
-            this.lbInspectorTitle = new System.Windows.Forms.Label();
             this.lbFrameNumTitle = new System.Windows.Forms.Label();
-            this.lbTypeCarTitle = new System.Windows.Forms.Label();
             this.txtSerialNum = new System.Windows.Forms.TextBox();
-            this.txtInspector = new System.Windows.Forms.TextBox();
             this.txtFrameNum = new System.Windows.Forms.TextBox();
+            this.lbTypeCarTitle = new System.Windows.Forms.Label();
+            this.txtTypeCar = new System.Windows.Forms.TextBox();
+            this.lbInspectorTitle = new System.Windows.Forms.Label();
+            this.txtInspector = new System.Windows.Forms.TextBox();
+            this.lbDateInspecTitle = new System.Windows.Forms.Label();
+            this.txtDateInspec = new System.Windows.Forms.TextBox();
             this.lbVehicleTitle = new System.Windows.Forms.Label();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lbSearchTitle = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.txtLHLHeight = new System.Windows.Forms.TextBox();
-            this.txtRHLHeight = new System.Windows.Forms.TextBox();
-            this.txtLLBHeight = new System.Windows.Forms.TextBox();
-            this.txtRLBHeight = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.txtLFLIntensity = new System.Windows.Forms.TextBox();
-            this.txtRFLIntensity = new System.Windows.Forms.TextBox();
-            this.txtLFLVertical = new System.Windows.Forms.TextBox();
-            this.txtRFLVertical = new System.Windows.Forms.TextBox();
-            this.txtLFLHorizontal = new System.Windows.Forms.TextBox();
-            this.txtRFLHorizontal = new System.Windows.Forms.TextBox();
-            this.txtLFLHeight = new System.Windows.Forms.TextBox();
-            this.txtRFLHeight = new System.Windows.Forms.TextBox();
             this.ReportPanel.SuspendLayout();
             this.StaticTitlePanel.SuspendLayout();
             this.StaticPanel.SuspendLayout();
@@ -209,8 +199,6 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.BrakePanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.WeightPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.EmissionPetrolPanel.SuspendLayout();
             this.tbEmissionPetrol.SuspendLayout();
             this.SpeedPanel.SuspendLayout();
@@ -271,7 +259,6 @@
             this.StaticPanel.Controls.Add(this.DieselPanel);
             this.StaticPanel.Controls.Add(this.HLPanel);
             this.StaticPanel.Controls.Add(this.BrakePanel);
-            this.StaticPanel.Controls.Add(this.WeightPanel);
             this.StaticPanel.Controls.Add(this.EmissionPetrolPanel);
             this.StaticPanel.Controls.Add(this.SpeedPanel);
             this.StaticPanel.Controls.Add(this.VehiclePanel);
@@ -508,60 +495,6 @@
             this.label50.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label50.Name = "label50";
             // 
-            // txtLLBHorizontal
-            // 
-            this.txtLLBHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLLBHorizontal, "txtLLBHorizontal");
-            this.txtLLBHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLLBHorizontal.Name = "txtLLBHorizontal";
-            this.txtLLBHorizontal.ReadOnly = true;
-            // 
-            // txtLLBIntensity
-            // 
-            this.txtLLBIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLLBIntensity, "txtLLBIntensity");
-            this.txtLLBIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLLBIntensity.Name = "txtLLBIntensity";
-            this.txtLLBIntensity.ReadOnly = true;
-            // 
-            // txtRLBIntensity
-            // 
-            this.txtRLBIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRLBIntensity, "txtRLBIntensity");
-            this.txtRLBIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRLBIntensity.Name = "txtRLBIntensity";
-            this.txtRLBIntensity.ReadOnly = true;
-            // 
-            // label40
-            // 
-            resources.ApplyResources(this.label40, "label40");
-            this.label40.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label40.Name = "label40";
-            // 
-            // txtLLBVertical
-            // 
-            this.txtLLBVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLLBVertical, "txtLLBVertical");
-            this.txtLLBVertical.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLLBVertical.Name = "txtLLBVertical";
-            this.txtLLBVertical.ReadOnly = true;
-            // 
-            // txtRLBVertical
-            // 
-            this.txtRLBVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRLBVertical, "txtRLBVertical");
-            this.txtRLBVertical.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRLBVertical.Name = "txtRLBVertical";
-            this.txtRLBVertical.ReadOnly = true;
-            // 
-            // txtRLBHorizontal
-            // 
-            this.txtRLBHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRLBHorizontal, "txtRLBHorizontal");
-            this.txtRLBHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRLBHorizontal.Name = "txtRLBHorizontal";
-            this.txtRLBHorizontal.ReadOnly = true;
-            // 
             // HLPanel
             // 
             this.HLPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -611,11 +544,155 @@
             this.tableLayoutPanel3.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
+            // txtRFLHeight
+            // 
+            this.txtRFLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRFLHeight, "txtRFLHeight");
+            this.txtRFLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRFLHeight.Name = "txtRFLHeight";
+            this.txtRFLHeight.ReadOnly = true;
+            // 
+            // txtLFLHeight
+            // 
+            this.txtLFLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLFLHeight, "txtLFLHeight");
+            this.txtLFLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLFLHeight.Name = "txtLFLHeight";
+            this.txtLFLHeight.ReadOnly = true;
+            // 
+            // txtRFLHorizontal
+            // 
+            this.txtRFLHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRFLHorizontal, "txtRFLHorizontal");
+            this.txtRFLHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRFLHorizontal.Name = "txtRFLHorizontal";
+            this.txtRFLHorizontal.ReadOnly = true;
+            // 
+            // txtLFLHorizontal
+            // 
+            this.txtLFLHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLFLHorizontal, "txtLFLHorizontal");
+            this.txtLFLHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLFLHorizontal.Name = "txtLFLHorizontal";
+            this.txtLFLHorizontal.ReadOnly = true;
+            // 
+            // txtRFLVertical
+            // 
+            this.txtRFLVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRFLVertical, "txtRFLVertical");
+            this.txtRFLVertical.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRFLVertical.Name = "txtRFLVertical";
+            this.txtRFLVertical.ReadOnly = true;
+            // 
+            // txtLFLVertical
+            // 
+            this.txtLFLVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLFLVertical, "txtLFLVertical");
+            this.txtLFLVertical.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLFLVertical.Name = "txtLFLVertical";
+            this.txtLFLVertical.ReadOnly = true;
+            // 
+            // txtRFLIntensity
+            // 
+            this.txtRFLIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRFLIntensity, "txtRFLIntensity");
+            this.txtRFLIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRFLIntensity.Name = "txtRFLIntensity";
+            this.txtRFLIntensity.ReadOnly = true;
+            // 
+            // txtLFLIntensity
+            // 
+            this.txtLFLIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLFLIntensity, "txtLFLIntensity");
+            this.txtLFLIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLFLIntensity.Name = "txtLFLIntensity";
+            this.txtLFLIntensity.ReadOnly = true;
+            // 
+            // txtRLBHeight
+            // 
+            this.txtRLBHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRLBHeight, "txtRLBHeight");
+            this.txtRLBHeight.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRLBHeight.Name = "txtRLBHeight";
+            this.txtRLBHeight.ReadOnly = true;
+            // 
+            // label59
+            // 
+            resources.ApplyResources(this.label59, "label59");
+            this.label59.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label59.Name = "label59";
+            // 
+            // label58
+            // 
+            resources.ApplyResources(this.label58, "label58");
+            this.label58.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label58.Name = "label58";
+            // 
+            // txtLHLHeight
+            // 
+            this.txtLHLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLHLHeight, "txtLHLHeight");
+            this.txtLHLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLHLHeight.Name = "txtLHLHeight";
+            this.txtLHLHeight.ReadOnly = true;
+            // 
+            // txtRLBIntensity
+            // 
+            this.txtRLBIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRLBIntensity, "txtRLBIntensity");
+            this.txtRLBIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRLBIntensity.Name = "txtRLBIntensity";
+            this.txtRLBIntensity.ReadOnly = true;
+            // 
+            // txtRLBVertical
+            // 
+            this.txtRLBVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRLBVertical, "txtRLBVertical");
+            this.txtRLBVertical.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRLBVertical.Name = "txtRLBVertical";
+            this.txtRLBVertical.ReadOnly = true;
+            // 
+            // txtRLBHorizontal
+            // 
+            this.txtRLBHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRLBHorizontal, "txtRLBHorizontal");
+            this.txtRLBHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRLBHorizontal.Name = "txtRLBHorizontal";
+            this.txtRLBHorizontal.ReadOnly = true;
+            // 
+            // txtLLBHeight
+            // 
+            this.txtLLBHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLLBHeight, "txtLLBHeight");
+            this.txtLLBHeight.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLLBHeight.Name = "txtLLBHeight";
+            this.txtLLBHeight.ReadOnly = true;
+            // 
+            // label56
+            // 
+            resources.ApplyResources(this.label56, "label56");
+            this.label56.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label56.Name = "label56";
+            // 
             // label33
             // 
             resources.ApplyResources(this.label33, "label33");
             this.label33.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label33.Name = "label33";
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label40.Name = "label40";
+            // 
+            // txtLLBHorizontal
+            // 
+            this.txtLLBHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLLBHorizontal, "txtLLBHorizontal");
+            this.txtLLBHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLLBHorizontal.Name = "txtLLBHorizontal";
+            this.txtLLBHorizontal.ReadOnly = true;
             // 
             // txtRHLIntensity
             // 
@@ -624,6 +701,14 @@
             this.txtRHLIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txtRHLIntensity.Name = "txtRHLIntensity";
             this.txtRHLIntensity.ReadOnly = true;
+            // 
+            // txtLLBIntensity
+            // 
+            this.txtLLBIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLLBIntensity, "txtLLBIntensity");
+            this.txtLLBIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLLBIntensity.Name = "txtLLBIntensity";
+            this.txtLLBIntensity.ReadOnly = true;
             // 
             // label34
             // 
@@ -636,6 +721,12 @@
             resources.ApplyResources(this.label35, "label35");
             this.label35.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label35.Name = "label35";
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label41.Name = "label41";
             // 
             // label36
             // 
@@ -650,6 +741,14 @@
             this.txtLHLVertical.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txtLHLVertical.Name = "txtLHLVertical";
             this.txtLHLVertical.ReadOnly = true;
+            // 
+            // txtLLBVertical
+            // 
+            this.txtLLBVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtLLBVertical, "txtLLBVertical");
+            this.txtLLBVertical.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtLLBVertical.Name = "txtLLBVertical";
+            this.txtLLBVertical.ReadOnly = true;
             // 
             // label37
             // 
@@ -688,6 +787,14 @@
             this.txtRHLVertical.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txtRHLVertical.Name = "txtRHLVertical";
             this.txtRHLVertical.ReadOnly = true;
+            // 
+            // txtRHLHeight
+            // 
+            this.txtRHLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtRHLHeight, "txtRHLHeight");
+            this.txtRHLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtRHLHeight.Name = "txtRHLHeight";
+            this.txtRHLHeight.ReadOnly = true;
             // 
             // label38
             // 
@@ -874,117 +981,6 @@
             this.label30.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label30.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label30.Name = "label30";
-            // 
-            // WeightPanel
-            // 
-            this.WeightPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.WeightPanel.Controls.Add(this.tableLayoutPanel1);
-            this.WeightPanel.Controls.Add(this.lbWeightPanelTitle);
-            resources.ApplyResources(this.WeightPanel, "WeightPanel");
-            this.WeightPanel.Name = "WeightPanel";
-            this.WeightPanel.Tag = "";
-            // 
-            // tableLayoutPanel1
-            // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.label23, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtRearLeftWeight, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtFrontLeftWeight, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label25, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label27, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label20, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtFrontRightWeight, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtRearRightWeight, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label21, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtFrontSumWeight, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtRearSumWeight, 3, 2);
-            this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label23.Name = "label23";
-            // 
-            // txtRearLeftWeight
-            // 
-            this.txtRearLeftWeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRearLeftWeight, "txtRearLeftWeight");
-            this.txtRearLeftWeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRearLeftWeight.Name = "txtRearLeftWeight";
-            this.txtRearLeftWeight.ReadOnly = true;
-            // 
-            // txtFrontLeftWeight
-            // 
-            this.txtFrontLeftWeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtFrontLeftWeight, "txtFrontLeftWeight");
-            this.txtFrontLeftWeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtFrontLeftWeight.Name = "txtFrontLeftWeight";
-            this.txtFrontLeftWeight.ReadOnly = true;
-            // 
-            // label25
-            // 
-            resources.ApplyResources(this.label25, "label25");
-            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label25.Name = "label25";
-            // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label27.Name = "label27";
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label20.Name = "label20";
-            // 
-            // txtFrontRightWeight
-            // 
-            this.txtFrontRightWeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtFrontRightWeight, "txtFrontRightWeight");
-            this.txtFrontRightWeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtFrontRightWeight.Name = "txtFrontRightWeight";
-            this.txtFrontRightWeight.ReadOnly = true;
-            // 
-            // txtRearRightWeight
-            // 
-            this.txtRearRightWeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRearRightWeight, "txtRearRightWeight");
-            this.txtRearRightWeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRearRightWeight.Name = "txtRearRightWeight";
-            this.txtRearRightWeight.ReadOnly = true;
-            // 
-            // label21
-            // 
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label21.Name = "label21";
-            // 
-            // txtFrontSumWeight
-            // 
-            this.txtFrontSumWeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtFrontSumWeight, "txtFrontSumWeight");
-            this.txtFrontSumWeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtFrontSumWeight.Name = "txtFrontSumWeight";
-            this.txtFrontSumWeight.ReadOnly = true;
-            // 
-            // txtRearSumWeight
-            // 
-            this.txtRearSumWeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRearSumWeight, "txtRearSumWeight");
-            this.txtRearSumWeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRearSumWeight.Name = "txtRearSumWeight";
-            this.txtRearSumWeight.ReadOnly = true;
-            // 
-            // lbWeightPanelTitle
-            // 
-            resources.ApplyResources(this.lbWeightPanelTitle, "lbWeightPanelTitle");
-            this.lbWeightPanelTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lbWeightPanelTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbWeightPanelTitle.Name = "lbWeightPanelTitle";
             // 
             // EmissionPetrolPanel
             // 
@@ -1311,24 +1307,50 @@
             // tbVehicleInfo
             // 
             resources.ApplyResources(this.tbVehicleInfo, "tbVehicleInfo");
-            this.tbVehicleInfo.Controls.Add(this.lbDateInspecTitle, 0, 4);
+            this.tbVehicleInfo.Controls.Add(this.txtFuel, 5, 0);
+            this.tbVehicleInfo.Controls.Add(this.lbFuel, 4, 0);
+            this.tbVehicleInfo.Controls.Add(this.txtColor, 5, 1);
+            this.tbVehicleInfo.Controls.Add(this.lbColor, 4, 1);
             this.tbVehicleInfo.Controls.Add(this.lbSerialNumTitle, 0, 0);
-            this.tbVehicleInfo.Controls.Add(this.txtTypeCar, 1, 2);
-            this.tbVehicleInfo.Controls.Add(this.txtDateInspec, 1, 4);
-            this.tbVehicleInfo.Controls.Add(this.lbInspectorTitle, 0, 3);
             this.tbVehicleInfo.Controls.Add(this.lbFrameNumTitle, 0, 1);
-            this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 2);
             this.tbVehicleInfo.Controls.Add(this.txtSerialNum, 1, 0);
-            this.tbVehicleInfo.Controls.Add(this.txtInspector, 1, 3);
             this.tbVehicleInfo.Controls.Add(this.txtFrameNum, 1, 1);
+            this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 2, 0);
+            this.tbVehicleInfo.Controls.Add(this.txtTypeCar, 3, 0);
+            this.tbVehicleInfo.Controls.Add(this.lbInspectorTitle, 2, 2);
+            this.tbVehicleInfo.Controls.Add(this.txtInspector, 3, 2);
+            this.tbVehicleInfo.Controls.Add(this.lbDateInspecTitle, 2, 1);
+            this.tbVehicleInfo.Controls.Add(this.txtDateInspec, 3, 1);
             this.tbVehicleInfo.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tbVehicleInfo.Name = "tbVehicleInfo";
             // 
-            // lbDateInspecTitle
+            // txtFuel
             // 
-            resources.ApplyResources(this.lbDateInspecTitle, "lbDateInspecTitle");
-            this.lbDateInspecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbDateInspecTitle.Name = "lbDateInspecTitle";
+            this.txtFuel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtFuel, "txtFuel");
+            this.txtFuel.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFuel.Name = "txtFuel";
+            this.txtFuel.ReadOnly = true;
+            // 
+            // lbFuel
+            // 
+            resources.ApplyResources(this.lbFuel, "lbFuel");
+            this.lbFuel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbFuel.Name = "lbFuel";
+            // 
+            // txtColor
+            // 
+            this.txtColor.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtColor, "txtColor");
+            this.txtColor.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtColor.Name = "txtColor";
+            this.txtColor.ReadOnly = true;
+            // 
+            // lbColor
+            // 
+            resources.ApplyResources(this.lbColor, "lbColor");
+            this.lbColor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbColor.Name = "lbColor";
             // 
             // lbSerialNumTitle
             // 
@@ -1336,39 +1358,11 @@
             this.lbSerialNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbSerialNumTitle.Name = "lbSerialNumTitle";
             // 
-            // txtTypeCar
-            // 
-            this.txtTypeCar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtTypeCar, "txtTypeCar");
-            this.txtTypeCar.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtTypeCar.Name = "txtTypeCar";
-            this.txtTypeCar.ReadOnly = true;
-            // 
-            // txtDateInspec
-            // 
-            this.txtDateInspec.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtDateInspec, "txtDateInspec");
-            this.txtDateInspec.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtDateInspec.Name = "txtDateInspec";
-            this.txtDateInspec.ReadOnly = true;
-            // 
-            // lbInspectorTitle
-            // 
-            resources.ApplyResources(this.lbInspectorTitle, "lbInspectorTitle");
-            this.lbInspectorTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbInspectorTitle.Name = "lbInspectorTitle";
-            // 
             // lbFrameNumTitle
             // 
             resources.ApplyResources(this.lbFrameNumTitle, "lbFrameNumTitle");
             this.lbFrameNumTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbFrameNumTitle.Name = "lbFrameNumTitle";
-            // 
-            // lbTypeCarTitle
-            // 
-            resources.ApplyResources(this.lbTypeCarTitle, "lbTypeCarTitle");
-            this.lbTypeCarTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbTypeCarTitle.Name = "lbTypeCarTitle";
             // 
             // txtSerialNum
             // 
@@ -1378,6 +1372,34 @@
             this.txtSerialNum.Name = "txtSerialNum";
             this.txtSerialNum.ReadOnly = true;
             // 
+            // txtFrameNum
+            // 
+            this.txtFrameNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtFrameNum, "txtFrameNum");
+            this.txtFrameNum.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFrameNum.Name = "txtFrameNum";
+            this.txtFrameNum.ReadOnly = true;
+            // 
+            // lbTypeCarTitle
+            // 
+            resources.ApplyResources(this.lbTypeCarTitle, "lbTypeCarTitle");
+            this.lbTypeCarTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbTypeCarTitle.Name = "lbTypeCarTitle";
+            // 
+            // txtTypeCar
+            // 
+            this.txtTypeCar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtTypeCar, "txtTypeCar");
+            this.txtTypeCar.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtTypeCar.Name = "txtTypeCar";
+            this.txtTypeCar.ReadOnly = true;
+            // 
+            // lbInspectorTitle
+            // 
+            resources.ApplyResources(this.lbInspectorTitle, "lbInspectorTitle");
+            this.lbInspectorTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbInspectorTitle.Name = "lbInspectorTitle";
+            // 
             // txtInspector
             // 
             this.txtInspector.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1386,13 +1408,19 @@
             this.txtInspector.Name = "txtInspector";
             this.txtInspector.ReadOnly = true;
             // 
-            // txtFrameNum
+            // lbDateInspecTitle
             // 
-            this.txtFrameNum.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtFrameNum, "txtFrameNum");
-            this.txtFrameNum.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtFrameNum.Name = "txtFrameNum";
-            this.txtFrameNum.ReadOnly = true;
+            resources.ApplyResources(this.lbDateInspecTitle, "lbDateInspecTitle");
+            this.lbDateInspecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbDateInspecTitle.Name = "lbDateInspecTitle";
+            // 
+            // txtDateInspec
+            // 
+            this.txtDateInspec.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtDateInspec, "txtDateInspec");
+            this.txtDateInspec.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtDateInspec.Name = "txtDateInspec";
+            this.txtDateInspec.ReadOnly = true;
             // 
             // lbVehicleTitle
             // 
@@ -1463,126 +1491,6 @@
             this.lbSearchTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbSearchTitle.Name = "lbSearchTitle";
             // 
-            // label56
-            // 
-            resources.ApplyResources(this.label56, "label56");
-            this.label56.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label56.Name = "label56";
-            // 
-            // txtLHLHeight
-            // 
-            this.txtLHLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLHLHeight, "txtLHLHeight");
-            this.txtLHLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLHLHeight.Name = "txtLHLHeight";
-            this.txtLHLHeight.ReadOnly = true;
-            // 
-            // txtRHLHeight
-            // 
-            this.txtRHLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRHLHeight, "txtRHLHeight");
-            this.txtRHLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRHLHeight.Name = "txtRHLHeight";
-            this.txtRHLHeight.ReadOnly = true;
-            // 
-            // txtLLBHeight
-            // 
-            this.txtLLBHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLLBHeight, "txtLLBHeight");
-            this.txtLLBHeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLLBHeight.Name = "txtLLBHeight";
-            this.txtLLBHeight.ReadOnly = true;
-            // 
-            // txtRLBHeight
-            // 
-            this.txtRLBHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRLBHeight, "txtRLBHeight");
-            this.txtRLBHeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRLBHeight.Name = "txtRLBHeight";
-            this.txtRLBHeight.ReadOnly = true;
-            // 
-            // label41
-            // 
-            resources.ApplyResources(this.label41, "label41");
-            this.label41.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label41.Name = "label41";
-            // 
-            // label58
-            // 
-            resources.ApplyResources(this.label58, "label58");
-            this.label58.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label58.Name = "label58";
-            // 
-            // label59
-            // 
-            resources.ApplyResources(this.label59, "label59");
-            this.label59.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label59.Name = "label59";
-            // 
-            // txtLFLIntensity
-            // 
-            this.txtLFLIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLFLIntensity, "txtLFLIntensity");
-            this.txtLFLIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLFLIntensity.Name = "txtLFLIntensity";
-            this.txtLFLIntensity.ReadOnly = true;
-            // 
-            // txtRFLIntensity
-            // 
-            this.txtRFLIntensity.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRFLIntensity, "txtRFLIntensity");
-            this.txtRFLIntensity.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRFLIntensity.Name = "txtRFLIntensity";
-            this.txtRFLIntensity.ReadOnly = true;
-            // 
-            // txtLFLVertical
-            // 
-            this.txtLFLVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLFLVertical, "txtLFLVertical");
-            this.txtLFLVertical.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLFLVertical.Name = "txtLFLVertical";
-            this.txtLFLVertical.ReadOnly = true;
-            // 
-            // txtRFLVertical
-            // 
-            this.txtRFLVertical.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRFLVertical, "txtRFLVertical");
-            this.txtRFLVertical.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRFLVertical.Name = "txtRFLVertical";
-            this.txtRFLVertical.ReadOnly = true;
-            // 
-            // txtLFLHorizontal
-            // 
-            this.txtLFLHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLFLHorizontal, "txtLFLHorizontal");
-            this.txtLFLHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLFLHorizontal.Name = "txtLFLHorizontal";
-            this.txtLFLHorizontal.ReadOnly = true;
-            // 
-            // txtRFLHorizontal
-            // 
-            this.txtRFLHorizontal.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRFLHorizontal, "txtRFLHorizontal");
-            this.txtRFLHorizontal.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRFLHorizontal.Name = "txtRFLHorizontal";
-            this.txtRFLHorizontal.ReadOnly = true;
-            // 
-            // txtLFLHeight
-            // 
-            this.txtLFLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtLFLHeight, "txtLFLHeight");
-            this.txtLFLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtLFLHeight.Name = "txtLFLHeight";
-            this.txtLFLHeight.ReadOnly = true;
-            // 
-            // txtRFLHeight
-            // 
-            this.txtRFLHeight.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.txtRFLHeight, "txtRFLHeight");
-            this.txtRFLHeight.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtRFLHeight.Name = "txtRFLHeight";
-            this.txtRFLHeight.ReadOnly = true;
-            // 
             // frmReport
             // 
             resources.ApplyResources(this, "$this");
@@ -1614,10 +1522,6 @@
             this.BrakePanel.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.WeightPanel.ResumeLayout(false);
-            this.WeightPanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.EmissionPetrolPanel.ResumeLayout(false);
             this.EmissionPetrolPanel.PerformLayout();
             this.tbEmissionPetrol.ResumeLayout(false);
@@ -1717,20 +1621,6 @@
         private System.Windows.Forms.TextBox txtHandDiffBrake;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Panel WeightPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtRearLeftWeight;
-        private System.Windows.Forms.TextBox txtFrontLeftWeight;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtFrontRightWeight;
-        private System.Windows.Forms.TextBox txtRearRightWeight;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtFrontSumWeight;
-        private System.Windows.Forms.TextBox txtRearSumWeight;
-        private System.Windows.Forms.Label lbWeightPanelTitle;
         private System.Windows.Forms.Panel EmissionPetrolPanel;
         private System.Windows.Forms.TableLayoutPanel tbEmissionPetrol;
         private System.Windows.Forms.Label label18;
@@ -1806,5 +1696,9 @@
         private System.Windows.Forms.TextBox txtLFLHorizontal;
         private System.Windows.Forms.TextBox txtRFLVertical;
         private System.Windows.Forms.TextBox txtLFLVertical;
+        private System.Windows.Forms.TextBox txtColor;
+        private System.Windows.Forms.Label lbColor;
+        private System.Windows.Forms.TextBox txtFuel;
+        private System.Windows.Forms.Label lbFuel;
     }
 }

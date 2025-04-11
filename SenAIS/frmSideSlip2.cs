@@ -29,7 +29,7 @@ namespace SenAIS
         private void InitializeTimer()
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // Kiểm tra mỗi giây
+            updateTimer.Interval = 500; // Kiểm tra mỗi giây
             updateTimer.Tick += new EventHandler(UpdateReadyStatus);
             updateTimer.Start();
         }

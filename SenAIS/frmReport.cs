@@ -62,21 +62,10 @@ namespace SenAIS
                 txtSerialNum.Text = vehicleDetails["SerialNumber"].ToString();
                 txtFrameNum.Text = vehicleDetails["FrameNumber"].ToString();
                 string vehicleType = vehicleDetails["VehicleType"].ToString();
-                string colorValue = vehicleDetails["Color"]?.ToString();
-                // Gán thông tin vào txtTypeCar theo định dạng "Type - Màu"
-                if (!string.IsNullOrEmpty(vehicleType) && !string.IsNullOrEmpty(colorValue))
-                {
-                    txtTypeCar.Text = $"{vehicleType} - {colorValue}";
-                }
-                else if (!string.IsNullOrEmpty(vehicleType))
-                {
-                    txtTypeCar.Text = vehicleType; // Nếu không có màu, chỉ hiển thị loại xe
-                }
-                else
-                {
-                    txtTypeCar.Text = string.Empty; // Nếu không có dữ liệu, để trống
-                }
+                txtTypeCar.Text = vehicleType;
+                txtColor.Text = vehicleDetails["Color"]?.ToString();
                 txtInspector.Text = vehicleDetails["Inspector"].ToString();
+                txtFuel.Text = vehicleDetails["Fuel"].ToString();
                 DateTime inspectionDate;
                 if (DateTime.TryParse(vehicleDetails["InspectionDate"].ToString(), out inspectionDate))
                 {
@@ -99,28 +88,9 @@ namespace SenAIS
                 txtOT.Text = vehicleDetails["OilTemp"]?.ToString();
                 txtRPM.Text = vehicleDetails["RPM"]?.ToString();
                 txtLamda.Text = vehicleDetails["Lambda"]?.ToString();
-                txtFrontLeftWeight.Text = vehicleDetails["FrontLeftWeight"]?.ToString();
-                txtFrontRightWeight.Text = vehicleDetails["FrontRightWeight"]?.ToString();
-                if (!string.IsNullOrWhiteSpace(txtFrontLeftWeight.Text) && !string.IsNullOrWhiteSpace(txtFrontRightWeight.Text))
-                {
-                    CalculateAndDisplaySum(txtFrontLeftWeight, txtFrontRightWeight, txtFrontSumWeight);
-                }
-                else
-                {
-                    txtFrontSumWeight.Text = string.Empty;
-                }
-                txtRearLeftWeight.Text = vehicleDetails["RearLeftWeight"]?.ToString();
-                txtRearRightWeight.Text = vehicleDetails["RearRightWeight"]?.ToString();
-                if (!string.IsNullOrWhiteSpace(txtRearLeftWeight.Text) && !string.IsNullOrWhiteSpace(txtRearRightWeight.Text))
-                {
-                    CalculateAndDisplaySum(txtRearLeftWeight, txtRearRightWeight, txtRearSumWeight);
-                }
-                else
-                {
-                    txtRearSumWeight.Text = string.Empty;
-                }
                 txtFrontLeftBrake.Text = vehicleDetails["FrontLeftBrake"]?.ToString();
                 txtFrontRightBrake.Text = vehicleDetails["FrontRightBrake"]?.ToString();
+
                 if (!string.IsNullOrWhiteSpace(txtFrontLeftBrake.Text) && !string.IsNullOrWhiteSpace(txtFrontRightBrake.Text))
                 {
                     CalculateAndDisplaySum(txtFrontLeftBrake, txtFrontRightBrake, txtFrontSumBrake);
@@ -240,9 +210,19 @@ namespace SenAIS
             ClearTextBoxes(txtHSU1);
             ClearTextBoxes(txtHSU2);
             ClearTextBoxes(txtHSU3);
+            ClearTextBoxes(txtMinSpeed1);
+            ClearTextBoxes(txtMinSpeed2);
+            ClearTextBoxes(txtMinSpeed3);
+            ClearTextBoxes(txtMaxSpeed1);
+            ClearTextBoxes(txtMaxSpeed2);
+            ClearTextBoxes(txtMaxSpeed3);
 
-            ClearTextBoxes(txtFrontSumWeight);
-            ClearTextBoxes(txtRearSumWeight);
+            ClearTextBoxes(txtFrontLeftBrake);
+            ClearTextBoxes(txtFrontRightBrake);
+            ClearTextBoxes(txtRearLeftBrake);
+            ClearTextBoxes(txtRearRightBrake);
+            ClearTextBoxes(txtHandLeftBrake);
+            ClearTextBoxes(txtHandRightBrake);
             ClearTextBoxes(txtFrontSumBrake);
             ClearTextBoxes(txtFrontDiffBrake);
             ClearTextBoxes(txtRearSumBrake);
@@ -679,8 +659,8 @@ namespace SenAIS
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["LFLIntensity"]),
                                                  standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MinFLIntensity"))
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["LHLHorizontal"]),
-                                                 standard.Field<decimal?>("MinDiffHoriLeftHB"),
-                                                 standard.Field<decimal?>("MaxDiffHoriLeftHB"))
+                                                 standard.Field<decimal?>("MinDiffHoriHB"),
+                                                 standard.Field<decimal?>("MaxDiffHoriHB"))
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["RHLHorizontal"]),
                                                  standard.Field<decimal?>("MinDiffHoriHB"),
                                                  standard.Field<decimal?>("MaxDiffHoriHB"))
@@ -715,7 +695,7 @@ namespace SenAIS
                                                    standard.Field<decimal?>("MaxWhistle"));
 
                 // Tính toán kết quả cuối cùng
-                string engineType = vehicleDetails["EngineType"].ToString();
+                string engineType = vehicleDetails["Fuel"].ToString();
                 bool engineResult = (engineType == "Xăng") ? petrolResult :
                                     (engineType == "Dầu") ? dieselResult : false;
 
@@ -755,13 +735,13 @@ namespace SenAIS
                 reportRow["HC"] = ConvertToDecimal(vehicleDetails["HC"]).ToString("F1");
                 reportRow["MaxHC"] = ConvertToDecimal(standard["MaxHC"]).ToString("F1");
                 reportRow["CO"] = ConvertToDecimal(vehicleDetails["CO"]).ToString("F2");
-                reportRow["MaxCO"] = ConvertToDecimal(standard["MaxCO"]).ToString("F1");
+                reportRow["MaxCO"] = ConvertToDecimal(standard["MaxCO"]).ToString("F2");
                 reportRow["CO2"] = ConvertToDecimal(vehicleDetails["CO2"]).ToString("F2");
-                reportRow["MaxCO2"] = ConvertToDecimal(standard["MaxCO2"]).ToString("F1");
+                reportRow["MaxCO2"] = ConvertToDecimal(standard["MaxCO2"]).ToString("F2");
                 reportRow["O2"] = ConvertToDecimal(vehicleDetails["O2"]).ToString("F2");
-                reportRow["MaxO2"] = ConvertToDecimal(standard["MaxO2"]).ToString("F1");
+                reportRow["MaxO2"] = ConvertToDecimal(standard["MaxO2"]).ToString("F2");
                 reportRow["NO"] = ConvertToDecimal(vehicleDetails["NO"]).ToString("F2");
-                reportRow["MaxNO"] = ConvertToDecimal(standard["MaxNO"]).ToString("F1");
+                reportRow["MaxNO"] = ConvertToDecimal(standard["MaxNO"]).ToString("F2");
                 reportRow["OilTemp"] = ConvertToDecimal(vehicleDetails["OilTemp"]).ToString("F1");
                 reportRow["RPM"] = ConvertToDecimal(vehicleDetails["RPM"]).ToString("F1");
                 reportRow["Lambda"] = ConvertToDecimal(vehicleDetails["Lambda"]).ToString("F3");
@@ -843,7 +823,7 @@ namespace SenAIS
                 reportRow["MaxSpeed3"] = ConvertToDecimal(vehicleDetails["MaxSpeed3"]).ToString("F1");
                 reportRow["HSU3"] = ConvertToDecimal(hsu3).ToString("F1");
                 reportRow["AvgHSU"] = ConvertToDecimal(avgHSU).ToString("F2");
-                reportRow["MaxHSU"] = ConvertToDecimal(standard["MaxHSU"]).ToString("F1");
+                reportRow["MaxHSU"] = ConvertToDecimal(standard["MaxHSU"]).ToString("F2");
 
                 reportRow["LeftSteerLW"] = ConvertToDecimal(vehicleDetails["LeftSteerLW"]).ToString("F1");
                 reportRow["LeftSteerRW"] = ConvertToDecimal(vehicleDetails["LeftSteerRW"]).ToString("F1");
@@ -926,10 +906,6 @@ namespace SenAIS
 
                     decimal? speed = GetDecimalFromTextBox(txtSpeed);
                     decimal? sideSlip = GetDecimalFromTextBox(txtSideSlip);
-                    decimal? frontLeftWeight = GetDecimalFromTextBox(txtFrontLeftWeight);
-                    decimal? frontRightWeight = GetDecimalFromTextBox(txtFrontRightWeight);
-                    decimal? rearLeftWeight = GetDecimalFromTextBox(txtRearLeftWeight);
-                    decimal? rearRightWeight = GetDecimalFromTextBox(txtRearRightWeight);
                     decimal? frontLeftBrake = GetDecimalFromTextBox(txtFrontLeftBrake);
                     decimal? frontRightBrake = GetDecimalFromTextBox(txtFrontRightBrake);
                     decimal? rearLeftBrake = GetDecimalFromTextBox(txtRearLeftBrake);
@@ -987,7 +963,6 @@ namespace SenAIS
                     // Thực hiện cập nhật từng bảng trong cơ sở dữ liệu
                     sqlHelper.UpdateSpeed(serialNumber, speed);
                     sqlHelper.UpdateSideSlip(serialNumber, sideSlip);
-                    sqlHelper.UpdateWeight(serialNumber, frontLeftWeight, frontRightWeight, rearLeftWeight, rearRightWeight);
                     sqlHelper.UpdateSteerAngle(serialNumber, leftSteerLW, leftSteerRW, rightSteerLW, rightSteerRW);
                     sqlHelper.UpdateBrakeForce(serialNumber, frontLeftBrake, frontRightBrake, rearLeftBrake, rearRightBrake, handBrakeLeft, handBrakeRight);
                     sqlHelper.UpdateNoise(serialNumber, noise, whistle);
@@ -1028,10 +1003,6 @@ namespace SenAIS
             txtOT.ReadOnly = !enable;
             txtRPM.ReadOnly = !enable;
             txtLamda.ReadOnly = !enable;
-            txtFrontLeftWeight.ReadOnly = !enable;
-            txtFrontRightWeight.ReadOnly = !enable;
-            txtRearLeftWeight.ReadOnly = !enable;
-            txtRearRightWeight.ReadOnly = !enable;
             txtLeftSteerLW.ReadOnly = !enable;
             txtLeftSteerRW.ReadOnly = !enable;
             txtRightSteerLW.ReadOnly = !enable;

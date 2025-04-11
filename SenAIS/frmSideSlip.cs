@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -130,34 +131,40 @@ namespace SenAIS
                                 cbReady.BackColor = SystemColors.Control;
                                 lbSideSlipTitle.Visible = true;
                                 lbStandard.Visible = false;
-                                this.Close();
-                                //if (!hasProcessedNextVin)
-                                //{
-                                //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                                //    if (!string.IsNullOrEmpty(nextSerialNumber))
-                                //    {
-                                //        this.serialNumber = nextSerialNumber;
-                                //        lbVinNumber.Text = this.serialNumber;
+                                if (!hasProcessedNextVin)
+                                {
+                                    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
 
-                                //        // Lấy và hiển thị tiêu chuẩn mới
-                                //        LoadVehicleStandards(this.serialNumber);
-                                //        var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-                                //        if (frmMain != null)
-                                //        {
-                                //            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-                                //            if (txtVinNumber != null)
-                                //            {
-                                //                txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
-                                //            }
-                                //        }
-                                //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                                //        this.Close();
-                                //    }
-                                //    else
-                                //    {
-                                //        this.Close();
-                                //    }
-                                //}
+                                    var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                                    if (frmMain != null)
+                                    {
+                                        var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+
+                                        if (!string.IsNullOrEmpty(nextSerialNumber))
+                                        {
+                                            this.serialNumber = nextSerialNumber;
+                                            lbVinNumber.Text = this.serialNumber;
+                                            if (txtVinNumber != null)
+                                            {
+                                                txtVinNumber.Text = this.serialNumber;
+                                                frmMain.UpdateVehicleInfo(this.serialNumber);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (txtVinNumber != null)
+                                            {
+                                                txtVinNumber.Text = string.Empty;
+                                            }
+                                        }
+                                    }
+                                    hasProcessedNextVin = true;
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    this.Close();
+                                }
                                 break;
                             default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
                                 cbReady.BackColor = SystemColors.Control; // Màu mặc định

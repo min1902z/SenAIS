@@ -143,8 +143,8 @@ namespace SenAIS
                          case 1: // Xe vào vị trí
                              cbReady.BackColor = Color.Green; // Đèn xanh sáng
                              isReady = false; // Chưa sẵn sàng lưu
-                             tbHeadLights.Visible = false;
-                             lbTitle.Visible = true;
+                             tbHeadLights.Visible = true;
+                             lbTitle.Visible = false;
                              break;
 
                          case 2: // Bắt đầu đo

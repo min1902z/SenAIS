@@ -307,16 +307,16 @@
     <value>0</value>
   </data>
   <data name="txtLeftSteerRW.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtLeftSteerRW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 75</value>
+    <value>133, 79</value>
   </data>
   <data name="txtLeftSteerRW.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtLeftSteerRW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 36</value>
+    <value>157, 40</value>
   </data>
   <data name="txtLeftSteerRW.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -337,7 +337,7 @@
     <value>1</value>
   </data>
   <data name="txtLeftSteerLW.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtLeftSteerLW.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 35</value>
@@ -346,7 +346,7 @@
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtLeftSteerLW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 36</value>
+    <value>157, 40</value>
   </data>
   <data name="txtLeftSteerLW.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -376,7 +376,7 @@
     <value>NoControl</value>
   </data>
   <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 73</value>
+    <value>3, 77</value>
   </data>
   <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 33</value>
@@ -469,7 +469,7 @@
     <value>5</value>
   </data>
   <data name="txtRightSteerLW.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtRightSteerLW.Location" type="System.Drawing.Point, System.Drawing">
     <value>296, 35</value>
@@ -478,7 +478,7 @@
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtRightSteerLW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 36</value>
+    <value>158, 40</value>
   </data>
   <data name="txtRightSteerLW.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -499,16 +499,16 @@
     <value>6</value>
   </data>
   <data name="txtRightSteerRW.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtRightSteerRW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 75</value>
+    <value>296, 79</value>
   </data>
   <data name="txtRightSteerRW.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtRightSteerRW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 36</value>
+    <value>158, 40</value>
   </data>
   <data name="txtRightSteerRW.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -532,7 +532,7 @@
     <value>Calibri, 15.75pt</value>
   </data>
   <data name="tableLayoutPanel6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 31</value>
+    <value>29, 49</value>
   </data>
   <data name="tableLayoutPanel6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
@@ -541,7 +541,7 @@
     <value>3</value>
   </data>
   <data name="tableLayoutPanel6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 119</value>
+    <value>457, 131</value>
   </data>
   <data name="tableLayoutPanel6.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -601,13 +601,13 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="SteerAnglePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 862</value>
+    <value>15, 829</value>
   </data>
   <data name="SteerAnglePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="SteerAnglePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 158</value>
+    <value>503, 191</value>
   </data>
   <data name="SteerAnglePanel.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -3067,473 +3067,20 @@
   <data name="&gt;&gt;BrakePanel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="label23.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="label23.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label23.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>489, 0</value>
-  </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 33</value>
-  </data>
-  <data name="label23.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Bên phải (kg)</value>
-  </data>
-  <data name="&gt;&gt;label23.Name" xml:space="preserve">
-    <value>label23</value>
-  </data>
-  <data name="&gt;&gt;label23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtRearLeftWeight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtRearLeftWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 79</value>
-  </data>
-  <data name="txtRearLeftWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtRearLeftWeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 40</value>
-  </data>
-  <data name="txtRearLeftWeight.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="txtRearLeftWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtRearLeftWeight.Name" xml:space="preserve">
-    <value>txtRearLeftWeight</value>
-  </data>
-  <data name="&gt;&gt;txtRearLeftWeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtRearLeftWeight.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtRearLeftWeight.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtFrontLeftWeight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtFrontLeftWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 35</value>
-  </data>
-  <data name="txtFrontLeftWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtFrontLeftWeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 40</value>
-  </data>
-  <data name="txtFrontLeftWeight.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="txtFrontLeftWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtFrontLeftWeight.Name" xml:space="preserve">
-    <value>txtFrontLeftWeight</value>
-  </data>
-  <data name="&gt;&gt;txtFrontLeftWeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtFrontLeftWeight.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtFrontLeftWeight.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label25.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label25.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="label25.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 77</value>
-  </data>
-  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 33</value>
-  </data>
-  <data name="label25.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Bánh sau</value>
-  </data>
-  <data name="&gt;&gt;label25.Name" xml:space="preserve">
-    <value>label25</value>
-  </data>
-  <data name="&gt;&gt;label25.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label25.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label27.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label27.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="label27.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 33</value>
-  </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 33</value>
-  </data>
-  <data name="label27.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Bánh trước</value>
-  </data>
-  <data name="&gt;&gt;label27.Name" xml:space="preserve">
-    <value>label27</value>
-  </data>
-  <data name="&gt;&gt;label27.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label27.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label20.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label20.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 0</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 33</value>
-  </data>
-  <data name="label20.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Bên trái (kg)</value>
-  </data>
-  <data name="&gt;&gt;label20.Name" xml:space="preserve">
-    <value>label20</value>
-  </data>
-  <data name="&gt;&gt;label20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="txtFrontRightWeight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtFrontRightWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>426, 35</value>
-  </data>
-  <data name="txtFrontRightWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtFrontRightWeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 40</value>
-  </data>
-  <data name="txtFrontRightWeight.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="txtFrontRightWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtFrontRightWeight.Name" xml:space="preserve">
-    <value>txtFrontRightWeight</value>
-  </data>
-  <data name="&gt;&gt;txtFrontRightWeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtFrontRightWeight.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtFrontRightWeight.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="txtRearRightWeight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtRearRightWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>426, 79</value>
-  </data>
-  <data name="txtRearRightWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtRearRightWeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 40</value>
-  </data>
-  <data name="txtRearRightWeight.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="txtRearRightWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtRearRightWeight.Name" xml:space="preserve">
-    <value>txtRearRightWeight</value>
-  </data>
-  <data name="&gt;&gt;txtRearRightWeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtRearRightWeight.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtRearRightWeight.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label21.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label21.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>764, 0</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 33</value>
-  </data>
-  <data name="label21.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Tổng (kg)</value>
-  </data>
-  <data name="&gt;&gt;label21.Name" xml:space="preserve">
-    <value>label21</value>
-  </data>
-  <data name="&gt;&gt;label21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="txtFrontSumWeight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtFrontSumWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 35</value>
-  </data>
-  <data name="txtFrontSumWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtFrontSumWeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 40</value>
-  </data>
-  <data name="txtFrontSumWeight.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="txtFrontSumWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtFrontSumWeight.Name" xml:space="preserve">
-    <value>txtFrontSumWeight</value>
-  </data>
-  <data name="&gt;&gt;txtFrontSumWeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtFrontSumWeight.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtFrontSumWeight.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="txtRearSumWeight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="txtRearSumWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 79</value>
-  </data>
-  <data name="txtRearSumWeight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtRearSumWeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 40</value>
-  </data>
-  <data name="txtRearSumWeight.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="txtRearSumWeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtRearSumWeight.Name" xml:space="preserve">
-    <value>txtRearSumWeight</value>
-  </data>
-  <data name="&gt;&gt;txtRearSumWeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtRearSumWeight.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;txtRearSumWeight.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="tableLayoutPanel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 18pt</value>
-  </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 36</value>
-  </data>
-  <data name="tableLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>881, 123</value>
-  </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>WeightPanel</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label23" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtRearLeftWeight" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrontLeftWeight" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label25" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label27" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label20" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrontRightWeight" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtRearRightWeight" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label21" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="txtFrontSumWeight" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="txtRearSumWeight" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,197,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="lbWeightPanelTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbWeightPanelTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt, style=Bold</value>
-  </data>
-  <data name="lbWeightPanelTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbWeightPanelTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
-  </data>
-  <data name="lbWeightPanelTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lbWeightPanelTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 33</value>
-  </data>
-  <data name="lbWeightPanelTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lbWeightPanelTitle.Text" xml:space="preserve">
-    <value>Trọng Lượng</value>
-  </data>
-  <data name="&gt;&gt;lbWeightPanelTitle.Name" xml:space="preserve">
-    <value>lbWeightPanelTitle</value>
-  </data>
-  <data name="&gt;&gt;lbWeightPanelTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbWeightPanelTitle.Parent" xml:space="preserve">
-    <value>WeightPanel</value>
-  </data>
-  <data name="&gt;&gt;lbWeightPanelTitle.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="WeightPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 9.75pt</value>
-  </data>
-  <data name="WeightPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>524, 5</value>
-  </data>
-  <data name="WeightPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="WeightPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 168</value>
-  </data>
-  <data name="WeightPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;WeightPanel.Name" xml:space="preserve">
-    <value>WeightPanel</value>
-  </data>
-  <data name="&gt;&gt;WeightPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;WeightPanel.Parent" xml:space="preserve">
-    <value>StaticPanel</value>
-  </data>
-  <data name="&gt;&gt;WeightPanel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="tbEmissionPetrol.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="txtLamda.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtLamda.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 282</value>
+    <value>203, 310</value>
   </data>
   <data name="txtLamda.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtLamda.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtLamda.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -3557,16 +3104,16 @@
     <value>True</value>
   </data>
   <data name="label55.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label55.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 280</value>
+    <value>3, 308</value>
   </data>
   <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 29</value>
+    <value>28, 35</value>
   </data>
   <data name="label55.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -3596,7 +3143,7 @@
     <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 120</value>
+    <value>354, 132</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 33</value>
@@ -3629,7 +3176,7 @@
     <value>NoControl</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 80</value>
+    <value>354, 88</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 33</value>
@@ -3653,16 +3200,16 @@
     <value>3</value>
   </data>
   <data name="txtOT.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtOT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 82</value>
+    <value>203, 90</value>
   </data>
   <data name="txtOT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtOT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtOT.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -3686,16 +3233,16 @@
     <value>True</value>
   </data>
   <data name="label13.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 120</value>
+    <value>3, 132</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 29</value>
+    <value>68, 35</value>
   </data>
   <data name="label13.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3716,16 +3263,16 @@
     <value>5</value>
   </data>
   <data name="txtRPM.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtRPM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 122</value>
+    <value>203, 134</value>
   </data>
   <data name="txtRPM.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtRPM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtRPM.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -3749,16 +3296,16 @@
     <value>True</value>
   </data>
   <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 80</value>
+    <value>3, 88</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 29</value>
+    <value>112, 35</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -3788,7 +3335,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 40</value>
+    <value>354, 44</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 33</value>
@@ -3845,16 +3392,16 @@
     <value>9</value>
   </data>
   <data name="txtCO.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtCO.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 42</value>
+    <value>203, 46</value>
   </data>
   <data name="txtCO.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtCO.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtCO.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -3878,7 +3425,7 @@
     <value>True</value>
   </data>
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3887,7 +3434,7 @@
     <value>3, 0</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 29</value>
+    <value>47, 35</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3908,7 +3455,7 @@
     <value>11</value>
   </data>
   <data name="txtHC.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtHC.Location" type="System.Drawing.Point, System.Drawing">
     <value>203, 2</value>
@@ -3917,7 +3464,7 @@
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtHC.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtHC.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -3941,16 +3488,16 @@
     <value>True</value>
   </data>
   <data name="label12.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 40</value>
+    <value>3, 44</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 29</value>
+    <value>49, 35</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3974,16 +3521,16 @@
     <value>True</value>
   </data>
   <data name="label14.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 240</value>
+    <value>3, 264</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 29</value>
+    <value>52, 35</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -4007,16 +3554,16 @@
     <value>True</value>
   </data>
   <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 200</value>
+    <value>3, 220</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 29</value>
+    <value>43, 35</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -4040,16 +3587,16 @@
     <value>True</value>
   </data>
   <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 160</value>
+    <value>3, 176</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 29</value>
+    <value>58, 35</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -4070,16 +3617,16 @@
     <value>16</value>
   </data>
   <data name="txtNO.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtNO.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 242</value>
+    <value>203, 266</value>
   </data>
   <data name="txtNO.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtNO.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtNO.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -4100,16 +3647,16 @@
     <value>17</value>
   </data>
   <data name="txtO2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtO2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 202</value>
+    <value>203, 222</value>
   </data>
   <data name="txtO2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtO2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtO2.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -4130,16 +3677,16 @@
     <value>18</value>
   </data>
   <data name="txtCO2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtCO2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 162</value>
+    <value>203, 178</value>
   </data>
   <data name="txtCO2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtCO2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 36</value>
+    <value>143, 40</value>
   </data>
   <data name="txtCO2.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -4169,7 +3716,7 @@
     <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 240</value>
+    <value>354, 264</value>
   </data>
   <data name="label16.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -4205,7 +3752,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 200</value>
+    <value>354, 220</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 33</value>
@@ -4238,7 +3785,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 160</value>
+    <value>354, 176</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 33</value>
@@ -4274,7 +3821,7 @@
     <value>8</value>
   </data>
   <data name="tbEmissionPetrol.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 346</value>
+    <value>457, 371</value>
   </data>
   <data name="tbEmissionPetrol.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -4292,7 +3839,7 @@
     <value>0</value>
   </data>
   <data name="tbEmissionPetrol.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtLamda" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label55" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtOT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtRPM" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtCO" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtHC" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtNO" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtO2" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Absolute,151,Absolute,232" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,49" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtLamda" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label55" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtOT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtRPM" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtCO" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtHC" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtNO" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtO2" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtCO2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Absolute,151,Absolute,232" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbEmissionPetTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4334,13 +3881,13 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="EmissionPetrolPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 476</value>
+    <value>15, 408</value>
   </data>
   <data name="EmissionPetrolPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="EmissionPetrolPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 382</value>
+    <value>503, 413</value>
   </data>
   <data name="EmissionPetrolPanel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -4355,7 +3902,7 @@
     <value>StaticPanel</value>
   </data>
   <data name="&gt;&gt;EmissionPetrolPanel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="tbSpeed.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
@@ -4748,7 +4295,7 @@
     <value>Calibri, 18pt</value>
   </data>
   <data name="tbSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 31</value>
+    <value>29, 36</value>
   </data>
   <data name="tbSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
@@ -4757,7 +4304,7 @@
     <value>4</value>
   </data>
   <data name="tbSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 172</value>
+    <value>457, 171</value>
   </data>
   <data name="tbSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -4787,7 +4334,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbSpeedPanelTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, -2</value>
+    <value>1, -2</value>
   </data>
   <data name="lbSpeedPanelTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -4817,13 +4364,13 @@
     <value>Calibri, 9.75pt</value>
   </data>
   <data name="SpeedPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 267</value>
+    <value>15, 181</value>
   </data>
   <data name="SpeedPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="SpeedPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 205</value>
+    <value>503, 217</value>
   </data>
   <data name="SpeedPanel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -4838,52 +4385,139 @@
     <value>StaticPanel</value>
   </data>
   <data name="&gt;&gt;SpeedPanel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="VehiclePanel.AccessibleName" xml:space="preserve">
     <value />
   </data>
   <data name="tbVehicleInfo.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>6</value>
   </data>
-  <data name="lbDateInspecTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="txtFuel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 16.2pt</value>
   </data>
-  <data name="lbDateInspecTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+  <data name="txtFuel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1082, 2</value>
   </data>
-  <data name="lbDateInspecTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="txtFuel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
-  <data name="lbDateInspecTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 160</value>
+  <data name="txtFuel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 40</value>
   </data>
-  <data name="lbDateInspecTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 33</value>
+  <data name="txtFuel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
-  <data name="lbDateInspecTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;txtFuel.Name" xml:space="preserve">
+    <value>txtFuel</value>
   </data>
-  <data name="lbDateInspecTitle.Text" xml:space="preserve">
-    <value>Ngày kiểm tra</value>
+  <data name="&gt;&gt;txtFuel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbDateInspecTitle.Name" xml:space="preserve">
-    <value>lbDateInspecTitle</value>
-  </data>
-  <data name="&gt;&gt;lbDateInspecTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbDateInspecTitle.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtFuel.Parent" xml:space="preserve">
     <value>tbVehicleInfo</value>
   </data>
-  <data name="&gt;&gt;lbDateInspecTitle.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtFuel.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="lbFuel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbFuel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 18pt</value>
+  </data>
+  <data name="lbFuel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbFuel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>934, 0</value>
+  </data>
+  <data name="lbFuel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 37</value>
+  </data>
+  <data name="lbFuel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="lbFuel.Text" xml:space="preserve">
+    <value>Nhiên liệu</value>
+  </data>
+  <data name="&gt;&gt;lbFuel.Name" xml:space="preserve">
+    <value>lbFuel</value>
+  </data>
+  <data name="&gt;&gt;lbFuel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbFuel.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;lbFuel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtColor.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 16.2pt</value>
+  </data>
+  <data name="txtColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1082, 46</value>
+  </data>
+  <data name="txtColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="txtColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 40</value>
+  </data>
+  <data name="txtColor.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;txtColor.Name" xml:space="preserve">
+    <value>txtColor</value>
+  </data>
+  <data name="&gt;&gt;txtColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtColor.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;txtColor.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbColor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbColor.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 18pt</value>
+  </data>
+  <data name="lbColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>934, 44</value>
+  </data>
+  <data name="lbColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 37</value>
+  </data>
+  <data name="lbColor.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lbColor.Text" xml:space="preserve">
+    <value>Màu xe</value>
+  </data>
+  <data name="&gt;&gt;lbColor.Name" xml:space="preserve">
+    <value>lbColor</value>
+  </data>
+  <data name="&gt;&gt;lbColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbColor.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;lbColor.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="lbSerialNumTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lbSerialNumTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 18pt</value>
   </data>
   <data name="lbSerialNumTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4892,7 +4526,7 @@
     <value>3, 0</value>
   </data>
   <data name="lbSerialNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 33</value>
+    <value>91, 37</value>
   </data>
   <data name="lbSerialNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -4910,115 +4544,22 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;lbSerialNumTitle.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtTypeCar.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
-  </data>
-  <data name="txtTypeCar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 82</value>
-  </data>
-  <data name="txtTypeCar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtTypeCar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 36</value>
-  </data>
-  <data name="txtTypeCar.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="txtTypeCar.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtTypeCar.Name" xml:space="preserve">
-    <value>txtTypeCar</value>
-  </data>
-  <data name="&gt;&gt;txtTypeCar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtTypeCar.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;txtTypeCar.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtDateInspec.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
-  </data>
-  <data name="txtDateInspec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 162</value>
-  </data>
-  <data name="txtDateInspec.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="txtDateInspec.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 36</value>
-  </data>
-  <data name="txtDateInspec.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="txtDateInspec.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.Name" xml:space="preserve">
-    <value>txtDateInspec</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;txtDateInspec.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lbInspectorTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbInspectorTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
-  </data>
-  <data name="lbInspectorTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbInspectorTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 120</value>
-  </data>
-  <data name="lbInspectorTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 33</value>
-  </data>
-  <data name="lbInspectorTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="lbInspectorTitle.Text" xml:space="preserve">
-    <value>Người kiểm tra</value>
-  </data>
-  <data name="&gt;&gt;lbInspectorTitle.Name" xml:space="preserve">
-    <value>lbInspectorTitle</value>
-  </data>
-  <data name="&gt;&gt;lbInspectorTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbInspectorTitle.Parent" xml:space="preserve">
-    <value>tbVehicleInfo</value>
-  </data>
-  <data name="&gt;&gt;lbInspectorTitle.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="lbFrameNumTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lbFrameNumTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 18pt</value>
   </data>
   <data name="lbFrameNumTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lbFrameNumTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 40</value>
+    <value>3, 44</value>
   </data>
   <data name="lbFrameNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 33</value>
+    <value>106, 37</value>
   </data>
   <data name="lbFrameNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5038,20 +4579,74 @@
   <data name="&gt;&gt;lbFrameNumTitle.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="txtSerialNum.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 16.2pt</value>
+  </data>
+  <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 2</value>
+  </data>
+  <data name="txtSerialNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="txtSerialNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 40</value>
+  </data>
+  <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
+    <value>txtSerialNum</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txtFrameNum.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 16.2pt</value>
+  </data>
+  <data name="txtFrameNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 46</value>
+  </data>
+  <data name="txtFrameNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="txtFrameNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 40</value>
+  </data>
+  <data name="txtFrameNum.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;txtFrameNum.Name" xml:space="preserve">
+    <value>txtFrameNum</value>
+  </data>
+  <data name="&gt;&gt;txtFrameNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtFrameNum.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;txtFrameNum.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="lbTypeCarTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lbTypeCarTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 15.75pt</value>
+    <value>Calibri, 18pt</value>
   </data>
   <data name="lbTypeCarTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lbTypeCarTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 80</value>
+    <value>422, 0</value>
   </data>
   <data name="lbTypeCarTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 33</value>
+    <value>101, 37</value>
   </data>
   <data name="lbTypeCarTitle.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -5069,55 +4664,82 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;lbTypeCarTitle.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
-  <data name="txtSerialNum.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+  <data name="txtTypeCar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 16.2pt</value>
   </data>
-  <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 2</value>
+  <data name="txtTypeCar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>627, 2</value>
   </data>
-  <data name="txtSerialNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="txtTypeCar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
-  <data name="txtSerialNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 36</value>
+  <data name="txtTypeCar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 40</value>
   </data>
-  <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="txtTypeCar.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="txtSerialNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;txtTypeCar.Name" xml:space="preserve">
+    <value>txtTypeCar</value>
   </data>
-  <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
-    <value>txtSerialNum</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtTypeCar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtTypeCar.Parent" xml:space="preserve">
     <value>tbVehicleInfo</value>
   </data>
-  <data name="&gt;&gt;txtSerialNum.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;txtTypeCar.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="lbInspectorTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbInspectorTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 18pt</value>
+  </data>
+  <data name="lbInspectorTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbInspectorTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 88</value>
+  </data>
+  <data name="lbInspectorTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 37</value>
+  </data>
+  <data name="lbInspectorTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lbInspectorTitle.Text" xml:space="preserve">
+    <value>Người kiểm tra</value>
+  </data>
+  <data name="&gt;&gt;lbInspectorTitle.Name" xml:space="preserve">
+    <value>lbInspectorTitle</value>
+  </data>
+  <data name="&gt;&gt;lbInspectorTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbInspectorTitle.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;lbInspectorTitle.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="txtInspector.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+    <value>Calibri, 16.2pt</value>
   </data>
   <data name="txtInspector.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 122</value>
+    <value>627, 90</value>
   </data>
   <data name="txtInspector.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtInspector.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 36</value>
+    <value>268, 40</value>
   </data>
   <data name="txtInspector.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
-  </data>
-  <data name="txtInspector.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
   </data>
   <data name="&gt;&gt;txtInspector.Name" xml:space="preserve">
     <value>txtInspector</value>
@@ -5129,52 +4751,82 @@
     <value>tbVehicleInfo</value>
   </data>
   <data name="&gt;&gt;txtInspector.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
-  <data name="txtFrameNum.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 14.25pt</value>
+  <data name="lbDateInspecTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="txtFrameNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 42</value>
+  <data name="lbDateInspecTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 18pt</value>
   </data>
-  <data name="txtFrameNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+  <data name="lbDateInspecTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="txtFrameNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 36</value>
+  <data name="lbDateInspecTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 44</value>
   </data>
-  <data name="txtFrameNum.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="lbDateInspecTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 37</value>
   </data>
-  <data name="txtFrameNum.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="lbDateInspecTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;txtFrameNum.Name" xml:space="preserve">
-    <value>txtFrameNum</value>
+  <data name="lbDateInspecTitle.Text" xml:space="preserve">
+    <value>Ngày kiểm tra</value>
   </data>
-  <data name="&gt;&gt;txtFrameNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lbDateInspecTitle.Name" xml:space="preserve">
+    <value>lbDateInspecTitle</value>
   </data>
-  <data name="&gt;&gt;txtFrameNum.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbDateInspecTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbDateInspecTitle.Parent" xml:space="preserve">
     <value>tbVehicleInfo</value>
   </data>
-  <data name="&gt;&gt;txtFrameNum.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;lbDateInspecTitle.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtDateInspec.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 16.2pt</value>
+  </data>
+  <data name="txtDateInspec.Location" type="System.Drawing.Point, System.Drawing">
+    <value>627, 46</value>
+  </data>
+  <data name="txtDateInspec.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="txtDateInspec.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 40</value>
+  </data>
+  <data name="txtDateInspec.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.Name" xml:space="preserve">
+    <value>txtDateInspec</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.Parent" xml:space="preserve">
+    <value>tbVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;txtDateInspec.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="tbVehicleInfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 18pt</value>
   </data>
   <data name="tbVehicleInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 32</value>
+    <value>29, 27</value>
   </data>
   <data name="tbVehicleInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="tbVehicleInfo.RowCount" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="tbVehicleInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 217</value>
+    <value>1388, 135</value>
   </data>
   <data name="tbVehicleInfo.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -5192,7 +4844,7 @@
     <value>0</value>
   </data>
   <data name="tbVehicleInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbDateInspecTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtTypeCar" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtDateInspec" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtSerialNum" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtInspector" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrameNum" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,200,Absolute,400" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtFuel" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lbFuel" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="txtColor" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lbColor" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtSerialNum" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtFrameNum" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtTypeCar" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtInspector" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbDateInspecTitle" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="txtDateInspec" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Percent,33.33333,AutoSize,0,Percent,33.33333,AutoSize,0,Percent,33.33333" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbVehicleTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5243,7 +4895,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="VehiclePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 254</value>
+    <value>1434, 168</value>
   </data>
   <data name="VehiclePanel.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -5258,7 +4910,7 @@
     <value>StaticPanel</value>
   </data>
   <data name="&gt;&gt;VehiclePanel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="StaticPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>349, 150</value>
@@ -5420,7 +5072,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 2414</value>
+    <value>341, 2932</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>

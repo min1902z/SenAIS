@@ -396,7 +396,7 @@
             this.tbVehicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tbVehicleInfo.ColumnCount = 2;
             this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 455F));
+            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 457F));
             this.tbVehicleInfo.Controls.Add(this.txtColor, 1, 6);
             this.tbVehicleInfo.Controls.Add(this.lbColor, 0, 6);
             this.tbVehicleInfo.Controls.Add(this.cbFuel, 1, 5);

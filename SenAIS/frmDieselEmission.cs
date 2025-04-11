@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -142,18 +143,21 @@ namespace SenAIS
                     minSpeed1 = lastRpm;
                     maxSpeed1 = Math.Max(lastRpm, lastMaxSpeed); // Đảm bảo max >= min
                     hsu1 = opacity;
+                    hsu1 = (decimal)Math.Max(0.01, Math.Round((double)hsu1, 2));
                 }
                 else if (currentDataRequest == 2)
                 {
                     minSpeed2 = lastRpm;
                     maxSpeed2 = Math.Max(lastRpm, lastMaxSpeed);
                     hsu2 = opacity;
+                    hsu2 = (decimal)Math.Max(0.01, Math.Round((double)hsu2, 2));
                 }
                 else if (currentDataRequest == 3)
                 {
                     minSpeed3 = lastRpm;
                     maxSpeed3 = Math.Max(lastRpm, lastMaxSpeed);
                     hsu3 = opacity;
+                    hsu3 = (decimal)Math.Max(0.01, Math.Round((double)hsu3, 2));
                 }
 
                 UpdateUI(currentDataRequest);
@@ -167,21 +171,21 @@ namespace SenAIS
                     if (maxSpeed1 < minSpeed1) maxSpeed1 = minSpeed1;
                     lbMinSpeed1.Text = minSpeed1.ToString("F0");
                     lbMaxSpeed1.Text = maxSpeed1.ToString("F0");
-                    lbHSU1.Text = hsu1.ToString("F1");
+                    lbHSU1.Text = hsu1.ToString("F2");
                     break;
 
                 case 2:
                     maxSpeed2 = Math.Max(maxSpeed2, Math.Max(maxSpeed1, minSpeed2));
                     lbMinSpeed2.Text = minSpeed2.ToString("F0");
                     lbMaxSpeed2.Text = maxSpeed2.ToString("F0");
-                    lbHSU2.Text = hsu2.ToString("F1");
+                    lbHSU2.Text = hsu2.ToString("F2");
                     break;
 
                 case 3:
                     maxSpeed3 = Math.Max(maxSpeed3, Math.Max(maxSpeed2, minSpeed3));
                     lbMinSpeed3.Text = minSpeed3.ToString("F0");
                     lbMaxSpeed3.Text = maxSpeed3.ToString("F0");
-                    lbHSU3.Text = hsu3.ToString("F1");
+                    lbHSU3.Text = hsu3.ToString("F2");
                     break;
             }
         }
@@ -325,6 +329,31 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+
+            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+            if (frmMain != null)
+            {
+                var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+
+                if (!string.IsNullOrEmpty(nextSerialNumber))
+                {
+                    this.serialNumber = nextSerialNumber;
+                    lbVinNumber.Text = this.serialNumber;
+                    if (txtVinNumber != null)
+                    {
+                        txtVinNumber.Text = this.serialNumber;
+                        frmMain.UpdateVehicleInfo(this.serialNumber);
+                    }
+                }
+                else
+                {
+                    if (txtVinNumber != null)
+                    {
+                        txtVinNumber.Text = string.Empty;
+                    }
+                }
+            }
             comConnect.CloseConnection();
             this.Close();
         }

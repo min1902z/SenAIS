@@ -191,14 +191,9 @@ namespace SenAIS
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe trước đó.");
-                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
 
@@ -219,14 +214,9 @@ namespace SenAIS
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe tiếp theo.");
-                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
         private async void SaveDataToDatabase()

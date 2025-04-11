@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -362,6 +363,31 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+
+            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+            if (frmMain != null)
+            {
+                var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+
+                if (!string.IsNullOrEmpty(nextSerialNumber))
+                {
+                    this.serialNumber = nextSerialNumber;
+                    lbVinNumber.Text = this.serialNumber;
+                    if (txtVinNumber != null)
+                    {
+                        txtVinNumber.Text = this.serialNumber;
+                        frmMain.UpdateVehicleInfo(this.serialNumber);
+                    }
+                }
+                else
+                {
+                    if (txtVinNumber != null)
+                    {
+                        txtVinNumber.Text = string.Empty;
+                    }
+                }
+            }
             comConnect.CloseConnection();
             this.Close();
         }
