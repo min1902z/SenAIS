@@ -1,0 +1,225 @@
+﻿using OPCAutomation;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace SenAIS
+{
+    public static class OPCUtility
+    {
+        private static OPCServer opcServer;
+        private static OPCGroup opcGroup;
+        private static bool opcErrorShown = false;
+        private static bool isConnected = false;
+        private static int retryCount = 0;
+        private static Dictionary<string, Action<Dictionary<string, decimal>>> subscribers = new Dictionary<string, Action<Dictionary<string, decimal>>>();
+        private static readonly string opcFBrakeCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
+        private static readonly string opcFLBrakeResult = ConfigurationManager.AppSettings["Front_LBrake_Result"];
+        private static readonly string opcFRBrakeResult = ConfigurationManager.AppSettings["Front_RBrake_Result"];
+        private static readonly string opcRBrakeCounter = ConfigurationManager.AppSettings["BrakeR_Counter"];
+        private static readonly string opcRLBrakeResult = ConfigurationManager.AppSettings["Rear_LBrake_Result"];
+        private static readonly string opcRRBrakeResult = ConfigurationManager.AppSettings["Rear_RBrake_Result"];
+        private static readonly string opcHBrakeCounter = ConfigurationManager.AppSettings["BrakeH_Counter"];
+        private static readonly string opcHLBrakeResult = ConfigurationManager.AppSettings["Hand_LBrake_Result"];
+        private static readonly string opcHRBrakeResult = ConfigurationManager.AppSettings["Hand_RBrake_Result"];
+
+        private static readonly List<string> opcTags = new List<string>()
+        {
+            opcFBrakeCounter, opcFLBrakeResult, opcFRBrakeResult,
+            opcRBrakeCounter, opcRLBrakeResult, opcRRBrakeResult,
+            opcHBrakeCounter, opcHLBrakeResult, opcHRBrakeResult
+        };
+        private static Dictionary<string, List<string>> formOpcTags = new Dictionary<string, List<string>>();
+        static OPCUtility()
+        {
+            // Kết nối tới OPC Server khi khởi tạo lớp
+            ConnectToOPCServer();
+        }
+        public  static void ConnectToOPCServer()
+        {
+            try
+            {
+                if (retryCount >= 3)
+                {
+                    if (!opcErrorShown)
+                    {
+                        MessageBox.Show("Không thể kết nối tới OPC server sau nhiều lần thử. Dừng kết nối.");
+                        opcErrorShown = true;
+                    }
+                    return;
+                }
+                opcServer = new OPCServer();
+                opcServer.Connect("Kepware.KEPServerEX.V6"); // Kết nối tới OPC server
+
+                opcGroup = opcServer.OPCGroups.Add("Group1");
+                opcGroup.IsActive = true;
+                opcGroup.IsSubscribed = true;
+                opcGroup.UpdateRate = 200;
+                isConnected = true; // Đánh dấu kết nối thành công
+                opcErrorShown = false; // Reset cờ lỗi
+                retryCount = 0; // Reset lại số lần thử nếu kết nối thành công
+
+                opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
+            }
+            catch (Exception ex)
+            {
+                isConnected = false; // Đánh dấu không kết nối được
+                retryCount++; // Tăng số lần thử
+                if (!opcErrorShown)
+                {
+                    MessageBox.Show($"Kết nối đến OPC server thất bại: {ex.Message}");
+                    opcErrorShown = true; // Đánh dấu đã hiển thị lỗi
+                }
+            }
+        }
+        private static void OnDataChange(int group, int count, ref Array clientHandles, ref Array itemValues, ref Array qualities, ref Array timestamps)
+        {
+            // 🔹 Lưu toàn bộ giá trị OPC đọc được
+            Dictionary<string, decimal> allValues = new Dictionary<string, decimal>();
+            for (int i = 0; i < count; i++)
+            {
+                string opcTag = opcTags[i]; // Lấy tag theo thứ tự
+                allValues[opcTag] = Convert.ToDecimal(itemValues.GetValue(i));
+            }
+
+            // 🔹 Chỉ gửi giá trị OPC cần thiết cho từng Form
+            foreach (var subscriber in subscribers)
+            {
+                string formName = subscriber.Key;
+                Action<Dictionary<string, decimal>> callback = subscriber.Value;
+
+                // Lọc chỉ lấy giá trị OPC cần thiết cho form này
+                var filteredValues = allValues
+                    .Where(kvp => formOpcTags[formName].Contains(kvp.Key))
+                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+                // Gửi dữ liệu đã lọc về form
+                callback.Invoke(filteredValues);
+            }
+        }
+
+        public static void RegisterForm(string formName, Action<Dictionary<string, decimal>> callback, List<string> requiredTags)
+        {
+            if (!subscribers.ContainsKey(formName))
+            {
+                subscribers.Add(formName, callback);
+                formOpcTags.Add(formName, requiredTags);
+            }
+        }
+
+        public static void UnregisterForm(string formName)
+        {
+            subscribers.Remove(formName);
+            formOpcTags.Remove(formName);
+        }
+        public static void AddItem(string itemName, int clientHandle)
+        {
+            try
+            {
+                if (isConnected)
+                {
+                    opcGroup.OPCItems.AddItem(itemName, clientHandle);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding OPC item {itemName}: {ex.Message}");
+            }
+        }
+        public static void DisconnectOPC()
+        {
+            try
+            {
+                if (opcServer != null && isConnected)
+                {
+                    // Hủy kích hoạt Group nếu cần
+                    if (opcGroup != null)
+                    {
+                        opcGroup.IsActive = false;
+                        opcGroup = null; // Giải phóng Group
+                    }
+
+                    // Ngắt kết nối OPC server
+                    opcServer.Disconnect();
+                    opcServer = null; // Giải phóng server
+                    isConnected = false; // Đánh dấu đã ngắt kết nối
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi ngắt kết nối OPC: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static int GetOPCValue(string opcItem)
+        {
+            try
+            {
+                if (!isConnected)
+                {
+                    if (!opcErrorShown)
+                    {
+                        opcErrorShown = true;
+                        MessageBox.Show("Không thể kết nối tới OPC server. Sử dụng giá trị mặc định.");
+                    }
+                    return 0; // Giá trị mặc định
+                }
+                OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
+                object value;
+                item.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
+                int opcValue = Convert.ToInt32(value);
+                return opcValue;
+            }
+            catch (Exception ex)
+            {
+                if (!opcErrorShown)
+                {
+                    opcErrorShown = true;
+                    MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
+                }
+                return 0; // Trả về giá trị mặc định nếu đọc thất bại
+            }
+        }
+
+        public static void SetOPCValue(string opcItem, int value)
+        {
+            try
+            {
+                OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
+                item.Write(value);
+            }
+            catch (Exception ex)
+            {
+                if (!opcErrorShown)
+                {
+                    MessageBox.Show($"Ghi giá trị OPC item {opcItem} thất bại: {ex.Message}");
+                    opcErrorShown = true;
+                }
+                //throw;
+            }
+        }
+        public static Dictionary<string, decimal> GetMultipleOPCValues(List<string> opcItems)
+        {
+            var result = new Dictionary<string, decimal>();
+
+            foreach (var item in opcItems)
+            {
+                try
+                {
+                    result[item] = GetOPCValue(item);
+                }
+                catch
+                {
+                    result[item] = -1; // Trả về giá trị mặc định khi lỗi
+                }
+            }
+
+            return result;
+        }
+        public static void ResetErrorFlag()
+        {
+            opcErrorShown = false; // Reset cờ lỗi để có thể hiển thị lại lỗi nếu cần thiết
+        }
+    }
+}
