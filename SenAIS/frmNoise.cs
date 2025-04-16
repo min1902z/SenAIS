@@ -56,6 +56,37 @@ namespace SenAIS
             isMeasuring = false;
             lbEnd.Text = "Kết thúc";
             SaveDataToDatabase();
+            await Task.Delay(2000);
+            NextVin();
+        }
+        private void NextVin()
+        {
+            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+
+            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+            if (frmMain == null) return;
+
+            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+
+            if (!string.IsNullOrEmpty(nextSerialNumber))
+            {
+                this.serialNumber = nextSerialNumber;
+                lbVinNumber.Text = this.serialNumber;
+
+                if (txtVinNumber != null)
+                {
+                    txtVinNumber.Text = this.serialNumber;
+                    frmMain.UpdateVehicleInfo(this.serialNumber);
+                }
+            }
+            else
+            {
+                if (txtVinNumber != null)
+                {
+                    txtVinNumber.Text = string.Empty;
+                }
+            }
+            this.Close();
         }
         private void ResetToDefault()
         {
@@ -177,32 +208,6 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-
-            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-            if (frmMain != null)
-            {
-                var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-
-                if (!string.IsNullOrEmpty(nextSerialNumber))
-                {
-                    this.serialNumber = nextSerialNumber;
-                    lbVinNumber.Text = this.serialNumber;
-                    if (txtVinNumber != null)
-                    {
-                        txtVinNumber.Text = this.serialNumber;
-                        frmMain.UpdateVehicleInfo(this.serialNumber);
-                    }
-                }
-                else
-                {
-                    if (txtVinNumber != null)
-                    {
-                        txtVinNumber.Text = string.Empty;
-                    }
-                }
-            }
-            comConnect.CloseConnection();
             this.Close();
         }
     }

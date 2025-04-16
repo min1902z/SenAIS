@@ -17,7 +17,6 @@ namespace SenAIS
         private decimal minSpeed = 0;
         private decimal maxSpeed = 0;
         private double speedA = 1.0;
-        private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSpeedResult = ConfigurationManager.AppSettings["Speed_Result"];
 
@@ -54,7 +53,6 @@ namespace SenAIS
                             lbEnd.Visible = false;
                             lbStandard.Visible = false;
                             isReady = false;
-                            hasProcessedNextVin = false; // Reset cờ chuyển số VIN
                             break;
 
                         case 1: // Xe vào vị trí
@@ -107,30 +105,6 @@ namespace SenAIS
                             lbStandard.Visible = false;
                             lbTitleSpeed.Visible = true;
                             this.Close();
-                            //if (!hasProcessedNextVin)
-                            //{
-                            //    string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                            //    if (!string.IsNullOrEmpty(nextSerialNumber))
-                            //    {
-                            //        this.serialNumber = nextSerialNumber;
-
-                            //        var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-                            //        if (frmMain != null)
-                            //        {
-                            //            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-                            //            if (txtVinNumber != null)
-                            //            {
-                            //                txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
-                            //            }
-                            //        }
-                            //        hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                            //        this.Close();
-                            //    }
-                            //    else
-                            //    {
-                            //        this.Close();
-                            //    }
-                            //}
                             break;
 
                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
@@ -185,10 +159,6 @@ namespace SenAIS
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe trước đó.");
-                }
             }
             catch (Exception ex)
             {
@@ -211,10 +181,6 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
-                }
-                else
-                {
-                    MessageBox.Show("Không có xe tiếp theo.");
                 }
             }
             catch (Exception ex)

@@ -76,10 +76,10 @@
             this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnReport.AutoSize = true;
             this.btnReport.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.Location = new System.Drawing.Point(53, 954);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReport.Location = new System.Drawing.Point(40, 775);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(200, 62);
+            this.btnReport.Size = new System.Drawing.Size(150, 50);
             this.btnReport.TabIndex = 2;
             this.btnReport.Text = "Xem Dữ Liệu";
             this.btnReport.UseVisualStyleBackColor = true;
@@ -107,8 +107,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnRearWeight, 2, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnSpeed, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnFrontWeight, 2, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(713, 130);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(535, 106);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -116,16 +115,16 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(719, 937);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(539, 761);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
             // btnFoglights
             // 
             this.btnFoglights.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFoglights.Location = new System.Drawing.Point(242, 2);
-            this.btnFoglights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFoglights.Location = new System.Drawing.Point(181, 2);
+            this.btnFoglights.Margin = new System.Windows.Forms.Padding(2);
             this.btnFoglights.Name = "btnFoglights";
-            this.btnFoglights.Size = new System.Drawing.Size(184, 65);
+            this.btnFoglights.Size = new System.Drawing.Size(138, 53);
             this.btnFoglights.TabIndex = 19;
             this.btnFoglights.Text = "Đèn Sương Mù";
             this.btnFoglights.UseVisualStyleBackColor = true;
@@ -134,10 +133,10 @@
             // btnHeadlights
             // 
             this.btnHeadlights.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHeadlights.Location = new System.Drawing.Point(3, 2);
-            this.btnHeadlights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHeadlights.Location = new System.Drawing.Point(2, 2);
+            this.btnHeadlights.Margin = new System.Windows.Forms.Padding(2);
             this.btnHeadlights.Name = "btnHeadlights";
-            this.btnHeadlights.Size = new System.Drawing.Size(172, 65);
+            this.btnHeadlights.Size = new System.Drawing.Size(129, 53);
             this.btnHeadlights.TabIndex = 10;
             this.btnHeadlights.Text = "Đèn Pha-Cốt";
             this.btnHeadlights.UseVisualStyleBackColor = true;
@@ -146,10 +145,10 @@
             // btnSideSlip
             // 
             this.btnSideSlip.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSideSlip.Location = new System.Drawing.Point(3, 189);
-            this.btnSideSlip.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSideSlip.Location = new System.Drawing.Point(2, 154);
+            this.btnSideSlip.Margin = new System.Windows.Forms.Padding(2);
             this.btnSideSlip.Name = "btnSideSlip";
-            this.btnSideSlip.Size = new System.Drawing.Size(172, 65);
+            this.btnSideSlip.Size = new System.Drawing.Size(129, 53);
             this.btnSideSlip.TabIndex = 5;
             this.btnSideSlip.Text = "Trượt Ngang";
             this.btnSideSlip.UseVisualStyleBackColor = true;
@@ -158,10 +157,10 @@
             // btnSteerAngle
             // 
             this.btnSteerAngle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerAngle.Location = new System.Drawing.Point(242, 189);
-            this.btnSteerAngle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSteerAngle.Location = new System.Drawing.Point(181, 154);
+            this.btnSteerAngle.Margin = new System.Windows.Forms.Padding(2);
             this.btnSteerAngle.Name = "btnSteerAngle";
-            this.btnSteerAngle.Size = new System.Drawing.Size(172, 65);
+            this.btnSteerAngle.Size = new System.Drawing.Size(129, 53);
             this.btnSteerAngle.TabIndex = 18;
             this.btnSteerAngle.Text = "Góc Lái";
             this.btnSteerAngle.UseVisualStyleBackColor = true;
@@ -170,10 +169,10 @@
             // btnFrontBrake
             // 
             this.btnFrontBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFrontBrake.Location = new System.Drawing.Point(3, 376);
-            this.btnFrontBrake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFrontBrake.Location = new System.Drawing.Point(2, 306);
+            this.btnFrontBrake.Margin = new System.Windows.Forms.Padding(2);
             this.btnFrontBrake.Name = "btnFrontBrake";
-            this.btnFrontBrake.Size = new System.Drawing.Size(172, 65);
+            this.btnFrontBrake.Size = new System.Drawing.Size(129, 53);
             this.btnFrontBrake.TabIndex = 8;
             this.btnFrontBrake.Text = "Phanh Trước";
             this.btnFrontBrake.UseVisualStyleBackColor = true;
@@ -183,10 +182,10 @@
             // 
             this.btnEmission.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnEmission.Location = new System.Drawing.Point(3, 563);
-            this.btnEmission.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEmission.Location = new System.Drawing.Point(2, 458);
+            this.btnEmission.Margin = new System.Windows.Forms.Padding(2);
             this.btnEmission.Name = "btnEmission";
-            this.btnEmission.Size = new System.Drawing.Size(167, 65);
+            this.btnEmission.Size = new System.Drawing.Size(125, 53);
             this.btnEmission.TabIndex = 12;
             this.btnEmission.Text = "Khí Xả Xăng";
             this.btnEmission.UseVisualStyleBackColor = true;
@@ -195,10 +194,10 @@
             // btnNoise
             // 
             this.btnNoise.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNoise.Location = new System.Drawing.Point(242, 750);
-            this.btnNoise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoise.Location = new System.Drawing.Point(181, 610);
+            this.btnNoise.Margin = new System.Windows.Forms.Padding(2);
             this.btnNoise.Name = "btnNoise";
-            this.btnNoise.Size = new System.Drawing.Size(172, 65);
+            this.btnNoise.Size = new System.Drawing.Size(129, 53);
             this.btnNoise.TabIndex = 6;
             this.btnNoise.Text = "Độ Ồn";
             this.btnNoise.UseVisualStyleBackColor = true;
@@ -207,10 +206,10 @@
             // btnHandBrake
             // 
             this.btnHandBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHandBrake.Location = new System.Drawing.Point(481, 376);
-            this.btnHandBrake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHandBrake.Location = new System.Drawing.Point(360, 306);
+            this.btnHandBrake.Margin = new System.Windows.Forms.Padding(2);
             this.btnHandBrake.Name = "btnHandBrake";
-            this.btnHandBrake.Size = new System.Drawing.Size(172, 65);
+            this.btnHandBrake.Size = new System.Drawing.Size(129, 53);
             this.btnHandBrake.TabIndex = 17;
             this.btnHandBrake.Text = "Phanh Tay";
             this.btnHandBrake.UseVisualStyleBackColor = true;
@@ -219,10 +218,10 @@
             // btnRearBrake
             // 
             this.btnRearBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRearBrake.Location = new System.Drawing.Point(242, 376);
-            this.btnRearBrake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRearBrake.Location = new System.Drawing.Point(181, 306);
+            this.btnRearBrake.Margin = new System.Windows.Forms.Padding(2);
             this.btnRearBrake.Name = "btnRearBrake";
-            this.btnRearBrake.Size = new System.Drawing.Size(172, 65);
+            this.btnRearBrake.Size = new System.Drawing.Size(129, 53);
             this.btnRearBrake.TabIndex = 16;
             this.btnRearBrake.Text = "Phanh Sau";
             this.btnRearBrake.UseVisualStyleBackColor = true;
@@ -231,10 +230,10 @@
             // btnWhistle
             // 
             this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWhistle.Location = new System.Drawing.Point(481, 2);
-            this.btnWhistle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnWhistle.Location = new System.Drawing.Point(360, 2);
+            this.btnWhistle.Margin = new System.Windows.Forms.Padding(2);
             this.btnWhistle.Name = "btnWhistle";
-            this.btnWhistle.Size = new System.Drawing.Size(172, 65);
+            this.btnWhistle.Size = new System.Drawing.Size(129, 53);
             this.btnWhistle.TabIndex = 11;
             this.btnWhistle.Text = "Còi";
             this.btnWhistle.UseVisualStyleBackColor = true;
@@ -244,9 +243,10 @@
             // 
             this.cbManualMode.AutoSize = true;
             this.cbManualMode.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbManualMode.Location = new System.Drawing.Point(242, 564);
+            this.cbManualMode.Location = new System.Drawing.Point(181, 458);
+            this.cbManualMode.Margin = new System.Windows.Forms.Padding(2);
             this.cbManualMode.Name = "cbManualMode";
-            this.cbManualMode.Size = new System.Drawing.Size(189, 41);
+            this.cbManualMode.Size = new System.Drawing.Size(151, 33);
             this.cbManualMode.TabIndex = 20;
             this.cbManualMode.Text = "Đo thủ công";
             this.cbManualMode.UseVisualStyleBackColor = true;
@@ -254,10 +254,10 @@
             // btnRearWeight
             // 
             this.btnRearWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRearWeight.Location = new System.Drawing.Point(481, 750);
-            this.btnRearWeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRearWeight.Location = new System.Drawing.Point(360, 610);
+            this.btnRearWeight.Margin = new System.Windows.Forms.Padding(2);
             this.btnRearWeight.Name = "btnRearWeight";
-            this.btnRearWeight.Size = new System.Drawing.Size(184, 65);
+            this.btnRearWeight.Size = new System.Drawing.Size(138, 53);
             this.btnRearWeight.TabIndex = 13;
             this.btnRearWeight.Text = "Trọng Lượng S";
             this.btnRearWeight.UseVisualStyleBackColor = true;
@@ -267,10 +267,10 @@
             // btnSpeed
             // 
             this.btnSpeed.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSpeed.Location = new System.Drawing.Point(3, 750);
-            this.btnSpeed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSpeed.Location = new System.Drawing.Point(2, 610);
+            this.btnSpeed.Margin = new System.Windows.Forms.Padding(2);
             this.btnSpeed.Name = "btnSpeed";
-            this.btnSpeed.Size = new System.Drawing.Size(172, 65);
+            this.btnSpeed.Size = new System.Drawing.Size(129, 53);
             this.btnSpeed.TabIndex = 4;
             this.btnSpeed.Text = "Tốc Độ";
             this.btnSpeed.UseVisualStyleBackColor = true;
@@ -279,10 +279,10 @@
             // btnFrontWeight
             // 
             this.btnFrontWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFrontWeight.Location = new System.Drawing.Point(481, 563);
-            this.btnFrontWeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFrontWeight.Location = new System.Drawing.Point(360, 458);
+            this.btnFrontWeight.Margin = new System.Windows.Forms.Padding(2);
             this.btnFrontWeight.Name = "btnFrontWeight";
-            this.btnFrontWeight.Size = new System.Drawing.Size(192, 65);
+            this.btnFrontWeight.Size = new System.Drawing.Size(144, 53);
             this.btnFrontWeight.TabIndex = 7;
             this.btnFrontWeight.Text = "Trọng Lượng T";
             this.btnFrontWeight.UseVisualStyleBackColor = true;
@@ -296,10 +296,10 @@
             this.btnInspecProgress.FlatAppearance.BorderSize = 2;
             this.btnInspecProgress.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInspecProgress.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnInspecProgress.Location = new System.Drawing.Point(53, 39);
-            this.btnInspecProgress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInspecProgress.Location = new System.Drawing.Point(40, 32);
+            this.btnInspecProgress.Margin = new System.Windows.Forms.Padding(2);
             this.btnInspecProgress.Name = "btnInspecProgress";
-            this.btnInspecProgress.Size = new System.Drawing.Size(389, 71);
+            this.btnInspecProgress.Size = new System.Drawing.Size(292, 58);
             this.btnInspecProgress.TabIndex = 1;
             this.btnInspecProgress.Text = "Nhập Thông Tin Xe";
             this.btnInspecProgress.UseVisualStyleBackColor = true;
@@ -322,9 +322,9 @@
             this.InspectionPanel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InspectionPanel.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.InspectionPanel.Location = new System.Drawing.Point(0, 0);
-            this.InspectionPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InspectionPanel.Margin = new System.Windows.Forms.Padding(2);
             this.InspectionPanel.Name = "InspectionPanel";
-            this.InspectionPanel.Size = new System.Drawing.Size(1920, 1080);
+            this.InspectionPanel.Size = new System.Drawing.Size(1440, 878);
             this.InspectionPanel.TabIndex = 1;
             // 
             // btnStart
@@ -335,10 +335,10 @@
             this.btnStart.FlatAppearance.BorderSize = 2;
             this.btnStart.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnStart.Location = new System.Drawing.Point(145, 255);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStart.Location = new System.Drawing.Point(109, 207);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(161, 55);
+            this.btnStart.Size = new System.Drawing.Size(121, 45);
             this.btnStart.TabIndex = 59;
             this.btnStart.Text = "Bắt đầu";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -354,10 +354,9 @@
             this.cbPos1.Checked = true;
             this.cbPos1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPos1.Enabled = false;
-            this.cbPos1.Location = new System.Drawing.Point(1763, 319);
-            this.cbPos1.Margin = new System.Windows.Forms.Padding(4);
+            this.cbPos1.Location = new System.Drawing.Point(1322, 259);
             this.cbPos1.Name = "cbPos1";
-            this.cbPos1.Size = new System.Drawing.Size(153, 134);
+            this.cbPos1.Size = new System.Drawing.Size(115, 109);
             this.cbPos1.TabIndex = 58;
             this.cbPos1.UseVisualStyleBackColor = false;
             // 
@@ -366,10 +365,9 @@
             this.btnAddList.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnAddList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddList.BackgroundImage")));
             this.btnAddList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddList.Location = new System.Drawing.Point(53, 255);
-            this.btnAddList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddList.Location = new System.Drawing.Point(40, 207);
             this.btnAddList.Name = "btnAddList";
-            this.btnAddList.Size = new System.Drawing.Size(69, 55);
+            this.btnAddList.Size = new System.Drawing.Size(52, 45);
             this.btnAddList.TabIndex = 19;
             this.btnAddList.UseVisualStyleBackColor = true;
             this.btnAddList.Click += new System.EventHandler(this.btnAddList_Click);
@@ -381,12 +379,12 @@
             this.txtVinShow.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtVinShow.Font = new System.Drawing.Font("Calibri", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVinShow.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtVinShow.Location = new System.Drawing.Point(903, 2);
-            this.txtVinShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtVinShow.Location = new System.Drawing.Point(535, 2);
+            this.txtVinShow.Margin = new System.Windows.Forms.Padding(2);
             this.txtVinShow.Name = "txtVinShow";
             this.txtVinShow.ReadOnly = true;
             this.txtVinShow.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtVinShow.Size = new System.Drawing.Size(1013, 123);
+            this.txtVinShow.Size = new System.Drawing.Size(894, 98);
             this.txtVinShow.TabIndex = 18;
             this.txtVinShow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -396,7 +394,7 @@
             this.tbVehicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tbVehicleInfo.ColumnCount = 2;
             this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 457F));
+            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 346F));
             this.tbVehicleInfo.Controls.Add(this.txtColor, 1, 6);
             this.tbVehicleInfo.Controls.Add(this.lbColor, 0, 6);
             this.tbVehicleInfo.Controls.Add(this.cbFuel, 1, 5);
@@ -412,8 +410,8 @@
             this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 2);
             this.tbVehicleInfo.Controls.Add(this.cbTypeCar, 1, 2);
             this.tbVehicleInfo.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbVehicleInfo.Location = new System.Drawing.Point(53, 332);
-            this.tbVehicleInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbVehicleInfo.Location = new System.Drawing.Point(40, 270);
+            this.tbVehicleInfo.Margin = new System.Windows.Forms.Padding(2);
             this.tbVehicleInfo.Name = "tbVehicleInfo";
             this.tbVehicleInfo.RowCount = 7;
             this.tbVehicleInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -423,26 +421,27 @@
             this.tbVehicleInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tbVehicleInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tbVehicleInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tbVehicleInfo.Size = new System.Drawing.Size(579, 426);
+            this.tbVehicleInfo.Size = new System.Drawing.Size(434, 346);
             this.tbVehicleInfo.TabIndex = 7;
             // 
             // txtColor
             // 
             this.txtColor.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtColor.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColor.Location = new System.Drawing.Point(261, 364);
-            this.txtColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtColor.Location = new System.Drawing.Point(204, 298);
+            this.txtColor.Margin = new System.Windows.Forms.Padding(2);
             this.txtColor.Name = "txtColor";
-            this.txtColor.Size = new System.Drawing.Size(296, 44);
+            this.txtColor.Size = new System.Drawing.Size(223, 37);
             this.txtColor.TabIndex = 21;
             // 
             // lbColor
             // 
             this.lbColor.AutoSize = true;
             this.lbColor.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbColor.Location = new System.Drawing.Point(5, 362);
+            this.lbColor.Location = new System.Drawing.Point(4, 296);
+            this.lbColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbColor.Name = "lbColor";
-            this.lbColor.Size = new System.Drawing.Size(123, 41);
+            this.lbColor.Size = new System.Drawing.Size(97, 33);
             this.lbColor.TabIndex = 20;
             this.lbColor.Text = "Màu Xe";
             // 
@@ -454,10 +453,10 @@
             this.cbFuel.Items.AddRange(new object[] {
             "Xăng",
             "Dầu"});
-            this.cbFuel.Location = new System.Drawing.Point(261, 304);
-            this.cbFuel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbFuel.Location = new System.Drawing.Point(204, 249);
+            this.cbFuel.Margin = new System.Windows.Forms.Padding(2);
             this.cbFuel.Name = "cbFuel";
-            this.cbFuel.Size = new System.Drawing.Size(296, 45);
+            this.cbFuel.Size = new System.Drawing.Size(223, 37);
             this.cbFuel.TabIndex = 19;
             this.cbFuel.SelectedIndexChanged += new System.EventHandler(this.cbFuel_SelectedIndexChanged);
             // 
@@ -465,9 +464,10 @@
             // 
             this.lbFuelTitle.AutoSize = true;
             this.lbFuelTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFuelTitle.Location = new System.Drawing.Point(5, 302);
+            this.lbFuelTitle.Location = new System.Drawing.Point(4, 247);
+            this.lbFuelTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFuelTitle.Name = "lbFuelTitle";
-            this.lbFuelTitle.Size = new System.Drawing.Size(166, 41);
+            this.lbFuelTitle.Size = new System.Drawing.Size(129, 33);
             this.lbFuelTitle.TabIndex = 8;
             this.lbFuelTitle.Text = "Nhiên Liệu";
             // 
@@ -475,9 +475,10 @@
             // 
             this.lbInspecDateTitle.AutoSize = true;
             this.lbInspecDateTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInspecDateTitle.Location = new System.Drawing.Point(5, 242);
+            this.lbInspecDateTitle.Location = new System.Drawing.Point(4, 198);
+            this.lbInspecDateTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbInspecDateTitle.Name = "lbInspecDateTitle";
-            this.lbInspecDateTitle.Size = new System.Drawing.Size(213, 41);
+            this.lbInspecDateTitle.Size = new System.Drawing.Size(167, 33);
             this.lbInspecDateTitle.TabIndex = 5;
             this.lbInspecDateTitle.Text = "Ngày Kiểm Tra";
             // 
@@ -490,10 +491,9 @@
             this.dateInSpec.CustomFormat = "dd/MM/yyyy";
             this.dateInSpec.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateInSpec.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateInSpec.Location = new System.Drawing.Point(262, 246);
-            this.dateInSpec.Margin = new System.Windows.Forms.Padding(4);
+            this.dateInSpec.Location = new System.Drawing.Point(205, 201);
             this.dateInSpec.Name = "dateInSpec";
-            this.dateInSpec.Size = new System.Drawing.Size(295, 44);
+            this.dateInSpec.Size = new System.Drawing.Size(222, 37);
             this.dateInSpec.TabIndex = 8;
             this.dateInSpec.Value = new System.DateTime(2025, 2, 19, 0, 0, 0, 0);
             // 
@@ -502,12 +502,11 @@
             this.txtVinNum.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtVinNum.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVinNum.ForeColor = System.Drawing.Color.IndianRed;
-            this.txtVinNum.Location = new System.Drawing.Point(261, 4);
-            this.txtVinNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtVinNum.Location = new System.Drawing.Point(204, 4);
+            this.txtVinNum.Margin = new System.Windows.Forms.Padding(2);
             this.txtVinNum.Name = "txtVinNum";
-            this.txtVinNum.Size = new System.Drawing.Size(296, 44);
+            this.txtVinNum.Size = new System.Drawing.Size(223, 37);
             this.txtVinNum.TabIndex = 17;
-            this.txtVinNum.Text = "VIN1234";
             this.txtVinNum.TextChanged += new System.EventHandler(this.txtVinNum_TextChanged);
             this.txtVinNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVinNum_KeyDown);
             // 
@@ -515,9 +514,10 @@
             // 
             this.lbInspectorTitle.AutoSize = true;
             this.lbInspectorTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInspectorTitle.Location = new System.Drawing.Point(5, 182);
+            this.lbInspectorTitle.Location = new System.Drawing.Point(4, 149);
+            this.lbInspectorTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbInspectorTitle.Name = "lbInspectorTitle";
-            this.lbInspectorTitle.Size = new System.Drawing.Size(248, 41);
+            this.lbInspectorTitle.Size = new System.Drawing.Size(194, 33);
             this.lbInspectorTitle.TabIndex = 1;
             this.lbInspectorTitle.Text = "Người Phụ Trách";
             // 
@@ -525,9 +525,10 @@
             // 
             this.lbSerialNumTitle.AutoSize = true;
             this.lbSerialNumTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSerialNumTitle.Location = new System.Drawing.Point(5, 2);
+            this.lbSerialNumTitle.Location = new System.Drawing.Point(4, 2);
+            this.lbSerialNumTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbSerialNumTitle.Name = "lbSerialNumTitle";
-            this.lbSerialNumTitle.Size = new System.Drawing.Size(106, 41);
+            this.lbSerialNumTitle.Size = new System.Drawing.Size(86, 33);
             this.lbSerialNumTitle.TabIndex = 4;
             this.lbSerialNumTitle.Text = "Số Vin";
             // 
@@ -536,19 +537,20 @@
             this.cbInspector.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.cbInspector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbInspector.FormattingEnabled = true;
-            this.cbInspector.Location = new System.Drawing.Point(261, 184);
-            this.cbInspector.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbInspector.Location = new System.Drawing.Point(204, 151);
+            this.cbInspector.Margin = new System.Windows.Forms.Padding(2);
             this.cbInspector.Name = "cbInspector";
-            this.cbInspector.Size = new System.Drawing.Size(296, 45);
+            this.cbInspector.Size = new System.Drawing.Size(223, 37);
             this.cbInspector.TabIndex = 19;
             // 
             // lbFrameNumTitle
             // 
             this.lbFrameNumTitle.AutoSize = true;
             this.lbFrameNumTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFrameNumTitle.Location = new System.Drawing.Point(5, 62);
+            this.lbFrameNumTitle.Location = new System.Drawing.Point(4, 51);
+            this.lbFrameNumTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFrameNumTitle.Name = "lbFrameNumTitle";
-            this.lbFrameNumTitle.Size = new System.Drawing.Size(120, 41);
+            this.lbFrameNumTitle.Size = new System.Drawing.Size(95, 33);
             this.lbFrameNumTitle.TabIndex = 2;
             this.lbFrameNumTitle.Text = "Số Máy";
             // 
@@ -556,19 +558,20 @@
             // 
             this.txtEngineNum.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtEngineNum.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEngineNum.Location = new System.Drawing.Point(261, 64);
-            this.txtEngineNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEngineNum.Location = new System.Drawing.Point(204, 53);
+            this.txtEngineNum.Margin = new System.Windows.Forms.Padding(2);
             this.txtEngineNum.Name = "txtEngineNum";
-            this.txtEngineNum.Size = new System.Drawing.Size(296, 44);
+            this.txtEngineNum.Size = new System.Drawing.Size(223, 37);
             this.txtEngineNum.TabIndex = 15;
             // 
             // lbTypeCarTitle
             // 
             this.lbTypeCarTitle.AutoSize = true;
             this.lbTypeCarTitle.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTypeCarTitle.Location = new System.Drawing.Point(5, 122);
+            this.lbTypeCarTitle.Location = new System.Drawing.Point(4, 100);
+            this.lbTypeCarTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTypeCarTitle.Name = "lbTypeCarTitle";
-            this.lbTypeCarTitle.Size = new System.Drawing.Size(116, 41);
+            this.lbTypeCarTitle.Size = new System.Drawing.Size(91, 33);
             this.lbTypeCarTitle.TabIndex = 0;
             this.lbTypeCarTitle.Text = "Loại Xe";
             // 
@@ -577,25 +580,26 @@
             this.cbTypeCar.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.cbTypeCar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTypeCar.FormattingEnabled = true;
-            this.cbTypeCar.Location = new System.Drawing.Point(261, 124);
-            this.cbTypeCar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbTypeCar.Location = new System.Drawing.Point(204, 102);
+            this.cbTypeCar.Margin = new System.Windows.Forms.Padding(2);
             this.cbTypeCar.Name = "cbTypeCar";
-            this.cbTypeCar.Size = new System.Drawing.Size(296, 45);
+            this.cbTypeCar.Size = new System.Drawing.Size(223, 37);
             this.cbTypeCar.Sorted = true;
             this.cbTypeCar.TabIndex = 18;
             // 
             // frmInspection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1440, 878);
             this.Controls.Add(this.InspectionPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmInspection";
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInspection_FormClosing);
+            this.Load += new System.EventHandler(this.frmInspection_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.InspectionPanel.ResumeLayout(false);

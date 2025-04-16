@@ -44,7 +44,6 @@ namespace SenAIS
             public string Color { get; set; }
         }
         private UdpClient udpListener;
-        private const int udpPort = 8888;
         private Task receiveTask;
 
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
@@ -290,48 +289,6 @@ namespace SenAIS
             else
                 MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        //private void SendVinToNetwork(string vin)
-        //{
-        //    try
-        //    {
-        //        UdpClient udpClient = new UdpClient();
-        //        udpClient.EnableBroadcast = true;
-        //        IPEndPoint endPoint = new IPEndPoint(IPAddress.Broadcast, udpPort);
-
-        //        byte[] data = Encoding.UTF8.GetBytes(vin);
-        //        udpClient.Send(data, data.Length, endPoint);
-        //        udpClient.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Lỗi gửi số VIN : " + ex.Message);
-        //    }
-        //}
-        //private void StartListeningForVin()
-        //{
-        //    if (udpListener != null) return; // Đảm bảo chỉ chạy 1 lần
-
-        //    receiveTask = Task.Run(() =>
-        //    {
-        //        try
-        //        {
-        //            udpListener = new UdpClient(udpPort);
-        //            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, udpPort);
-
-        //            while (true) // Luôn lắng nghe VIN mới
-        //            {
-        //                byte[] receivedBytes = udpListener.Receive(ref endPoint);
-        //                string receivedVin = Encoding.UTF8.GetString(receivedBytes);
-
-        //                this.Invoke(new Action(() =>
-        //                {
-        //                    txtVinNum.Text = receivedVin;
-        //                }));
-        //            }
-        //        }
-        //        catch (Exception) { /* Không cần báo lỗi cho máy trạm */ }
-        //    });
-        //}
         private void LoadVehicleInfo()
         {
             try
@@ -572,12 +529,23 @@ namespace SenAIS
                 string jsonData = JsonConvert.SerializeObject(vehicleInfo);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
 
+                string[] clientIPs = ConfigurationManager.AppSettings["ClientIPs"].Split(';');
+                int udpPort = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
+
                 using (UdpClient udpClient = new UdpClient())
                 {
-                    udpClient.EnableBroadcast = true;
-                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Broadcast, udpPort);
-                    udpClient.Send(data, data.Length, endPoint);
+                    foreach (var ip in clientIPs)
+                    {
+                        IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ip), udpPort);
+                        udpClient.Send(data, data.Length, endPoint);
+                    }
                 }
+                //using (UdpClient udpClient = new UdpClient())
+                //{
+                //    udpClient.EnableBroadcast = true;
+                //    IPEndPoint endPoint = new IPEndPoint(IPAddress.Broadcast, udpPort);
+                //    udpClient.Send(data, data.Length, endPoint);
+                //}
             }
             catch (Exception ex)
             {
@@ -592,8 +560,9 @@ namespace SenAIS
             {
                 try
                 {
-                    udpListener = new UdpClient(udpPort);
-                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, udpPort);
+                    int port = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
+                    udpListener = new UdpClient(port);
+                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
 
                     while (true)
                     {
@@ -644,6 +613,13 @@ namespace SenAIS
                 cbFuel.SelectedItem = vehicleInfo["Fuel"]?.ToString();
                 txtColor.Text = vehicleInfo["Color"]?.ToString();
             }
+        }
+
+        private void frmInspection_Load(object sender, EventArgs e)
+        {
+            this.serialNumber = txtVinNum.Text;
+            LoadVehicleInfo();
+            StartListeningForVehicleInfo();
         }
     }
 }

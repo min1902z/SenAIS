@@ -275,10 +275,6 @@ namespace SenAIS
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe trước đó.");
-                }
             }
             catch (Exception ex)
             {
@@ -302,10 +298,6 @@ namespace SenAIS
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
-                }
-                else
-                {
-                    MessageBox.Show("Không có xe tiếp theo.");
                 }
             }
             catch (Exception ex)

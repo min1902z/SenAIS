@@ -57,11 +57,11 @@ namespace SenAIS
                 byte[] request = { 0x03 }; // Lệnh gửi đo
                 comConnect.SendRequest(request);
 
-                // Dừng cập nhật và lưu kết quả
-                await Task.Delay(10000, cancellationToken);
                 if (hasMeasured == true)
                 {
                     SaveDataToDatabase(); // Lưu DB
+                    await Task.Delay(10000, cancellationToken);
+                    NextVin();
                 }
             }
             catch (TaskCanceledException)
@@ -72,6 +72,35 @@ namespace SenAIS
             {
                 MessageBox.Show($"Lỗi trong quá trình đo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void NextVin()
+        {
+            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+
+            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+            if (frmMain == null) return;
+
+            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+
+            if (!string.IsNullOrEmpty(nextSerialNumber))
+            {
+                this.serialNumber = nextSerialNumber;
+                lbVinNumber.Text = this.serialNumber;
+
+                if (txtVinNumber != null)
+                {
+                    txtVinNumber.Text = this.serialNumber;
+                    frmMain.UpdateVehicleInfo(this.serialNumber);
+                }
+            }
+            else
+            {
+                if (txtVinNumber != null)
+                {
+                    txtVinNumber.Text = string.Empty;
+                }
+            }
+            this.Close();
         }
         private void ResetToDefault()
         {
@@ -363,32 +392,6 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-
-            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-            if (frmMain != null)
-            {
-                var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-
-                if (!string.IsNullOrEmpty(nextSerialNumber))
-                {
-                    this.serialNumber = nextSerialNumber;
-                    lbVinNumber.Text = this.serialNumber;
-                    if (txtVinNumber != null)
-                    {
-                        txtVinNumber.Text = this.serialNumber;
-                        frmMain.UpdateVehicleInfo(this.serialNumber);
-                    }
-                }
-                else
-                {
-                    if (txtVinNumber != null)
-                    {
-                        txtVinNumber.Text = string.Empty;
-                    }
-                }
-            }
-            comConnect.CloseConnection();
             this.Close();
         }
 
