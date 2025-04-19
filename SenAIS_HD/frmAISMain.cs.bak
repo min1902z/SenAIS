@@ -6,30 +6,18 @@ namespace SenAIS
 {
     public partial class SenAIS : Form
     {
-        //private Form activeChildForm;
+        private Form activeForm = null;
         private static readonly string calibSpeed = ConfigurationManager.AppSettings["Calib_Speed"];
         private static readonly string calibSS = ConfigurationManager.AppSettings["Calib_SS"];
         private static readonly string calibLBrake = ConfigurationManager.AppSettings["Calib_LBrake"];
         private static readonly string calibRBrake = ConfigurationManager.AppSettings["Calib_RBrake"];
+        private static readonly string calibLWeight = ConfigurationManager.AppSettings["Calib_LWeight"];
+        private static readonly string calibRWeight = ConfigurationManager.AppSettings["Calib_RWeight"];
         public SenAIS()
         {
             InitializeComponent();
         }
-        //private void OpenChildForm(Form childForm)
-        //{
-        //    // Đóng form con hiện tại nếu có
-        //    if (panelBody.Controls.Count > 0)
-        //        panelBody.Controls[0].Dispose();
-
-        //    // Thiết lập form con mới
-        //    childForm.TopLevel = false;
-        //    childForm.Dock = DockStyle.Fill;
-        //    panelBody.Controls.Add(childForm);
-        //    panelBody.Tag = childForm;
-        //    childForm.FormBorderStyle = FormBorderStyle.None;
-        //    childForm.Show();
-        //}
-        private void OpenChildForm(Form childForm)
+        public void OpenChildForm(Form childForm)
         {
             // Đóng form con hiện tại nếu có
             if (panelBody.Controls.Count > 0)
@@ -41,6 +29,7 @@ namespace SenAIS
             panelBody.VerticalScroll.Enabled = true;
 
             // Thiết lập form con mới
+            activeForm = childForm;
             childForm.TopLevel = false;
             childForm.Dock = DockStyle.Fill; // Form con luôn fill panelBody
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -69,7 +58,13 @@ namespace SenAIS
 
         private void TSDangKiem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmInspection());
+            string serialNumber = "";
+            if (activeForm is frmInspection currentInspection)
+            {
+                serialNumber = currentInspection.GetVinNumber();
+                currentInspection.Close();
+            }
+            OpenChildForm(new frmInspection(serialNumber));
         }
 
         private void TSTruyXuat_Click(object sender, EventArgs e)
@@ -92,7 +87,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+            calibrationForm.SetOPCItem(calibLWeight);
         }
 
         private void tsRWeightCalib_Click(object sender, EventArgs e)
@@ -109,7 +104,7 @@ namespace SenAIS
 
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
-            calibrationForm.SetOPCItem("Hyundai.OCS10.T99");
+            calibrationForm.SetOPCItem(calibRWeight);
         }
 
         private void tsSpeedCalib_Click(object sender, EventArgs e)

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInspection));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
             this.cbFuel = new System.Windows.Forms.ComboBox();
             this.lbFuelTitle = new System.Windows.Forms.Label();
@@ -43,7 +45,7 @@
             this.lbTypeCarTitle = new System.Windows.Forms.Label();
             this.cbTypeCar = new System.Windows.Forms.ComboBox();
             this.btnReport = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbMenuControl = new System.Windows.Forms.TableLayoutPanel();
             this.btnHeadlights = new System.Windows.Forms.Button();
             this.btnWhistle = new System.Windows.Forms.Button();
             this.btnFrontBrake = new System.Windows.Forms.Button();
@@ -58,14 +60,17 @@
             this.btnSpeedMoving = new System.Windows.Forms.Button();
             this.btnInspecProgress = new System.Windows.Forms.Button();
             this.InspectionPanel = new System.Windows.Forms.Panel();
+            this.btnStartProgress = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnResetMain = new System.Windows.Forms.Button();
             this.panelButton = new System.Windows.Forms.Panel();
             this.txtVinShow = new System.Windows.Forms.TextBox();
+            this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
             this.tbVehicleInfo.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tbMenuControl.SuspendLayout();
             this.InspectionPanel.SuspendLayout();
             this.panelButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // tbVehicleInfo
@@ -183,22 +188,22 @@
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // tableLayoutPanel2
+            // tbMenuControl
             // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.Controls.Add(this.btnHeadlights, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnFrontBrake, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnHandBrake, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnRearBrake, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnSpeed, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnEmission, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnFrontWeight, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnSideSlip, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnSteerAngle, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnSpeedMoving, 2, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            resources.ApplyResources(this.tbMenuControl, "tbMenuControl");
+            this.tbMenuControl.Controls.Add(this.btnHeadlights, 0, 0);
+            this.tbMenuControl.Controls.Add(this.btnWhistle, 1, 0);
+            this.tbMenuControl.Controls.Add(this.btnFrontBrake, 0, 2);
+            this.tbMenuControl.Controls.Add(this.btnHandBrake, 2, 2);
+            this.tbMenuControl.Controls.Add(this.btnRearBrake, 1, 2);
+            this.tbMenuControl.Controls.Add(this.btnSpeed, 0, 3);
+            this.tbMenuControl.Controls.Add(this.btnEmission, 1, 3);
+            this.tbMenuControl.Controls.Add(this.btnNoise, 2, 0);
+            this.tbMenuControl.Controls.Add(this.btnFrontWeight, 1, 1);
+            this.tbMenuControl.Controls.Add(this.btnSideSlip, 0, 1);
+            this.tbMenuControl.Controls.Add(this.btnSteerAngle, 0, 4);
+            this.tbMenuControl.Controls.Add(this.btnSpeedMoving, 2, 3);
+            this.tbMenuControl.Name = "tbMenuControl";
             // 
             // btnHeadlights
             // 
@@ -310,6 +315,7 @@
             // 
             resources.ApplyResources(this.InspectionPanel, "InspectionPanel");
             this.InspectionPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.InspectionPanel.Controls.Add(this.btnStartProgress);
             this.InspectionPanel.Controls.Add(this.btnExit);
             this.InspectionPanel.Controls.Add(this.btnResetMain);
             this.InspectionPanel.Controls.Add(this.panelButton);
@@ -318,6 +324,14 @@
             this.InspectionPanel.Controls.Add(this.tbVehicleInfo);
             this.InspectionPanel.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.InspectionPanel.Name = "InspectionPanel";
+            // 
+            // btnStartProgress
+            // 
+            resources.ApplyResources(this.btnStartProgress, "btnStartProgress");
+            this.btnStartProgress.ForeColor = System.Drawing.Color.Blue;
+            this.btnStartProgress.Name = "btnStartProgress";
+            this.btnStartProgress.UseVisualStyleBackColor = true;
+            this.btnStartProgress.Click += new System.EventHandler(this.btnStartProgress_Click);
             // 
             // btnExit
             // 
@@ -338,8 +352,9 @@
             // panelButton
             // 
             resources.ApplyResources(this.panelButton, "panelButton");
+            this.panelButton.Controls.Add(this.dgVehicleInfo);
             this.panelButton.Controls.Add(this.txtVinShow);
-            this.panelButton.Controls.Add(this.tableLayoutPanel2);
+            this.panelButton.Controls.Add(this.tbMenuControl);
             this.panelButton.Name = "panelButton";
             // 
             // txtVinShow
@@ -351,6 +366,37 @@
             this.txtVinShow.Name = "txtVinShow";
             this.txtVinShow.ReadOnly = true;
             // 
+            // dgVehicleInfo
+            // 
+            resources.ApplyResources(this.dgVehicleInfo, "dgVehicleInfo");
+            this.dgVehicleInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgVehicleInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgVehicleInfo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgVehicleInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgVehicleInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightYellow;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgVehicleInfo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgVehicleInfo.Name = "dgVehicleInfo";
+            this.dgVehicleInfo.ReadOnly = true;
+            this.dgVehicleInfo.RowHeadersVisible = false;
+            this.dgVehicleInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgVehicleInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVehicleInfo_CellClick);
+            // 
             // frmInspection
             // 
             resources.ApplyResources(this, "$this");
@@ -360,13 +406,16 @@
             this.MinimizeBox = false;
             this.Name = "frmInspection";
             this.ShowIcon = false;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInspection_FormClosing);
+            this.Load += new System.EventHandler(this.frmInspection_Load);
             this.tbVehicleInfo.ResumeLayout(false);
             this.tbVehicleInfo.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tbMenuControl.ResumeLayout(false);
             this.InspectionPanel.ResumeLayout(false);
             this.InspectionPanel.PerformLayout();
             this.panelButton.ResumeLayout(false);
             this.panelButton.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,7 +436,7 @@
         private System.Windows.Forms.Label lbInspecDateTitle;
         private System.Windows.Forms.DateTimePicker dateInSpec;
         private System.Windows.Forms.Button btnReport;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tbMenuControl;
         private System.Windows.Forms.Button btnHeadlights;
         private System.Windows.Forms.Button btnWhistle;
         private System.Windows.Forms.Button btnEmission;
@@ -406,5 +455,7 @@
         private System.Windows.Forms.Button btnSpeedMoving;
         private System.Windows.Forms.Button btnResetMain;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnStartProgress;
+        private System.Windows.Forms.DataGridView dgVehicleInfo;
     }
 }

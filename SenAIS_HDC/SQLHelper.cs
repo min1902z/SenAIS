@@ -611,7 +611,14 @@ namespace SenAIS
 
             return TableExecuteQuery(query, parameters);
         }
-
+        public DataTable GetAllVehicleInfo()
+        {
+            string query = @"
+            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel
+            FROM VehicleInfo
+            ORDER BY VehicleID DESC"; // ← Sắp theo ID giảm dần
+            return TableExecuteQuery(query, null);
+        }
         public DataRow GetVehicleDetails(string serialNumber)
         {
             string query = @"SELECT 

@@ -89,6 +89,7 @@ namespace SenAIS
         {
             try
             {
+                var startTime = DateTime.Now;
                 while (!token.IsCancellationRequested)
                 {
                     await Task.Delay(200, token); // Delay 200ms mỗi lần cập nhật
@@ -121,15 +122,14 @@ namespace SenAIS
                     // 🔹 Khi có dữ liệu hợp lệ, chờ 2s rồi mở frmSideSlip
                     if (totalFrontWeight > 100 && totalRearWeight > 100)
                     {
-                        await Task.Delay(2000, token);
+                        await Task.Delay(3000, token);
                         MoveToNextStep();
-                        break;
+                        return;
                     }
-                    else
+                    if ((DateTime.Now - startTime).TotalSeconds > 20)
                     {
-                        await Task.Delay(6000, token);
                         MoveToNextStep();
-                        break;
+                        return;
                     }
                 }
             }
