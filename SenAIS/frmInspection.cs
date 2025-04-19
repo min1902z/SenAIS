@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,6 +46,8 @@ namespace SenAIS
         }
         private UdpClient udpListener;
         private Task receiveTask;
+        private string lastJsonData = string.Empty;
+        private CancellationTokenSource opcCancellationTokenSource;
 
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
@@ -65,7 +68,10 @@ namespace SenAIS
             InitializeOPC();
             StartListeningForVehicleInfo();
         }
-
+        public string GetVinNumber()
+        {
+            return txtVinNum.Text;
+        }
         private void InitializeOPC()
         {
             try
@@ -554,38 +560,74 @@ namespace SenAIS
         }
         private void StartListeningForVehicleInfo()
         {
-            if (udpListener != null) return; // Đảm bảo chỉ chạy 1 lần
+            if (receiveTask != null && !receiveTask.IsCompleted) return;
+
+            int port = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
+
+            try
+            {
+                udpListener?.Close();
+                udpListener = new UdpClient(port);
+            }
+            catch
+            {
+                return; // Nếu lỗi khởi tạo listener, không làm gì cả
+            }
 
             receiveTask = Task.Run(() =>
             {
                 try
                 {
-                    int port = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
-                    udpListener = new UdpClient(port);
-                    IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
-
                     while (true)
                     {
                         byte[] receivedBytes = udpListener.Receive(ref endPoint);
                         string receivedJson = Encoding.UTF8.GetString(receivedBytes);
 
-                        var vehicleInfo = JsonConvert.DeserializeObject<VehicleInfo>(receivedJson);
-                        if (vehicleInfo == null) continue;
+                        if (receivedJson == lastJsonData)
+                            continue;
+
+                        lastJsonData = receivedJson;
 
                         this.Invoke(new Action(() =>
                         {
-                            cbTypeCar.SelectedValue = vehicleInfo.VehicleType;
+                        try
+                        {
+                            var vehicleInfo = JsonConvert.DeserializeObject<VehicleInfo>(receivedJson);
+                            if (vehicleInfo != null)
+                            {
+                                cbTypeCar.SelectedValue = vehicleInfo.VehicleType;
                             cbInspector.SelectedValue = vehicleInfo.Inspector;
                             txtEngineNum.Text = vehicleInfo.FrameNumber;
                             txtVinNum.Text = vehicleInfo.SerialNumber;
                             dateInSpec.Value = DateTime.Parse(vehicleInfo.InspectionDate);
                             cbFuel.SelectedItem = vehicleInfo.FuelType;
                             txtColor.Text = vehicleInfo.Color;
+                                }
+                            }
+                            catch { /* Bỏ qua lỗi xử lý JSON hoặc update UI */ }
                         }));
                     }
                 }
-                catch (Exception) { /* Không báo lỗi trên máy trạm */ }
+                catch { /* Bỏ qua lỗi khi listener ngắt kết nối hoặc form đóng */ }
             });
+        }
+        private void StopListeningForVehicleInfo()
+        {
+            try
+            {
+                udpListener?.Close();
+                udpListener = null;
+
+                if (receiveTask != null && !receiveTask.IsCompleted)
+                {
+                    receiveTask.Dispose();
+                    receiveTask = null;
+                }
+
+                lastJsonData = string.Empty;
+            }
+            catch { }
         }
         public void UpdateVehicleInfo(string serialNumber)
         {
