@@ -368,7 +368,7 @@
             this.btnDistance3.Name = "btnDistance3";
             this.btnDistance3.Size = new System.Drawing.Size(175, 68);
             this.btnDistance3.TabIndex = 2;
-            this.btnDistance3.Text = "KU\r\n2850 mm";
+            this.btnDistance3.Text = "MX5\r\n2850 mm";
             this.btnDistance3.UseVisualStyleBackColor = true;
             this.btnDistance3.Click += new System.EventHandler(this.btnDistance3_Click);
             // 
@@ -382,7 +382,7 @@
             this.btnDistance2.Name = "btnDistance2";
             this.btnDistance2.Size = new System.Drawing.Size(175, 68);
             this.btnDistance2.TabIndex = 1;
-            this.btnDistance2.Text = "TM\r\n2750 mm";
+            this.btnDistance2.Text = "NX4\r\n2750 mm";
             this.btnDistance2.UseVisualStyleBackColor = true;
             this.btnDistance2.Click += new System.EventHandler(this.btnDistance2_Click);
             // 
@@ -396,7 +396,7 @@
             this.btnDistance1.Name = "btnDistance1";
             this.btnDistance1.Size = new System.Drawing.Size(175, 68);
             this.btnDistance1.TabIndex = 0;
-            this.btnDistance1.Text = "NX4\r\n2650 mm";
+            this.btnDistance1.Text = "NX\r\n2650 mm";
             this.btnDistance1.UseVisualStyleBackColor = true;
             this.btnDistance1.Click += new System.EventHandler(this.btnDistance1_Click);
             // 

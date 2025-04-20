@@ -102,9 +102,11 @@ namespace SenAIS
 
                     // 🔹 Tính toán trọng lượng (chia cho weight từ DB)
                     frontLWeight = rawFrontLWeight / weightLeftA;
-                    frontRWeight = rawFrontRWeight / weightRightA;
+                    //frontRWeight = rawFrontRWeight / weightRightA;
+                    frontRWeight = rawFrontRWeight / weightLeftA;
                     rearLWeight = rawRearLWeight / weightLeftA;
-                    rearRWeight = rawRearRWeight / weightRightA;
+                    //rearRWeight = rawRearRWeight / weightRightA;
+                    rearRWeight = rawRearRWeight / weightLeftA;
 
                     double totalFrontWeight = frontLWeight + frontRWeight;
                     double totalRearWeight = rearLWeight + rearRWeight;
@@ -126,7 +128,7 @@ namespace SenAIS
                         MoveToNextStep();
                         return;
                     }
-                    if ((DateTime.Now - startTime).TotalSeconds > 20)
+                    if ((DateTime.Now - startTime).TotalSeconds > 60)
                     {
                         MoveToNextStep();
                         return;
