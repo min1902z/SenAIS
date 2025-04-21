@@ -89,6 +89,7 @@ namespace SenAIS
         {
             try
             {
+                int timeoutSeconds = int.TryParse(ConfigurationManager.AppSettings["WeightCheckTimeout"], out int timeout) ? timeout : 30;
                 var startTime = DateTime.Now;
                 while (!token.IsCancellationRequested)
                 {
@@ -128,7 +129,7 @@ namespace SenAIS
                         MoveToNextStep();
                         return;
                     }
-                    if ((DateTime.Now - startTime).TotalSeconds > 60)
+                    if ((DateTime.Now - startTime).TotalSeconds > timeoutSeconds)
                     {
                         MoveToNextStep();
                         return;

@@ -28,7 +28,7 @@ namespace SenAIS
         private static readonly string opcBrakeCounter = ConfigurationManager.AppSettings["BrakeH_Counter"];
         private static readonly string opcLBrakeResult = ConfigurationManager.AppSettings["Hand_LBrake_Result"];
         private static readonly string opcRBrakeResult = ConfigurationManager.AppSettings["Hand_RBrake_Result"];
-        private static readonly string opcBrakeFCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
+        private static readonly string opcBrakeRCounter = ConfigurationManager.AppSettings["BrakeR_Counter"];
         public frmHandBrake(string serialNumber)
         {
             InitializeComponent();
@@ -212,15 +212,15 @@ namespace SenAIS
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
-            var existingForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
+            var existingForm = Application.OpenForms.OfType<frmRearBrake>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.Close(); // 🔥 Đóng form cũ nếu có
             }
 
-            var preForm = new frmFrontBrake(this.serialNumber);
+            var preForm = new frmRearBrake(this.serialNumber);
             preForm.Show();
-            opcManager.SetOPCValue(opcBrakeFCounter, 1);
+            opcManager.SetOPCValue(opcBrakeRCounter, 1);
 
             this.Close();
         }

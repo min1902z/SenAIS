@@ -64,7 +64,7 @@
             this.FBrakePanel.Controls.Add(this.lbBrakeTitle);
             this.FBrakePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FBrakePanel.Location = new System.Drawing.Point(0, 0);
-            this.FBrakePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FBrakePanel.Margin = new System.Windows.Forms.Padding(4);
             this.FBrakePanel.Name = "FBrakePanel";
             this.FBrakePanel.Size = new System.Drawing.Size(1819, 922);
             this.FBrakePanel.TabIndex = 2;
@@ -80,7 +80,7 @@
             this.cbBrake.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbBrake.Enabled = false;
             this.cbBrake.Location = new System.Drawing.Point(625, 818);
-            this.cbBrake.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbBrake.Margin = new System.Windows.Forms.Padding(4);
             this.cbBrake.Name = "cbBrake";
             this.cbBrake.Size = new System.Drawing.Size(475, 103);
             this.cbBrake.TabIndex = 55;
@@ -98,7 +98,7 @@
             this.tbRight.Controls.Add(this.lbDiff_Brake, 0, 1);
             this.tbRight.Controls.Add(this.label7, 1, 1);
             this.tbRight.Location = new System.Drawing.Point(859, 148);
-            this.tbRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbRight.Margin = new System.Windows.Forms.Padding(4);
             this.tbRight.Name = "tbRight";
             this.tbRight.RowCount = 2;
             this.tbRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -113,10 +113,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(793, 79);
+            this.label3.Location = new System.Drawing.Point(825, 63);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 146);
+            this.label3.Size = new System.Drawing.Size(120, 118);
             this.label3.TabIndex = 7;
             this.label3.Text = "Phải \r\n(kgf)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,7 +130,7 @@
             this.lbRight_Brake.Location = new System.Drawing.Point(4, 0);
             this.lbRight_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbRight_Brake.Name = "lbRight_Brake";
-            this.lbRight_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbRight_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbRight_Brake.TabIndex = 9;
             this.lbRight_Brake.Text = "0.0";
             this.lbRight_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,7 +144,7 @@
             this.lbDiff_Brake.Location = new System.Drawing.Point(4, 331);
             this.lbDiff_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDiff_Brake.Name = "lbDiff_Brake";
-            this.lbDiff_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbDiff_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbDiff_Brake.TabIndex = 10;
             this.lbDiff_Brake.Text = "0.0";
             this.lbDiff_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -155,10 +155,10 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(702, 411);
+            this.label7.Location = new System.Drawing.Point(753, 394);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(243, 146);
+            this.label7.Size = new System.Drawing.Size(192, 118);
             this.label7.TabIndex = 11;
             this.label7.Text = "Sai Lệch \r\n(%)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,7 +175,7 @@
             this.tbLeft.Controls.Add(this.lbSum_Brake, 1, 1);
             this.tbLeft.Controls.Add(this.lbLeft_Brake, 1, 0);
             this.tbLeft.Location = new System.Drawing.Point(16, 148);
-            this.tbLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLeft.Margin = new System.Windows.Forms.Padding(4);
             this.tbLeft.Name = "tbLeft";
             this.tbLeft.RowCount = 2;
             this.tbLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -190,10 +190,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(4, 79);
+            this.label2.Location = new System.Drawing.Point(4, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 146);
+            this.label2.Size = new System.Drawing.Size(116, 118);
             this.label2.TabIndex = 6;
             this.label2.Text = "Trái\r\n(kgf)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -204,10 +204,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(4, 411);
+            this.label8.Location = new System.Drawing.Point(4, 394);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(162, 146);
+            this.label8.Size = new System.Drawing.Size(128, 118);
             this.label8.TabIndex = 31;
             this.label8.Text = "Tổng \r\n(kgf)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,10 +218,10 @@
             this.lbSum_Brake.AutoSize = true;
             this.lbSum_Brake.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSum_Brake.ForeColor = System.Drawing.Color.Blue;
-            this.lbSum_Brake.Location = new System.Drawing.Point(174, 331);
+            this.lbSum_Brake.Location = new System.Drawing.Point(140, 331);
             this.lbSum_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSum_Brake.Name = "lbSum_Brake";
-            this.lbSum_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbSum_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbSum_Brake.TabIndex = 13;
             this.lbSum_Brake.Text = "0.0";
             this.lbSum_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,10 +232,10 @@
             this.lbLeft_Brake.AutoSize = true;
             this.lbLeft_Brake.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLeft_Brake.ForeColor = System.Drawing.Color.Blue;
-            this.lbLeft_Brake.Location = new System.Drawing.Point(174, 0);
+            this.lbLeft_Brake.Location = new System.Drawing.Point(140, 0);
             this.lbLeft_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbLeft_Brake.Name = "lbLeft_Brake";
-            this.lbLeft_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbLeft_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbLeft_Brake.TabIndex = 8;
             this.lbLeft_Brake.Text = "0.0";
             this.lbLeft_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -248,7 +248,7 @@
             this.lbVinNumber.Location = new System.Drawing.Point(229, -20);
             this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
-            this.lbVinNumber.Size = new System.Drawing.Size(418, 164);
+            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
             this.lbVinNumber.TabIndex = 50;
             this.lbVinNumber.Text = "Số Vin";
             // 
@@ -262,7 +262,7 @@
             this.cbReady.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbReady.Enabled = false;
             this.cbReady.Location = new System.Drawing.Point(16, 15);
-            this.cbReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReady.Margin = new System.Windows.Forms.Padding(4);
             this.cbReady.Name = "cbReady";
             this.cbReady.Size = new System.Drawing.Size(205, 129);
             this.cbReady.TabIndex = 44;
@@ -298,7 +298,7 @@
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(283, 65);
             this.btnPre.TabIndex = 37;
-            this.btnPre.Text = "Phanh Trước";
+            this.btnPre.Text = "Phanh Sau";
             this.btnPre.UseVisualStyleBackColor = false;
             this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
@@ -321,7 +321,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1819, 922);
             this.Controls.Add(this.FBrakePanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHandBrake";
             this.ShowIcon = false;
             this.Text = "Lực Phanh Tay";

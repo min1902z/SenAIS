@@ -24,6 +24,7 @@ namespace SenAIS
         private OPCItem opcCounterBrake;
         private SQLHelper sqlHelper;
         private OPCManager opcManager;
+        private string currentUI;
         private string vehicleType;
         private string inspector;
         private string frameNumber;
@@ -651,6 +652,29 @@ namespace SenAIS
                 dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
             }
         }
+        public void ToggleMainUI()
+        {
+            string currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
+            string newUI = currentUI == "Menu" ? "Vehicle" : "Menu";
+
+            // Cập nhật hiển thị
+            if (newUI == "Menu")
+            {
+                tbMenuControl.Visible = true;
+                dgVehicleInfo.Visible = false;
+            }
+            else
+            {
+                tbMenuControl.Visible = false;
+                dgVehicleInfo.Visible = true;
+            }
+
+            // Lưu lại cấu hình
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["DefaultMainUI"].Value = newUI;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -658,6 +682,17 @@ namespace SenAIS
 
         private void frmInspection_Load(object sender, EventArgs e)
         {
+            currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
+            if (currentUI == "Menu")
+            {
+                tbMenuControl.Visible = true;
+                dgVehicleInfo.Visible = false;
+            }
+            else
+            {
+                tbMenuControl.Visible = false;
+                dgVehicleInfo.Visible = true;
+            }
             LoadAllVehicleInfo();
             StartListeningForVehicleInfo();
             StartMonitoringCounters();

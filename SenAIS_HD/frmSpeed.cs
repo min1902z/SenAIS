@@ -22,7 +22,7 @@ namespace SenAIS
         private double speedA = 1.0;
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSpeedResult = ConfigurationManager.AppSettings["Speed_Result"];
-        private static readonly string opcBrakeFCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
+        private static readonly string opcBrakeHCounter = ConfigurationManager.AppSettings["BrakeH_Counter"];
 
         public frmSpeed(string serialNumber)
         {
@@ -243,15 +243,15 @@ namespace SenAIS
         }
         private void btnPreSpeed_Click(object sender, EventArgs e)
         {
-            var existingForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
+            var existingForm = Application.OpenForms.OfType<frmHandBrake>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.Close(); // 🔥 Đóng form cũ nếu có
             }
 
-            var preForm = new frmFrontBrake(this.serialNumber);
+            var preForm = new frmHandBrake(this.serialNumber);
             preForm.Show();
-            opcManager.SetOPCValue(opcBrakeFCounter, 1);
+            opcManager.SetOPCValue(opcBrakeHCounter, 1);
 
             this.Close();
         }

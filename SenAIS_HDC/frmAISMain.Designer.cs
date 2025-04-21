@@ -59,6 +59,7 @@
             this.TSReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.tsSwitchMainUI = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,9 +75,9 @@
             this.TSHoTro});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.msMain.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.msMain.Size = new System.Drawing.Size(886, 27);
+            this.msMain.Size = new System.Drawing.Size(1181, 33);
             this.msMain.TabIndex = 6;
             this.msMain.Text = "menuStrip1";
             // 
@@ -88,7 +89,7 @@
             this.tsMMSConfig});
             this.TSHeThong.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TSHeThong.Name = "TSHeThong";
-            this.TSHeThong.Size = new System.Drawing.Size(83, 23);
+            this.TSHeThong.Size = new System.Drawing.Size(83, 29);
             this.TSHeThong.Text = "Hệ Thống";
             // 
             // TSDangKiem
@@ -120,7 +121,7 @@
             this.tsInspector});
             this.TSDuLieu.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TSDuLieu.Name = "TSDuLieu";
-            this.TSDuLieu.Size = new System.Drawing.Size(72, 23);
+            this.TSDuLieu.Size = new System.Drawing.Size(72, 29);
             this.TSDuLieu.Text = "Dữ Liệu";
             this.TSDuLieu.Click += new System.EventHandler(this.TSDuLieu_Click);
             // 
@@ -157,7 +158,7 @@
             this.tsSpeedMovingCalib});
             this.điềuChỉnhToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.điềuChỉnhToolStripMenuItem.Name = "điềuChỉnhToolStripMenuItem";
-            this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(92, 23);
+            this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
             this.điềuChỉnhToolStripMenuItem.Text = "Điều Chỉnh";
             // 
             // tsCalibration
@@ -234,14 +235,14 @@
             // tsLeftSteerCalib
             // 
             this.tsLeftSteerCalib.Name = "tsLeftSteerCalib";
-            this.tsLeftSteerCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsLeftSteerCalib.Size = new System.Drawing.Size(158, 24);
             this.tsLeftSteerCalib.Text = "Góc Lái Trái";
             this.tsLeftSteerCalib.Click += new System.EventHandler(this.tsLeftSteerCalib_Click);
             // 
             // tsRightSteerCalib
             // 
             this.tsRightSteerCalib.Name = "tsRightSteerCalib";
-            this.tsRightSteerCalib.Size = new System.Drawing.Size(180, 24);
+            this.tsRightSteerCalib.Size = new System.Drawing.Size(158, 24);
             this.tsRightSteerCalib.Text = "Góc Lái Phải";
             this.tsRightSteerCalib.Click += new System.EventHandler(this.tsRightSteerCalib_Click);
             // 
@@ -279,33 +280,34 @@
             // TSHoTro
             // 
             this.TSHoTro.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSwitchMainUI,
             this.TSAuboutMe,
             this.TSReset,
             this.tsExit});
             this.TSHoTro.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TSHoTro.Name = "TSHoTro";
-            this.TSHoTro.Size = new System.Drawing.Size(64, 23);
+            this.TSHoTro.Size = new System.Drawing.Size(64, 29);
             this.TSHoTro.Text = "Hỗ Trợ";
             this.TSHoTro.Click += new System.EventHandler(this.TSHoTro_Click);
             // 
             // TSAuboutMe
             // 
             this.TSAuboutMe.Name = "TSAuboutMe";
-            this.TSAuboutMe.Size = new System.Drawing.Size(180, 24);
+            this.TSAuboutMe.Size = new System.Drawing.Size(229, 24);
             this.TSAuboutMe.Text = "Giới Thiệu";
             this.TSAuboutMe.Click += new System.EventHandler(this.TSAuboutMe_Click);
             // 
             // TSReset
             // 
             this.TSReset.Name = "TSReset";
-            this.TSReset.Size = new System.Drawing.Size(180, 24);
+            this.TSReset.Size = new System.Drawing.Size(229, 24);
             this.TSReset.Text = "Khởi Động Lại";
             this.TSReset.Click += new System.EventHandler(this.TSReset_Click);
             // 
             // tsExit
             // 
             this.tsExit.Name = "tsExit";
-            this.tsExit.Size = new System.Drawing.Size(180, 24);
+            this.tsExit.Size = new System.Drawing.Size(229, 24);
             this.tsExit.Text = "Thoát ";
             this.tsExit.Click += new System.EventHandler(this.tsExit_Click);
             // 
@@ -315,24 +317,31 @@
             this.panelBody.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelBody.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBody.Location = new System.Drawing.Point(0, 27);
-            this.panelBody.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelBody.Location = new System.Drawing.Point(0, 33);
+            this.panelBody.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(886, 487);
+            this.panelBody.Size = new System.Drawing.Size(1181, 600);
             this.panelBody.TabIndex = 7;
+            // 
+            // tsSwitchMainUI
+            // 
+            this.tsSwitchMainUI.Name = "tsSwitchMainUI";
+            this.tsSwitchMainUI.Size = new System.Drawing.Size(229, 24);
+            this.tsSwitchMainUI.Text = "Đổi Bảng Danh Sách Xe";
+            this.tsSwitchMainUI.Click += new System.EventHandler(this.tsSwitchMainUI_Click);
             // 
             // SenAIS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(886, 514);
+            this.ClientSize = new System.Drawing.Size(1181, 633);
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.msMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SenAIS";
             this.Text = "SenAIS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -375,6 +384,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsSpeedAxis;
         private System.Windows.Forms.ToolStripMenuItem tsLeftAxisCalib;
         private System.Windows.Forms.ToolStripMenuItem tsRightAxisCalib;
+        private System.Windows.Forms.ToolStripMenuItem tsSwitchMainUI;
     }
 }
 

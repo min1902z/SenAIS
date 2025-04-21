@@ -356,5 +356,18 @@ namespace SenAIS
             OpenChildForm(calibrationForm);
             calibrationForm.SetOPCItem("Hyundai.OCS10.SPM_PosR_AI");
         }
+
+        private void tsSwitchMainUI_Click(object sender, EventArgs e)
+        {
+            if (activeForm is frmInspection currentInspection)
+            {
+                // Gọi phương thức chuyển đổi giao diện
+                currentInspection.ToggleMainUI();
+
+                // Cập nhật lại Text cho nút toolstrip
+                string newUI = ConfigurationManager.AppSettings["DefaultMainUI"];
+                tsSwitchMainUI.Text = newUI == "Menu" ? "Đổi Bảng Danh Sách Xe" : "Đổi Bảng Điều Khiển";
+            }
+        }
     }
 }
