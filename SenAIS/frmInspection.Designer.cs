@@ -29,24 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInspection));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnReport = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbMenuControl = new System.Windows.Forms.TableLayoutPanel();
             this.btnFoglights = new System.Windows.Forms.Button();
             this.btnHeadlights = new System.Windows.Forms.Button();
             this.btnSideSlip = new System.Windows.Forms.Button();
-            this.btnSteerAngle = new System.Windows.Forms.Button();
             this.btnFrontBrake = new System.Windows.Forms.Button();
             this.btnEmission = new System.Windows.Forms.Button();
             this.btnNoise = new System.Windows.Forms.Button();
             this.btnHandBrake = new System.Windows.Forms.Button();
             this.btnRearBrake = new System.Windows.Forms.Button();
-            this.btnWhistle = new System.Windows.Forms.Button();
             this.cbManualMode = new System.Windows.Forms.CheckBox();
             this.btnRearWeight = new System.Windows.Forms.Button();
             this.btnSpeed = new System.Windows.Forms.Button();
             this.btnFrontWeight = new System.Windows.Forms.Button();
+            this.btnSteerAngle = new System.Windows.Forms.Button();
+            this.btnWhistle = new System.Windows.Forms.Button();
             this.btnInspecProgress = new System.Windows.Forms.Button();
             this.InspectionPanel = new System.Windows.Forms.Panel();
+            this.cbPos2 = new System.Windows.Forms.CheckBox();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnResetMain = new System.Windows.Forms.Button();
+            this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
             this.btnStart = new System.Windows.Forms.Button();
             this.cbPos1 = new System.Windows.Forms.CheckBox();
             this.btnAddList = new System.Windows.Forms.Button();
@@ -66,8 +74,9 @@
             this.txtEngineNum = new System.Windows.Forms.TextBox();
             this.lbTypeCarTitle = new System.Windows.Forms.Label();
             this.cbTypeCar = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tbMenuControl.SuspendLayout();
             this.InspectionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).BeginInit();
             this.tbVehicleInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +85,7 @@
             this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnReport.AutoSize = true;
             this.btnReport.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.Location = new System.Drawing.Point(40, 775);
+            this.btnReport.Location = new System.Drawing.Point(40, 754);
             this.btnReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(150, 50);
@@ -85,38 +94,38 @@
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // tableLayoutPanel2
+            // tbMenuControl
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbMenuControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Controls.Add(this.btnFoglights, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnHeadlights, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSideSlip, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnSteerAngle, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnFrontBrake, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnEmission, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnNoise, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnHandBrake, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnRearBrake, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnWhistle, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.cbManualMode, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnRearWeight, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnSpeed, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnFrontWeight, 2, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(535, 106);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(539, 761);
-            this.tableLayoutPanel2.TabIndex = 6;
+            this.tbMenuControl.ColumnCount = 3;
+            this.tbMenuControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbMenuControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbMenuControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tbMenuControl.Controls.Add(this.btnFoglights, 1, 0);
+            this.tbMenuControl.Controls.Add(this.btnHeadlights, 0, 0);
+            this.tbMenuControl.Controls.Add(this.btnSideSlip, 0, 1);
+            this.tbMenuControl.Controls.Add(this.btnFrontBrake, 0, 2);
+            this.tbMenuControl.Controls.Add(this.btnEmission, 0, 3);
+            this.tbMenuControl.Controls.Add(this.btnNoise, 1, 4);
+            this.tbMenuControl.Controls.Add(this.btnHandBrake, 2, 2);
+            this.tbMenuControl.Controls.Add(this.btnRearBrake, 1, 2);
+            this.tbMenuControl.Controls.Add(this.cbManualMode, 1, 3);
+            this.tbMenuControl.Controls.Add(this.btnRearWeight, 2, 4);
+            this.tbMenuControl.Controls.Add(this.btnSpeed, 0, 4);
+            this.tbMenuControl.Controls.Add(this.btnFrontWeight, 2, 3);
+            this.tbMenuControl.Controls.Add(this.btnSteerAngle, 2, 1);
+            this.tbMenuControl.Controls.Add(this.btnWhistle, 1, 1);
+            this.tbMenuControl.Location = new System.Drawing.Point(535, 106);
+            this.tbMenuControl.Name = "tbMenuControl";
+            this.tbMenuControl.RowCount = 5;
+            this.tbMenuControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbMenuControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbMenuControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbMenuControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbMenuControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbMenuControl.Size = new System.Drawing.Size(539, 740);
+            this.tbMenuControl.TabIndex = 6;
             // 
             // btnFoglights
             // 
@@ -145,7 +154,7 @@
             // btnSideSlip
             // 
             this.btnSideSlip.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSideSlip.Location = new System.Drawing.Point(2, 154);
+            this.btnSideSlip.Location = new System.Drawing.Point(2, 150);
             this.btnSideSlip.Margin = new System.Windows.Forms.Padding(2);
             this.btnSideSlip.Name = "btnSideSlip";
             this.btnSideSlip.Size = new System.Drawing.Size(129, 53);
@@ -154,22 +163,10 @@
             this.btnSideSlip.UseVisualStyleBackColor = true;
             this.btnSideSlip.Click += new System.EventHandler(this.btnSideSlip_Click);
             // 
-            // btnSteerAngle
-            // 
-            this.btnSteerAngle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerAngle.Location = new System.Drawing.Point(181, 154);
-            this.btnSteerAngle.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSteerAngle.Name = "btnSteerAngle";
-            this.btnSteerAngle.Size = new System.Drawing.Size(129, 53);
-            this.btnSteerAngle.TabIndex = 18;
-            this.btnSteerAngle.Text = "Góc Lái";
-            this.btnSteerAngle.UseVisualStyleBackColor = true;
-            this.btnSteerAngle.Click += new System.EventHandler(this.btnSteerAngle_Click);
-            // 
             // btnFrontBrake
             // 
             this.btnFrontBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFrontBrake.Location = new System.Drawing.Point(2, 306);
+            this.btnFrontBrake.Location = new System.Drawing.Point(2, 298);
             this.btnFrontBrake.Margin = new System.Windows.Forms.Padding(2);
             this.btnFrontBrake.Name = "btnFrontBrake";
             this.btnFrontBrake.Size = new System.Drawing.Size(129, 53);
@@ -182,7 +179,7 @@
             // 
             this.btnEmission.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmission.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnEmission.Location = new System.Drawing.Point(2, 458);
+            this.btnEmission.Location = new System.Drawing.Point(2, 446);
             this.btnEmission.Margin = new System.Windows.Forms.Padding(2);
             this.btnEmission.Name = "btnEmission";
             this.btnEmission.Size = new System.Drawing.Size(125, 53);
@@ -194,7 +191,7 @@
             // btnNoise
             // 
             this.btnNoise.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNoise.Location = new System.Drawing.Point(181, 610);
+            this.btnNoise.Location = new System.Drawing.Point(181, 594);
             this.btnNoise.Margin = new System.Windows.Forms.Padding(2);
             this.btnNoise.Name = "btnNoise";
             this.btnNoise.Size = new System.Drawing.Size(129, 53);
@@ -206,7 +203,7 @@
             // btnHandBrake
             // 
             this.btnHandBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHandBrake.Location = new System.Drawing.Point(360, 306);
+            this.btnHandBrake.Location = new System.Drawing.Point(360, 298);
             this.btnHandBrake.Margin = new System.Windows.Forms.Padding(2);
             this.btnHandBrake.Name = "btnHandBrake";
             this.btnHandBrake.Size = new System.Drawing.Size(129, 53);
@@ -218,7 +215,7 @@
             // btnRearBrake
             // 
             this.btnRearBrake.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRearBrake.Location = new System.Drawing.Point(181, 306);
+            this.btnRearBrake.Location = new System.Drawing.Point(181, 298);
             this.btnRearBrake.Margin = new System.Windows.Forms.Padding(2);
             this.btnRearBrake.Name = "btnRearBrake";
             this.btnRearBrake.Size = new System.Drawing.Size(129, 53);
@@ -227,23 +224,11 @@
             this.btnRearBrake.UseVisualStyleBackColor = true;
             this.btnRearBrake.Click += new System.EventHandler(this.btnRearBrake_Click);
             // 
-            // btnWhistle
-            // 
-            this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWhistle.Location = new System.Drawing.Point(360, 2);
-            this.btnWhistle.Margin = new System.Windows.Forms.Padding(2);
-            this.btnWhistle.Name = "btnWhistle";
-            this.btnWhistle.Size = new System.Drawing.Size(129, 53);
-            this.btnWhistle.TabIndex = 11;
-            this.btnWhistle.Text = "Còi";
-            this.btnWhistle.UseVisualStyleBackColor = true;
-            this.btnWhistle.Click += new System.EventHandler(this.btnWhistle_Click);
-            // 
             // cbManualMode
             // 
             this.cbManualMode.AutoSize = true;
             this.cbManualMode.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbManualMode.Location = new System.Drawing.Point(181, 458);
+            this.cbManualMode.Location = new System.Drawing.Point(181, 446);
             this.cbManualMode.Margin = new System.Windows.Forms.Padding(2);
             this.cbManualMode.Name = "cbManualMode";
             this.cbManualMode.Size = new System.Drawing.Size(151, 33);
@@ -254,7 +239,7 @@
             // btnRearWeight
             // 
             this.btnRearWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRearWeight.Location = new System.Drawing.Point(360, 610);
+            this.btnRearWeight.Location = new System.Drawing.Point(360, 594);
             this.btnRearWeight.Margin = new System.Windows.Forms.Padding(2);
             this.btnRearWeight.Name = "btnRearWeight";
             this.btnRearWeight.Size = new System.Drawing.Size(138, 53);
@@ -267,7 +252,7 @@
             // btnSpeed
             // 
             this.btnSpeed.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSpeed.Location = new System.Drawing.Point(2, 610);
+            this.btnSpeed.Location = new System.Drawing.Point(2, 594);
             this.btnSpeed.Margin = new System.Windows.Forms.Padding(2);
             this.btnSpeed.Name = "btnSpeed";
             this.btnSpeed.Size = new System.Drawing.Size(129, 53);
@@ -279,7 +264,7 @@
             // btnFrontWeight
             // 
             this.btnFrontWeight.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFrontWeight.Location = new System.Drawing.Point(360, 458);
+            this.btnFrontWeight.Location = new System.Drawing.Point(360, 446);
             this.btnFrontWeight.Margin = new System.Windows.Forms.Padding(2);
             this.btnFrontWeight.Name = "btnFrontWeight";
             this.btnFrontWeight.Size = new System.Drawing.Size(144, 53);
@@ -288,6 +273,30 @@
             this.btnFrontWeight.UseVisualStyleBackColor = true;
             this.btnFrontWeight.Visible = false;
             this.btnFrontWeight.Click += new System.EventHandler(this.btnFrontWeight_Click);
+            // 
+            // btnSteerAngle
+            // 
+            this.btnSteerAngle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSteerAngle.Location = new System.Drawing.Point(360, 150);
+            this.btnSteerAngle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSteerAngle.Name = "btnSteerAngle";
+            this.btnSteerAngle.Size = new System.Drawing.Size(129, 53);
+            this.btnSteerAngle.TabIndex = 18;
+            this.btnSteerAngle.Text = "Góc Lái";
+            this.btnSteerAngle.UseVisualStyleBackColor = true;
+            this.btnSteerAngle.Click += new System.EventHandler(this.btnSteerAngle_Click);
+            // 
+            // btnWhistle
+            // 
+            this.btnWhistle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWhistle.Location = new System.Drawing.Point(181, 150);
+            this.btnWhistle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWhistle.Name = "btnWhistle";
+            this.btnWhistle.Size = new System.Drawing.Size(129, 53);
+            this.btnWhistle.TabIndex = 11;
+            this.btnWhistle.Text = "Còi";
+            this.btnWhistle.UseVisualStyleBackColor = true;
+            this.btnWhistle.Click += new System.EventHandler(this.btnWhistle_Click);
             // 
             // btnInspecProgress
             // 
@@ -310,13 +319,17 @@
             this.InspectionPanel.AutoScroll = true;
             this.InspectionPanel.AutoSize = true;
             this.InspectionPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.InspectionPanel.Controls.Add(this.cbPos2);
+            this.InspectionPanel.Controls.Add(this.btnExit);
+            this.InspectionPanel.Controls.Add(this.btnResetMain);
+            this.InspectionPanel.Controls.Add(this.dgVehicleInfo);
             this.InspectionPanel.Controls.Add(this.btnStart);
             this.InspectionPanel.Controls.Add(this.cbPos1);
             this.InspectionPanel.Controls.Add(this.btnAddList);
             this.InspectionPanel.Controls.Add(this.txtVinShow);
             this.InspectionPanel.Controls.Add(this.tbVehicleInfo);
             this.InspectionPanel.Controls.Add(this.btnInspecProgress);
-            this.InspectionPanel.Controls.Add(this.tableLayoutPanel2);
+            this.InspectionPanel.Controls.Add(this.tbMenuControl);
             this.InspectionPanel.Controls.Add(this.btnReport);
             this.InspectionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InspectionPanel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -324,8 +337,104 @@
             this.InspectionPanel.Location = new System.Drawing.Point(0, 0);
             this.InspectionPanel.Margin = new System.Windows.Forms.Padding(2);
             this.InspectionPanel.Name = "InspectionPanel";
-            this.InspectionPanel.Size = new System.Drawing.Size(1440, 878);
+            this.InspectionPanel.Size = new System.Drawing.Size(1440, 857);
             this.InspectionPanel.TabIndex = 1;
+            // 
+            // cbPos2
+            // 
+            this.cbPos2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPos2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbPos2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbPos2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbPos2.BackgroundImage")));
+            this.cbPos2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbPos2.Checked = true;
+            this.cbPos2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPos2.Enabled = false;
+            this.cbPos2.Location = new System.Drawing.Point(1322, 200);
+            this.cbPos2.Name = "cbPos2";
+            this.cbPos2.Size = new System.Drawing.Size(115, 109);
+            this.cbPos2.TabIndex = 63;
+            this.cbPos2.UseVisualStyleBackColor = false;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExit.AutoSize = true;
+            this.btnExit.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(368, 754);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(150, 50);
+            this.btnExit.TabIndex = 62;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnResetMain
+            // 
+            this.btnResetMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnResetMain.AutoSize = true;
+            this.btnResetMain.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetMain.Location = new System.Drawing.Point(206, 754);
+            this.btnResetMain.Margin = new System.Windows.Forms.Padding(2);
+            this.btnResetMain.Name = "btnResetMain";
+            this.btnResetMain.Size = new System.Drawing.Size(150, 50);
+            this.btnResetMain.TabIndex = 61;
+            this.btnResetMain.Text = "Reset Hệ Thống";
+            this.btnResetMain.UseVisualStyleBackColor = true;
+            this.btnResetMain.Click += new System.EventHandler(this.btnResetMain_Click);
+            // 
+            // dgVehicleInfo
+            // 
+            this.dgVehicleInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgVehicleInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgVehicleInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgVehicleInfo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgVehicleInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgVehicleInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgVehicleInfo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgVehicleInfo.Location = new System.Drawing.Point(512, 220);
+            this.dgVehicleInfo.Name = "dgVehicleInfo";
+            this.dgVehicleInfo.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgVehicleInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgVehicleInfo.RowHeadersVisible = false;
+            this.dgVehicleInfo.RowHeadersWidth = 51;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgVehicleInfo.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgVehicleInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgVehicleInfo.Size = new System.Drawing.Size(775, 434);
+            this.dgVehicleInfo.TabIndex = 60;
+            this.dgVehicleInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVehicleInfo_CellClick);
             // 
             // btnStart
             // 
@@ -335,7 +444,7 @@
             this.btnStart.FlatAppearance.BorderSize = 2;
             this.btnStart.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnStart.Location = new System.Drawing.Point(109, 207);
+            this.btnStart.Location = new System.Drawing.Point(109, 197);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(121, 45);
@@ -354,7 +463,7 @@
             this.cbPos1.Checked = true;
             this.cbPos1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPos1.Enabled = false;
-            this.cbPos1.Location = new System.Drawing.Point(1322, 259);
+            this.cbPos1.Location = new System.Drawing.Point(1322, 361);
             this.cbPos1.Name = "cbPos1";
             this.cbPos1.Size = new System.Drawing.Size(115, 109);
             this.cbPos1.TabIndex = 58;
@@ -365,7 +474,7 @@
             this.btnAddList.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnAddList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddList.BackgroundImage")));
             this.btnAddList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddList.Location = new System.Drawing.Point(40, 207);
+            this.btnAddList.Location = new System.Drawing.Point(40, 197);
             this.btnAddList.Name = "btnAddList";
             this.btnAddList.Size = new System.Drawing.Size(52, 45);
             this.btnAddList.TabIndex = 19;
@@ -394,7 +503,7 @@
             this.tbVehicleInfo.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tbVehicleInfo.ColumnCount = 2;
             this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 346F));
+            this.tbVehicleInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 358F));
             this.tbVehicleInfo.Controls.Add(this.txtColor, 1, 6);
             this.tbVehicleInfo.Controls.Add(this.lbColor, 0, 6);
             this.tbVehicleInfo.Controls.Add(this.cbFuel, 1, 5);
@@ -410,7 +519,7 @@
             this.tbVehicleInfo.Controls.Add(this.lbTypeCarTitle, 0, 2);
             this.tbVehicleInfo.Controls.Add(this.cbTypeCar, 1, 2);
             this.tbVehicleInfo.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbVehicleInfo.Location = new System.Drawing.Point(40, 270);
+            this.tbVehicleInfo.Location = new System.Drawing.Point(40, 259);
             this.tbVehicleInfo.Margin = new System.Windows.Forms.Padding(2);
             this.tbVehicleInfo.Name = "tbVehicleInfo";
             this.tbVehicleInfo.RowCount = 7;
@@ -592,18 +701,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1440, 878);
+            this.ClientSize = new System.Drawing.Size(1440, 857);
             this.Controls.Add(this.InspectionPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmInspection";
+            this.ShowIcon = false;
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInspection_FormClosing);
             this.Load += new System.EventHandler(this.frmInspection_Load);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tbMenuControl.ResumeLayout(false);
+            this.tbMenuControl.PerformLayout();
             this.InspectionPanel.ResumeLayout(false);
             this.InspectionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).EndInit();
             this.tbVehicleInfo.ResumeLayout(false);
             this.tbVehicleInfo.PerformLayout();
             this.ResumeLayout(false);
@@ -613,7 +723,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnReport;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tbMenuControl;
         private System.Windows.Forms.Button btnHeadlights;
         private System.Windows.Forms.Button btnWhistle;
         private System.Windows.Forms.Button btnEmission;
@@ -649,5 +759,9 @@
         private System.Windows.Forms.CheckBox cbManualMode;
         private System.Windows.Forms.CheckBox cbPos1;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.DataGridView dgVehicleInfo;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnResetMain;
+        private System.Windows.Forms.CheckBox cbPos2;
     }
 }

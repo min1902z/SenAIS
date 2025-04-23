@@ -11,6 +11,7 @@ namespace SenAIS
     {
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCUtility opcManager;
         private string serialNumber;
         public decimal sideSlip;
         private decimal minSideSlip = 0;
@@ -23,6 +24,7 @@ namespace SenAIS
             InitializeComponent();
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
+            opcManager = new OPCUtility();
             LoadVehicleStandards(serialNumber);
             InitializeTimer();
         }
@@ -39,7 +41,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcSSCounter));
+                int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcSSCounter));
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
@@ -64,8 +66,8 @@ namespace SenAIS
 
                             double alignA = 1.0;
                             alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
-                            double sideSlipSign = (double)OPCUtility.GetOPCValue(opcSSSign);
-                            double sideSlipResult = (double)OPCUtility.GetOPCValue(opcSSResult);
+                            double sideSlipSign = (double)opcManager.GetOPCValue(opcSSSign);
+                            double sideSlipResult = (double)opcManager.GetOPCValue(opcSSResult);
                             double sideSlip = 0.0;
 
                             if (sideSlipSign == 0)

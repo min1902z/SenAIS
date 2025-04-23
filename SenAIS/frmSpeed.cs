@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,8 +10,10 @@ namespace SenAIS
 {
     public partial class frmSpeed : Form
     {
-        private Timer updateTimer;
+        //private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCUtility opcManager;
+        private CancellationTokenSource opcCancellationTokenSource;
         private string serialNumber;
         public decimal speedValue;
         private bool isReady = false;
@@ -25,107 +28,211 @@ namespace SenAIS
             InitializeComponent();
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
+            opcManager = new OPCUtility();
             LoadVehicleStandards(serialNumber);
-            InitializeTimer();
+            StartListening();
+            //InitializeTimer();
         }
-        private void InitializeTimer()
+        private void StartListening()
         {
-            updateTimer = new Timer();
-            updateTimer.Interval = 500; // Kiểm tra mỗi giây
-            updateTimer.Tick += new EventHandler(UpdateReadyStatus);
-            updateTimer.Start();
+            opcCancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = opcCancellationTokenSource.Token;
+
+            Task.Run(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    try
+                    {
+                        int checkStatus = (int)opcManager.GetOPCValue(opcSpeedCounter);
+                        this.Invoke((Action)(() => UpdateUI(checkStatus)));
+
+                        if (checkStatus == 2)
+                        {
+                            UpdateSpeed();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    await Task.Delay(100, token);
+                }
+            }, token);
         }
-        private async void UpdateReadyStatus(object sender, EventArgs e)
+        private void UpdateUI(int checkStatus)
+        {
+            switch (checkStatus)
+            {
+                case 0:
+                    cbReady.BackColor = SystemColors.Control;
+                    lbSpeed.Visible = lbEnd.Visible = lbStandard.Visible = false;
+                    isReady = false;
+                    break;
+
+                case 1:
+                    cbReady.BackColor = Color.Green;
+                    isReady = false;
+                    lbSpeed.Visible = false;
+                    lbEnd.Visible = false;
+                    lbStandard.Visible = true;
+                    break;
+
+                case 2:
+                    cbReady.BackColor = Color.Green;
+                    isReady = true;
+                    lbTitleSpeed.Visible = false;
+                    lbEnd.Visible = false;
+                    lbSpeed.Visible = true;
+                    break;
+
+                case 3:
+                    cbReady.BackColor = Color.Green;
+                    lbTitleSpeed.Visible = false;
+                    lbEnd.Visible = true;
+                    lbSpeed.Visible = true;
+                    if (isReady)
+                    {
+                        SaveDataToDatabase();
+                        isReady = false;
+                    }
+                    break;
+
+                case 4:
+                    cbReady.BackColor = SystemColors.Control;
+                    lbEnd.Visible = true;
+                    lbStandard.Visible = false;
+                    lbSpeed.Visible = true;
+                    this.Close();
+                    break;
+
+                default:
+                    cbReady.BackColor = SystemColors.Control;
+                    isReady = false;
+                    lbSpeed.Visible = false;
+                    lbTitleSpeed.Visible = true;
+                    break;
+            }
+        }
+
+        private void UpdateSpeed()
         {
             try
             {
-                lbVinNumber.Text = this.serialNumber;
-                // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcSpeedCounter));
+                double speedResult = (double)opcManager.GetOPCValue(opcSpeedResult);
+                double speed = speedResult / speedA;
 
-                Invoke((Action)(() =>
+                this.Invoke((Action)(() =>
                 {
-                    switch (checkStatus)
-                    {
-                        case 0: // Mặc định
-                            cbReady.BackColor = SystemColors.Control;
-                            lbSpeed.Visible = false;
-                            lbEnd.Visible = false;
-                            lbStandard.Visible = false;
-                            isReady = false;
-                            break;
+                    lbSpeed.Text = speed.ToString("F1");
+                    this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
 
-                        case 1: // Xe vào vị trí
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            isReady = false; // Chưa sẵn sàng lưu
-                            lbSpeed.Visible = false;
-                            lbEnd.Visible = false;
-                            lbStandard.Visible = true;
-                            break;
-
-                        case 2: // Bắt đầu đo
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            isReady = true; // Sẵn sàng lưu sau khi đo
-                            lbTitleSpeed.Visible = false;
-                            lbEnd.Visible = false;
-                            lbSpeed.Visible = true;
-                            double speedResult = OPCUtility.GetOPCValue(opcSpeedResult);
-                            double speed = speedResult / speedA;
-                            lbSpeed.Text = speed.ToString("F1");
-
-                            this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
-
-                            // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
-                            bool isValueInStandard = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
-
-                            if (isValueInStandard)
-                            {
-                                lbSpeed.ForeColor = SystemColors.HotTrack;
-                            }
-                            else
-                            {
-                                lbSpeed.ForeColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
-                            }
-                            break;
-
-                        case 3: // Quá trình đo hoàn tất, lưu vào DB
-                            cbReady.BackColor = Color.Green; // Đèn xanh
-                            lbTitleSpeed.Visible = false;
-                            lbEnd.Visible = true;
-                            lbSpeed.Visible = true;
-                            if (isReady)
-                            {
-                                SaveDataToDatabase();
-                                isReady = false;
-                            }
-                            break;
-
-                        case 4: // Xe tiếp theo
-                            cbReady.BackColor = SystemColors.Control;
-                            lbStandard.Visible = false;
-                            lbTitleSpeed.Visible = true;
-                            this.Close();
-                            break;
-
-                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                            isReady = false;
-                            lbTitleSpeed.Visible = true;
-                            break;
-
-                    }
+                    bool isValueInStandard = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
+                    lbSpeed.ForeColor = isValueInStandard ? Color.Blue : Color.DarkRed;
                 }));
             }
             catch (Exception)
             {
             }
         }
+        //private void InitializeTimer()
+        //{
+        //    updateTimer = new Timer();
+        //    updateTimer.Interval = 500; // Kiểm tra mỗi giây
+        //    updateTimer.Tick += new EventHandler(UpdateReadyStatus);
+        //    updateTimer.Start();
+        //}
+        //private async void UpdateReadyStatus(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        lbVinNumber.Text = this.serialNumber;
+        //        // Lấy giá trị OPC
+        //        int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcSpeedCounter));
+
+        //        Invoke((Action)(() =>
+        //        {
+        //            switch (checkStatus)
+        //            {
+        //                case 0: // Mặc định
+        //                    cbReady.BackColor = SystemColors.Control;
+        //                    lbSpeed.Visible = false;
+        //                    lbEnd.Visible = false;
+        //                    lbStandard.Visible = false;
+        //                    isReady = false;
+        //                    break;
+
+        //                case 1: // Xe vào vị trí
+        //                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
+        //                    isReady = false; // Chưa sẵn sàng lưu
+        //                    lbSpeed.Visible = false;
+        //                    lbEnd.Visible = false;
+        //                    lbStandard.Visible = true;
+        //                    break;
+
+        //                case 2: // Bắt đầu đo
+        //                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
+        //                    isReady = true; // Sẵn sàng lưu sau khi đo
+        //                    lbTitleSpeed.Visible = false;
+        //                    lbEnd.Visible = false;
+        //                    lbSpeed.Visible = true;
+        //                    double speedResult = OPCUtility.GetOPCValue(opcSpeedResult);
+        //                    double speed = speedResult / speedA;
+        //                    lbSpeed.Text = speed.ToString("F1");
+
+        //                    this.speedValue = Convert.ToDecimal(speed.ToString("F1"));
+
+        //                    // Kiểm tra và đổi màu label Noise nếu ngoài tiêu chuẩn
+        //                    bool isValueInStandard = this.speedValue >= minSpeed && (maxSpeed == 0 || this.speedValue <= maxSpeed);
+
+        //                    if (isValueInStandard)
+        //                    {
+        //                        lbSpeed.ForeColor = SystemColors.HotTrack;
+        //                    }
+        //                    else
+        //                    {
+        //                        lbSpeed.ForeColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+        //                    }
+        //                    break;
+
+        //                case 3: // Quá trình đo hoàn tất, lưu vào DB
+        //                    cbReady.BackColor = Color.Green; // Đèn xanh
+        //                    lbTitleSpeed.Visible = false;
+        //                    lbEnd.Visible = true;
+        //                    lbSpeed.Visible = true;
+        //                    if (isReady)
+        //                    {
+        //                        SaveDataToDatabase();
+        //                        isReady = false;
+        //                    }
+        //                    break;
+
+        //                case 4: // Xe tiếp theo
+        //                    cbReady.BackColor = SystemColors.Control;
+        //                    lbStandard.Visible = false;
+        //                    lbTitleSpeed.Visible = true;
+        //                    this.Close();
+        //                    break;
+
+        //                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+        //                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
+        //                    isReady = false;
+        //                    lbTitleSpeed.Visible = true;
+        //                    break;
+
+        //            }
+        //        }));
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
         private decimal ConvertToDecimal(object value)
         {
             return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
         }
         private void LoadVehicleStandards(string serialNumber)
         {
+            lbVinNumber.Text = this.serialNumber;
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleDetails != null)
             {
@@ -158,6 +265,7 @@ namespace SenAIS
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
             }
             catch (Exception ex)
@@ -181,6 +289,7 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
+                    LoadVehicleStandards(serialNumber);
                 }
             }
             catch (Exception ex)
@@ -194,13 +303,19 @@ namespace SenAIS
         }
         private void frmSpeed_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (updateTimer != null)
+            //if (updateTimer != null)
+            //{
+            //    updateTimer.Stop(); // Dừng Timer
+            //    updateTimer.Dispose(); // Giải phóng tài nguyên
+            //    updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+            //}
+            //e.Cancel = false;
+            if (opcCancellationTokenSource != null)
             {
-                updateTimer.Stop(); // Dừng Timer
-                updateTimer.Dispose(); // Giải phóng tài nguyên
-                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+                opcCancellationTokenSource.Cancel();
+                opcCancellationTokenSource.Dispose();
+                opcCancellationTokenSource = null;
             }
-            e.Cancel = false;
         }
     }
 }

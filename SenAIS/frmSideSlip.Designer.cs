@@ -211,6 +211,7 @@
             this.Text = "Trượt Ngang Trước";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSideSlip_FormClosing);
+            this.Load += new System.EventHandler(this.frmSideSlip_Load);
             this.SideSlipPanel.ResumeLayout(false);
             this.SideSlipPanel.PerformLayout();
             this.ResumeLayout(false);

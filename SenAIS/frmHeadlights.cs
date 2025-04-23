@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,9 +12,13 @@ namespace SenAIS
 {
     public partial class frmHeadlights : Form
     {
-        private Timer updateTimer;
+        //private Timer updateTimer;
         private COMConnect comConnect;
         private SQLHelper sqlHelper;
+        private OPCUtility opcManager;
+        private CancellationTokenSource opcCancellationTokenSource;
+        private CancellationTokenSource sensorCancellationTokenSource;
+
         private string serialNumber;
         public decimal rightHBIntensityValue;
         public decimal rightHBVerticalValue;
@@ -49,170 +54,312 @@ namespace SenAIS
         private bool isReady = false;
         private bool autoTestCheck = false;
         public bool isDataCollected = false;
-        private Timer turnSignalTimer;
+        //private Timer turnSignalTimer;
         private static readonly string opcHLCounter = ConfigurationManager.AppSettings["Headlights_Counter"];
-        private static readonly string opcLeftSen = ConfigurationManager.AppSettings["HL_LeftSen"];
-        private static readonly string opcRightSen = ConfigurationManager.AppSettings["HL_RightSen"];
+        private static readonly string opcLeftSen = ConfigurationManager.AppSettings["HL_InSen"];
+        private static readonly string opcRightSen = ConfigurationManager.AppSettings["HL_OutSen"];
         public frmHeadlights(string serialNumber)
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Headlights"], 2400, this);
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
-            InitializeTimer();
-            InitializeSenSignalTimer();
+            opcManager = new OPCUtility();
+            StartCounterMonitoring();
+            StartSensorMonitoring();
+            //InitializeTimer();
+            //InitializeSenSignalTimer();
         }
-        private void InitializeSenSignalTimer()
+        private void StartCounterMonitoring()
         {
-            turnSignalTimer = new Timer();
-            turnSignalTimer.Interval = 200;
-            turnSignalTimer.Tick += SenSignalTimer_Tick;
-            turnSignalTimer.Start();
-        }
-        private void SenSignalTimer_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                // Lấy giá trị từ OPC
-                int leftSen = OPCUtility.GetOPCValue(opcLeftSen);
-                int rightSen = OPCUtility.GetOPCValue(opcRightSen);
+            opcCancellationTokenSource = new CancellationTokenSource();
+            var token = opcCancellationTokenSource.Token;
 
-                // Chỉ hiển thị pbLeft hoặc pbRight nếu cả hai giá trị khác nhau
-                if (leftSen == 1)
+            Task.Run(async () =>
+            {
+                int lastStatus = -1;
+
+                while (!token.IsCancellationRequested)
                 {
-                    cbLeft.BackColor = Color.Green;
+                    try
+                    {
+                        int checkStatus = opcManager.GetOPCValue(opcHLCounter);
+
+                        if (checkStatus != lastStatus || checkStatus == 2)
+                        {
+                            lastStatus = checkStatus;
+                            this.BeginInvoke((MethodInvoker)(() => UpdateUI(checkStatus)));
+                        }
+
+                        await Task.Delay(200, token);
+                    }
+                    catch (Exception) { }
                 }
-                else
-                {
-                    cbLeft.BackColor = SystemColors.Control;
-                }
-                if (rightSen == 1)
-                {
-                    cbRight.BackColor = Color.Green;
-                }
-                else
-                {
-                    cbRight.BackColor = SystemColors.Control;
-                }
-            }
-            catch (Exception ex)
+            }, token);
+        }
+        private void StartSensorMonitoring()
+        {
+            sensorCancellationTokenSource = new CancellationTokenSource();
+            var token = sensorCancellationTokenSource.Token;
+
+            Task.Run(async () =>
             {
-                Console.WriteLine($"Lỗi cảm biến: {ex.Message}");
+                int lastLeft = -1, lastRight = -1;
+
+                while (!token.IsCancellationRequested)
+                {
+                    try
+                    {
+                        int left = opcManager.GetOPCValue(opcLeftSen);
+                        int right = opcManager.GetOPCValue(opcRightSen);
+
+                        if (left != lastLeft || right != lastRight)
+                        {
+                            lastLeft = left;
+                            lastRight = right;
+
+                            this.BeginInvoke((MethodInvoker)(() =>
+                            {
+                                cbLeft.BackColor = left == 1 ? Color.Green : SystemColors.Control;
+                                cbRight.BackColor = right == 1 ? Color.Green : SystemColors.Control;
+                            }));
+                        }
+
+                        await Task.Delay(200, token);
+                    }
+                    catch (Exception) { }
+                }
+            }, token);
+        }
+        private void UpdateUI(int checkStatus)
+        {
+            switch (checkStatus)
+            {
+                case 0:
+                    ResetHeadlightUI();
+                    break;
+                case 1:
+                    cbReady.BackColor = Color.Green;
+                    tbHeadLights.Visible = true;
+                    lbTitle.Visible = false;
+                    break;
+                case 2:
+                    cbReady.BackColor = Color.Green;
+                    isReady = true;
+                    tbHeadLights.Visible = true;
+                    lbTitle.Visible = false;
+
+                    StopSensorMonitoring();
+
+                    if (!autoTestCheck)
+                    {
+                        byte[] autoTest = { 0x41 };
+                        comConnect.SendRequest(autoTest);
+                        autoTestCheck = true;
+                    }
+                    break;
+                case 3:
+                    cbReady.BackColor = Color.Green;
+                    tbHeadLights.Visible = true;
+                    lbTitle.Visible = false;
+
+                    if (isReady)
+                    {
+                        SaveDataToDatabase();
+                        isReady = false;
+                    }
+                    break;
+                case 4:
+                    cbReady.BackColor = SystemColors.Control;
+                    isReady = false;
+                    tbHeadLights.Visible = true;
+                    lbTitle.Visible = false;
+                    comConnect.CloseConnection();
+                    MoveToNextCar();
+                    break;
+                default:
+                    ResetHeadlightUI();
+                    break;
             }
         }
-        private void InitializeTimer()
+        //private void InitializeSenSignalTimer()
+        //{
+        //    turnSignalTimer = new Timer();
+        //    turnSignalTimer.Interval = 200;
+        //    turnSignalTimer.Tick += SenSignalTimer_Tick;
+        //    turnSignalTimer.Start();
+        //}
+        //private void SenSignalTimer_Tick(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Lấy giá trị từ OPC
+        //        int leftSen = opcManager.GetOPCValue(opcLeftSen);
+        //        int rightSen = opcManager.GetOPCValue(opcRightSen);
+
+        //        // Chỉ hiển thị pbLeft hoặc pbRight nếu cả hai giá trị khác nhau
+        //        if (leftSen == 1)
+        //        {
+        //            cbLeft.BackColor = Color.Green;
+        //        }
+        //        else
+        //        {
+        //            cbLeft.BackColor = SystemColors.Control;
+        //        }
+        //        if (rightSen == 1)
+        //        {
+        //            cbRight.BackColor = Color.Green;
+        //        }
+        //        else
+        //        {
+        //            cbRight.BackColor = SystemColors.Control;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Lỗi cảm biến: {ex.Message}");
+        //    }
+        //}
+        //private void InitializeTimer()
+        //{
+        //    updateTimer = new Timer();
+        //    updateTimer.Interval = 1000;
+        //    updateTimer.Tick += new EventHandler(UpdateReadyStatus);
+        //    updateTimer.Start();
+        //}
+        //private async void UpdateReadyStatus(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        lbVinNumber.Text = this.serialNumber;
+        //        // Lấy giá trị OPC
+        //        int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcHLCounter));
+        //        Invoke((Action)(() =>
+        //         {
+        //             switch (checkStatus)
+        //             {
+        //                 case 0:
+        //                     cbReady.BackColor = SystemColors.Control;
+        //                     lbHBRIntensity.Text = "0.0";
+        //                     lbHBRVerticalDeviation.Text = "0.0";
+        //                     lbHBRHorizontalDeviation.Text = "0.0";
+
+        //                     lbLBRIntensity.Text = "0.0";
+        //                     lbLBRVerticalDeviation.Text = "0.0";
+        //                     lbLBRHorizontalDeviation.Text = "0.0";
+
+        //                     lbHBLIntensity.Text = "0.0";
+        //                     lbHBLVerticalDeviation.Text = "0.0";
+        //                     lbHBLHorizontalDeviation.Text = "0.0";
+
+        //                     lbLBLIntensity.Text = "0.0";
+        //                     lbLBLVerticalDeviation.Text = "0.0";
+        //                     lbLBLHorizontalDeviation.Text = "0.0";
+        //                     tbHeadLights.Visible = false;
+        //                     lbTitle.Visible = true;
+        //                     isReady = false;
+        //                     break;
+        //                 case 1: // Xe vào vị trí
+        //                     cbReady.BackColor = Color.Green; // Đèn xanh sáng
+        //                     isReady = false; // Chưa sẵn sàng lưu
+        //                     tbHeadLights.Visible = true;
+        //                     lbTitle.Visible = false;
+        //                     break;
+
+        //                 case 2: // Bắt đầu đo
+        //                     cbReady.BackColor = Color.Green; // Đèn xanh sáng
+        //                     isReady = true; // Sẵn sàng lưu sau khi đo
+        //                     lbTitle.Visible = false;
+        //                     tbHeadLights.Visible = true;
+        //                     if (turnSignalTimer != null)
+        //                     {
+        //                         turnSignalTimer.Stop(); // Dừng Timer
+        //                         turnSignalTimer.Dispose(); // Giải phóng tài nguyên
+        //                         turnSignalTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+        //                     }
+        //                     if (!autoTestCheck)
+        //                     {
+        //                         byte[] autoTest = { 0x41 };
+        //                         comConnect.SendRequest(autoTest);
+        //                         autoTestCheck = true;
+        //                     }
+        //                     break;
+
+        //                 case 3: // Quá trình đo hoàn tất, lưu vào DB
+        //                     cbReady.BackColor = Color.Green; // Đèn xanh
+        //                     tbHeadLights.Visible = true;
+        //                     lbTitle.Visible = false;
+        //                     if (isReady)
+        //                     {
+        //                         SaveDataToDatabase(); // Ghi dữ liệu vào DB
+        //                         isReady = false; // Đặt lại trạng thái
+        //                     }
+        //                     break;
+        //                 case 4: // Xe tiếp theo
+        //                     cbReady.BackColor = SystemColors.Control;
+        //                     isReady = false; // Đặt lại trạng thái
+        //                     tbHeadLights.Visible = true;
+        //                     lbTitle.Visible = false;
+        //                     comConnect.CloseConnection();
+        //                     OpenOrReplaceFormWithSerial<frmFogLights>(this.serialNumber);
+        //                     break;
+
+        //                 default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+        //                     cbReady.BackColor = SystemColors.Control; // Màu mặc định
+        //                     isReady = false;
+        //                     lbTitle.Visible = true;
+        //                     break;
+        //             }
+        //         }));
+        //    }
+        //    catch
+        //    {
+        //    }
+        //}
+        //private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
+        //{
+        //    // 🔹 Kiểm tra xem form đã mở chưa
+        //    var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+
+        //    if (existingForm != null)
+        //    {
+        //        existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
+        //    }
+
+        //    // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
+        //    var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
+        //    form.Show();
+
+        //    // 🔹 Đóng form hiện tại
+        //    this.Close();
+        //}
+        private void ResetHeadlightUI()
         {
-            updateTimer = new Timer();
-            updateTimer.Interval = 1000;
-            updateTimer.Tick += new EventHandler(UpdateReadyStatus);
-            updateTimer.Start();
+            cbReady.BackColor = SystemColors.Control;
+            tbHeadLights.Visible = false;
+            lbTitle.Visible = true;
+            isReady = false;
+
+            lbHBRIntensity.Text = lbHBRVerticalDeviation.Text = lbHBRHorizontalDeviation.Text = "0.0";
+            lbLBRIntensity.Text = lbLBRVerticalDeviation.Text = lbLBRHorizontalDeviation.Text = "0.0";
+            lbHBLIntensity.Text = lbHBLVerticalDeviation.Text = lbHBLHorizontalDeviation.Text = "0.0";
+            lbLBLIntensity.Text = lbLBLVerticalDeviation.Text = lbLBLHorizontalDeviation.Text = "0.0";
         }
-        private async void UpdateReadyStatus(object sender, EventArgs e)
+        private void MoveToNextCar()
         {
-            try
+            cbReady.BackColor = SystemColors.Control;
+            Form currentForm = this;
+
+            this.BeginInvoke(new Action(() =>
             {
-                lbVinNumber.Text = this.serialNumber;
-                // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcHLCounter));
-                Invoke((Action)(() =>
-                 {
-                     switch (checkStatus)
-                     {
-                         case 0:
-                             cbReady.BackColor = SystemColors.Control;
-                             lbHBRIntensity.Text = "0.0";
-                             lbHBRVerticalDeviation.Text = "0.0";
-                             lbHBRHorizontalDeviation.Text = "0.0";
+                if (Application.OpenForms.OfType<frmFogLights>().Any())
+                    return;
 
-                             lbLBRIntensity.Text = "0.0";
-                             lbLBRVerticalDeviation.Text = "0.0";
-                             lbLBRHorizontalDeviation.Text = "0.0";
+                var form = new frmFogLights(this.serialNumber);
+                form.Show();
 
-                             lbHBLIntensity.Text = "0.0";
-                             lbHBLVerticalDeviation.Text = "0.0";
-                             lbHBLHorizontalDeviation.Text = "0.0";
-
-                             lbLBLIntensity.Text = "0.0";
-                             lbLBLVerticalDeviation.Text = "0.0";
-                             lbLBLHorizontalDeviation.Text = "0.0";
-                             tbHeadLights.Visible = false;
-                             lbTitle.Visible = true;
-                             isReady = false;
-                             break;
-                         case 1: // Xe vào vị trí
-                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                             isReady = false; // Chưa sẵn sàng lưu
-                             tbHeadLights.Visible = true;
-                             lbTitle.Visible = false;
-                             break;
-
-                         case 2: // Bắt đầu đo
-                             cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                             isReady = true; // Sẵn sàng lưu sau khi đo
-                             lbTitle.Visible = false;
-                             tbHeadLights.Visible = true;
-                             if (turnSignalTimer != null)
-                             {
-                                 turnSignalTimer.Stop(); // Dừng Timer
-                                 turnSignalTimer.Dispose(); // Giải phóng tài nguyên
-                                 turnSignalTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
-                             }
-                             if (!autoTestCheck)
-                             {
-                                 byte[] autoTest = { 0x41 };
-                                 comConnect.SendRequest(autoTest);
-                                 autoTestCheck = true;
-                             }
-                             break;
-
-                         case 3: // Quá trình đo hoàn tất, lưu vào DB
-                             cbReady.BackColor = Color.Green; // Đèn xanh
-                             tbHeadLights.Visible = true;
-                             lbTitle.Visible = false;
-                             if (isReady)
-                             {
-                                 SaveDataToDatabase(); // Ghi dữ liệu vào DB
-                                 isReady = false; // Đặt lại trạng thái
-                             }
-                             break;
-                         case 4: // Xe tiếp theo
-                             cbReady.BackColor = SystemColors.Control;
-                             isReady = false; // Đặt lại trạng thái
-                             tbHeadLights.Visible = true;
-                             lbTitle.Visible = false;
-                             comConnect.CloseConnection();
-                             OpenOrReplaceFormWithSerial<frmFogLights>(this.serialNumber);
-                             break;
-
-                         default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                             cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                             isReady = false;
-                             lbTitle.Visible = true;
-                             break;
-                     }
-                 }));
-            }
-            catch
-            {
-            }
-        }
-        private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
-        {
-            // 🔹 Kiểm tra xem form đã mở chưa
-            var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
-
-            if (existingForm != null)
-            {
-                existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
-            }
-
-            // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
-            var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
-            form.Show();
-
-            // 🔹 Đóng form hiện tại
-            this.Close();
+                currentForm.Close();
+            }));
         }
         private decimal ConvertToDecimal(object value)
         {
@@ -220,6 +367,7 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
+            lbVinNumber.Text = this.serialNumber;
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleDetails != null)
             {
@@ -340,7 +488,7 @@ namespace SenAIS
                     lbLBLHorizontalDeviation.ForeColor = (leftLBHorizontalValue >= minDiffHoriLB && leftLBHorizontalValue <= maxDiffHoriLB) ? SystemColors.HotTrack : Color.DarkRed;
 
                     isDataCollected = true;
-                    OPCUtility.SetOPCValue(opcHLCounter, 3);
+                    opcManager.SetOPCValue(opcHLCounter, 3);
                 }));
             }
         }
@@ -391,17 +539,12 @@ namespace SenAIS
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe trước đó.");
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             try
@@ -419,10 +562,6 @@ namespace SenAIS
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe tiếp theo.");
-                }
             }
             catch (Exception ex)
             {
@@ -437,25 +576,38 @@ namespace SenAIS
                                                                 this.rightLBIntensityValue, this.rightLBVerticalValue, this.rightLBHorizontalValue,
                                                                 this.rightHBHeightValue, this.rightLBHeightValue, this.leftHBHeightValue, this.leftLBHeightValue);
         }
+        private void StopSensorMonitoring()
+        {
+            sensorCancellationTokenSource?.Cancel();
+            sensorCancellationTokenSource?.Dispose();
+            sensorCancellationTokenSource = null;
+        }
         private void frmCosLightL_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
+            LoadVehicleStandards(serialNumber);
         }
         private void frmCosLightL_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (updateTimer != null)
+            //if (updateTimer != null)
+            //{
+            //    updateTimer.Stop(); // Dừng Timer
+            //    updateTimer.Dispose(); // Giải phóng tài nguyên
+            //    updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+            //}
+            //if (turnSignalTimer != null)
+            //{
+            //    turnSignalTimer.Stop(); // Dừng Timer
+            //    turnSignalTimer.Dispose(); // Giải phóng tài nguyên
+            //    turnSignalTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+            //}
+            //e.Cancel = false;
+            if (opcCancellationTokenSource != null)
             {
-                updateTimer.Stop(); // Dừng Timer
-                updateTimer.Dispose(); // Giải phóng tài nguyên
-                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+                opcCancellationTokenSource.Cancel();
+                opcCancellationTokenSource.Dispose();
+                opcCancellationTokenSource = null;
             }
-            if (turnSignalTimer != null)
-            {
-                turnSignalTimer.Stop(); // Dừng Timer
-                turnSignalTimer.Dispose(); // Giải phóng tài nguyên
-                turnSignalTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
-            }
-            e.Cancel = false;
         }
     }
 }

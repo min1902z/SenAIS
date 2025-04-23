@@ -977,7 +977,7 @@ namespace SenAIS
 
                     MessageBox.Show("Dữ liệu đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnEditSave.Text = "Chỉnh sửa";
-                    btnEditSave.Visible = false;
+                    //btnEditSave.Visible = false;
                     EnableTextBoxes(false); // Tắt chỉnh sửa TextBox sau khi lưu thành công
                     DisplayVehicleDetails(serialNumber);
                 }

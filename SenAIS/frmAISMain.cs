@@ -9,6 +9,8 @@ namespace SenAIS
 {
     public partial class SenAIS : Form
     {
+        private Form activeForm = null;
+        public string serialNumber;
         private static readonly string calibWeightL = ConfigurationManager.AppSettings["Calib_WeightL"];
         private static readonly string calibWeightR = ConfigurationManager.AppSettings["Calib_WeightR"];
         private static readonly string calibSpeed = ConfigurationManager.AppSettings["Calib_Speed"];
@@ -28,6 +30,7 @@ namespace SenAIS
                 panelBody.Controls[0].Dispose();
 
             // Thiết lập form con mới
+            activeForm = childForm;
             childForm.TopLevel = false;
             childForm.Dock = DockStyle.Fill;
             panelBody.Controls.Add(childForm);
@@ -41,11 +44,20 @@ namespace SenAIS
 
         private void TSDangKiem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmInspection());
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+                currentInspection.Close();
+            }
+            OpenChildForm(new frmInspection(this.serialNumber));
         }
 
         private void TSTruyXuat_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmReport());
         }
 
@@ -160,6 +172,8 @@ namespace SenAIS
         private void SenAIS_Load(object sender, EventArgs e)
         {
             OpenChildForm(new frmInspection());
+            string newUI = ConfigurationManager.AppSettings["DefaultMainUI"];
+            tsSwitchMainUI.Text = newUI == "Menu" ? "Đổi Bảng Danh Sách Xe" : "Đổi Bảng Điều Khiển";
         }
 
         private void TSReset_Click(object sender, EventArgs e)
@@ -192,16 +206,28 @@ namespace SenAIS
 
         private void TSAuboutMe_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmAboutUs());
         }
 
         private void tsVehicleStandard_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmStandards());
         }
 
         private void tsInspector_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmInspector());
         }
 
@@ -332,6 +358,25 @@ namespace SenAIS
                 package.Save();
                 MessageBox.Show("Xuất dữ liệu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void tsSwitchMainUI_Click(object sender, EventArgs e)
+        {
+            if (activeForm is frmInspection currentInspection)
+            {
+                // Gọi phương thức chuyển đổi giao diện
+                currentInspection.ToggleMainUI();
+
+                // Cập nhật lại Text cho nút toolstrip
+                string newUI = ConfigurationManager.AppSettings["DefaultMainUI"];
+                tsSwitchMainUI.Text = newUI == "Menu" ? "Đổi Bảng Danh Sách Xe" : "Đổi Bảng Điều Khiển";
+            }
+        }
+
+        private void tsSettingConfig_Click(object sender, EventArgs e)
+        {
+            var form = new frmSettingConfig();
+            form.ShowDialog();
         }
     }
 }

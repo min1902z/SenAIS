@@ -100,6 +100,7 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
+            lbVinNumber.Text = this.serialNumber;
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleDetails != null)
             {
