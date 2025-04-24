@@ -103,11 +103,11 @@ namespace SenAIS
 
                     // 🔹 Tính toán trọng lượng (chia cho weight từ DB)
                     frontLWeight = rawFrontLWeight / weightLeftA;
-                    //frontRWeight = rawFrontRWeight / weightRightA;
-                    frontRWeight = rawFrontRWeight / weightLeftA;
+                    frontRWeight = rawFrontRWeight / weightRightA;
+                    //frontRWeight = rawFrontRWeight / weightLeftA;
                     rearLWeight = rawRearLWeight / weightLeftA;
-                    //rearRWeight = rawRearRWeight / weightRightA;
-                    rearRWeight = rawRearRWeight / weightLeftA;
+                    rearRWeight = rawRearRWeight / weightRightA;
+                    //rearRWeight = rawRearRWeight / weightLeftA;
 
                     double totalFrontWeight = frontLWeight + frontRWeight;
                     double totalRearWeight = rearLWeight + rearRWeight;

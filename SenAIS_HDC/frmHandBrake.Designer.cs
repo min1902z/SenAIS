@@ -286,7 +286,7 @@
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(169, 45);
             this.btnPre.TabIndex = 37;
-            this.btnPre.Text = "Phanh Trước";
+            this.btnPre.Text = "Phanh Sau";
             this.btnPre.UseVisualStyleBackColor = false;
             this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 

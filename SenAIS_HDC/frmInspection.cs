@@ -83,38 +83,67 @@ namespace SenAIS
             opcCancellationTokenSource = new CancellationTokenSource();
             CancellationToken token = opcCancellationTokenSource.Token;
 
+            int lastSpeed = 0, lastSS = 0, lastBrake = 0;
             Task.Run(async () =>
             {
                 while (!token.IsCancellationRequested)
                 {
                     try
                     {
-                        int speed = opcManager.GetOPCValue(opcSpeedCounter);
-                        int ss = opcManager.GetOPCValue(opcSSCounter);
-                        int brake = opcManager.GetOPCValue(opcBrakeFCounter);
-
-                        if (speed == 1)
+                        if (!opcManager.IsConnected)
                         {
-                            this.Invoke(new Action(() =>
+                            await Task.Delay(1000, token); // Nếu không kết nối OPC, chờ lâu hơn
+                            continue;
+                        }
+                        var values = opcManager.GetMultipleOPCValues(new List<string>
+                        {
+                            opcSpeedCounter, opcSSCounter, opcBrakeFCounter
+                        });
+
+                        int speed = (int)(values.ContainsKey(opcSpeedCounter) ? values[opcSpeedCounter] : 0);
+                        int ss = (int)(values.ContainsKey(opcSSCounter) ? values[opcSSCounter] : 0);
+                        int brake = (int)(values.ContainsKey(opcBrakeFCounter) ? values[opcBrakeFCounter] : 0);
+
+                        if (speed == 1 && lastSpeed != 1)
+                        {
+                            lastSpeed = 1;
+                            this.BeginInvoke((MethodInvoker)(() =>
                             {
-                                OpenNewForm(new frmSpeed(serialNumber));
+                                if (!Application.OpenForms.OfType<frmSpeed>().Any())
+                                    OpenNewForm(new frmSpeed(serialNumber));
                             }));
                         }
-
-                        if (ss == 1)
+                        else if (speed != 1)
                         {
-                            this.Invoke(new Action(() =>
-                            {
-                                OpenNewForm(new frmSideSlip(serialNumber));
-                            }));
+                            lastSpeed = speed;
                         }
 
-                        if (brake == 1)
+                        if (ss == 1 && lastSS != 1)
                         {
-                            this.Invoke(new Action(() =>
+                            lastSS = 1;
+                            this.BeginInvoke((MethodInvoker)(() =>
                             {
-                                OpenNewForm(new frmFrontBrake(serialNumber));
+                                if (!Application.OpenForms.OfType<frmSideSlip>().Any())
+                                    OpenNewForm(new frmSideSlip(serialNumber));
                             }));
+                        }
+                        else if (ss != 1)
+                        {
+                            lastSS = ss;
+                        }
+
+                        if (brake == 1 && lastBrake != 1)
+                        {
+                            lastBrake = 1;
+                            this.BeginInvoke((MethodInvoker)(() =>
+                            {
+                                if (!Application.OpenForms.OfType<frmFrontBrake>().Any())
+                                    OpenNewForm(new frmFrontBrake(serialNumber));
+                            }));
+                        }
+                        else if (brake != 1)
+                        {
+                            lastBrake = brake;
                         }
                     }
                     catch
@@ -307,6 +336,7 @@ namespace SenAIS
             }
             else
             {
+                LoadAllVehicleInfo();
                 MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -615,7 +645,6 @@ namespace SenAIS
             var speedMoving = new frmSpeedMoving();
             speedMoving.Show();
         }
-
         private void btnResetMain_Click(object sender, EventArgs e)
         {
             RestartApplication();
