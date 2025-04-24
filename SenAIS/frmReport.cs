@@ -815,13 +815,13 @@ namespace SenAIS
 
                 reportRow["MinSpeed1"] = ConvertToDecimal(vehicleDetails["MinSpeed1"]).ToString("F1");
                 reportRow["MaxSpeed1"] = ConvertToDecimal(vehicleDetails["MaxSpeed1"]).ToString("F1");
-                reportRow["HSU1"] = ConvertToDecimal(hsu1).ToString("F1");
+                reportRow["HSU1"] = ConvertToDecimal(hsu1).ToString("F2");
                 reportRow["MinSpeed2"] = ConvertToDecimal(vehicleDetails["MinSpeed2"]).ToString("F1");
                 reportRow["MaxSpeed2"] = ConvertToDecimal(vehicleDetails["MaxSpeed2"]).ToString("F1");
-                reportRow["HSU2"] = ConvertToDecimal(hsu2).ToString("F1");
+                reportRow["HSU2"] = ConvertToDecimal(hsu2).ToString("F2");
                 reportRow["MinSpeed3"] = ConvertToDecimal(vehicleDetails["MinSpeed3"]).ToString("F1");
                 reportRow["MaxSpeed3"] = ConvertToDecimal(vehicleDetails["MaxSpeed3"]).ToString("F1");
-                reportRow["HSU3"] = ConvertToDecimal(hsu3).ToString("F1");
+                reportRow["HSU3"] = ConvertToDecimal(hsu3).ToString("F2");
                 reportRow["AvgHSU"] = ConvertToDecimal(avgHSU).ToString("F2");
                 reportRow["MaxHSU"] = ConvertToDecimal(standard["MaxHSU"]).ToString("F2");
 

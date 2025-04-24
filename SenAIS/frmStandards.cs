@@ -46,6 +46,8 @@ namespace SenAIS
                     dgStandards.Columns["MaxCO2"].HeaderText = "CO2 tối đa";
                     dgStandards.Columns["MaxO2"].HeaderText = "O2 tối đa";
                     dgStandards.Columns["MaxNO"].HeaderText = "NO tối đa";
+                    dgStandards.Columns["MinLamda"].HeaderText = "Lamda tối thiểu";
+                    dgStandards.Columns["MaxLamda"].HeaderText = "Lamda tối đa";
                     dgStandards.Columns["MaxHSU"].HeaderText = "HSU tối đa";
                     dgStandards.Columns["MaxDiesel"].HeaderText = "Hệ số Diesel";
                     dgStandards.Columns["MinHLIntensity"].HeaderText = "Cường độ đen Pha tối thiểu";
@@ -76,8 +78,6 @@ namespace SenAIS
                     dgStandards.Columns["MaxFLHeight"].HeaderText = "Độ cao đèn Sương mù tối đa";
                     dgStandards.Columns["SampleVin"].HeaderText = "Số Vin mẫu";
                     dgStandards.Columns["SampleEngine"].HeaderText = "Số Máy mẫu";
-                    dgStandards.Columns["MinLamda"].HeaderText = "Lamda tối thiểu";
-                    dgStandards.Columns["MaxLamda"].HeaderText = "Lamda tối đa";
                 }
             }
             catch (Exception)
