@@ -73,7 +73,7 @@ namespace SenAIS
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
             this.serialNumber = txtVinNum.Text;
-            InitializeOPC();
+            //InitializeOPC();
         }
         public frmInspection(string serialNumber)
         {
