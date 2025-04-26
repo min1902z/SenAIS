@@ -215,15 +215,15 @@ namespace SenAIS
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
-            var existingForm = Application.OpenForms.OfType<frmSideSlip>().FirstOrDefault();
+            var existingForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.Close(); // 🔥 Đóng form cũ nếu có
             }
 
-            var preForm = new frmSideSlip(this.serialNumber);
+            var preForm = new frmFrontBrake(this.serialNumber);
             preForm.Show();
-            opcManager.SetOPCValue(opcSSCounter, 1);
+            opcManager.SetOPCValue(opcBrakeCounter, 1);
 
             this.Close();
         }

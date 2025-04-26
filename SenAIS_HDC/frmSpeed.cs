@@ -243,7 +243,7 @@ namespace SenAIS
         }
         private void btnPreSpeed_Click(object sender, EventArgs e)
         {
-            var existingForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
+            var existingForm = Application.OpenForms.OfType<frmSpeed>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.Close(); // 🔥 Đóng form cũ nếu có

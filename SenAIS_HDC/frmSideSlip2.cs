@@ -65,11 +65,13 @@ namespace SenAIS
                     cbReady.BackColor = SystemColors.Control;
                     lbSideSlip.Visible = false;
                     lbStandard.Visible = false;
+                    lbSideSlipTitle.Visible = true;
                     break;
 
                 case 1:
                     cbReady.BackColor = Color.Green;
                     lbSideSlip.Visible = false;
+                    lbSideSlipTitle.Visible = true;
                     lbStandard.Visible = true;
                     break;
 
@@ -90,7 +92,8 @@ namespace SenAIS
                     lbSideSlipTitle.Visible = false;
                     lbSideSlip.Visible = true;
                     lbStandard.Visible = false;
-                    MoveToNextCar();
+                    this.Close();
+                    //MoveToNextCar();
                     break;
 
                 default:

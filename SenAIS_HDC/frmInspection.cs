@@ -614,6 +614,8 @@ namespace SenAIS
                                     txtVinNum.Text = vehicleInfo.SerialNumber;
                                     dateInSpec.Value = DateTime.Parse(vehicleInfo.InspectionDate);
                                     cbFuel.SelectedItem = vehicleInfo.FuelType;
+
+                                    OpenStationFormByConfig(vehicleInfo.SerialNumber);
                                 }
                             }
                             catch { /* Bỏ qua lỗi xử lý JSON hoặc update UI */ }
@@ -622,6 +624,48 @@ namespace SenAIS
                 }
                 catch { /* Bỏ qua lỗi khi listener ngắt kết nối hoặc form đóng */ }
             });
+        }
+        private void OpenStationFormByConfig(string serialNumber)
+        {
+            string stationType = ConfigurationManager.AppSettings["StationType"];
+            Form newForm = null;
+            Type formType = null;
+
+            switch (stationType)
+            {
+                case "SideSlip":
+                    formType = typeof(frmSideSlip);
+                    newForm = new frmSideSlip(serialNumber);
+                    break;
+
+                case "Brake":
+                    formType = typeof(frmFrontBrake);
+                    newForm = new frmFrontBrake(serialNumber);
+                    break;
+
+                case "Speed":
+                    formType = typeof(frmSpeed);
+                    newForm = new frmSpeed(serialNumber);
+                    break;
+
+                default:
+                    return;
+            }
+
+            this.BeginInvoke(new Action(() =>
+            {
+                // 🔹 Nếu form trạm đang mở => đóng lại trước
+                var openedForm = Application.OpenForms
+                    .OfType<Form>()
+                    .FirstOrDefault(f => f.GetType() == formType);
+
+                if (openedForm != null && !openedForm.IsDisposed)
+                {
+                    openedForm.Close();
+                }
+                // 🔹 Mở form mới với SerialNumber mới
+                newForm.Show();
+            }));
         }
         private void StopListeningForVehicleInfo()
         {
@@ -724,7 +768,7 @@ namespace SenAIS
             }
             LoadAllVehicleInfo();
             StartListeningForVehicleInfo();
-            StartMonitoringCounters();
+            //StartMonitoringCounters();
         }
 
         private void btnStartProgress_Click(object sender, EventArgs e)

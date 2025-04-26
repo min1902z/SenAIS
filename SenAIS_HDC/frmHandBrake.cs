@@ -127,7 +127,8 @@ namespace SenAIS
                     break;
                 case 4: // Xe tiếp theo
                     cbReady.BackColor = SystemColors.Control;
-                    MoveToNextCar();
+                    this.Close();
+                    //MoveToNextCar();
                     break;
                 default:
                     ResetUI();

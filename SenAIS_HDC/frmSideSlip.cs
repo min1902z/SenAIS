@@ -67,6 +67,7 @@ namespace SenAIS
                     cbReady.BackColor = SystemColors.Control;
                     lbSideSlip.Visible = false;
                     lbStandard.Visible = false;
+                    lbSideSlipTitle.Visible = true;
                     isReady = false;
                     break;
 
@@ -74,6 +75,7 @@ namespace SenAIS
                     cbReady.BackColor = Color.Green;
                     lbSideSlip.Visible = false;
                     lbStandard.Visible = true;
+                    lbSideSlipTitle.Visible = true;
                     isReady = false;
                     break;
 
@@ -174,14 +176,15 @@ namespace SenAIS
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
-            var existingForm = Application.OpenForms.OfType<frmFrontWeight>().FirstOrDefault();
+            var existingForm = Application.OpenForms.OfType<frmSideSlip>().FirstOrDefault();
             if (existingForm != null)
             {
                 existingForm.Close(); // 🔥 Đóng form cũ nếu có
             }
 
-            var frontWeightForm = new frmFrontWeight(this.serialNumber);
-            frontWeightForm.Show();
+            var Form = new frmSideSlip(this.serialNumber);
+            Form.Show();
+            opcManager.SetOPCValue(opcSSCounter, 1);
 
             this.Close();
         }
