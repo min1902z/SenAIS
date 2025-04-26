@@ -51,6 +51,15 @@ namespace SenAIS
         private Task receiveTask;
         private string lastJsonData = string.Empty;
         private CancellationTokenSource opcCancellationTokenSource;
+        private StationType stationType;
+        public enum StationType
+        {
+            None,
+            Speed,
+            Brake,
+            Headlights,
+            Steer
+        }
 
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
@@ -64,9 +73,6 @@ namespace SenAIS
         private static readonly string opcSteerCounter = ConfigurationManager.AppSettings["Steering_Counter"];
         private static readonly string opcGLPos1 = ConfigurationManager.AppSettings["GL_Pos1"];
         private static readonly string opcGLPos2 = ConfigurationManager.AppSettings["GL_Pos2"];
-
-        private int lastSpeed = -1, lastSS = -1, lastBrake = -1, lastHL = -1, lastSteer = -1;
-        private int lastHLPos1 = -1, lastHLPos2 = -1, lastGLPos1 = -1, lastGLPos2 = -1;
         public frmInspection()
         {
             InitializeComponent();
@@ -89,85 +95,117 @@ namespace SenAIS
         {
             return txtVinNum.Text;
         }
-        private void StartMonitoringCounters()
+        private void StartMonitoringByStationType()
         {
             if (opcCancellationTokenSource != null)
-                return; // Đã chạy rồi thì không khởi chạy lại
+                return; // Đã chạy rồi thì không khởi động lại nữa
 
             opcCancellationTokenSource = new CancellationTokenSource();
-            CancellationToken token = opcCancellationTokenSource.Token;
+            var token = opcCancellationTokenSource.Token;
 
             Task.Run(async () =>
             {
+                // Các biến nhớ giá trị cũ
+                int lastSpeed = -1, lastBrake = -1, lastHL = -1, lastSteer = -1;
+                int lastHLPos1 = -1, lastHLPos2 = -1, lastGLPos1 = -1, lastGLPos2 = -1;
+
                 while (!token.IsCancellationRequested)
                 {
                     try
                     {
-                        int speed = opcManager.GetOPCValue(opcSpeedCounter);
-                        int brake = opcManager.GetOPCValue(opcBrakeFCounter);
-                        int hl = opcManager.GetOPCValue(opcHLCounter);
-                        int steer = opcManager.GetOPCValue(opcSteerCounter);
-
-                        int hlPos1 = opcManager.GetOPCValue(opcHLPos1);
-                        int hlPos2 = opcManager.GetOPCValue(opcHLPos2);
-                        int glPos1 = opcManager.GetOPCValue(opcGLPos1);
-                        int glPos2 = opcManager.GetOPCValue(opcGLPos2);
-
-                        if (speed == 1 && speed != lastSpeed)
+                        switch (stationType)
                         {
-                            lastSpeed = speed;
-                            BeginInvoke((MethodInvoker)(() => OpenNewForm(new frmSpeed(serialNumber))));
-                        }
+                            case StationType.Speed:
+                                int speed = opcManager.GetOPCValue(opcSpeedCounter);
+                                if (speed == 1 && lastSpeed != 1)
+                                {
+                                    lastSpeed = speed;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmSpeed>().Any())
+                                            OpenNewForm(new frmSpeed(serialNumber));
+                                    }));
+                                }
+                                else if (speed != 1) lastSpeed = speed;
+                                break;
 
-                        if (brake == 1 && brake != lastBrake)
-                        {
-                            lastBrake = brake;
-                            BeginInvoke((MethodInvoker)(() => OpenNewForm(new frmFrontBrake(serialNumber))));
-                        }
+                            case StationType.Brake:
+                                int brake = opcManager.GetOPCValue(opcBrakeFCounter);
+                                if (brake == 1 && lastBrake != 1)
+                                {
+                                    lastBrake = brake;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmFrontBrake>().Any())
+                                            OpenNewForm(new frmFrontBrake(serialNumber));
+                                    }));
+                                }
+                                else if (brake != 1) lastBrake = brake;
+                                break;
 
-                        if ((hl == 1 || hl == 2) && hl != lastHL)
-                        {
-                            lastHL = hl;
-                            BeginInvoke((MethodInvoker)(() => OpenNewForm(new frmHeadlights(serialNumber))));
-                        }
+                            case StationType.Headlights:
+                                int hl = opcManager.GetOPCValue(opcHLCounter);
+                                int hlPos1 = opcManager.GetOPCValue(opcHLPos1);
+                                int hlPos2 = opcManager.GetOPCValue(opcHLPos2);
 
-                        if ((steer == 1 || steer == 2) && steer != lastSteer)
-                        {
-                            lastSteer = steer;
-                            BeginInvoke((MethodInvoker)(() => OpenNewForm(new frmSteerAngle(serialNumber))));
-                        }
+                                if ((hl == 1 || hl == 2) && hl != lastHL)
+                                {
+                                    lastHL = hl;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmHeadlights>().Any())
+                                            OpenNewForm(new frmHeadlights(serialNumber));
+                                    }));
+                                }
 
-                        // 🔸 Cập nhật trạng thái hiển thị nếu thay đổi
-                        if (hlPos1 != lastHLPos1)
-                        {
-                            lastHLPos1 = hlPos1;
-                            BeginInvoke((MethodInvoker)(() => cbPos1.BackColor = hlPos1 == 1 ? Color.Green : SystemColors.Control));
-                        }
+                                if (hlPos1 != lastHLPos1)
+                                {
+                                    lastHLPos1 = hlPos1;
+                                    BeginInvoke((MethodInvoker)(() => cbPos1.BackColor = hlPos1 == 1 ? Color.Green : SystemColors.Control));
+                                }
 
-                        if (hlPos2 != lastHLPos2)
-                        {
-                            lastHLPos2 = hlPos2;
-                            BeginInvoke((MethodInvoker)(() => cbPos2.BackColor = hlPos2 == 1 ? Color.Green : SystemColors.Control));
-                        }
+                                if (hlPos2 != lastHLPos2)
+                                {
+                                    lastHLPos2 = hlPos2;
+                                    BeginInvoke((MethodInvoker)(() => cbPos2.BackColor = hlPos2 == 1 ? Color.Green : SystemColors.Control));
+                                }
+                                break;
 
-                        if (glPos1 != lastGLPos1)
-                        {
-                            lastGLPos1 = glPos1;
-                            BeginInvoke((MethodInvoker)(() => cbPos1.BackColor = glPos1 == 1 ? Color.Green : SystemColors.Control));
-                        }
+                            case StationType.Steer:
+                                int steer = opcManager.GetOPCValue(opcSteerCounter);
+                                int glPos1 = opcManager.GetOPCValue(opcGLPos1);
+                                int glPos2 = opcManager.GetOPCValue(opcGLPos2);
 
-                        if (glPos2 != lastGLPos2)
-                        {
-                            lastGLPos2 = glPos2;
-                            BeginInvoke((MethodInvoker)(() => cbPos2.BackColor = glPos1 == 1 ? Color.Green : SystemColors.Control));
+                                if ((steer == 1 || steer == 2) && steer != lastSteer)
+                                {
+                                    lastSteer = steer;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmSteerAngle>().Any())
+                                            OpenNewForm(new frmSteerAngle(serialNumber));
+                                    }));
+                                }
+
+                                if (glPos1 != lastGLPos1)
+                                {
+                                    lastGLPos1 = glPos1;
+                                    BeginInvoke((MethodInvoker)(() => cbPos1.BackColor = glPos1 == 1 ? Color.Green : SystemColors.Control));
+                                }
+
+                                if (glPos2 != lastGLPos2)
+                                {
+                                    lastGLPos2 = glPos2;
+                                    BeginInvoke((MethodInvoker)(() => cbPos2.BackColor = glPos2 == 1 ? Color.Green : SystemColors.Control));
+                                }
+                                break;
                         }
                     }
                     catch
                     {
-                        // Bỏ qua lỗi, không làm sập form
+                        // Bỏ qua lỗi
                     }
 
-                    await Task.Delay(200, token); // Delay giữa các lần kiểm tra
+                    await Task.Delay(100, token);
                 }
             }, token);
         }
@@ -574,15 +612,26 @@ namespace SenAIS
             }
         }
 
+        private void StopMonitoring()
+        {
+            try
+            {
+                if (opcCancellationTokenSource != null)
+                {
+                    opcCancellationTokenSource.Cancel();  // Báo huỷ task
+                    opcCancellationTokenSource.Dispose(); // Giải phóng tài nguyên
+                    opcCancellationTokenSource = null;
+                }
+            }
+            catch
+            {
+                // Bỏ qua lỗi dừng
+            }
+        }
         private void frmInspection_FormClosing(object sender, FormClosingEventArgs e)
         {
             StopListeningForVehicleInfo();
-            if (opcCancellationTokenSource != null)
-            {
-                opcCancellationTokenSource.Cancel();
-                opcCancellationTokenSource.Dispose();
-                opcCancellationTokenSource = null;
-            }
+            StopMonitoring();
         }
 
         private void txtVinNum_KeyDown(object sender, KeyEventArgs e)
@@ -829,7 +878,32 @@ namespace SenAIS
             LoadAllVehicleInfo();
             LoadVehicleInfo();
             StartListeningForVehicleInfo();
-            StartMonitoringCounters();
+            string configStation = ConfigurationManager.AppSettings["StationType"];
+
+            switch (configStation)
+            {
+                case "Speed":
+                    stationType = StationType.Speed;
+                    break;
+
+                case "Brake":
+                    stationType = StationType.Brake;
+                    break;
+
+                case "Headlights":
+                    stationType = StationType.Headlights;
+                    break;
+
+                case "Steer":
+                    stationType = StationType.Steer;
+                    break;
+
+                default:
+                    stationType = StationType.None;
+                    break;
+            }
+
+            StartMonitoringByStationType();
         }
 
         private void dgVehicleInfo_CellClick(object sender, DataGridViewCellEventArgs e)

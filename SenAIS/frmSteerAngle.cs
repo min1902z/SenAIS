@@ -65,8 +65,6 @@ namespace SenAIS
             InitializeComponent();
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
-            StartOPCListener();
             //InitializePollingTimer();
             //InitializeSenSignalTimer();
         }
@@ -90,58 +88,37 @@ namespace SenAIS
                         if (steerCounter == 2)
                         {
                             values = opcManager.GetMultipleOPCValues(opcItems);
+                            BeginInvoke((MethodInvoker)(() => UpdateSteerValuesUI(values)));
                         }
 
-                        if (steerCounter != lastCounter || steerCounter == 2)
+                        if (steerCounter != lastCounter)
                         {
                             lastCounter = steerCounter;
-                            BeginInvoke((MethodInvoker)(() => UpdateUI(steerCounter, values)));
+                            BeginInvoke((MethodInvoker)(() => UpdateCounterStatus(steerCounter)));
                         }
 
-                        if (posTest != lastPosTest)
+                        if (posTest != lastPosTest || turnLeft != lastTurnLeft || turnRight != lastTurnRight)
                         {
                             lastPosTest = posTest;
-                            BeginInvoke((MethodInvoker)(() =>
-                            {
-                                cbPosTest.BackColor = (posTest == 1) ? Color.Green : SystemColors.Control;
-                            }));
-                        }
-
-                        if (turnLeft != lastTurnLeft)
-                        {
                             lastTurnLeft = turnLeft;
-                            BeginInvoke((MethodInvoker)(() =>
-                            {
-                                pbLeft.Visible = (turnLeft == 1);
-                            }));
-                        }
-
-                        if (turnRight != lastTurnRight)
-                        {
                             lastTurnRight = turnRight;
-                            BeginInvoke((MethodInvoker)(() =>
-                            {
-                                pbRight.Visible = (turnRight == 1);
-                            }));
+
+                            BeginInvoke((MethodInvoker)(() => UpdateSensorStatus(posTest, turnLeft, turnRight)));
                         }
                     }
                     catch
                     {
                         // Bỏ qua lỗi, tránh crash
                     }
-
                     await Task.Delay(100, token);
                 }
             }, token);
         }
-        private void UpdateUI(int counter, Dictionary<string, decimal> values)
+        private void UpdateSensorStatus(int posTest, int turnLeft, int turnRight)
         {
-            UpdateCounterStatus(counter); // Xử lý giao diện theo counter
-
-            if (counter == 2)
-            {
-                UpdateSteerValuesUI(values); // Chỉ cập nhật dữ liệu đo nếu counter = 2
-            }
+            cbPosTest.BackColor = (posTest == 1) ? Color.Green : SystemColors.Control;
+            pbLeft.Visible = (turnLeft == 1);
+            pbRight.Visible = (turnRight == 1);
         }
         private void UpdateCounterStatus(int counter)
         {
@@ -515,6 +492,18 @@ namespace SenAIS
             //    turnSignalTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
             //}
             //e.Cancel = false;
+            if (opcCancellationTokenSource != null)
+            {
+                opcCancellationTokenSource.Cancel();
+                opcCancellationTokenSource.Dispose();
+                opcCancellationTokenSource = null;
+            }
+        }
+
+        private void frmSteerAngle_Load(object sender, EventArgs e)
+        {
+            LoadVehicleStandards(serialNumber);
+            StartOPCListener();
         }
     }
 }
