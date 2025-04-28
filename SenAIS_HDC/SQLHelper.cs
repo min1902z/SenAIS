@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -602,7 +603,9 @@ namespace SenAIS
                 VehicleType LIKE @SearchTerm OR
                 Inspector LIKE @SearchTerm OR
                 InspectionDate LIKE @SearchTerm OR
-                Fuel LIKE @SearchTerm";
+                Fuel LIKE @SearchTerm
+            ORDER BY 
+                TRY_CAST(InspectionDate AS DATETIME) DESC";
 
             var parameters = new[]
             {

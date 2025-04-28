@@ -66,6 +66,7 @@
             this.panelButton = new System.Windows.Forms.Panel();
             this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
             this.txtVinShow = new System.Windows.Forms.TextBox();
+            this.btnSwitchBrake = new System.Windows.Forms.Button();
             this.tbVehicleInfo.SuspendLayout();
             this.tbMenuControl.SuspendLayout();
             this.InspectionPanel.SuspendLayout();
@@ -191,6 +192,7 @@
             // tbMenuControl
             // 
             resources.ApplyResources(this.tbMenuControl, "tbMenuControl");
+            this.tbMenuControl.Controls.Add(this.btnSwitchBrake, 2, 1);
             this.tbMenuControl.Controls.Add(this.btnHeadlights, 0, 0);
             this.tbMenuControl.Controls.Add(this.btnWhistle, 1, 0);
             this.tbMenuControl.Controls.Add(this.btnFrontBrake, 0, 2);
@@ -367,16 +369,16 @@
             this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgVehicleInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightYellow;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -397,6 +399,14 @@
             this.txtVinShow.Name = "txtVinShow";
             this.txtVinShow.ReadOnly = true;
             // 
+            // btnSwitchBrake
+            // 
+            resources.ApplyResources(this.btnSwitchBrake, "btnSwitchBrake");
+            this.btnSwitchBrake.ForeColor = System.Drawing.Color.Red;
+            this.btnSwitchBrake.Name = "btnSwitchBrake";
+            this.btnSwitchBrake.UseVisualStyleBackColor = true;
+            this.btnSwitchBrake.Click += new System.EventHandler(this.btnSwitchBrake_Click);
+            // 
             // frmInspection
             // 
             resources.ApplyResources(this, "$this");
@@ -411,6 +421,7 @@
             this.tbVehicleInfo.ResumeLayout(false);
             this.tbVehicleInfo.PerformLayout();
             this.tbMenuControl.ResumeLayout(false);
+            this.tbMenuControl.PerformLayout();
             this.InspectionPanel.ResumeLayout(false);
             this.InspectionPanel.PerformLayout();
             this.panelButton.ResumeLayout(false);
@@ -457,5 +468,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnStartProgress;
         private System.Windows.Forms.DataGridView dgVehicleInfo;
+        private System.Windows.Forms.Button btnSwitchBrake;
     }
 }

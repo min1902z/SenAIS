@@ -136,13 +136,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cbFuel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 354</value>
+    <value>261, 354</value>
   </data>
   <data name="cbFuel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="cbFuel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 37</value>
+    <value>296, 45</value>
   </data>
   <data name="cbFuel.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -169,7 +169,7 @@
     <value>5, 352</value>
   </data>
   <data name="lbFuelTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 33</value>
+    <value>166, 41</value>
   </data>
   <data name="lbFuelTitle.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -199,7 +199,7 @@
     <value>5, 282</value>
   </data>
   <data name="lbInspecDateTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 33</value>
+    <value>213, 41</value>
   </data>
   <data name="lbInspecDateTitle.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -226,13 +226,13 @@
     <value>Calibri, 18pt</value>
   </data>
   <data name="dateInSpec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 286</value>
+    <value>262, 286</value>
   </data>
   <data name="dateInSpec.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="dateInSpec.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 37</value>
+    <value>295, 44</value>
   </data>
   <data name="dateInSpec.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -253,13 +253,13 @@
     <value>Calibri, 18pt, style=Bold</value>
   </data>
   <data name="txtVinNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 4</value>
+    <value>261, 4</value>
   </data>
   <data name="txtVinNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtVinNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 37</value>
+    <value>296, 44</value>
   </data>
   <data name="txtVinNum.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -286,7 +286,7 @@
     <value>5, 212</value>
   </data>
   <data name="lbInspectorTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 33</value>
+    <value>248, 41</value>
   </data>
   <data name="lbInspectorTitle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -316,7 +316,7 @@
     <value>5, 2</value>
   </data>
   <data name="lbSerialNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 33</value>
+    <value>106, 41</value>
   </data>
   <data name="lbSerialNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -337,13 +337,13 @@
     <value>6</value>
   </data>
   <data name="cbInspector.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 214</value>
+    <value>261, 214</value>
   </data>
   <data name="cbInspector.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="cbInspector.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 37</value>
+    <value>296, 45</value>
   </data>
   <data name="cbInspector.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -370,7 +370,7 @@
     <value>5, 72</value>
   </data>
   <data name="lbFrameNumTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 33</value>
+    <value>120, 41</value>
   </data>
   <data name="lbFrameNumTitle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -394,13 +394,13 @@
     <value>Calibri, 18pt</value>
   </data>
   <data name="txtEngineNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 74</value>
+    <value>261, 74</value>
   </data>
   <data name="txtEngineNum.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtEngineNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 37</value>
+    <value>296, 44</value>
   </data>
   <data name="txtEngineNum.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -427,7 +427,7 @@
     <value>5, 142</value>
   </data>
   <data name="lbTypeCarTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 33</value>
+    <value>216, 41</value>
   </data>
   <data name="lbTypeCarTitle.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -448,13 +448,13 @@
     <value>10</value>
   </data>
   <data name="cbTypeCar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 144</value>
+    <value>261, 144</value>
   </data>
   <data name="cbTypeCar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="cbTypeCar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 37</value>
+    <value>296, 45</value>
   </data>
   <data name="cbTypeCar.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -502,7 +502,7 @@
     <value>6</value>
   </data>
   <data name="tbVehicleInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cbFuel" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFuelTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbInspecDateTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateInSpec" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtVinNum" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbInspector" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbTypeCar" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Absolute,464" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cbFuel" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFuelTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbInspecDateTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateInSpec" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtVinNum" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbInspector" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbTypeCar" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Absolute,468" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -543,6 +543,48 @@
   <data name="tbMenuControl.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="btnSwitchBrake.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnSwitchBrake.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnSwitchBrake.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 14.25pt, style=Bold</value>
+  </data>
+  <data name="btnSwitchBrake.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSwitchBrake.Location" type="System.Drawing.Point, System.Drawing">
+    <value>501, 140</value>
+  </data>
+  <data name="btnSwitchBrake.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="btnSwitchBrake.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 65</value>
+  </data>
+  <data name="btnSwitchBrake.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="btnSwitchBrake.Text" xml:space="preserve">
+    <value>Chọn Cầu Trước</value>
+  </data>
+  <data name="btnSwitchBrake.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.Name" xml:space="preserve">
+    <value>btnSwitchBrake</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnHeadlights.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
   </data>
@@ -577,7 +619,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnHeadlights.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnWhistle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -613,7 +655,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnWhistle.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnFrontBrake.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -646,7 +688,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnFrontBrake.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnHandBrake.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -679,7 +721,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnHandBrake.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnRearBrake.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -712,7 +754,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnRearBrake.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnSpeed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -745,7 +787,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnSpeed.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnEmission.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -778,7 +820,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnEmission.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnNoise.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -814,7 +856,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnNoise.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="btnFrontWeight.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -850,7 +892,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnFrontWeight.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="btnSideSlip.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -883,7 +925,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnSideSlip.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="btnSteerAngle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -919,7 +961,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnSteerAngle.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnSpeedMoving.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -958,7 +1000,7 @@
     <value>tbMenuControl</value>
   </data>
   <data name="&gt;&gt;btnSpeedMoving.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="tbMenuControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>107, 112</value>
@@ -991,7 +1033,7 @@
     <value>2</value>
   </data>
   <data name="tbMenuControl.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnHeadlights" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnWhistle" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontBrake" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnHandBrake" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnRearBrake" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeed" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnEmission" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnNoise" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontWeight" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSideSlip" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSteerAngle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeedMoving" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33.33333,Percent,33.33333,Percent,33.33333" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSwitchBrake" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnHeadlights" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnWhistle" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontBrake" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnHandBrake" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnRearBrake" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeed" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnEmission" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnNoise" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontWeight" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSideSlip" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSteerAngle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeedMoving" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33.33333,Percent,33.33333,Percent,33.33333" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnInspecProgress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1146,6 +1188,9 @@
   <data name="dgVehicleInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="dgVehicleInfo.ColumnHeadersHeight" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
   <data name="dgVehicleInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>79, 215</value>
   </data>
@@ -1156,7 +1201,7 @@
     <value>51</value>
   </data>
   <data name="dgVehicleInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>774, 502</value>
+    <value>775, 502</value>
   </data>
   <data name="dgVehicleInfo.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1186,7 +1231,7 @@
     <value>3, 2, 3, 2</value>
   </data>
   <data name="txtVinShow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>925, 98</value>
+    <value>925, 123</value>
   </data>
   <data name="txtVinShow.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>

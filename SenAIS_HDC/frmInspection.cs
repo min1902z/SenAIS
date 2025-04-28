@@ -748,6 +748,20 @@ namespace SenAIS
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
         }
+        private void BrakeUI()
+        {
+            string stationType = ConfigurationManager.AppSettings["StationType"];
+
+            if (stationType == "Brake")
+            {
+                btnSwitchBrake.Visible = true;
+                btnSwitchBrake.Text = "Chọn Cầu Trước";
+            }
+            else
+            {
+                btnSwitchBrake.Visible = false;
+            }
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -766,6 +780,7 @@ namespace SenAIS
                 tbMenuControl.Visible = false;
                 dgVehicleInfo.Visible = true;
             }
+            BrakeUI();
             LoadAllVehicleInfo();
             StartListeningForVehicleInfo();
             //StartMonitoringCounters();
@@ -797,6 +812,32 @@ namespace SenAIS
                 {
                     UpdateVehicleInfo(serialNumber);
                 }
+            }
+        }
+
+        private void btnSwitchBrake_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string opcItem = ConfigurationManager.AppSettings["Brake_Switch"];
+                int valueToSet = btnSwitchBrake.Text == "Chọn Cầu Trước" ? 1 : 0;
+
+                // Gửi giá trị
+                opcManager.SetOPCValue(opcItem, valueToSet);
+
+                // Nếu không lỗi thì mới đổi text
+                if (btnSwitchBrake.Text == "Chọn Cầu Trước")
+                {
+                    btnSwitchBrake.Text = "Chọn Cầu Sau";
+                }
+                else
+                {
+                    btnSwitchBrake.Text = "Chọn Cầu Trước";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi đổi cầu Phanh: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

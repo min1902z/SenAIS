@@ -24,11 +24,14 @@ namespace SenAIS
         private double brakeLeftA = 1;
         private double brakeRightA = 1;
         private CancellationTokenSource opcCancellationToken = new CancellationTokenSource();
+        private int lastCounter = -1;
+        private int lastBrakeSensor = -1;
         private OPCManager opcManager;
         private static readonly string opcBrakeCounter = ConfigurationManager.AppSettings["BrakeH_Counter"];
         private static readonly string opcLBrakeResult = ConfigurationManager.AppSettings["Hand_LBrake_Result"];
         private static readonly string opcRBrakeResult = ConfigurationManager.AppSettings["Hand_RBrake_Result"];
         private static readonly string opcBrakeRCounter = ConfigurationManager.AppSettings["BrakeR_Counter"];
+        private static readonly string opcBrakeSen = ConfigurationManager.AppSettings["Brake_Sensor"];
         public frmHandBrake(string serialNumber)
         {
             InitializeComponent();
@@ -38,51 +41,57 @@ namespace SenAIS
             opcManager = new OPCManager();
             StartOPCListener();
         }
-        private async void StartOPCListener()
+        private void StartOPCListener()
         {
+            if (opcCancellationToken != null)
+                return; // Đã khởi tạo rồi thì không khởi tạo lại
+
             opcCancellationToken = new CancellationTokenSource();
             CancellationToken token = opcCancellationToken.Token;
 
-            try
+            Task.Run(async () =>
             {
-                int lastCounter = -1;
-                await Task.Run(async () =>
+                while (!token.IsCancellationRequested)
                 {
-                    while (!token.IsCancellationRequested)
+                    try
                     {
-                        try
-                        {
-                            // 🔹 Lấy giá trị counter trước
-                            int checkCounter = (int)opcManager.GetOPCValue(opcBrakeCounter);
+                        // 🔹 Lấy Counter và cảm biến Brake
+                        int checkCounter = (int)opcManager.GetOPCValue(opcBrakeCounter);
+                        int brakeSensor = (int)opcManager.GetOPCValue(opcBrakeSen);
 
-                            // 🔹 Chỉ lấy giá trị brake nếu counter == 2
-                            Dictionary<string, decimal> values = new Dictionary<string, decimal>();
-                            if (checkCounter == 2)
-                            {
-                                values[opcLBrakeResult] = opcManager.GetOPCValue(opcLBrakeResult);
-                                values[opcRBrakeResult] = opcManager.GetOPCValue(opcRBrakeResult);
-                            }
+                        Dictionary<string, decimal> values = new Dictionary<string, decimal>();
 
-                            // 🔹 Cập nhật UI nếu có thay đổi
-                            if (checkCounter != lastCounter || checkCounter == 2)
-                            {
-                                lastCounter = checkCounter;
-                                UpdateUI(checkCounter, values);
-                            }
-                        }
-                        catch (Exception)
+                        if (checkCounter == 2)
                         {
+                            values[opcLBrakeResult] = opcManager.GetOPCValue(opcLBrakeResult);
+                            values[opcRBrakeResult] = opcManager.GetOPCValue(opcRBrakeResult);
                         }
-                        await Task.Delay(100, token); // Giữ tốc độ lấy dữ liệu nhanh nhưng có thể điều chỉnh linh hoạt
+
+                        // 🔹 Nếu Counter thay đổi hoặc = 2 thì cập nhật
+                        if (checkCounter != lastCounter || checkCounter == 2)
+                        {
+                            lastCounter = checkCounter;
+                            this.BeginInvoke((MethodInvoker)(() => UpdateUI(checkCounter, values)));
+                        }
+
+                        // 🔹 Nếu cảm biến Brake thay đổi thì cập nhật màu
+                        if (brakeSensor != lastBrakeSensor)
+                        {
+                            lastBrakeSensor = brakeSensor;
+                            this.BeginInvoke((MethodInvoker)(() =>
+                            {
+                                cbSensor.BackColor = (brakeSensor == 1) ? Color.Green : SystemColors.Control;
+                            }));
+                        }
                     }
-                }, token);
-            }
-            catch (TaskCanceledException)
-            {
-            }
-            catch (Exception)
-            {
-            }
+                    catch
+                    {
+                        // Bỏ qua lỗi đọc OPC
+                    }
+
+                    await Task.Delay(100, token);
+                }
+            }, token);
         }
         private void UpdateUI(int counter, Dictionary<string, decimal> values)
         {

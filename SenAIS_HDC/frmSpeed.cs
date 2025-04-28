@@ -20,9 +20,12 @@ namespace SenAIS
         private decimal minSpeed = 0;
         private decimal maxSpeed = 0;
         private double speedA = 1.0;
+        private int lastCounter = -1;
+        private int lastSpeedSensor = -1;
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSpeedResult = ConfigurationManager.AppSettings["Speed_Result"];
         private static readonly string opcBrakeFCounter = ConfigurationManager.AppSettings["BrakeF_Counter"];
+        private static readonly string opcSpeedSen = ConfigurationManager.AppSettings["Speed_Sensor"];
 
         public frmSpeed(string serialNumber)
         {
@@ -38,18 +41,32 @@ namespace SenAIS
             opcCancellationTokenSource = new CancellationTokenSource();
             CancellationToken token = opcCancellationTokenSource.Token;
 
-            Task.Run(async () =>
+        Task.Run(async () =>
             {
                 while (!token.IsCancellationRequested)
                 {
                     try
                     {
                         int checkStatus = (int)opcManager.GetOPCValue(opcSpeedCounter);
-                        this.Invoke((Action)(() => UpdateUI(checkStatus)));
+                        int speedSensor = (int)opcManager.GetOPCValue(opcSpeedSen);
+                        if (checkStatus != lastCounter || checkStatus == 2)
+                        {
+                            lastCounter = checkStatus;
+                            this.BeginInvoke((MethodInvoker)(() => UpdateUI(checkStatus)));
+                        }
 
                         if (checkStatus == 2)
                         {
-                            UpdateSpeed();
+                            this.BeginInvoke((MethodInvoker)(() => UpdateSpeed()));
+                        }
+
+                        if (speedSensor != lastSpeedSensor)
+                        {
+                            lastSpeedSensor = speedSensor;
+                            this.BeginInvoke((MethodInvoker)(() =>
+                            {
+                                cbSensor.BackColor = (speedSensor == 1) ? Color.Green : SystemColors.Control;
+                            }));
                         }
                     }
                     catch (Exception)
