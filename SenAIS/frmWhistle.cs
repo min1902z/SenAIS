@@ -62,7 +62,7 @@ namespace SenAIS
                     }
                     catch { }
 
-                    await Task.Delay(200, token);
+                    await Task.Delay(100, token);
                 }
             }, token);
         }

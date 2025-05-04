@@ -853,6 +853,7 @@ namespace SenAIS
                 // Khởi động lại ứng dụng
                 System.Diagnostics.Process.Start(applicationPath);
 
+
                 // Thoát ứng dụng hiện tại
                 Application.Exit();
             }

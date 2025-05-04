@@ -122,28 +122,23 @@ namespace SenAIS
         {
             string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
 
-            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-            if (frmMain == null) return;
+            if (!(Application.OpenForms.OfType<frmInspection>().FirstOrDefault() is frmInspection frmMain))
+                return;
 
-            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+            if (!(frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() is TextBox txtVinNum))
+                return;
 
             if (!string.IsNullOrEmpty(nextSerialNumber))
             {
                 this.serialNumber = nextSerialNumber;
                 lbVinNumber.Text = this.serialNumber;
 
-                if (txtVinNumber != null)
-                {
-                    txtVinNumber.Text = this.serialNumber;
-                    frmMain.UpdateVehicleInfo(this.serialNumber);
-                }
+                txtVinNum.Text = this.serialNumber;
+                frmMain.UpdateVehicleInfo(this.serialNumber);
             }
             else
             {
-                if (txtVinNumber != null)
-                {
-                    txtVinNumber.Text = string.Empty;
-                }
+                txtVinNum.Text = string.Empty;
             }
             this.Close();
         }
@@ -296,7 +291,6 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             try
@@ -340,6 +334,7 @@ namespace SenAIS
         }
         private void frmDieselEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
+            cts?.Cancel();
             comConnect.CloseConnection();
         }
 

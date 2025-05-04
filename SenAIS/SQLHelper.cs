@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -354,12 +355,12 @@ namespace SenAIS
                     cmd.Parameters.AddWithValue("@RightHBIntensity", rightHBIntensityValue);
                     cmd.Parameters.AddWithValue("@RightHBVerticalDeviation", rightHBVerticalValue);
                     cmd.Parameters.AddWithValue("@RightHBHorizontalDeviation", rightHBHorizontalValue);
-                    cmd.Parameters.AddWithValue("@LeftLBIntensity", leftHBIntensityValue);
-                    cmd.Parameters.AddWithValue("@LeftLBVerticalDeviation", leftHBVerticalValue);
-                    cmd.Parameters.AddWithValue("@LeftLBHorizontalDeviation", leftHBHorizontalValue);
-                    cmd.Parameters.AddWithValue("@RightLBIntensity", rightHBIntensityValue);
-                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", rightHBVerticalValue);
-                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", rightHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@LeftLBIntensity", leftLBIntensityValue);
+                    cmd.Parameters.AddWithValue("@LeftLBVerticalDeviation", leftLBVerticalValue);
+                    cmd.Parameters.AddWithValue("@LeftLBHorizontalDeviation", leftLBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightLBIntensity", rightLBIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", rightLBVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", rightLBHorizontalValue);
                     cmd.Parameters.AddWithValue("@RightHBHeight", rightHBHeightValue);
                     cmd.Parameters.AddWithValue("@RightLBHeight", rightLBHeightValue);
                     cmd.Parameters.AddWithValue("@LeftHBHeight", leftHBHeightValue);
@@ -549,7 +550,9 @@ namespace SenAIS
                 InspectionDate LIKE @SearchTerm OR
                 Fuel LIKE @SearchTerm OR
                 Color LIKE @SearchTerm OR
-                EngineType LIKE @SearchTerm";
+                EngineType LIKE @SearchTerm
+                ORDER BY
+                        TRY_CAST(InspectionDate AS DATETIME) DESC"; // Sắp xếp theo ngày mới nhất
 
             var parameters = new[]
             {

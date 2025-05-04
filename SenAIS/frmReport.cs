@@ -578,6 +578,13 @@ namespace SenAIS
                 // Gọi hàm GetVehicleStandardsByTypeCar để lấy tiêu chuẩn theo loại xe
                 string vehicleType = vehicleDetails["VehicleType"].ToString();
                 DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                if (vehicleStandards == null || vehicleStandards.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy tiêu chuẩn chất lượng cho phương tiện loại: " + vehicleType +
+                                    ".\nVui lòng kiểm tra lại cấu hình tiêu chuẩn.",
+                                    "Lỗi Tiêu Chuẩn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return reportDataTable;
+                }
                 DataRow standard = vehicleStandards.Rows[0];
                 // Tính toán giá trị FrontSumWeight (tổng của FrontLeftWeight và FrontRightWeight)
                 decimal frontLeftWeight = ConvertToDecimal(vehicleDetails["FrontLeftWeight"]);

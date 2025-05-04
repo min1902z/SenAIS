@@ -77,30 +77,47 @@ namespace SenAIS
                         comConnect.SendRequest(autoTest);
                         autoTestCheck = true;
                     }
-
+                    bool hasCollected = false;
                     // Giới hạn 4 phút
-                    var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(1));
+                    int timeoutMinutes = 4; // mặc định 4 phút
+                    try
+                    {
+                        string configValue = ConfigurationManager.AppSettings["FogLightTimeoutMinutes"];
+                        if (!string.IsNullOrWhiteSpace(configValue) && int.TryParse(configValue, out int parsed))
+                        {
+                            timeoutMinutes = parsed;
+                        }
+                    }
+                    catch { }
+                    var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(timeoutMinutes));
                     using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(token, timeoutCts.Token))
                     {
                         while (!isDataCollected && !linkedCts.Token.IsCancellationRequested)
                         {
                             await Task.Delay(1000, linkedCts.Token);
                         }
-
-                        if (isDataCollected)
+                        hasCollected = isDataCollected;
+                        if (hasCollected)
                         {
                             if (this.IsHandleCreated && !this.IsDisposed)
                             {
                                 this.BeginInvoke((Action)(() => SaveDataToDatabase()));
                             }
+                            await Task.Delay(5000, token); // Nghỉ 5s sau khi lưu
+                            if (this.IsHandleCreated && !this.IsDisposed)
+                            {
+                                this.BeginInvoke((Action)(() => MoveToNextCar()));
+                            }
+                        }
+                        else
+                        {
+                            if (this.IsHandleCreated && !this.IsDisposed)
+                            {
+                                this.BeginInvoke((Action)(() => this.Close()));
+                            }
                         }
                     }
 
-                    await Task.Delay(5000, token); // Nghỉ 5s sau khi lưu
-                    if (this.IsHandleCreated && !this.IsDisposed)
-                    {
-                        this.BeginInvoke((Action)(() => MoveToNextCar()));
-                    }
                 }
                 catch (TaskCanceledException)
                 {
@@ -235,7 +252,6 @@ namespace SenAIS
             }
             return 0;
         }
-
         private void SaveDataToDatabase()
         {
             sqlHelper.SaveFogLightsData(serialNumber, rightFLIntensity, rightFLVerticalValue, rightFLHorizontalValue, rightFLHeight,
@@ -256,16 +272,15 @@ namespace SenAIS
         {
             comConnect.OpenConnection();
             LoadVehicleStandards(serialNumber);
-            StartMeasurementProcess();
-            //if (comConnect.IsConnected())
-            //{
-            //    cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
-            //    StartMeasurementProcess();
-            //}
-            //else
-            //{
-            //    cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
-            //}
+            if (comConnect.IsConnected())
+            {
+                cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
+                StartMeasurementProcess();
+            }
+            else
+            {
+                cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+            }
         }
 
         private void btnNext_Click(object sender, EventArgs e)

@@ -46,6 +46,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
             this.lbBrakeTitle = new System.Windows.Forms.Label();
+            this.cbSensor = new System.Windows.Forms.CheckBox();
             this.FBrakePanel.SuspendLayout();
             this.tbRight.SuspendLayout();
             this.tbLeft.SuspendLayout();
@@ -54,6 +55,7 @@
             // FBrakePanel
             // 
             this.FBrakePanel.AutoSize = true;
+            this.FBrakePanel.Controls.Add(this.cbSensor);
             this.FBrakePanel.Controls.Add(this.cbBrake);
             this.FBrakePanel.Controls.Add(this.tbRight);
             this.FBrakePanel.Controls.Add(this.tbLeft);
@@ -311,6 +313,23 @@
             this.lbBrakeTitle.Text = "LỰC PHANH TRƯỚC";
             this.lbBrakeTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // cbSensor
+            // 
+            this.cbSensor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSensor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSensor.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbSensor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSensor.BackgroundImage")));
+            this.cbSensor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbSensor.Checked = true;
+            this.cbSensor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSensor.Enabled = false;
+            this.cbSensor.Location = new System.Drawing.Point(1663, 13);
+            this.cbSensor.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSensor.Name = "cbSensor";
+            this.cbSensor.Size = new System.Drawing.Size(148, 108);
+            this.cbSensor.TabIndex = 54;
+            this.cbSensor.UseVisualStyleBackColor = false;
+            // 
             // frmFrontBrake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -355,5 +374,6 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbBrakeTitle;
         private System.Windows.Forms.CheckBox cbBrake;
+        private System.Windows.Forms.CheckBox cbSensor;
     }
 }

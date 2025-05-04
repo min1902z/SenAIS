@@ -56,13 +56,6 @@ namespace SenAIS
                 tbEmission2.Visible = true;
                 byte[] request = { 0x03 }; // Lệnh gửi đo
                 comConnect.SendRequest(request);
-
-                if (hasMeasured == true)
-                {
-                    SaveDataToDatabase(); // Lưu DB
-                    await Task.Delay(10000, cancellationToken);
-                    NextVin();
-                }
             }
             catch (TaskCanceledException)
             {
@@ -77,28 +70,23 @@ namespace SenAIS
         {
             string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
 
-            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-            if (frmMain == null) return;
+            if (!(Application.OpenForms.OfType<frmInspection>().FirstOrDefault() is frmInspection frmMain))
+                return;
 
-            var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+            if (!(frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() is TextBox txtVinNum))
+                return;
 
             if (!string.IsNullOrEmpty(nextSerialNumber))
             {
                 this.serialNumber = nextSerialNumber;
                 lbVinNumber.Text = this.serialNumber;
 
-                if (txtVinNumber != null)
-                {
-                    txtVinNumber.Text = this.serialNumber;
-                    frmMain.UpdateVehicleInfo(this.serialNumber);
-                }
+                txtVinNum.Text = this.serialNumber;
+                frmMain.UpdateVehicleInfo(this.serialNumber);
             }
             else
             {
-                if (txtVinNumber != null)
-                {
-                    txtVinNumber.Text = string.Empty;
-                }
+                txtVinNum.Text = string.Empty;
             }
             this.Close();
         }
@@ -212,6 +200,7 @@ namespace SenAIS
                             await Task.Delay(2000);
                             hasMeasured = true; // Đạt tiêu chuẩn, gán cờ hoàn tất đo
                             pbCorrect.BackColor = Color.Green;
+                            await FinishAndNextVinAsync();
                         }
                         else
                         {
@@ -357,16 +346,21 @@ namespace SenAIS
             }
             this.lamda = Convert.ToDecimal(value);
         }
-
         private void frmGasEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
+            cts?.Cancel();
             comConnect.CloseConnection();
         }
         private void SaveDataToDatabase()
         {
             sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm, lamda);
         }
-
+        private async Task FinishAndNextVinAsync()
+        {
+            SaveDataToDatabase();
+            await Task.Delay(10000); // Cho người dùng thấy kết quả
+            NextVin();
+        }
         private async void frmGasEmission_Load(object sender, EventArgs e)
         {
             lbVinNumber.Text = this.serialNumber;
