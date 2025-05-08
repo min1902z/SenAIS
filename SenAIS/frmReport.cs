@@ -421,6 +421,7 @@ namespace SenAIS
             // Tạo DataTable để chứa dữ liệu báo cáo
             DataTable reportDataTable = new DataTable();
 
+            reportDataTable.Columns.Add("ReportTitle", typeof(string));
             reportDataTable.Columns.Add("PublishSeri", typeof(string));
             reportDataTable.Columns.Add("PublishVer", typeof(string));
             reportDataTable.Columns.Add("PublishDate", typeof(string));
@@ -712,6 +713,7 @@ namespace SenAIS
                 // Thêm dữ liệu vào DataTable
                 DataRow reportRow = reportDataTable.NewRow();
 
+                reportRow["ReportTitle"] = ConfigurationManager.AppSettings["ReportTitle"];
                 reportRow["PublishSeri"] = ConfigurationManager.AppSettings["PublishSeri"];
                 reportRow["PublishVer"] = ConfigurationManager.AppSettings["PublishVer"];
                 reportRow["PublishDate"] = ConfigurationManager.AppSettings["PublishDate"];

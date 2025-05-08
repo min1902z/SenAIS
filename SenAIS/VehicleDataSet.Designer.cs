@@ -535,6 +535,8 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnMaxLamda;
             
+            private global::System.Data.DataColumn columnReportTitle;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1594,6 +1596,14 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReportTitleColumn {
+                get {
+                    return this.columnReportTitle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1757,7 +1767,8 @@ namespace SenAIS {
                         string RHBHeight, 
                         string MaxLightHeight, 
                         string MinLamda, 
-                        string MaxLamda) {
+                        string MaxLamda, 
+                        string ReportTitle) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1887,7 +1898,8 @@ namespace SenAIS {
                         RHBHeight,
                         MaxLightHeight,
                         MinLamda,
-                        MaxLamda};
+                        MaxLamda,
+                        ReportTitle};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -2038,6 +2050,7 @@ namespace SenAIS {
                 this.columnMaxLightHeight = base.Columns["MaxLightHeight"];
                 this.columnMinLamda = base.Columns["MinLamda"];
                 this.columnMaxLamda = base.Columns["MaxLamda"];
+                this.columnReportTitle = base.Columns["ReportTitle"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2299,6 +2312,8 @@ namespace SenAIS {
                 base.Columns.Add(this.columnMinLamda);
                 this.columnMaxLamda = new global::System.Data.DataColumn("MaxLamda", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaxLamda);
+                this.columnReportTitle = new global::System.Data.DataColumn("ReportTitle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReportTitle);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4489,6 +4504,22 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ReportTitle {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.ReportTitleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReportTitle\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.ReportTitleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -6021,6 +6052,18 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaxLamdaNull() {
                 this[this.tableVehicleReportData.MaxLamdaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsReportTitleNull() {
+                return this.IsNull(this.tableVehicleReportData.ReportTitleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetReportTitleNull() {
+                this[this.tableVehicleReportData.ReportTitleColumn] = global::System.Convert.DBNull;
             }
         }
         

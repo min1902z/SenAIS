@@ -12,7 +12,6 @@ namespace SenAIS
         private bool opcErrorShown = false;
         private bool isConnected = false;
         private int retryCount = 0;
-        private Dictionary<string, OPCItem> opcItemCache = new Dictionary<string, OPCItem>();
         public OPCUtility()
         {
             ConnectToOPCServer();
@@ -102,18 +101,11 @@ namespace SenAIS
                     }
                     return 0; // Giá trị mặc định
                 }
-                //OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
-                //object value;
-                //item.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
-                //int opcValue = Convert.ToInt32(value);
-                //return opcValue;
-                if (!opcItemCache.ContainsKey(opcItem))
-                    InitializeOPCItems(new List<string> { opcItem });
-
-                if (!opcItemCache.TryGetValue(opcItem, out OPCItem item))
-                    return 0;
-                item.Read((short)OPCDataSource.OPCDevice, out object value, out _, out _);
-                return Convert.ToInt32(value);
+                OPCItem item = opcGroup.OPCItems.AddItem(opcItem, 1);
+                object value;
+                item.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
+                int opcValue = Convert.ToInt32(value);
+                return opcValue;
             }
             catch (Exception ex)
             {
@@ -146,7 +138,6 @@ namespace SenAIS
         public Dictionary<string, decimal> GetMultipleOPCValues(List<string> opcItems)
         {
             var result = new Dictionary<string, decimal>();
-            InitializeOPCItems(opcItems);
             foreach (var item in opcItems)
             {
                 try
@@ -158,27 +149,7 @@ namespace SenAIS
                     result[item] = -1; // Trả về giá trị mặc định khi lỗi
                 }
             }
-
             return result;
         }
-        public void InitializeOPCItems(List<string> itemNames)
-        {
-            foreach (var name in itemNames)
-            {
-                if (!opcItemCache.ContainsKey(name))
-                {
-                    try
-                    {
-                        OPCItem item = opcGroup.OPCItems.AddItem(name, 1);
-                        opcItemCache[name] = item;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Ghi log nếu cần
-                    }
-                }
-            }
-        }
-
     }
 }

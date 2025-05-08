@@ -97,7 +97,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>PHIẾU KIỂM TRA CHẤT LƯỢNG XUẤT XƯỞNG</Value>
+                    <Value>=Fields!ReportTitle.Value</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -9006,6 +9006,10 @@
         </Field>
         <Field Name="MaxLamda">
           <DataField>MaxLamda</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ReportTitle">
+          <DataField>ReportTitle</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

@@ -20,6 +20,7 @@ namespace SenAIS
         }
         private void LoadConfigValues()
         {
+            txtReportTitle.Text = ConfigurationManager.AppSettings["ReportTitle"];
             txtPubSeri.Text = ConfigurationManager.AppSettings["PublishSeri"];
             txtPubVer.Text = ConfigurationManager.AppSettings["PublishVer"];
             txtPubDate.Text = ConfigurationManager.AppSettings["PublishDate"];
@@ -41,6 +42,7 @@ namespace SenAIS
                     {
                         var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
+                        config.AppSettings.Settings["ReportTitle"].Value = txtReportTitle.Text.Trim();
                         config.AppSettings.Settings["PublishSeri"].Value = txtPubSeri.Text.Trim();
                         config.AppSettings.Settings["PublishVer"].Value = txtPubVer.Text.Trim();
                         config.AppSettings.Settings["PublishDate"].Value = txtPubDate.Text.Trim();

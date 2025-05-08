@@ -182,7 +182,7 @@ namespace SenAIS
                                     BeginInvoke((MethodInvoker)(() =>
                                     {
                                         if (!Application.OpenForms.OfType<frmSteerAngle>().Any())
-                                            OpenNewForm(new frmSteerAngle(serialNumber));
+                                            OpenNewForm(new frmSteerAngle(this.serialNumber));
                                     }));
                                 }
 
@@ -740,18 +740,19 @@ namespace SenAIS
 
                         this.Invoke(new Action(() =>
                         {
-                        try
-                        {
-                            var vehicleInfo = JsonConvert.DeserializeObject<VehicleInfo>(receivedJson);
-                            if (vehicleInfo != null)
+                            try
                             {
-                                cbTypeCar.SelectedValue = vehicleInfo.VehicleType;
-                                cbInspector.SelectedValue = vehicleInfo.Inspector;
-                                txtEngineNum.Text = vehicleInfo.FrameNumber;
-                                txtVinNum.Text = vehicleInfo.SerialNumber;
-                                dateInSpec.Value = DateTime.Parse(vehicleInfo.InspectionDate);
-                                cbFuel.SelectedItem = vehicleInfo.FuelType;
-                                txtColor.Text = vehicleInfo.Color;
+                                var vehicleInfo = JsonConvert.DeserializeObject<VehicleInfo>(receivedJson);
+                                if (vehicleInfo != null)
+                                {
+                                    cbTypeCar.SelectedValue = vehicleInfo.VehicleType;
+                                    cbInspector.SelectedValue = vehicleInfo.Inspector;
+                                    txtEngineNum.Text = vehicleInfo.FrameNumber;
+                                    txtVinNum.Text = vehicleInfo.SerialNumber;
+                                    this.serialNumber = txtVinNum.Text;
+                                    dateInSpec.Value = DateTime.Parse(vehicleInfo.InspectionDate);
+                                    cbFuel.SelectedItem = vehicleInfo.FuelType;
+                                    txtColor.Text = vehicleInfo.Color;
                                 }
                             }
                             catch { /* Bỏ qua lỗi xử lý JSON hoặc update UI */ }
@@ -798,6 +799,7 @@ namespace SenAIS
                 cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
                 txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
                 txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
+                this.serialNumber = txtVinNum.Text;
                 dateInSpec.Value = vehicleInfo["InspectionDate"] != DBNull.Value
                                    ? Convert.ToDateTime(vehicleInfo["InspectionDate"])
                                    : DateTime.Now;

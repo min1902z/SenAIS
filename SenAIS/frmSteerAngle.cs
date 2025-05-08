@@ -15,7 +15,7 @@ namespace SenAIS
         private SQLHelper sqlHelper;
         private OPCUtility opcManager;
         private CancellationTokenSource opcCancellationTokenSource;
-        private CancellationTokenSource steerMeasurementCts;
+        private CancellationTokenSource sensorCancellationTokenSource;
 
         private string serialNumber;
         public decimal leftSteer = 0;
@@ -28,12 +28,9 @@ namespace SenAIS
         private decimal steerRightA = 1;
         public decimal minLeftSteer;
         public decimal minRightSteer;
+        public decimal maxLeftSteer;
+        public decimal maxRightSteer;
         private bool isReady = false;
-        private bool hasProcessedNextVin = false; // Cờ kiểm soát việc next số VIN
-        private int lastCounter = -1;
-        private int lastPosTest = -1;
-        private int lastTurnLeft = -1;
-        private int lastTurnRight = -1;
         private List<string> opcItems = new List<string>
         {
             opcLeftSteer,
@@ -67,15 +64,12 @@ namespace SenAIS
 
             Task.Run(async () =>
             {
+                int lastCounter = -1;
                 while (!token.IsCancellationRequested)
                 {
                     try
                     {
                         int steerCounter = opcManager.GetOPCValue(opcSteerCounter);
-                        int posTest = opcManager.GetOPCValue(opcPosTest);
-                        int turnLeft = opcManager.GetOPCValue(opcTurnLeft);
-                        int turnRight = opcManager.GetOPCValue(opcTurnRight);
-
                         if (steerCounter != lastCounter)
                         {
                             lastCounter = steerCounter;
@@ -87,6 +81,31 @@ namespace SenAIS
                             var values = opcManager.GetMultipleOPCValues(opcItems);
                             BeginInvoke((MethodInvoker)(() => UpdateSteerValuesUI(values)));
                         }
+                    }
+                    catch
+                    {
+                        // Bỏ qua lỗi, tránh crash
+                    }
+                    await Task.Delay(100, token);
+                }
+            }, token);
+        }
+        private void StartSensorMonitoring()
+        {
+            sensorCancellationTokenSource = new CancellationTokenSource();
+            var token = sensorCancellationTokenSource.Token;
+
+            Task.Run(async () =>
+            {
+                int lastPosTest = -1, lastTurnLeft = -1, lastTurnRight = -1;
+
+                while (!token.IsCancellationRequested)
+                {
+                    try
+                    {
+                        int posTest = opcManager.GetOPCValue(opcPosTest);
+                        int turnLeft = opcManager.GetOPCValue(opcTurnLeft);
+                        int turnRight = opcManager.GetOPCValue(opcTurnRight);
 
                         if (posTest != lastPosTest || turnLeft != lastTurnLeft || turnRight != lastTurnRight)
                         {
@@ -97,11 +116,9 @@ namespace SenAIS
                             BeginInvoke((MethodInvoker)(() => UpdateSensorStatus(posTest, turnLeft, turnRight)));
                         }
                     }
-                    catch
-                    {
-                        // Bỏ qua lỗi, tránh crash
-                    }
-                    await Task.Delay(100, token);
+                    catch { }
+
+                    await Task.Delay(50, token);
                 }
             }, token);
         }
@@ -120,7 +137,6 @@ namespace SenAIS
                     tbSteerAngle.Visible = true;
                     lbSteerTitle.Visible = true;
                     isReady = false;
-                    hasProcessedNextVin = false;
                     break;
 
                 case 1: // Xe vào vị trí
@@ -153,16 +169,7 @@ namespace SenAIS
                     cbReady.BackColor = SystemColors.Control;
                     tbSteerAngle.Visible = true;
                     lbSteerTitle.Visible = true;
-
-                    if (!hasProcessedNextVin)
-                    {
-                        MoveToNextVin();
-                        hasProcessedNextVin = true;
-                    }
-                    else
-                    {
-                        this.Close();
-                    }
+                    MoveToNextVin();
                     break;
 
                 default:
@@ -189,10 +196,10 @@ namespace SenAIS
             rightSteerRW = Convert.ToDecimal(lbRightSteerRW.Text);
 
             // Kiểm tra tiêu chuẩn và đổi màu
-            lbLeftSteerLW.ForeColor = leftSteerLW >= minLeftSteer ? SystemColors.HotTrack : Color.DarkRed;
-            lbLeftSteerRW.ForeColor = leftSteerRW >= minLeftSteer ? SystemColors.HotTrack : Color.DarkRed;
-            lbRightSteerLW.ForeColor = rightSteerLW >= minRightSteer ? SystemColors.HotTrack : Color.DarkRed;
-            lbRightSteerRW.ForeColor = rightSteerRW >= minRightSteer ? SystemColors.HotTrack : Color.DarkRed;
+            lbLeftSteerLW.ForeColor = (maxLeftSteer == 0 && leftSteerLW > minLeftSteer) || (maxLeftSteer > 0 && leftSteerLW >= minLeftSteer && leftSteerLW <= maxLeftSteer) ? SystemColors.HotTrack : Color.DarkRed;
+            lbLeftSteerRW.ForeColor = (maxLeftSteer == 0 && leftSteerRW > minLeftSteer) || (maxLeftSteer > 0 && leftSteerRW >= minLeftSteer && leftSteerRW <= maxLeftSteer) ? SystemColors.HotTrack : Color.DarkRed;
+            lbRightSteerLW.ForeColor = (maxRightSteer == 0 && rightSteerLW > minRightSteer) || (maxRightSteer > 0 && rightSteerLW >= minRightSteer && rightSteerLW <= maxRightSteer) ? SystemColors.HotTrack : Color.DarkRed;
+            lbRightSteerRW.ForeColor = (maxRightSteer == 0 && rightSteerRW > minRightSteer) || (maxRightSteer > 0 && rightSteerRW >= minRightSteer && rightSteerRW <= maxRightSteer) ? SystemColors.HotTrack : Color.DarkRed;
         }
         private void MoveToNextVin()
         {
@@ -224,7 +231,7 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            lbVinNumber.Text = this.serialNumber;
+            lbVinNumber.Text = serialNumber;
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleDetails != null)
             {
@@ -234,7 +241,9 @@ namespace SenAIS
                 {
                     DataRow standard = vehicleStandards.Rows[0];
                     minLeftSteer = ConvertToDecimal(standard["MinLeftSteer"]);
-                    minLeftSteer = ConvertToDecimal(standard["MinRightSteer"]);
+                    minRightSteer = ConvertToDecimal(standard["MinRightSteer"]);
+                    maxLeftSteer = ConvertToDecimal(standard["MaxLeftSteer"]);
+                    maxRightSteer = ConvertToDecimal(standard["MaxRightSteer"]);
                 }
             }
             steerLeftA = (decimal)sqlHelper.GetParaValue("LeftSteer", "ParaA");
@@ -300,18 +309,18 @@ namespace SenAIS
                 opcCancellationTokenSource.Dispose();
                 opcCancellationTokenSource = null;
             }
-            if (steerMeasurementCts != null)
+            if (sensorCancellationTokenSource != null)
             {
-                steerMeasurementCts.Cancel();
-                steerMeasurementCts.Dispose();
-                steerMeasurementCts = null;
+                sensorCancellationTokenSource.Cancel();
+                sensorCancellationTokenSource.Dispose();
+                sensorCancellationTokenSource = null;
             }
         }
         private void frmSteerAngle_Load(object sender, EventArgs e)
         {
-            LoadVehicleStandards(serialNumber);
+            LoadVehicleStandards(this.serialNumber);
             StartOPCListener();
-            opcManager.InitializeOPCItems(opcItems);
+            StartSensorMonitoring();
         }
     }
 }
