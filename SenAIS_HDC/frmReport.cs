@@ -1431,7 +1431,7 @@ namespace SenAIS
             });
 
             // Đèn chiếu sáng
-            AddIfEnabled("HeadlightMMS", new
+            AddIfEnabled("HeadLightsMMS", new
             {
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_H_L",
@@ -1447,7 +1447,7 @@ namespace SenAIS
                 ) ? "1" : "0"
             });
 
-            AddIfEnabled("HeadlightMMS", new
+            AddIfEnabled("HeadLightsMMS", new
             {
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_H_LR",
@@ -1463,7 +1463,7 @@ namespace SenAIS
                 ) ? "1" : "0"
             });
 
-            AddIfEnabled("HeadlightMMS", new
+            AddIfEnabled("HeadLightsMMS", new
             {
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_H_UD",
@@ -1479,7 +1479,7 @@ namespace SenAIS
                 ) ? "1" : "0"
             });
 
-            AddIfEnabled("HeadlightMMS", new
+            AddIfEnabled("HeadLightsMMS", new
             {
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_L_LR",
@@ -1495,7 +1495,7 @@ namespace SenAIS
                 ) ? "1" : "0"
             });
 
-            AddIfEnabled("HeadlightMMS", new
+            AddIfEnabled("HeadLightsMMS", new
             {
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_L_UD",
@@ -1511,7 +1511,7 @@ namespace SenAIS
                 ) ? "1" : "0"
             });
 
-            AddIfEnabled("HeadlightMMS", new
+            AddIfEnabled("HeadLightsMMS", new
             {
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_L",
@@ -1525,6 +1525,28 @@ namespace SenAIS
                                   standard.Field<decimal?>("MinLBIntensity"),
                                   standard.Field<decimal?>("MaxLBIntensity"))
                 ) ? "1" : "0"
+            });
+            // Góc Lái
+            AddIfEnabled("SteeringAngleMMS", new
+            {
+                TestTypeCode = "STEERINGANGLE",
+                TestDtlCode = "STEERINGANGLE_L",
+                MeasureValue = ConvertToDecimal(vehicleDetails["LeftSteerLW"]).ToString("F1"),
+                LimitValue = $"{standard["MinLeftSteer"]} ~ {standard["MaxLeftSteer"]}",
+                TestDtlResult = CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerLW"]),
+                                  standard.Field<decimal?>("MinLeftSteer"),
+                                  standard.Field<decimal?>("MaxLeftSteer")) ? "1" : "0"
+            });
+
+            AddIfEnabled("SteeringAngleMMS", new
+            {
+                TestTypeCode = "STEERINGANGLE",
+                TestDtlCode = "STEERINGANGLE_R",
+                MeasureValue = ConvertToDecimal(vehicleDetails["RightSteerLW"]).ToString("F1"),
+                LimitValue = $"{standard["MinRightSteer"]} ~ {standard["MaxRightSteer"]}",
+                TestDtlResult = CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
+                                              standard.Field<decimal?>("MinRightSteer"),
+                                              standard.Field<decimal?>("MaxRightSteer")) ? "1" : "0"
             });
 
             return testDetails;
