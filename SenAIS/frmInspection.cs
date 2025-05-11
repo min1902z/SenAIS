@@ -389,6 +389,7 @@ namespace SenAIS
         {
             if (CheckSerialNumber())
                 OpenNewForm(new frmHeadlights(this.serialNumber));
+            opcManager.SetOPCValue(opcHLCounter, 1);
         }
 
         private void btnEmission_Click(object sender, EventArgs e)

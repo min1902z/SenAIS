@@ -253,7 +253,7 @@ namespace SenAIS
 
                 string rightLBHorizontalDeviation = Encoding.ASCII.GetString(data, 20, 5);   // Lệch ngang Right LB (5 bytes)
                 string rightLBVerticalDeviation = Encoding.ASCII.GetString(data, 25, 5);     // Lệch dọc Right LB (5 bytes)
-                                                                                             // string rightLBLightIntensity = Encoding.ASCII.GetString(data, 30, 4);        // Cường độ Right LB (4 bytes)
+                // string rightLBLightIntensity = Encoding.ASCII.GetString(data, 30, 4);        // Cường độ Right LB (4 bytes)
                 string rightLBLightHeight = Encoding.ASCII.GetString(data, 16, 4);
 
                 // Xử lý 34 byte của đèn trái (Left Headlight)

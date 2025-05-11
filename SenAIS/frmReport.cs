@@ -331,7 +331,7 @@ namespace SenAIS
                 CheckAndColorTextBox(txtHSU3, null, standard.Field<decimal?>("MaxHSU"));
                 CheckAndColorTextBox(txtLHLIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
                 CheckAndColorTextBox(txtRHLIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
-                CheckAndColorTextBox(txtLHLHorizontal, standard.Field<decimal?>("MinDiffHoriLeftHB"), standard.Field<decimal?>("MaxDiffHoriLeftHB"));
+                CheckAndColorTextBox(txtLHLHorizontal, standard.Field<decimal?>("MinDiffHoriHB"), standard.Field<decimal?>("MaxDiffHoriHB"));
                 CheckAndColorTextBox(txtRHLHorizontal, standard.Field<decimal?>("MinDiffHoriHB"), standard.Field<decimal?>("MaxDiffHoriHB"));
                 CheckAndColorTextBox(txtLHLVertical, standard.Field<decimal?>("MinDiffVertiHB"), standard.Field<decimal?>("MaxDiffVertiHB"));
                 CheckAndColorTextBox(txtRHLVertical, standard.Field<decimal?>("MinDiffVertiHB"), standard.Field<decimal?>("MaxDiffVertiHB"));
@@ -352,8 +352,8 @@ namespace SenAIS
                 CheckAndColorTextBox(txtRFLVertical, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
 
                 CheckAndColorTextBox(txtLeftSteerLW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
-                CheckAndColorTextBox(txtLeftSteerRW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
-                CheckAndColorTextBox(txtRightSteerLW, standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
+                //CheckAndColorTextBox(txtLeftSteerRW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
+                //CheckAndColorTextBox(txtRightSteerLW, standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
                 CheckAndColorTextBox(txtRightSteerRW, standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
             }
             else
@@ -637,10 +637,10 @@ namespace SenAIS
 
                 bool steerAngleResult = CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerLW"]),
                                                  standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
-                                   && CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerRW"]),
-                                                    standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
-                                   && CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
-                                                    standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"))
+                                   //&& CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerRW"]),
+                                   //                 standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
+                                   //&& CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
+                                   //                 standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"))
                                    && CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerRW"]),
                                                     standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
 
