@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbVehicleInfo = new System.Windows.Forms.TableLayoutPanel();
             this.cbFuel = new System.Windows.Forms.ComboBox();
             this.lbFuelTitle = new System.Windows.Forms.Label();
@@ -48,19 +47,20 @@
             this.cbTypeCar = new System.Windows.Forms.ComboBox();
             this.btnReport = new System.Windows.Forms.Button();
             this.tbMenuControl = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSwitchBrake = new System.Windows.Forms.Button();
             this.btnHeadlights = new System.Windows.Forms.Button();
             this.btnWhistle = new System.Windows.Forms.Button();
             this.btnFrontBrake = new System.Windows.Forms.Button();
             this.btnHandBrake = new System.Windows.Forms.Button();
             this.btnRearBrake = new System.Windows.Forms.Button();
             this.btnSpeed = new System.Windows.Forms.Button();
-            this.btnEmission = new System.Windows.Forms.Button();
             this.btnNoise = new System.Windows.Forms.Button();
             this.btnFrontWeight = new System.Windows.Forms.Button();
             this.btnSideSlip = new System.Windows.Forms.Button();
             this.btnSteerAngle = new System.Windows.Forms.Button();
+            this.btnEmission = new System.Windows.Forms.Button();
             this.btnSpeedMoving = new System.Windows.Forms.Button();
+            this.btnSwitchBrake = new System.Windows.Forms.Button();
+            this.btnLockBack = new System.Windows.Forms.Button();
             this.btnInspecProgress = new System.Windows.Forms.Button();
             this.InspectionPanel = new System.Windows.Forms.Panel();
             this.btnStartProgress = new System.Windows.Forms.Button();
@@ -194,28 +194,21 @@
             // tbMenuControl
             // 
             resources.ApplyResources(this.tbMenuControl, "tbMenuControl");
-            this.tbMenuControl.Controls.Add(this.btnSwitchBrake, 2, 1);
             this.tbMenuControl.Controls.Add(this.btnHeadlights, 0, 0);
             this.tbMenuControl.Controls.Add(this.btnWhistle, 1, 0);
             this.tbMenuControl.Controls.Add(this.btnFrontBrake, 0, 2);
             this.tbMenuControl.Controls.Add(this.btnHandBrake, 2, 2);
             this.tbMenuControl.Controls.Add(this.btnRearBrake, 1, 2);
             this.tbMenuControl.Controls.Add(this.btnSpeed, 0, 3);
-            this.tbMenuControl.Controls.Add(this.btnEmission, 1, 3);
             this.tbMenuControl.Controls.Add(this.btnNoise, 2, 0);
             this.tbMenuControl.Controls.Add(this.btnFrontWeight, 1, 1);
             this.tbMenuControl.Controls.Add(this.btnSideSlip, 0, 1);
             this.tbMenuControl.Controls.Add(this.btnSteerAngle, 0, 4);
-            this.tbMenuControl.Controls.Add(this.btnSpeedMoving, 2, 3);
+            this.tbMenuControl.Controls.Add(this.btnEmission, 1, 4);
+            this.tbMenuControl.Controls.Add(this.btnSpeedMoving, 2, 4);
+            this.tbMenuControl.Controls.Add(this.btnSwitchBrake, 1, 3);
+            this.tbMenuControl.Controls.Add(this.btnLockBack, 2, 3);
             this.tbMenuControl.Name = "tbMenuControl";
-            // 
-            // btnSwitchBrake
-            // 
-            resources.ApplyResources(this.btnSwitchBrake, "btnSwitchBrake");
-            this.btnSwitchBrake.ForeColor = System.Drawing.Color.Red;
-            this.btnSwitchBrake.Name = "btnSwitchBrake";
-            this.btnSwitchBrake.UseVisualStyleBackColor = true;
-            this.btnSwitchBrake.Click += new System.EventHandler(this.btnSwitchBrake_Click);
             // 
             // btnHeadlights
             // 
@@ -265,14 +258,6 @@
             this.btnSpeed.UseVisualStyleBackColor = true;
             this.btnSpeed.Click += new System.EventHandler(this.btnSpeed_Click);
             // 
-            // btnEmission
-            // 
-            resources.ApplyResources(this.btnEmission, "btnEmission");
-            this.btnEmission.ForeColor = System.Drawing.Color.Blue;
-            this.btnEmission.Name = "btnEmission";
-            this.btnEmission.UseVisualStyleBackColor = true;
-            this.btnEmission.Click += new System.EventHandler(this.btnEmission_Click);
-            // 
             // btnNoise
             // 
             resources.ApplyResources(this.btnNoise, "btnNoise");
@@ -305,6 +290,14 @@
             this.btnSteerAngle.UseVisualStyleBackColor = true;
             this.btnSteerAngle.Click += new System.EventHandler(this.btnSteerAngle_Click);
             // 
+            // btnEmission
+            // 
+            resources.ApplyResources(this.btnEmission, "btnEmission");
+            this.btnEmission.ForeColor = System.Drawing.Color.Blue;
+            this.btnEmission.Name = "btnEmission";
+            this.btnEmission.UseVisualStyleBackColor = true;
+            this.btnEmission.Click += new System.EventHandler(this.btnEmission_Click);
+            // 
             // btnSpeedMoving
             // 
             resources.ApplyResources(this.btnSpeedMoving, "btnSpeedMoving");
@@ -312,6 +305,22 @@
             this.btnSpeedMoving.Name = "btnSpeedMoving";
             this.btnSpeedMoving.UseVisualStyleBackColor = true;
             this.btnSpeedMoving.Click += new System.EventHandler(this.btnSpeedMoving_Click);
+            // 
+            // btnSwitchBrake
+            // 
+            resources.ApplyResources(this.btnSwitchBrake, "btnSwitchBrake");
+            this.btnSwitchBrake.ForeColor = System.Drawing.Color.Red;
+            this.btnSwitchBrake.Name = "btnSwitchBrake";
+            this.btnSwitchBrake.UseVisualStyleBackColor = true;
+            this.btnSwitchBrake.Click += new System.EventHandler(this.btnSwitchBrake_Click);
+            // 
+            // btnLockBack
+            // 
+            resources.ApplyResources(this.btnLockBack, "btnLockBack");
+            this.btnLockBack.ForeColor = System.Drawing.Color.Red;
+            this.btnLockBack.Name = "btnLockBack";
+            this.btnLockBack.UseVisualStyleBackColor = true;
+            this.btnLockBack.Click += new System.EventHandler(this.btnLockBack_Click);
             // 
             // btnInspecProgress
             // 
@@ -379,7 +388,7 @@
             this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -388,7 +397,7 @@
             this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gold;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -396,22 +405,14 @@
             this.dgVehicleInfo.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgVehicleInfo.Name = "dgVehicleInfo";
             this.dgVehicleInfo.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgVehicleInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgVehicleInfo.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            this.dgVehicleInfo.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgVehicleInfo.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgVehicleInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgVehicleInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVehicleInfo_CellClick);
             // 
@@ -486,5 +487,6 @@
         private System.Windows.Forms.Button btnStartProgress;
         private System.Windows.Forms.DataGridView dgVehicleInfo;
         private System.Windows.Forms.Button btnSwitchBrake;
+        private System.Windows.Forms.Button btnLockBack;
     }
 }

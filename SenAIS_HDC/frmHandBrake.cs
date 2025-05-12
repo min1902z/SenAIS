@@ -23,7 +23,7 @@ namespace SenAIS
         private decimal maxDiffBrake = 0;
         private double brakeLeftA = 1;
         private double brakeRightA = 1;
-        private CancellationTokenSource opcCancellationToken = new CancellationTokenSource();
+        private CancellationTokenSource opcCancellationToken;
         private int lastCounter = -1;
         private int lastBrakeSensor = -1;
         private OPCManager opcManager;

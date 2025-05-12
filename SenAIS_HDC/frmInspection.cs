@@ -17,11 +17,6 @@ namespace SenAIS
 {
     public partial class frmInspection : Form
     {
-        private OPCServer opcServer;
-        private OPCGroup opcGroup;
-        private OPCItem opcCounterSpeed;
-        private OPCItem opcCounterSideSlip;
-        private OPCItem opcCounterBrake;
         private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private string currentUI;
@@ -58,7 +53,6 @@ namespace SenAIS
             this.serialNumber = txtVinNum.Text;
             LoadVehicleInfo();
             opcManager = new OPCManager();
-            //InitializeOPC();
         }
         public frmInspection(string serialNumber)
         {
@@ -154,77 +148,6 @@ namespace SenAIS
                     await Task.Delay(500, token); // Delay giữa các lần kiểm tra
                 }
             }, token);
-        }
-        private void InitializeOPC()
-        {
-            try
-            {
-                opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V6", "");
-
-                opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
-                opcGroup.IsActive = true;
-                opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 500;
-
-                // Thêm các OPCItems tương ứng với các Counter
-                opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
-
-                opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Vui lòng kiểm tra dữ liệu từ OPC Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
-        {
-            if (!this.IsHandleCreated || this.IsDisposed) return;
-            this.serialNumber = txtVinNum.Text;
-            if (string.IsNullOrEmpty(serialNumber))
-            {
-                return;
-            }
-            for (int i = 1; i <= NumItems; i++)
-            {
-                int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
-                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false))
-                {
-                    if (itemValue == 1)
-                    {
-                        var speedForm = Application.OpenForms.OfType<frmSpeed>().FirstOrDefault();
-                        if (speedForm == null) // Chỉ mở nếu chưa có
-                        {
-                            this.BeginInvoke(new Action(() => OpenNewForm(new frmSpeed(this.serialNumber))));
-                        }
-                    }
-                }
-                else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false))
-                {
-                    if (itemValue == 1)
-                    {
-                        var speedForm = Application.OpenForms.OfType<frmSpeed>().FirstOrDefault();
-                        if (speedForm == null) // Chỉ mở nếu chưa có
-                        {
-                            this.BeginInvoke(new Action(() => OpenNewForm(new frmSideSlip(this.serialNumber))));
-                        }
-                    }
-                }
-                if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false))
-                {
-                    if (itemValue == 1)
-                    {
-                        var brakeForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
-                        if (brakeForm == null) // Chỉ mở nếu chưa có
-                        {
-                            this.BeginInvoke(new Action(() => OpenNewForm(new frmFrontBrake(this.serialNumber))));
-                        }
-                    }
-                }
-            }
         }
         // Hàm mở form và đưa lên đầu
         private List<Form> openForms = new List<Form>();
@@ -762,6 +685,23 @@ namespace SenAIS
                 btnSwitchBrake.Visible = false;
             }
         }
+        private void HideAllInspectionButtons()
+        {
+            btnHeadlights.Visible = false;
+            btnWhistle.Visible = false;
+            btnNoise.Visible = false;
+            btnSideSlip.Visible = false;
+            btnFrontWeight.Visible = false;
+            btnFrontBrake.Visible = false;
+            btnRearBrake.Visible = false;
+            btnHandBrake.Visible = false;
+            btnSpeed.Visible = false;
+            btnSteerAngle.Visible = false;
+            btnEmission.Visible = false;
+            btnSpeedMoving.Visible = false;
+            btnLockBack.Visible = false;
+            btnSwitchBrake.Visible = false;
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -779,6 +719,31 @@ namespace SenAIS
             {
                 tbMenuControl.Visible = false;
                 dgVehicleInfo.Visible = true;
+            }
+            HideAllInspectionButtons();
+            //Xử lý hiển thị các nút theo StationType
+            string stationType = ConfigurationManager.AppSettings["StationType"]?.Trim().ToUpper() ?? "";
+
+            // Hiện các nút tùy theo loại trạm
+            if (stationType == "BRAKE")
+            {
+                btnFrontBrake.Visible = true;
+                btnRearBrake.Visible = true;
+                btnHandBrake.Visible = true;
+                btnLockBack.Visible = true;
+                btnSwitchBrake.Visible = true;
+            }
+            else if (stationType == "SIDESLIP")
+            {
+                btnSideSlip.Visible = true;
+            }
+            else if (stationType == "SPEED")
+            {
+                btnSpeed.Visible = true;
+            }
+            else if (stationType == "REPORT")
+            {
+                btnEmission.Visible = true;
             }
             BrakeUI();
             LoadAllVehicleInfo();
@@ -838,6 +803,32 @@ namespace SenAIS
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi đổi cầu Phanh: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnLockBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string opcItem = ConfigurationManager.AppSettings["Brake_LockBack"];
+                int valueToSet = btnLockBack.Text == "Bỏ Chặn Trục" ? 1 : 0;
+
+                // Gửi giá trị
+                opcManager.SetOPCValue(opcItem, valueToSet);
+
+                // Nếu không lỗi thì mới đổi text
+                if (btnLockBack.Text == "Bỏ Chặn Trục")
+                {
+                    btnLockBack.Text = "Chặn Trục";
+                }
+                else
+                {
+                    btnLockBack.Text = "Bỏ Chặn Trục";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi bỏ chặn trục: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
