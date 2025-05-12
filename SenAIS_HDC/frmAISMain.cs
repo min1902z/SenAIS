@@ -186,9 +186,10 @@ namespace SenAIS
 
         private void SenAIS_Load(object sender, EventArgs e)
         {
-            var stationType = ConfigurationManager.AppSettings["StationType"] ?? "Speed";
-            Form formToOpen = stationType == "Report" ? (Form)new frmReport() : new frmInspection();
-            OpenChildForm(formToOpen);
+            //var stationType = ConfigurationManager.AppSettings["StationType"] ?? "Speed";
+            //Form formToOpen = stationType == "Report" ? (Form)new frmReport() : new frmInspection();
+            //OpenChildForm(formToOpen);
+            OpenChildForm(new frmInspection());
         }
 
         private void TSReset_Click(object sender, EventArgs e)
