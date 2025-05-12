@@ -832,12 +832,12 @@ namespace SenAIS
             if (newUI == "Menu")
             {
                 tbMenuControl.Visible = true;
-                dgVehicleInfo.Visible = false;
+                VehicleListPanel.Visible = false;
             }
             else
             {
                 tbMenuControl.Visible = false;
-                dgVehicleInfo.Visible = true;
+                VehicleListPanel.Visible = true;
             }
 
             // Lưu lại cấu hình
@@ -872,12 +872,12 @@ namespace SenAIS
             if (currentUI == "Menu")
             {
                 tbMenuControl.Visible = true;
-                dgVehicleInfo.Visible = false;
+                VehicleListPanel.Visible = false;
             }
             else
             {
                 tbMenuControl.Visible = false;
-                dgVehicleInfo.Visible = true;
+                VehicleListPanel.Visible = true;
             }
             LoadAllVehicleInfo();
             LoadVehicleInfo();
@@ -930,6 +930,41 @@ namespace SenAIS
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchTerm = txtSearch.Text.Trim();
+                DataTable results = sqlHelper.SearchVehicleInfo(searchTerm);
+                if (results != null && results.Rows.Count != 0)
+                {
+                    // Hiển thị kết quả tìm kiếm trong DataGridView
+                    dgVehicleInfo.DataSource = results;
+                    dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số vin";
+                    dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
+                    dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
+                    dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
+                    dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
+                    dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
+                    dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không tìm thấy dữ liệu danh sách xe.", "Thông báo");
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick(); // Kích hoạt nút Search
+                e.Handled = true;         // Ngăn Enter thực hiện hành động mặc định
+                e.SuppressKeyPress = true; // Ngăn âm báo "ding"
+            }
         }
     }
 }

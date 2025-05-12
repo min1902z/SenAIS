@@ -42,7 +42,7 @@ namespace SenAIS
                     dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                     dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
                     dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
-                    dgVehicleInfo.Columns["EngineType"].HeaderText = "Loại động cơ";
+                    //dgVehicleInfo.Columns["EngineType"].HeaderText = "Loại động cơ";
                     // Thêm Màu xe
                 }
             }
@@ -1074,6 +1074,11 @@ namespace SenAIS
                 e.Handled = true;         // Ngăn Enter thực hiện hành động mặc định
                 e.SuppressKeyPress = true; // Ngăn âm báo "ding"
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
