@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -53,7 +50,7 @@ namespace SenAIS
                     // Chờ đến khi isDataCollected = true hoặc hết 3 phút
                     while (!isDataCollected)
                     {
-                        await Task.Delay(1000, cts.Token); 
+                        await Task.Delay(1000, cts.Token);
                     }
 
                     // Nếu thu thập dữ liệu thành công, lưu DB

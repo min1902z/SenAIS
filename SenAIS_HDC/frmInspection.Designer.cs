@@ -67,12 +67,16 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnResetMain = new System.Windows.Forms.Button();
             this.panelButton = new System.Windows.Forms.Panel();
+            this.VehicleListPanel = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgVehicleInfo = new System.Windows.Forms.DataGridView();
             this.txtVinShow = new System.Windows.Forms.TextBox();
             this.tbVehicleInfo.SuspendLayout();
             this.tbMenuControl.SuspendLayout();
             this.InspectionPanel.SuspendLayout();
             this.panelButton.SuspendLayout();
+            this.VehicleListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -373,10 +377,34 @@
             // panelButton
             // 
             resources.ApplyResources(this.panelButton, "panelButton");
+            this.panelButton.Controls.Add(this.VehicleListPanel);
             this.panelButton.Controls.Add(this.tbMenuControl);
-            this.panelButton.Controls.Add(this.dgVehicleInfo);
             this.panelButton.Controls.Add(this.txtVinShow);
             this.panelButton.Name = "panelButton";
+            // 
+            // VehicleListPanel
+            // 
+            resources.ApplyResources(this.VehicleListPanel, "VehicleListPanel");
+            this.VehicleListPanel.Controls.Add(this.btnSearch);
+            this.VehicleListPanel.Controls.Add(this.txtSearch);
+            this.VehicleListPanel.Controls.Add(this.dgVehicleInfo);
+            this.VehicleListPanel.Name = "VehicleListPanel";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.btnSearch, "btnSearch");
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.txtSearch, "txtSearch");
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // dgVehicleInfo
             // 
@@ -388,7 +416,7 @@
             this.dgVehicleInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -397,7 +425,7 @@
             this.dgVehicleInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gold;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -444,6 +472,8 @@
             this.InspectionPanel.PerformLayout();
             this.panelButton.ResumeLayout(false);
             this.panelButton.PerformLayout();
+            this.VehicleListPanel.ResumeLayout(false);
+            this.VehicleListPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVehicleInfo)).EndInit();
             this.ResumeLayout(false);
 
@@ -485,8 +515,11 @@
         private System.Windows.Forms.Button btnResetMain;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnStartProgress;
-        private System.Windows.Forms.DataGridView dgVehicleInfo;
         private System.Windows.Forms.Button btnSwitchBrake;
         private System.Windows.Forms.Button btnLockBack;
+        private System.Windows.Forms.Panel VehicleListPanel;
+        private System.Windows.Forms.DataGridView dgVehicleInfo;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

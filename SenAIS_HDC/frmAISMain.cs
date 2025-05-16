@@ -12,6 +12,8 @@ namespace SenAIS
         private static readonly string calibSS = ConfigurationManager.AppSettings["Calib_SS"];
         private static readonly string calibLBrake = ConfigurationManager.AppSettings["Calib_LBrake"];
         private static readonly string calibRBrake = ConfigurationManager.AppSettings["Calib_RBrake"];
+        private static readonly string calibLBrake2 = ConfigurationManager.AppSettings["Calib_LBrake2"];
+        private static readonly string calibRBrake2 = ConfigurationManager.AppSettings["Calib_RBrake2"];
         private static readonly string calibLWeight = ConfigurationManager.AppSettings["Calib_LWeight"];
         private static readonly string calibRWeight = ConfigurationManager.AppSettings["Calib_RWeight"];
         public SenAIS()
@@ -151,7 +153,7 @@ namespace SenAIS
             frmCalibration calibrationForm = new frmCalibration(calibrationType);
 
             // Thiết lập tiêu đề và các thông tin khác
-            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái";
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái 1";
             calibrationForm.lbCalibA.Text = "Calib\\LeftBrakeA";
             calibrationForm.lbCalibB.Text = "Calib\\LeftBrakeB";
             calibrationForm.lbParaA.Text = "Para\\LeftBrakeA";
@@ -168,7 +170,7 @@ namespace SenAIS
             frmCalibration calibrationForm = new frmCalibration(calibrationType);
 
             // Thiết lập tiêu đề và các thông tin khác
-            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải";
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải 1";
             calibrationForm.lbCalibA.Text = "Calib\\RightBrakeA";
             calibrationForm.lbCalibB.Text = "Calib\\RightBrakeB";
             calibrationForm.lbParaA.Text = "Para\\RightBrakeA";
@@ -371,6 +373,40 @@ namespace SenAIS
                 string newUI = ConfigurationManager.AppSettings["DefaultMainUI"];
                 tsSwitchMainUI.Text = newUI == "Menu" ? "Đổi Bảng Danh Sách Xe" : "Đổi Bảng Điều Khiển";
             }
+        }
+
+        private void tsFront_LBrake_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "LeftBrake2";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái 2";
+            calibrationForm.lbCalibA.Text = "Calib\\LeftBrakeA";
+            calibrationForm.lbCalibB.Text = "Calib\\LeftBrakeB";
+            calibrationForm.lbParaA.Text = "Para\\LeftBrakeA";
+            calibrationForm.lbParaB.Text = "Para\\LeftBrakeB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem(calibLBrake2);
+        }
+
+        private void tsFront_RBrake_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "RightBrake2";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải 2";
+            calibrationForm.lbCalibA.Text = "Calib\\RightBrakeA";
+            calibrationForm.lbCalibB.Text = "Calib\\RightBrakeB";
+            calibrationForm.lbParaA.Text = "Para\\RightBrakeA";
+            calibrationForm.lbParaB.Text = "Para\\RightBrakeB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem(calibRBrake2);
         }
     }
 }

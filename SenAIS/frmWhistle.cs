@@ -1,9 +1,7 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,7 +47,7 @@ namespace SenAIS
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
-                {
+                    {
                         case 0: // Mặc định
                             cbReady.BackColor = SystemColors.Control;
                             lbWhistle.Visible = false;
@@ -109,7 +107,7 @@ namespace SenAIS
                             isReady = false;
                             lbWhistleTitle.Visible = true;
                             break;
-                }
+                    }
                 }));
 
             }

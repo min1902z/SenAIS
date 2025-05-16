@@ -90,6 +90,8 @@ namespace SenAIS
             try
             {
                 int timeoutSeconds = int.TryParse(ConfigurationManager.AppSettings["WeightCheckTimeout"], out int timeout) ? timeout : 30;
+                int x2LineMode = int.TryParse(ConfigurationManager.AppSettings["X2_Line"], out int line) ? line : 1;
+
                 var startTime = DateTime.Now;
                 while (!token.IsCancellationRequested)
                 {
@@ -101,13 +103,20 @@ namespace SenAIS
                     double rawRearLWeight = opcManager.GetOPCValue(opcLRWeightResult);
                     double rawRearRWeight = opcManager.GetOPCValue(opcRRWeightResult);
 
-                    // 🔹 Tính toán trọng lượng (chia cho weight từ DB)
-                    frontLWeight = rawFrontLWeight / weightLeftA;
-                    frontRWeight = rawFrontRWeight / weightRightA;
-                    //frontRWeight = rawFrontRWeight / weightLeftA;
-                    rearLWeight = rawRearLWeight / weightLeftA;
-                    rearRWeight = rawRearRWeight / weightRightA;
-                    //rearRWeight = rawRearRWeight / weightLeftA;
+                    if (x2LineMode == 2)
+                    {
+                        frontLWeight = rawFrontLWeight / weightLeftA;
+                        frontRWeight = rawFrontRWeight / weightLeftA;
+                        rearLWeight = rawRearLWeight / weightLeftA;
+                        rearRWeight = rawRearRWeight / weightLeftA;
+                    }
+                    else // Mặc định hoặc X2_Line = 1
+                    {
+                        frontLWeight = rawFrontLWeight / weightLeftA;
+                        frontRWeight = rawFrontRWeight / weightRightA;
+                        rearLWeight = rawRearLWeight / weightLeftA;
+                        rearRWeight = rawRearRWeight / weightRightA;
+                    }
 
                     double totalFrontWeight = frontLWeight + frontRWeight;
                     double totalRearWeight = rearLWeight + rearRWeight;

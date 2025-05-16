@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -49,13 +48,13 @@ namespace SenAIS
         {
             try
             {
-                    opcServer = new OPCServer();
-                    opcServer.Connect("Kepware.KEPServerEX.V6", "");
+                opcServer = new OPCServer();
+                opcServer.Connect("Kepware.KEPServerEX.V6", "");
 
-                    opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
-                    opcGroup.IsActive = true;
-                    opcGroup.IsSubscribed = true;
-                    opcGroup.UpdateRate = 500;
+                opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
+                opcGroup.IsActive = true;
+                opcGroup.IsSubscribed = true;
+                opcGroup.UpdateRate = 500;
 
                 // Thêm các OPCItems tương ứng với các Counter
                 opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
@@ -73,41 +72,41 @@ namespace SenAIS
         }
         private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
         {
-                this.serialNumber = txtVinNum.Text;
-                if (string.IsNullOrEmpty(serialNumber))
-                {
-                    return;
-                }
-                bool hl1 = false;
-                bool hl2 = false;
+            this.serialNumber = txtVinNum.Text;
+            if (string.IsNullOrEmpty(serialNumber))
+            {
+                return;
+            }
+            bool hl1 = false;
+            bool hl2 = false;
             for (int i = 1; i <= NumItems; i++)
+            {
+                int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
+                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
+                if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false) && itemValue == 1)
                 {
-                    int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
-                    // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                    if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false) && itemValue == 1)
-                    {
-                        OpenNewForm(new frmSpeed(this.serialNumber));
-                    }
-                    //else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false) && itemValue == 1)
-                    //{
-                    //    OpenNewForm(new frmSideSlip(this.serialNumber));
-                    //}
-                    else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle)?? false) && itemValue == 1)
-                    {
-                        OpenNewForm(new frmFrontBrake(this.serialNumber));
-                    }
-                    else if ((ClientHandles.GetValue(i)?.Equals(opcCounterHL?.ClientHandle)?? false) && itemValue == 1)
-                    {
-                        hl1 = itemValue == 1;
-                    }
-                    else if ((ClientHandles.GetValue(i)?.Equals(opcCounterHL2?.ClientHandle) ?? false) && itemValue == 1)
-                    {
-                        hl2 = itemValue == 1;
-                    }
+                    OpenNewForm(new frmSpeed(this.serialNumber));
+                }
+                //else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false) && itemValue == 1)
+                //{
+                //    OpenNewForm(new frmSideSlip(this.serialNumber));
+                //}
+                else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false) && itemValue == 1)
+                {
+                    OpenNewForm(new frmFrontBrake(this.serialNumber));
+                }
+                else if ((ClientHandles.GetValue(i)?.Equals(opcCounterHL?.ClientHandle) ?? false) && itemValue == 1)
+                {
+                    hl1 = itemValue == 1;
+                }
+                else if ((ClientHandles.GetValue(i)?.Equals(opcCounterHL2?.ClientHandle) ?? false) && itemValue == 1)
+                {
+                    hl2 = itemValue == 1;
+                }
                 else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSteer?.ClientHandle) ?? false) && itemValue == 1)
-                    {
-                        OpenNewForm(new frmSteerAngle(this.serialNumber));
-                    }
+                {
+                    OpenNewForm(new frmSteerAngle(this.serialNumber));
+                }
                 if (hl1 && hl2)
                 {
                     OpenNewForm(new frmHeadlights(this.serialNumber));
@@ -165,7 +164,7 @@ namespace SenAIS
         {
             if (CheckSerialNumber())
             {
-                OpenNewForm(new frmNoise( this.serialNumber));
+                OpenNewForm(new frmNoise(this.serialNumber));
             }
         }
 
@@ -224,7 +223,7 @@ namespace SenAIS
                 tbVehicleInfo.Focus();
             }
             else
-            MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thông tin xe đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void LoadVehicleInfo()
         {
@@ -346,7 +345,7 @@ namespace SenAIS
             {
                 OpenNewForm(new frmRearBrake(this.serialNumber));
                 OPCUtility.SetOPCValue(opcBrakeRCounter, 1);
-            }    
+            }
         }
 
         private void btnHandBrake_Click(object sender, EventArgs e)

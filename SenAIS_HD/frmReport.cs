@@ -615,10 +615,10 @@ namespace SenAIS
                                                  standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
                                     && CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
                                                     standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
-                                   //&& CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerRW"]),
-                                   //                 standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
-                                   //&& CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerRW"]),
-                                   //                 standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
+                //&& CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerRW"]),
+                //                 standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
+                //&& CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerRW"]),
+                //                 standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
 
                 bool speedResult = CheckStandard(ConvertToDecimal(vehicleDetails["Speed"]),
                                                  standard.Field<decimal?>("MinSpeed"),

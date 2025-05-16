@@ -58,7 +58,7 @@ namespace SenAIS
 
                 // Dừng cập nhật và lưu kết quả
                 await Task.Delay(10000, cancellationToken);
-               if(hasMeasured == true)
+                if (hasMeasured == true)
                 {
                     SaveDataToDatabase(); // Lưu DB
                 }
@@ -144,7 +144,7 @@ namespace SenAIS
                 double? noValue = ConvertToDouble(data[9], data[10], 100);
                 double? otValue = ConvertToDouble(data[13], data[14], 1); // Không chia scale
                 double? rpmValue = ConvertToDouble(data[11], data[12], 1); // Không chia scale
-                double? lamdaValue = ConvertToDouble(data[15], data[16], 100); 
+                double? lamdaValue = ConvertToDouble(data[15], data[16], 100);
 
                 this.Invoke(new Action(async () =>
                 {

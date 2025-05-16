@@ -218,8 +218,19 @@ namespace SenAIS
                     maxDiffBrake = ConvertToDecimal(standard["MaxDiffRearBrake"]);
                 }
             }
-            brakeLeftA = sqlHelper.GetParaValue("LeftBrake", "ParaA");
-            brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
+            // Lấy giá trị hiệu chuẩn phanh trái/phải
+            GetCalibrationValues(out brakeLeftA, out brakeRightA);
+        }
+        private void GetCalibrationValues(out double leftA, out double rightA)
+        {
+            int brakeOption = 1;
+            int.TryParse(ConfigurationManager.AppSettings["Brake_Option"], out brakeOption);
+
+            string leftTag = brakeOption == 2 ? "LeftBrake2" : "LeftBrake";
+            string rightTag = brakeOption == 2 ? "RightBrake2" : "RightBrake";
+
+            leftA = sqlHelper.GetParaValue(leftTag, "ParaA");
+            rightA = sqlHelper.GetParaValue(rightTag, "ParaA");
         }
         private void btnPre_Click(object sender, EventArgs e)
         {

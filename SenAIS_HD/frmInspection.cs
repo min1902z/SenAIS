@@ -12,9 +12,6 @@ namespace SenAIS
     {
         private OPCServer opcServer;
         private OPCGroup opcGroup;
-        //private OPCItem opcCounterSpeed;
-        //private OPCItem opcCounterSideSlip;
-        //private OPCItem opcCounterBrake;
         private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private string vehicleType;
@@ -37,7 +34,6 @@ namespace SenAIS
             this.serialNumber = txtVinNum.Text;
             LoadVehicleInfo();
             opcManager = new OPCManager();
-            //InitializeOPC();
         }
         public frmInspection(string serialNumber)
         {
@@ -48,57 +44,11 @@ namespace SenAIS
             LoadVehicleInfo();
             UpdateVehicleInfo(serialNumber);
             opcManager = new OPCManager();
-            //InitializeOPC();
         }
         public string GetVinNumber()
         {
             return txtVinNum.Text;
         }
-        private void InitializeOPC()
-        {
-            try
-            {
-                opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V6", "");
-
-                opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
-                opcGroup.IsActive = true;
-                opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 500;
-
-                // Thêm các OPCItems tương ứng với các Counter
-                //opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                //opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                //opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 3);
-
-                //opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Vui lòng kiểm tra dữ liệu từ OPC Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        //private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
-        //{
-        //    this.serialNumber = txtVinNum.Text;
-        //    if (string.IsNullOrEmpty(serialNumber))
-        //    {
-        //        return;
-        //    }
-        //    for (int i = 1; i <= NumItems; i++)
-        //    {
-        //        int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
-        //        // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-        //        if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false) && itemValue == 1)
-        //        {
-        //            OpenNewForm(new frmSpeed(this.serialNumber));
-        //        }
-        //        else if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false) && itemValue == 1)
-        //        {
-        //            OpenNewForm(new frmFrontBrake(this.serialNumber));
-        //        }
-        //    }
-        //}
         // Hàm mở form và đưa lên đầu
         private List<Form> openForms = new List<Form>();
         private void OpenNewForm(Form newForm)
@@ -324,7 +274,6 @@ namespace SenAIS
             if (CheckSerialNumber())
             {
                 OpenNewForm(new frmRearWeight(this.serialNumber));
-                opcManager.SetOPCValue(opcWeightRCounter, 1);
             }
         }
 
@@ -420,25 +369,6 @@ namespace SenAIS
         {
             RestartApplication();
         }
-        //private void RestartApplication()
-        //{
-        //    // 🔹 Lưu lại số VIN hiện tại
-        //    string currentVin = txtVinNum.Text;
-
-        //    // 🔥 Đóng Main Form để reset
-        //    var mainForm = Application.OpenForms.OfType<SenAIS>().FirstOrDefault();
-        //    if (mainForm != null)
-        //    {
-        //        mainForm.BeginInvoke(new Action(() =>
-        //        {
-        //            mainForm.panelBody.Controls.Clear();
-
-        //            // 🔹 Tạo lại `frmInspection` với VIN đã lưu
-        //            var newInspectionForm = new frmInspection(currentVin);
-        //            mainForm.OpenChildForm(newInspectionForm);
-        //        }));
-        //    }
-        //}
         private void RestartApplication()
         {
             try

@@ -1,11 +1,8 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -52,12 +49,12 @@ namespace SenAIS
             isMeasuring = false;
             lbEnd.Text = "Kết thúc";
             SaveDataToDatabase();
-         }
+        }
         private void ResetToDefault()
         {
             lbNoise.Visible = false;
             lbNoise.Text = "0.0";
-            lbEnd.Visible = false; 
+            lbEnd.Visible = false;
         }
         private decimal ConvertToDecimal(object value)
         {

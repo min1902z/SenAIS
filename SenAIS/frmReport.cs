@@ -362,7 +362,7 @@ namespace SenAIS
                 CheckAndColorTextBox(txtRLBHorizontal, standard.Field<decimal?>("MinDiffHoriLB"), standard.Field<decimal?>("MaxDiffHoriLB"));
                 CheckAndColorTextBox(txtLLBVertical, standard.Field<decimal?>("MinDiffVertiLB"), standard.Field<decimal?>("MaxDiffVertiLB"));
                 CheckAndColorTextBox(txtRLBVertical, standard.Field<decimal?>("MinDiffVertiLB"), standard.Field<decimal?>("MaxDiffVertiLB"));
-                
+
                 CheckAndColorTextBox(txtLFLIntensity, standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MaxFLIntensity"));
                 CheckAndColorTextBox(txtRFLIntensity, standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MaxFLIntensity"));
                 CheckAndColorTextBox(txtLFLHorizontal, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
@@ -982,9 +982,9 @@ namespace SenAIS
                     sqlHelper.UpdateSteerAngle(serialNumber, leftSteerLW, leftSteerRW, rightSteerLW, rightSteerRW);
                     sqlHelper.UpdateBrakeForce(serialNumber, frontLeftBrake, frontRightBrake, rearLeftBrake, rearRightBrake, handBrakeLeft, handBrakeRight);
                     sqlHelper.UpdateNoise(serialNumber, noise, whistle);
-                    sqlHelper.UpdateHeadlights(serialNumber, lhlIntensity, lhlVertical, lhlHorizontal, lhlHeight, 
-                        rhlIntensity, rhlVertical, rhlHorizontal, lhlHeight, 
-                        llbIntensity, llbVertical, llbHorizontal, llbHeight, 
+                    sqlHelper.UpdateHeadlights(serialNumber, lhlIntensity, lhlVertical, lhlHorizontal, lhlHeight,
+                        rhlIntensity, rhlVertical, rhlHorizontal, lhlHeight,
+                        llbIntensity, llbVertical, llbHorizontal, llbHeight,
                         rlbIntensity, rlbVertical, rlbHorizontal, rlbHeight,
                     lflIntensity, lflVertical, lflHorizontal, lflHeight,
                     rflIntensity, rflVertical, rflHorizontal, rflHeight);

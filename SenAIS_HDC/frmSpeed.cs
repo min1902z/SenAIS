@@ -41,40 +41,40 @@ namespace SenAIS
             opcCancellationTokenSource = new CancellationTokenSource();
             CancellationToken token = opcCancellationTokenSource.Token;
 
-        Task.Run(async () =>
-            {
-                while (!token.IsCancellationRequested)
+            Task.Run(async () =>
                 {
-                    try
+                    while (!token.IsCancellationRequested)
                     {
-                        int checkStatus = (int)opcManager.GetOPCValue(opcSpeedCounter);
-                        int speedSensor = (int)opcManager.GetOPCValue(opcSpeedSen);
-                        if (checkStatus != lastCounter || checkStatus == 2)
+                        try
                         {
-                            lastCounter = checkStatus;
-                            this.BeginInvoke((MethodInvoker)(() => UpdateUI(checkStatus)));
-                        }
-
-                        if (checkStatus == 2)
-                        {
-                            this.BeginInvoke((MethodInvoker)(() => UpdateSpeed()));
-                        }
-
-                        if (speedSensor != lastSpeedSensor)
-                        {
-                            lastSpeedSensor = speedSensor;
-                            this.BeginInvoke((MethodInvoker)(() =>
+                            int checkStatus = (int)opcManager.GetOPCValue(opcSpeedCounter);
+                            int speedSensor = (int)opcManager.GetOPCValue(opcSpeedSen);
+                            if (checkStatus != lastCounter || checkStatus == 2)
                             {
-                                cbSensor.BackColor = (speedSensor == 1) ? Color.Green : SystemColors.Control;
-                            }));
+                                lastCounter = checkStatus;
+                                this.BeginInvoke((MethodInvoker)(() => UpdateUI(checkStatus)));
+                            }
+
+                            if (checkStatus == 2)
+                            {
+                                this.BeginInvoke((MethodInvoker)(() => UpdateSpeed()));
+                            }
+
+                            if (speedSensor != lastSpeedSensor)
+                            {
+                                lastSpeedSensor = speedSensor;
+                                this.BeginInvoke((MethodInvoker)(() =>
+                                {
+                                    cbSensor.BackColor = (speedSensor == 1) ? Color.Green : SystemColors.Control;
+                                }));
+                            }
                         }
+                        catch (Exception)
+                        {
+                        }
+                        await Task.Delay(100, token);
                     }
-                    catch (Exception)
-                    {
-                    }
-                    await Task.Delay(100, token);
-                }
-            }, token);
+                }, token);
         }
         private void UpdateUI(int checkStatus)
         {
@@ -183,7 +183,7 @@ namespace SenAIS
         //                     lbTitleSpeed.Visible = false;
         //                     lbEnd.Visible = false;
         //                     lbSpeed.Visible = true;
-                             
+
         //                     double speedResult = opcManager.GetOPCValue(opcSpeedResult);
         //                     double speed = speedResult / speedA;
         //                     lbSpeed.Text = speed.ToString("F1");

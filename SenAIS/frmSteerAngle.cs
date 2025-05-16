@@ -1,5 +1,4 @@
-﻿using OPCAutomation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -7,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace SenAIS
 {
@@ -138,78 +136,78 @@ namespace SenAIS
             try
             {
                 lbVinNumber.Text = this.serialNumber;
-                    Invoke((Action)(() =>
+                Invoke((Action)(() =>
+            {
+                switch (steerCounter)
                 {
-                    switch (steerCounter)
-                    {
-                        case 0: // Mặc định
-                            cbReady.BackColor = SystemColors.Control;
-                            tbSteerAngle.Visible = false;
-                            lbSteerTitle.Visible = true;
-                            isReady = false;
-                            hasProcessedNextVin = false; // Reset cờ chuyển số VIN
-                            break;
-                        case 1: // Xe vào vị trí
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            tbSteerAngle.Visible = false;
-                            lbSteerTitle.Visible = true;
-                            isReady = false; // Chưa sẵn sàng lưu
-                            break;
+                    case 0: // Mặc định
+                        cbReady.BackColor = SystemColors.Control;
+                        tbSteerAngle.Visible = false;
+                        lbSteerTitle.Visible = true;
+                        isReady = false;
+                        hasProcessedNextVin = false; // Reset cờ chuyển số VIN
+                        break;
+                    case 1: // Xe vào vị trí
+                        cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                        tbSteerAngle.Visible = false;
+                        lbSteerTitle.Visible = true;
+                        isReady = false; // Chưa sẵn sàng lưu
+                        break;
 
-                        case 2: // Bắt đầu đo
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            isReady = true; // Sẵn sàng lưu sau khi đo
-                            tbSteerAngle.Visible = true;
-                            lbSteerTitle.Visible = false;
-                            UpdateSteerValuesUI(values);
-                            break;
+                    case 2: // Bắt đầu đo
+                        cbReady.BackColor = Color.Green; // Đèn xanh sáng
+                        isReady = true; // Sẵn sàng lưu sau khi đo
+                        tbSteerAngle.Visible = true;
+                        lbSteerTitle.Visible = false;
+                        UpdateSteerValuesUI(values);
+                        break;
 
-                        case 3: // Quá trình đo hoàn tất, lưu vào DB
-                            cbReady.BackColor = Color.Green; // Đèn xanh
-                            tbSteerAngle.Visible = true;
-                            lbSteerTitle.Visible = false;
-                            if (isReady)
+                    case 3: // Quá trình đo hoàn tất, lưu vào DB
+                        cbReady.BackColor = Color.Green; // Đèn xanh
+                        tbSteerAngle.Visible = true;
+                        lbSteerTitle.Visible = false;
+                        if (isReady)
+                        {
+                            SaveDataToDatabase(); // Ghi dữ liệu vào DB
+                            isReady = false; // Đặt lại trạng thái
+                        }
+                        break;
+                    case 4: // Xe tiếp theo
+                        cbReady.BackColor = SystemColors.Control;
+                        tbSteerAngle.Visible = false;
+                        lbSteerTitle.Visible = true;
+                        if (!hasProcessedNextVin)
+                        {
+                            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                            if (!string.IsNullOrEmpty(nextSerialNumber))
                             {
-                                SaveDataToDatabase(); // Ghi dữ liệu vào DB
-                                isReady = false; // Đặt lại trạng thái
-                            }
-                            break;
-                        case 4: // Xe tiếp theo
-                            cbReady.BackColor = SystemColors.Control;
-                            tbSteerAngle.Visible = false;
-                            lbSteerTitle.Visible = true;
-                            if (!hasProcessedNextVin)
-                            {
-                                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-                                if (!string.IsNullOrEmpty(nextSerialNumber))
+                                this.serialNumber = nextSerialNumber;
+                                var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
+                                if (frmMain != null)
                                 {
-                                    this.serialNumber = nextSerialNumber;
-                                    var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-                                    if (frmMain != null)
+                                    var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
+                                    if (txtVinNumber != null)
                                     {
-                                        var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-                                        if (txtVinNumber != null)
-                                        {
-                                            txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
-                                        }
+                                        txtVinNumber.Text = this.serialNumber; // Cập nhật số VIN
                                     }
-                                    hasProcessedNextVin = true; // Đánh dấu đã xử lý
-                                    this.Close();
                                 }
-                                else
-                                {
-                                    this.Close();
-                                }
+                                hasProcessedNextVin = true; // Đánh dấu đã xử lý
+                                this.Close();
                             }
-                            break;
+                            else
+                            {
+                                this.Close();
+                            }
+                        }
+                        break;
 
-                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                            lbSteerTitle.Visible = true;
-                            isReady = false;
-                            break;
-                    }
-                }));
+                    default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+                        cbReady.BackColor = SystemColors.Control; // Màu mặc định
+                        lbSteerTitle.Visible = true;
+                        isReady = false;
+                        break;
+                }
+            }));
             }
             catch
             {
