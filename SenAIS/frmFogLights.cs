@@ -14,10 +14,10 @@ namespace SenAIS
     {
         private COMConnect comConnect;
         private SQLHelper sqlHelper;
+        private CancellationTokenSource measurementTokenSource;
         private string serialNumber;
         private bool autoTestCheck = false;
         private bool isDataCollected = false;
-        private bool isCase4Processed = false;
         private decimal rightFLIntensity, rightFLVerticalValue, rightFLHorizontalValue, rightFLHeight;
         private decimal leftFLIntensity, leftFLVerticalValue, leftFLHorizontalValue, leftFLHeight;
         private decimal minFLIntensity, maxFLIntensity, minDiffHoriFL, maxDiffHoriFL, minDiffVertiFL, maxDiffVertiFL, minFLHeight, maxFLHeight;
@@ -28,63 +28,121 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Headlights"], 2400, this);
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
         }
-        private async void StartMeasurementProcess()
+
+        private void frmFogLights_Shown(object sender, EventArgs e)
         {
-            lbTitle.Text = "Đèn Sương Mù";
-            await Task.Delay(5000); // Quãng nghỉ 5 giây trước khi bắt đầu đo
+            //StartMeasurementProcess();
+        }
 
-            lbTitle.Visible = false;
-            tbHeadLights.Visible = true;
+        public void StartMeasurementProcess()
+        {
+            // Nếu đang đo, bỏ qua
+            if (measurementTokenSource != null && !measurementTokenSource.IsCancellationRequested)
+                return;
 
-            if (!autoTestCheck)
-            {
-                byte[] autoTest = { 0x41 };
-                comConnect.SendRequest(autoTest);
-                autoTestCheck = true;
-            }
-            // Tạo token giới hạn 3 phút
-            using (var cts = new CancellationTokenSource(TimeSpan.FromMinutes(4)))
+            measurementTokenSource = new CancellationTokenSource();
+            var token = measurementTokenSource.Token;
+
+            Task.Run(async () =>
             {
                 try
                 {
-                    // Chờ đến khi isDataCollected = true hoặc hết 3 phút
-                    while (!isDataCollected)
+                    // 🟡 Hiển thị chuẩn bị đo
+                    if (this.IsHandleCreated && !this.IsDisposed)
                     {
-                        await Task.Delay(1000, cts.Token);
+                        this.BeginInvoke((Action)(() =>
+                        {
+                            lbTitle.Text = "Đèn Sương Mù";
+                            lbTitle.Visible = true;
+                            tbHeadLights.Visible = false;
+                        }));
                     }
 
-                    // Nếu thu thập dữ liệu thành công, lưu DB
-                    SaveDataToDatabase();
+                    await Task.Delay(5000, token); // Quãng nghỉ 5s trước khi bắt đầu
+
+                    if (this.IsHandleCreated && !this.IsDisposed)
+                    {
+                        this.BeginInvoke((Action)(() =>
+                        {
+                            lbTitle.Visible = false;
+                            tbHeadLights.Visible = true;
+                        }));
+                    }
+
+                    // Gửi lệnh Auto Test nếu chưa gửi
+                    if (!autoTestCheck)
+                    {
+                        byte[] autoTest = { 0x41 };
+                        comConnect.SendRequest(autoTest);
+                        autoTestCheck = true;
+                    }
+                    bool hasCollected = false;
+                    // Giới hạn 4 phút
+                    int timeoutMinutes = 4; // mặc định 4 phút
+                    try
+                    {
+                        string configValue = ConfigurationManager.AppSettings["FogLightTimeoutMinutes"];
+                        if (!string.IsNullOrWhiteSpace(configValue) && int.TryParse(configValue, out int parsed))
+                        {
+                            timeoutMinutes = parsed;
+                        }
+                    }
+                    catch { }
+                    var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(timeoutMinutes));
+                    using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(token, timeoutCts.Token))
+                    {
+                        while (!isDataCollected && !linkedCts.Token.IsCancellationRequested)
+                        {
+                            await Task.Delay(1000, linkedCts.Token);
+                        }
+                        hasCollected = isDataCollected;
+                        if (hasCollected)
+                        {
+                            if (this.IsHandleCreated && !this.IsDisposed)
+                            {
+                                this.BeginInvoke((Action)(() => SaveDataToDatabase()));
+                            }
+                            await Task.Delay(5000, token); // Nghỉ 5s sau khi lưu
+                            if (this.IsHandleCreated && !this.IsDisposed)
+                            {
+                                this.BeginInvoke((Action)(() => MoveToNextCar()));
+                            }
+                        }
+                        else
+                        {
+                            if (this.IsHandleCreated && !this.IsDisposed)
+                            {
+                                this.BeginInvoke((Action)(() => this.Close()));
+                            }
+                        }
+                    }
+
                 }
                 catch (TaskCanceledException)
                 {
+                    // Bị huỷ đo thủ công hoặc hết thời gian
                 }
-            }
-            await Task.Delay(5000);
-            // Mở frmWhistle sau khi hoàn thành hoặc hết thời gian
-            //frmWhistle whistleForm = new frmWhistle(serialNumber);
-            //whistleForm.Show();
-            //this.Close(); // Đóng form hiện tại
-            OpenOrReplaceFormWithSerial<frmWhistle>(this.serialNumber);
+                catch (Exception)
+                {
+                }
+            }, token);
         }
-        private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
+        private void MoveToNextCar()
         {
-            // 🔹 Kiểm tra xem form đã mở chưa
-            var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+            cbReady.BackColor = SystemColors.Control;
+            Form currentForm = this;
 
-            if (existingForm != null)
+            this.BeginInvoke(new Action(() =>
             {
-                existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
-            }
+                if (Application.OpenForms.OfType<frmWhistle>().Any())
+                    return;
 
-            // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
-            var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
-            form.Show();
+                var form = new frmWhistle(this.serialNumber);
+                form.Show();
 
-            // 🔹 Đóng form hiện tại
-            this.Close();
+                currentForm.Close();
+            }));
         }
         public void ProcessNHD6109Data(byte[] data)
         {
@@ -144,6 +202,7 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
+            lbVinNumber.Text = this.serialNumber;
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleDetails != null)
             {
@@ -193,7 +252,6 @@ namespace SenAIS
             }
             return 0;
         }
-
         private void SaveDataToDatabase()
         {
             sqlHelper.SaveFogLightsData(serialNumber, rightFLIntensity, rightFLVerticalValue, rightFLHorizontalValue, rightFLHeight,
@@ -201,13 +259,19 @@ namespace SenAIS
         }
         private void frmFogLights_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (measurementTokenSource != null)
+            {
+                measurementTokenSource.Cancel();
+                measurementTokenSource.Dispose();
+                measurementTokenSource = null;
+            }
             comConnect.CloseConnection();
         }
 
         private void frmFogLights_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
-            lbVinNumber.Text = this.serialNumber;
+            LoadVehicleStandards(serialNumber);
             if (comConnect.IsConnected())
             {
                 cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công

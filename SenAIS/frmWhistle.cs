@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,8 +13,10 @@ namespace SenAIS
     public partial class frmWhistle : Form
     {
         private COMConnect comConnect;
-        private Timer updateTimer;
+        //private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCUtility opcManager;
+        private CancellationTokenSource opcCancellationTokenSource;
         private string serialNumber;
         private double maxSoundValue = 0;
         public decimal whistle;
@@ -28,114 +31,229 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Whistle"], 300, this);
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
-            InitializeTimer();
+            opcManager = new OPCUtility();
+            StartOPCListener();
+            //InitializeTimer();
         }
-        private void InitializeTimer()
+        private void StartOPCListener()
         {
-            updateTimer = new Timer();
-            updateTimer.Interval = 200; // Kiểm tra mỗi giây
-            updateTimer.Tick += UpdateReadyStatus;
-            updateTimer.Start();
-        }
-        private async void UpdateReadyStatus(object sender, EventArgs e)
-        {
-            try
+            opcCancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = opcCancellationTokenSource.Token;
+
+            Task.Run(async () =>
             {
-                lbEngineNumber.Text = this.serialNumber;
-                // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcWhistleCounter));
-                Invoke((Action)(() =>
+                int lastCounter = -1;
+
+                while (!token.IsCancellationRequested)
                 {
-                    switch (checkStatus)
+                    try
                     {
-                        case 0: // Mặc định
-                            cbReady.BackColor = SystemColors.Control;
-                            lbWhistle.Visible = false;
-                            lbStandard.Visible = false;
-                            lbWhistleTitle.Visible = true;
-                            isReady = false;
-                            isMeasuring = false;
-                            break;
-                        case 1: // Xe vào vị trí
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            lbWhistle.Visible = false;
-                            lbStandard.Visible = true;
-                            lbWhistleTitle.Visible = true;
-                            isReady = false; // Chưa sẵn sàng lưu
-                            isMeasuring = false;
-                            break;
+                        int checkStatus = opcManager.GetOPCValue(opcWhistleCounter);
 
-                        case 2: // Bắt đầu đo
-                            cbReady.BackColor = Color.Green; // Đèn xanh sáng
-                            isReady = true; // Sẵn sàng lưu sau khi đo
-                            lbWhistleTitle.Visible = false;
-                            lbWhistle.Visible = true;
-                            lbEnd.Text = "Bấm Còi...";
-                            lbEnd.Visible = true;
-                            if (!isMeasuring) // Chỉ gửi lệnh đo 1 lần
-                            {
-                                byte[] startCommand = { 0xB8 };
-                                comConnect.SendRequest(startCommand);
-                                isMeasuring = true; // Đánh dấu đang đo
-                            }
-                            break;
+                        if (checkStatus != lastCounter || checkStatus == 2)
+                        {
+                            lastCounter = checkStatus;
 
-                        case 3: // Quá trình đo hoàn tất, lưu vào DB
-                            cbReady.BackColor = Color.Green; // Đèn xanh
-                            isMeasuring = false;
-                            lbWhistleTitle.Visible = false;
-                            lbWhistle.Visible = true;
-                            lbEnd.Text = "Kết Thúc";
-                            if (isReady)
+                            this.BeginInvoke((MethodInvoker)(() =>
                             {
-                                SaveDataToDatabase(); // Ghi dữ liệu vào DB
-                                isReady = false; // Đặt lại trạng thái
-                            }
-                            break;
-                        case 4: // Xe tiếp theo
-                            cbReady.BackColor = SystemColors.Control;
-                            lbStandard.Visible = false;
-                            lbEnd.Visible = false;
-                            lbWhistleTitle.Visible = true;
-                            if (updateTimer != null)
-                            {
-                                updateTimer.Stop(); // Dừng Timer
-                                updateTimer.Dispose(); // Giải phóng tài nguyên
-                                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
-                            }
-                            OpenOrReplaceFormWithSerial<frmSideSlip>(this.serialNumber);
-                            break;
-
-                        default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-                            cbReady.BackColor = SystemColors.Control; // Màu mặc định
-                            isReady = false;
-                            lbWhistleTitle.Visible = true;
-                            break;
+                                UpdateWhistleUI(checkStatus);
+                            }));
+                        }
                     }
-                }));
+                    catch { }
 
-            }
-            catch (Exception)
+                    await Task.Delay(100, token);
+                }
+            }, token);
+        }
+        private void UpdateWhistleUI(int status)
+        {
+            switch (status)
             {
+                case 0:
+                    cbReady.BackColor = SystemColors.Control;
+                    lbWhistle.Visible = false;
+                    lbStandard.Visible = false;
+                    lbWhistleTitle.Visible = true;
+                    isReady = false;
+                    isMeasuring = false;
+                    break;
+
+                case 1:
+                    cbReady.BackColor = Color.Green;
+                    lbWhistle.Visible = false;
+                    lbStandard.Visible = true;
+                    lbWhistleTitle.Visible = true;
+                    isReady = false;
+                    isMeasuring = false;
+                    break;
+
+                case 2:
+                    cbReady.BackColor = Color.Green;
+                    lbWhistleTitle.Visible = false;
+                    lbWhistle.Visible = true;
+                    lbEnd.Text = "Bấm Còi...";
+                    lbEnd.Visible = true;
+                    isReady = true;
+
+                    if (!isMeasuring)
+                    {
+                        byte[] startCommand = { 0xB8 };
+                        comConnect.SendRequest(startCommand);
+                        isMeasuring = true;
+                    }
+                    break;
+
+                case 3:
+                    cbReady.BackColor = Color.Green;
+                    lbWhistleTitle.Visible = false;
+                    lbWhistle.Visible = true;
+                    lbEnd.Text = "Kết Thúc";
+
+                    if (isReady)
+                    {
+                        SaveDataToDatabase();
+                        isReady = false;
+                    }
+                    isMeasuring = false;
+                    break;
+
+                case 4:
+                    cbReady.BackColor = SystemColors.Control;
+                    lbStandard.Visible = false;
+                    lbEnd.Visible = false;
+                    lbWhistleTitle.Visible = true;
+                    MoveToNextCar();
+                    break;
+
+                default:
+                    cbReady.BackColor = SystemColors.Control;
+                    lbWhistleTitle.Visible = true;
+                    isReady = false;
+                    break;
             }
         }
-        private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
+        //private void InitializeTimer()
+        //{
+        //    updateTimer = new Timer();
+        //    updateTimer.Interval = 200; // Kiểm tra mỗi giây
+        //    updateTimer.Tick += UpdateReadyStatus;
+        //    updateTimer.Start();
+        //}
+        //private async void UpdateReadyStatus(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        lbVinNumber.Text = this.serialNumber;
+        //        // Lấy giá trị OPC
+        //        int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcWhistleCounter));
+        //        Invoke((Action)(() =>
+        //        {
+        //            switch (checkStatus)
+        //            {
+        //                case 0: // Mặc định
+        //                    cbReady.BackColor = SystemColors.Control;
+        //                    lbWhistle.Visible = false;
+        //                    lbStandard.Visible = false;
+        //                    lbWhistleTitle.Visible = true;
+        //                    isReady = false;
+        //                    isMeasuring = false;
+        //                    break;
+        //                case 1: // Xe vào vị trí
+        //                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
+        //                    lbWhistle.Visible = false;
+        //                    lbStandard.Visible = true;
+        //                    lbWhistleTitle.Visible = true;
+        //                    isReady = false; // Chưa sẵn sàng lưu
+        //                    isMeasuring = false;
+        //                    break;
+
+        //                case 2: // Bắt đầu đo
+        //                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
+        //                    isReady = true; // Sẵn sàng lưu sau khi đo
+        //                    lbWhistleTitle.Visible = false;
+        //                    lbWhistle.Visible = true;
+        //                    lbEnd.Text = "Bấm Còi...";
+        //                    lbEnd.Visible = true;
+        //                    if (!isMeasuring) // Chỉ gửi lệnh đo 1 lần
+        //                    {
+        //                        byte[] startCommand = { 0xB8 };
+        //                        comConnect.SendRequest(startCommand);
+        //                        isMeasuring = true; // Đánh dấu đang đo
+        //                    }
+        //                    break;
+
+        //                case 3: // Quá trình đo hoàn tất, lưu vào DB
+        //                    cbReady.BackColor = Color.Green; // Đèn xanh
+        //                    isMeasuring = false;
+        //                    lbWhistleTitle.Visible = false;
+        //                    lbWhistle.Visible = true;
+        //                    lbEnd.Text = "Kết Thúc";
+        //                    if (isReady)
+        //                    {
+        //                        SaveDataToDatabase(); // Ghi dữ liệu vào DB
+        //                        isReady = false; // Đặt lại trạng thái
+        //                    }
+        //                    break;
+        //                case 4: // Xe tiếp theo
+        //                    cbReady.BackColor = SystemColors.Control;
+        //                    lbStandard.Visible = false;
+        //                    lbEnd.Visible = false;
+        //                    lbWhistleTitle.Visible = true;
+        //                    if (updateTimer != null)
+        //                    {
+        //                        updateTimer.Stop(); // Dừng Timer
+        //                        updateTimer.Dispose(); // Giải phóng tài nguyên
+        //                        updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+        //                    }
+        //                    OpenOrReplaceFormWithSerial<frmSideSlip>(this.serialNumber);
+        //                    break;
+
+        //                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
+        //                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
+        //                    isReady = false;
+        //                    lbWhistleTitle.Visible = true;
+        //                    break;
+        //            }
+        //        }));
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+        //private void OpenOrReplaceFormWithSerial<T>(string serialNumber) where T : Form
+        //{
+        //    // 🔹 Kiểm tra xem form đã mở chưa
+        //    var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+
+        //    if (existingForm != null)
+        //    {
+        //        existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
+        //    }
+
+        //    // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
+        //    var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
+        //    form.Show();
+
+        //    // 🔹 Đóng form hiện tại
+        //    this.Close();
+        //}
+        private void MoveToNextCar()
         {
-            // 🔹 Kiểm tra xem form đã mở chưa
-            var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+            cbReady.BackColor = SystemColors.Control;
+            Form currentForm = this;
 
-            if (existingForm != null)
+            this.BeginInvoke(new Action(() =>
             {
-                existingForm.Close(); // 🔥 Đóng form cũ trước khi mở form mới
-            }
+                if (Application.OpenForms.OfType<frmSideSlip>().Any())
+                    return;
 
-            // 🔹 Sử dụng Reflection để khởi tạo form với `serialNumber`
-            var form = (T)Activator.CreateInstance(typeof(T), serialNumber);
-            form.Show();
+                var form = new frmSideSlip(this.serialNumber);
+                form.Show();
 
-            // 🔹 Đóng form hiện tại
-            this.Close();
+                currentForm.Close();
+            }));
         }
         private decimal ConvertToDecimal(object value)
         {
@@ -143,6 +261,7 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
+            lbVinNumber.Text = this.serialNumber;
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleDetails != null)
             {
@@ -170,13 +289,9 @@ namespace SenAIS
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
-                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
-                }
-                else
-                {
-                    MessageBox.Show("Không có xe tiếp theo.");
                 }
             }
             catch (Exception ex)
@@ -184,7 +299,6 @@ namespace SenAIS
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnPre_Click(object sender, EventArgs e)
         {
             try
@@ -200,13 +314,9 @@ namespace SenAIS
                 {
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
-                    lbEngineNumber.Text = this.serialNumber; // Hiển thị serial number mới
+                    lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
-                }
-                else
-                {
-                    MessageBox.Show("Không có xe trước đó.");
                 }
             }
             catch (Exception ex)
@@ -253,19 +363,27 @@ namespace SenAIS
         private void frmWhistle_Load(object sender, EventArgs e)
         {
             comConnect.OpenConnection();
-            OPCUtility.SetOPCValue(opcWhistleCounter, 1);
+            LoadVehicleStandards(serialNumber);
+            opcManager.SetOPCValue(opcWhistleCounter, 1);
         }
 
         private void frmWhistle_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (updateTimer != null)
+            //if (updateTimer != null)
+            //{
+            //    updateTimer.Stop(); // Dừng Timer
+            //    updateTimer.Dispose(); // Giải phóng tài nguyên
+            //    updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+            //}
+            //e.Cancel = false;
+            if (opcCancellationTokenSource != null)
             {
-                updateTimer.Stop(); // Dừng Timer
-                updateTimer.Dispose(); // Giải phóng tài nguyên
-                updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
+                opcCancellationTokenSource.Cancel();
+                opcCancellationTokenSource.Dispose();
+                opcCancellationTokenSource = null;
             }
-            e.Cancel = false;
             comConnect.CloseConnection();
+
         }
     }
 }

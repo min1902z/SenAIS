@@ -121,7 +121,7 @@
             this.lbStandard.AutoSize = true;
             this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandard.Location = new System.Drawing.Point(659, 958);
+            this.lbStandard.Location = new System.Drawing.Point(809, 958);
             this.lbStandard.Name = "lbStandard";
             this.lbStandard.Size = new System.Drawing.Size(239, 97);
             this.lbStandard.TabIndex = 56;
@@ -133,7 +133,7 @@
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandardTitle.Location = new System.Drawing.Point(156, 958);
+            this.lbStandardTitle.Location = new System.Drawing.Point(303, 958);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
             this.lbStandardTitle.TabIndex = 55;

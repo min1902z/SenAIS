@@ -105,6 +105,8 @@ namespace SenAIS
                     CalculateAverages();
                     SaveDataToDatabase();
                     lbNotice.Text = "Quá trình lưu dữ liệu hoàn tất.";
+                    await Task.Delay(3000, cancellationToken);
+                    NextVin();
                 }
             }
             catch (TaskCanceledException)
@@ -115,6 +117,30 @@ namespace SenAIS
             {
                 MessageBox.Show($"Lỗi trong quá trình đo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void NextVin()
+        {
+            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+
+            if (!(Application.OpenForms.OfType<frmInspection>().FirstOrDefault() is frmInspection frmMain))
+                return;
+
+            if (!(frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() is TextBox txtVinNum))
+                return;
+
+            if (!string.IsNullOrEmpty(nextSerialNumber))
+            {
+                this.serialNumber = nextSerialNumber;
+                lbVinNumber.Text = this.serialNumber;
+
+                txtVinNum.Text = this.serialNumber;
+                frmMain.UpdateVehicleInfo(this.serialNumber);
+            }
+            else
+            {
+                txtVinNum.Text = string.Empty;
+            }
+            this.Close();
         }
         public void ProcessNHT6Data(byte[] data)
         {
@@ -259,17 +285,12 @@ namespace SenAIS
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     LoadVehicleStandards(serialNumber);
                 }
-                else
-                {
-                    MessageBox.Show("Không có xe trước đó.");
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             try
@@ -280,10 +301,6 @@ namespace SenAIS
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     LoadVehicleStandards(serialNumber);
-                }
-                else
-                {
-                    MessageBox.Show("Không có xe tiếp theo.");
                 }
             }
             catch (Exception ex)
@@ -317,6 +334,7 @@ namespace SenAIS
         }
         private void frmDieselEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
+            cts?.Cancel();
             comConnect.CloseConnection();
         }
 
@@ -329,32 +347,6 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
-
-            var frmMain = Application.OpenForms.OfType<frmInspection>().FirstOrDefault();
-            if (frmMain != null)
-            {
-                var txtVinNumber = frmMain.Controls.Find("txtVinNum", true).FirstOrDefault() as TextBox;
-
-                if (!string.IsNullOrEmpty(nextSerialNumber))
-                {
-                    this.serialNumber = nextSerialNumber;
-                    lbVinNumber.Text = this.serialNumber;
-                    if (txtVinNumber != null)
-                    {
-                        txtVinNumber.Text = this.serialNumber;
-                        frmMain.UpdateVehicleInfo(this.serialNumber);
-                    }
-                }
-                else
-                {
-                    if (txtVinNumber != null)
-                    {
-                        txtVinNumber.Text = string.Empty;
-                    }
-                }
-            }
-            comConnect.CloseConnection();
             this.Close();
         }
     }

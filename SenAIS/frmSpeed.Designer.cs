@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpeed));
             this.SpeedPanel = new System.Windows.Forms.Panel();
             this.lbEnd = new System.Windows.Forms.Label();
+            this.cbSensor = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbStandard = new System.Windows.Forms.Label();
             this.lbStandardTitle = new System.Windows.Forms.Label();
@@ -47,6 +48,7 @@
             // 
             this.SpeedPanel.AutoSize = true;
             this.SpeedPanel.Controls.Add(this.lbEnd);
+            this.SpeedPanel.Controls.Add(this.cbSensor);
             this.SpeedPanel.Controls.Add(this.label1);
             this.SpeedPanel.Controls.Add(this.lbStandard);
             this.SpeedPanel.Controls.Add(this.lbStandardTitle);
@@ -65,17 +67,34 @@
             // 
             // lbEnd
             // 
-            this.lbEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lbEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbEnd.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEnd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbEnd.Location = new System.Drawing.Point(69, 129);
+            this.lbEnd.Location = new System.Drawing.Point(69, 126);
             this.lbEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEnd.Name = "lbEnd";
             this.lbEnd.Size = new System.Drawing.Size(1803, 174);
-            this.lbEnd.TabIndex = 56;
+            this.lbEnd.TabIndex = 58;
             this.lbEnd.Text = "Kết Thúc";
             this.lbEnd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbEnd.Visible = false;
+            // 
+            // cbSensor
+            // 
+            this.cbSensor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSensor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSensor.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbSensor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSensor.BackgroundImage")));
+            this.cbSensor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbSensor.Checked = true;
+            this.cbSensor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSensor.Enabled = false;
+            this.cbSensor.Location = new System.Drawing.Point(1763, 13);
+            this.cbSensor.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSensor.Name = "cbSensor";
+            this.cbSensor.Size = new System.Drawing.Size(148, 108);
+            this.cbSensor.TabIndex = 57;
+            this.cbSensor.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -230,6 +249,7 @@
         private System.Windows.Forms.Button btnPreSpeed;
         private System.Windows.Forms.Label lbSpeed;
         private System.Windows.Forms.Label lbTitleSpeed;
+        private System.Windows.Forms.CheckBox cbSensor;
         private System.Windows.Forms.Label lbEnd;
     }
 }

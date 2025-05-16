@@ -42,7 +42,7 @@ namespace SenAIS
                     dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                     dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
                     dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
-                    dgVehicleInfo.Columns["EngineType"].HeaderText = "Loại động cơ";
+                    //dgVehicleInfo.Columns["EngineType"].HeaderText = "Loại động cơ";
                     // Thêm Màu xe
                 }
             }
@@ -331,7 +331,7 @@ namespace SenAIS
                 CheckAndColorTextBox(txtHSU3, null, standard.Field<decimal?>("MaxHSU"));
                 CheckAndColorTextBox(txtLHLIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
                 CheckAndColorTextBox(txtRHLIntensity, standard.Field<decimal?>("MinHLIntensity"), null);
-                CheckAndColorTextBox(txtLHLHorizontal, standard.Field<decimal?>("MinDiffHoriLeftHB"), standard.Field<decimal?>("MaxDiffHoriLeftHB"));
+                CheckAndColorTextBox(txtLHLHorizontal, standard.Field<decimal?>("MinDiffHoriHB"), standard.Field<decimal?>("MaxDiffHoriHB"));
                 CheckAndColorTextBox(txtRHLHorizontal, standard.Field<decimal?>("MinDiffHoriHB"), standard.Field<decimal?>("MaxDiffHoriHB"));
                 CheckAndColorTextBox(txtLHLVertical, standard.Field<decimal?>("MinDiffVertiHB"), standard.Field<decimal?>("MaxDiffVertiHB"));
                 CheckAndColorTextBox(txtRHLVertical, standard.Field<decimal?>("MinDiffVertiHB"), standard.Field<decimal?>("MaxDiffVertiHB"));
@@ -352,8 +352,8 @@ namespace SenAIS
                 CheckAndColorTextBox(txtRFLVertical, standard.Field<decimal?>("MinDiffHoriFL"), standard.Field<decimal?>("MaxDiffHoriFL"));
 
                 CheckAndColorTextBox(txtLeftSteerLW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
-                CheckAndColorTextBox(txtLeftSteerRW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
-                CheckAndColorTextBox(txtRightSteerLW, standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
+                //CheckAndColorTextBox(txtLeftSteerRW, standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"));
+                //CheckAndColorTextBox(txtRightSteerLW, standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
                 CheckAndColorTextBox(txtRightSteerRW, standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
             }
             else
@@ -421,6 +421,7 @@ namespace SenAIS
             // Tạo DataTable để chứa dữ liệu báo cáo
             DataTable reportDataTable = new DataTable();
 
+            reportDataTable.Columns.Add("ReportTitle", typeof(string));
             reportDataTable.Columns.Add("PublishSeri", typeof(string));
             reportDataTable.Columns.Add("PublishVer", typeof(string));
             reportDataTable.Columns.Add("PublishDate", typeof(string));
@@ -578,6 +579,13 @@ namespace SenAIS
                 // Gọi hàm GetVehicleStandardsByTypeCar để lấy tiêu chuẩn theo loại xe
                 string vehicleType = vehicleDetails["VehicleType"].ToString();
                 DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                if (vehicleStandards == null || vehicleStandards.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy tiêu chuẩn chất lượng cho phương tiện loại: " + vehicleType +
+                                    ".\nVui lòng kiểm tra lại cấu hình tiêu chuẩn.",
+                                    "Lỗi Tiêu Chuẩn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return reportDataTable;
+                }
                 DataRow standard = vehicleStandards.Rows[0];
                 // Tính toán giá trị FrontSumWeight (tổng của FrontLeftWeight và FrontRightWeight)
                 decimal frontLeftWeight = ConvertToDecimal(vehicleDetails["FrontLeftWeight"]);
@@ -629,10 +637,10 @@ namespace SenAIS
 
                 bool steerAngleResult = CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerLW"]),
                                                  standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
-                                   && CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerRW"]),
-                                                    standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
-                                   && CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
-                                                    standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"))
+                                   //&& CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerRW"]),
+                                   //                 standard.Field<decimal?>("MinLeftSteer"), standard.Field<decimal?>("MaxLeftSteer"))
+                                   //&& CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
+                                   //                 standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"))
                                    && CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerRW"]),
                                                     standard.Field<decimal?>("MinRightSteer"), standard.Field<decimal?>("MaxRightSteer"));
 
@@ -705,6 +713,7 @@ namespace SenAIS
                 // Thêm dữ liệu vào DataTable
                 DataRow reportRow = reportDataTable.NewRow();
 
+                reportRow["ReportTitle"] = ConfigurationManager.AppSettings["ReportTitle"];
                 reportRow["PublishSeri"] = ConfigurationManager.AppSettings["PublishSeri"];
                 reportRow["PublishVer"] = ConfigurationManager.AppSettings["PublishVer"];
                 reportRow["PublishDate"] = ConfigurationManager.AppSettings["PublishDate"];
@@ -815,13 +824,13 @@ namespace SenAIS
 
                 reportRow["MinSpeed1"] = ConvertToDecimal(vehicleDetails["MinSpeed1"]).ToString("F1");
                 reportRow["MaxSpeed1"] = ConvertToDecimal(vehicleDetails["MaxSpeed1"]).ToString("F1");
-                reportRow["HSU1"] = ConvertToDecimal(hsu1).ToString("F1");
+                reportRow["HSU1"] = ConvertToDecimal(hsu1).ToString("F2");
                 reportRow["MinSpeed2"] = ConvertToDecimal(vehicleDetails["MinSpeed2"]).ToString("F1");
                 reportRow["MaxSpeed2"] = ConvertToDecimal(vehicleDetails["MaxSpeed2"]).ToString("F1");
-                reportRow["HSU2"] = ConvertToDecimal(hsu2).ToString("F1");
+                reportRow["HSU2"] = ConvertToDecimal(hsu2).ToString("F2");
                 reportRow["MinSpeed3"] = ConvertToDecimal(vehicleDetails["MinSpeed3"]).ToString("F1");
                 reportRow["MaxSpeed3"] = ConvertToDecimal(vehicleDetails["MaxSpeed3"]).ToString("F1");
-                reportRow["HSU3"] = ConvertToDecimal(hsu3).ToString("F1");
+                reportRow["HSU3"] = ConvertToDecimal(hsu3).ToString("F2");
                 reportRow["AvgHSU"] = ConvertToDecimal(avgHSU).ToString("F2");
                 reportRow["MaxHSU"] = ConvertToDecimal(standard["MaxHSU"]).ToString("F2");
 
@@ -977,7 +986,7 @@ namespace SenAIS
 
                     MessageBox.Show("Dữ liệu đã được lưu thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnEditSave.Text = "Chỉnh sửa";
-                    btnEditSave.Visible = false;
+                    //btnEditSave.Visible = false;
                     EnableTextBoxes(false); // Tắt chỉnh sửa TextBox sau khi lưu thành công
                     DisplayVehicleDetails(serialNumber);
                 }
@@ -1065,6 +1074,11 @@ namespace SenAIS
                 e.Handled = true;         // Ngăn Enter thực hiện hành động mặc định
                 e.SuppressKeyPress = true; // Ngăn âm báo "ding"
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

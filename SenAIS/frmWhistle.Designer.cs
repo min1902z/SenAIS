@@ -33,7 +33,7 @@
             this.lbEnd = new System.Windows.Forms.Label();
             this.lbStandard = new System.Windows.Forms.Label();
             this.lbStandardTitle = new System.Windows.Forms.Label();
-            this.lbEngineNumber = new System.Windows.Forms.Label();
+            this.lbVinNumber = new System.Windows.Forms.Label();
             this.cbReady = new System.Windows.Forms.CheckBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.WhistlePanel.Controls.Add(this.lbEnd);
             this.WhistlePanel.Controls.Add(this.lbStandard);
             this.WhistlePanel.Controls.Add(this.lbStandardTitle);
-            this.WhistlePanel.Controls.Add(this.lbEngineNumber);
+            this.WhistlePanel.Controls.Add(this.lbVinNumber);
             this.WhistlePanel.Controls.Add(this.cbReady);
             this.WhistlePanel.Controls.Add(this.btnNext);
             this.WhistlePanel.Controls.Add(this.btnPre);
@@ -101,17 +101,17 @@
             this.lbStandardTitle.TabIndex = 55;
             this.lbStandardTitle.Text = "Tiêu Chuẩn: ";
             // 
-            // lbEngineNumber
+            // lbVinNumber
             // 
-            this.lbEngineNumber.AutoSize = true;
-            this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineNumber.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbEngineNumber.Location = new System.Drawing.Point(172, -18);
-            this.lbEngineNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbEngineNumber.Name = "lbEngineNumber";
-            this.lbEngineNumber.Size = new System.Drawing.Size(417, 163);
-            this.lbEngineNumber.TabIndex = 49;
-            this.lbEngineNumber.Text = "Số Vin";
+            this.lbVinNumber.AutoSize = true;
+            this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.Location = new System.Drawing.Point(172, -18);
+            this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbVinNumber.Name = "lbVinNumber";
+            this.lbVinNumber.Size = new System.Drawing.Size(417, 163);
+            this.lbVinNumber.TabIndex = 49;
+            this.lbVinNumber.Text = "Số Vin";
             // 
             // cbReady
             // 
@@ -228,7 +228,7 @@
         private System.Windows.Forms.Label lbWhistle;
         private System.Windows.Forms.Label lbWhistleTitle;
         private System.Windows.Forms.CheckBox cbReady;
-        private System.Windows.Forms.Label lbEngineNumber;
+        private System.Windows.Forms.Label lbVinNumber;
         private System.Windows.Forms.Label lbStandard;
         private System.Windows.Forms.Label lbStandardTitle;
         private System.Windows.Forms.Label lbEnd;

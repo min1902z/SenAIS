@@ -19,6 +19,7 @@ namespace SenAIS
         private double calibB = 0.0;
         private double calibResult = 0.0;
         private string calibrationType;
+        private double brakeCalibrationTolerance = 15;
         public frmCalibration(string calibrationType)
         {
             InitializeComponent();
@@ -148,6 +149,13 @@ namespace SenAIS
                 {
                     // Tính toán và hiển thị kết quả
                     double calibResult = beforeCalib / calibWeightLA - calibWeightLB;
+                    // Nếu calibrationType là phanh và có cấu hình giới hạn, kiểm tra để làm tròn về 0
+                    if ((this.calibrationType == "RightBrake" || this.calibrationType == "LeftBrake") &&
+                        brakeCalibrationTolerance >= 0 &&
+                        Math.Abs(calibResult) <= brakeCalibrationTolerance)
+                    {
+                        calibResult = 0;
+                    }
                     lbCalibResult.Text = $"{calibResult:F2}"; // Hiển thị giá trị số với 2 chữ số thập phân
                 }
                 else
@@ -229,6 +237,16 @@ namespace SenAIS
             lbCalibWeightLB.Text = calibB.ToString("F2");
             lbParaWeightLA.Text = calibA.ToString("F2");
             lbParaWeightLB.Text = calibB.ToString("F2");
-        }
+            string toleranceStr = ConfigurationManager.AppSettings["BrakeCalibrationTolerance"];
+            if (!string.IsNullOrWhiteSpace(toleranceStr) &&
+            double.TryParse(toleranceStr, out double parsedValue))
+                {
+                    brakeCalibrationTolerance = parsedValue;
+                }
+                else
+                {
+                    brakeCalibrationTolerance = -1; // Giá trị đặc biệt báo hiệu "không giới hạn"
+                }
+            }
     }
 }

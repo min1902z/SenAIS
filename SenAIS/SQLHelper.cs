@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -354,12 +356,12 @@ namespace SenAIS
                     cmd.Parameters.AddWithValue("@RightHBIntensity", rightHBIntensityValue);
                     cmd.Parameters.AddWithValue("@RightHBVerticalDeviation", rightHBVerticalValue);
                     cmd.Parameters.AddWithValue("@RightHBHorizontalDeviation", rightHBHorizontalValue);
-                    cmd.Parameters.AddWithValue("@LeftLBIntensity", leftHBIntensityValue);
-                    cmd.Parameters.AddWithValue("@LeftLBVerticalDeviation", leftHBVerticalValue);
-                    cmd.Parameters.AddWithValue("@LeftLBHorizontalDeviation", leftHBHorizontalValue);
-                    cmd.Parameters.AddWithValue("@RightLBIntensity", rightHBIntensityValue);
-                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", rightHBVerticalValue);
-                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", rightHBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@LeftLBIntensity", leftLBIntensityValue);
+                    cmd.Parameters.AddWithValue("@LeftLBVerticalDeviation", leftLBVerticalValue);
+                    cmd.Parameters.AddWithValue("@LeftLBHorizontalDeviation", leftLBHorizontalValue);
+                    cmd.Parameters.AddWithValue("@RightLBIntensity", rightLBIntensityValue);
+                    cmd.Parameters.AddWithValue("@RightLBVerticalDeviation", rightLBVerticalValue);
+                    cmd.Parameters.AddWithValue("@RightLBHorizontalDeviation", rightLBHorizontalValue);
                     cmd.Parameters.AddWithValue("@RightHBHeight", rightHBHeightValue);
                     cmd.Parameters.AddWithValue("@RightLBHeight", rightLBHeightValue);
                     cmd.Parameters.AddWithValue("@LeftHBHeight", leftHBHeightValue);
@@ -539,26 +541,55 @@ namespace SenAIS
         public DataTable SearchVehicleInfo(string searchTerm)
         {
             string query = @"
-            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel, Color, EngineType
+            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel, Color
             FROM VehicleInfo 
-            WHERE 
+            WHERE (
                 SerialNumber LIKE @SearchTerm OR
                 FrameNumber LIKE @SearchTerm OR
                 VehicleType LIKE @SearchTerm OR
                 Inspector LIKE @SearchTerm OR
                 InspectionDate LIKE @SearchTerm OR
                 Fuel LIKE @SearchTerm OR
-                Color LIKE @SearchTerm OR
-                EngineType LIKE @SearchTerm";
+                Color LIKE @SearchTerm
+            )";
 
-            var parameters = new[]
+            var parameters = new List<SqlParameter>
             {
-            new SqlParameter("@SearchTerm", "%" + searchTerm + "%")
-        };
+                new SqlParameter("@SearchTerm", "%" + searchTerm + "%")
+            };
 
-            return TableExecuteQuery(query, parameters);
+            // Tìm chính xác ngày (dd/MM/yyyy hoặc yyyy-MM-dd,...)
+            if (DateTime.TryParse(searchTerm, out DateTime exactDate))
+            {
+                query += " OR CONVERT(DATE, InspectionDate) = @ExactDate";
+                parameters.Add(new SqlParameter("@ExactDate", exactDate.Date));
+            }
+            // Tìm khoảng ngày theo định dạng "dd/MM - dd/MM" hoặc "dd-MM - dd-MM"
+            else if (searchTerm.Contains("-"))
+            {
+                var parts = searchTerm.Split('-');
+                if (parts.Length == 2 &&
+                    DateTime.TryParse(parts[0].Trim(), out DateTime fromDate) &&
+                    DateTime.TryParse(parts[1].Trim(), out DateTime toDate))
+                {
+                    query += " OR (CAST(InspectionDate AS DATE) BETWEEN @FromDate AND @ToDate)";
+                    parameters.Add(new SqlParameter("@FromDate", fromDate.Date));
+                    parameters.Add(new SqlParameter("@ToDate", toDate.Date));
+                }
+            }
+
+            query += " ORDER BY TRY_CAST(InspectionDate AS DATETIME) DESC";
+
+            return TableExecuteQuery(query, parameters.ToArray());
         }
-
+        public DataTable GetAllVehicleInfo()
+        {
+            string query = @"
+            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel, Color
+            FROM VehicleInfo
+            ORDER BY VehicleID DESC"; // ← Sắp theo ID giảm dần
+            return TableExecuteQuery(query, null);
+        }
         public DataRow GetVehicleDetails(string serialNumber)
         {
             string query = @"SELECT 

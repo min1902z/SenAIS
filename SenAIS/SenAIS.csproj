@@ -221,6 +221,18 @@
     <Compile Include="frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSelectTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectTest.Designer.cs">
+      <DependentUpon>frmSelectTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettingConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettingConfig.Designer.cs">
+      <DependentUpon>frmSettingConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSideSlip2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +338,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectTest.resx">
+      <DependentUpon>frmSelectTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettingConfig.resx">
+      <DependentUpon>frmSettingConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSideSlip2.resx">
       <DependentUpon>frmSideSlip2.cs</DependentUpon>

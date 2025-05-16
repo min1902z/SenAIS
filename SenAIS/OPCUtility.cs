@@ -5,19 +5,18 @@ using System.Windows.Forms;
 
 namespace SenAIS
 {
-    public static class OPCUtility
+    public class OPCUtility
     {
-        private static OPCServer opcServer;
-        private static OPCGroup opcGroup;
-        private static bool opcErrorShown = false;
-        private static bool isConnected = false;
-        private static int retryCount = 0;
-        static OPCUtility()
+        private OPCServer opcServer;
+        private OPCGroup opcGroup;
+        private bool opcErrorShown = false;
+        private bool isConnected = false;
+        private int retryCount = 0;
+        public OPCUtility()
         {
-            // Kết nối tới OPC Server khi khởi tạo lớp
             ConnectToOPCServer();
         }
-        private static void ConnectToOPCServer()
+        private void ConnectToOPCServer()
         {
             try
             {
@@ -51,7 +50,7 @@ namespace SenAIS
                 }
             }
         }
-        public static void AddItem(string itemName, int clientHandle)
+        public void AddItem(string itemName, int clientHandle)
         {
             try
             {
@@ -65,7 +64,7 @@ namespace SenAIS
                 Console.WriteLine($"Error adding OPC item {itemName}: {ex.Message}");
             }
         }
-        public static void DisconnectOPC()
+        public void DisconnectOPC()
         {
             try
             {
@@ -89,7 +88,7 @@ namespace SenAIS
                 MessageBox.Show($"Lỗi khi ngắt kết nối OPC: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static int GetOPCValue(string opcItem)
+        public int GetOPCValue(string opcItem)
         {
             try
             {
@@ -119,7 +118,7 @@ namespace SenAIS
             }
         }
 
-        public static void SetOPCValue(string opcItem, int value)
+        public void SetOPCValue(string opcItem, int value)
         {
             try
             {
@@ -136,10 +135,9 @@ namespace SenAIS
                 //throw;
             }
         }
-        public static Dictionary<string, decimal> GetMultipleOPCValues(List<string> opcItems)
+        public Dictionary<string, decimal> GetMultipleOPCValues(List<string> opcItems)
         {
             var result = new Dictionary<string, decimal>();
-
             foreach (var item in opcItems)
             {
                 try
@@ -151,12 +149,7 @@ namespace SenAIS
                     result[item] = -1; // Trả về giá trị mặc định khi lỗi
                 }
             }
-
             return result;
-        }
-        public static void ResetErrorFlag()
-        {
-            opcErrorShown = false; // Reset cờ lỗi để có thể hiển thị lại lỗi nếu cần thiết
         }
     }
 }

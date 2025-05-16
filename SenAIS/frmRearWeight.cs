@@ -10,6 +10,7 @@ namespace SenAIS
     {
         private Timer updateTimer;
         private SQLHelper sqlHelper;
+        private OPCUtility opcManager;
         private string serialNumber;
         public decimal rearLeftWeight;
         public decimal rearRightWeight;
@@ -24,6 +25,7 @@ namespace SenAIS
             InitializeComponent();
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
+            opcManager = new OPCUtility();
             weightLeftA = sqlHelper.GetParaValue("LeftWeight", "ParaA");
             weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
             InitializeTimer();
@@ -41,7 +43,7 @@ namespace SenAIS
             {
                 lbVinNumber.Text = this.serialNumber;
                 // Lấy giá trị OPC
-                int checkStatus = await Task.Run(() => (int)OPCUtility.GetOPCValue(opcWeightCounter));
+                int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcWeightCounter));
                 Invoke((Action)(() =>
                 {
                     switch (checkStatus)
@@ -67,8 +69,8 @@ namespace SenAIS
                             isReady = true; // Sẵn sàng lưu sau khi đo
                             lbWeightTitle.Visible = false;
                             tbWeight.Visible = true;
-                            double leftWeightResult = OPCUtility.GetOPCValue(opcLWeightResult);
-                            double rightWeightResult = OPCUtility.GetOPCValue(opcRWeightResult);
+                            double leftWeightResult = opcManager.GetOPCValue(opcLWeightResult);
+                            double rightWeightResult = opcManager.GetOPCValue(opcRWeightResult);
                             double leftWeight = leftWeightResult / weightLeftA;
                             double rightWeight = rightWeightResult / weightRightA;
                             double sumWeight = leftWeight + rightWeight;

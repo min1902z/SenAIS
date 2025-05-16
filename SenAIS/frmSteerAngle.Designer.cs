@@ -374,6 +374,7 @@
             this.Text = "Góc Lái";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSteerAngle_FormClosing);
+            this.Load += new System.EventHandler(this.frmSteerAngle_Load);
             this.SteerPanel.ResumeLayout(false);
             this.SteerPanel.PerformLayout();
             this.tbSteerAngle.ResumeLayout(false);

@@ -1482,6 +1482,7 @@
             this.txtSearch.BackColor = System.Drawing.SystemColors.ControlLightLight;
             resources.ApplyResources(this.txtSearch, "txtSearch");
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // lbSearchTitle
