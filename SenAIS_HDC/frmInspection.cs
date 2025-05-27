@@ -756,7 +756,7 @@ namespace SenAIS
             BrakeUI();
             LoadAllVehicleInfo();
             StartListeningForVehicleInfo();
-            if (stationType == "BRAKE" || stationType == "SPEED" || stationType == "SIDESLIP")
+            if (stationType == "BRAKE" || stationType == "SPEED")
             {
                 StartMonitoringCounters(stationType); // Gọi kèm stationType
             }

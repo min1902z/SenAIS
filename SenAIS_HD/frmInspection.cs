@@ -10,8 +10,6 @@ namespace SenAIS
 {
     public partial class frmInspection : Form
     {
-        private OPCServer opcServer;
-        private OPCGroup opcGroup;
         private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private string vehicleType;
@@ -93,8 +91,8 @@ namespace SenAIS
         {
             if (CheckSerialNumber())
             {
-                OpenNewForm(new frmSideSlip(this.serialNumber));
                 opcManager.SetOPCValue(opcSSCounter, 1);
+                OpenNewForm(new frmSideSlip(this.serialNumber));
             }
         }
 
@@ -109,6 +107,7 @@ namespace SenAIS
         {
             if (CheckSerialNumber())
             {
+                opcManager.SetOPCValue(opcWeightFCounter, 1);
                 OpenNewForm(new frmFrontWeight(this.serialNumber));
             }
         }
@@ -273,6 +272,7 @@ namespace SenAIS
         {
             if (CheckSerialNumber())
             {
+                opcManager.SetOPCValue(opcWeightRCounter, 1);
                 OpenNewForm(new frmRearWeight(this.serialNumber));
             }
         }
