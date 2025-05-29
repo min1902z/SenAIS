@@ -1160,7 +1160,11 @@ namespace SenAIS
         }
         public DataRow GetVehicleStandardByVin(string vin)
         {
-            string query = "SELECT VehicleType, SampleEngine FROM VehicleStandards WHERE @vin LIKE SampleVin + '%'";
+            string query = @"
+                SELECT TOP 1 VehicleType, SampleEngine 
+                FROM VehicleStandards 
+                WHERE @vin LIKE SampleVin + '%' 
+                ORDER BY LEN(SampleVin) DESC"; // Ưu tiên SampleVin dài nhất
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

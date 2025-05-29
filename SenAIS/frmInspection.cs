@@ -17,16 +17,6 @@ namespace SenAIS
 {
     public partial class frmInspection : Form
     {
-        private OPCServer opcServer;
-        private OPCGroup opcGroup;
-        private OPCItem opcCounterSpeed;
-        private OPCItem opcCounterSideSlip;
-        private OPCItem opcCounterBrake;
-        private OPCItem opcCounterHL;
-        private OPCItem opcCounterHL2;
-        private OPCItem opcCounterSteer;
-        private OPCItem opcPos1;
-
         private SQLHelper sqlHelper;
         private OPCUtility opcManager;
         private string currentUI;
@@ -79,7 +69,6 @@ namespace SenAIS
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
             this.serialNumber = txtVinNum.Text;
-            //InitializeOPC();
         }
         public frmInspection(string serialNumber)
         {
@@ -89,7 +78,6 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             txtVinNum.Text = serialNumber;
             UpdateVehicleInfo(serialNumber);
-            //InitializeOPC();
         }
         public string GetVinNumber()
         {
@@ -209,106 +197,6 @@ namespace SenAIS
                 }
             }, token);
         }
-        private void InitializeOPC()
-        {
-            try
-            {
-                opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V6", "");
-
-                opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
-                opcGroup.IsActive = true;
-                opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 1000;
-
-                // Thêm các OPCItems tương ứng với các Counter
-                //opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                //opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 1);
-                //opcCounterHL = opcGroup.OPCItems.AddItem(opcHL1Counter, 1);
-                //opcCounterHL2 = opcGroup.OPCItems.AddItem(opcHL2Counter, 1);
-                //opcCounterSteer = opcGroup.OPCItems.AddItem(opcSteerCounter, 1);
-                //opcPos1 = opcGroup.OPCItems.AddItem(opcGLPos1, 2);
-                opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
-            }
-            catch
-            {
-                MessageBox.Show($"Vui lòng kiểm tra dữ liệu từ OPC Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
-        {
-            if (!this.IsHandleCreated || this.IsDisposed) return;
-            this.serialNumber = txtVinNum.Text;
-            if (string.IsNullOrEmpty(serialNumber))
-            {
-                return;
-            }
-            for (int i = 1; i <= NumItems; i++)
-            {
-                int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
-                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                //if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false))
-                //{
-                //    if (itemValue == 1)
-                //    {
-                //        var speedForm = Application.OpenForms.OfType<frmSpeed>().FirstOrDefault();
-                //        if (speedForm == null) // Chỉ mở nếu chưa có
-                //        {
-                //            this.BeginInvoke(new Action(() => OpenNewForm(new frmSpeed(this.serialNumber))));
-                //        }
-                //    }
-                //}
-                //else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false) && itemValue == 1)
-                //{
-                //    OpenNewForm(new frmSideSlip(this.serialNumber));
-                //}
-                if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false))
-                {
-                    if (itemValue == 1)
-                    {
-                        var brakeForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
-                        if (brakeForm == null) // Chỉ mở nếu chưa có
-                        {
-                            this.BeginInvoke(new Action(() => OpenNewForm(new frmFrontBrake(this.serialNumber))));
-                        }
-                    }
-                }
-                //if ((ClientHandles.GetValue(i)?.Equals(opcCounterHL?.ClientHandle) ?? false))
-                //{
-                //    if (itemValue == 1 || itemValue == 2)
-                //    {
-                //        var headlightsForm = Application.OpenForms.OfType<frmHeadlights>().FirstOrDefault();
-                //        if (headlightsForm == null) // Chỉ mở nếu chưa có
-                //        {
-                //            this.BeginInvoke(new Action(() => OpenNewForm(new frmHeadlights(this.serialNumber))));
-                //        }
-                //    }
-                //}
-                //if ((ClientHandles.GetValue(i)?.Equals(opcCounterSteer?.ClientHandle) ?? false))
-                //{
-                //    if (itemValue == 1 || itemValue == 2)
-                //    {
-                //        var steerAngleForm = Application.OpenForms.OfType<frmSteerAngle>().FirstOrDefault();
-                //        if (steerAngleForm == null) // Chỉ mở nếu chưa có
-                //        {
-                //            this.BeginInvoke(new Action(() => OpenNewForm(new frmSteerAngle(this.serialNumber))));
-                //        }
-                //    }
-                //}
-                //if ((ClientHandles.GetValue(i)?.Equals(opcPos1?.ClientHandle) ?? false))
-                //{
-                //    if (cbPos1.BackColor != (itemValue == 1 ? Color.Green : SystemColors.Control))
-                //    {
-                //        this.BeginInvoke(new Action(() =>
-                //        {
-                //            cbPos1.BackColor = itemValue == 1 ? Color.Green : SystemColors.Control;
-                //        }));
-                //    }
-                //}
-            }
-        }
-
         private List<Form> openForms = new List<Form>();
         private void OpenNewForm(Form newForm)
         {
