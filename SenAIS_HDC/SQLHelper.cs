@@ -1207,16 +1207,18 @@ namespace SenAIS
         public string GetVehicleTypeBySampleVin(string inputVin)
         {
             string query = @"
-            SELECT VehicleType 
-            FROM VehicleStandards 
-            WHERE @InputVin LIKE SampleVin + '%'"; // Kiểm tra nếu VIN nhập vào bắt đầu bằng SampleVin
+                SELECT TOP 1 VehicleType
+                FROM VehicleStandards
+                WHERE @vin LIKE SampleVin + '%'
+                ORDER BY LEN(SampleVin) DESC
+            ";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@InputVin", inputVin);
+                    cmd.Parameters.AddWithValue("@vin", inputVin);
                     object result = cmd.ExecuteScalar();
                     return result?.ToString(); // Trả về VehicleType hoặc null nếu không tìm thấy
                 }

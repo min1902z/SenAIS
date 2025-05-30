@@ -1189,7 +1189,7 @@ namespace SenAIS
                 TestTypeCode = "HORNLOADNESS",
                 TestDtlCode = "HORNLOADNESS_H",
                 MeasureValue = whistle.ToString("F1"),
-                LimitValue = $"{minWhistle} ÷ {maxWhistle}",
+                LimitValue = $"{minWhistle.ToString("F1")} ÷ {maxWhistle.ToString("F1")}",
                 TestDtlResult = whistleTestResult
             });
 
@@ -1444,6 +1444,104 @@ namespace SenAIS
                     TestDtlResult = hsuResult
                 });
             }
+
+            // Đèn chiếu sáng
+            AddIfEnabled("HeadLightsMMS", new
+            {
+                TestTypeCode = "HEADLIGHT",
+                TestDtlCode = "HEADLIGHT_H_L",
+                MeasureValue = $"{ConvertToDecimal(vehicleDetails["LHLIntensity"]).ToString("F0")} / {ConvertToDecimal(vehicleDetails["RHLIntensity"]).ToString("F0")}",
+                LimitValue = $"{ConvertToDecimal(standard["MinHLIntensity"]).ToString("F0")} ÷ {ConvertToDecimal(standard["MaxHBIntensity"]).ToString("F0")}",
+                TestDtlResult = (
+                    CheckStandard(ConvertToDecimal(vehicleDetails["LHLIntensity"]),
+                                  standard.Field<decimal?>("MinHLIntensity"),
+                                  standard.Field<decimal?>("MaxHBIntensity")) &&
+                    CheckStandard(ConvertToDecimal(vehicleDetails["RHLIntensity"]),
+                                  standard.Field<decimal?>("MinHLIntensity"),
+                                  standard.Field<decimal?>("MaxHBIntensity"))
+                ) ? "1" : "0"
+            });
+
+            AddIfEnabled("HeadLightsMMS", new
+            {
+                TestTypeCode = "HEADLIGHT",
+                TestDtlCode = "HEADLIGHT_H_LR",
+                MeasureValue = $"{ConvertToDecimal(vehicleDetails["LHLHorizontal"])} / {ConvertToDecimal(vehicleDetails["RHLHorizontal"])}",
+                LimitValue = $"{standard["MinDiffHoriHB"]} ÷ {standard["MaxDiffHoriHB"]}",
+                TestDtlResult = (
+                    CheckStandard(ConvertToDecimal(vehicleDetails["LHLHorizontal"]),
+                                  standard.Field<decimal?>("MinDiffHoriHB"),
+                                  standard.Field<decimal?>("MaxDiffHoriHB")) &&
+                    CheckStandard(ConvertToDecimal(vehicleDetails["RHLHorizontal"]),
+                                  standard.Field<decimal?>("MinDiffHoriHB"),
+                                  standard.Field<decimal?>("MaxDiffHoriHB"))
+                ) ? "1" : "0"
+            });
+
+            AddIfEnabled("HeadLightsMMS", new
+            {
+                TestTypeCode = "HEADLIGHT",
+                TestDtlCode = "HEADLIGHT_H_UD",
+                MeasureValue = $"{ConvertToDecimal(vehicleDetails["LHLVertical"])} / {ConvertToDecimal(vehicleDetails["RHLVertical"])}",
+                LimitValue = $"{standard["MinDiffVertiHB"]} ÷ {standard["MaxDiffVertiHB"]}",
+                TestDtlResult = (
+                    CheckStandard(ConvertToDecimal(vehicleDetails["LHLVertical"]),
+                                  standard.Field<decimal?>("MinDiffVertiHB"),
+                                  standard.Field<decimal?>("MaxDiffVertiHB")) &&
+                    CheckStandard(ConvertToDecimal(vehicleDetails["RHLVertical"]),
+                                  standard.Field<decimal?>("MinDiffVertiHB"),
+                                  standard.Field<decimal?>("MaxDiffVertiHB"))
+                ) ? "1" : "0"
+            });
+
+            AddIfEnabled("HeadLightsMMS", new
+            {
+                TestTypeCode = "HEADLIGHT",
+                TestDtlCode = "HEADLIGHT_L_LR",
+                MeasureValue = $"{ConvertToDecimal(vehicleDetails["LLBHorizontal"])} / {ConvertToDecimal(vehicleDetails["RLBHorizontal"])}",
+                LimitValue = $"{standard["MinDiffHoriLB"]} ÷ {standard["MaxDiffHoriLB"]}",
+                TestDtlResult = (
+                    CheckStandard(ConvertToDecimal(vehicleDetails["LLBHorizontal"]),
+                                  standard.Field<decimal?>("MinDiffHoriLB"),
+                                  standard.Field<decimal?>("MaxDiffHoriLB")) &&
+                    CheckStandard(ConvertToDecimal(vehicleDetails["RLBHorizontal"]),
+                                  standard.Field<decimal?>("MinDiffHoriLB"),
+                                  standard.Field<decimal?>("MaxDiffHoriLB"))
+                ) ? "1" : "0"
+            });
+
+            AddIfEnabled("HeadLightsMMS", new
+            {
+                TestTypeCode = "HEADLIGHT",
+                TestDtlCode = "HEADLIGHT_L_UD",
+                MeasureValue = $"{ConvertToDecimal(vehicleDetails["LLBVertical"])} / {ConvertToDecimal(vehicleDetails["RLBVertical"])}",
+                LimitValue = $"{standard["MinDiffVertiLB"]} ÷ {standard["MaxDiffVertiLB"]}",
+                TestDtlResult = (
+                    CheckStandard(ConvertToDecimal(vehicleDetails["LLBVertical"]),
+                                  standard.Field<decimal?>("MinDiffVertiLB"),
+                                  standard.Field<decimal?>("MaxDiffVertiLB")) &&
+                    CheckStandard(ConvertToDecimal(vehicleDetails["RLBVertical"]),
+                                  standard.Field<decimal?>("MinDiffVertiLB"),
+                                  standard.Field<decimal?>("MaxDiffVertiLB"))
+                ) ? "1" : "0"
+            });
+
+            AddIfEnabled("HeadLightsMMS", new
+            {
+                TestTypeCode = "HEADLIGHT",
+                TestDtlCode = "HEADLIGHT_L",
+                MeasureValue = $"{ConvertToDecimal(vehicleDetails["LLBIntensity"]).ToString("F0")} / {ConvertToDecimal(vehicleDetails["RLBIntensity"]).ToString("F0")}",
+                LimitValue = $"{ConvertToDecimal(standard["MinLBIntensity"]).ToString("F0")} ÷ {ConvertToDecimal(standard["MaxLBIntensity"]).ToString("F0")}",
+                TestDtlResult = (
+                    CheckStandard(ConvertToDecimal(vehicleDetails["LLBIntensity"]),
+                                  standard.Field<decimal?>("MinLBIntensity"),
+                                  standard.Field<decimal?>("MaxLBIntensity")) &&
+                    CheckStandard(ConvertToDecimal(vehicleDetails["RLBIntensity"]),
+                                  standard.Field<decimal?>("MinLBIntensity"),
+                                  standard.Field<decimal?>("MaxLBIntensity"))
+                ) ? "1" : "0"
+            });
+
             // Góc Lái
             AddIfEnabled("SteeringAngleMMS", new
             {

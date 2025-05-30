@@ -1,6 +1,7 @@
 ﻿using OPCAutomation;
 using System;
 using System.Configuration;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -19,6 +20,7 @@ namespace SenAIS
         private double calibB = 0.0;
         private double calibResult = 0.0;
         private string calibrationType;
+        private double _calibThreshold = double.NaN;
         public frmCalibration(string calibrationType)
         {
             InitializeComponent();
@@ -148,6 +150,15 @@ namespace SenAIS
                 {
                     // Tính toán và hiển thị kết quả
                     double calibResult = beforeCalib / calibWeightLA - calibWeightLB;
+
+                    if (!double.IsNaN(_calibThreshold) &&
+                    new[] { "LeftBrake2", "LeftBrake", "RightBrake2", "RightBrake" }
+                    .Contains(calibrationType) &&
+                    Math.Abs(calibResult) <= _calibThreshold)
+                    {
+                        calibResult = 0.0;
+                    }
+
                     lbCalibResult.Text = $"{calibResult:F2}"; // Hiển thị giá trị số với 2 chữ số thập phân
                 }
                 else
@@ -229,6 +240,17 @@ namespace SenAIS
             lbCalibWeightLB.Text = calibB.ToString("F2");
             lbParaWeightLA.Text = calibA.ToString("F2");
             lbParaWeightLB.Text = calibB.ToString("F2");
+
+            // Lấy giá trị làm tròn calib Phanh
+            string value = ConfigurationManager.AppSettings["CalibThreshold"];
+            if (double.TryParse(value, out double threshold))
+            {
+                _calibThreshold = threshold;
+            }
+            else
+            {
+                _calibThreshold = double.NaN; // Không cấu hình ngưỡng
+            }
         }
     }
 }

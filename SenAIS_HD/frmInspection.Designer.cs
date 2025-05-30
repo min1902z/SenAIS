@@ -171,6 +171,7 @@
             // 
             this.cbTypeCar.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.cbTypeCar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTypeCar.DropDownWidth = 500;
             this.cbTypeCar.FormattingEnabled = true;
             resources.ApplyResources(this.cbTypeCar, "cbTypeCar");
             this.cbTypeCar.Name = "cbTypeCar";
