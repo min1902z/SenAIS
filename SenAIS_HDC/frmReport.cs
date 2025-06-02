@@ -1189,7 +1189,7 @@ namespace SenAIS
                 TestTypeCode = "HORNLOADNESS",
                 TestDtlCode = "HORNLOADNESS_H",
                 MeasureValue = whistle.ToString("F1"),
-                LimitValue = $"{minWhistle.ToString("F1")} ÷ {maxWhistle.ToString("F1")}",
+                LimitValue = $"[ {minWhistle.ToString("F1")} ÷ {maxWhistle.ToString("F1")} ]",
                 TestDtlResult = whistleTestResult
             });
 
@@ -1452,7 +1452,7 @@ namespace SenAIS
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_H_L",
                 MeasureValue = $"{ConvertToDecimal(vehicleDetails["LHLIntensity"]).ToString("F0")} / {ConvertToDecimal(vehicleDetails["RHLIntensity"]).ToString("F0")}",
-                LimitValue = $"{ConvertToDecimal(standard["MinHLIntensity"]).ToString("F0")} ÷ {ConvertToDecimal(standard["MaxHBIntensity"]).ToString("F0")}",
+                LimitValue = $"[ {ConvertToDecimal(standard["MinHLIntensity"]).ToString("F0")} ÷ {ConvertToDecimal(standard["MaxHBIntensity"]).ToString("F0")} ]",
                 TestDtlResult = (
                     CheckStandard(ConvertToDecimal(vehicleDetails["LHLIntensity"]),
                                   standard.Field<decimal?>("MinHLIntensity"),
@@ -1468,7 +1468,7 @@ namespace SenAIS
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_H_LR",
                 MeasureValue = $"{ConvertToDecimal(vehicleDetails["LHLHorizontal"])} / {ConvertToDecimal(vehicleDetails["RHLHorizontal"])}",
-                LimitValue = $"{standard["MinDiffHoriHB"]} ÷ {standard["MaxDiffHoriHB"]}",
+                LimitValue = $"[ {standard["MinDiffHoriHB"]} ÷ {standard["MaxDiffHoriHB"]} ]",
                 TestDtlResult = (
                     CheckStandard(ConvertToDecimal(vehicleDetails["LHLHorizontal"]),
                                   standard.Field<decimal?>("MinDiffHoriHB"),
@@ -1484,7 +1484,7 @@ namespace SenAIS
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_H_UD",
                 MeasureValue = $"{ConvertToDecimal(vehicleDetails["LHLVertical"])} / {ConvertToDecimal(vehicleDetails["RHLVertical"])}",
-                LimitValue = $"{standard["MinDiffVertiHB"]} ÷ {standard["MaxDiffVertiHB"]}",
+                LimitValue = $"[ {standard["MinDiffVertiHB"]} ÷ {standard["MaxDiffVertiHB"]} ]",
                 TestDtlResult = (
                     CheckStandard(ConvertToDecimal(vehicleDetails["LHLVertical"]),
                                   standard.Field<decimal?>("MinDiffVertiHB"),
@@ -1500,7 +1500,7 @@ namespace SenAIS
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_L_LR",
                 MeasureValue = $"{ConvertToDecimal(vehicleDetails["LLBHorizontal"])} / {ConvertToDecimal(vehicleDetails["RLBHorizontal"])}",
-                LimitValue = $"{standard["MinDiffHoriLB"]} ÷ {standard["MaxDiffHoriLB"]}",
+                LimitValue = $"[ {standard["MinDiffHoriLB"]} ÷ {standard["MaxDiffHoriLB"]} ]",
                 TestDtlResult = (
                     CheckStandard(ConvertToDecimal(vehicleDetails["LLBHorizontal"]),
                                   standard.Field<decimal?>("MinDiffHoriLB"),
@@ -1516,7 +1516,7 @@ namespace SenAIS
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_L_UD",
                 MeasureValue = $"{ConvertToDecimal(vehicleDetails["LLBVertical"])} / {ConvertToDecimal(vehicleDetails["RLBVertical"])}",
-                LimitValue = $"{standard["MinDiffVertiLB"]} ÷ {standard["MaxDiffVertiLB"]}",
+                LimitValue = $"[ {standard["MinDiffVertiLB"]} ÷ {standard["MaxDiffVertiLB"]} ]",
                 TestDtlResult = (
                     CheckStandard(ConvertToDecimal(vehicleDetails["LLBVertical"]),
                                   standard.Field<decimal?>("MinDiffVertiLB"),
@@ -1532,7 +1532,7 @@ namespace SenAIS
                 TestTypeCode = "HEADLIGHT",
                 TestDtlCode = "HEADLIGHT_L",
                 MeasureValue = $"{ConvertToDecimal(vehicleDetails["LLBIntensity"]).ToString("F0")} / {ConvertToDecimal(vehicleDetails["RLBIntensity"]).ToString("F0")}",
-                LimitValue = $"{ConvertToDecimal(standard["MinLBIntensity"]).ToString("F0")} ÷ {ConvertToDecimal(standard["MaxLBIntensity"]).ToString("F0")}",
+                LimitValue = $"[ {ConvertToDecimal(standard["MinLBIntensity"]).ToString("F0")} ÷ {ConvertToDecimal(standard["MaxLBIntensity"]).ToString("F0")} ]",
                 TestDtlResult = (
                     CheckStandard(ConvertToDecimal(vehicleDetails["LLBIntensity"]),
                                   standard.Field<decimal?>("MinLBIntensity"),
@@ -1549,7 +1549,7 @@ namespace SenAIS
                 TestTypeCode = "STEERINGANGLE",
                 TestDtlCode = "STEERINGANGLE_L",
                 MeasureValue = ConvertToDecimal(vehicleDetails["LeftSteerLW"]).ToString("F1"),
-                LimitValue = $"{ConvertToDecimal(standard["MinLeftSteer"]).ToString("F1")} ÷ {ConvertToDecimal(standard["MaxLeftSteer"]).ToString("F1")}",
+                LimitValue = $"[ {ConvertToDecimal(standard["MinLeftSteer"]).ToString("F1")} ÷ {ConvertToDecimal(standard["MaxLeftSteer"]).ToString("F1")} ]",
                 TestDtlResult = CheckStandard(ConvertToDecimal(vehicleDetails["LeftSteerLW"]),
                       standard.Field<decimal?>("MinLeftSteer"),
                       standard.Field<decimal?>("MaxLeftSteer")) ? "1" : "0"
@@ -1560,7 +1560,7 @@ namespace SenAIS
                 TestTypeCode = "STEERINGANGLE",
                 TestDtlCode = "STEERINGANGLE_R",
                 MeasureValue = ConvertToDecimal(vehicleDetails["RightSteerLW"]).ToString("F1"),
-                LimitValue = $"{ConvertToDecimal(standard["MinRightSteer"]).ToString("F1")} ÷ {ConvertToDecimal(standard["MaxRightSteer"]).ToString("F1")}",
+                LimitValue = $"[ {ConvertToDecimal(standard["MinRightSteer"]).ToString("F1")} ÷ {ConvertToDecimal(standard["MaxRightSteer"]).ToString("F1")} ]",
                 TestDtlResult = CheckStandard(ConvertToDecimal(vehicleDetails["RightSteerLW"]),
                                   standard.Field<decimal?>("MinRightSteer"),
                                   standard.Field<decimal?>("MaxRightSteer")) ? "1" : "0"
