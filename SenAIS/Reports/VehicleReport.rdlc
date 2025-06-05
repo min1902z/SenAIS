@@ -309,7 +309,7 @@
             <Top>0.88542in</Top>
             <Left>1.15517in</Left>
             <Height>0.25in</Height>
-            <Width>1.78472in</Width>
+            <Width>2.25868in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -341,7 +341,7 @@
             <Top>1.1441in</Top>
             <Left>1.16558in</Left>
             <Height>0.25in</Height>
-            <Width>1.78472in</Width>
+            <Width>2.25868in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -371,7 +371,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>0.88542in</Top>
-            <Left>2.9937in</Left>
+            <Left>3.4937in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>14</ZIndex>
@@ -403,7 +403,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>1.1441in</Top>
-            <Left>2.9937in</Left>
+            <Left>3.4937in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>15</ZIndex>
@@ -435,7 +435,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.88542in</Top>
-            <Left>3.8444in</Left>
+            <Left>4.3444in</Left>
             <Height>0.25in</Height>
             <Width>2.10243in</Width>
             <ZIndex>16</ZIndex>
@@ -467,7 +467,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>1.1441in</Top>
-            <Left>3.8444in</Left>
+            <Left>4.3444in</Left>
             <Height>0.25in</Height>
             <Width>2.10243in</Width>
             <ZIndex>17</ZIndex>
@@ -6777,7 +6777,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>0.88542in</Top>
-            <Left>6.00239in</Left>
+            <Left>6.50239in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>224</ZIndex>
@@ -6809,7 +6809,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.88542in</Top>
-            <Left>6.85309in</Left>
+            <Left>7.35309in</Left>
             <Height>0.25in</Height>
             <Width>1.03733in</Width>
             <ZIndex>225</ZIndex>
@@ -6841,7 +6841,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>1.14931in</Top>
-            <Left>6.0088in</Left>
+            <Left>6.5088in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
             <ZIndex>226</ZIndex>
@@ -6873,7 +6873,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>1.14931in</Top>
-            <Left>6.85309in</Left>
+            <Left>7.35309in</Left>
             <Height>0.25in</Height>
             <Width>1.03733in</Width>
             <ZIndex>227</ZIndex>
@@ -8435,6 +8435,38 @@
             <Height>0.25in</Height>
             <Width>0.99993in</Width>
             <ZIndex>276</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Inspector">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Inspector.Value, "VehicleDataSet")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Inspector</rd:DefaultName>
+            <Top>10.94878in</Top>
+            <Left>6.78626in</Left>
+            <Height>0.25in</Height>
+            <Width>1.56705in</Width>
+            <ZIndex>277</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
