@@ -532,9 +532,23 @@ namespace SenAIS
 
                 if (vehicleData != null)
                 {
-                    // Lấy dữ liệu từ SampleVin
-                    txtEngineNum.Text = vehicleData["SampleEngine"].ToString();
-                    cbTypeCar.SelectedValue = vehicleData["VehicleType"].ToString();
+                    // Lấy dữ liệu từ DB
+                    string sampleEngine = vehicleData["SampleEngine"].ToString().Trim();
+                    string vehicleTypeFromDb = vehicleData["VehicleType"].ToString().Trim();
+
+                    // Gán EngineNum
+                    txtEngineNum.Text = sampleEngine;
+
+                    // Gán VehicleType vào ComboBox nếu tìm thấy chính xác
+                    int index = cbTypeCar.FindStringExact(vehicleTypeFromDb);
+                    if (index >= 0)
+                    {
+                        cbTypeCar.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        cbTypeCar.SelectedIndex = -1;
+                    }
                 }
                 else
                 {
