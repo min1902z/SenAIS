@@ -663,9 +663,9 @@ namespace SenAIS
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["RHLIntensity"]),
                                                  standard.Field<decimal?>("MinHLIntensity"), null)
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["RFLIntensity"]),
-                                                 standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MinFLIntensity"))
+                                                 standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MaxFLIntensity"))
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["LFLIntensity"]),
-                                                 standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MinFLIntensity"))
+                                                 standard.Field<decimal?>("MinFLIntensity"), standard.Field<decimal?>("MaxFLIntensity"))
                                 && CheckStandard(ConvertToDecimal(vehicleDetails["LHLHorizontal"]),
                                                  standard.Field<decimal?>("MinDiffHoriHB"),
                                                  standard.Field<decimal?>("MaxDiffHoriHB"))
@@ -864,8 +864,8 @@ namespace SenAIS
         }
         private bool CheckStandard(decimal? value, decimal? minValue, decimal? maxValue)
         {
-            if (value == null)
-                return false;
+            if (!value.HasValue)
+                return true; // Nếu không có giá trị cần kiểm tra, mặc định đạt
 
             if (minValue.HasValue && value < minValue.Value)
                 return false;

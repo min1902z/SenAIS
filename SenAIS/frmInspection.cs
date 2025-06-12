@@ -77,7 +77,6 @@ namespace SenAIS
             opcManager = new OPCUtility();
             this.serialNumber = serialNumber;
             txtVinNum.Text = serialNumber;
-            UpdateVehicleInfo(serialNumber);
         }
         public string GetVinNumber()
         {
@@ -394,7 +393,8 @@ namespace SenAIS
         }
         private bool SaveDataToDB()
         {
-            vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
+            vehicleType = cbTypeCar.Text.Trim();
+            //vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
             inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty;
             frameNumber = txtEngineNum.Text;
             serialNumber = txtVinNum.Text;
@@ -698,7 +698,9 @@ namespace SenAIS
             var vehicleInfo = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleInfo != null)
             {
-                cbTypeCar.SelectedValue = vehicleInfo["VehicleType"]?.ToString();
+                string vehicleTypeFromDb = vehicleInfo["VehicleType"].ToString().Trim();
+                int index = cbTypeCar.FindStringExact(vehicleTypeFromDb);
+                cbTypeCar.SelectedIndex = index;
                 cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
                 txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
                 txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
@@ -783,6 +785,7 @@ namespace SenAIS
             }
             LoadAllVehicleInfo();
             LoadVehicleInfo();
+            UpdateVehicleInfo(serialNumber);
             StartListeningForVehicleInfo();
             string configStation = ConfigurationManager.AppSettings["StationType"];
 
