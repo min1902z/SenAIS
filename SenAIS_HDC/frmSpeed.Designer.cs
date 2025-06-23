@@ -75,19 +75,19 @@
             // lbStandard
             // 
             resources.ApplyResources(this.lbStandard, "lbStandard");
-            this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandard.ForeColor = System.Drawing.Color.Red;
             this.lbStandard.Name = "lbStandard";
             // 
             // lbStandardTitle
             // 
             resources.ApplyResources(this.lbStandardTitle, "lbStandardTitle");
-            this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.Red;
             this.lbStandardTitle.Name = "lbStandardTitle";
             // 
             // lbVinNumber
             // 
             resources.ApplyResources(this.lbVinNumber, "lbVinNumber");
-            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.Red;
             this.lbVinNumber.Name = "lbVinNumber";
             // 
             // cbReady

@@ -100,7 +100,7 @@ namespace SenAIS
                     }
                     else
                     {
-                        lbHsuAvg.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbHsuAvg.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                     }
                     break;
 

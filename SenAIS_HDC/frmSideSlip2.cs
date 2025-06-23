@@ -92,8 +92,7 @@ namespace SenAIS
                     lbSideSlipTitle.Visible = false;
                     lbSideSlip.Visible = true;
                     lbStandard.Visible = false;
-                    this.Close();
-                    //MoveToNextCar();
+                    MoveToNextCar();
                     break;
 
                 default:
@@ -116,7 +115,7 @@ namespace SenAIS
                     this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
 
                     bool isValueInStandard = this.sideSlip >= minSideSlip && (maxSideSlip == 0 || this.sideSlip <= maxSideSlip);
-                    lbSideSlip.ForeColor = isValueInStandard ? Color.Blue : Color.DarkRed;
+                    lbSideSlip.ForeColor = isValueInStandard ? Color.Blue : Color.Red;
                 }));
             }
             catch (Exception)
@@ -125,19 +124,18 @@ namespace SenAIS
         }
         private void MoveToNextCar()
         {
-            cbReady.BackColor = SystemColors.Control;
             Form currentForm = this;
 
             // 🔹 Đóng form hiện tại trước khi mở frmRearBrake
             this.BeginInvoke(new Action(() =>
             {
                 // Kiểm tra nếu frmRearBrake đã mở, không mở lại
-                if (Application.OpenForms.OfType<frmFrontBrake>().Any())
+                if (Application.OpenForms.OfType<frmSideSlip>().Any())
                     return;
 
-                // 🔹 Mở frmRearBrake
-                var formBrake = new frmFrontBrake(this.serialNumber);
-                formBrake.Show();
+                // 🔹 Mở Form tiếp theo
+                var form = new frmSideSlip(this.serialNumber);
+                form.Show();
 
                 // 🔹 Đóng form hiện tại
                 currentForm.Close();

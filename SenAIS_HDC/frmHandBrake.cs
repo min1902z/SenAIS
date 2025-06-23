@@ -165,8 +165,17 @@ namespace SenAIS
             diffHandBrake = Convert.ToDecimal(diffBrake);
             sumHandBrake = Convert.ToDecimal(sumBrake);
 
-            lbSum_Brake.ForeColor = sumHandBrake >= minSumBrake ? Color.Blue : Color.DarkRed;
-            lbDiff_Brake.ForeColor = (maxDiffBrake == 0 || diffHandBrake <= maxDiffBrake) ? Color.Blue : Color.DarkRed;
+            decimal brakeEfficiency = minSumBrake != 0 ? (sumHandBrake * 0.16m / minSumBrake) * 100 : 0;
+
+            if (brakeEfficiency >= 16 && brakeEfficiency <= 100 && sumHandBrake >= minSumBrake)
+            {
+                lbSum_Brake.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lbSum_Brake.ForeColor = Color.Red;
+            }
+            lbDiff_Brake.ForeColor = (maxDiffBrake == 0 || diffHandBrake <= maxDiffBrake) ? Color.Blue : Color.Red;
         }
         private void ResetUI()
         {

@@ -93,7 +93,7 @@
             // 
             this.btnBackMain.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBackMain.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackMain.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnBackMain.ForeColor = System.Drawing.Color.Red;
             this.btnBackMain.Location = new System.Drawing.Point(889, 804);
             this.btnBackMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnBackMain.Name = "btnBackMain";
@@ -282,7 +282,7 @@
             // btnStop
             // 
             this.btnStop.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnStop.ForeColor = System.Drawing.Color.Red;
             this.btnStop.Location = new System.Drawing.Point(877, 322);
             this.btnStop.Margin = new System.Windows.Forms.Padding(4);
             this.btnStop.Name = "btnStop";
@@ -405,7 +405,7 @@
             this.btnMode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnMode.AutoSize = true;
             this.btnMode.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMode.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnMode.ForeColor = System.Drawing.Color.Red;
             this.btnMode.Location = new System.Drawing.Point(795, 101);
             this.btnMode.Margin = new System.Windows.Forms.Padding(4);
             this.btnMode.Name = "btnMode";

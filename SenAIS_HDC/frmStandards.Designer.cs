@@ -87,7 +87,7 @@
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(1339, 88);
             this.lbStandardTitle.TabIndex = 1;
-            this.lbStandardTitle.Text = "Điều Chỉnh Tiêu Chuẩn Chất Lượng";
+            this.lbStandardTitle.Text = "Tiêu Chuẩn Chất Lượng";
             this.lbStandardTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dgStandards

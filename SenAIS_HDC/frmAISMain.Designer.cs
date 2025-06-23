@@ -155,11 +155,11 @@
             this.tsCalibration,
             this.tsSpeedCalib,
             this.tsSideSlipCalib,
-            this.hiToolStripMenuItem,
             this.tsBrakeCalib,
             this.tsSteerAngleCalib,
             this.tsSpeedAxis,
-            this.tsSpeedMovingCalib});
+            this.tsSpeedMovingCalib,
+            this.hiToolStripMenuItem});
             this.điềuChỉnhToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.điềuChỉnhToolStripMenuItem.Name = "điềuChỉnhToolStripMenuItem";
             this.điềuChỉnhToolStripMenuItem.Size = new System.Drawing.Size(103, 23);

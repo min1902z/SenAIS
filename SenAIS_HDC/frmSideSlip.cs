@@ -125,7 +125,7 @@ namespace SenAIS
                     this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
 
                     bool isValueInStandard = this.sideSlip >= minSideSlip && (maxSideSlip == 0 || this.sideSlip <= maxSideSlip);
-                    lbSideSlip.ForeColor = isValueInStandard ? Color.Blue : Color.DarkRed;
+                    lbSideSlip.ForeColor = isValueInStandard ? Color.Blue : Color.Red;
                 }));
             }
             catch (Exception)

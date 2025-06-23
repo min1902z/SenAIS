@@ -66,7 +66,7 @@
             this.lbStandard.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbStandard.AutoSize = true;
             this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandard.ForeColor = System.Drawing.Color.Red;
             this.lbStandard.Location = new System.Drawing.Point(908, 942);
             this.lbStandard.Name = "lbStandard";
             this.lbStandard.Size = new System.Drawing.Size(239, 97);
@@ -78,7 +78,7 @@
             this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.Red;
             this.lbStandardTitle.Location = new System.Drawing.Point(411, 942);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
@@ -89,7 +89,7 @@
             // 
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.Red;
             this.lbVinNumber.Location = new System.Drawing.Point(229, -15);
             this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";

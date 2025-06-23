@@ -254,7 +254,7 @@
             // 
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.Red;
             this.lbVinNumber.Location = new System.Drawing.Point(172, -16);
             this.lbVinNumber.Name = "lbVinNumber";
             this.lbVinNumber.Size = new System.Drawing.Size(334, 131);

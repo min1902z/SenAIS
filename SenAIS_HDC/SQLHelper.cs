@@ -592,28 +592,6 @@ namespace SenAIS
                 }
             }
         }
-        //public DataTable SearchVehicleInfo(string searchTerm)
-        //{
-        //    string query = @"
-        //    SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel
-        //    FROM VehicleInfo 
-        //    WHERE 
-        //        SerialNumber LIKE @SearchTerm OR
-        //        FrameNumber LIKE @SearchTerm OR
-        //        VehicleType LIKE @SearchTerm OR
-        //        Inspector LIKE @SearchTerm OR
-        //        InspectionDate LIKE @SearchTerm OR
-        //        Fuel LIKE @SearchTerm
-        //    ORDER BY 
-        //        TRY_CAST(InspectionDate AS DATETIME) DESC";
-
-        //    var parameters = new[]
-        //    {
-        //    new SqlParameter("@SearchTerm", "%" + searchTerm + "%")
-        //};
-
-        //    return TableExecuteQuery(query, parameters);
-        //}
         public DataTable SearchVehicleInfo(string searchTerm)
         {
             string query = @"

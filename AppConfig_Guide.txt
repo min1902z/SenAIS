@@ -1,0 +1,158 @@
+
+HƯỚNG DẪN SỬ DỤNG FILE App.config
+=================================
+
+CẤU TRÚC CHUNG
+--------------
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <startup>...</startup>
+  <appSettings>...</appSettings>
+  <connectionStrings>...</connectionStrings>
+</configuration>
+
+1. <startup>
+------------
+Phần này chỉ định version của .NET Framework mà phần mềm sẽ chạy.
+
+<startup>
+  <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2"/>
+</startup>
+
+2. <appSettings>
+----------------
+Phần quan trọng nhất dùng để khai báo các cặp key-value giúp phần mềm lấy thông số cấu hình một cách linh hoạt.
+
+<appSettings>
+	<add key="ApiLoginUrl" value="http://11.22.0.2:12208/Real.HTC.NM.Main.Web/TestReport/login" />
+	<add key="ApiSaveUrl" value="http://11.22.0.2:12208/Real.HTC.NM.Main.Web/TestReport/QC_TestReport_Save" />
+	<add key="UsernameMMS" value="NM.REPORT" />
+	<add key="PasswordMMS" value="Ts3SuqUMpXxnfuRz6mhOSQ" />
+	<add key="PasswordAdmin" value="123456" />
+	<add key="PasswordConfig" value="1902" />
+	<add key="ClientIPs" value="192.168.1.2;192.168.1.3;192.168.1.4;192.168.1.5;192.168.1.9;10.32.12.236" />
+	<add key="UdpPort" value="8888" />
+</appSettings>
+
+Giải thích:
+- Thông tin truy cập API MMS
+- Mật khẩu truy cập Admin và Config
+- ClientIPs: Khai báo ip các trạm
+- UdpPort: Khai báo port khi truyền thông tin giữa các trạm
+*******************
+<appSettings>
+	<add key="SpeedMMS" value="true"/>
+	<add key="SideSlipMMS" value="true"/>
+	<add key="WhistleMMS" value="true"/>
+	<add key="NoiseMMS" value="true"/>
+	<add key="PetrolMMS" value="true"/>
+	<add key="BrakeMMS" value="true"/>
+	<add key="DieselMMS" value="true"/>
+	<add key="HeadLightsMMS" value="false"/>
+	<add key="SteeringAngleMMS" value="false"/>
+	<!-- Switch Menu/Vehicle -->
+	<add key="DefaultMainUI" value="Menu" />
+	<!-- Trạm App.config -->
+	<add key="StationType" value="Brake"/> <!-- SideSlip/Brake/Speed/Report -->
+</appSettings>
+
+Giải thích:
+- Thông tin danh mục gửi data đến MMS: true:được phép/ false: không được phép
+- DefaultMainUI: Khai báo Màn hình Control Menu: Nút control/ Vehicle: Danh sách xe
+- StationType: Khai báo trạm của phần mềm.
+*******************
+<appSettings>
+<add key="SideSlip_Counter" value="Hyundai.OCS10.Counter_SS" />
+<add key="SideSlip_Result" value="Hyundai.OCS10.Align_Front_Result" />
+<add key="SideSlip_Sign" value="Hyundai.OCS10.Align_Front_Sign" />
+<add key="Speed_Counter" value="Hyundai.OCS10.Counter_Speed" />
+<add key="Speed_Result" value="Hyundai.OCS10.Speed_Result" />
+<add key="BrakeF_Counter" value="Hyundai.OCS10.Counter_BrakeF" />
+<add key="BrakeR_Counter" value="Hyundai.OCS10.Counter_BrakeR" />
+<add key="BrakeH_Counter" value="Hyundai.OCS10.Counter_BrakeH" />
+<add key="WeightF_Counter" value="Hyundai.OCS10.Counter_WeightF" />
+<add key="WeightR_Counter" value="Hyundai.OCS10.Counter_WeightR" />
+<add key="Front_LBrake_Result" value="Hyundai.OCS10.BrakeL_Front_Result" />
+<add key="Front_RBrake_Result" value="Hyundai.OCS10.BrakeR_Front_Result" />
+<add key="Rear_LBrake_Result" value="Hyundai.OCS10.BrakeL_Rear_Result" />
+<add key="Rear_RBrake_Result" value="Hyundai.OCS10.BrakeR_Rear_Result" />
+<add key="Hand_LBrake_Result" value="Hyundai.OCS10.BrakeL_Hand_Result" />
+<add key="Hand_RBrake_Result" value="Hyundai.OCS10.BrakeR_Hand_Result" />
+<add key="Front_LWeight_Result" value="Hyundai.OCS10.WeightL_Front_Result" />
+<add key="Front_RWeight_Result" value="Hyundai.OCS10.WeightR_Front_Result" />
+<add key="Rear_LWeight_Result" value="Hyundai.OCS10.WeightL_Rear_Result" />
+<add key="Rear_RWeight_Result" value="Hyundai.OCS10.WeightR_Rear_Result" />
+<add key="Calib_SS" value="Hyundai.OCS10.AI_Align" />
+<add key="Calib_LBrake" value="Hyundai.OCS10.AI_BrakeL" />
+<add key="Calib_RBrake" value="Hyundai.OCS10.AI_BrakeR" />
+<add key="Calib_LWeight" value="Hyundai.OCS10.AI_WeightL" />
+<add key="Calib_RWeight" value="Hyundai.OCS10.AI_WeightR" />
+<add key="Calib_Speed" value="Hyundai.OCS10.HSC_Speed" />
+<add key="OPC_SetAuto" value="Hyundai.OCS10.SPM_AUTO_MAN" />
+<add key="OPC_Start" value="Hyundai.OCS10.SPM_START" />
+<add key="OPC_Stop" value="Hyundai.OCS10.SPM_STOP" />
+<add key="OPC_Motor" value="Hyundai.OCS10.SPM_MOTOR_Button" />
+<add key="OPC_LeftDistance" value="Hyundai.OCS10.SPM_PosL_AI" />
+<add key="OPC_RightDistance" value="Hyundai.OCS10.SPM_PosR_AI" />
+<add key="OPC_SetLeft" value="Hyundai.OCS10.SPM_LengthL_Set" />
+<add key="OPC_SetRight" value="Hyundai.OCS10.SPM_LengthR_Set" />
+<add key="OPC_ConfirmDistance" value="Hyundai.OCS10.SPM_AUTO_MAN" />
+<add key="OPC_IncreaseLeft" value="Hyundai.OCS10.SPM_VAL_L_FW_Button" />
+<add key="OPC_IncreaseRight" value="Hyundai.OCS10.SPM_VAL_R_FW_Button" />
+<add key="OPC_DecreaseLeft" value="Hyundai.OCS10.SPM_VAL_L_RV_Button" />
+<add key="OPC_DecreaseRight" value="Hyundai.OCS10.SPM_VAL_R_RV_Button" />
+</appSettings>
+
+Giải thích:
+- Phần tổng hợp giá trị giao tiếp với OPC KEPserver
+********************
+<appSettings>
+	<add key="PublishSeri" value="Mã số QA/QT.01-BM05" />
+	<add key="PublishVer" value="Lần ban hành: 01" />
+	<add key="PublishDate" value="Ngày ban hành: 02/01/2025" />
+</appSettings>
+
+Giải thích:
+- Thông tin của Bản báo cáo có thể chỉnh sửa theo version.
+
+********************
+<appSettings>
+    <add key="Distance1Name" value="NX" />
+    <add key="Distance1Value" value="2650" />
+    <add key="Distance2Name" value="NX4" />
+    <add key="Distance2Value" value="2750" />
+    <add key="Distance3Name" value="MX5" />
+    <add key="Distance3Value" value="2850" />
+    <add key="Distance4Name" value="LX20" />
+    <add key="Distance4Value" value="2950" />
+</appSettings>
+
+Giải thích:
+- Thông tin mẫu của khoảng cách trục SpeedMoving
+
+********************
+<appSettings>
+    <add key="WeightCheckTimeout" value="30" />
+    <add key="X2_Line" value="1"/>
+</appSettings>
+
+Giải thích:
+- WeightCheckTimeout: khai báo thời gian bỏ qua nối Trạm Trọng Lượng lỗi.
+- X2_Line: Khai báo Line của X2: Line 1: 1/ Line 2: 2
+
+3. <connectionStrings>
+----------------------
+Dùng để khai báo chuỗi kết nối tới SQL Server hoặc các nguồn dữ liệu khác.
+
+<connectionStrings>
+  <add name="SenAISDBConnectionString" connectionString="Server=localhost,1433;Database=SenAISDB_HD;User Id=sa;Password=19021998;" providerName="System.Data.SqlClient" />
+</connectionStrings>
+
+Ghi chú:
+- Luôn đặt tên cho connection string để truy xuất dễ dàng trong code.
+- Nếu có nhiều môi trường (test/prod), nên tách từng App.config cho mỗi môi trường.
+
+LƯU Ý CHUNG
+-----------
+- Khi build, App.config sẽ thành file TênApp.exe.config trong thư mục build.
+- Có thể chỉnh trực tiếp file .config khi deploy mà không cần biên dịch lại.

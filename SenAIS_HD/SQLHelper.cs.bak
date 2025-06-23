@@ -352,7 +352,7 @@ namespace SenAIS
                              SET LeftHBIntensity = @LeftHBIntensity, LeftHBVerticalDeviation = @LeftHBVerticalDeviation, LeftHBHorizontalDeviation = @LeftHBHorizontalDeviation, 
                                     RightHBIntensity = RightHBIntensity, RightHBVerticalDeviation = @RightHBVerticalDeviation, RightHBHorizontalDeviation = @RightHBHorizontalDeviation,
                                     LeftLBIntensity = @LeftLBIntensity, LeftLBVerticalDeviation = @LeftLBVerticalDeviation, LeftLBHorizontalDeviation = @LeftLBHorizontalDeviation, 
-                                    RightLBIntensity = RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation,
+                                    RightLBIntensity = RightLBIntensity, RightLBVerticalDeviation = @RightLBVerticalDeviation, RightLBHorizontalDeviation = @RightLBHorizontalDeviation
                              WHERE SerialNumber = @SerialNumber
                          END
                          ELSE
@@ -1143,6 +1143,26 @@ namespace SenAIS
 
             // Nếu vượt qua tất cả kiểm tra => đạt
             return true;
+        }
+        public string GetVehicleTypeBySampleVin(string inputVin)
+        {
+            string query = @"
+                SELECT TOP 1 VehicleType
+                FROM VehicleStandards
+                WHERE @vin LIKE SampleVin + '%'
+                ORDER BY LEN(SampleVin) DESC
+            ";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@vin", inputVin);
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString(); // Trả về VehicleType hoặc null nếu không tìm thấy
+                }
+            }
         }
     }
 }
