@@ -1,0 +1,57 @@
+HƯỚNG DẪN TẠO BUILD SETUP PROJECT TRONG VISUAL STUDIO
+
+A. YÊU CẦU BAN ĐẦU
+-------------------
+1. Visual Studio 2022 (hoặc 2019)
+2. Cài đặt tiện ích "Microsoft Visual Studio Installer Projects":
+   - Mở Visual Studio → Extensions → Manage Extensions
+   - Tìm: "Installer Projects"
+   - Cài đặt: "Microsoft Visual Studio Installer Projects"
+   - Sau khi cài xong, khởi động lại Visual Studio
+
+B. TẠO PROJECT SETUP
+---------------------
+1. Mở Solution chứa Project cần đóng gói
+2. Chuột phải lên Solution → Add → New Project...
+3. Tìm "Setup Project" → chọn "Setup Project" → Next
+4. Đặt tên: ví dụ "SenAIS_HD_Setup" → Create
+
+C. THÊM PROJECT VÀ FILE VÀO SETUP
+-----------------------------------
+1. Trong cửa sổ Solution Explorer, double-click vào `File System (SenAIS_HD_Setup)`
+2. Trong khung "Application Folder":
+   - Chuột phải → Add → Project Output...
+   - Chọn Project gốc (WinForms/WPF của bạn) → Output type: "Primary output" → OK
+3. Nếu bạn có file cấu hình (.config), CSDL (.mdf), ảnh, file .txt... → chuột phải → Add → File... để thêm vào
+
+D. TÙY CHỌN ĐƯỜNG DẪN CÀI ĐẶT, SHORTCUT
+-----------------------------------------
+1. Có thể thêm Shortcut đến Desktop:
+   - Application Folder → chuột phải vào Primary output → Create Shortcut
+   - Kéo Shortcut đó vào "User's Desktop"
+2. Có thể chỉnh đường dẫn mặc định khi cài đặt:
+   - Chuột phải Setup Project → Properties → chỉnh mục "Manufacturer", "InstallAllUsers" v.v.
+
+E. BUILD FILE CÀI ĐẶT
+----------------------
+1. Chuột phải vào Setup Project → chọn "Build"
+2. Sau khi build xong, vào thư mục output:
+   → `...\YourSolution\SenAIS_HD_Setup\Debug\`
+   - Có 2 file: `.msi` (file cài đặt chính) và `.exe` (chạy setup bootstrapper)
+
+F. CÀI ĐẶT ỨNG DỤNG
+---------------------
+1. Copy file `.msi` hoặc `.exe` sang máy cần cài
+2. Double-click để cài đặt như phần mềm thông thường
+
+G. GỠ CÀI ĐẶT ỨNG DỤNG
+------------------------
+1. Vào Control Panel → Programs and Features
+2. Tìm tên phần mềm bạn đã đặt → Uninstall để gỡ
+
+GHI CHÚ:
+---------
+- Nếu ứng dụng cần .NET Framework nhất định, đảm bảo máy đích có sẵn hoặc thêm vào prerequisite (không hỗ trợ tùy chỉnh nâng cao trong Setup Project cổ điển).
+- Nếu cần build tự động, có thể tích hợp bằng MSBuild script hoặc dùng WiX Toolset (nâng cao hơn).
+
+
