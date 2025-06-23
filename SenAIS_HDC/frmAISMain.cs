@@ -7,10 +7,13 @@ namespace SenAIS
     public partial class SenAIS : Form
     {
         private Form activeForm = null;
+        public string serialNumber;
         private static readonly string calibSpeed = ConfigurationManager.AppSettings["Calib_Speed"];
         private static readonly string calibSS = ConfigurationManager.AppSettings["Calib_SS"];
         private static readonly string calibLBrake = ConfigurationManager.AppSettings["Calib_LBrake"];
         private static readonly string calibRBrake = ConfigurationManager.AppSettings["Calib_RBrake"];
+        private static readonly string calibLBrake2 = ConfigurationManager.AppSettings["Calib_LBrake2"];
+        private static readonly string calibRBrake2 = ConfigurationManager.AppSettings["Calib_RBrake2"];
         private static readonly string calibLWeight = ConfigurationManager.AppSettings["Calib_LWeight"];
         private static readonly string calibRWeight = ConfigurationManager.AppSettings["Calib_RWeight"];
         public SenAIS()
@@ -58,17 +61,20 @@ namespace SenAIS
 
         private void TSDangKiem_Click(object sender, EventArgs e)
         {
-            string serialNumber = "";
             if (activeForm is frmInspection currentInspection)
             {
-                serialNumber = currentInspection.GetVinNumber();
+                this.serialNumber = currentInspection.GetVinNumber();
                 currentInspection.Close();
             }
-            OpenChildForm(new frmInspection(serialNumber));
+            OpenChildForm(new frmInspection(this.serialNumber));
         }
 
         private void TSTruyXuat_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmReport());
         }
 
@@ -147,7 +153,7 @@ namespace SenAIS
             frmCalibration calibrationForm = new frmCalibration(calibrationType);
 
             // Thiết lập tiêu đề và các thông tin khác
-            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái";
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái 1";
             calibrationForm.lbCalibA.Text = "Calib\\LeftBrakeA";
             calibrationForm.lbCalibB.Text = "Calib\\LeftBrakeB";
             calibrationForm.lbParaA.Text = "Para\\LeftBrakeA";
@@ -164,7 +170,7 @@ namespace SenAIS
             frmCalibration calibrationForm = new frmCalibration(calibrationType);
 
             // Thiết lập tiêu đề và các thông tin khác
-            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải";
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải 1";
             calibrationForm.lbCalibA.Text = "Calib\\RightBrakeA";
             calibrationForm.lbCalibB.Text = "Calib\\RightBrakeB";
             calibrationForm.lbParaA.Text = "Para\\RightBrakeA";
@@ -215,16 +221,28 @@ namespace SenAIS
 
         private void TSAuboutMe_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmAboutUs());
         }
 
         private void tsVehicleStandard_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmStandards());
         }
 
         private void tsInspector_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmInspector());
         }
 
@@ -339,6 +357,53 @@ namespace SenAIS
             // Sử dụng OpenChildForm để mở form Calibration
             OpenChildForm(calibrationForm);
             calibrationForm.SetOPCItem("Hyundai.OCS10.SPM_PosR_AI");
+        }
+
+        private void tsSwitchMainUI_Click(object sender, EventArgs e)
+        {
+            if (activeForm is frmInspection currentInspection)
+            {
+                // Gọi phương thức chuyển đổi giao diện
+                currentInspection.ToggleMainUI();
+
+                // Cập nhật lại Text cho nút toolstrip
+                string newUI = ConfigurationManager.AppSettings["DefaultMainUI"];
+                tsSwitchMainUI.Text = newUI == "Menu" ? "Đổi Bảng Danh Sách Xe" : "Đổi Bảng Điều Khiển";
+            }
+        }
+
+        private void tsFront_LBrake_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "LeftBrake2";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Trái 2";
+            calibrationForm.lbCalibA.Text = "Calib\\LeftBrakeA";
+            calibrationForm.lbCalibB.Text = "Calib\\LeftBrakeB";
+            calibrationForm.lbParaA.Text = "Para\\LeftBrakeA";
+            calibrationForm.lbParaB.Text = "Para\\LeftBrakeB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem(calibLBrake2);
+        }
+
+        private void tsFront_RBrake_Click(object sender, EventArgs e)
+        {
+            string calibrationType = "RightBrake2";
+            frmCalibration calibrationForm = new frmCalibration(calibrationType);
+
+            // Thiết lập tiêu đề và các thông tin khác
+            calibrationForm.lbCalibrateTitle.Text = "Kiểm Chuẩn Tham Số - L.Phanh Phải 2";
+            calibrationForm.lbCalibA.Text = "Calib\\RightBrakeA";
+            calibrationForm.lbCalibB.Text = "Calib\\RightBrakeB";
+            calibrationForm.lbParaA.Text = "Para\\RightBrakeA";
+            calibrationForm.lbParaB.Text = "Para\\RightBrakeB";
+
+            // Sử dụng OpenChildForm để mở form Calibration
+            OpenChildForm(calibrationForm);
+            calibrationForm.SetOPCItem(calibRBrake2);
         }
     }
 }

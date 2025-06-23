@@ -77,7 +77,7 @@
             // 
             this.lbEngineNumber.AutoSize = true;
             this.lbEngineNumber.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbEngineNumber.ForeColor = System.Drawing.Color.Red;
             this.lbEngineNumber.Location = new System.Drawing.Point(129, 12);
             this.lbEngineNumber.Name = "lbEngineNumber";
             this.lbEngineNumber.Size = new System.Drawing.Size(228, 78);

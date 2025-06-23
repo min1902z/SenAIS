@@ -90,11 +90,11 @@ namespace SenAIS
                             }
                             else if (!isHCInStandard)
                             {
-                                lbHCValue.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                                lbHCValue.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                             }
                             else if (!isCOInStandard)
                             {
-                                lbCOValue.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                                lbCOValue.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                             }
                             break;
 

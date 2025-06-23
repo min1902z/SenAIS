@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRearBrake));
             this.FBrakePanel = new System.Windows.Forms.Panel();
+            this.cbSensor = new System.Windows.Forms.CheckBox();
             this.cbBrake = new System.Windows.Forms.CheckBox();
             this.tbRight = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             // FBrakePanel
             // 
             this.FBrakePanel.AutoSize = true;
+            this.FBrakePanel.Controls.Add(this.cbSensor);
             this.FBrakePanel.Controls.Add(this.cbBrake);
             this.FBrakePanel.Controls.Add(this.tbRight);
             this.FBrakePanel.Controls.Add(this.tbLeft);
@@ -67,6 +69,23 @@
             this.FBrakePanel.Name = "FBrakePanel";
             this.FBrakePanel.Size = new System.Drawing.Size(1370, 749);
             this.FBrakePanel.TabIndex = 1;
+            // 
+            // cbSensor
+            // 
+            this.cbSensor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSensor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSensor.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbSensor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSensor.BackgroundImage")));
+            this.cbSensor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbSensor.Checked = true;
+            this.cbSensor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSensor.Enabled = false;
+            this.cbSensor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cbSensor.Location = new System.Drawing.Point(1204, 9);
+            this.cbSensor.Name = "cbSensor";
+            this.cbSensor.Size = new System.Drawing.Size(154, 105);
+            this.cbSensor.TabIndex = 60;
+            this.cbSensor.UseVisualStyleBackColor = false;
             // 
             // cbBrake
             // 
@@ -115,7 +134,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 118);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Phải \r\n(N)";
+            this.label3.Text = "Phải \r\n(kgf)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbRight_Brake
@@ -186,9 +205,9 @@
             this.label2.ForeColor = System.Drawing.Color.Blue;
             this.label2.Location = new System.Drawing.Point(3, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 118);
+            this.label2.Size = new System.Drawing.Size(116, 118);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Trái\r\n(N)";
+            this.label2.Text = "Trái\r\n(kgf)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
@@ -201,7 +220,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(128, 118);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Tổng \r\n(N)";
+            this.label8.Text = "Tổng \r\n(kgf)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbSum_Brake
@@ -234,7 +253,7 @@
             // 
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.Red;
             this.lbVinNumber.Location = new System.Drawing.Point(172, -16);
             this.lbVinNumber.Name = "lbVinNumber";
             this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
@@ -264,10 +283,10 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.Color.Blue;
-            this.btnNext.Location = new System.Drawing.Point(1228, 695);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Location = new System.Drawing.Point(1196, 687);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(133, 45);
+            this.btnNext.Size = new System.Drawing.Size(165, 53);
             this.btnNext.TabIndex = 38;
             this.btnNext.Text = "Trang chủ";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -281,10 +300,10 @@
             this.btnPre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPre.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.ForeColor = System.Drawing.Color.Blue;
-            this.btnPre.Location = new System.Drawing.Point(9, 695);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPre.Location = new System.Drawing.Point(9, 687);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(169, 45);
+            this.btnPre.Size = new System.Drawing.Size(212, 53);
             this.btnPre.TabIndex = 37;
             this.btnPre.Text = "Phanh Trước";
             this.btnPre.UseVisualStyleBackColor = false;
@@ -346,5 +365,6 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Label lbBrakeTitle;
         private System.Windows.Forms.CheckBox cbBrake;
+        private System.Windows.Forms.CheckBox cbSensor;
     }
 }

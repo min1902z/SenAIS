@@ -499,6 +499,30 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnPublishDate;
             
+            private global::System.Data.DataColumn columnMainSumBrake;
+            
+            private global::System.Data.DataColumn columnMinSumBrake;
+            
+            private global::System.Data.DataColumn columnFrontBrakeEff;
+            
+            private global::System.Data.DataColumn columnRearBrakeEff;
+            
+            private global::System.Data.DataColumn columnSumBrakeEff;
+            
+            private global::System.Data.DataColumn columnHandBrakeEff;
+            
+            private global::System.Data.DataColumn columnHBIntensityRange;
+            
+            private global::System.Data.DataColumn columnLBIntensityRange;
+            
+            private global::System.Data.DataColumn columnDiffVertiHBRange;
+            
+            private global::System.Data.DataColumn columnDiffHoriHBRange;
+            
+            private global::System.Data.DataColumn columnDiffVertiLBRange;
+            
+            private global::System.Data.DataColumn columnDiffHoriLBRange;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1414,6 +1438,102 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MainSumBrakeColumn {
+                get {
+                    return this.columnMainSumBrake;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MinSumBrakeColumn {
+                get {
+                    return this.columnMinSumBrake;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FrontBrakeEffColumn {
+                get {
+                    return this.columnFrontBrakeEff;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RearBrakeEffColumn {
+                get {
+                    return this.columnRearBrakeEff;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SumBrakeEffColumn {
+                get {
+                    return this.columnSumBrakeEff;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn HandBrakeEffColumn {
+                get {
+                    return this.columnHandBrakeEff;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn HBIntensityRangeColumn {
+                get {
+                    return this.columnHBIntensityRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LBIntensityRangeColumn {
+                get {
+                    return this.columnLBIntensityRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiffVertiHBRangeColumn {
+                get {
+                    return this.columnDiffVertiHBRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiffHoriHBRangeColumn {
+                get {
+                    return this.columnDiffHoriHBRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiffVertiLBRangeColumn {
+                get {
+                    return this.columnDiffVertiLBRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiffHoriLBRangeColumn {
+                get {
+                    return this.columnDiffHoriLBRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1559,7 +1679,19 @@ namespace SenAIS {
                         string MaxLBIntensity, 
                         string PublishSeri, 
                         string PublishVer, 
-                        string PublishDate) {
+                        string PublishDate, 
+                        string MainSumBrake, 
+                        string MinSumBrake, 
+                        string FrontBrakeEff, 
+                        string RearBrakeEff, 
+                        string SumBrakeEff, 
+                        string HandBrakeEff, 
+                        string HBIntensityRange, 
+                        string LBIntensityRange, 
+                        string DiffVertiHBRange, 
+                        string DiffHoriHBRange, 
+                        string DiffVertiLBRange, 
+                        string DiffHoriLBRange) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1671,7 +1803,19 @@ namespace SenAIS {
                         MaxLBIntensity,
                         PublishSeri,
                         PublishVer,
-                        PublishDate};
+                        PublishDate,
+                        MainSumBrake,
+                        MinSumBrake,
+                        FrontBrakeEff,
+                        RearBrakeEff,
+                        SumBrakeEff,
+                        HandBrakeEff,
+                        HBIntensityRange,
+                        LBIntensityRange,
+                        DiffVertiHBRange,
+                        DiffHoriHBRange,
+                        DiffVertiLBRange,
+                        DiffHoriLBRange};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -1804,6 +1948,18 @@ namespace SenAIS {
                 this.columnPublishSeri = base.Columns["PublishSeri"];
                 this.columnPublishVer = base.Columns["PublishVer"];
                 this.columnPublishDate = base.Columns["PublishDate"];
+                this.columnMainSumBrake = base.Columns["MainSumBrake"];
+                this.columnMinSumBrake = base.Columns["MinSumBrake"];
+                this.columnFrontBrakeEff = base.Columns["FrontBrakeEff"];
+                this.columnRearBrakeEff = base.Columns["RearBrakeEff"];
+                this.columnSumBrakeEff = base.Columns["SumBrakeEff"];
+                this.columnHandBrakeEff = base.Columns["HandBrakeEff"];
+                this.columnHBIntensityRange = base.Columns["HBIntensityRange"];
+                this.columnLBIntensityRange = base.Columns["LBIntensityRange"];
+                this.columnDiffVertiHBRange = base.Columns["DiffVertiHBRange"];
+                this.columnDiffHoriHBRange = base.Columns["DiffHoriHBRange"];
+                this.columnDiffVertiLBRange = base.Columns["DiffVertiLBRange"];
+                this.columnDiffHoriLBRange = base.Columns["DiffHoriLBRange"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2029,6 +2185,30 @@ namespace SenAIS {
                 base.Columns.Add(this.columnPublishVer);
                 this.columnPublishDate = new global::System.Data.DataColumn("PublishDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPublishDate);
+                this.columnMainSumBrake = new global::System.Data.DataColumn("MainSumBrake", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMainSumBrake);
+                this.columnMinSumBrake = new global::System.Data.DataColumn("MinSumBrake", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinSumBrake);
+                this.columnFrontBrakeEff = new global::System.Data.DataColumn("FrontBrakeEff", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFrontBrakeEff);
+                this.columnRearBrakeEff = new global::System.Data.DataColumn("RearBrakeEff", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRearBrakeEff);
+                this.columnSumBrakeEff = new global::System.Data.DataColumn("SumBrakeEff", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSumBrakeEff);
+                this.columnHandBrakeEff = new global::System.Data.DataColumn("HandBrakeEff", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHandBrakeEff);
+                this.columnHBIntensityRange = new global::System.Data.DataColumn("HBIntensityRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHBIntensityRange);
+                this.columnLBIntensityRange = new global::System.Data.DataColumn("LBIntensityRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLBIntensityRange);
+                this.columnDiffVertiHBRange = new global::System.Data.DataColumn("DiffVertiHBRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffVertiHBRange);
+                this.columnDiffHoriHBRange = new global::System.Data.DataColumn("DiffHoriHBRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffHoriHBRange);
+                this.columnDiffVertiLBRange = new global::System.Data.DataColumn("DiffVertiLBRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffVertiLBRange);
+                this.columnDiffHoriLBRange = new global::System.Data.DataColumn("DiffHoriLBRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffHoriLBRange);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3931,6 +4111,198 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MainSumBrake {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MainSumBrakeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MainSumBrake\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MainSumBrakeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MinSumBrake {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.MinSumBrakeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinSumBrake\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.MinSumBrakeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string FrontBrakeEff {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.FrontBrakeEffColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FrontBrakeEff\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.FrontBrakeEffColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RearBrakeEff {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.RearBrakeEffColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RearBrakeEff\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.RearBrakeEffColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SumBrakeEff {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.SumBrakeEffColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SumBrakeEff\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.SumBrakeEffColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string HandBrakeEff {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.HandBrakeEffColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HandBrakeEff\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.HandBrakeEffColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string HBIntensityRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.HBIntensityRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HBIntensityRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.HBIntensityRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string LBIntensityRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.LBIntensityRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LBIntensityRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.LBIntensityRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DiffVertiHBRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.DiffVertiHBRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffVertiHBRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.DiffVertiHBRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DiffHoriHBRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.DiffHoriHBRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffHoriHBRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.DiffHoriHBRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DiffVertiLBRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.DiffVertiLBRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffVertiLBRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.DiffVertiLBRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DiffHoriLBRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.DiffHoriLBRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffHoriLBRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.DiffHoriLBRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -5247,6 +5619,150 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPublishDateNull() {
                 this[this.tableVehicleReportData.PublishDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMainSumBrakeNull() {
+                return this.IsNull(this.tableVehicleReportData.MainSumBrakeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMainSumBrakeNull() {
+                this[this.tableVehicleReportData.MainSumBrakeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMinSumBrakeNull() {
+                return this.IsNull(this.tableVehicleReportData.MinSumBrakeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMinSumBrakeNull() {
+                this[this.tableVehicleReportData.MinSumBrakeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFrontBrakeEffNull() {
+                return this.IsNull(this.tableVehicleReportData.FrontBrakeEffColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFrontBrakeEffNull() {
+                this[this.tableVehicleReportData.FrontBrakeEffColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRearBrakeEffNull() {
+                return this.IsNull(this.tableVehicleReportData.RearBrakeEffColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRearBrakeEffNull() {
+                this[this.tableVehicleReportData.RearBrakeEffColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSumBrakeEffNull() {
+                return this.IsNull(this.tableVehicleReportData.SumBrakeEffColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSumBrakeEffNull() {
+                this[this.tableVehicleReportData.SumBrakeEffColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsHandBrakeEffNull() {
+                return this.IsNull(this.tableVehicleReportData.HandBrakeEffColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetHandBrakeEffNull() {
+                this[this.tableVehicleReportData.HandBrakeEffColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsHBIntensityRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.HBIntensityRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetHBIntensityRangeNull() {
+                this[this.tableVehicleReportData.HBIntensityRangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLBIntensityRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.LBIntensityRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLBIntensityRangeNull() {
+                this[this.tableVehicleReportData.LBIntensityRangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiffVertiHBRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.DiffVertiHBRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiffVertiHBRangeNull() {
+                this[this.tableVehicleReportData.DiffVertiHBRangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiffHoriHBRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.DiffHoriHBRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiffHoriHBRangeNull() {
+                this[this.tableVehicleReportData.DiffHoriHBRangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiffVertiLBRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.DiffVertiLBRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiffVertiLBRangeNull() {
+                this[this.tableVehicleReportData.DiffVertiLBRangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiffHoriLBRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.DiffHoriLBRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiffHoriLBRangeNull() {
+                this[this.tableVehicleReportData.DiffHoriLBRangeColumn] = global::System.Convert.DBNull;
             }
         }
         

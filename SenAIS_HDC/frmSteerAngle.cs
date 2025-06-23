@@ -82,19 +82,19 @@ namespace SenAIS
                     }
                     else if (!isLeftSteerLWInStandard)
                     {
-                        lbLeftSteerLW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbLeftSteerLW.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                     }
                     else if (!isLeftSteerRWInStandard)
                     {
-                        lbLeftSteerRW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbLeftSteerRW.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                     }
                     else if (!isRightSteerLWInStandard)
                     {
-                        lbRightSteerLW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbRightSteerLW.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                     }
                     else if (!isRightSteerRWInStandard)
                     {
-                        lbRightSteerRW.BackColor = Color.DarkRed; // Nếu không đạt tiêu chuẩn, đổi màu
+                        lbRightSteerRW.BackColor = Color.Red; // Nếu không đạt tiêu chuẩn, đổi màu
                     }
                     break;
 

@@ -40,12 +40,14 @@
             this.btnPreSpeed = new System.Windows.Forms.Button();
             this.lbSpeed = new System.Windows.Forms.Label();
             this.lbTitleSpeed = new System.Windows.Forms.Label();
+            this.cbSensor = new System.Windows.Forms.CheckBox();
             this.SpeedPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SpeedPanel
             // 
             resources.ApplyResources(this.SpeedPanel, "SpeedPanel");
+            this.SpeedPanel.Controls.Add(this.cbSensor);
             this.SpeedPanel.Controls.Add(this.lbEnd);
             this.SpeedPanel.Controls.Add(this.label1);
             this.SpeedPanel.Controls.Add(this.lbStandard);
@@ -73,19 +75,19 @@
             // lbStandard
             // 
             resources.ApplyResources(this.lbStandard, "lbStandard");
-            this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandard.ForeColor = System.Drawing.Color.Red;
             this.lbStandard.Name = "lbStandard";
             // 
             // lbStandardTitle
             // 
             resources.ApplyResources(this.lbStandardTitle, "lbStandardTitle");
-            this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.Red;
             this.lbStandardTitle.Name = "lbStandardTitle";
             // 
             // lbVinNumber
             // 
             resources.ApplyResources(this.lbVinNumber, "lbVinNumber");
-            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.Red;
             this.lbVinNumber.Name = "lbVinNumber";
             // 
             // cbReady
@@ -127,6 +129,15 @@
             this.lbTitleSpeed.ForeColor = System.Drawing.Color.Blue;
             this.lbTitleSpeed.Name = "lbTitleSpeed";
             // 
+            // cbSensor
+            // 
+            resources.ApplyResources(this.cbSensor, "cbSensor");
+            this.cbSensor.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbSensor.Checked = true;
+            this.cbSensor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSensor.Name = "cbSensor";
+            this.cbSensor.UseVisualStyleBackColor = false;
+            // 
             // frmSpeed
             // 
             resources.ApplyResources(this, "$this");
@@ -157,5 +168,6 @@
         private System.Windows.Forms.Label lbSpeed;
         private System.Windows.Forms.Label lbTitleSpeed;
         private System.Windows.Forms.Label lbEnd;
+        private System.Windows.Forms.CheckBox cbSensor;
     }
 }

@@ -89,6 +89,10 @@ namespace SenAIS
         {
             try
             {
+                int timeoutSeconds = int.TryParse(ConfigurationManager.AppSettings["WeightCheckTimeout"], out int timeout) ? timeout : 30;
+                int x2LineMode = int.TryParse(ConfigurationManager.AppSettings["X2_Line"], out int line) ? line : 1;
+
+                var startTime = DateTime.Now;
                 while (!token.IsCancellationRequested)
                 {
                     await Task.Delay(200, token); // Delay 200ms mỗi lần cập nhật
@@ -99,11 +103,20 @@ namespace SenAIS
                     double rawRearLWeight = opcManager.GetOPCValue(opcLRWeightResult);
                     double rawRearRWeight = opcManager.GetOPCValue(opcRRWeightResult);
 
-                    // 🔹 Tính toán trọng lượng (chia cho weight từ DB)
-                    frontLWeight = rawFrontLWeight / weightLeftA;
-                    frontRWeight = rawFrontRWeight / weightRightA;
-                    rearLWeight = rawRearLWeight / weightLeftA;
-                    rearRWeight = rawRearRWeight / weightRightA;
+                    if (x2LineMode == 2)
+                    {
+                        frontLWeight = rawFrontLWeight / weightLeftA;
+                        frontRWeight = rawFrontRWeight / weightLeftA;
+                        rearLWeight = rawRearLWeight / weightLeftA;
+                        rearRWeight = rawRearRWeight / weightLeftA;
+                    }
+                    else // Mặc định hoặc X2_Line = 1
+                    {
+                        frontLWeight = rawFrontLWeight / weightLeftA;
+                        frontRWeight = rawFrontRWeight / weightRightA;
+                        rearLWeight = rawRearLWeight / weightLeftA;
+                        rearRWeight = rawRearRWeight / weightRightA;
+                    }
 
                     double totalFrontWeight = frontLWeight + frontRWeight;
                     double totalRearWeight = rearLWeight + rearRWeight;
@@ -121,15 +134,14 @@ namespace SenAIS
                     // 🔹 Khi có dữ liệu hợp lệ, chờ 2s rồi mở frmSideSlip
                     if (totalFrontWeight > 100 && totalRearWeight > 100)
                     {
-                        await Task.Delay(2000, token);
+                        await Task.Delay(3000, token);
                         MoveToNextStep();
-                        break;
+                        return;
                     }
-                    else
+                    if ((DateTime.Now - startTime).TotalSeconds > timeoutSeconds)
                     {
-                        await Task.Delay(6000, token);
                         MoveToNextStep();
-                        break;
+                        return;
                     }
                 }
             }

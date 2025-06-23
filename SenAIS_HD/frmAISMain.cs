@@ -7,6 +7,7 @@ namespace SenAIS
     public partial class SenAIS : Form
     {
         private Form activeForm = null;
+        public string serialNumber;
         private static readonly string calibSpeed = ConfigurationManager.AppSettings["Calib_Speed"];
         private static readonly string calibSS = ConfigurationManager.AppSettings["Calib_SS"];
         private static readonly string calibLBrake = ConfigurationManager.AppSettings["Calib_LBrake"];
@@ -58,17 +59,20 @@ namespace SenAIS
 
         private void TSDangKiem_Click(object sender, EventArgs e)
         {
-            string serialNumber = "";
             if (activeForm is frmInspection currentInspection)
             {
-                serialNumber = currentInspection.GetVinNumber();
+                this.serialNumber = currentInspection.GetVinNumber();
                 currentInspection.Close();
             }
-            OpenChildForm(new frmInspection(serialNumber));
+            OpenChildForm(new frmInspection(this.serialNumber));
         }
 
         private void TSTruyXuat_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmReport());
         }
 
@@ -215,16 +219,28 @@ namespace SenAIS
 
         private void TSAuboutMe_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmAboutUs());
         }
 
         private void tsVehicleStandard_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmStandards());
         }
 
         private void tsInspector_Click(object sender, EventArgs e)
         {
+            if (activeForm is frmInspection currentInspection)
+            {
+                this.serialNumber = currentInspection.GetVinNumber();
+            }
             OpenChildForm(new frmInspector());
         }
 

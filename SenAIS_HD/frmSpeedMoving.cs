@@ -94,7 +94,7 @@ namespace SenAIS
                     }
                     catch (Exception)
                     {
-                            isOPCConnected = false;
+                        isOPCConnected = false;
                     }
                 });
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -601,17 +602,54 @@ namespace SenAIS
                 FrameNumber LIKE @SearchTerm OR
                 VehicleType LIKE @SearchTerm OR
                 Inspector LIKE @SearchTerm OR
-                InspectionDate LIKE @SearchTerm OR
                 Fuel LIKE @SearchTerm";
 
-            var parameters = new[]
+            var parameters = new List<SqlParameter>
             {
-            new SqlParameter("@SearchTerm", "%" + searchTerm + "%")
-        };
+                new SqlParameter("@SearchTerm", "%" + searchTerm + "%")
+            };
 
-            return TableExecuteQuery(query, parameters);
+            string trimmedSearch = searchTerm.Trim();
+
+            // 1️⃣ Ngày đầy đủ (dd/MM/yyyy hoặc yyyy-MM-dd)
+            if (DateTime.TryParse(trimmedSearch, out DateTime exactDate))
+            {
+                query += " OR CAST(InspectionDate AS DATE) = @ExactDate ";
+                parameters.Add(new SqlParameter("@ExactDate", exactDate.Date));
+            }
+            // 2️⃣ Khoảng ngày: "12/05/2024 - 15/05/2024"
+            else if (trimmedSearch.Contains("-"))
+            {
+                string[] rangeParts = trimmedSearch.Split('-');
+                if (rangeParts.Length == 2 &&
+                    DateTime.TryParse(rangeParts[0].Trim(), out DateTime fromDate) &&
+                    DateTime.TryParse(rangeParts[1].Trim(), out DateTime toDate))
+                {
+                    query += " OR (CAST(InspectionDate AS DATE) BETWEEN @FromDate AND @ToDate) ";
+                    parameters.Add(new SqlParameter("@FromDate", fromDate.Date));
+                    parameters.Add(new SqlParameter("@ToDate", toDate.Date));
+                }
+            }
+            // 3️⃣ Ngày/tháng không có năm: "12/05" (sẽ tìm mọi năm)
+            else if (DateTime.TryParseExact(trimmedSearch, new[] { "dd/MM", "dd-MM" },
+                     CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dayMonthOnly))
+            {
+                query += " OR (DAY(InspectionDate) = @DayOnly AND MONTH(InspectionDate) = @MonthOnly) ";
+                parameters.Add(new SqlParameter("@DayOnly", dayMonthOnly.Day));
+                parameters.Add(new SqlParameter("@MonthOnly", dayMonthOnly.Month));
+            }
+
+            query += " ORDER BY TRY_CAST(InspectionDate AS DATETIME) DESC";
+            return TableExecuteQuery(query, parameters.ToArray());
         }
-
+        public DataTable GetAllVehicleInfo()
+        {
+            string query = @"
+            SELECT SerialNumber, FrameNumber, VehicleType, Inspector, InspectionDate, Fuel
+            FROM VehicleInfo
+            ORDER BY VehicleID DESC"; // ← Sắp theo ID giảm dần
+            return TableExecuteQuery(query, null);
+        }
         public DataRow GetVehicleDetails(string serialNumber)
         {
             string query = @"SELECT 
@@ -1147,16 +1185,18 @@ namespace SenAIS
         public string GetVehicleTypeBySampleVin(string inputVin)
         {
             string query = @"
-            SELECT VehicleType 
-            FROM VehicleStandards 
-            WHERE @InputVin LIKE SampleVin + '%'"; // Kiểm tra nếu VIN nhập vào bắt đầu bằng SampleVin
+                SELECT TOP 1 VehicleType
+                FROM VehicleStandards
+                WHERE @vin LIKE SampleVin + '%'
+                ORDER BY LEN(SampleVin) DESC
+            ";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@InputVin", inputVin);
+                    cmd.Parameters.AddWithValue("@vin", inputVin);
                     object result = cmd.ExecuteScalar();
                     return result?.ToString(); // Trả về VehicleType hoặc null nếu không tìm thấy
                 }

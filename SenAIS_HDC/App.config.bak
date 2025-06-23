@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+  </configSections>
+  <appSettings>
+    <add key="ApiLoginUrl" value="http://11.22.0.2:12208/Real.HTC.NM.Main.Web/TestReport/login" />
+    <add key="ApiSaveUrl" value="http://11.22.0.2:12208/Real.HTC.NM.Main.Web/TestReport/QC_TestReport_Save" />
+    <add key="UsernameMMS" value="NM.REPORT" />
+    <add key="PasswordMMS" value="Ts3SuqUMpXxnfuRz6mhOSQ" />
+    <add key="PasswordAdmin" value="123456" />
+    <add key="ClientIPs" value="192.168.1.2;192.168.1.3;192.168.1.4;192.168.1.5;192.168.1.9;10.32.12.236" />
+    <add key="UdpPort" value="8888" />
+    <!-- MMS Data -->
+    <add key="SpeedMMS" value="true"/>
+    <add key="SideSlipMMS" value="true"/>
+    <add key="WhistleMMS" value="true"/>
+    <add key="NoiseMMS" value="true"/>
+    <add key="PetrolMMS" value="true"/>
+    <add key="BrakeMMS" value="true"/>
+    <add key="DieselMMS" value="true"/>
+    <add key="HeadLightsMMS" value="false"/>
+    <add key="SteeringAngleMMS" value="false"/>
+    <!-- Switch Menu/Vehicle -->
+    <add key="DefaultMainUI" value="Menu" />
+    <!-- Trạm App.config -->
+    <add key="StationType" value=""/> <!-- SideSlip/Brake/Speed/Report -->
+
+    <add key="SideSlip_Counter" value="Hyundai.OCS10.Counter_SS" />
+    <add key="SideSlip_Result" value="Hyundai.OCS10.Align_Front_Result" />
+    <add key="SideSlip_Sign" value="Hyundai.OCS10.Align_Front_Sign" />
+    <add key="Speed_Counter" value="Hyundai.OCS10.Counter_Speed" />
+    <add key="Speed_Result" value="Hyundai.OCS10.Speed_Result" />
+    <add key="BrakeF_Counter" value="Hyundai.OCS10.Counter_BrakeF" />
+    <add key="BrakeR_Counter" value="Hyundai.OCS10.Counter_BrakeR" />
+    <add key="BrakeH_Counter" value="Hyundai.OCS10.Counter_BrakeH" />
+    <add key="WeightF_Counter" value="Hyundai.OCS10.Counter_WeightF" />
+    <add key="WeightR_Counter" value="Hyundai.OCS10.Counter_WeightR" />
+    <add key="Front_LBrake_Result" value="Hyundai.OCS10.BrakeL_Front_Result" />
+    <add key="Front_RBrake_Result" value="Hyundai.OCS10.BrakeR_Front_Result" />
+    <add key="Rear_LBrake_Result" value="Hyundai.OCS10.BrakeL_Rear_Result" />
+    <add key="Rear_RBrake_Result" value="Hyundai.OCS10.BrakeR_Rear_Result" />
+    <add key="Hand_LBrake_Result" value="Hyundai.OCS10.BrakeL_Hand_Result" />
+    <add key="Hand_RBrake_Result" value="Hyundai.OCS10.BrakeR_Hand_Result" />
+    <add key="Front_LWeight_Result" value="Hyundai.OCS10.WeightL_Front_Result" />
+    <add key="Front_RWeight_Result" value="Hyundai.OCS10.WeightR_Front_Result" />
+    <add key="Rear_LWeight_Result" value="Hyundai.OCS10.WeightL_Rear_Result" />
+    <add key="Rear_RWeight_Result" value="Hyundai.OCS10.WeightR_Rear_Result" />
+	  
+    <add key="Calib_SS" value="Hyundai.OCS10.AI_Align" />
+    <add key="Calib_LBrake" value="Hyundai.OCS10.AI_BrakeL" />
+    <add key="Calib_RBrake" value="Hyundai.OCS10.AI_BrakeR" />
+    <add key="Calib_LBrake2" value="Hyundai.OCS10.AI_BrakeL2" />
+    <add key="Calib_RBrake2" value="Hyundai.OCS10.AI_BrakeR2" />
+    <add key="Calib_LWeight" value="Hyundai.OCS10.AI_WeightL" />
+    <add key="Calib_RWeight" value="Hyundai.OCS10.AI_WeightR" />
+    <add key="Calib_Speed" value="Hyundai.OCS10.HSC_Speed" />
+	  
+    <add key="OPC_SetAuto" value="Hyundai.OCS10.SPM_AUTO_MAN" />
+    <add key="OPC_Start" value="Hyundai.OCS10.SPM_START" />
+    <add key="OPC_Stop" value="Hyundai.OCS10.SPM_STOP" />
+    <add key="OPC_Motor" value="Hyundai.OCS10.SPM_MOTOR_Button" />
+    <add key="OPC_LeftDistance" value="Hyundai.OCS10.SPM_PosL_AI" />
+    <add key="OPC_RightDistance" value="Hyundai.OCS10.SPM_PosR_AI" />
+    <add key="OPC_SetLeft" value="Hyundai.OCS10.SPM_LengthL_Set" />
+    <add key="OPC_SetRight" value="Hyundai.OCS10.SPM_LengthR_Set" />
+    <add key="OPC_ConfirmDistance" value="Hyundai.OCS10.SPM_AUTO_MAN" />
+    <add key="OPC_IncreaseLeft" value="Hyundai.OCS10.SPM_VAL_L_FW_Button" />
+    <add key="OPC_IncreaseRight" value="Hyundai.OCS10.SPM_VAL_R_FW_Button" />
+    <add key="OPC_DecreaseLeft" value="Hyundai.OCS10.SPM_VAL_L_RV_Button" />
+    <add key="OPC_DecreaseRight" value="Hyundai.OCS10.SPM_VAL_R_RV_Button" />
+    <add key="Speed_Sensor" value="Hyundai.OCS10.Speed_Pos Bit" />
+    <add key="Brake_Sensor" value="Hyundai.OCS10.Brake_Pos Bit" />
+    <add key="Brake_Switch" value="Hyundai.OCS10.Brake_Option" />
+    <add key="Brake_Option" value="1"/>
+    <add key="Brake_LockBack" value="Hyundai.OCS10.Brake_LockBack" />
+    <add key="Brake_Lock" value="1"/>
+	  
+    <add key="PublishSeri" value="Mã số QA/QT.01-BM05" />
+    <add key="PublishVer" value="Lần ban hành: 01" />
+    <add key="PublishDate" value="Ngày ban hành: 02/01/2025" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+    <add key="Distance1Name" value="NX4" />
+    <add key="Distance1Value" value="2650" />
+    <add key="Distance2Name" value="TM" />
+    <add key="Distance2Value" value="2750" />
+    <add key="Distance3Name" value="KU" />
+    <add key="Distance3Value" value="2850" />
+    <add key="Distance4Name" value="LX20" />
+    <add key="Distance4Value" value="2950" />
+    <add key="CalibThreshold" value="5" />
+  </appSettings>
+  <connectionStrings>
+    <add name="SenAISDBConnectionString" connectionString="Server=localhost,1433;Database=SenAISDB_HD;User Id=sa;Password=19021998;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <system.windows.forms jitDebugging="true" />
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
+  </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.SqlServer.Types" publicKeyToken="89845dcd8080cc91" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-16.0.0.0" newVersion="16.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.ReportViewer.WinForms" publicKeyToken="89845dcd8080cc91" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-12.0.0.0" newVersion="12.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.ReportViewer.DataVisualization" publicKeyToken="89845dcd8080cc91" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-15.0.0.0" newVersion="15.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.ReportViewer.Common" publicKeyToken="89845dcd8080cc91" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-11.0.0.0" newVersion="11.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.1.0" newVersion="6.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Logging" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.2.0" newVersion="4.0.2.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Buffers" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.4.0" newVersion="4.0.4.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Primitives" publicKeyToken="adb9793829ddae60" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Numerics.Vectors" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.1.5.0" newVersion="4.1.5.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ValueTuple" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Diagnostics.DiagnosticSource" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-9.0.0.0" newVersion="9.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Security.Permissions" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Text.Json" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-9.0.0.0" newVersion="9.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Threading.Tasks.Extensions" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.2.1.0" newVersion="4.2.1.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+</configuration>

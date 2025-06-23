@@ -66,8 +66,8 @@
             this.lbStandard.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbStandard.AutoSize = true;
             this.lbStandard.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandard.Location = new System.Drawing.Point(850, 945);
+            this.lbStandard.ForeColor = System.Drawing.Color.Red;
+            this.lbStandard.Location = new System.Drawing.Point(908, 942);
             this.lbStandard.Name = "lbStandard";
             this.lbStandard.Size = new System.Drawing.Size(239, 97);
             this.lbStandard.TabIndex = 56;
@@ -78,8 +78,8 @@
             this.lbStandardTitle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbStandardTitle.AutoSize = true;
             this.lbStandardTitle.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
-            this.lbStandardTitle.Location = new System.Drawing.Point(372, 945);
+            this.lbStandardTitle.ForeColor = System.Drawing.Color.Red;
+            this.lbStandardTitle.Location = new System.Drawing.Point(411, 942);
             this.lbStandardTitle.Name = "lbStandardTitle";
             this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
             this.lbStandardTitle.TabIndex = 55;
@@ -89,7 +89,7 @@
             // 
             this.lbVinNumber.AutoSize = true;
             this.lbVinNumber.Font = new System.Drawing.Font("Calibri", 79.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVinNumber.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbVinNumber.ForeColor = System.Drawing.Color.Red;
             this.lbVinNumber.Location = new System.Drawing.Point(229, -15);
             this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
@@ -141,9 +141,9 @@
             this.btnPre.Location = new System.Drawing.Point(12, 974);
             this.btnPre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(279, 65);
+            this.btnPre.Size = new System.Drawing.Size(302, 65);
             this.btnPre.TabIndex = 43;
-            this.btnPre.Text = "Trọng Lượng";
+            this.btnPre.Text = "Trượt Ngang Trước";
             this.btnPre.UseVisualStyleBackColor = false;
             this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
@@ -180,7 +180,7 @@
             this.lbSideSlipTitle.AutoSize = true;
             this.lbSideSlipTitle.Font = new System.Drawing.Font("Calibri", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSideSlipTitle.ForeColor = System.Drawing.Color.Blue;
-            this.lbSideSlipTitle.Location = new System.Drawing.Point(32, 439);
+            this.lbSideSlipTitle.Location = new System.Drawing.Point(27, 355);
             this.lbSideSlipTitle.Name = "lbSideSlipTitle";
             this.lbSideSlipTitle.Size = new System.Drawing.Size(1702, 204);
             this.lbSideSlipTitle.TabIndex = 10;
