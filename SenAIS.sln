@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenAIS", "SenAIS\SenAIS.csproj", "{49AD04F5-10BD-4E91-976A-989F15163013}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SenAISSetup", "SenAISSetup\SenAISSetup.vdproj", "{379C7490-83CC-494A-B260-02389C6687EA}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenAIS_HD", "SenAIS_HD\SenAIS_HD.csproj", "{DDA9210A-F8D9-4CDD-BF6B-3D0502685A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenAIS_HDC", "SenAIS_HDC\SenAIS_HDC.csproj", "{A380A91E-7A5F-4418-8AAF-FAE7187A2110}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SenAIS_HD_Setup", "SenAIS_HD_Setup\SenAIS_HD_Setup.vdproj", "{60BC25CD-044A-4E43-9E60-11AA7DEB54A3}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SenAIS_HDC_Setup", "SenAIS_HDC_Setup\SenAIS_HDC_Setup.vdproj", "{27C59F7F-D4A3-4412-AB56-C903BC38AB89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +17,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49AD04F5-10BD-4E91-976A-989F15163013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49AD04F5-10BD-4E91-976A-989F15163013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49AD04F5-10BD-4E91-976A-989F15163013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49AD04F5-10BD-4E91-976A-989F15163013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379C7490-83CC-494A-B260-02389C6687EA}.Debug|Any CPU.ActiveCfg = Debug
+		{379C7490-83CC-494A-B260-02389C6687EA}.Release|Any CPU.ActiveCfg = Release
 		{DDA9210A-F8D9-4CDD-BF6B-3D0502685A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDA9210A-F8D9-4CDD-BF6B-3D0502685A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDA9210A-F8D9-4CDD-BF6B-3D0502685A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDA9210A-F8D9-4CDD-BF6B-3D0502685A16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A380A91E-7A5F-4418-8AAF-FAE7187A2110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A380A91E-7A5F-4418-8AAF-FAE7187A2110}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A380A91E-7A5F-4418-8AAF-FAE7187A2110}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A380A91E-7A5F-4418-8AAF-FAE7187A2110}.Release|Any CPU.Build.0 = Release|Any CPU
 		{60BC25CD-044A-4E43-9E60-11AA7DEB54A3}.Debug|Any CPU.ActiveCfg = Debug
 		{60BC25CD-044A-4E43-9E60-11AA7DEB54A3}.Release|Any CPU.ActiveCfg = Release
-		{27C59F7F-D4A3-4412-AB56-C903BC38AB89}.Debug|Any CPU.ActiveCfg = Debug
-		{27C59F7F-D4A3-4412-AB56-C903BC38AB89}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
