@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenAIS", "SenAIS\SenAIS.csp
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SenAISSetup", "SenAISSetup\SenAISSetup.vdproj", "{379C7490-83CC-494A-B260-02389C6687EA}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SenAIS_HD_Setup", "SenAIS_HD_Setup\SenAIS_HD_Setup.vdproj", "{60BC25CD-044A-4E43-9E60-11AA7DEB54A3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +19,6 @@ Global
 		{49AD04F5-10BD-4E91-976A-989F15163013}.Release|Any CPU.Build.0 = Release|Any CPU
 		{379C7490-83CC-494A-B260-02389C6687EA}.Debug|Any CPU.ActiveCfg = Debug
 		{379C7490-83CC-494A-B260-02389C6687EA}.Release|Any CPU.ActiveCfg = Release
-		{60BC25CD-044A-4E43-9E60-11AA7DEB54A3}.Debug|Any CPU.ActiveCfg = Debug
-		{60BC25CD-044A-4E43-9E60-11AA7DEB54A3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
