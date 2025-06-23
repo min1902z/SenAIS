@@ -306,8 +306,13 @@ namespace SenAIS
                 MessageBox.Show("Không có xe nào trong ngày hôm nay để xuất Excel.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+<<<<<<< HEAD
             string sourcePath = @"D:\DanhSachXe.xlsx";  // File mẫu
             string exportPath = $@"D:\DanhSachXe_{DateTime.Now:yyyy-MM-dd}.xlsx";
+=======
+            string sourcePath = @"D:\Report\DanhSachXe.xlsx";  // File mẫu
+            string exportPath = $@"D:\Report\DanhSachXe_{DateTime.Now:yyyy-MM-dd}.xlsx";
+>>>>>>> SenAIS_DH
             if (File.Exists(exportPath))
             {
                 DialogResult result = MessageBox.Show($"File {exportPath} đã tồn tại. Bạn có muốn ghi đè không?", "Xác nhận ghi đè",

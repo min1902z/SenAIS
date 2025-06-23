@@ -347,7 +347,11 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             this.Close();
+=======
+            NextVin();
+>>>>>>> SenAIS_DH
         }
     }
 }

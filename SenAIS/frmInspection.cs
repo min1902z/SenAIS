@@ -17,6 +17,7 @@ namespace SenAIS
 {
     public partial class frmInspection : Form
     {
+<<<<<<< HEAD
         private OPCServer opcServer;
         private OPCGroup opcGroup;
         private OPCItem opcCounterSpeed;
@@ -27,6 +28,8 @@ namespace SenAIS
         private OPCItem opcCounterSteer;
         private OPCItem opcPos1;
 
+=======
+>>>>>>> SenAIS_DH
         private SQLHelper sqlHelper;
         private OPCUtility opcManager;
         private string currentUI;
@@ -79,6 +82,7 @@ namespace SenAIS
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
             this.serialNumber = txtVinNum.Text;
+<<<<<<< HEAD
             //InitializeOPC();
         }
         public frmInspection(string serialNumber)
@@ -210,105 +214,138 @@ namespace SenAIS
             }, token);
         }
         private void InitializeOPC()
-        {
-            try
-            {
-                opcServer = new OPCServer();
-                opcServer.Connect("Kepware.KEPServerEX.V6", "");
-
-                opcGroup = opcServer.OPCGroups.Add("OPCGroup1");
-                opcGroup.IsActive = true;
-                opcGroup.IsSubscribed = true;
-                opcGroup.UpdateRate = 1000;
-
-                // Thêm các OPCItems tương ứng với các Counter
-                //opcCounterSpeed = opcGroup.OPCItems.AddItem(opcSpeedCounter, 1);
-                //opcCounterSideSlip = opcGroup.OPCItems.AddItem(opcSSCounter, 2);
-                opcCounterBrake = opcGroup.OPCItems.AddItem(opcBrakeFCounter, 1);
-                //opcCounterHL = opcGroup.OPCItems.AddItem(opcHL1Counter, 1);
-                //opcCounterHL2 = opcGroup.OPCItems.AddItem(opcHL2Counter, 1);
-                //opcCounterSteer = opcGroup.OPCItems.AddItem(opcSteerCounter, 1);
-                //opcPos1 = opcGroup.OPCItems.AddItem(opcGLPos1, 2);
-                opcGroup.DataChange += new DIOPCGroupEvent_DataChangeEventHandler(OnDataChange);
-            }
-            catch
-            {
-                MessageBox.Show($"Vui lòng kiểm tra dữ liệu từ OPC Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+=======
         }
-        private void OnDataChange(int TransactionID, int NumItems, ref Array ClientHandles, ref Array ItemValues, ref Array Qualities, ref Array TimeStamps)
+        public frmInspection(string serialNumber)
+>>>>>>> SenAIS_DH
         {
-            if (!this.IsHandleCreated || this.IsDisposed) return;
-            this.serialNumber = txtVinNum.Text;
-            if (string.IsNullOrEmpty(serialNumber))
+            InitializeComponent();
+            sqlHelper = new SQLHelper();
+            opcManager = new OPCUtility();
+            this.serialNumber = serialNumber;
+            txtVinNum.Text = serialNumber;
+        }
+        public string GetVinNumber()
+        {
+            return txtVinNum.Text;
+        }
+        private void StartMonitoringByStationType()
+        {
+            if (opcCancellationTokenSource != null)
+                return; // Đã chạy rồi thì không khởi động lại nữa
+
+            opcCancellationTokenSource = new CancellationTokenSource();
+            var token = opcCancellationTokenSource.Token;
+
+            Task.Run(async () =>
             {
-                return;
-            }
-            for (int i = 1; i <= NumItems; i++)
-            {
-                int itemValue = ItemValues.GetValue(i) != null ? Convert.ToInt32(ItemValues.GetValue(i)) : 0;
-                // Kiểm tra từng Counter và xử lý nếu giá trị bằng 1
-                //if ((ClientHandles.GetValue(i)?.Equals(opcCounterSpeed?.ClientHandle) ?? false))
-                //{
-                //    if (itemValue == 1)
-                //    {
-                //        var speedForm = Application.OpenForms.OfType<frmSpeed>().FirstOrDefault();
-                //        if (speedForm == null) // Chỉ mở nếu chưa có
-                //        {
-                //            this.BeginInvoke(new Action(() => OpenNewForm(new frmSpeed(this.serialNumber))));
-                //        }
-                //    }
-                //}
-                //else if ((ClientHandles.GetValue(i)?.Equals(opcCounterSideSlip?.ClientHandle) ?? false) && itemValue == 1)
-                //{
-                //    OpenNewForm(new frmSideSlip(this.serialNumber));
-                //}
-                if ((ClientHandles.GetValue(i)?.Equals(opcCounterBrake?.ClientHandle) ?? false))
+                // Các biến nhớ giá trị cũ
+                int lastSpeed = -1, lastBrake = -1, lastHL = -1, lastSteer = -1;
+                int lastHLPos1 = -1, lastHLPos2 = -1, lastGLPos1 = -1, lastGLPos2 = -1;
+
+                while (!token.IsCancellationRequested)
                 {
-                    if (itemValue == 1)
+                    try
                     {
-                        var brakeForm = Application.OpenForms.OfType<frmFrontBrake>().FirstOrDefault();
-                        if (brakeForm == null) // Chỉ mở nếu chưa có
+                        switch (stationType)
                         {
-                            this.BeginInvoke(new Action(() => OpenNewForm(new frmFrontBrake(this.serialNumber))));
+                            case StationType.Speed:
+                                int speed = opcManager.GetOPCValue(opcSpeedCounter);
+                                if (speed == 1 && lastSpeed != 1)
+                                {
+                                    lastSpeed = speed;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmSpeed>().Any())
+                                            OpenNewForm(new frmSpeed(serialNumber));
+                                    }));
+                                }
+                                else if (speed != 1) lastSpeed = speed;
+                                break;
+
+                            case StationType.Brake:
+                                int brake = opcManager.GetOPCValue(opcBrakeFCounter);
+                                if (brake == 1 && lastBrake != 1)
+                                {
+                                    lastBrake = brake;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmFrontBrake>().Any())
+                                            OpenNewForm(new frmFrontBrake(serialNumber));
+                                    }));
+                                }
+                                else if (brake != 1) lastBrake = brake;
+                                break;
+
+                            case StationType.Headlights:
+                                int hl = opcManager.GetOPCValue(opcHLCounter);
+                                int hlPos1 = opcManager.GetOPCValue(opcHLPos1);
+                                int hlPos2 = opcManager.GetOPCValue(opcHLPos2);
+
+                                if ((hl == 1 || hl == 2) && hl != lastHL)
+                                {
+                                    lastHL = hl;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmHeadlights>().Any())
+                                            OpenNewForm(new frmHeadlights(serialNumber));
+                                    }));
+                                }
+
+                                if (hlPos1 != lastHLPos1)
+                                {
+                                    lastHLPos1 = hlPos1;
+                                    BeginInvoke((MethodInvoker)(() => cbPos1.BackColor = hlPos1 == 1 ? Color.Green : SystemColors.Control));
+                                }
+
+                                if (hlPos2 != lastHLPos2)
+                                {
+                                    lastHLPos2 = hlPos2;
+                                    BeginInvoke((MethodInvoker)(() => cbPos2.BackColor = hlPos2 == 1 ? Color.Green : SystemColors.Control));
+                                }
+                                break;
+
+                            case StationType.Steer:
+                                int steer = opcManager.GetOPCValue(opcSteerCounter);
+                                int glPos1 = opcManager.GetOPCValue(opcGLPos1);
+                                int glPos2 = opcManager.GetOPCValue(opcGLPos2);
+
+                                if ((steer == 1 || steer == 2) && steer != lastSteer)
+                                {
+                                    lastSteer = steer;
+                                    BeginInvoke((MethodInvoker)(() =>
+                                    {
+                                        if (!Application.OpenForms.OfType<frmSteerAngle>().Any())
+                                            OpenNewForm(new frmSteerAngle(this.serialNumber));
+                                    }));
+                                }
+
+                                if (glPos1 != lastGLPos1)
+                                {
+                                    lastGLPos1 = glPos1;
+                                    BeginInvoke((MethodInvoker)(() => cbPos1.BackColor = glPos1 == 1 ? Color.Green : SystemColors.Control));
+                                }
+
+                                if (glPos2 != lastGLPos2)
+                                {
+                                    lastGLPos2 = glPos2;
+                                    BeginInvoke((MethodInvoker)(() => cbPos2.BackColor = glPos2 == 1 ? Color.Green : SystemColors.Control));
+                                }
+                                break;
                         }
                     }
-                }
-                //if ((ClientHandles.GetValue(i)?.Equals(opcCounterHL?.ClientHandle) ?? false))
-                //{
-                //    if (itemValue == 1 || itemValue == 2)
-                //    {
-                //        var headlightsForm = Application.OpenForms.OfType<frmHeadlights>().FirstOrDefault();
-                //        if (headlightsForm == null) // Chỉ mở nếu chưa có
-                //        {
-                //            this.BeginInvoke(new Action(() => OpenNewForm(new frmHeadlights(this.serialNumber))));
-                //        }
-                //    }
-                //}
-                //if ((ClientHandles.GetValue(i)?.Equals(opcCounterSteer?.ClientHandle) ?? false))
-                //{
-                //    if (itemValue == 1 || itemValue == 2)
-                //    {
-                //        var steerAngleForm = Application.OpenForms.OfType<frmSteerAngle>().FirstOrDefault();
-                //        if (steerAngleForm == null) // Chỉ mở nếu chưa có
-                //        {
-                //            this.BeginInvoke(new Action(() => OpenNewForm(new frmSteerAngle(this.serialNumber))));
-                //        }
-                //    }
-                //}
-                //if ((ClientHandles.GetValue(i)?.Equals(opcPos1?.ClientHandle) ?? false))
-                //{
-                //    if (cbPos1.BackColor != (itemValue == 1 ? Color.Green : SystemColors.Control))
-                //    {
-                //        this.BeginInvoke(new Action(() =>
-                //        {
-                //            cbPos1.BackColor = itemValue == 1 ? Color.Green : SystemColors.Control;
-                //        }));
-                //    }
-                //}
-            }
-        }
+                    catch
+                    {
+                        // Bỏ qua lỗi
+                    }
 
+<<<<<<< HEAD
+=======
+                    await Task.Delay(100, token);
+                }
+            }, token);
+        }
+>>>>>>> SenAIS_DH
         private List<Form> openForms = new List<Form>();
         private void OpenNewForm(Form newForm)
         {
@@ -506,7 +543,8 @@ namespace SenAIS
         }
         private bool SaveDataToDB()
         {
-            vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
+            vehicleType = cbTypeCar.Text.Trim();
+            //vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
             inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty;
             frameNumber = txtEngineNum.Text;
             serialNumber = txtVinNum.Text;
@@ -644,9 +682,23 @@ namespace SenAIS
 
                 if (vehicleData != null)
                 {
-                    // Lấy dữ liệu từ SampleVin
-                    txtEngineNum.Text = vehicleData["SampleEngine"].ToString();
-                    cbTypeCar.SelectedValue = vehicleData["VehicleType"].ToString();
+                    // Lấy dữ liệu từ DB
+                    string sampleEngine = vehicleData["SampleEngine"].ToString().Trim();
+                    string vehicleTypeFromDb = vehicleData["VehicleType"].ToString().Trim();
+
+                    // Gán EngineNum
+                    txtEngineNum.Text = sampleEngine;
+
+                    // Gán VehicleType vào ComboBox nếu tìm thấy chính xác
+                    int index = cbTypeCar.FindStringExact(vehicleTypeFromDb);
+                    if (index >= 0)
+                    {
+                        cbTypeCar.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        cbTypeCar.SelectedIndex = -1;
+                    }
                 }
                 else
                 {
@@ -796,7 +848,9 @@ namespace SenAIS
             var vehicleInfo = sqlHelper.GetVehicleDetails(serialNumber);
             if (vehicleInfo != null)
             {
-                cbTypeCar.SelectedValue = vehicleInfo["VehicleType"]?.ToString();
+                string vehicleTypeFromDb = vehicleInfo["VehicleType"].ToString().Trim();
+                int index = cbTypeCar.FindStringExact(vehicleTypeFromDb);
+                cbTypeCar.SelectedIndex = index;
                 cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
                 txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
                 txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
@@ -881,6 +935,10 @@ namespace SenAIS
             }
             LoadAllVehicleInfo();
             LoadVehicleInfo();
+<<<<<<< HEAD
+=======
+            UpdateVehicleInfo(serialNumber);
+>>>>>>> SenAIS_DH
             StartListeningForVehicleInfo();
             string configStation = ConfigurationManager.AppSettings["StationType"];
 
