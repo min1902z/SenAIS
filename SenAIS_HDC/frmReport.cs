@@ -1518,42 +1518,42 @@ namespace SenAIS
                 {
                     TestTypeCode = "DIESELOPACITY",
                     TestDtlCode = "RPMMIN_1",
-                    MeasureValue = $"{minspeed1.ToString("F0")} rpm",
+                    MeasureValue = $"{minspeed1.ToString("F0")}",
                     TestDtlResult = "0"
                 });
                 AddIfEnabled("DieselMMS", new
                 {
                     TestTypeCode = "DIESELOPACITY",
                     TestDtlCode = "RPMMIN_2",
-                    MeasureValue = $"{minspeed2.ToString("F0")} rpm",
+                    MeasureValue = $"{minspeed2.ToString("F0")}",
                     TestDtlResult = "0"
                 });
                 AddIfEnabled("DieselMMS", new
                 {
                     TestTypeCode = "DIESELOPACITY",
                     TestDtlCode = "RPMMIN_3",
-                    MeasureValue = $"{minspeed3.ToString("F0")} rpm",
+                    MeasureValue = $"{minspeed3.ToString("F0")}",
                     TestDtlResult = "0"
                 });
                 AddIfEnabled("DieselMMS", new
                 {
                     TestTypeCode = "DIESELOPACITY",
                     TestDtlCode = "RPMMAX_1",
-                    MeasureValue = $"{maxspeed1.ToString("F0")} rpm",
+                    MeasureValue = $"{maxspeed1.ToString("F0")}",
                     TestDtlResult = "0"
                 });
                 AddIfEnabled("DieselMMS", new
                 {
                     TestTypeCode = "DIESELOPACITY",
                     TestDtlCode = "RPMMAX_2",
-                    MeasureValue = $"{maxspeed2.ToString("F0")} rpm",
+                    MeasureValue = $"{maxspeed2.ToString("F0")}",
                     TestDtlResult = "0"
                 });
                 AddIfEnabled("DieselMMS", new
                 {
                     TestTypeCode = "DIESELOPACITY",
                     TestDtlCode = "RPMMAX_3",
-                    MeasureValue = $"{maxspeed3.ToString("F0")} rpm",
+                    MeasureValue = $"{maxspeed3.ToString("F0")}",
                     TestDtlResult = "0"
                 });
                 AddIfEnabled("DieselMMS", new
