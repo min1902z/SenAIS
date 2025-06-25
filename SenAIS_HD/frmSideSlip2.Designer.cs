@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSideSlip2));
             this.SideSlipPanel = new System.Windows.Forms.Panel();
+            this.btnPre = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.lbStandard = new System.Windows.Forms.Label();
             this.lbStandardTitle = new System.Windows.Forms.Label();
             this.lbVinNumber = new System.Windows.Forms.Label();
@@ -37,8 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbSideSlip = new System.Windows.Forms.Label();
             this.lbSideSlipTitle = new System.Windows.Forms.Label();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPre = new System.Windows.Forms.Button();
             this.SideSlipPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,40 @@
             this.SideSlipPanel.Name = "SideSlipPanel";
             this.SideSlipPanel.Size = new System.Drawing.Size(1284, 749);
             this.SideSlipPanel.TabIndex = 1;
+            // 
+            // btnPre
+            // 
+            this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPre.AutoSize = true;
+            this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPre.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPre.ForeColor = System.Drawing.Color.Blue;
+            this.btnPre.Location = new System.Drawing.Point(11, 684);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPre.Name = "btnPre";
+            this.btnPre.Size = new System.Drawing.Size(209, 53);
+            this.btnPre.TabIndex = 58;
+            this.btnPre.Text = "Trượt Ngang";
+            this.btnPre.UseVisualStyleBackColor = false;
+            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.AutoSize = true;
+            this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.ForeColor = System.Drawing.Color.Blue;
+            this.btnNext.Location = new System.Drawing.Point(1108, 684);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(165, 53);
+            this.btnNext.TabIndex = 57;
+            this.btnNext.Text = "Trang chủ";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // lbStandard
             // 
@@ -118,7 +152,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(806, 629);
+            this.label2.Location = new System.Drawing.Point(805, 623);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(299, 117);
@@ -154,40 +188,6 @@
             this.lbSideSlipTitle.TabIndex = 10;
             this.lbSideSlipTitle.Text = "TRƯỢT NGANG SAU";
             this.lbSideSlipTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.AutoSize = true;
-            this.btnNext.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.ForeColor = System.Drawing.Color.Blue;
-            this.btnNext.Location = new System.Drawing.Point(1108, 684);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(165, 53);
-            this.btnNext.TabIndex = 57;
-            this.btnNext.Text = "Trang chủ";
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnPre
-            // 
-            this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPre.AutoSize = true;
-            this.btnPre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPre.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPre.ForeColor = System.Drawing.Color.Blue;
-            this.btnPre.Location = new System.Drawing.Point(11, 684);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPre.Name = "btnPre";
-            this.btnPre.Size = new System.Drawing.Size(209, 53);
-            this.btnPre.TabIndex = 58;
-            this.btnPre.Text = "Trượt Ngang";
-            this.btnPre.UseVisualStyleBackColor = false;
-            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
             // frmSideSlip2
             // 

@@ -136,13 +136,10 @@
     <value>NoControl</value>
   </data>
   <data name="lbEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 146</value>
-  </data>
-  <data name="lbEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>46, 119</value>
   </data>
   <data name="lbEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1715, 153</value>
+    <value>1286, 124</value>
   </data>
   <data name="lbEnd.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
@@ -178,7 +175,10 @@
     <value>Calibri, 72pt, style=Bold</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1260, 778</value>
+    <value>945, 632</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 117</value>
@@ -211,7 +211,10 @@
     <value>Calibri, 48pt, style=Bold</value>
   </data>
   <data name="lbStandard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>795, 815</value>
+    <value>596, 662</value>
+  </data>
+  <data name="lbStandard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="lbStandard.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 78</value>
@@ -244,7 +247,10 @@
     <value>Calibri, 48pt, style=Bold</value>
   </data>
   <data name="lbStandardTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 815</value>
+    <value>214, 662</value>
+  </data>
+  <data name="lbStandardTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="lbStandardTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>361, 78</value>
@@ -274,10 +280,7 @@
     <value>Calibri, 80.25pt, style=Bold</value>
   </data>
   <data name="lbVinNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, -21</value>
-  </data>
-  <data name="lbVinNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>170, -17</value>
   </data>
   <data name="lbVinNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>334, 131</value>
@@ -362,13 +365,10 @@
     <value>False</value>
   </data>
   <data name="cbReady.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 14</value>
-  </data>
-  <data name="cbReady.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>9, 11</value>
   </data>
   <data name="cbReady.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 129</value>
+    <value>154, 105</value>
   </data>
   <data name="cbReady.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
@@ -398,13 +398,13 @@
     <value>Calibri, 20.25pt, style=Bold</value>
   </data>
   <data name="btnNextSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1635, 855</value>
+    <value>1226, 695</value>
   </data>
   <data name="btnNextSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="btnNextSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 55</value>
+    <value>135, 45</value>
   </data>
   <data name="btnNextSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -437,13 +437,13 @@
     <value>Calibri, 20.25pt, style=Bold</value>
   </data>
   <data name="btnPreSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 855</value>
+    <value>9, 695</value>
   </data>
   <data name="btnPreSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="btnPreSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 55</value>
+    <value>169, 45</value>
   </data>
   <data name="btnPreSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -470,13 +470,16 @@
     <value>Calibri, 300pt, style=Bold</value>
   </data>
   <data name="lbSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>65, 188</value>
+    <value>49, 153</value>
+  </data>
+  <data name="lbSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="lbSpeed.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="lbSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1709, 613</value>
+    <value>1282, 498</value>
   </data>
   <data name="lbSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -509,10 +512,13 @@
     <value>Calibri, 150pt, style=Bold</value>
   </data>
   <data name="lbTitleSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 281</value>
+    <value>21, 228</value>
+  </data>
+  <data name="lbTitleSpeed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="lbTitleSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1768, 388</value>
+    <value>1326, 315</value>
   </data>
   <data name="lbTitleSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -542,10 +548,10 @@
     <value>0, 0</value>
   </data>
   <data name="SpeedPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="SpeedPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1827, 922</value>
+    <value>1370, 749</value>
   </data>
   <data name="SpeedPanel.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -566,19 +572,19 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1827, 922</value>
+    <value>1370, 749</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1597, 797</value>
+    <value>1202, 655</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Tốc Độ</value>

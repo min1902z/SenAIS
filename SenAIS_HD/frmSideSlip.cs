@@ -46,7 +46,7 @@ namespace SenAIS
                     {
                         int checkStatus = (int)opcManager.GetOPCValue(opcSSCounter);
                         this.Invoke((Action)(() => UpdateUI(checkStatus))); // Cập nhật UI từ Thread chính
-
+                        
                         if (checkStatus == 2) // Chỉ lấy SideSlip khi counter == 2
                         {
                             UpdateSideSlip();

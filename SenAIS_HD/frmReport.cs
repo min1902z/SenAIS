@@ -98,7 +98,7 @@ namespace SenAIS
         {
             DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
             ClearTextBoxes();
-
+            
             if (vehicleDetails != null)
             {
                 txtSerialNum.Text = vehicleDetails["SerialNumber"].ToString();
@@ -1590,6 +1590,14 @@ namespace SenAIS
                     TestDtlCode = "DIESELOPACITY_L",
                     MeasureValue = $"≤ {maxHSU.ToString("F2")}",
                     TestDtlResult = hsuResult
+                });
+                AddIfEnabled("DieselMMS", new
+                {
+                    TestTypeCode = "EXHAUSTGA",
+                    TestDtlCode = "EXHAUSTGA_CO",
+                    MeasureValue = (double?)null,
+                    LimitValue = (double?)null,
+                    TestDtlResult = (string)null
                 });
             }
 
