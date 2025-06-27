@@ -1632,7 +1632,7 @@
             <Top>2.85799in</Top>
             <Left>4.0944in</Left>
             <Height>0.25in</Height>
-            <Width>0.97396in</Width>
+            <Width>1.02952in</Width>
             <ZIndex>55</ZIndex>
             <Style>
               <Border>
@@ -1884,7 +1884,7 @@
             <Top>2.85799in</Top>
             <Left>5.97808in</Left>
             <Height>0.25in</Height>
-            <Width>0.95658in</Width>
+            <Width>0.99443in</Width>
             <ZIndex>63</ZIndex>
             <Style>
               <Border>
@@ -1903,6 +1903,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value>≥ </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
                     <Value>=Fields!MinFrontBrake.Value</Value>
                     <Style />
                   </TextRun>
@@ -1916,7 +1920,7 @@
             <Top>3.17743in</Top>
             <Left>5.96975in</Left>
             <Height>0.25in</Height>
-            <Width>0.95658in</Width>
+            <Width>0.99331in</Width>
             <ZIndex>64</ZIndex>
             <Style>
               <Border>
@@ -1935,6 +1939,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value>≥ </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
                     <Value>=Fields!MinRearBrake.Value</Value>
                     <Style />
                   </TextRun>
@@ -1948,7 +1956,7 @@
             <Top>3.49688in</Top>
             <Left>5.96975in</Left>
             <Height>0.25in</Height>
-            <Width>0.95658in</Width>
+            <Width>0.99331in</Width>
             <ZIndex>65</ZIndex>
             <Style>
               <Border>
@@ -1967,6 +1975,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value>≥ </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
                     <Value>=Fields!MinHandBrake.Value</Value>
                     <Style />
                   </TextRun>
@@ -1980,7 +1992,7 @@
             <Top>3.81632in</Top>
             <Left>5.96975in</Left>
             <Height>0.25in</Height>
-            <Width>0.95658in</Width>
+            <Width>0.99331in</Width>
             <ZIndex>66</ZIndex>
             <Style>
               <Border>
@@ -2614,6 +2626,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value>≤ </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
                     <Value>=Fields!MaxHC.Value</Value>
                     <Style />
                   </TextRun>
@@ -2771,6 +2787,10 @@
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
+                  <TextRun>
+                    <Value>≤ </Value>
+                    <Style />
+                  </TextRun>
                   <TextRun>
                     <Value>=Fields!MaxCO.Value</Value>
                     <Style />
@@ -3536,6 +3556,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value>≤ </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
                     <Value>=Fields!MaxHSU.Value</Value>
                     <Style />
                   </TextRun>
@@ -4023,9 +4047,17 @@
                     <Value>=Fields!LHLIntensity.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RHLIntensity.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4033,7 +4065,7 @@
             <Top>8.07326in</Top>
             <Left>1.53566in</Left>
             <Height>0.25in</Height>
-            <Width>0.42906in</Width>
+            <Width>0.9742in</Width>
             <ZIndex>134</ZIndex>
             <Style>
               <Border>
@@ -4055,9 +4087,17 @@
                     <Value>=Fields!LHLVertical.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RHLVertical.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4065,7 +4105,7 @@
             <Top>8.34757in</Top>
             <Left>1.53566in</Left>
             <Height>0.25in</Height>
-            <Width>0.40215in</Width>
+            <Width>0.9742in</Width>
             <ZIndex>135</ZIndex>
             <Style>
               <Border>
@@ -4117,9 +4157,13 @@
                     <Value>=Fields!MinHLIntensity.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> - 430</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4149,17 +4193,25 @@
                     <Value>=Fields!MinDiffVertiHB.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> - </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!MaxDiffVertiHB.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.33924in</Top>
-            <Left>2.53764in</Left>
+            <Left>2.5505in</Left>
             <Height>0.25in</Height>
-            <Width>0.41093in</Width>
+            <Width>0.90501in</Width>
             <ZIndex>138</ZIndex>
             <Style>
               <Border>
@@ -4211,9 +4263,17 @@
                     <Value>=Fields!LLBIntensity.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RLBIntensity.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4221,7 +4281,7 @@
             <Top>8.08368in</Top>
             <Left>3.4694in</Left>
             <Height>0.25in</Height>
-            <Width>0.49999in</Width>
+            <Width>1.02796in</Width>
             <ZIndex>140</ZIndex>
             <Style>
               <Border>
@@ -4243,9 +4303,17 @@
                     <Value>=Fields!LLBVertical.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RLBVertical.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4253,7 +4321,7 @@
             <Top>8.34757in</Top>
             <Left>3.4694in</Left>
             <Height>0.25in</Height>
-            <Width>0.49826in</Width>
+            <Width>1.02796in</Width>
             <ZIndex>141</ZIndex>
             <Style>
               <Border>
@@ -4307,7 +4375,7 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4367,9 +4435,17 @@
                     <Value>=Fields!LHLHorizontal.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RHLHorizontal.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4377,7 +4453,7 @@
             <Top>8.62534in</Top>
             <Left>1.53566in</Left>
             <Height>0.25in</Height>
-            <Width>0.40215in</Width>
+            <Width>0.9742in</Width>
             <ZIndex>145</ZIndex>
             <Style>
               <Border>
@@ -4399,9 +4475,17 @@
                     <Value>=Fields!MinDiffHoriHB.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> - </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!MaxDiffHoriHB.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4409,7 +4493,7 @@
             <Top>8.61701in</Top>
             <Left>2.53764in</Left>
             <Height>0.25in</Height>
-            <Width>0.41093in</Width>
+            <Width>0.90501in</Width>
             <ZIndex>146</ZIndex>
             <Style>
               <Border>
@@ -4431,9 +4515,17 @@
                     <Value>=Fields!LLBHorizontal.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RLBHorizontal.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -4441,7 +4533,7 @@
             <Top>8.62534in</Top>
             <Left>3.4694in</Left>
             <Height>0.25in</Height>
-            <Width>0.49826in</Width>
+            <Width>1.02796in</Width>
             <ZIndex>147</ZIndex>
             <Style>
               <Border>
@@ -4465,378 +4557,6 @@
               </Border>
             </Style>
           </Line>
-          <Textbox Name="Textbox528">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RHLIntensity.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.07326in</Top>
-            <Left>2.16351in</Left>
-            <Height>0.25in</Height>
-            <Width>0.36545in</Width>
-            <ZIndex>149</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox529">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RHLVertical.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.34757in</Top>
-            <Left>2.16351in</Left>
-            <Height>0.25in</Height>
-            <Width>0.33713in</Width>
-            <ZIndex>150</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox530">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RHLHorizontal.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62534in</Top>
-            <Left>2.16351in</Left>
-            <Height>0.25in</Height>
-            <Width>0.33713in</Width>
-            <ZIndex>151</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox531">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.06979in</Top>
-            <Left>1.99337in</Left>
-            <Height>0.25in</Height>
-            <Width>0.15103in</Width>
-            <ZIndex>152</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox532">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.3441in</Top>
-            <Left>1.99337in</Left>
-            <Height>0.25in</Height>
-            <Width>0.15103in</Width>
-            <ZIndex>153</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox533">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62187in</Top>
-            <Left>1.99337in</Left>
-            <Height>0.25in</Height>
-            <Width>0.15103in</Width>
-            <ZIndex>154</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox534">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.07326in</Top>
-            <Left>3.99717in</Left>
-            <Height>0.25in</Height>
-            <Width>0.11979in</Width>
-            <ZIndex>155</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox535">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RLBIntensity.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.07673in</Top>
-            <Left>4.10863in</Left>
-            <Height>0.25in</Height>
-            <Width>0.42891in</Width>
-            <ZIndex>156</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox536">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RLBVertical.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.35104in</Top>
-            <Left>4.10863in</Left>
-            <Height>0.25in</Height>
-            <Width>0.42207in</Width>
-            <ZIndex>157</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox537">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.34757in</Top>
-            <Left>3.99717in</Left>
-            <Height>0.25in</Height>
-            <Width>0.11979in</Width>
-            <ZIndex>158</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox538">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62534in</Top>
-            <Left>3.99717in</Left>
-            <Height>0.25in</Height>
-            <Width>0.11979in</Width>
-            <ZIndex>159</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox539">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RLBHorizontal.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62881in</Top>
-            <Left>4.11696in</Left>
-            <Height>0.25in</Height>
-            <Width>0.42207in</Width>
-            <ZIndex>160</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox540">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -4858,7 +4578,7 @@
             <Left>0.12392in</Left>
             <Height>0.25in</Height>
             <Width>1.60132in</Width>
-            <ZIndex>161</ZIndex>
+            <ZIndex>149</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4888,7 +4608,7 @@
             <Left>1.74024in</Left>
             <Height>0.25in</Height>
             <Width>0.38541in</Width>
-            <ZIndex>162</ZIndex>
+            <ZIndex>150</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4922,7 +4642,7 @@
             <Left>2.19858in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>163</ZIndex>
+            <ZIndex>151</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4952,7 +4672,7 @@
             <Left>2.80933in</Left>
             <Height>0.25in</Height>
             <Width>0.78333in</Width>
-            <ZIndex>164</ZIndex>
+            <ZIndex>152</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4985,7 +4705,7 @@
             <Left>3.68817in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>165</ZIndex>
+            <ZIndex>153</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5015,7 +4735,7 @@
             <Left>0.12392in</Left>
             <Height>0.21875in</Height>
             <Width>1.16666in</Width>
-            <ZIndex>166</ZIndex>
+            <ZIndex>154</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5045,7 +4765,7 @@
             <Left>1.79666in</Left>
             <Height>0.21875in</Height>
             <Width>1.26823in</Width>
-            <ZIndex>167</ZIndex>
+            <ZIndex>155</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5077,7 +4797,7 @@
             <Left>0.12392in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>168</ZIndex>
+            <ZIndex>156</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5109,7 +4829,7 @@
             <Left>2.04667in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>169</ZIndex>
+            <ZIndex>157</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5141,7 +4861,7 @@
             <Left>4.34092in</Left>
             <Height>0.25in</Height>
             <Width>1.60132in</Width>
-            <ZIndex>170</ZIndex>
+            <ZIndex>158</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5171,7 +4891,7 @@
             <Left>5.95724in</Left>
             <Height>0.25in</Height>
             <Width>0.38541in</Width>
-            <ZIndex>171</ZIndex>
+            <ZIndex>159</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5204,7 +4924,7 @@
             <Left>6.42599in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>172</ZIndex>
+            <ZIndex>160</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5234,7 +4954,7 @@
             <Left>7.02633in</Left>
             <Height>0.25in</Height>
             <Width>0.78333in</Width>
-            <ZIndex>173</ZIndex>
+            <ZIndex>161</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5267,7 +4987,7 @@
             <Left>7.91558in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>174</ZIndex>
+            <ZIndex>162</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5297,7 +5017,7 @@
             <Left>4.34092in</Left>
             <Height>0.25in</Height>
             <Width>1.15513in</Width>
-            <ZIndex>175</ZIndex>
+            <ZIndex>163</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5327,7 +5047,7 @@
             <Left>6.01366in</Left>
             <Height>0.25in</Height>
             <Width>1.5113in</Width>
-            <ZIndex>176</ZIndex>
+            <ZIndex>164</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5359,7 +5079,7 @@
             <Left>4.34092in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>177</ZIndex>
+            <ZIndex>165</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5391,7 +5111,7 @@
             <Left>6.01367in</Left>
             <Height>0.25in</Height>
             <Width>0.48657in</Width>
-            <ZIndex>178</ZIndex>
+            <ZIndex>166</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5407,7 +5127,7 @@
             <Left>4.17909in</Left>
             <Height>0.7722in</Height>
             <Width>0in</Width>
-            <ZIndex>179</ZIndex>
+            <ZIndex>167</ZIndex>
             <Style>
               <Border>
                 <Style>Dotted</Style>
@@ -5419,7 +5139,7 @@
             <Left>0.02099in</Left>
             <Height>0in</Height>
             <Width>8.40501in</Width>
-            <ZIndex>180</ZIndex>
+            <ZIndex>168</ZIndex>
             <Style>
               <Border>
                 <Style>Dotted</Style>
@@ -5448,7 +5168,7 @@
             <Left>0.12454in</Left>
             <Height>0.25in</Height>
             <Width>2.07465in</Width>
-            <ZIndex>181</ZIndex>
+            <ZIndex>169</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5478,7 +5198,7 @@
             <Left>2.19919in</Left>
             <Height>0.25in</Height>
             <Width>0.38541in</Width>
-            <ZIndex>182</ZIndex>
+            <ZIndex>170</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5511,7 +5231,7 @@
             <Left>2.66794in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>183</ZIndex>
+            <ZIndex>171</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5541,7 +5261,7 @@
             <Left>3.01828in</Left>
             <Height>0.25in</Height>
             <Width>0.78333in</Width>
-            <ZIndex>184</ZIndex>
+            <ZIndex>172</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5574,7 +5294,7 @@
             <Left>3.90753in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>185</ZIndex>
+            <ZIndex>173</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5613,7 +5333,7 @@
             <Left>6.94683in</Left>
             <Height>0.38542in</Height>
             <Width>1.36458in</Width>
-            <ZIndex>186</ZIndex>
+            <ZIndex>174</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5643,7 +5363,7 @@
             <Left>1.00934in</Left>
             <Height>0.25in</Height>
             <Width>0.28124in</Width>
-            <ZIndex>187</ZIndex>
+            <ZIndex>175</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5673,7 +5393,7 @@
             <Left>5.22286in</Left>
             <Height>0.25in</Height>
             <Width>0.28124in</Width>
-            <ZIndex>188</ZIndex>
+            <ZIndex>176</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5700,10 +5420,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.82326in</Top>
-            <Left>7.39151in</Left>
+            <Left>7.41929in</Left>
             <Height>0.25in</Height>
-            <Width>0.9618in</Width>
-            <ZIndex>189</ZIndex>
+            <Width>0.98572in</Width>
+            <ZIndex>177</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5724,9 +5444,17 @@
                     <Value>=Fields!LHBHeight.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RHBHeight.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -5734,132 +5462,8 @@
             <Top>8.35799in</Top>
             <Left>7.40219in</Left>
             <Height>0.25in</Height>
-            <Width>0.40747in</Width>
-            <ZIndex>190</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox570">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!MaxDiffVertiHB.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.33924in</Top>
-            <Left>3.09086in</Left>
-            <Height>0.25in</Height>
-            <Width>0.37921in</Width>
-            <ZIndex>191</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox571">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!MaxDiffHoriHB.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.61839in</Top>
-            <Left>3.10475in</Left>
-            <Height>0.25in</Height>
-            <Width>0.37921in</Width>
-            <ZIndex>192</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox572">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>-</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.35104in</Top>
-            <Left>2.99024in</Left>
-            <Height>0.25in</Height>
-            <Width>0.10062in</Width>
-            <ZIndex>193</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox573">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>-</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62534in</Top>
-            <Left>2.97635in</Left>
-            <Height>0.25in</Height>
-            <Width>0.08673in</Width>
-            <ZIndex>194</ZIndex>
+            <Width>1.00282in</Width>
+            <ZIndex>178</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5880,9 +5484,17 @@
                     <Value>=Fields!MinDiffVertiLB.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> - </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!MaxDiffVertiLB.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -5890,8 +5502,8 @@
             <Top>8.3441in</Top>
             <Left>4.5668in</Left>
             <Height>0.25in</Height>
-            <Width>0.37043in</Width>
-            <ZIndex>195</ZIndex>
+            <Width>0.92925in</Width>
+            <ZIndex>179</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5912,9 +5524,17 @@
                     <Value>=Fields!MinDiffHoriLB.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> - </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!MaxDiffHoriLB.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -5922,132 +5542,8 @@
             <Top>8.62187in</Top>
             <Left>4.5668in</Left>
             <Height>0.25in</Height>
-            <Width>0.37043in</Width>
-            <ZIndex>196</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox576">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!MaxDiffVertiLB.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.35799in</Top>
-            <Left>5.10214in</Left>
-            <Height>0.25in</Height>
-            <Width>0.39391in</Width>
-            <ZIndex>197</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox577">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!MaxDiffHoriLB.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.63576in</Top>
-            <Left>5.10214in</Left>
-            <Height>0.25in</Height>
-            <Width>0.39391in</Width>
-            <ZIndex>198</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox578">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>-</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.34757in</Top>
-            <Left>4.94976in</Left>
-            <Height>0.25in</Height>
-            <Width>0.13849in</Width>
-            <ZIndex>199</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox579">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>-</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62187in</Top>
-            <Left>4.93587in</Left>
-            <Height>0.25in</Height>
-            <Width>0.13849in</Width>
-            <ZIndex>200</ZIndex>
+            <Width>0.92925in</Width>
+            <ZIndex>180</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6077,7 +5573,7 @@
             <Left>6.57654in</Left>
             <Height>0.26041in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>201</ZIndex>
+            <ZIndex>181</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6109,7 +5605,7 @@
             <Left>6.78626in</Left>
             <Height>0.25in</Height>
             <Width>0.77515in</Width>
-            <ZIndex>202</ZIndex>
+            <ZIndex>182</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6139,7 +5635,7 @@
             <Left>6.48738in</Left>
             <Height>0.25in</Height>
             <Width>0.14029in</Width>
-            <ZIndex>203</ZIndex>
+            <ZIndex>183</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6171,7 +5667,7 @@
             <Left>6.69711in</Left>
             <Height>0.25in</Height>
             <Width>0.57785in</Width>
-            <ZIndex>204</ZIndex>
+            <ZIndex>184</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6204,7 +5700,7 @@
             <Left>4.37104in</Left>
             <Height>0.25in</Height>
             <Width>2.14735in</Width>
-            <ZIndex>205</ZIndex>
+            <ZIndex>185</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6236,7 +5732,7 @@
             <Left>4.21592in</Left>
             <Height>0.23611in</Height>
             <Width>2.47263in</Width>
-            <ZIndex>206</ZIndex>
+            <ZIndex>186</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6252,7 +5748,7 @@
             <Left>4.41483in</Left>
             <Height>1.20486in</Height>
             <Width>0in</Width>
-            <ZIndex>207</ZIndex>
+            <ZIndex>187</ZIndex>
             <Style>
               <Border>
                 <Style>Dotted</Style>
@@ -6280,7 +5776,7 @@
             <Left>0.13433in</Left>
             <Height>0.25in</Height>
             <Width>1.64931in</Width>
-            <ZIndex>208</ZIndex>
+            <ZIndex>188</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6310,7 +5806,7 @@
             <Left>0.13433in</Left>
             <Height>0.25in</Height>
             <Width>1.61458in</Width>
-            <ZIndex>209</ZIndex>
+            <ZIndex>189</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6340,7 +5836,7 @@
             <Left>0.13433in</Left>
             <Height>0.25in</Height>
             <Width>1.61458in</Width>
-            <ZIndex>210</ZIndex>
+            <ZIndex>190</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6370,7 +5866,7 @@
             <Left>1.96865in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>211</ZIndex>
+            <ZIndex>191</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6402,7 +5898,7 @@
             <Left>1.97253in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>212</ZIndex>
+            <ZIndex>192</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6434,7 +5930,7 @@
             <Left>1.97253in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>213</ZIndex>
+            <ZIndex>193</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6464,7 +5960,7 @@
             <Left>2.96691in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>214</ZIndex>
+            <ZIndex>194</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6496,7 +5992,7 @@
             <Left>2.96246in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>215</ZIndex>
+            <ZIndex>195</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6528,7 +6024,7 @@
             <Left>2.96246in</Left>
             <Height>0.25in</Height>
             <Width>0.85416in</Width>
-            <ZIndex>216</ZIndex>
+            <ZIndex>196</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6558,7 +6054,7 @@
             <Left>3.93566in</Left>
             <Height>0.25in</Height>
             <Width>1.1327in</Width>
-            <ZIndex>217</ZIndex>
+            <ZIndex>197</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6590,7 +6086,7 @@
             <Left>3.93121in</Left>
             <Height>0.25in</Height>
             <Width>0.43872in</Width>
-            <ZIndex>218</ZIndex>
+            <ZIndex>198</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6622,7 +6118,7 @@
             <Left>3.93121in</Left>
             <Height>0.25in</Height>
             <Width>0.45309in</Width>
-            <ZIndex>219</ZIndex>
+            <ZIndex>199</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6652,7 +6148,7 @@
             <Left>5.11064in</Left>
             <Height>0.25in</Height>
             <Width>0.38541in</Width>
-            <ZIndex>220</ZIndex>
+            <ZIndex>200</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6685,7 +6181,7 @@
             <Left>5.58981in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>221</ZIndex>
+            <ZIndex>201</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -6715,7 +6211,7 @@
             <Left>6.17973in</Left>
             <Height>0.25in</Height>
             <Width>0.78333in</Width>
-            <ZIndex>222</ZIndex>
+            <ZIndex>202</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6748,7 +6244,7 @@
             <Left>7.08398in</Left>
             <Height>0.20625in</Height>
             <Width>0.2174in</Width>
-            <ZIndex>223</ZIndex>
+            <ZIndex>203</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -6780,7 +6276,7 @@
             <Left>6.50239in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
-            <ZIndex>224</ZIndex>
+            <ZIndex>204</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6812,7 +6308,7 @@
             <Left>7.35309in</Left>
             <Height>0.25in</Height>
             <Width>1.03733in</Width>
-            <ZIndex>225</ZIndex>
+            <ZIndex>205</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6844,7 +6340,7 @@
             <Left>6.5088in</Left>
             <Height>0.25in</Height>
             <Width>0.81116in</Width>
-            <ZIndex>226</ZIndex>
+            <ZIndex>206</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6876,7 +6372,7 @@
             <Left>7.35309in</Left>
             <Height>0.25in</Height>
             <Width>1.03733in</Width>
-            <ZIndex>227</ZIndex>
+            <ZIndex>207</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6908,7 +6404,7 @@
             <Left>0.11871in</Left>
             <Height>0.25in</Height>
             <Width>1.52396in</Width>
-            <ZIndex>228</ZIndex>
+            <ZIndex>208</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6940,7 +6436,7 @@
             <Left>4.46651in</Left>
             <Height>0.25in</Height>
             <Width>0.87192in</Width>
-            <ZIndex>229</ZIndex>
+            <ZIndex>209</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6972,7 +6468,7 @@
             <Left>4.95312in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>230</ZIndex>
+            <ZIndex>210</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7002,7 +6498,7 @@
             <Left>4.95312in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>231</ZIndex>
+            <ZIndex>211</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7032,7 +6528,7 @@
             <Left>4.21592in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>232</ZIndex>
+            <ZIndex>212</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7064,7 +6560,7 @@
             <Left>4.21592in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>233</ZIndex>
+            <ZIndex>213</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7101,7 +6597,7 @@
             <Left>3.4926in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>234</ZIndex>
+            <ZIndex>214</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7133,7 +6629,7 @@
             <Left>3.4926in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>235</ZIndex>
+            <ZIndex>215</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7170,7 +6666,7 @@
             <Left>2.78994in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>236</ZIndex>
+            <ZIndex>216</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7202,7 +6698,7 @@
             <Left>2.78994in</Left>
             <Height>0.25in</Height>
             <Width>0.67772in</Width>
-            <ZIndex>237</ZIndex>
+            <ZIndex>217</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7236,7 +6732,7 @@
             <Left>8.02063in</Left>
             <Height>0.25in</Height>
             <Width>0.29078in</Width>
-            <ZIndex>238</ZIndex>
+            <ZIndex>218</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7266,7 +6762,7 @@
             <Left>0.13433in</Left>
             <Height>0.25in</Height>
             <Width>1.92188in</Width>
-            <ZIndex>239</ZIndex>
+            <ZIndex>219</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7296,7 +6792,7 @@
             <Left>4.10058in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>240</ZIndex>
+            <ZIndex>220</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7326,7 +6822,7 @@
             <Left>4.10058in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>241</ZIndex>
+            <ZIndex>221</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7356,7 +6852,7 @@
             <Left>4.09062in</Left>
             <Height>0.25in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>242</ZIndex>
+            <ZIndex>222</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7386,7 +6882,7 @@
             <Left>1.79666in</Left>
             <Height>0.23263in</Height>
             <Width>0.16806in</Width>
-            <ZIndex>243</ZIndex>
+            <ZIndex>223</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7413,10 +6909,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>2.85799in</Top>
-            <Left>7.02807in</Left>
+            <Left>6.96765in</Left>
             <Height>0.25in</Height>
-            <Width>1.39793in</Width>
-            <ZIndex>244</ZIndex>
+            <Width>1.45835in</Width>
+            <ZIndex>224</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7448,7 +6944,7 @@
             <Left>7.15307in</Left>
             <Height>0.25in</Height>
             <Width>1.01755in</Width>
-            <ZIndex>245</ZIndex>
+            <ZIndex>225</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7480,7 +6976,7 @@
             <Left>7.15307in</Left>
             <Height>0.25in</Height>
             <Width>1.01755in</Width>
-            <ZIndex>246</ZIndex>
+            <ZIndex>226</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7512,7 +7008,7 @@
             <Left>7.15307in</Left>
             <Height>0.25in</Height>
             <Width>1.01755in</Width>
-            <ZIndex>247</ZIndex>
+            <ZIndex>227</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7544,7 +7040,7 @@
             <Left>4.3843in</Left>
             <Height>0.25in</Height>
             <Width>0.14198in</Width>
-            <ZIndex>248</ZIndex>
+            <ZIndex>228</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7576,7 +7072,7 @@
             <Left>4.3843in</Left>
             <Height>0.25in</Height>
             <Width>0.14198in</Width>
-            <ZIndex>249</ZIndex>
+            <ZIndex>229</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7608,7 +7104,7 @@
             <Left>4.53405in</Left>
             <Height>0.25in</Height>
             <Width>0.5642in</Width>
-            <ZIndex>250</ZIndex>
+            <ZIndex>230</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7640,7 +7136,7 @@
             <Left>4.53405in</Left>
             <Height>0.25in</Height>
             <Width>0.55031in</Width>
-            <ZIndex>251</ZIndex>
+            <ZIndex>231</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7669,72 +7165,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.08368in</Top>
-            <Left>7.39685in</Left>
+            <Left>7.40219in</Left>
             <Height>0.25in</Height>
-            <Width>0.99601in</Width>
-            <ZIndex>252</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox629">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.35799in</Top>
-            <Left>7.83075in</Left>
-            <Height>0.25in</Height>
-            <Width>0.11979in</Width>
-            <ZIndex>253</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox630">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RHBHeight.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.36146in</Top>
-            <Left>7.98687in</Left>
-            <Height>0.25in</Height>
-            <Width>0.4128in</Width>
-            <ZIndex>254</ZIndex>
+            <Width>0.99067in</Width>
+            <ZIndex>232</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7764,7 +7198,7 @@
             <Left>5.49523in</Left>
             <Height>0.25in</Height>
             <Width>1.05352in</Width>
-            <ZIndex>255</ZIndex>
+            <ZIndex>233</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7785,9 +7219,17 @@
                     <Value>=Fields!LFLIntensity.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RFLIntensity.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -7795,8 +7237,8 @@
             <Top>8.10937in</Top>
             <Left>5.56898in</Left>
             <Height>0.25in</Height>
-            <Width>0.43888in</Width>
-            <ZIndex>256</ZIndex>
+            <Width>0.97977in</Width>
+            <ZIndex>234</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7817,9 +7259,17 @@
                     <Value>=Fields!LFLVertical.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RFLVertical.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -7827,8 +7277,8 @@
             <Top>8.37326in</Top>
             <Left>5.56898in</Left>
             <Height>0.25in</Height>
-            <Width>0.41235in</Width>
-            <ZIndex>257</ZIndex>
+            <Width>0.97977in</Width>
+            <ZIndex>235</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7855,10 +7305,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>7.82326in</Top>
-            <Left>6.58508in</Left>
+            <Left>6.57675in</Left>
             <Height>0.25in</Height>
-            <Width>0.7392in</Width>
-            <ZIndex>258</ZIndex>
+            <Width>0.84254in</Width>
+            <ZIndex>236</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7889,16 +7339,16 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>8.10104in</Top>
-            <Left>6.58508in</Left>
+            <Left>6.56563in</Left>
             <Height>0.25in</Height>
-            <Width>0.76476in</Width>
-            <ZIndex>259</ZIndex>
+            <Width>0.83656in</Width>
+            <ZIndex>237</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7919,9 +7369,17 @@
                     <Value>=Fields!LFLHorizontal.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> / </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!RFLHorizontal.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -7929,194 +7387,8 @@
             <Top>8.65103in</Top>
             <Left>5.56898in</Left>
             <Height>0.25in</Height>
-            <Width>0.41235in</Width>
-            <ZIndex>260</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox636">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.09895in</Top>
-            <Left>6.023in</Left>
-            <Height>0.25in</Height>
-            <Width>0.10517in</Width>
-            <ZIndex>261</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox637">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RFLIntensity.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.10242in</Top>
-            <Left>6.13446in</Left>
-            <Height>0.25in</Height>
-            <Width>0.41429in</Width>
-            <ZIndex>262</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox638">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RFLVertical.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.37673in</Top>
-            <Left>6.13446in</Left>
-            <Height>0.25in</Height>
-            <Width>0.39506in</Width>
-            <ZIndex>263</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox639">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.37326in</Top>
-            <Left>6.023in</Left>
-            <Height>0.25in</Height>
-            <Width>0.10517in</Width>
-            <ZIndex>264</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox640">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>/</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.65103in</Top>
-            <Left>6.023in</Left>
-            <Height>0.25in</Height>
-            <Width>0.10517in</Width>
-            <ZIndex>265</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox641">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!RFLHorizontal.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.6545in</Top>
-            <Left>6.14279in</Left>
-            <Height>0.25in</Height>
-            <Width>0.39506in</Width>
-            <ZIndex>266</ZIndex>
+            <Width>0.97977in</Width>
+            <ZIndex>238</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8134,20 +7406,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!MinDiffVertiFL.Value</Value>
-                    <Style />
-                  </TextRun>
-                  <TextRun>
-                    <Value> - </Value>
-                    <Style />
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!MaxDiffVertiFL.Value</Value>
+                    <Value>=Fields!DiffVertiFLRange.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -8156,7 +7420,7 @@
             <Left>6.57675in</Left>
             <Height>0.25in</Height>
             <Width>0.78378in</Width>
-            <ZIndex>267</ZIndex>
+            <ZIndex>239</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8174,20 +7438,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!MinDiffHoriFL.Value</Value>
-                    <Style />
-                  </TextRun>
-                  <TextRun>
-                    <Value> - </Value>
-                    <Style />
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!MaxDiffHoriFL.Value</Value>
+                    <Value>=Fields!DiffHoriFLRange.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -8196,7 +7452,7 @@
             <Left>6.56563in</Left>
             <Height>0.25in</Height>
             <Width>0.81733in</Width>
-            <ZIndex>268</ZIndex>
+            <ZIndex>240</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8217,9 +7473,17 @@
                     <Value>=Fields!MinLightHeight.Value</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value> - </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!MaxLightHeight.Value</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
@@ -8227,70 +7491,8 @@
             <Top>8.61839in</Top>
             <Left>7.39685in</Left>
             <Height>0.25in</Height>
-            <Width>0.40747in</Width>
-            <ZIndex>269</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox649">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>-</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.61839in</Top>
-            <Left>7.82541in</Left>
-            <Height>0.25in</Height>
-            <Width>0.11979in</Width>
-            <ZIndex>270</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox650">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Fields!MaxLightHeight.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>8.62187in</Top>
-            <Left>7.98687in</Left>
-            <Height>0.25in</Height>
-            <Width>0.4128in</Width>
-            <ZIndex>271</ZIndex>
+            <Width>1.02915in</Width>
+            <ZIndex>241</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8334,7 +7536,7 @@
             <Left>4.78645in</Left>
             <Height>0.25in</Height>
             <Width>0.99993in</Width>
-            <ZIndex>272</ZIndex>
+            <ZIndex>242</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -8910,6 +8112,14 @@
         </Field>
         <Field Name="ReportTitle">
           <DataField>ReportTitle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DiffVertiFLRange">
+          <DataField>DiffVertiFLRange</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DiffHoriFLRange">
+          <DataField>DiffHoriFLRange</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

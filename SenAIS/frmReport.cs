@@ -534,6 +534,8 @@ namespace SenAIS
             reportDataTable.Columns.Add("RFLHorizontal", typeof(decimal));
             reportDataTable.Columns.Add("MinDiffHoriFL", typeof(decimal));
             reportDataTable.Columns.Add("MaxDiffHoriFL", typeof(decimal));
+            reportDataTable.Columns.Add("DiffVertiFLRange", typeof(string));
+            reportDataTable.Columns.Add("DiffHoriFLRange", typeof(string));
 
             reportDataTable.Columns.Add("MinSpeed1", typeof(decimal));
             reportDataTable.Columns.Add("MaxSpeed1", typeof(decimal));
@@ -616,6 +618,12 @@ namespace SenAIS
                 decimal hsu2 = vehicleDetails["HSU2"] != DBNull.Value ? vehicleDetails.Field<decimal>("HSU2") : 0;
                 decimal hsu3 = vehicleDetails["HSU3"] != DBNull.Value ? vehicleDetails.Field<decimal>("HSU3") : 0;
                 decimal avgHSU = (hsu1 + hsu2 + hsu3) / 3;
+
+                decimal? minDiffVertiFL = TryParseDecimal(standard["MinDiffVertiFL"]);
+                decimal? maxDiffVertiFL = TryParseDecimal(standard["MaxDiffVertiFL"]);
+
+                decimal? minDiffHoriFL = TryParseDecimal(standard["MinDiffHoriFL"]);
+                decimal? maxDiffHoriFL = TryParseDecimal(standard["MaxDiffHoriFL"]);
 
                 // Tính toán kết quả cho các phần
                 bool sideSlipResult = CheckStandard(ConvertToDecimal(vehicleDetails["SideSlip"]),
@@ -809,10 +817,10 @@ namespace SenAIS
                 reportRow["MinDiffHoriLB"] = ConvertToDecimal(standard["MinDiffHoriLB"]).ToString("F1");
                 reportRow["MaxDiffHoriLB"] = ConvertToDecimal(standard["MaxDiffHoriLB"]).ToString("F1");
 
-                reportRow["LFLIntensity"] = ConvertToDecimal(vehicleDetails["LFLIntensity"]).ToString("F0");
-                reportRow["RFLIntensity"] = ConvertToDecimal(vehicleDetails["RFLIntensity"]).ToString("F0");
-                reportRow["MinFLIntensity"] = ConvertToDecimal(standard["MinFLIntensity"]).ToString("F0");
-                reportRow["MaxFLIntensity"] = ConvertToDecimal(standard["MaxFLIntensity"]).ToString("F0");
+                reportRow["LFLIntensity"] = ConvertToDecimal(vehicleDetails["LFLIntensity"]).ToString("F1");
+                reportRow["RFLIntensity"] = ConvertToDecimal(vehicleDetails["RFLIntensity"]).ToString("F1");
+                reportRow["MinFLIntensity"] = ConvertToDecimal(standard["MinFLIntensity"]).ToString("F3");
+                reportRow["MaxFLIntensity"] = ConvertToDecimal(standard["MaxFLIntensity"]).ToString("F1");
                 reportRow["LFLVertical"] = ConvertToDecimal(vehicleDetails["LFLVertical"]).ToString("F1");
                 reportRow["RFLVertical"] = ConvertToDecimal(vehicleDetails["RFLVertical"]).ToString("F1");
                 reportRow["MinDiffVertiFL"] = ConvertToDecimal(standard["MinDiffVertiFL"]).ToString("F1");
@@ -821,6 +829,8 @@ namespace SenAIS
                 reportRow["RFLHorizontal"] = ConvertToDecimal(vehicleDetails["RFLHorizontal"]).ToString("F1");
                 reportRow["MinDiffHoriFL"] = ConvertToDecimal(standard["MinDiffHoriFL"]).ToString("F1");
                 reportRow["MaxDiffHoriFL"] = ConvertToDecimal(standard["MaxDiffHoriFL"]).ToString("F1");
+                reportRow["DiffVertiFLRange"] = FormatRange(minDiffVertiFL, maxDiffVertiFL, "F1");
+                reportRow["DiffHoriFLRange"] = FormatRange(minDiffHoriFL, maxDiffHoriFL, "F1");
 
                 reportRow["MinSpeed1"] = ConvertToDecimal(vehicleDetails["MinSpeed1"]).ToString("F1");
                 reportRow["MaxSpeed1"] = ConvertToDecimal(vehicleDetails["MaxSpeed1"]).ToString("F1");
@@ -861,6 +871,23 @@ namespace SenAIS
             }
 
             return reportDataTable;
+        }
+        private decimal? TryParseDecimal(object value)
+        {
+            if (value != null && decimal.TryParse(value.ToString(), out decimal result))
+                return result;
+            return null;
+        }
+        private string FormatRange(decimal? min, decimal? max, string format = "F0")
+        {
+            if (min.HasValue && max.HasValue)
+                return $"{min.Value.ToString(format)} ÷ {max.Value.ToString(format)}";
+            else if (min.HasValue)
+                return $"≥ {min.Value.ToString(format)}";
+            else if (max.HasValue)
+                return $"≤ {max.Value.ToString(format)}";
+            else
+                return "    ÷    ";
         }
         private bool CheckStandard(decimal? value, decimal? minValue, decimal? maxValue)
         {

@@ -27,20 +27,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1C34BEA905738460D07E2D5154430A5C"
-        "OwnerKey" = "8:_18963300AAB8FAB9BBA4A2F845B46A74"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1C85F76021270B20EA3F7D66343297C6"
         "OwnerKey" = "8:_660D872D722C4C4DB03342CF376C65D1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2242941A5E054116BC0A1886695506CF"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -273,6 +261,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DD8C3CFDF1D3F98D4D482B208712B9C1"
+        "OwnerKey" = "8:_9E031BB807EC44E88DEAF9AE43E9CB6B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E684301C515274073D38123EEF45F0A1"
+        "OwnerKey" = "8:_18963300AAB8FAB9BBA4A2F845B46A74"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FA0E1366DDE3CACE1BD22E81568FF8E0"
         "OwnerKey" = "8:_264F3BC981EF508A9978BE129CABDC32"
         "MsmSig" = "8:_UNDEFINED"
@@ -310,12 +310,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_18963300AAB8FAB9BBA4A2F845B46A74"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8B9F7E213E67D8024F4A1559FCDB6CEF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -323,6 +317,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9141B9BDA0BCD905978AA923916A35A8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DD8C3CFDF1D3F98D4D482B208712B9C1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -401,6 +401,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5FFB9E6EE13348066888484EBB3EEFE7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_18963300AAB8FAB9BBA4A2F845B46A74"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -608,26 +614,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C34BEA905738460D07E2D5154430A5C"
-            {
-            "SourcePath" = "8:OPCDAAuto.dll"
-            "TargetName" = "8:opcdaauto.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_4519E94E91374FAE948B405CAF104895"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1C85F76021270B20EA3F7D66343297C6"
             {
             "AssemblyRegister" = "3:1"
@@ -657,26 +643,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2242941A5E054116BC0A1886695506CF"
-            {
-            "SourcePath" = "8:..\\SenAIS\\obj\\Debug\\OPCDAAuto.dll"
-            "TargetName" = "8:OPCDAAuto.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_4519E94E91374FAE948B405CAF104895"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:4"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_264F3BC981EF508A9978BE129CABDC32"
@@ -1325,6 +1291,57 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D3AD50CB7A184A37A424F18DFD6B8B92"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DD8C3CFDF1D3F98D4D482B208712B9C1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DD8C3CFDF1D3F98D4D482B208712B9C1"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Newtonsoft.Json.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D3AD50CB7A184A37A424F18DFD6B8B92"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E684301C515274073D38123EEF45F0A1"
+            {
+            "SourcePath" = "8:OPCDAAuto.dll"
+            "TargetName" = "8:opcdaauto.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_4519E94E91374FAE948B405CAF104895"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"

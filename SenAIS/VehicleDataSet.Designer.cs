@@ -537,6 +537,10 @@ namespace SenAIS {
             
             private global::System.Data.DataColumn columnReportTitle;
             
+            private global::System.Data.DataColumn columnDiffVertiFLRange;
+            
+            private global::System.Data.DataColumn columnDiffHoriFLRange;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VehicleReportDataDataTable() {
@@ -1604,6 +1608,22 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiffVertiFLRangeColumn {
+                get {
+                    return this.columnDiffVertiFLRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiffHoriFLRangeColumn {
+                get {
+                    return this.columnDiffHoriFLRange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1768,7 +1788,9 @@ namespace SenAIS {
                         string MaxLightHeight, 
                         string MinLamda, 
                         string MaxLamda, 
-                        string ReportTitle) {
+                        string ReportTitle, 
+                        string DiffVertiFLRange, 
+                        string DiffHoriFLRange) {
                 VehicleReportDataRow rowVehicleReportDataRow = ((VehicleReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SerialNumber,
@@ -1899,7 +1921,9 @@ namespace SenAIS {
                         MaxLightHeight,
                         MinLamda,
                         MaxLamda,
-                        ReportTitle};
+                        ReportTitle,
+                        DiffVertiFLRange,
+                        DiffHoriFLRange};
                 rowVehicleReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleReportDataRow);
                 return rowVehicleReportDataRow;
@@ -2051,6 +2075,8 @@ namespace SenAIS {
                 this.columnMinLamda = base.Columns["MinLamda"];
                 this.columnMaxLamda = base.Columns["MaxLamda"];
                 this.columnReportTitle = base.Columns["ReportTitle"];
+                this.columnDiffVertiFLRange = base.Columns["DiffVertiFLRange"];
+                this.columnDiffHoriFLRange = base.Columns["DiffHoriFLRange"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2314,6 +2340,10 @@ namespace SenAIS {
                 base.Columns.Add(this.columnMaxLamda);
                 this.columnReportTitle = new global::System.Data.DataColumn("ReportTitle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReportTitle);
+                this.columnDiffVertiFLRange = new global::System.Data.DataColumn("DiffVertiFLRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffVertiFLRange);
+                this.columnDiffHoriFLRange = new global::System.Data.DataColumn("DiffHoriFLRange", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffHoriFLRange);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4520,6 +4550,38 @@ namespace SenAIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DiffVertiFLRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.DiffVertiFLRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffVertiFLRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.DiffVertiFLRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string DiffHoriFLRange {
+                get {
+                    try {
+                        return ((string)(this[this.tableVehicleReportData.DiffHoriFLRangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffHoriFLRange\' in table \'VehicleReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVehicleReportData.DiffHoriFLRangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSerialNumberNull() {
                 return this.IsNull(this.tableVehicleReportData.SerialNumberColumn);
             }
@@ -6064,6 +6126,30 @@ namespace SenAIS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetReportTitleNull() {
                 this[this.tableVehicleReportData.ReportTitleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiffVertiFLRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.DiffVertiFLRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiffVertiFLRangeNull() {
+                this[this.tableVehicleReportData.DiffVertiFLRangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiffHoriFLRangeNull() {
+                return this.IsNull(this.tableVehicleReportData.DiffHoriFLRangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiffHoriFLRangeNull() {
+                this[this.tableVehicleReportData.DiffHoriFLRangeColumn] = global::System.Convert.DBNull;
             }
         }
         
