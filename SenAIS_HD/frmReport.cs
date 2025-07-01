@@ -1595,9 +1595,9 @@ namespace SenAIS
                 {
                     TestTypeCode = "EXHAUSTGA",
                     TestDtlCode = "EXHAUSTGA_CO",
-                    MeasureValue = (double?)null,
-                    LimitValue = (double?)null,
-                    TestDtlResult = (string)null
+                    MeasureValue = "",
+                    LimitValue = "",
+                    TestDtlResult = ""
                 });
             }
 
