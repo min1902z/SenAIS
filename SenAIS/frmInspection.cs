@@ -39,7 +39,8 @@ namespace SenAIS
         }
         private UdpClient udpListener;
         private Task receiveTask;
-        private string lastJsonData = string.Empty;
+        private bool hasReceivedVin = false;
+        private CancellationTokenSource vinListeningTokenSource;
         private CancellationTokenSource opcCancellationTokenSource;
         private StationType stationType;
         public enum StationType
@@ -93,7 +94,7 @@ namespace SenAIS
             Task.Run(async () =>
             {
                 // Các biến nhớ giá trị cũ
-                int lastSpeed = -1, lastBrake = -1, lastHL = -1, lastSteer = -1;
+                int lastSpeed = -1, lastBrake = -1, lastSteer = -1;
                 int lastHLPos1 = -1, lastHLPos2 = -1, lastGLPos1 = -1, lastGLPos2 = -1;
 
                 while (!token.IsCancellationRequested)
@@ -109,7 +110,7 @@ namespace SenAIS
                                     lastSpeed = speed;
                                     BeginInvoke((MethodInvoker)(() =>
                                     {
-                                        if (!Application.OpenForms.OfType<frmSpeed>().Any())
+                                        if (CheckSerialNumber())
                                             OpenNewForm(new frmSpeed(serialNumber));
                                     }));
                                 }
@@ -123,7 +124,7 @@ namespace SenAIS
                                     lastBrake = brake;
                                     BeginInvoke((MethodInvoker)(() =>
                                     {
-                                        if (!Application.OpenForms.OfType<frmFrontBrake>().Any())
+                                        if (CheckSerialNumber())
                                             OpenNewForm(new frmFrontBrake(serialNumber));
                                     }));
                                 }
@@ -131,17 +132,20 @@ namespace SenAIS
                                 break;
 
                             case StationType.Headlights:
-                                int hl = opcManager.GetOPCValue(opcHLCounter);
                                 int hlPos1 = opcManager.GetOPCValue(opcHLPos1);
                                 int hlPos2 = opcManager.GetOPCValue(opcHLPos2);
 
-                                if ((hl == 1 || hl == 2) && hl != lastHL)
+                                if (hasReceivedVin)
                                 {
-                                    lastHL = hl;
+                                    // Mở form mới
                                     BeginInvoke((MethodInvoker)(() =>
                                     {
-                                        if (!Application.OpenForms.OfType<frmHeadlights>().Any())
-                                            OpenNewForm(new frmHeadlights(serialNumber));
+                                        if (CheckSerialNumber())
+                                        {
+                                            OpenNewForm(new frmHeadlights(this.serialNumber));
+                                            opcManager.SetOPCValue(opcHLCounter, 1);
+                                            hasReceivedVin = false;
+                                        }
                                     }));
                                 }
 
@@ -168,7 +172,7 @@ namespace SenAIS
                                     lastSteer = steer;
                                     BeginInvoke((MethodInvoker)(() =>
                                     {
-                                        if (!Application.OpenForms.OfType<frmSteerAngle>().Any())
+                                        if (CheckSerialNumber())
                                             OpenNewForm(new frmSteerAngle(this.serialNumber));
                                     }));
                                 }
@@ -216,8 +220,8 @@ namespace SenAIS
                     {
                         form.Close();
                     }
-                    openForms.Remove(form);
                 }
+                openForms.Clear(); // Sau khi đã Close toàn bộ
                 // Nếu form chưa mở, mở form mới
                 openForms.Add(newForm);  // Thêm form vào danh sách
                 newForm.FormClosed += (s, e) => openForms.Remove(newForm);  // Gỡ form khỏi danh sách khi đóng
@@ -275,8 +279,10 @@ namespace SenAIS
         private void btnHeadlights_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())
+            {
                 OpenNewForm(new frmHeadlights(this.serialNumber));
-            opcManager.SetOPCValue(opcHLCounter, 1);
+                opcManager.SetOPCValue(opcHLCounter, 1);
+            }
         }
 
         private void btnEmission_Click(object sender, EventArgs e)
@@ -580,18 +586,8 @@ namespace SenAIS
         {
             try
             {
-                var vehicleInfo = new
-                {
-                    VehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty,
-                    Inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty,
-                    FrameNumber = txtEngineNum.Text,
-                    SerialNumber = txtVinNum.Text,
-                    InspectionDate = dateInSpec.Value.ToString("yyyy-MM-dd"),
-                    FuelType = cbFuel.SelectedItem?.ToString() ?? string.Empty,
-                    Color = txtColor.Text
-                };
-
-                string jsonData = JsonConvert.SerializeObject(vehicleInfo);
+                var vinOnly = new { SerialNumber = txtVinNum.Text }; // Không Trim để giữ khoảng trắng nếu có
+                string jsonData = JsonConvert.SerializeObject(vinOnly);
                 byte[] data = Encoding.UTF8.GetBytes(jsonData);
 
                 int udpPort = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
@@ -621,6 +617,7 @@ namespace SenAIS
             {
                 udpListener?.Close();
                 udpListener = new UdpClient(port);
+                vinListeningTokenSource = new CancellationTokenSource();
             }
             catch
             {
@@ -629,46 +626,38 @@ namespace SenAIS
 
             receiveTask = Task.Run(() =>
             {
-                try
+                while (!vinListeningTokenSource.Token.IsCancellationRequested)
                 {
-                    while (true)
+                    try
                     {
-                        byte[] receivedBytes = udpListener.Receive(ref endPoint);
-                        string receivedJson = Encoding.UTF8.GetString(receivedBytes);
+                        byte[] bytes = udpListener.Receive(ref endPoint);
+                        string json = Encoding.UTF8.GetString(bytes); // Không Trim để giữ nguyên " Vin1234"
 
-                        if (receivedJson == lastJsonData)
+                        var vinData = JsonConvert.DeserializeObject<dynamic>(json);
+                        string receivedVin = vinData?.SerialNumber?.ToString();
+
+                        if (string.IsNullOrWhiteSpace(receivedVin))
                             continue;
 
-                        lastJsonData = receivedJson;
-
+                        // Dù VIN giống hay khác, cũng chỉ update 1 lần khi gói mới đến
                         this.Invoke(new Action(() =>
                         {
-                            try
-                            {
-                                var vehicleInfo = JsonConvert.DeserializeObject<VehicleInfo>(receivedJson);
-                                if (vehicleInfo != null)
-                                {
-                                    cbTypeCar.SelectedValue = vehicleInfo.VehicleType;
-                                    cbInspector.SelectedValue = vehicleInfo.Inspector;
-                                    txtEngineNum.Text = vehicleInfo.FrameNumber;
-                                    txtVinNum.Text = vehicleInfo.SerialNumber;
-                                    this.serialNumber = txtVinNum.Text;
-                                    dateInSpec.Value = DateTime.Parse(vehicleInfo.InspectionDate);
-                                    cbFuel.SelectedItem = vehicleInfo.FuelType;
-                                    txtColor.Text = vehicleInfo.Color;
-                                }
-                            }
-                            catch { /* Bỏ qua lỗi xử lý JSON hoặc update UI */ }
+                            UpdateVehicleInfo(receivedVin);
+                            hasReceivedVin = true; // Cho phép các trạm xử lý theo VIN mới
                         }));
                     }
+                    catch
+                    {
+                        // Bỏ qua lỗi nhận/gỡ luồng khi dừng
+                    }
                 }
-                catch { /* Bỏ qua lỗi khi listener ngắt kết nối hoặc form đóng */ }
-            });
+            }, vinListeningTokenSource.Token);
         }
         private void StopListeningForVehicleInfo()
         {
             try
             {
+                vinListeningTokenSource?.Cancel();
                 udpListener?.Close();
                 udpListener = null;
 
@@ -677,8 +666,6 @@ namespace SenAIS
                     receiveTask.Dispose();
                     receiveTask = null;
                 }
-
-                lastJsonData = string.Empty;
             }
             catch { }
         }

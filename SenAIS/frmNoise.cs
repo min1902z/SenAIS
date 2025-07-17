@@ -75,7 +75,7 @@ namespace SenAIS
                 lbVinNumber.Text = this.serialNumber;
 
                 txtVinNum.Text = this.serialNumber;
-                frmMain.UpdateVehicleInfo(this.serialNumber);
+                frmMain.UpdateVehicleInfo(nextSerialNumber);
             }
             else
             {
@@ -204,7 +204,7 @@ namespace SenAIS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            NextVin();
         }
     }
 }

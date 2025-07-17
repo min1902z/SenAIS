@@ -225,6 +225,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B6BBC775EC6F409E9A27C4134C1E4EC8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C0D3C186FCCE0D58C1214865F8119F42"
         "OwnerKey" = "8:_310A569654F570582B06C4F8CF8D9188"
         "MsmSig" = "8:_UNDEFINED"
@@ -1212,6 +1218,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6BBC775EC6F409E9A27C4134C1E4EC8"
+            {
+            "SourcePath" = "8:..\\dll\\Interop.OPCAutomation.dll\\Assemplies\\OPCDAAuto.dll"
+            "TargetName" = "8:OPCDAAuto.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_D3AD50CB7A184A37A424F18DFD6B8B92"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C0D3C186FCCE0D58C1214865F8119F42"
             {
             "AssemblyRegister" = "3:1"
@@ -1351,7 +1377,7 @@
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
-            "Register" = "3:1"
+            "Register" = "3:2"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
@@ -1486,7 +1512,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SenAISSetup"
         "ProductCode" = "8:{A433E103-3092-472F-976A-F83DD0508978}"
-        "PackageCode" = "8:{4E352789-7CE5-4113-93E5-FE4B38EE9774}"
+        "PackageCode" = "8:{2D0462F6-FB13-44D8-8EF4-2423F8C59257}"
         "UpgradeCode" = "8:{0AEB1F48-F3F5-45C2-B0E9-1FFDDCD9745A}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

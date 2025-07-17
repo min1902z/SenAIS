@@ -39,90 +39,8 @@ namespace SenAIS
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
             LoadVehicleStandards(serialNumber);
-            //InitializeTimer();
             StartOPCListener();
         }
-        //private void InitializeTimer()
-        //{
-        //    updateTimer = new Timer();
-        //    updateTimer.Interval = 500; // Kiểm tra mỗi giây
-        //    updateTimer.Tick += new EventHandler(UpdateReadyStatus);
-        //    updateTimer.Start();
-        //}
-        //private async void UpdateReadyStatus(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        lbVinNumber.Text = this.serialNumber;
-        //        // Lấy giá trị OPC
-        //        int checkStatus = await Task.Run(() => (int)opcManager.GetOPCValue(opcBrakeCounter));
-        //        Invoke((Action)(async () =>
-        //        {
-        //            switch (checkStatus)
-        //            {
-        //                case 0: // Mặc định
-        //                    cbReady.BackColor = SystemColors.Control;
-        //                    cbBrake.BackColor = SystemColors.Control;
-        //                    lbLeft_Brake.Text = "0.0";
-        //                    lbRight_Brake.Text = "0.0";
-        //                    lbDiff_Brake.Text = "0.0";
-        //                    lbSum_Brake.Text = "0.0";
-        //                    tbLeft.Visible = false;
-        //                    tbRight.Visible = false;
-        //                    lbBrakeTitle.Visible = true;
-        //                    isReady = false;
-        //                    break;
-
-        //                case 1: // Xe vào vị trí
-        //                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-        //                    isReady = false; // Chưa sẵn sàng lưu
-        //                    tbLeft.Visible = false;
-        //                    tbRight.Visible = false;
-        //                    break;
-
-        //                case 2: // Bắt đầu đo
-        //                    cbReady.BackColor = Color.Green; // Đèn xanh sáng
-        //                    isReady = true; // Sẵn sàng lưu sau khi đo
-        //                    lbBrakeTitle.Visible = false;
-        //                    tbLeft.Visible = true;
-        //                    tbRight.Visible = true;
-        //                    cbBrake.BackColor = Color.Red;
-        //                    await HandleMeasurement(); // Đo và xử lý dữ liệu
-        //                    break;
-
-        //                case 3: // Quá trình đo hoàn tất, lưu vào DB
-        //                    cbReady.BackColor = Color.Green; // Đèn xanh
-        //                    cbBrake.BackColor = SystemColors.Control;
-        //                    lbBrakeTitle.Visible = false;
-        //                    tbLeft.Visible = true;
-        //                    tbRight.Visible = true;
-        //                    if (isReady)
-        //                    {
-        //                        SaveDataToDatabase(); // Lưu dữ liệu
-        //                        isReady = false;
-        //                    }
-        //                    break;
-
-        //                case 4: // Xe tiếp theo
-        //                    cbReady.BackColor = SystemColors.Control;
-        //                    lbBrakeTitle.Visible = false;
-        //                    var formBrake = new frmRearBrake(this.serialNumber);
-        //                    formBrake.Show();
-        //                    this.Close();
-        //                    break;
-
-        //                default: // Trạng thái không hợp lệ hoặc chưa sẵn sàng
-        //                    cbReady.BackColor = SystemColors.Control; // Màu mặc định
-        //                    isReady = false;
-        //                    lbBrakeTitle.Visible = true;
-        //                    break;
-        //            }
-        //        }));
-        //    }
-        //    catch
-        //    {
-        //    }
-        //}
         private void StartOPCListener()
         {
             if (opcCancellationToken != null)
@@ -303,44 +221,6 @@ namespace SenAIS
             brakeLeftA = sqlHelper.GetParaValue("LeftBrake", "ParaA");
             brakeRightA = sqlHelper.GetParaValue("RightBrake", "ParaA");
         }
-        //private Task HandleMeasurement()
-        //{
-        //    // Đảm bảo giá trị ParaA không bằng 0 để tránh lỗi chia 0
-        //    brakeRightA = brakeRightA == 0 ? 1 : brakeRightA;
-        //    brakeLeftA = brakeLeftA == 0 ? 1 : brakeLeftA;
-
-        //    // Lấy giá trị OPC
-        //    double leftBrakeResult = opcManager.GetOPCValue(opcLBrakeResult);
-        //    double rightBrakeResult = opcManager.GetOPCValue(opcRBrakeResult);
-
-        //    // Tính toán giá trị phanh với hệ số điều chỉnh
-        //    double leftBrake = leftBrakeResult / brakeLeftA;
-        //    double rightBrake = rightBrakeResult / brakeRightA;
-
-        //    // Tính độ lệch, tránh lỗi chia 0
-        //    double maxBrake = Math.Max(leftBrake, rightBrake);
-        //    double diffBrake = maxBrake > 0 ? Math.Abs(leftBrake - rightBrake) / maxBrake * 100 : 0;
-
-        //    double sumBrake = leftBrake + rightBrake;
-        //    lbLeft_Brake.Text = leftBrake.ToString("F0");
-        //    lbRight_Brake.Text = rightBrake.ToString("F0");
-        //    lbDiff_Brake.Text = diffBrake.ToString("F1");
-        //    lbSum_Brake.Text = sumBrake.ToString("F0");
-
-        //    frontLeftBrake = Convert.ToDecimal(leftBrake);
-        //    frontRightBrake = Convert.ToDecimal(rightBrake);
-        //    diffFrontBrake = Convert.ToDecimal(diffBrake);
-        //    sumFrontBrake = Convert.ToDecimal(sumBrake);
-
-        //    // Kiểm tra tiêu chuẩn phanh
-        //    bool isSumStandard = sumFrontBrake >= minSumBrake;
-        //    bool isDiffStandard = maxDiffBrake == 0 || diffFrontBrake <= maxDiffBrake;
-
-        //    lbSum_Brake.ForeColor = isSumStandard ? SystemColors.HotTrack : Color.DarkRed;
-        //    lbDiff_Brake.ForeColor = isDiffStandard ? SystemColors.HotTrack : Color.DarkRed;
-        //    return Task.CompletedTask;
-        //}
-
         private void btnPre_Click(object sender, EventArgs e)
         {
             try
@@ -394,13 +274,6 @@ namespace SenAIS
         }
         private void frmFrontBrake_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (updateTimer != null)
-            //{
-            //    updateTimer.Stop(); // Dừng Timer
-            //    updateTimer.Dispose(); // Giải phóng tài nguyên
-            //    updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
-            //}
-            //e.Cancel = false;
             if (opcCancellationToken != null)
             {
                 opcCancellationToken.Cancel();
