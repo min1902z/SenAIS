@@ -1,0 +1,1144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SenAISDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BrakeForce">
+          <Key>
+            <PropertyRef Name="BrakeForceID" />
+          </Key>
+          <Property Name="BrakeForceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="FrontLeftBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RearLeftBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HandBrakeLeft" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HandBrakeRight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FrontRightBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RearRightBrake" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Calibration">
+          <Key>
+            <PropertyRef Name="CalibrationID" />
+          </Key>
+          <Property Name="CalibrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParaType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParaA" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ParaB" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="GasEmission_Diesel">
+          <Key>
+            <PropertyRef Name="GasEmissionID" />
+          </Key>
+          <Property Name="GasEmissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="MinSpeed1" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed1" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HSU1" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinSpeed2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HSU2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinSpeed3" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed3" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HSU3" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="GasEmission_Petrol">
+          <Key>
+            <PropertyRef Name="GasEmissionID" />
+          </Key>
+          <Property Name="GasEmissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="HC" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CO" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CO2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="O2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NO" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="OilTemp" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RPM" Type="int" />
+          <Property Name="Lambda" Type="decimal" Precision="10" Scale="3" />
+        </EntityType>
+        <EntityType Name="Headlights">
+          <Key>
+            <PropertyRef Name="HeadlightsID" />
+          </Key>
+          <Property Name="HeadlightsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="LeftHBIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftHBVerticalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftHBHorizontalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBVerticalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBHorizontalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBVerticalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBHorizontalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBVerticalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBHorizontalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftHBHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLVerticalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLHorizontalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLVerticalDeviation" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLHorizontalDeviation" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Inspector">
+          <Key>
+            <PropertyRef Name="InspectorID" />
+          </Key>
+          <Property Name="InspectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InspectorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Noise">
+          <Key>
+            <PropertyRef Name="NoiseID" />
+          </Key>
+          <Property Name="NoiseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Noise" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Whistle" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="SideSlip">
+          <Key>
+            <PropertyRef Name="SideSlipID" />
+          </Key>
+          <Property Name="SideSlipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="SideSlip" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Speed">
+          <Key>
+            <PropertyRef Name="SpeedID" />
+          </Key>
+          <Property Name="SpeedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Speed" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="SteerAngle">
+          <Key>
+            <PropertyRef Name="SteerAngleID" />
+          </Key>
+          <Property Name="SteerAngleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LeftSteerLW" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LeftSteerRW" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RightSteerLW" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RightSteerRW" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VehicleInfo">
+          <Key>
+            <PropertyRef Name="SerialNumber" />
+          </Key>
+          <Property Name="FrameNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Inspector" Type="nvarchar" MaxLength="100" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InspectionDate" Type="datetime" />
+          <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fuel" Type="nvarchar" MaxLength="10" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="EngineType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VehicleStandards">
+          <Key>
+            <PropertyRef Name="VehicleType" />
+          </Key>
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinSpeed" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinFrontBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinRearBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinHandBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffFrontBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffRearBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHandBrake" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxNoise" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinWhistle" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxWhistle" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinSideSlip" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSideSlip" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxHC" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxCO" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxCO2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxO2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxNO" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxHSU" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiesel" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinHLIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriLeftHB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriLeftHB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriHB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriHB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffVertiHB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffVertiHB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriLB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriLB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffVertiLB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffVertiLB" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinLBIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinLightHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinLeftSteer" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinRightSteer" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxLeftSteer" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxRightSteer" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinFLIntensity" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="MaxFLIntensity" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriFL" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriFL" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffVertiFL" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffVertiFL" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinFLHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxFLHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxLightHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SampleVin" Type="nvarchar" MaxLength="50" />
+          <Property Name="SampleEngine" Type="nvarchar" MaxLength="50" />
+          <Property Name="MinLamda" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="MaxLamda" Type="decimal" Precision="10" Scale="3" />
+        </EntityType>
+        <EntityType Name="Weight">
+          <Key>
+            <PropertyRef Name="WeightID" />
+          </Key>
+          <Property Name="WeightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="FrontLeftWeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FrontRightWeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RearLeftWeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RearRightWeight" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <Association Name="FK__SteerAngl__Seria__02FC7413">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="1" />
+          <End Role="SteerAngle" Type="Self.SteerAngle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="SteerAngle">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Brake_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="BrakeForce" Type="Self.BrakeForce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="BrakeForce">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diesel_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="GasEmission_Diesel" Type="Self.GasEmission_Diesel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="GasEmission_Diesel">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Headlights_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Headlights" Type="Self.Headlights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Headlights">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noise_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Noise" Type="Self.Noise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Noise">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Petrol_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="GasEmission_Petrol" Type="Self.GasEmission_Petrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="GasEmission_Petrol">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SideSlip_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="SideSlip" Type="Self.SideSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="SideSlip">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Speed_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Speed" Type="Self.Speed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Speed">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Weight_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Weight" Type="Self.Weight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Weight">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SenAISDBModelStoreContainer">
+          <EntitySet Name="BrakeForce" EntityType="Self.BrakeForce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calibration" EntityType="Self.Calibration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GasEmission_Diesel" EntityType="Self.GasEmission_Diesel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GasEmission_Petrol" EntityType="Self.GasEmission_Petrol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Headlights" EntityType="Self.Headlights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Noise" EntityType="Self.Noise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SideSlip" EntityType="Self.SideSlip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speed" EntityType="Self.Speed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SteerAngle" EntityType="Self.SteerAngle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleInfo" EntityType="Self.VehicleInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleStandards" EntityType="Self.VehicleStandards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weight" EntityType="Self.Weight" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SteerAngl__Seria__02FC7413" Association="Self.FK__SteerAngl__Seria__02FC7413">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="SteerAngle" EntitySet="SteerAngle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Brake_VehicleInfo_SerialNumber" Association="Self.FK_Brake_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="BrakeForce" EntitySet="BrakeForce" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diesel_VehicleInfo_SerialNumber" Association="Self.FK_Diesel_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="GasEmission_Diesel" EntitySet="GasEmission_Diesel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Headlights_VehicleInfo_SerialNumber" Association="Self.FK_Headlights_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="Headlights" EntitySet="Headlights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noise_VehicleInfo_SerialNumber" Association="Self.FK_Noise_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="Noise" EntitySet="Noise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Petrol_VehicleInfo_SerialNumber" Association="Self.FK_Petrol_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="GasEmission_Petrol" EntitySet="GasEmission_Petrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SideSlip_VehicleInfo_SerialNumber" Association="Self.FK_SideSlip_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="SideSlip" EntitySet="SideSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Speed_VehicleInfo_SerialNumber" Association="Self.FK_Speed_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="Speed" EntitySet="Speed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Weight_VehicleInfo_SerialNumber" Association="Self.FK_Weight_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfo" />
+            <End Role="Weight" EntitySet="Weight" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SenAISDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BrakeForce">
+          <Key>
+            <PropertyRef Name="BrakeForceID" />
+          </Key>
+          <Property Name="BrakeForceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FrontLeftBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RearLeftBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HandBrakeLeft" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HandBrakeRight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FrontRightBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RearRightBrake" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Brake_VehicleInfo_SerialNumber" FromRole="BrakeForce" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="Calibration">
+          <Key>
+            <PropertyRef Name="CalibrationID" />
+          </Key>
+          <Property Name="CalibrationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParaType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParaA" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ParaB" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="GasEmission_Diesel">
+          <Key>
+            <PropertyRef Name="GasEmissionID" />
+          </Key>
+          <Property Name="GasEmissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinSpeed1" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed1" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HSU1" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinSpeed2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HSU2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinSpeed3" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed3" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HSU3" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Diesel_VehicleInfo_SerialNumber" FromRole="GasEmission_Diesel" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="GasEmission_Petrol">
+          <Key>
+            <PropertyRef Name="GasEmissionID" />
+          </Key>
+          <Property Name="GasEmissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HC" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CO" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CO2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="O2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NO" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="OilTemp" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RPM" Type="Int32" />
+          <Property Name="Lambda" Type="Decimal" Precision="10" Scale="3" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Petrol_VehicleInfo_SerialNumber" FromRole="GasEmission_Petrol" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="Headlight">
+          <Key>
+            <PropertyRef Name="HeadlightsID" />
+          </Key>
+          <Property Name="HeadlightsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeftHBIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftHBVerticalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftHBHorizontalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBVerticalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBHorizontalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBVerticalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBHorizontalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBVerticalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBHorizontalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightHBHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightLBHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftHBHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftLBHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLVerticalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LeftFLHorizontalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLVerticalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightFLHorizontalDeviation" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Headlights_VehicleInfo_SerialNumber" FromRole="Headlights" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="Inspector">
+          <Key>
+            <PropertyRef Name="InspectorID" />
+          </Key>
+          <Property Name="InspectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InspectorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Noise">
+          <Key>
+            <PropertyRef Name="NoiseID" />
+          </Key>
+          <Property Name="NoiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Noise1" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Whistle" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Noise_VehicleInfo_SerialNumber" FromRole="Noise" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="SideSlip">
+          <Key>
+            <PropertyRef Name="SideSlipID" />
+          </Key>
+          <Property Name="SideSlipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SideSlip1" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_SideSlip_VehicleInfo_SerialNumber" FromRole="SideSlip" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="Speed">
+          <Key>
+            <PropertyRef Name="SpeedID" />
+          </Key>
+          <Property Name="SpeedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Speed1" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Speed_VehicleInfo_SerialNumber" FromRole="Speed" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="SteerAngle">
+          <Key>
+            <PropertyRef Name="SteerAngleID" />
+          </Key>
+          <Property Name="SteerAngleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LeftSteerLW" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LeftSteerRW" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RightSteerLW" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RightSteerRW" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK__SteerAngl__Seria__02FC7413" FromRole="SteerAngle" ToRole="VehicleInfo" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VehicleInfo">
+          <Key>
+            <PropertyRef Name="SerialNumber" />
+          </Key>
+          <Property Name="FrameNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Inspector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InspectionDate" Type="DateTime" Precision="3" />
+          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fuel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EngineType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BrakeForces" Relationship="Self.FK_Brake_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="BrakeForce" />
+          <NavigationProperty Name="GasEmission_Diesel" Relationship="Self.FK_Diesel_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="GasEmission_Diesel" />
+          <NavigationProperty Name="GasEmission_Petrol" Relationship="Self.FK_Petrol_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="GasEmission_Petrol" />
+          <NavigationProperty Name="Headlights" Relationship="Self.FK_Headlights_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="Headlights" />
+          <NavigationProperty Name="Noises" Relationship="Self.FK_Noise_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="Noise" />
+          <NavigationProperty Name="SideSlips" Relationship="Self.FK_SideSlip_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="SideSlip" />
+          <NavigationProperty Name="Speeds" Relationship="Self.FK_Speed_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="Speed" />
+          <NavigationProperty Name="SteerAngles" Relationship="Self.FK__SteerAngl__Seria__02FC7413" FromRole="VehicleInfo" ToRole="SteerAngle" />
+          <NavigationProperty Name="Weights" Relationship="Self.FK_Weight_VehicleInfo_SerialNumber" FromRole="VehicleInfo" ToRole="Weight" />
+        </EntityType>
+        <EntityType Name="VehicleStandard">
+          <Key>
+            <PropertyRef Name="VehicleType" />
+          </Key>
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinSpeed" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSpeed" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinFrontBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinRearBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinHandBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffFrontBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffRearBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHandBrake" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxNoise" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinWhistle" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxWhistle" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinSideSlip" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxSideSlip" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxHC" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxCO" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxCO2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxO2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxNO" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxHSU" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiesel" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinHLIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriLeftHB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriLeftHB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriHB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriHB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffVertiHB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffVertiHB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriLB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriLB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffVertiLB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffVertiLB" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinLBIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinLightHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinLeftSteer" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinRightSteer" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxLeftSteer" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxRightSteer" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinFLIntensity" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="MaxFLIntensity" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffHoriFL" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffHoriFL" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinDiffVertiFL" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxDiffVertiFL" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinFLHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxFLHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxLightHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SampleVin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SampleEngine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinLamda" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="MaxLamda" Type="Decimal" Precision="10" Scale="3" />
+        </EntityType>
+        <EntityType Name="Weight">
+          <Key>
+            <PropertyRef Name="WeightID" />
+          </Key>
+          <Property Name="WeightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FrontLeftWeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FrontRightWeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RearLeftWeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RearRightWeight" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="VehicleInfo" Relationship="Self.FK_Weight_VehicleInfo_SerialNumber" FromRole="Weight" ToRole="VehicleInfo" />
+        </EntityType>
+        <Association Name="FK_Brake_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="BrakeForce" Type="Self.BrakeForce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="BrakeForce">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diesel_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="GasEmission_Diesel" Type="Self.GasEmission_Diesel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="GasEmission_Diesel">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Petrol_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="GasEmission_Petrol" Type="Self.GasEmission_Petrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="GasEmission_Petrol">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Headlights_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Headlights" Type="Self.Headlight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Headlights">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noise_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Noise" Type="Self.Noise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Noise">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SideSlip_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="SideSlip" Type="Self.SideSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="SideSlip">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Speed_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Speed" Type="Self.Speed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Speed">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SteerAngl__Seria__02FC7413">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="1" />
+          <End Role="SteerAngle" Type="Self.SteerAngle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="SteerAngle">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Weight_VehicleInfo_SerialNumber">
+          <End Role="VehicleInfo" Type="Self.VehicleInfo" Multiplicity="0..1" />
+          <End Role="Weight" Type="Self.Weight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleInfo">
+              <PropertyRef Name="SerialNumber" />
+            </Principal>
+            <Dependent Role="Weight">
+              <PropertyRef Name="SerialNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SenAISDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BrakeForces" EntityType="Self.BrakeForce" />
+          <EntitySet Name="Calibrations" EntityType="Self.Calibration" />
+          <EntitySet Name="GasEmission_Diesel" EntityType="Self.GasEmission_Diesel" />
+          <EntitySet Name="GasEmission_Petrol" EntityType="Self.GasEmission_Petrol" />
+          <EntitySet Name="Headlights" EntityType="Self.Headlight" />
+          <EntitySet Name="Inspectors" EntityType="Self.Inspector" />
+          <EntitySet Name="Noises" EntityType="Self.Noise" />
+          <EntitySet Name="SideSlips" EntityType="Self.SideSlip" />
+          <EntitySet Name="Speeds" EntityType="Self.Speed" />
+          <EntitySet Name="SteerAngles" EntityType="Self.SteerAngle" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="VehicleInfoes" EntityType="Self.VehicleInfo" />
+          <EntitySet Name="VehicleStandards" EntityType="Self.VehicleStandard" />
+          <EntitySet Name="Weights" EntityType="Self.Weight" />
+          <AssociationSet Name="FK_Brake_VehicleInfo_SerialNumber" Association="Self.FK_Brake_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="BrakeForce" EntitySet="BrakeForces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diesel_VehicleInfo_SerialNumber" Association="Self.FK_Diesel_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="GasEmission_Diesel" EntitySet="GasEmission_Diesel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Petrol_VehicleInfo_SerialNumber" Association="Self.FK_Petrol_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="GasEmission_Petrol" EntitySet="GasEmission_Petrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Headlights_VehicleInfo_SerialNumber" Association="Self.FK_Headlights_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="Headlights" EntitySet="Headlights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noise_VehicleInfo_SerialNumber" Association="Self.FK_Noise_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="Noise" EntitySet="Noises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SideSlip_VehicleInfo_SerialNumber" Association="Self.FK_SideSlip_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="SideSlip" EntitySet="SideSlips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Speed_VehicleInfo_SerialNumber" Association="Self.FK_Speed_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="Speed" EntitySet="Speeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SteerAngl__Seria__02FC7413" Association="Self.FK__SteerAngl__Seria__02FC7413">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="SteerAngle" EntitySet="SteerAngles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Weight_VehicleInfo_SerialNumber" Association="Self.FK_Weight_VehicleInfo_SerialNumber">
+            <End Role="VehicleInfo" EntitySet="VehicleInfoes" />
+            <End Role="Weight" EntitySet="Weights" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SenAISDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SenAISDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SenAISDBModelStoreContainer" CdmEntityContainer="SenAISDBEntities">
+          <EntitySetMapping Name="BrakeForces">
+            <EntityTypeMapping TypeName="SenAISDBModel.BrakeForce">
+              <MappingFragment StoreEntitySet="BrakeForce">
+                <ScalarProperty Name="BrakeForceID" ColumnName="BrakeForceID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="FrontLeftBrake" ColumnName="FrontLeftBrake" />
+                <ScalarProperty Name="RearLeftBrake" ColumnName="RearLeftBrake" />
+                <ScalarProperty Name="HandBrakeLeft" ColumnName="HandBrakeLeft" />
+                <ScalarProperty Name="HandBrakeRight" ColumnName="HandBrakeRight" />
+                <ScalarProperty Name="FrontRightBrake" ColumnName="FrontRightBrake" />
+                <ScalarProperty Name="RearRightBrake" ColumnName="RearRightBrake" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calibrations">
+            <EntityTypeMapping TypeName="SenAISDBModel.Calibration">
+              <MappingFragment StoreEntitySet="Calibration">
+                <ScalarProperty Name="CalibrationID" ColumnName="CalibrationID" />
+                <ScalarProperty Name="ParaType" ColumnName="ParaType" />
+                <ScalarProperty Name="ParaA" ColumnName="ParaA" />
+                <ScalarProperty Name="ParaB" ColumnName="ParaB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GasEmission_Diesel">
+            <EntityTypeMapping TypeName="SenAISDBModel.GasEmission_Diesel">
+              <MappingFragment StoreEntitySet="GasEmission_Diesel">
+                <ScalarProperty Name="GasEmissionID" ColumnName="GasEmissionID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="MinSpeed1" ColumnName="MinSpeed1" />
+                <ScalarProperty Name="MaxSpeed1" ColumnName="MaxSpeed1" />
+                <ScalarProperty Name="HSU1" ColumnName="HSU1" />
+                <ScalarProperty Name="MinSpeed2" ColumnName="MinSpeed2" />
+                <ScalarProperty Name="MaxSpeed2" ColumnName="MaxSpeed2" />
+                <ScalarProperty Name="HSU2" ColumnName="HSU2" />
+                <ScalarProperty Name="MinSpeed3" ColumnName="MinSpeed3" />
+                <ScalarProperty Name="MaxSpeed3" ColumnName="MaxSpeed3" />
+                <ScalarProperty Name="HSU3" ColumnName="HSU3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GasEmission_Petrol">
+            <EntityTypeMapping TypeName="SenAISDBModel.GasEmission_Petrol">
+              <MappingFragment StoreEntitySet="GasEmission_Petrol">
+                <ScalarProperty Name="GasEmissionID" ColumnName="GasEmissionID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="HC" ColumnName="HC" />
+                <ScalarProperty Name="CO" ColumnName="CO" />
+                <ScalarProperty Name="CO2" ColumnName="CO2" />
+                <ScalarProperty Name="O2" ColumnName="O2" />
+                <ScalarProperty Name="NO" ColumnName="NO" />
+                <ScalarProperty Name="OilTemp" ColumnName="OilTemp" />
+                <ScalarProperty Name="RPM" ColumnName="RPM" />
+                <ScalarProperty Name="Lambda" ColumnName="Lambda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Headlights">
+            <EntityTypeMapping TypeName="SenAISDBModel.Headlight">
+              <MappingFragment StoreEntitySet="Headlights">
+                <ScalarProperty Name="HeadlightsID" ColumnName="HeadlightsID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="LeftHBIntensity" ColumnName="LeftHBIntensity" />
+                <ScalarProperty Name="LeftHBVerticalDeviation" ColumnName="LeftHBVerticalDeviation" />
+                <ScalarProperty Name="LeftHBHorizontalDeviation" ColumnName="LeftHBHorizontalDeviation" />
+                <ScalarProperty Name="RightHBIntensity" ColumnName="RightHBIntensity" />
+                <ScalarProperty Name="RightHBVerticalDeviation" ColumnName="RightHBVerticalDeviation" />
+                <ScalarProperty Name="RightHBHorizontalDeviation" ColumnName="RightHBHorizontalDeviation" />
+                <ScalarProperty Name="LeftLBIntensity" ColumnName="LeftLBIntensity" />
+                <ScalarProperty Name="LeftLBVerticalDeviation" ColumnName="LeftLBVerticalDeviation" />
+                <ScalarProperty Name="LeftLBHorizontalDeviation" ColumnName="LeftLBHorizontalDeviation" />
+                <ScalarProperty Name="RightLBIntensity" ColumnName="RightLBIntensity" />
+                <ScalarProperty Name="RightLBVerticalDeviation" ColumnName="RightLBVerticalDeviation" />
+                <ScalarProperty Name="RightLBHorizontalDeviation" ColumnName="RightLBHorizontalDeviation" />
+                <ScalarProperty Name="RightHBHeight" ColumnName="RightHBHeight" />
+                <ScalarProperty Name="RightLBHeight" ColumnName="RightLBHeight" />
+                <ScalarProperty Name="LeftHBHeight" ColumnName="LeftHBHeight" />
+                <ScalarProperty Name="LeftLBHeight" ColumnName="LeftLBHeight" />
+                <ScalarProperty Name="LeftFLHeight" ColumnName="LeftFLHeight" />
+                <ScalarProperty Name="LeftFLIntensity" ColumnName="LeftFLIntensity" />
+                <ScalarProperty Name="LeftFLVerticalDeviation" ColumnName="LeftFLVerticalDeviation" />
+                <ScalarProperty Name="LeftFLHorizontalDeviation" ColumnName="LeftFLHorizontalDeviation" />
+                <ScalarProperty Name="RightFLHeight" ColumnName="RightFLHeight" />
+                <ScalarProperty Name="RightFLIntensity" ColumnName="RightFLIntensity" />
+                <ScalarProperty Name="RightFLVerticalDeviation" ColumnName="RightFLVerticalDeviation" />
+                <ScalarProperty Name="RightFLHorizontalDeviation" ColumnName="RightFLHorizontalDeviation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inspectors">
+            <EntityTypeMapping TypeName="SenAISDBModel.Inspector">
+              <MappingFragment StoreEntitySet="Inspector">
+                <ScalarProperty Name="InspectorID" ColumnName="InspectorID" />
+                <ScalarProperty Name="InspectorName" ColumnName="InspectorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Noises">
+            <EntityTypeMapping TypeName="SenAISDBModel.Noise">
+              <MappingFragment StoreEntitySet="Noise">
+                <ScalarProperty Name="NoiseID" ColumnName="NoiseID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Noise1" ColumnName="Noise" />
+                <ScalarProperty Name="Whistle" ColumnName="Whistle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SideSlips">
+            <EntityTypeMapping TypeName="SenAISDBModel.SideSlip">
+              <MappingFragment StoreEntitySet="SideSlip">
+                <ScalarProperty Name="SideSlipID" ColumnName="SideSlipID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="SideSlip1" ColumnName="SideSlip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speeds">
+            <EntityTypeMapping TypeName="SenAISDBModel.Speed">
+              <MappingFragment StoreEntitySet="Speed">
+                <ScalarProperty Name="SpeedID" ColumnName="SpeedID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Speed1" ColumnName="Speed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SteerAngles">
+            <EntityTypeMapping TypeName="SenAISDBModel.SteerAngle">
+              <MappingFragment StoreEntitySet="SteerAngle">
+                <ScalarProperty Name="SteerAngleID" ColumnName="SteerAngleID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="LeftSteerLW" ColumnName="LeftSteerLW" />
+                <ScalarProperty Name="LeftSteerRW" ColumnName="LeftSteerRW" />
+                <ScalarProperty Name="RightSteerLW" ColumnName="RightSteerLW" />
+                <ScalarProperty Name="RightSteerRW" ColumnName="RightSteerRW" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SenAISDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleInfoes">
+            <EntityTypeMapping TypeName="SenAISDBModel.VehicleInfo">
+              <MappingFragment StoreEntitySet="VehicleInfo">
+                <ScalarProperty Name="FrameNumber" ColumnName="FrameNumber" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="Inspector" ColumnName="Inspector" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="InspectionDate" ColumnName="InspectionDate" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="EngineType" ColumnName="EngineType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleStandards">
+            <EntityTypeMapping TypeName="SenAISDBModel.VehicleStandard">
+              <MappingFragment StoreEntitySet="VehicleStandards">
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="MinSpeed" ColumnName="MinSpeed" />
+                <ScalarProperty Name="MaxSpeed" ColumnName="MaxSpeed" />
+                <ScalarProperty Name="MinFrontBrake" ColumnName="MinFrontBrake" />
+                <ScalarProperty Name="MinRearBrake" ColumnName="MinRearBrake" />
+                <ScalarProperty Name="MinHandBrake" ColumnName="MinHandBrake" />
+                <ScalarProperty Name="MaxDiffFrontBrake" ColumnName="MaxDiffFrontBrake" />
+                <ScalarProperty Name="MaxDiffRearBrake" ColumnName="MaxDiffRearBrake" />
+                <ScalarProperty Name="MaxDiffHandBrake" ColumnName="MaxDiffHandBrake" />
+                <ScalarProperty Name="MaxNoise" ColumnName="MaxNoise" />
+                <ScalarProperty Name="MinWhistle" ColumnName="MinWhistle" />
+                <ScalarProperty Name="MaxWhistle" ColumnName="MaxWhistle" />
+                <ScalarProperty Name="MinSideSlip" ColumnName="MinSideSlip" />
+                <ScalarProperty Name="MaxSideSlip" ColumnName="MaxSideSlip" />
+                <ScalarProperty Name="MaxHC" ColumnName="MaxHC" />
+                <ScalarProperty Name="MaxCO" ColumnName="MaxCO" />
+                <ScalarProperty Name="MaxCO2" ColumnName="MaxCO2" />
+                <ScalarProperty Name="MaxO2" ColumnName="MaxO2" />
+                <ScalarProperty Name="MaxNO" ColumnName="MaxNO" />
+                <ScalarProperty Name="MaxHSU" ColumnName="MaxHSU" />
+                <ScalarProperty Name="MaxDiesel" ColumnName="MaxDiesel" />
+                <ScalarProperty Name="MinHLIntensity" ColumnName="MinHLIntensity" />
+                <ScalarProperty Name="MinDiffHoriLeftHB" ColumnName="MinDiffHoriLeftHB" />
+                <ScalarProperty Name="MaxDiffHoriLeftHB" ColumnName="MaxDiffHoriLeftHB" />
+                <ScalarProperty Name="MinDiffHoriHB" ColumnName="MinDiffHoriHB" />
+                <ScalarProperty Name="MaxDiffHoriHB" ColumnName="MaxDiffHoriHB" />
+                <ScalarProperty Name="MinDiffVertiHB" ColumnName="MinDiffVertiHB" />
+                <ScalarProperty Name="MaxDiffVertiHB" ColumnName="MaxDiffVertiHB" />
+                <ScalarProperty Name="MinDiffHoriLB" ColumnName="MinDiffHoriLB" />
+                <ScalarProperty Name="MaxDiffHoriLB" ColumnName="MaxDiffHoriLB" />
+                <ScalarProperty Name="MinDiffVertiLB" ColumnName="MinDiffVertiLB" />
+                <ScalarProperty Name="MaxDiffVertiLB" ColumnName="MaxDiffVertiLB" />
+                <ScalarProperty Name="MinLBIntensity" ColumnName="MinLBIntensity" />
+                <ScalarProperty Name="MinLightHeight" ColumnName="MinLightHeight" />
+                <ScalarProperty Name="MinLeftSteer" ColumnName="MinLeftSteer" />
+                <ScalarProperty Name="MinRightSteer" ColumnName="MinRightSteer" />
+                <ScalarProperty Name="MaxLeftSteer" ColumnName="MaxLeftSteer" />
+                <ScalarProperty Name="MaxRightSteer" ColumnName="MaxRightSteer" />
+                <ScalarProperty Name="MinFLIntensity" ColumnName="MinFLIntensity" />
+                <ScalarProperty Name="MaxFLIntensity" ColumnName="MaxFLIntensity" />
+                <ScalarProperty Name="MinDiffHoriFL" ColumnName="MinDiffHoriFL" />
+                <ScalarProperty Name="MaxDiffHoriFL" ColumnName="MaxDiffHoriFL" />
+                <ScalarProperty Name="MinDiffVertiFL" ColumnName="MinDiffVertiFL" />
+                <ScalarProperty Name="MaxDiffVertiFL" ColumnName="MaxDiffVertiFL" />
+                <ScalarProperty Name="MinFLHeight" ColumnName="MinFLHeight" />
+                <ScalarProperty Name="MaxFLHeight" ColumnName="MaxFLHeight" />
+                <ScalarProperty Name="MaxLightHeight" ColumnName="MaxLightHeight" />
+                <ScalarProperty Name="SampleVin" ColumnName="SampleVin" />
+                <ScalarProperty Name="SampleEngine" ColumnName="SampleEngine" />
+                <ScalarProperty Name="MinLamda" ColumnName="MinLamda" />
+                <ScalarProperty Name="MaxLamda" ColumnName="MaxLamda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weights">
+            <EntityTypeMapping TypeName="SenAISDBModel.Weight">
+              <MappingFragment StoreEntitySet="Weight">
+                <ScalarProperty Name="WeightID" ColumnName="WeightID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="FrontLeftWeight" ColumnName="FrontLeftWeight" />
+                <ScalarProperty Name="FrontRightWeight" ColumnName="FrontRightWeight" />
+                <ScalarProperty Name="RearLeftWeight" ColumnName="RearLeftWeight" />
+                <ScalarProperty Name="RearRightWeight" ColumnName="RearRightWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SenAISDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SenAISDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SenAISDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SenAISDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SenAISDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SenAISDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SenAISDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SenAISDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SenAISDBModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
