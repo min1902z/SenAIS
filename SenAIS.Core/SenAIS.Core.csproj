@@ -76,6 +76,11 @@
       <DependentUpon>SenAISModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CalibrationRepository.cs" />
+    <Compile Include="Repositories\InspectionRepository.cs" />
+    <Compile Include="Repositories\InspectorRepository.cs" />
+    <Compile Include="Repositories\StandardRepository.cs" />
+    <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="SenAISModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

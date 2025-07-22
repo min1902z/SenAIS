@@ -10,12 +10,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SenAIS.Core.Repositories;
 
 namespace SenAIS
 {
     public partial class frmInspection : Form
     {
         private SQLHelper sqlHelper;
+        private readonly VehicleRepository vehicleRepo = new VehicleRepository();
         private OPCManager opcManager;
         private string currentUI;
         private string vehicleType;
@@ -637,8 +639,9 @@ namespace SenAIS
         }
         private void LoadAllVehicleInfo()
         {
-            DataTable results = sqlHelper.GetAllVehicleInfo(); // hoặc SearchVehicleInfo(từ khóa)
-            if (results != null && results.Rows.Count > 0)
+            //DataTable results = sqlHelper.GetAllVehicleInfo(); // hoặc SearchVehicleInfo(từ khóa)
+            var results = vehicleRepo.GetAll(); // Trả về List<VehicleInfo>
+            if (results != null && results.Any())
             {
                 dgVehicleInfo.DataSource = results;
                 dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số VIN";
@@ -648,6 +651,10 @@ namespace SenAIS
                 dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                 dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
             }
+            //else
+            //{
+            //    dgVehicleInfo.DataSource = null;
+            //}
         }
         public void ToggleMainUI()
         {
