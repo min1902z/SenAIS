@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52fd0c5e9cd942af9013852fd1e7e60d" Name="Diagram1">
+        <EntityTypeShape EntityType="SenAISDB_HDModel.BrakeForce" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Calibration" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.GasEmission_Diesel" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.GasEmission_Petrol" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Headlight" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Inspector" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Noise" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.SideSlip" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Speed" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.SteerAngle" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.VehicleInfo" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.VehicleStandard" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Weight" Width="1.5" PointX="3" PointY="29.125" IsExpanded="true" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Brake_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Diesel_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Petrol_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Headlights_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Noise_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_SideSlip_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Speed_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK__SteerAngl__Seria__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="SenAISDB_HDModel.FK_Weight_VehicleInfo_SerialNumber" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
