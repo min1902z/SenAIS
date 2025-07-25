@@ -1,24 +1,25 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SenAIS
 {
     public partial class frmStandards : Form
     {
-        private SQLHelper sqlHelper;
+        private readonly StandardRepository standardRepo = new StandardRepository();
         private DataTable vehicleStandardsTable;
         public frmStandards()
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper();
             LoadStandardsData();
         }
         private void LoadStandardsData()
         {
             try
             {
-                vehicleStandardsTable = sqlHelper.GetVehicleStandardsData();
+                vehicleStandardsTable = standardRepo.GetVehicleStandardsData();
 
                 if (vehicleStandardsTable != null && vehicleStandardsTable.Rows.Count != 0)
                 {
@@ -26,7 +27,6 @@ namespace SenAIS
                     dgStandards.DataSource = vehicleStandardsTable;
 
                     // Đổi tên các cột thành tiếng Việt
-                    dgStandards.DataSource = vehicleStandardsTable;
                     dgStandards.Columns["VehicleType"].HeaderText = "Loại xe";
                     dgStandards.Columns["MinSpeed"].HeaderText = "Tốc độ tối thiểu";
                     dgStandards.Columns["MaxSpeed"].HeaderText = "Tốc độ tối đa";
@@ -70,6 +70,7 @@ namespace SenAIS
                     dgStandards.Columns["RearWeight"].HeaderText = "Trọng lượng sau";
                     dgStandards.Columns["MaxHBIntensity"].HeaderText = "Cường độ đèn pha tối đa";
                     dgStandards.Columns["MaxLBIntensity"].HeaderText = "Cường độ đèn cốt tối đa";
+
                 }
             }
             catch (Exception)
@@ -84,7 +85,10 @@ namespace SenAIS
             {
                 try
                 {
-                    sqlHelper.UpdateVehicleStandardsData(vehicleStandardsTable);
+                    // Commit các thay đổi đang chờ trong grid
+                    dgStandards.EndEdit();
+
+                    standardRepo.UpdateVehicleStandardsData(vehicleStandardsTable);
                     MessageBox.Show("Lưu thay đổi thành công.");
                 }
                 catch (Exception ex)
@@ -102,15 +106,43 @@ namespace SenAIS
                 {
                     foreach (DataGridViewRow row in dgStandards.SelectedRows)
                     {
-                        dgStandards.Rows.Remove(row);
+                        if (row.DataBoundItem is DataRowView rowView)
+                        {
+                            string vehicleType = rowView["VehicleType"]?.ToString();
+
+                            // Xóa trong DB
+                            standardRepo.DeleteByVehicleType(vehicleType);
+
+                            // Xóa trên DataGridView (cũng là DataTable)
+                            rowView.Delete();
+                        }
                     }
-                    // Cập nhật thay đổi vào cơ sở dữ liệu
-                    sqlHelper.UpdateVehicleStandardsData(vehicleStandardsTable);
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn một bản ghi để xóa.");
+            }
+        }
+
+        private void dgStandards_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dgStandards.Columns[e.ColumnIndex].Name == "VehicleType")
+            {
+                string newValue = e.FormattedValue?.ToString().Trim();
+
+                if (!string.IsNullOrEmpty(newValue))
+                {
+                    foreach (DataGridViewRow row in dgStandards.Rows)
+                    {
+                        if (row.Index != e.RowIndex && row.Cells["VehicleType"].Value?.ToString() == newValue)
+                        {
+                            MessageBox.Show("Loại xe này đã tồn tại!", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            e.Cancel = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
     }

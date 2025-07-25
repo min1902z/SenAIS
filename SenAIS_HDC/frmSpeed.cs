@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -11,8 +12,11 @@ namespace SenAIS
 {
     public partial class frmSpeed : Form
     {
+        private readonly VehicleRepository vehicleRepo = new VehicleRepository();
+        private readonly StandardRepository standardRepo = new StandardRepository();
+        private readonly InspectionRepository inspectionRepo = new InspectionRepository();
+        private readonly CalibrationRepository calibrationRepo = new CalibrationRepository();
         private CancellationTokenSource opcCancellationTokenSource;
-        private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private string serialNumber;
         public decimal speedValue;
@@ -31,7 +35,6 @@ namespace SenAIS
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper();
             LoadVehicleStandards(serialNumber);
             opcManager = new OPCManager();
             StartListening();
@@ -150,27 +153,22 @@ namespace SenAIS
             {
             }
         }
-        private decimal ConvertToDecimal(object value)
-        {
-            return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
-        }
         private void LoadVehicleStandards(string serialNumber)
         {
             lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            var vehicle = vehicleRepo.GetVehicleDetails(serialNumber);
+            if (vehicle != null)
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                string vehicleType = vehicle.VehicleType;
+                var standard = standardRepo.GetVehicleStandardByTypeCar(vehicleType);
+                if (standard != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    minSpeed = ConvertToDecimal(standard["MinSpeed"]);
-                    maxSpeed = ConvertToDecimal(standard["MaxSpeed"]);
+                    minSpeed = standard.MinSpeed ?? 0;
+                    maxSpeed = standard.MaxSpeed ?? 0;
                 }
                 lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")} - {maxSpeed.ToString("F0")}]" : "-- - --";
             }
-            speedA = sqlHelper.GetParaValue("Speed", "ParaA");
+            speedA = calibrationRepo.GetParaValue("Speed", "ParaA");
         }
         private void btnPreSpeed_Click(object sender, EventArgs e)
         {
@@ -192,7 +190,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveSpeedData(this.serialNumber, this.speedValue);
+            inspectionRepo.SaveSpeedData(this.serialNumber, this.speedValue);
         }
 
         private void frmSpeed_FormClosing(object sender, FormClosingEventArgs e)

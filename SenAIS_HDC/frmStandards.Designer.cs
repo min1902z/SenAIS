@@ -95,6 +95,7 @@
             this.dgStandards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgStandards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -117,6 +118,7 @@
             this.dgStandards.RowHeadersWidth = 51;
             this.dgStandards.Size = new System.Drawing.Size(1339, 535);
             this.dgStandards.TabIndex = 0;
+            this.dgStandards.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgStandards_CellValidating);
             // 
             // frmStandards
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,8 +7,10 @@ namespace SenAIS
 {
     public partial class frmPetrolPDF : Form
     {
+        private readonly InspectionRepository inspectionRepo = new InspectionRepository();
+        private readonly VehicleRepository vehicleRepo = new VehicleRepository();
+
         private Form parentForm;
-        private SQLHelper sqlHelper;
         private bool isReady = false;
         private string serialNumber;
         private decimal eSpeed;
@@ -19,7 +22,6 @@ namespace SenAIS
             InitializeComponent();
             this.parentForm = parent;
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper();
             lbEngineNumber.Text = this.serialNumber;
         }
 
@@ -30,7 +32,7 @@ namespace SenAIS
                 if (isReady)
                     SaveDataToDatabase();
                 // Lấy SerialNumber trước đó
-                string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
+                string previousSerialNumber = vehicleRepo.GetPreviousSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(previousSerialNumber))
                 {
                     // Cập nhật serialNumber mới
@@ -54,7 +56,7 @@ namespace SenAIS
             {
                 if (isReady)
                     SaveDataToDatabase();
-                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                string nextSerialNumber = vehicleRepo.GetNextSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
@@ -72,7 +74,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SavePetrolEmissionData(this.serialNumber, hcValue, coValue, oilTemp, eSpeed);
+            inspectionRepo.SavePetrolEmission(this.serialNumber, hcValue, coValue, oilTemp, eSpeed);
         }
 
         private void btnSelectFile_Click(object sender, EventArgs e)
@@ -117,7 +119,7 @@ namespace SenAIS
                 if (isReady)
                 {
                     // Lưu dữ liệu vào cơ sở dữ liệu
-                    sqlHelper.SavePetrolEmissionData(serialNumber, hcValue, coValue, oilTemp, eSpeed);
+                    inspectionRepo.SavePetrolEmission(serialNumber, hcValue, coValue, oilTemp, eSpeed);
                     MessageBox.Show("Dữ liệu đã được lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

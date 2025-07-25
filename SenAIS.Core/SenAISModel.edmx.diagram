@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="SenAISDB_HDModel.Calibration" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SenAISDB_HDModel.GasEmission_Diesel" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SenAISDB_HDModel.GasEmission_Petrol" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SenAISDB_HDModel.Headlight" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SenAISDB_HDModel.Headlight" Width="2.125" PointX="3" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SenAISDB_HDModel.Inspector" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SenAISDB_HDModel.Noise" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SenAISDB_HDModel.SideSlip" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />

@@ -15,12 +15,15 @@ namespace SenAIS.Core.Repositories
             {
                 var inspectors = db.Inspectors.ToList();
                 var table = new DataTable();
-                table.Columns.Add("Id", typeof(int));
+                table.Columns.Add("InspectorID", typeof(int));
                 table.Columns.Add("InspectorName", typeof(string));
 
                 foreach (var inspector in inspectors)
                 {
-                    table.Rows.Add(inspector.InspectorID, inspector.InspectorName);
+                    var row = table.NewRow();
+                    row["InspectorID"] = inspector.InspectorID;
+                    row["InspectorName"] = inspector.InspectorName;
+                    table.Rows.Add(row);
                 }
 
                 return table;
@@ -33,24 +36,58 @@ namespace SenAIS.Core.Repositories
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    int id = (int)row["Id"];
-                    string name = row["InspectorName"].ToString();
+                    if (row.RowState == DataRowState.Deleted)
+                        continue;
 
-                    var inspector = db.Inspectors.FirstOrDefault(i => i.InspectorID == id);
-                    if (inspector != null)
+                    var name = row["InspectorName"]?.ToString()?.Trim();
+
+                    // Nếu không có tên thì bỏ qua
+                    if (string.IsNullOrWhiteSpace(name))
+                        continue;
+
+                    bool hasId = int.TryParse(row["InspectorID"]?.ToString(), out int id);
+
+                    if (hasId && id > 0)
                     {
-                        inspector.InspectorName = name;
+                        // Cập nhật nếu đã tồn tại trong DB
+                        var existing = db.Inspectors.FirstOrDefault(i => i.InspectorID == id);
+                        if (existing != null)
+                        {
+                            existing.InspectorName = name;
+                        }
+                        else
+                        {
+                            // Nếu ID tồn tại nhưng không có trong DB => tránh thêm lại
+                            continue;
+                        }
                     }
                     else
                     {
-                        db.Inspectors.Add(new Inspector
+                        // Chỉ thêm mới nếu chưa tồn tại tên
+                        bool exists = db.Inspectors.Any(x => x.InspectorName == name);
+                        if (!exists)
                         {
-                            InspectorID = id,
-                            InspectorName = name
-                        });
+                            db.Inspectors.Add(new Inspector
+                            {
+                                InspectorName = name
+                            });
+                        }
                     }
                 }
+
                 db.SaveChanges();
+            }
+        }
+        public void DeleteInspector(int inspectorId)
+        {
+            using (var db = new SenAISDB_HDEntities())
+            {
+                var inspector = db.Inspectors.FirstOrDefault(i => i.InspectorID == inspectorId);
+                if (inspector != null)
+                {
+                    db.Inspectors.Remove(inspector);
+                    db.SaveChanges();
+                }
             }
         }
 

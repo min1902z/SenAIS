@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Configuration;
 using System.Drawing;
 using System.Linq;
@@ -10,11 +11,10 @@ namespace SenAIS
 {
     public partial class frmSpeedMoving : Form
     {
+        private readonly CalibrationRepository calibrationRepo = new CalibrationRepository();
         private bool isAutoMode = true;
         private bool isHoldingButton = false;
         private bool isMotorOn = false;
-        //private Timer opcUpdateTimer;
-        private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private decimal leftParaA = 1, leftParaB = 0;
         private decimal rightParaA = 1, rightParaB = 0;
@@ -37,7 +37,6 @@ namespace SenAIS
         public frmSpeedMoving()
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper();
             opcManager = new OPCManager();
             if (opcManager.IsConnected)
             {
@@ -68,11 +67,11 @@ namespace SenAIS
                 btnDistance3.Text = $"{ConfigurationManager.AppSettings["Distance3Name"]} \n {ConfigurationManager.AppSettings["Distance3Value"]} mm";
                 btnDistance4.Text = $"{ConfigurationManager.AppSettings["Distance4Name"]} \n {ConfigurationManager.AppSettings["Distance4Value"]} mm";
 
-                leftParaA = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaA"));
-                leftParaB = Convert.ToDecimal(sqlHelper.GetParaValue("LeftAxis", "ParaB"));
+                leftParaA = Convert.ToDecimal(calibrationRepo.GetParaValue("LeftAxis", "ParaA"));
+                leftParaB = Convert.ToDecimal(calibrationRepo.GetParaValue("LeftAxis", "ParaB"));
 
-                rightParaA = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaA"));
-                rightParaB = Convert.ToDecimal(sqlHelper.GetParaValue("RightAxis", "ParaB"));
+                rightParaA = Convert.ToDecimal(calibrationRepo.GetParaValue("RightAxis", "ParaA"));
+                rightParaB = Convert.ToDecimal(calibrationRepo.GetParaValue("RightAxis", "ParaB"));
             }
             catch (Exception)
             {

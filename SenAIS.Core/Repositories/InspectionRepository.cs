@@ -231,7 +231,34 @@ namespace SenAIS.Core.Repositories
                 db.SaveChanges();
             }
         }
+        public void SavePetrolEmission(string serialNumber, decimal hc, decimal co, decimal oilTemp, decimal rpm)
+        {
+            using (var db = new SenAISDB_HDEntities())
+            {
+                var existing = db.GasEmission_Petrol.FirstOrDefault(g => g.SerialNumber == serialNumber);
+                if (existing != null)
+                {
+                    existing.HC = hc;
+                    existing.CO = co;
+                    existing.OilTemp = oilTemp;
+                    existing.RPM = (int?)rpm;
+                }
+                else
+                {
+                    var newData = new GasEmission_Petrol
+                    {
+                        SerialNumber = serialNumber,
+                        HC = hc,
+                        CO = co,
+                        OilTemp = oilTemp,
+                        RPM = (int?)rpm
+                    };
+                    db.GasEmission_Petrol.Add(newData);
+                }
 
+                db.SaveChanges();
+            }
+        }
         public void SaveGasEmissionDiesel(string serialNumber,
             decimal minSpeed1, decimal maxSpeed1, decimal hsu1,
             decimal minSpeed2, decimal maxSpeed2, decimal hsu2,

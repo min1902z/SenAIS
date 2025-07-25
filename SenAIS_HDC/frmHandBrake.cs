@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,7 +13,10 @@ namespace SenAIS
 {
     public partial class frmHandBrake : Form
     {
-        private SQLHelper sqlHelper;
+        private readonly VehicleRepository vehicleRepo = new VehicleRepository();
+        private readonly StandardRepository standardRepo = new StandardRepository();
+        private readonly InspectionRepository inspectionRepo = new InspectionRepository();
+        private readonly CalibrationRepository calibrationRepo = new CalibrationRepository();
         private string serialNumber;
         public decimal handLeftBrake;
         public decimal handRightBrake;
@@ -36,7 +40,6 @@ namespace SenAIS
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper();
             LoadVehicleStandards(serialNumber);
             opcManager = new OPCManager();
             StartOPCListener();
@@ -214,16 +217,15 @@ namespace SenAIS
         private void LoadVehicleStandards(string serialNumber)
         {
             lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            var vehicle = vehicleRepo.GetVehicleDetails(serialNumber);
+            if (vehicle != null)
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                string vehicleType = vehicle.VehicleType;
+                var standard = standardRepo.GetVehicleStandardByTypeCar(vehicleType);
+                if (standard != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    minSumBrake = ConvertToDecimal(standard["MinHandBrake"]);
-                    maxDiffBrake = ConvertToDecimal(standard["MaxDiffHandBrake"]);
+                    minSumBrake = standard.MinHandBrake ?? 0;
+                    maxDiffBrake = standard.MaxDiffHandBrake ?? 0;
                 }
             }
             // Lấy giá trị hiệu chuẩn phanh trái/phải
@@ -237,8 +239,8 @@ namespace SenAIS
             string leftTag = brakeOption == 2 ? "LeftBrake2" : "LeftBrake";
             string rightTag = brakeOption == 2 ? "RightBrake2" : "RightBrake";
 
-            leftA = sqlHelper.GetParaValue(leftTag, "ParaA");
-            rightA = sqlHelper.GetParaValue(rightTag, "ParaA");
+            leftA = calibrationRepo.GetParaValue(leftTag, "ParaA");
+            rightA = calibrationRepo.GetParaValue(rightTag, "ParaA");
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -261,7 +263,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveHandBrakeData(this.serialNumber, this.handLeftBrake, this.handRightBrake);
+            inspectionRepo.SaveHandBrakeData(this.serialNumber, this.handLeftBrake, this.handRightBrake);
         }
         private void frmHandBrake_FormClosing(object sender, FormClosingEventArgs e)
         {

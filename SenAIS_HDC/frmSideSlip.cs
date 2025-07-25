@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -11,9 +12,11 @@ namespace SenAIS
 {
     public partial class frmSideSlip : Form
     {
-        //private Timer updateTimer;
+        private readonly VehicleRepository vehicleRepo = new VehicleRepository();
+        private readonly StandardRepository standardRepo = new StandardRepository();
+        private readonly InspectionRepository inspectionRepo = new InspectionRepository();
+        private readonly CalibrationRepository calibrationRepo = new CalibrationRepository();
         private CancellationTokenSource opcCancellationTokenSource;
-        private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private string serialNumber;
         public decimal sideSlip;
@@ -28,7 +31,6 @@ namespace SenAIS
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper();
             LoadVehicleStandards(serialNumber);
             opcManager = new OPCManager();
             StartListening();
@@ -152,27 +154,22 @@ namespace SenAIS
                 currentForm.Close();
             }));
         }
-        private decimal ConvertToDecimal(object value)
-        {
-            return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
-        }
         private void LoadVehicleStandards(string serialNumber)
         {
             lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            var vehicle = vehicleRepo.GetVehicleDetails(serialNumber);
+            if (vehicle != null)
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                string vehicleType = vehicle.VehicleType;
+                var standard = standardRepo.GetVehicleStandardByTypeCar(vehicleType);
+                if (standard != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
-                    maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
+                    minSideSlip = standard.MinSideSlip ?? 0;
+                    maxSideSlip = standard.MaxSideSlip ?? 0;
                 }
                 lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F0")}]  -  [{maxSideSlip.ToString("F0")}]" : "--  -  --";
             }
-            this.alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
+            this.alignA = calibrationRepo.GetParaValue("SideSlip", "ParaA");
         }
         private void btnPre_Click(object sender, EventArgs e)
         {
@@ -194,7 +191,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveSideSlipData(this.serialNumber, this.sideSlip);
+            inspectionRepo.SaveSideSlipData(this.serialNumber, this.sideSlip);
         }
         private void frmSideSlip_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -16,8 +16,9 @@ namespace SenAIS
 {
     public partial class frmInspection : Form
     {
-        private SQLHelper sqlHelper;
         private readonly VehicleRepository vehicleRepo = new VehicleRepository();
+        private readonly InspectorRepository inspectorRepo = new InspectorRepository();
+        private readonly StandardRepository standardRepo = new StandardRepository();
         private OPCManager opcManager;
         private string currentUI;
         private string vehicleType;
@@ -49,7 +50,6 @@ namespace SenAIS
         public frmInspection()
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper();
             this.serialNumber = txtVinNum.Text;
             LoadVehicleInfo();
             opcManager = new OPCManager();
@@ -57,7 +57,6 @@ namespace SenAIS
         public frmInspection(string serialNumber)
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper();
             this.serialNumber = serialNumber;
             txtVinNum.Text = serialNumber;
             LoadVehicleInfo();
@@ -270,8 +269,8 @@ namespace SenAIS
             try
             {
                 txtVinShow.Text = this.serialNumber;
-                // Tải dữ liệu cho cbTypeCar
-                DataTable typeCarTable = sqlHelper.GetTypeCarList();
+                // Load loại xe
+                var typeCarTable = standardRepo.GetTypeCarList();
                 if (typeCarTable != null && typeCarTable.Rows.Count > 0)
                 {
                     cbTypeCar.DataSource = typeCarTable;
@@ -287,8 +286,8 @@ namespace SenAIS
                     cbTypeCar.SelectedIndex = 0;
                 }
 
-                // Tải dữ liệu cho cbInspector
-                DataTable inspectorTable = sqlHelper.GetInspectorList();
+                // Load danh sách Inspector
+                var inspectorTable = inspectorRepo.GetInspectorData();
                 if (inspectorTable != null && inspectorTable.Rows.Count > 0)
                 {
                     cbInspector.DataSource = inspectorTable;
@@ -307,10 +306,10 @@ namespace SenAIS
                 // Kiểm tra nếu có SerialNumber, tải thông tin về FuelType
                 if (!string.IsNullOrEmpty(txtVinNum.Text))
                 {
-                    DataTable result = sqlHelper.GetFuelTypeBySerialNumber(txtVinNum.Text);
-                    if (result != null && result.Rows.Count > 0)
+                    string fuel = vehicleRepo.GetFuelTypeBySerialNumber(txtVinNum.Text);
+                    if (!string.IsNullOrEmpty(fuel))
                     {
-                        cbFuel.SelectedItem = result.Rows[0]["Fuel"].ToString();
+                        cbFuel.SelectedItem = fuel;
                     }
                     else
                     {
@@ -358,7 +357,7 @@ namespace SenAIS
                 MessageBox.Show("Vui lòng điền đầy đủ tất cả các trường thông tin của phương tiện", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            sqlHelper.SaveVehicleInfo(vehicleType, inspector, frameNumber, serialNumber, inspectionDate, fuelType);
+            vehicleRepo.SaveVehicleInfo(vehicleType, inspector, frameNumber, serialNumber, inspectionDate, fuelType);
             return true;
         }
         private bool CheckSerialNumber()
@@ -425,7 +424,7 @@ namespace SenAIS
             if (e.KeyCode == Keys.Enter)
             {
                 string inputVin = txtVinNum.Text.Trim();
-                string vehicleType = sqlHelper.GetVehicleTypeBySampleVin(inputVin);
+                string vehicleType = standardRepo.GetVehicleTypeBySampleVin(inputVin);
 
                 if (!string.IsNullOrEmpty(vehicleType))
                 {
@@ -449,17 +448,25 @@ namespace SenAIS
                 cbFuel.SelectedIndex = -1;
                 return;
             }
-            var vehicleInfo = sqlHelper.GetVehicleDetails(serialNumber);
+            var vehicleInfo = vehicleRepo.GetVehicleDetails(serialNumber);
             if (vehicleInfo != null)
             {
-                cbTypeCar.SelectedValue = vehicleInfo["VehicleType"]?.ToString();
-                cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
-                txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
-                txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
-                dateInSpec.Value = vehicleInfo["InspectionDate"] != DBNull.Value
-                                   ? Convert.ToDateTime(vehicleInfo["InspectionDate"])
-                                   : DateTime.Now;
-                cbFuel.SelectedItem = vehicleInfo["Fuel"]?.ToString();
+                cbTypeCar.SelectedValue = vehicleInfo.VehicleType ?? string.Empty;
+                cbInspector.SelectedValue = vehicleInfo.Inspector ?? string.Empty;
+                txtEngineNum.Text = vehicleInfo.FrameNumber ?? string.Empty;
+                txtVinNum.Text = vehicleInfo.SerialNumber ?? string.Empty;
+                dateInSpec.Value = vehicleInfo.InspectionDate ?? DateTime.Now;
+                cbFuel.SelectedItem = vehicleInfo.Fuel ?? string.Empty;
+            }
+            else
+            {
+                // Nếu không tìm thấy xe => clear form như trường hợp null
+                cbTypeCar.SelectedIndex = -1;
+                cbInspector.SelectedIndex = -1;
+                txtEngineNum.Text = string.Empty;
+                txtVinNum.Text = string.Empty;
+                dateInSpec.Value = DateTime.Now;
+                cbFuel.SelectedIndex = -1;
             }
         }
         private void SendVehicleInfoToNetwork()
@@ -639,9 +646,9 @@ namespace SenAIS
         }
         private void LoadAllVehicleInfo()
         {
-            //DataTable results = sqlHelper.GetAllVehicleInfo(); // hoặc SearchVehicleInfo(từ khóa)
-            var results = vehicleRepo.GetAll(); // Trả về List<VehicleInfo>
-            if (results != null && results.Any())
+            DataTable results = vehicleRepo.GetAllVehicleInfo(); // EF trả về DataTable
+
+            if (results != null && results.Rows.Count > 0)
             {
                 dgVehicleInfo.DataSource = results;
                 dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số VIN";
@@ -651,10 +658,10 @@ namespace SenAIS
                 dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                 dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
             }
-            //else
-            //{
-            //    dgVehicleInfo.DataSource = null;
-            //}
+            else
+            {
+                dgVehicleInfo.DataSource = null;
+            }
         }
         public void ToggleMainUI()
         {
@@ -864,22 +871,36 @@ namespace SenAIS
             try
             {
                 string searchTerm = txtSearch.Text.Trim();
-                DataTable results = sqlHelper.SearchVehicleInfo(searchTerm);
+                DataTable results;
+
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    results = vehicleRepo.GetAllVehicleInfo();
+                }
+                else
+                {
+                    results = vehicleRepo.Search(searchTerm);
+                }
+
                 if (results != null && results.Rows.Count != 0)
                 {
-                    // Hiển thị kết quả tìm kiếm trong DataGridView
                     dgVehicleInfo.DataSource = results;
-                    dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số vin";
-                    dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
+                    dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số Vin";
+                    dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
                     dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
                     dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
                     dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
                     dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
                 }
+                else
+                {
+                    dgVehicleInfo.DataSource = null;
+                    MessageBox.Show("Không tìm thấy dữ liệu phù hợp.", "Thông báo");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Không tìm thấy dữ liệu danh sách xe.", "Thông báo");
+                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi");
             }
         }
 

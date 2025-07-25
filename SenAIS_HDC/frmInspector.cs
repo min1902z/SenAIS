@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -6,12 +7,11 @@ namespace SenAIS
 {
     public partial class frmInspector : Form
     {
-        private SQLHelper sqlHelper;
+        private readonly InspectorRepository inspectorRepo = new InspectorRepository();
         private DataTable inspectorTable;
         public frmInspector()
         {
             InitializeComponent();
-            sqlHelper = new SQLHelper();
             LoadInspectorData();
         }
         private void LoadInspectorData()
@@ -19,13 +19,13 @@ namespace SenAIS
             try
             {
                 // Tải dữ liệu từ cơ sở dữ liệu
-                inspectorTable = sqlHelper.GetInspectorData();
+                inspectorTable = inspectorRepo.GetInspectorData();
 
                 if (inspectorTable == null || inspectorTable.Rows.Count == 0)
                 {
                     // Nếu không có dữ liệu, tạo bảng trống với header
                     inspectorTable = new DataTable();
-                    inspectorTable.Columns.Add("InspectorID", typeof(string));
+                    inspectorTable.Columns.Add("InspectorID", typeof(int));
                     inspectorTable.Columns.Add("InspectorName", typeof(string));
                 }
 
@@ -33,8 +33,11 @@ namespace SenAIS
                 dgInspector.DataSource = inspectorTable;
 
                 // Đổi tên các cột thành tiếng Việt
-                dgInspector.Columns["InspectorID"].HeaderText = "Mã Thanh tra";
-                dgInspector.Columns["InspectorName"].HeaderText = "Tên Thanh tra";
+                if (dgInspector.Columns.Contains("InspectorID"))
+                    dgInspector.Columns["InspectorID"].HeaderText = "Mã Thanh tra";
+
+                if (dgInspector.Columns.Contains("InspectorName"))
+                    dgInspector.Columns["InspectorName"].HeaderText = "Tên Thanh tra";
 
                 // Đặt trạng thái chỉ đọc cho các cột
                 dgInspector.Columns["InspectorID"].ReadOnly = true;
@@ -52,7 +55,7 @@ namespace SenAIS
             {
                 try
                 {
-                    sqlHelper.UpdateInspectorData(inspectorTable);
+                    inspectorRepo.UpdateInspectorData(inspectorTable);
                     MessageBox.Show("Lưu thay đổi thành công.");
                 }
                 catch (Exception ex)
@@ -70,14 +73,51 @@ namespace SenAIS
                 {
                     foreach (DataGridViewRow row in dgInspector.SelectedRows)
                     {
-                        dgInspector.Rows.Remove(row);
+                        if (row.DataBoundItem is DataRowView rowView)
+                        {
+                            int inspectorId = Convert.ToInt32(rowView["InspectorID"]);
+                            inspectorRepo.DeleteInspector(inspectorId); // gọi hàm xóa DB
+                            dgInspector.Rows.Remove(row); // xóa khỏi DataGridView
+                        }
                     }
-                    sqlHelper.UpdateInspectorData(inspectorTable);
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn một dòng để xóa.");
+            }
+        }
+
+        private void dgInspector_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            var columnName = dgInspector.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "InspectorName")
+            {
+                string value = e.FormattedValue?.ToString()?.Trim();
+
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    dgInspector.Rows[e.RowIndex].ErrorText = "Tên thanh tra không được để trống.";
+                    e.Cancel = true;
+                    return;
+                }
+
+                // Kiểm tra trùng tên trong dgv (nội bộ)
+                for (int i = 0; i < dgInspector.Rows.Count; i++)
+                {
+                    if (i == e.RowIndex) continue;
+
+                    var cellValue = dgInspector.Rows[i].Cells["InspectorName"].Value?.ToString()?.Trim();
+                    if (!string.IsNullOrEmpty(cellValue) && string.Equals(cellValue, value, StringComparison.OrdinalIgnoreCase))
+                    {
+                        dgInspector.Rows[e.RowIndex].ErrorText = "Tên thanh tra bị trùng.";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+
+                dgInspector.Rows[e.RowIndex].ErrorText = string.Empty; // Clear error
             }
         }
     }

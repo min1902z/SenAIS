@@ -59,7 +59,7 @@
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnDelete.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Blue;
-            this.btnDelete.Location = new System.Drawing.Point(509, 179);
+            this.btnDelete.Location = new System.Drawing.Point(518, 179);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(71, 46);
@@ -73,7 +73,7 @@
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSave.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Blue;
-            this.btnSave.Location = new System.Drawing.Point(509, 112);
+            this.btnSave.Location = new System.Drawing.Point(518, 112);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(71, 46);
@@ -85,7 +85,7 @@
             // dgInspector
             // 
             this.dgInspector.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dgInspector.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgInspector.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgInspector.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgInspector.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgInspector.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -111,8 +111,9 @@
             this.dgInspector.Name = "dgInspector";
             this.dgInspector.RowHeadersWidth = 51;
             this.dgInspector.RowTemplate.Height = 24;
-            this.dgInspector.Size = new System.Drawing.Size(390, 227);
+            this.dgInspector.Size = new System.Drawing.Size(409, 243);
             this.dgInspector.TabIndex = 3;
+            this.dgInspector.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgInspector_CellValidating);
             // 
             // lbStandardTitle
             // 

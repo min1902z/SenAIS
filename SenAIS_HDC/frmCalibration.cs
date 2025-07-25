@@ -1,4 +1,5 @@
 ﻿using OPCAutomation;
+using SenAIS.Core.Repositories;
 using System;
 using System.Configuration;
 using System.Linq;
@@ -8,9 +9,10 @@ namespace SenAIS
 {
     public partial class frmCalibration : Form
     {
+        private readonly CalibrationRepository calibrationRepo = new CalibrationRepository();
+
         private OPCServer opcServer;
         private OPCGroup opcGroup;
-
         private double beforeCalib = 0.0;
         private double refPoint1;
         private double measurePoint1;
@@ -189,9 +191,8 @@ namespace SenAIS
                         decimal paraB = Convert.ToDecimal(calibB);
                         string paraType = this.calibrationType;
 
-                        // Sử dụng SQLHelper để thực hiện truy vấn
-                        SQLHelper sqlHelper = new SQLHelper();
-                        sqlHelper.UpdateCalibrationData(paraType, paraA, paraB);
+                        // Gọi hàm EF để cập nhật Calibration
+                        calibrationRepo.UpdateCalibrationData(paraType, paraA, paraB);
 
                         // Cập nhật giá trị lên giao diện
                         lbParaWeightLA.Text = paraA.ToString("F2");
@@ -225,11 +226,9 @@ namespace SenAIS
             {
                 this.calibrationType = mainForm.SelectedCalibrationType;
             }
-            SQLHelper sqlHelper = new SQLHelper();
-
-            // Lấy giá trị A và B từ database
-            object paraA = sqlHelper.GetParaValue(this.calibrationType, "ParaA");
-            object paraB = sqlHelper.GetParaValue(this.calibrationType, "ParaB");
+            // Lấy giá trị A và B từ database thông qua EF
+            object paraA = calibrationRepo.GetParameterValue(this.calibrationType, "ParaA");
+            object paraB = calibrationRepo.GetParameterValue(this.calibrationType, "ParaB");
 
             // Kiểm tra nếu dữ liệu null hoặc không hợp lệ thì gán mặc định
             calibA = (paraA != null && paraA != DBNull.Value) ? Convert.ToDouble(paraA) : 1.0;

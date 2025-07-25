@@ -1,12 +1,14 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Windows.Forms;
 
 namespace SenAIS
 {
     public partial class frmDieselPDF : Form
     {
+        private readonly InspectionRepository inspectionRepo = new InspectionRepository();
+        private readonly VehicleRepository vehicleRepo = new VehicleRepository();
         private Form parentForm;
-        private SQLHelper sqlHelper;
         private bool isReady = false;
         private string serialNumber;
         private decimal minSpeed1;
@@ -24,7 +26,6 @@ namespace SenAIS
             InitializeComponent();
             this.parentForm = parent;
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper();
             lbEngineNumber.Text = this.serialNumber;
         }
 
@@ -35,7 +36,7 @@ namespace SenAIS
                 if (isReady)
                     SaveDataToDatabase();
                 // Lấy SerialNumber trước đó
-                string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
+                string previousSerialNumber = vehicleRepo.GetPreviousSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(previousSerialNumber))
                 {
                     // Cập nhật serialNumber mới
@@ -59,7 +60,7 @@ namespace SenAIS
             {
                 if (isReady)
                     SaveDataToDatabase();
-                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                string nextSerialNumber = vehicleRepo.GetNextSerialNumber(this.serialNumber);
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
@@ -77,7 +78,7 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveDieselEmissionData(this.serialNumber, minSpeed1, maxSpeed1, hsu1, minSpeed2, maxSpeed2, hsu2, minSpeed3, maxSpeed3, hsu3);
+            inspectionRepo.SaveGasEmissionDiesel(this.serialNumber, minSpeed1, maxSpeed1, hsu1, minSpeed2, maxSpeed2, hsu2, minSpeed3, maxSpeed3, hsu3);
         }
 
         private void btnSelectFile_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -10,13 +11,35 @@ namespace SenAIS.Core.Repositories
 {
     public class VehicleRepository
     {
-        public List<VehicleInfo> GetAllVehicleInfo()
+        public DataTable GetAllVehicleInfo()
         {
             using (var db = new SenAISDB_HDEntities())
             {
-                return db.VehicleInfoes
-                         .OrderByDescending(v => v.VehicleID)
-                         .ToList();
+                var vehicles = db.VehicleInfoes
+                                 .OrderByDescending(v => v.VehicleID)
+                                 .ToList();
+
+                var resultTable = new DataTable();
+                resultTable.Columns.Add("SerialNumber", typeof(string));
+                resultTable.Columns.Add("FrameNumber", typeof(string));
+                resultTable.Columns.Add("VehicleType", typeof(string));
+                resultTable.Columns.Add("Inspector", typeof(string));
+                resultTable.Columns.Add("InspectionDate", typeof(object));
+                resultTable.Columns.Add("Fuel", typeof(string));
+
+                foreach (var v in vehicles)
+                {
+                    resultTable.Rows.Add(
+                        v.SerialNumber,
+                        v.FrameNumber,
+                        v.VehicleType,
+                        v.Inspector,
+                        v.InspectionDate.HasValue ? (object)v.InspectionDate.Value : DBNull.Value,
+                        v.Fuel
+                    );
+                }
+
+                return resultTable;
             }
         }
         public VehicleInfo GetVehicleDetails(string serialNumber)
@@ -24,16 +47,16 @@ namespace SenAIS.Core.Repositories
             using (var db = new SenAISDB_HDEntities())
             {
                 return db.VehicleInfoes
-                         .Include("Speeds")
-                         .Include("SideSlips")
-                         .Include("Weights")
-                         .Include("BrakeForces")
-                         .Include("Noises")
-                         .Include("Headlights")
-                         .Include("GasEmission_Petrol")
-                         .Include("GasEmission_Diesel")
-                         .Include("SteerAngles")
-                         .FirstOrDefault(v => v.SerialNumber == serialNumber);
+                     .Include(v => v.Speeds)
+                     .Include(v => v.SideSlips)
+                     .Include(v => v.Weights)
+                     .Include(v => v.BrakeForces)
+                     .Include(v => v.Noises)
+                     .Include(v => v.Headlights)
+                     .Include(v => v.GasEmission_Petrol)
+                     .Include(v => v.GasEmission_Diesel)
+                     .Include(v => v.SteerAngles)
+                     .FirstOrDefault(v => v.SerialNumber == serialNumber);
             }
         }
 
@@ -46,7 +69,7 @@ namespace SenAIS.Core.Repositories
             }
         }
 
-        public List<VehicleInfo> Search(string searchTerm)
+        public DataTable Search(string searchTerm)
         {
             using (var db = new SenAISDB_HDEntities())
             {
@@ -54,12 +77,12 @@ namespace SenAIS.Core.Repositories
 
                 string trimmed = searchTerm.Trim();
 
-                // Tìm theo ngày đầy đủ (yyyy-MM-dd, dd/MM/yyyy, v.v.)
+                // Tìm theo ngày đầy đủ (yyyy-MM-dd, dd/MM/yyyy, ...)
                 if (DateTime.TryParse(trimmed, out DateTime exactDate))
                 {
                     query = query.Where(v => DbFunctions.TruncateTime(v.InspectionDate) == exactDate.Date);
                 }
-                // Tìm theo khoảng ngày: "dd/MM/yyyy - dd/MM/yyyy"
+                // Khoảng ngày: "dd/MM/yyyy - dd/MM/yyyy"
                 else if (trimmed.Contains("-"))
                 {
                     string[] parts = trimmed.Split('-');
@@ -67,13 +90,14 @@ namespace SenAIS.Core.Repositories
                         DateTime.TryParse(parts[0].Trim(), out DateTime fromDate) &&
                         DateTime.TryParse(parts[1].Trim(), out DateTime toDate))
                     {
-                        query = query.Where(v => DbFunctions.TruncateTime(v.InspectionDate) >= fromDate.Date &&
-                                                 DbFunctions.TruncateTime(v.InspectionDate) <= toDate.Date);
+                        query = query.Where(v =>
+                            DbFunctions.TruncateTime(v.InspectionDate) >= fromDate.Date &&
+                            DbFunctions.TruncateTime(v.InspectionDate) <= toDate.Date);
                     }
                 }
-                // Ngày + tháng: "dd/MM" hoặc "dd-MM"
+                // Ngày + tháng không năm: "dd/MM"
                 else if (DateTime.TryParseExact(trimmed, new[] { "dd/MM", "dd-MM" },
-                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dayMonthOnly))
+                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dayMonthOnly))
                 {
                     int d = dayMonthOnly.Day;
                     int m = dayMonthOnly.Month;
@@ -89,11 +113,31 @@ namespace SenAIS.Core.Repositories
                         v.FrameNumber.Contains(searchTerm) ||
                         v.VehicleType.Contains(searchTerm) ||
                         v.Inspector.Contains(searchTerm) ||
-                        v.Fuel.Contains(searchTerm)
+                        v.Fuel.Contains(searchTerm));
+                }
+
+                // Tạo DataTable từ kết quả
+                var resultTable = new DataTable();
+                resultTable.Columns.Add("SerialNumber", typeof(string));
+                resultTable.Columns.Add("FrameNumber", typeof(string));
+                resultTable.Columns.Add("VehicleType", typeof(string));
+                resultTable.Columns.Add("Inspector", typeof(string));
+                resultTable.Columns.Add("InspectionDate", typeof(object)); // Dùng object để chứa DBNull
+                resultTable.Columns.Add("Fuel", typeof(string));
+
+                foreach (var vehicle in query.OrderByDescending(v => v.InspectionDate).ToList())
+                {
+                    resultTable.Rows.Add(
+                        vehicle.SerialNumber,
+                        vehicle.FrameNumber,
+                        vehicle.VehicleType,
+                        vehicle.Inspector,
+                        vehicle.InspectionDate.HasValue ? (object)vehicle.InspectionDate.Value : DBNull.Value,
+                        vehicle.Fuel
                     );
                 }
 
-                return query.OrderByDescending(v => v.InspectionDate).ToList();
+                return resultTable;
             }
         }
         public string GetFuelTypeBySerialNumber(string serialNumber)
@@ -110,9 +154,14 @@ namespace SenAIS.Core.Repositories
         {
             using (var db = new SenAISDB_HDEntities())
             {
+                var currentVehicle = db.VehicleInfoes
+                    .FirstOrDefault(v => v.SerialNumber == currentSerialNumber);
+
+                if (currentVehicle == null) return null;
+
                 return db.VehicleInfoes
-                         .Where(v => string.Compare(v.SerialNumber, currentSerialNumber) > 0)
-                         .OrderBy(v => v.SerialNumber)
+                         .Where(v => v.VehicleID > currentVehicle.VehicleID)
+                         .OrderBy(v => v.VehicleID)
                          .Select(v => v.SerialNumber)
                          .FirstOrDefault();
             }
@@ -122,9 +171,14 @@ namespace SenAIS.Core.Repositories
         {
             using (var db = new SenAISDB_HDEntities())
             {
+                var currentVehicle = db.VehicleInfoes
+                    .FirstOrDefault(v => v.SerialNumber == currentSerialNumber);
+
+                if (currentVehicle == null) return null;
+
                 return db.VehicleInfoes
-                         .Where(v => string.Compare(v.SerialNumber, currentSerialNumber) < 0)
-                         .OrderByDescending(v => v.SerialNumber)
+                         .Where(v => v.VehicleID < currentVehicle.VehicleID)
+                         .OrderByDescending(v => v.VehicleID)
                          .Select(v => v.SerialNumber)
                          .FirstOrDefault();
             }

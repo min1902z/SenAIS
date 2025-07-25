@@ -39,9 +39,12 @@ namespace SenAIS.Core.Repositories
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
+                    if (row.RowState == DataRowState.Deleted) continue;
+
                     string vehicleType = row["VehicleType"].ToString();
-                    var item = db.VehicleStandards.FirstOrDefault(x => x.VehicleType == vehicleType);
-                    if (item != null)
+                    var existing = db.VehicleStandards.FirstOrDefault(x => x.VehicleType == vehicleType);
+
+                    if (existing != null)
                     {
                         foreach (DataColumn col in dataTable.Columns)
                         {
@@ -49,7 +52,7 @@ namespace SenAIS.Core.Repositories
                             if (prop != null)
                             {
                                 var value = row[col.ColumnName];
-                                prop.SetValue(item, value == DBNull.Value ? null : value);
+                                prop.SetValue(existing, value == DBNull.Value ? null : value);
                             }
                         }
                     }
@@ -71,6 +74,20 @@ namespace SenAIS.Core.Repositories
                 db.SaveChanges();
             }
         }
+        public void DeleteByVehicleType(string vehicleType)
+        {
+            if (string.IsNullOrWhiteSpace(vehicleType)) return;
+
+            using (var db = new SenAISDB_HDEntities())
+            {
+                var existing = db.VehicleStandards.FirstOrDefault(x => x.VehicleType == vehicleType);
+                if (existing != null)
+                {
+                    db.VehicleStandards.Remove(existing);
+                    db.SaveChanges();
+                }
+            }
+        }
 
         public DataTable GetTypeCarList()
         {
@@ -86,27 +103,12 @@ namespace SenAIS.Core.Repositories
             }
         }
 
-        public DataTable GetVehicleStandardsByTypeCar(string vehicleType)
+        public VehicleStandard GetVehicleStandardByTypeCar(string vehicleType)
         {
             using (var db = new SenAISDB_HDEntities())
             {
-                var list = db.VehicleStandards.Where(x => x.VehicleType == vehicleType).ToList();
-                var table = new DataTable();
-                var props = typeof(VehicleStandard).GetProperties();
-                foreach (var prop in props)
-                {
-                    table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-                }
-                foreach (var item in list)
-                {
-                    var row = table.NewRow();
-                    foreach (var prop in props)
-                    {
-                        row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                    }
-                    table.Rows.Add(row);
-                }
-                return table;
+                return db.VehicleStandards
+                         .FirstOrDefault(vs => vs.VehicleType == vehicleType);
             }
         }
 

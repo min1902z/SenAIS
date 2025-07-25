@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Repositories;
+using System;
 using System.Configuration;
 using System.Drawing;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace SenAIS
 {
     public partial class frmFrontWeight : Form
     {
+        private readonly CalibrationRepository calibrationRepo = new CalibrationRepository();
         private CancellationTokenSource cancellationTokenSource;
-        private SQLHelper sqlHelper;
         private OPCManager opcManager;
         private string serialNumber;
         private double frontLWeight, frontRWeight, rearLWeight, rearRWeight;
@@ -27,7 +28,6 @@ namespace SenAIS
         {
             InitializeComponent();
             this.serialNumber = serialNumber;
-            sqlHelper = new SQLHelper();
             LoadWeightParameters();
             opcManager = new OPCManager();
             cancellationTokenSource = new CancellationTokenSource();
@@ -43,8 +43,8 @@ namespace SenAIS
             lbVinNumber.Text = this.serialNumber;
             try
             {
-                weightLeftA = sqlHelper.GetParaValue("LeftWeight", "ParaA");
-                weightRightA = sqlHelper.GetParaValue("RightWeight", "ParaA");
+                weightLeftA = calibrationRepo.GetParaValue("LeftWeight", "ParaA");
+                weightRightA = calibrationRepo.GetParaValue("RightWeight", "ParaA");
             }
             catch (Exception)
             {
