@@ -1,4 +1,6 @@
-﻿using SenAIS.Core;
+﻿using Microsoft.Extensions.Logging;
+using SenAIS.Core;
+using SenAIS.Core.Logging;
 using SenAIS.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -100,7 +102,6 @@ namespace SenAIS
         {
             ClearTextBoxes();
             var vehicle = vehicleRepo.GetVehicleDetails(serialNumber);
-            //BuildTestDetails(vehicle);
             if (vehicle != null)
             {
                 txtSerialNum.Text = vehicle.SerialNumber;
