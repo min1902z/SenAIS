@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SenAIS.Core.Repositories;
+using SenAIS.Core.MQTTServices;
 
 namespace SenAIS
 {
@@ -41,6 +42,8 @@ namespace SenAIS
         private Task receiveTask;
         private string lastJsonData = string.Empty;
         private CancellationTokenSource opcCancellationTokenSource;
+        private MqttVinService mqttService;
+        private bool hasReceivedVin = false;
 
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
@@ -66,6 +69,32 @@ namespace SenAIS
         public string GetVinNumber()
         {
             return txtVinNum.Text;
+        }
+        private async void InitMqttVinReceiver()
+        {
+            var options = new MqttOptions
+            {
+                ClientId = ConfigurationManager.AppSettings["ClientId"],
+                BrokerHost = ConfigurationManager.AppSettings["BrokerHost"],
+                BrokerPort = int.Parse(ConfigurationManager.AppSettings["BrokerPort"]),
+                StationId = ConfigurationManager.AppSettings["StationId"]
+            };
+
+            mqttService = new MqttVinService(options);
+            mqttService.OnVinReceived += vin =>
+            {
+                if (!hasReceivedVin)
+                {
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        UpdateVehicleInfo(vin);
+                        hasReceivedVin = true;
+                    }));
+                }
+            };
+
+            await mqttService.ConnectAsync();
+            await mqttService.SubscribeVinAsync(); // stationId được tự lấy từ options
         }
         private void StartMonitoringCounters(string stationType)
         {
@@ -729,7 +758,7 @@ namespace SenAIS
             Application.Exit();
         }
 
-        private void frmInspection_Load(object sender, EventArgs e)
+        private async void frmInspection_Load(object sender, EventArgs e)
         {
             currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
             if (currentUI == "Menu")
@@ -769,20 +798,51 @@ namespace SenAIS
             }
             BrakeUI();
             LoadAllVehicleInfo();
-            StartListeningForVehicleInfo();
+            await Task.Run(() => InitMqttVinReceiver());
             if (stationType == "BRAKE" || stationType == "SPEED")
             {
                 StartMonitoringCounters(stationType); // Gọi kèm stationType
             }
         }
 
-        private void btnStartProgress_Click(object sender, EventArgs e)
+        private void Invoke(Action value)
         {
-            if (CheckSerialNumber())
-                SendVehicleInfoToNetwork();
+            throw new NotImplementedException();
         }
 
-        private void frmInspection_FormClosing(object sender, FormClosingEventArgs e)
+        private async void btnStartProgress_Click(object sender, EventArgs e)
+        {
+            string vin = txtVinNum.Text;
+            if (string.IsNullOrWhiteSpace(vin))
+            {
+                MessageBox.Show("VIN không được để trống.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var brokerHost = ConfigurationManager.AppSettings["BrokerHost"];
+                int brokerPort = int.Parse(ConfigurationManager.AppSettings["BrokerPort"]);
+                var clientId = ConfigurationManager.AppSettings["ClientId"];
+                var stationIds = ConfigurationManager.AppSettings["AvailableStations"]
+                                    .Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries)
+                                    .ToList();
+
+                var publisher = new VinPublisherService(clientId, brokerHost, brokerPort);
+                bool success = await publisher.PublishVinAsync(vin, stationIds);
+
+                if (!success)
+                {
+                    MessageBox.Show("Không thể kết nối hoặc gửi VIN qua MQTT.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi gửi VIN: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void frmInspection_FormClosing(object sender, FormClosingEventArgs e)
         {
             StopListeningForVehicleInfo();
             if (opcCancellationTokenSource != null)
@@ -790,6 +850,10 @@ namespace SenAIS
                 opcCancellationTokenSource.Cancel();
                 opcCancellationTokenSource.Dispose();
                 opcCancellationTokenSource = null;
+            }
+            if (mqttService != null)
+            {
+                await mqttService.DisconnectAsync();
             }
         }
 
@@ -912,6 +976,12 @@ namespace SenAIS
                 e.Handled = true;         // Ngăn Enter thực hiện hành động mặc định
                 e.SuppressKeyPress = true; // Ngăn âm báo "ding"
             }
+        }
+
+        private async void btnReceiveVinAgain_Click(object sender, EventArgs e)
+        {
+            hasReceivedVin = false;
+            await mqttService.SubscribeVinAsync(); // Retain vẫn còn → sẽ nhận lại
         }
     }
 }

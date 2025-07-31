@@ -520,10 +520,10 @@
     <value>InspectionPanel</value>
   </data>
   <data name="&gt;&gt;tbVehicleInfo.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="tbVehicleInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cbFuel" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFuelTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbInspecDateTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateInSpec" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtVinNum" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbInspector" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbTypeCar" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Absolute,366" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cbFuel" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFuelTitle" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbInspecDateTitle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateInSpec" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtVinNum" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbInspectorTitle" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSerialNumTitle" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbInspector" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbFrameNumTitle" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtEngineNum" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTypeCarTitle" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbTypeCar" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Absolute,368" /&gt;&lt;Rows Styles="Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667,Percent,16.66667" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -556,13 +556,211 @@
     <value>InspectionPanel</value>
   </data>
   <data name="&gt;&gt;btnReport.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tbMenuControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
   </data>
   <data name="tbMenuControl.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnHeadlights.Name" xml:space="preserve">
+    <value>btnHeadlights</value>
+  </data>
+  <data name="&gt;&gt;btnHeadlights.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHeadlights.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnHeadlights.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnWhistle.Name" xml:space="preserve">
+    <value>btnWhistle</value>
+  </data>
+  <data name="&gt;&gt;btnWhistle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnWhistle.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnWhistle.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnFrontBrake.Name" xml:space="preserve">
+    <value>btnFrontBrake</value>
+  </data>
+  <data name="&gt;&gt;btnFrontBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFrontBrake.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnFrontBrake.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnHandBrake.Name" xml:space="preserve">
+    <value>btnHandBrake</value>
+  </data>
+  <data name="&gt;&gt;btnHandBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHandBrake.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnHandBrake.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnRearBrake.Name" xml:space="preserve">
+    <value>btnRearBrake</value>
+  </data>
+  <data name="&gt;&gt;btnRearBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRearBrake.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnRearBrake.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnSpeed.Name" xml:space="preserve">
+    <value>btnSpeed</value>
+  </data>
+  <data name="&gt;&gt;btnSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSpeed.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnSpeed.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnNoise.Name" xml:space="preserve">
+    <value>btnNoise</value>
+  </data>
+  <data name="&gt;&gt;btnNoise.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnNoise.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnNoise.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnFrontWeight.Name" xml:space="preserve">
+    <value>btnFrontWeight</value>
+  </data>
+  <data name="&gt;&gt;btnFrontWeight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFrontWeight.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnFrontWeight.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnSideSlip.Name" xml:space="preserve">
+    <value>btnSideSlip</value>
+  </data>
+  <data name="&gt;&gt;btnSideSlip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSideSlip.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnSideSlip.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;btnSteerAngle.Name" xml:space="preserve">
+    <value>btnSteerAngle</value>
+  </data>
+  <data name="&gt;&gt;btnSteerAngle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSteerAngle.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnSteerAngle.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnEmission.Name" xml:space="preserve">
+    <value>btnEmission</value>
+  </data>
+  <data name="&gt;&gt;btnEmission.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEmission.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnEmission.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;btnSpeedMoving.Name" xml:space="preserve">
+    <value>btnSpeedMoving</value>
+  </data>
+  <data name="&gt;&gt;btnSpeedMoving.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSpeedMoving.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnSpeedMoving.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.Name" xml:space="preserve">
+    <value>btnSwitchBrake</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchBrake.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btnLockBack.Name" xml:space="preserve">
+    <value>btnLockBack</value>
+  </data>
+  <data name="&gt;&gt;btnLockBack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLockBack.Parent" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;btnLockBack.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="tbMenuControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 91</value>
+  </data>
+  <data name="tbMenuControl.RowCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tbMenuControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>560, 645</value>
+  </data>
+  <data name="tbMenuControl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tbMenuControl.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tbMenuControl.Name" xml:space="preserve">
+    <value>tbMenuControl</value>
+  </data>
+  <data name="&gt;&gt;tbMenuControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbMenuControl.Parent" xml:space="preserve">
+    <value>panelButton</value>
+  </data>
+  <data name="&gt;&gt;tbMenuControl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tbMenuControl.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnHeadlights" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnWhistle" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontBrake" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnHandBrake" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnRearBrake" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeed" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnNoise" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontWeight" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSideSlip" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSteerAngle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnEmission" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeedMoving" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnSwitchBrake" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnLockBack" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33.33333,Percent,33.33333,Percent,33.33333" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnHeadlights.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -1065,36 +1263,6 @@
   <data name="&gt;&gt;btnLockBack.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="tbMenuControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 91</value>
-  </data>
-  <data name="tbMenuControl.RowCount" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="tbMenuControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>560, 645</value>
-  </data>
-  <data name="tbMenuControl.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="tbMenuControl.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tbMenuControl.Name" xml:space="preserve">
-    <value>tbMenuControl</value>
-  </data>
-  <data name="&gt;&gt;tbMenuControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbMenuControl.Parent" xml:space="preserve">
-    <value>panelButton</value>
-  </data>
-  <data name="&gt;&gt;tbMenuControl.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tbMenuControl.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnHeadlights" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnWhistle" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontBrake" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnHandBrake" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnRearBrake" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeed" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnNoise" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnFrontWeight" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSideSlip" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnSteerAngle" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnEmission" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnSpeedMoving" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnSwitchBrake" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnLockBack" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33.33333,Percent,33.33333,Percent,33.33333" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
   <data name="btnInspecProgress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1126,10 +1294,46 @@
     <value>InspectionPanel</value>
   </data>
   <data name="&gt;&gt;btnInspecProgress.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="InspectionPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="btnReceiveVinAgain.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btnReceiveVinAgain.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 14.25pt, style=Bold</value>
+  </data>
+  <data name="btnReceiveVinAgain.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnReceiveVinAgain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 198</value>
+  </data>
+  <data name="btnReceiveVinAgain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btnReceiveVinAgain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 50</value>
+  </data>
+  <data name="btnReceiveVinAgain.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnReceiveVinAgain.Text" xml:space="preserve">
+    <value>Lấy Lại Vin</value>
+  </data>
+  <data name="&gt;&gt;btnReceiveVinAgain.Name" xml:space="preserve">
+    <value>btnReceiveVinAgain</value>
+  </data>
+  <data name="&gt;&gt;btnReceiveVinAgain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnReceiveVinAgain.Parent" xml:space="preserve">
+    <value>InspectionPanel</value>
+  </data>
+  <data name="&gt;&gt;btnReceiveVinAgain.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btnStartProgress.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -1165,7 +1369,7 @@
     <value>InspectionPanel</value>
   </data>
   <data name="&gt;&gt;btnStartProgress.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnExit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1201,7 +1405,7 @@
     <value>InspectionPanel</value>
   </data>
   <data name="&gt;&gt;btnExit.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnResetMain.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1237,7 +1441,7 @@
     <value>InspectionPanel</value>
   </data>
   <data name="&gt;&gt;btnResetMain.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="panelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1245,8 +1449,140 @@
   <data name="panelButton.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;VehicleListPanel.Name" xml:space="preserve">
+    <value>VehicleListPanel</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.Parent" xml:space="preserve">
+    <value>panelButton</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtVinShow.Name" xml:space="preserve">
+    <value>txtVinShow</value>
+  </data>
+  <data name="&gt;&gt;txtVinShow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtVinShow.Parent" xml:space="preserve">
+    <value>panelButton</value>
+  </data>
+  <data name="&gt;&gt;txtVinShow.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>494, 0</value>
+  </data>
+  <data name="panelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>949, 857</value>
+  </data>
+  <data name="panelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;panelButton.Name" xml:space="preserve">
+    <value>panelButton</value>
+  </data>
+  <data name="&gt;&gt;panelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelButton.Parent" xml:space="preserve">
+    <value>InspectionPanel</value>
+  </data>
+  <data name="&gt;&gt;panelButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="InspectionPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="InspectionPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 8.25pt</value>
+  </data>
+  <data name="InspectionPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="InspectionPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="InspectionPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1443, 857</value>
+  </data>
+  <data name="InspectionPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;InspectionPanel.Name" xml:space="preserve">
+    <value>InspectionPanel</value>
+  </data>
+  <data name="&gt;&gt;InspectionPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;InspectionPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;InspectionPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="VehicleListPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
+    <value>btnSearch</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
+    <value>VehicleListPanel</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtSearch.Name" xml:space="preserve">
+    <value>txtSearch</value>
+  </data>
+  <data name="&gt;&gt;txtSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSearch.Parent" xml:space="preserve">
+    <value>VehicleListPanel</value>
+  </data>
+  <data name="&gt;&gt;txtSearch.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dgVehicleInfo.Name" xml:space="preserve">
+    <value>dgVehicleInfo</value>
+  </data>
+  <data name="&gt;&gt;dgVehicleInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgVehicleInfo.Parent" xml:space="preserve">
+    <value>VehicleListPanel</value>
+  </data>
+  <data name="&gt;&gt;dgVehicleInfo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="VehicleListPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 126</value>
+  </data>
+  <data name="VehicleListPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>875, 711</value>
+  </data>
+  <data name="VehicleListPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.Name" xml:space="preserve">
+    <value>VehicleListPanel</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.Parent" xml:space="preserve">
+    <value>panelButton</value>
+  </data>
+  <data name="&gt;&gt;VehicleListPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btnSearch.Font" type="System.Drawing.Font, System.Drawing">
     <value>Calibri, 15.75pt</value>
@@ -1332,27 +1668,6 @@
   <data name="&gt;&gt;dgVehicleInfo.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="VehicleListPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 126</value>
-  </data>
-  <data name="VehicleListPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>875, 711</value>
-  </data>
-  <data name="VehicleListPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;VehicleListPanel.Name" xml:space="preserve">
-    <value>VehicleListPanel</value>
-  </data>
-  <data name="&gt;&gt;VehicleListPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;VehicleListPanel.Parent" xml:space="preserve">
-    <value>panelButton</value>
-  </data>
-  <data name="&gt;&gt;VehicleListPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="txtVinShow.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -1385,57 +1700,6 @@
   </data>
   <data name="&gt;&gt;txtVinShow.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="panelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>494, 0</value>
-  </data>
-  <data name="panelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>949, 857</value>
-  </data>
-  <data name="panelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;panelButton.Name" xml:space="preserve">
-    <value>panelButton</value>
-  </data>
-  <data name="&gt;&gt;panelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelButton.Parent" xml:space="preserve">
-    <value>InspectionPanel</value>
-  </data>
-  <data name="&gt;&gt;panelButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="InspectionPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="InspectionPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 8.25pt</value>
-  </data>
-  <data name="InspectionPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="InspectionPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="InspectionPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1443, 857</value>
-  </data>
-  <data name="InspectionPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;InspectionPanel.Name" xml:space="preserve">
-    <value>InspectionPanel</value>
-  </data>
-  <data name="&gt;&gt;InspectionPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;InspectionPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;InspectionPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
