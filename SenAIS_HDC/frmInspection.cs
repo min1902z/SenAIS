@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using SenAIS.Core.MQTTServices;
+using SenAIS.Core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,8 +12,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SenAIS.Core.Repositories;
-using SenAIS.Core.MQTTServices;
 
 namespace SenAIS
 {
@@ -43,7 +43,6 @@ namespace SenAIS
         private string lastJsonData = string.Empty;
         private CancellationTokenSource opcCancellationTokenSource;
         private MqttVinService mqttService;
-        private bool hasReceivedVin = false;
 
         private static readonly string opcSpeedCounter = ConfigurationManager.AppSettings["Speed_Counter"];
         private static readonly string opcSSCounter = ConfigurationManager.AppSettings["SideSlip_Counter"];
@@ -70,31 +69,47 @@ namespace SenAIS
         {
             return txtVinNum.Text;
         }
-        private async void InitMqttVinReceiver()
+        private async Task InitMqttVinReceiver()
         {
-            var options = new MqttOptions
+            try
             {
-                ClientId = ConfigurationManager.AppSettings["ClientId"],
-                BrokerHost = ConfigurationManager.AppSettings["BrokerHost"],
-                BrokerPort = int.Parse(ConfigurationManager.AppSettings["BrokerPort"]),
-                StationId = ConfigurationManager.AppSettings["StationId"]
-            };
+                string brokerHost = ConfigurationManager.AppSettings["BrokerHost"];
+                string clientId = ConfigurationManager.AppSettings["ClientId"];
+                string stationId = ConfigurationManager.AppSettings["StationId"];
+                if (!int.TryParse(ConfigurationManager.AppSettings["BrokerPort"], out int brokerPort))
+                    throw new Exception("BrokerPort không hợp lệ trong App.config.");
 
-            mqttService = new MqttVinService(options);
-            mqttService.OnVinReceived += vin =>
-            {
-                if (!hasReceivedVin)
+                var options = new MqttOptions
                 {
-                    this.Invoke((MethodInvoker)(() =>
-                    {
-                        UpdateVehicleInfo(vin);
-                        hasReceivedVin = true;
-                    }));
-                }
-            };
+                    BrokerHost = brokerHost,
+                    BrokerPort = brokerPort,
+                    ClientId = clientId,
+                    StationId = stationId
+                };
 
-            await mqttService.ConnectAsync();
-            await mqttService.SubscribeVinAsync(); // stationId được tự lấy từ options
+                mqttService = new MqttVinService(options);
+                mqttService.OnVinReceived += MqttVinReceivedHandler;
+
+                await mqttService.ConnectAsync();
+                await mqttService.SubscribeVinAsync();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không thể kết nối MQTT broker.\nỨng dụng vẫn tiếp tục hoạt động.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void MqttVinReceivedHandler(string vin)
+        {
+            this.Invoke((MethodInvoker)(() =>
+            {
+                string currentVin = txtVinNum.Text ?? "";
+                string receivedVin = vin ?? "";
+
+                if (string.IsNullOrEmpty(currentVin) || !string.Equals(currentVin, receivedVin, StringComparison.Ordinal))
+                {
+                    UpdateVehicleInfo(receivedVin);
+                }
+            }));
         }
         private void StartMonitoringCounters(string stationType)
         {
@@ -798,7 +813,7 @@ namespace SenAIS
             }
             BrakeUI();
             LoadAllVehicleInfo();
-            await Task.Run(() => InitMqttVinReceiver());
+            await InitMqttVinReceiver();
             if (stationType == "BRAKE" || stationType == "SPEED")
             {
                 StartMonitoringCounters(stationType); // Gọi kèm stationType
@@ -853,6 +868,7 @@ namespace SenAIS
             }
             if (mqttService != null)
             {
+                mqttService.OnVinReceived -= MqttVinReceivedHandler;
                 await mqttService.DisconnectAsync();
             }
         }
@@ -980,7 +996,6 @@ namespace SenAIS
 
         private async void btnReceiveVinAgain_Click(object sender, EventArgs e)
         {
-            hasReceivedVin = false;
             await mqttService.SubscribeVinAsync(); // Retain vẫn còn → sẽ nhận lại
         }
     }
