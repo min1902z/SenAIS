@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,14 @@ namespace SenAIS.Core.Repositories
 {
     public class CalibrationRepository
     {
+        private readonly string _connectionString;
+        public CalibrationRepository()
+        {
+            _connectionString = AppSettingsHelper.GetDatabaseConnectionString();
+        }
         public object GetParameterValue(string paraType, string columnName)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var calibration = db.Calibrations.FirstOrDefault(c => c.ParaType == paraType);
 
@@ -28,7 +34,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateCalibrationData(string paraType, decimal paraA, decimal paraB)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var calibration = db.Calibrations.FirstOrDefault(c => c.ParaType == paraType);
 

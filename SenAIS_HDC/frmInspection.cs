@@ -38,9 +38,6 @@ namespace SenAIS
             public string InspectionDate { get; set; }
             public string FuelType { get; set; }
         }
-        private UdpClient udpListener;
-        private Task receiveTask;
-        private string lastJsonData = string.Empty;
         private CancellationTokenSource opcCancellationTokenSource;
         private MqttVinService mqttService;
 
@@ -73,11 +70,11 @@ namespace SenAIS
         {
             try
             {
-                string brokerHost = ConfigurationManager.AppSettings["BrokerHost"];
+                string brokerHost = ConfigurationManager.AppSettings["ServerHost"];
                 string clientId = ConfigurationManager.AppSettings["ClientId"];
                 string stationId = ConfigurationManager.AppSettings["StationId"];
-                if (!int.TryParse(ConfigurationManager.AppSettings["BrokerPort"], out int brokerPort))
-                    throw new Exception("BrokerPort không hợp lệ trong App.config.");
+                if (!int.TryParse(ConfigurationManager.AppSettings["ServerPort"], out int brokerPort))
+                    throw new Exception("ServerPort không hợp lệ trong App.config.");
 
                 var options = new MqttOptions
                 {
@@ -513,154 +510,6 @@ namespace SenAIS
                 cbFuel.SelectedIndex = -1;
             }
         }
-        private void SendVehicleInfoToNetwork()
-        {
-            try
-            {
-                var vehicleInfo = new
-                {
-                    VehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty,
-                    Inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty,
-                    FrameNumber = txtEngineNum.Text,
-                    SerialNumber = txtVinNum.Text,
-                    InspectionDate = dateInSpec.Value.ToString(),
-                    FuelType = cbFuel.SelectedItem?.ToString() ?? string.Empty,
-                };
-
-                string jsonData = JsonConvert.SerializeObject(vehicleInfo);
-                byte[] data = Encoding.UTF8.GetBytes(jsonData);
-
-                string[] clientIPs = ConfigurationManager.AppSettings["ClientIPs"].Split(';');
-                int udpPort = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
-
-                using (UdpClient udpClient = new UdpClient())
-                {
-                    foreach (var ip in clientIPs)
-                    {
-                        IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ip), udpPort);
-                        udpClient.Send(data, data.Length, endPoint);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi gửi thông tin xe, kiểm tra kết nối với máy trạm: " + ex.Message);
-            }
-        }
-        private void StartListeningForVehicleInfo()
-        {
-            if (receiveTask != null && !receiveTask.IsCompleted) return;
-
-            int port = int.Parse(ConfigurationManager.AppSettings["UdpPort"]);
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
-
-            try
-            {
-                udpListener?.Close();
-                udpListener = new UdpClient(port);
-            }
-            catch
-            {
-                return; // Nếu lỗi khởi tạo listener, không làm gì cả
-            }
-            receiveTask = Task.Run(() =>
-            {
-                try
-                {
-                    while (true)
-                    {
-                        byte[] receivedBytes = udpListener.Receive(ref endPoint);
-                        string receivedJson = Encoding.UTF8.GetString(receivedBytes);
-
-                        if (receivedJson == lastJsonData)
-                            continue;
-
-                        lastJsonData = receivedJson;
-
-                        this.Invoke(new Action(() =>
-                        {
-                            try
-                            {
-                                var vehicleInfo = JsonConvert.DeserializeObject<VehicleInfo>(receivedJson);
-                                if (vehicleInfo != null)
-                                {
-                                    cbTypeCar.SelectedValue = vehicleInfo.VehicleType;
-                                    cbInspector.SelectedValue = vehicleInfo.Inspector;
-                                    txtEngineNum.Text = vehicleInfo.FrameNumber;
-                                    txtVinNum.Text = vehicleInfo.SerialNumber;
-                                    dateInSpec.Value = DateTime.Parse(vehicleInfo.InspectionDate);
-                                    cbFuel.SelectedItem = vehicleInfo.FuelType;
-
-                                    this.serialNumber = vehicleInfo.SerialNumber;
-                                    OpenStationFormByConfig(vehicleInfo.SerialNumber);
-                                }
-                            }
-                            catch { /* Bỏ qua lỗi xử lý JSON hoặc update UI */ }
-                        }));
-                    }
-                }
-                catch { /* Bỏ qua lỗi khi listener ngắt kết nối hoặc form đóng */ }
-            });
-        }
-        private void OpenStationFormByConfig(string serialNumber)
-        {
-            string stationType = ConfigurationManager.AppSettings["StationType"];
-            Form newForm = null;
-            Type formType = null;
-
-            switch (stationType)
-            {
-                case "SideSlip":
-                    formType = typeof(frmSideSlip);
-                    newForm = new frmSideSlip(serialNumber);
-                    break;
-
-                case "Brake":
-                    formType = typeof(frmFrontBrake);
-                    newForm = new frmFrontBrake(serialNumber);
-                    break;
-
-                case "Speed":
-                    formType = typeof(frmSpeed);
-                    newForm = new frmSpeed(serialNumber);
-                    break;
-
-                default:
-                    return;
-            }
-
-            this.BeginInvoke(new Action(() =>
-            {
-                // 🔹 Nếu form trạm đang mở => đóng lại trước
-                var openedForm = Application.OpenForms
-                    .OfType<Form>()
-                    .FirstOrDefault(f => f.GetType() == formType);
-
-                if (openedForm != null && !openedForm.IsDisposed)
-                {
-                    openedForm.Close();
-                }
-                // 🔹 Mở form mới với SerialNumber mới
-                newForm.Show();
-            }));
-        }
-        private void StopListeningForVehicleInfo()
-        {
-            try
-            {
-                udpListener?.Close();
-                udpListener = null;
-
-                if (receiveTask != null && !receiveTask.IsCompleted)
-                {
-                    receiveTask.Dispose();
-                    receiveTask = null;
-                }
-
-                lastJsonData = string.Empty;
-            }
-            catch { }
-        }
         private void btnSpeedMoving_Click(object sender, EventArgs e)
         {
             var speedMoving = new frmSpeedMoving();
@@ -819,12 +668,6 @@ namespace SenAIS
                 StartMonitoringCounters(stationType); // Gọi kèm stationType
             }
         }
-
-        private void Invoke(Action value)
-        {
-            throw new NotImplementedException();
-        }
-
         private async void btnStartProgress_Click(object sender, EventArgs e)
         {
             string vin = txtVinNum.Text;
@@ -859,7 +702,6 @@ namespace SenAIS
 
         private async void frmInspection_FormClosing(object sender, FormClosingEventArgs e)
         {
-            StopListeningForVehicleInfo();
             if (opcCancellationTokenSource != null)
             {
                 opcCancellationTokenSource.Cancel();

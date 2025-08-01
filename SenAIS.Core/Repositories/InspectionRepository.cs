@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,15 @@ namespace SenAIS.Core.Repositories
 {
     public class InspectionRepository
     {
+        private readonly string _connectionString;
+
+        public InspectionRepository()
+        {
+            _connectionString = AppSettingsHelper.GetDatabaseConnectionString();
+        }
         public void SaveSpeedData(string serialNumber, decimal speedValue)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Speeds.FirstOrDefault(s => s.SerialNumber == serialNumber);
                 if (existing != null)
@@ -32,7 +39,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveFrontBrakeData(string serialNumber, decimal leftBrake, decimal rightBrake)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.BrakeForces.FirstOrDefault(b => b.SerialNumber == serialNumber);
                 if (existing != null)
@@ -56,7 +63,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveRearBrakeData(string serialNumber, decimal leftBrake, decimal rightBrake)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.BrakeForces.FirstOrDefault(b => b.SerialNumber == serialNumber);
                 if (existing != null)
@@ -80,7 +87,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveHandBrakeData(string serialNumber, decimal leftBrake, decimal rightBrake)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.BrakeForces.FirstOrDefault(b => b.SerialNumber == serialNumber);
                 if (existing != null)
@@ -104,7 +111,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveFrontWeightData(string serialNumber, decimal leftWeight, decimal rightWeight)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Weights.FirstOrDefault(w => w.SerialNumber == serialNumber);
                 if (existing != null)
@@ -128,7 +135,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveRearWeightData(string serialNumber, decimal leftWeight, decimal rightWeight)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Weights.FirstOrDefault(w => w.SerialNumber == serialNumber);
                 if (existing != null)
@@ -156,7 +163,7 @@ namespace SenAIS.Core.Repositories
             decimal leftLBIntensityValue, decimal leftLBVerticalValue, decimal leftLBHorizontalValue,
             decimal rightLBIntensityValue, decimal rightLBVerticalValue, decimal rightLBHorizontalValue)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Headlights.FirstOrDefault(h => h.SerialNumber == serialNumber);
                 if (existing != null)
@@ -200,7 +207,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveGasEmissionPetrol(string serialNumber, decimal hc, decimal co, decimal co2, decimal o2, decimal no, decimal oilTemp, decimal rpm)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.GasEmission_Petrol.FirstOrDefault(g => g.SerialNumber == serialNumber);
                 if (existing != null)
@@ -233,7 +240,7 @@ namespace SenAIS.Core.Repositories
         }
         public void SavePetrolEmission(string serialNumber, decimal hc, decimal co, decimal oilTemp, decimal rpm)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.GasEmission_Petrol.FirstOrDefault(g => g.SerialNumber == serialNumber);
                 if (existing != null)
@@ -264,7 +271,7 @@ namespace SenAIS.Core.Repositories
             decimal minSpeed2, decimal maxSpeed2, decimal hsu2,
             decimal minSpeed3, decimal maxSpeed3, decimal hsu3)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.GasEmission_Diesel.FirstOrDefault(g => g.SerialNumber == serialNumber);
                 if (existing != null)
@@ -301,7 +308,7 @@ namespace SenAIS.Core.Repositories
         }
         public void SaveNoiseData(string serialNumber, decimal noiseValue)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Noises.FirstOrDefault(n => n.SerialNumber == serialNumber);
                 if (existing != null)
@@ -323,7 +330,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveWhistleData(string serialNumber, decimal whistle)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Noises.FirstOrDefault(n => n.SerialNumber == serialNumber);
                 if (existing != null)
@@ -345,7 +352,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveSideSlipData(string serialNumber, decimal sideSlip)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.SideSlips.FirstOrDefault(s => s.SerialNumber == serialNumber);
                 if (existing != null)
@@ -367,7 +374,7 @@ namespace SenAIS.Core.Repositories
 
         public void SaveSteerAngleData(string serialNumber, decimal leftSteerLW, decimal rightSteerLW, decimal leftSteerRW, decimal rightSteerRW)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.SteerAngles.FirstOrDefault(s => s.SerialNumber == serialNumber);
                 if (existing != null)
@@ -395,7 +402,7 @@ namespace SenAIS.Core.Repositories
         // Cập nhật giá trị tại bảng thống kê
         public void UpdateSpeed(string serialNumber, decimal? speed)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Speeds.FirstOrDefault(s => s.SerialNumber == serialNumber);
                 if (existing != null)
@@ -412,7 +419,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateSideSlip(string serialNumber, decimal? sideSlip)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.SideSlips.FirstOrDefault(s => s.SerialNumber == serialNumber);
                 if (existing != null)
@@ -429,7 +436,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateWeight(string serialNumber, decimal? frontLeftWeight, decimal? frontRightWeight, decimal? rearLeftWeight, decimal? rearRightWeight)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Weights.FirstOrDefault(w => w.SerialNumber == serialNumber);
                 if (existing != null)
@@ -456,7 +463,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateBrakeForce(string serialNumber, decimal? frontLeftBrake, decimal? frontRightBrake, decimal? rearLeftBrake, decimal? rearRightBrake, decimal? handBrakeLeft, decimal? handBrakeRight)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.BrakeForces.FirstOrDefault(b => b.SerialNumber == serialNumber);
                 if (existing != null)
@@ -487,7 +494,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateNoise(string serialNumber, decimal? noise, decimal? whistle)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Noises.FirstOrDefault(n => n.SerialNumber == serialNumber);
                 if (existing != null)
@@ -508,7 +515,7 @@ namespace SenAIS.Core.Repositories
             decimal? leftLBIntensity, decimal? leftLBVertical, decimal? leftLBHorizontal,
             decimal? rightLBIntensity, decimal? rightLBVertical, decimal? rightLBHorizontal)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.Headlights.FirstOrDefault(h => h.SerialNumber == serialNumber);
                 if (existing != null)
@@ -551,7 +558,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateGasEmissionPetrol(string serialNumber, decimal? hc, decimal? co, decimal? co2, decimal? o2, decimal? no, decimal? oilTemp, decimal? rpm)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.GasEmission_Petrol.FirstOrDefault(g => g.SerialNumber == serialNumber);
                 if (existing != null)
@@ -586,7 +593,7 @@ namespace SenAIS.Core.Repositories
             decimal? minSpeed2, decimal? maxSpeed2, decimal? hsu2,
             decimal? minSpeed3, decimal? maxSpeed3, decimal? hsu3)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.GasEmission_Diesel.FirstOrDefault(g => g.SerialNumber == serialNumber);
                 if (existing != null)
@@ -623,7 +630,7 @@ namespace SenAIS.Core.Repositories
         
         public void UpdateSteerAngle(string serialNumber, decimal? leftSteerLW, decimal? leftSteerRW, decimal? rightSteerLW, decimal? rightSteerRW)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.SteerAngles.FirstOrDefault(s => s.SerialNumber == serialNumber);
                 if (existing != null)

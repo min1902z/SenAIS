@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Config;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,9 +10,15 @@ namespace SenAIS.Core.Repositories
 {
     public class StandardRepository
     {
+        private readonly string _connectionString;
+
+        public StandardRepository()
+        {
+            _connectionString = AppSettingsHelper.GetDatabaseConnectionString();
+        }
         public DataTable GetVehicleStandardsData()
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var list = db.VehicleStandards.ToList();
                 var table = new DataTable();
@@ -35,7 +42,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateVehicleStandardsData(DataTable dataTable)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
@@ -78,7 +85,7 @@ namespace SenAIS.Core.Repositories
         {
             if (string.IsNullOrWhiteSpace(vehicleType)) return;
 
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.VehicleStandards.FirstOrDefault(x => x.VehicleType == vehicleType);
                 if (existing != null)
@@ -91,7 +98,7 @@ namespace SenAIS.Core.Repositories
 
         public DataTable GetTypeCarList()
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var table = new DataTable();
                 table.Columns.Add("VehicleType", typeof(string));
@@ -105,7 +112,7 @@ namespace SenAIS.Core.Repositories
 
         public VehicleStandard GetVehicleStandardByTypeCar(string vehicleType)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 return db.VehicleStandards
                          .FirstOrDefault(vs => vs.VehicleType == vehicleType);
@@ -114,7 +121,7 @@ namespace SenAIS.Core.Repositories
 
         public bool CheckValueAgainstStandard(string valueType, decimal value, string serialNumber)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var vehicle = db.VehicleInfoes.FirstOrDefault(v => v.SerialNumber == serialNumber);
                 if (vehicle == null)
@@ -165,7 +172,7 @@ namespace SenAIS.Core.Repositories
 
         public string GetVehicleTypeBySampleVin(string inputVin)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 return db.VehicleStandards
                          .Where(v => inputVin.StartsWith(v.SampleVin))

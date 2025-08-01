@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -63,6 +64,7 @@
       <DependentUpon>SenAISModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Config\AppSettingsHelper.cs" />
     <Compile Include="GasEmission_Diesel.cs">
       <DependentUpon>SenAISModel.tt</DependentUpon>
     </Compile>

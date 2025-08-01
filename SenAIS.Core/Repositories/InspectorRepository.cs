@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Config;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,9 +10,15 @@ namespace SenAIS.Core.Repositories
 {
     public class InspectorRepository
     {
+        private readonly string _connectionString;
+
+        public InspectorRepository()
+        {
+            _connectionString = AppSettingsHelper.GetDatabaseConnectionString();
+        }
         public DataTable GetInspectorData()
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var inspectors = db.Inspectors.ToList();
                 var table = new DataTable();
@@ -32,7 +39,7 @@ namespace SenAIS.Core.Repositories
 
         public void UpdateInspectorData(DataTable dataTable)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
@@ -80,7 +87,7 @@ namespace SenAIS.Core.Repositories
         }
         public void DeleteInspector(int inspectorId)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var inspector = db.Inspectors.FirstOrDefault(i => i.InspectorID == inspectorId);
                 if (inspector != null)
@@ -93,7 +100,7 @@ namespace SenAIS.Core.Repositories
 
         public DataTable GetInspectorList()
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var names = db.Inspectors.Select(i => i.InspectorName).ToList();
                 var table = new DataTable();

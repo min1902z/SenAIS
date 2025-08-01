@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Core.Config;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,9 +12,15 @@ namespace SenAIS.Core.Repositories
 {
     public class VehicleRepository
     {
+        private readonly string _connectionString;
+
+        public VehicleRepository()
+        {
+            _connectionString = AppSettingsHelper.GetDatabaseConnectionString();
+        }
         public DataTable GetAllVehicleInfo()
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var vehicles = db.VehicleInfoes
                                  .OrderByDescending(v => v.VehicleID)
@@ -44,7 +51,7 @@ namespace SenAIS.Core.Repositories
         }
         public VehicleInfo GetVehicleDetails(string serialNumber)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 return db.VehicleInfoes
                      .Include(v => v.Speeds)
@@ -62,7 +69,7 @@ namespace SenAIS.Core.Repositories
 
         public VehicleInfo GetBySerial(string serialNumber)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 return db.VehicleInfoes
                          .FirstOrDefault(v => v.SerialNumber == serialNumber);
@@ -71,7 +78,7 @@ namespace SenAIS.Core.Repositories
 
         public DataTable Search(string searchTerm)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var query = db.VehicleInfoes.AsQueryable();
 
@@ -142,7 +149,7 @@ namespace SenAIS.Core.Repositories
         }
         public string GetFuelTypeBySerialNumber(string serialNumber)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 return db.VehicleInfoes
                          .Where(v => v.SerialNumber == serialNumber)
@@ -152,7 +159,7 @@ namespace SenAIS.Core.Repositories
         }
         public string GetNextSerialNumber(string currentSerialNumber)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var currentVehicle = db.VehicleInfoes
                     .FirstOrDefault(v => v.SerialNumber == currentSerialNumber);
@@ -169,7 +176,7 @@ namespace SenAIS.Core.Repositories
 
         public string GetPreviousSerialNumber(string currentSerialNumber)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var currentVehicle = db.VehicleInfoes
                     .FirstOrDefault(v => v.SerialNumber == currentSerialNumber);
@@ -185,7 +192,7 @@ namespace SenAIS.Core.Repositories
         }
         public void SaveVehicleInfo(string vehicleType, string inspector, string frameNumber, string serialNumber, DateTime inspectionDate, string fuelType)
         {
-            using (var db = new SenAISDB_HDEntities())
+            using (var db = new SenAISDB_HDEntities(_connectionString))
             {
                 var existing = db.VehicleInfoes.FirstOrDefault(v => v.SerialNumber == serialNumber);
                 if (existing != null)

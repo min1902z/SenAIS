@@ -21,7 +21,11 @@ namespace SenAIS.Core
             : base("name=SenAISDB_HDEntities")
         {
         }
-    
+        public SenAISDB_HDEntities(string connectionString)
+        : base(connectionString)
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
