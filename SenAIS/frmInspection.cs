@@ -195,7 +195,6 @@ namespace SenAIS
                     {
                         // Bỏ qua lỗi
                     }
-
                     await Task.Delay(100, token);
                 }
             }, token);
@@ -227,7 +226,6 @@ namespace SenAIS
                 newForm.FormClosed += (s, e) => openForms.Remove(newForm);  // Gỡ form khỏi danh sách khi đóng
                 newForm.Show();  // Hiển thị form mới
             }
-
         }
         private void btnSpeed_Click(object sender, EventArgs e)
         {
@@ -246,7 +244,6 @@ namespace SenAIS
                 opcManager.SetOPCValue(opcSSCounter, 1);
             }
         }
-
         private void btnNoise_Click(object sender, EventArgs e)
         {
             if (CheckSerialNumber())

@@ -26,7 +26,6 @@ namespace SenAIS
         private decimal minLamda;
         private string serialNumber;
         private byte[] lastReceivedData;
-        private bool hasMeasured = false; // Đánh dấu quá trình đo đã hoàn tất
         private bool isManualStop = false;
         private bool isManualMode;
         private CancellationTokenSource cts; // Quản lý hủy bỏ task
@@ -101,7 +100,6 @@ namespace SenAIS
             lbNOValue.Text = "0.0";
             lbOTValue.Text = "0.0";
             lbRPMValue.Text = "0.0";
-            hasMeasured = false; // Đặt lại cờ đã đo
         }
         private void UpdateTitle(string title)
         {
@@ -198,7 +196,6 @@ namespace SenAIS
                         if (isHCInStandard && isCOInStandard && isLamdaInStandard)
                         {
                             await Task.Delay(2000);
-                            hasMeasured = true; // Đạt tiêu chuẩn, gán cờ hoàn tất đo
                             pbCorrect.BackColor = Color.Green;
                             await FinishAndNextVinAsync();
                         }
@@ -246,7 +243,6 @@ namespace SenAIS
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    hasMeasured = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
                 else
@@ -269,7 +265,6 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    hasMeasured = false; // Đặt lại trạng thái
                     LoadVehicleStandards(serialNumber);
                 }
                 else
