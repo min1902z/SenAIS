@@ -68,14 +68,12 @@ namespace SenAIS
         {
             InitializeComponent();
             sqlHelper = new SQLHelper();
-            opcManager = new OPCUtility();
             this.serialNumber = txtVinNum.Text;
         }
         public frmInspection(string serialNumber)
         {
             InitializeComponent();
             sqlHelper = new SQLHelper();
-            opcManager = new OPCUtility();
             this.serialNumber = serialNumber;
             txtVinNum.Text = serialNumber;
         }
@@ -755,6 +753,7 @@ namespace SenAIS
         }
         private void frmInspection_Load(object sender, EventArgs e)
         {
+            opcManager = new OPCUtility();
             this.serialNumber = txtVinNum.Text;
             currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
             if (currentUI == "Menu")
