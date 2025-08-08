@@ -124,8 +124,13 @@ namespace SenAIS
                                     lastBrake = brake;
                                     BeginInvoke((MethodInvoker)(() =>
                                     {
-                                        if (CheckSerialNumber())
+                                        bool isRearBrakeOpen = Application.OpenForms.OfType<frmRearBrake>().Any();
+                                        bool isHandBrakeOpen = Application.OpenForms.OfType<frmHandBrake>().Any();
+
+                                        if (CheckSerialNumber() && !isRearBrakeOpen && !isHandBrakeOpen)
+                                        {
                                             OpenNewForm(new frmFrontBrake(serialNumber));
+                                        }
                                     }));
                                 }
                                 else if (brake != 1) lastBrake = brake;

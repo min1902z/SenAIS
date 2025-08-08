@@ -12,7 +12,6 @@ namespace SenAIS
 {
     public partial class frmFrontBrake : Form
     {
-        //private Timer updateTimer;
         private SQLHelper sqlHelper;
         private OPCUtility opcManager;
         private CancellationTokenSource opcCancellationToken;
