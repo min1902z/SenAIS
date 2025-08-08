@@ -268,7 +268,10 @@ namespace SenAIS
                 opcCancellationTokenSource = null;
             }
             comConnect.CloseConnection();
-
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
+            }
         }
     }
 }

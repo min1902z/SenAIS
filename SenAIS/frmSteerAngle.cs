@@ -315,6 +315,10 @@ namespace SenAIS
                 sensorCancellationTokenSource.Dispose();
                 sensorCancellationTokenSource = null;
             }
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
+            }
         }
         private void frmSteerAngle_Load(object sender, EventArgs e)
         {

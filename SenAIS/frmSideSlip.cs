@@ -242,6 +242,10 @@ namespace SenAIS
                 opcCancellationTokenSource.Dispose();
                 opcCancellationTokenSource = null;
             }
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
+            }
         }
 
         private void frmSideSlip_Load(object sender, EventArgs e)

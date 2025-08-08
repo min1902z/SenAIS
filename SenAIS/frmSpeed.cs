@@ -227,18 +227,15 @@ namespace SenAIS
         }
         private void frmSpeed_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (updateTimer != null)
-            //{
-            //    updateTimer.Stop(); // Dừng Timer
-            //    updateTimer.Dispose(); // Giải phóng tài nguyên
-            //    updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
-            //}
-            //e.Cancel = false;
             if (opcCancellationTokenSource != null)
             {
                 opcCancellationTokenSource.Cancel();
                 opcCancellationTokenSource.Dispose();
                 opcCancellationTokenSource = null;
+            }
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
             }
         }
     }

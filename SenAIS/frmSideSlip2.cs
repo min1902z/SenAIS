@@ -138,6 +138,10 @@ namespace SenAIS
                 updateTimer = null; // Gán null để tránh tham chiếu ngoài ý muốn
             }
             e.Cancel = false;
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
+            }
         }
     }
 }

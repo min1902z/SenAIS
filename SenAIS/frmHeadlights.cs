@@ -452,6 +452,10 @@ namespace SenAIS
                 {
                 }
             }
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
+            }
         }
     }
 }

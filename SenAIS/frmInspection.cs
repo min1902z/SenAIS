@@ -68,14 +68,12 @@ namespace SenAIS
         {
             InitializeComponent();
             sqlHelper = new SQLHelper();
-            opcManager = new OPCUtility();
             this.serialNumber = txtVinNum.Text;
         }
         public frmInspection(string serialNumber)
         {
             InitializeComponent();
             sqlHelper = new SQLHelper();
-            opcManager = new OPCUtility();
             this.serialNumber = serialNumber;
             txtVinNum.Text = serialNumber;
         }
@@ -529,6 +527,10 @@ namespace SenAIS
         {
             StopListeningForVehicleInfo();
             StopMonitoring();
+            if (opcManager != null && opcManager.IsConnected)
+            {
+                opcManager.DisconnectOPC();
+            }
         }
 
         private void txtVinNum_KeyDown(object sender, KeyEventArgs e)
@@ -758,8 +760,12 @@ namespace SenAIS
                 MessageBox.Show($"Không thể khởi động lại ứng dụng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void frmInspection_Load(object sender, EventArgs e)
+        private async void frmInspection_Load(object sender, EventArgs e)
         {
+            await Task.Run(() =>
+            {
+                opcManager = new OPCUtility();
+            });
             this.serialNumber = txtVinNum.Text;
             currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
             if (currentUI == "Menu")
