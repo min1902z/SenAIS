@@ -1,6 +1,7 @@
 ﻿using OPCAutomation;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SenAIS
@@ -12,13 +13,28 @@ namespace SenAIS
         private bool opcErrorShown = false;
         private bool isConnecting = false;
         private bool isConnected = false;
-        private int retryCount = 0;
         private const string serverName = "Kepware.KEPServerEX.V6";
         private const string groupName = "Group1";
         private Dictionary<string, OPCItem> addedItems = new Dictionary<string, OPCItem>();
         public OPCUtility()
         {
-            ConnectToOPCServer();
+            TryConnectWithRetry();
+        }
+        private void TryConnectWithRetry()
+        {
+            int retries = 3;
+            for (int i = 0; i < retries; i++)
+            {
+                ConnectToOPCServer();
+                if (isConnected) break;
+                Thread.Sleep(3000); // Delay 3 giây
+            }
+
+            if (!isConnected && !opcErrorShown)
+            {
+                MessageBox.Show("Không thể kết nối OPC server sau 3 lần thử.", "Lỗi OPC", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                opcErrorShown = true;
+            }
         }
         private void ConnectToOPCServer()
         {
@@ -96,7 +112,7 @@ namespace SenAIS
         {
             if (!isConnected)
             {
-                ConnectToOPCServer();
+                TryConnectWithRetry();
                 if (!isConnected) throw new Exception("Chưa kết nối được OPC.");
             }
 
@@ -120,17 +136,16 @@ namespace SenAIS
             try
             {
                 var item = GetOrAddItem(opcItem);
-                object value;
-                item.Read((short)OPCDataSource.OPCDevice, out value, out _, out _);
+                item.Read((short)OPCDataSource.OPCDevice, out object value, out _, out _);
                 return Convert.ToInt32(value);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //if (!opcErrorShown)
-                //{
-                //    opcErrorShown = true;
-                //    MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
-                //}
+                if (!opcErrorShown)
+                {
+                    opcErrorShown = true;
+                    MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
+                }
                 return 0; // Giá trị mặc định
             }
         }
@@ -142,13 +157,13 @@ namespace SenAIS
                 var item = GetOrAddItem(opcItem);
                 item.Write(value);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //if (!opcErrorShown)
-                //{
-                //    MessageBox.Show($"Ghi giá trị OPC item {opcItem} thất bại: {ex.Message}");
-                //    opcErrorShown = true;
-                //}
+                if (!opcErrorShown)
+                {
+                    MessageBox.Show($"Ghi giá trị OPC item {opcItem} thất bại: {ex.Message}");
+                    opcErrorShown = true;
+                }
             }
         }
         public Dictionary<string, decimal> GetMultipleOPCValues(List<string> opcItems)

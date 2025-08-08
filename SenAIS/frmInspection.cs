@@ -742,7 +742,6 @@ namespace SenAIS
                 // Khởi động lại ứng dụng
                 System.Diagnostics.Process.Start(applicationPath);
 
-
                 // Thoát ứng dụng hiện tại
                 Application.Exit();
             }
@@ -751,9 +750,12 @@ namespace SenAIS
                 MessageBox.Show($"Không thể khởi động lại ứng dụng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void frmInspection_Load(object sender, EventArgs e)
+        private async void frmInspection_Load(object sender, EventArgs e)
         {
-            opcManager = new OPCUtility();
+            await Task.Run(() =>
+            {
+                opcManager = new OPCUtility();
+            });
             this.serialNumber = txtVinNum.Text;
             currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
             if (currentUI == "Menu")
