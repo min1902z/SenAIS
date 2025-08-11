@@ -1,4 +1,5 @@
 ﻿using OPCAutomation;
+using SenAIS.Logger;
 using System;
 using System.Configuration;
 using System.Windows.Forms;
@@ -48,6 +49,7 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi kết nối tới OPC Server: " + ex.Message);
             }
         }
@@ -61,6 +63,7 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thiết lập OPC Item: " + ex.Message);
             }
         }

@@ -85,7 +85,7 @@
             this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
             this.lbStandard.Location = new System.Drawing.Point(699, 812);
             this.lbStandard.Name = "lbStandard";
-            this.lbStandard.Size = new System.Drawing.Size(239, 97);
+            this.lbStandard.Size = new System.Drawing.Size(189, 78);
             this.lbStandard.TabIndex = 56;
             this.lbStandard.Text = "--  -  --";
             // 
@@ -97,7 +97,7 @@
             this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
             this.lbStandardTitle.Location = new System.Drawing.Point(192, 812);
             this.lbStandardTitle.Name = "lbStandardTitle";
-            this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
+            this.lbStandardTitle.Size = new System.Drawing.Size(361, 78);
             this.lbStandardTitle.TabIndex = 55;
             this.lbStandardTitle.Text = "Tiêu Chuẩn: ";
             // 
@@ -109,7 +109,7 @@
             this.lbVinNumber.Location = new System.Drawing.Point(171, -15);
             this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
-            this.lbVinNumber.Size = new System.Drawing.Size(417, 163);
+            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
             this.lbVinNumber.TabIndex = 49;
             this.lbVinNumber.Text = "Số Vin";
             // 
@@ -142,6 +142,7 @@
             this.btnNext.TabIndex = 44;
             this.btnNext.Text = "Tiếp Tục";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPre
             // 
@@ -156,6 +157,7 @@
             this.btnPre.TabIndex = 43;
             this.btnPre.Text = "Trở Lại";
             this.btnPre.UseVisualStyleBackColor = false;
+            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
             // 
             // label2
             // 
@@ -165,7 +167,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label2.Location = new System.Drawing.Point(1273, 777);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(375, 146);
+            this.label2.Size = new System.Drawing.Size(299, 117);
             this.label2.TabIndex = 12;
             this.label2.Text = "m/Km";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -37,7 +38,6 @@ namespace SenAIS
             this.isManualMode = isManualMode;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_PetrolEmission"], 9600, this);
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
         }
         private async Task StartEmissionProcess(CancellationToken cancellationToken)
         {
@@ -56,12 +56,14 @@ namespace SenAIS
                 byte[] request = { 0x03 }; // Lệnh gửi đo
                 comConnect.SendRequest(request);
             }
-            catch (TaskCanceledException)
+            catch (TaskCanceledException ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Quá trình đo đã bị hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show($"Lỗi trong quá trình đo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -112,18 +114,25 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    maxHC = ConvertToDecimal(standard["MaxHC"]);
-                    maxCO = ConvertToDecimal(standard["MaxCO"]);
-                    minLamda = ConvertToDecimal(standard["MinLamda"]);
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
+                        maxHC = ConvertToDecimal(standard["MaxHC"]);
+                        maxCO = ConvertToDecimal(standard["MaxCO"]);
+                        minLamda = ConvertToDecimal(standard["MinLamda"]);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private double? ConvertToDouble(byte highByte, byte lowByte, double scale)
@@ -148,88 +157,95 @@ namespace SenAIS
         }
         public void ProcessNHA506Data(byte[] data)
         {
-            if (data[0] == 0x06)
+            try
             {
-                // Lưu lại dữ liệu cuối cùng
-                lastReceivedData = data;
-
-                // Xử lý từng giá trị từ gói dữ liệu
-                double? hcValue = ConvertToDouble(data[1], data[2], 1); // Không chia scale
-                double? coValue = ConvertToDouble(data[3], data[4], 100);
-                double? co2Value = ConvertToDouble(data[5], data[6], 100);
-                double? o2Value = ConvertToDouble(data[7], data[8], 100);
-                double? noValue = ConvertToDouble(data[9], data[10], 100);
-                double? otValue = ConvertToDouble(data[13], data[14], 1); // Không chia scale
-                double? rpmValue = ConvertToDouble(data[11], data[12], 1); // Không chia scale
-                double? lamdaValue = ConvertToDouble(data[15], data[16], 100);
-
-                this.Invoke(new Action(async () =>
+                if (data[0] == 0x06)
                 {
-                    // Cập nhật giá trị mới chỉ khi giá trị không phải là null (không phải giá trị lỗi)
-                    if (hcValue != null)
-                        SetHCValue(hcValue.ToString());
-                    if (coValue != null)
-                        SetCOValue(coValue.Value.ToString("F2"));
-                    if (co2Value != null)
-                        SetCO2Value(co2Value.Value.ToString("F2"));
-                    if (o2Value != null)
-                        SetO2Value(o2Value.Value.ToString("F2"));
-                    if (noValue != null)
-                        SetNOValue(noValue.Value.ToString("F1"));
-                    if (otValue != null)
-                        SetOilTempValue(otValue.ToString());
-                    if (rpmValue != null)
-                        SetRPMValue(rpmValue.ToString());
-                    if (lamdaValue != null)
-                        SetLamdaValue(lamdaValue.Value.ToString("F3"));
-                    // Kiểm tra tiêu chuẩn và đổi màu
-                    bool isHCInStandard = maxHC == 0 || this.hcValue <= maxHC;
-                    bool isCOInStandard = maxCO == 0 || this.coValue <= maxCO;
-                    bool isLamdaInStandard = minLamda == 0 || this.lamda >= minLamda;
+                    // Lưu lại dữ liệu cuối cùng
+                    lastReceivedData = data;
 
-                    lbHCValue.ForeColor = isHCInStandard ? SystemColors.HotTrack : Color.DarkRed;
-                    lbCOValue.ForeColor = isCOInStandard ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLamdaValue.ForeColor = isLamdaInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                    // Xử lý từng giá trị từ gói dữ liệu
+                    double? hcValue = ConvertToDouble(data[1], data[2], 1); // Không chia scale
+                    double? coValue = ConvertToDouble(data[3], data[4], 100);
+                    double? co2Value = ConvertToDouble(data[5], data[6], 100);
+                    double? o2Value = ConvertToDouble(data[7], data[8], 100);
+                    double? noValue = ConvertToDouble(data[9], data[10], 100);
+                    double? otValue = ConvertToDouble(data[13], data[14], 1); // Không chia scale
+                    double? rpmValue = ConvertToDouble(data[11], data[12], 1); // Không chia scale
+                    double? lamdaValue = ConvertToDouble(data[15], data[16], 100);
 
-                    if (!isManualMode) // Nếu đo tự động
+                    this.Invoke(new Action(async () =>
                     {
-                        if (isHCInStandard && isCOInStandard && isLamdaInStandard)
+                        // Cập nhật giá trị mới chỉ khi giá trị không phải là null (không phải giá trị lỗi)
+                        if (hcValue != null)
+                            SetHCValue(hcValue.ToString());
+                        if (coValue != null)
+                            SetCOValue(coValue.Value.ToString("F2"));
+                        if (co2Value != null)
+                            SetCO2Value(co2Value.Value.ToString("F2"));
+                        if (o2Value != null)
+                            SetO2Value(o2Value.Value.ToString("F2"));
+                        if (noValue != null)
+                            SetNOValue(noValue.Value.ToString("F1"));
+                        if (otValue != null)
+                            SetOilTempValue(otValue.ToString());
+                        if (rpmValue != null)
+                            SetRPMValue(rpmValue.ToString());
+                        if (lamdaValue != null)
+                            SetLamdaValue(lamdaValue.Value.ToString("F3"));
+                        // Kiểm tra tiêu chuẩn và đổi màu
+                        bool isHCInStandard = maxHC == 0 || this.hcValue <= maxHC;
+                        bool isCOInStandard = maxCO == 0 || this.coValue <= maxCO;
+                        bool isLamdaInStandard = minLamda == 0 || this.lamda >= minLamda;
+
+                        lbHCValue.ForeColor = isHCInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                        lbCOValue.ForeColor = isCOInStandard ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLamdaValue.ForeColor = isLamdaInStandard ? SystemColors.HotTrack : Color.DarkRed;
+
+                        if (!isManualMode) // Nếu đo tự động
                         {
-                            await Task.Delay(2000);
-                            pbCorrect.BackColor = Color.Green;
-                            await FinishAndNextVinAsync();
+                            if (isHCInStandard && isCOInStandard && isLamdaInStandard)
+                            {
+                                await Task.Delay(2000);
+                                pbCorrect.BackColor = Color.Green;
+                                await FinishAndNextVinAsync();
+                            }
+                            else
+                            {
+                                // Gửi lại lệnh đo nếu chưa đạt tiêu chuẩn
+                                pbCorrect.BackColor = Color.Red;
+                                if (!isManualStop) // Chỉ gửi lệnh đo tiếp nếu chưa bấm dừng
+                                {
+                                    byte[] measureCommand = { 0x03 };
+                                    comConnect.SendRequest(measureCommand);
+                                }
+                            }
                         }
                         else
                         {
-                            // Gửi lại lệnh đo nếu chưa đạt tiêu chuẩn
-                            pbCorrect.BackColor = Color.Red;
                             if (!isManualStop) // Chỉ gửi lệnh đo tiếp nếu chưa bấm dừng
                             {
                                 byte[] measureCommand = { 0x03 };
                                 comConnect.SendRequest(measureCommand);
                             }
                         }
-                    }
-                    else
-                    {
-                        if (!isManualStop) // Chỉ gửi lệnh đo tiếp nếu chưa bấm dừng
-                        {
-                            byte[] measureCommand = { 0x03 };
-                            comConnect.SendRequest(measureCommand);
-                        }
-                    }
-                }));
-            }
-            else if (data.Length == 0)
-            {
-                // Dữ liệu rỗng, sử dụng dữ liệu cuối cùng được lưu lại
-                this.Invoke(new Action(() =>
+                    }));
+                }
+                else if (data.Length == 0)
                 {
-                    if (lastReceivedData != null)
+                    // Dữ liệu rỗng, sử dụng dữ liệu cuối cùng được lưu lại
+                    this.Invoke(new Action(() =>
                     {
-                        ProcessNHA506Data(lastReceivedData); // Gọi lại hàm với dữ liệu cuối cùng
-                    }
-                }));
+                        if (lastReceivedData != null)
+                        {
+                            ProcessNHA506Data(lastReceivedData); // Gọi lại hàm với dữ liệu cuối cùng
+                        }
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private void btnPre_Click(object sender, EventArgs e)
@@ -252,6 +268,7 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
@@ -274,6 +291,7 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
@@ -343,40 +361,69 @@ namespace SenAIS
         }
         private void frmGasEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
-            cts?.Cancel();
-            comConnect.CloseConnection();
+            try
+            {
+                cts?.Cancel();
+                comConnect?.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm, lamda);
+            try
+            {
+                sqlHelper.SaveGasEmissionData(this.serialNumber, hcValue, coValue, co2Value, o2Value, noValue, oilTemp, rpm, lamda);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private async Task FinishAndNextVinAsync()
         {
-            SaveDataToDatabase();
-            await Task.Delay(10000); // Cho người dùng thấy kết quả
+            await Task.Run(() => SaveDataToDatabase());
+            await Task.Delay(5000); // Cho người dùng thấy kết quả
             NextVin();
         }
         private async void frmGasEmission_Load(object sender, EventArgs e)
         {
-            lbVinNumber.Text = this.serialNumber;
-            comConnect.OpenConnection();
-            if (comConnect.IsConnected())
+            try
             {
-                cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
-                cts = new CancellationTokenSource();
-                await StartEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+                lbVinNumber.Text = this.serialNumber;
+                LoadVehicleStandards(serialNumber);
+                comConnect.OpenConnection();
+                if (comConnect.IsConnected())
+                {
+                    cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
+                    cts = new CancellationTokenSource();
+                    await StartEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+                }
+                else
+                {
+                    cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+                Logging.LogError(this, ex);
             }
         }
 
         private async void btnReMeasure_Click(object sender, EventArgs e)
         {
-            ResetToDefault();
-            cts = new CancellationTokenSource();
-            await StartEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+            try
+            {
+                ResetToDefault();
+                cts = new CancellationTokenSource();
+                await StartEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

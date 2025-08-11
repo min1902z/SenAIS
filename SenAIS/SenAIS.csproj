@@ -269,6 +269,7 @@
     <Compile Include="frmWhistle.Designer.cs">
       <DependentUpon>frmWhistle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logger\Logging.cs" />
     <Compile Include="OPCUtility.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Prompt.cs" />

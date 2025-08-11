@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -74,7 +75,7 @@ namespace SenAIS
                     if (!autoTestCheck)
                     {
                         byte[] autoTest = { 0x41 };
-                        comConnect.SendRequest(autoTest);
+                        await Task.Run(() => comConnect.SendRequest(autoTest)); // COM chạy thread phụ
                         autoTestCheck = true;
                     }
                     bool hasCollected = false;
@@ -88,7 +89,10 @@ namespace SenAIS
                             timeoutMinutes = parsed;
                         }
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
+                    }
                     var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(timeoutMinutes));
                     using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(token, timeoutCts.Token))
                     {
@@ -99,11 +103,9 @@ namespace SenAIS
                         hasCollected = isDataCollected;
                         if (hasCollected)
                         {
-                            if (this.IsHandleCreated && !this.IsDisposed)
-                            {
-                                this.BeginInvoke((Action)(() => SaveDataToDatabase()));
-                            }
+                            await Task.Run(() => SaveDataToDatabase()); // DB chạy thread phụ
                             await Task.Delay(5000, token); // Nghỉ 5s sau khi lưu
+
                             if (this.IsHandleCreated && !this.IsDisposed)
                             {
                                 this.BeginInvoke((Action)(() => MoveToNextCar()));
@@ -119,81 +121,96 @@ namespace SenAIS
                     }
 
                 }
-                catch (TaskCanceledException)
+                catch (TaskCanceledException ex)
                 {
-                    // Bị huỷ đo thủ công hoặc hết thời gian
+                    Logging.LogError(this, ex);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Logging.LogError(this, ex);
                 }
             }, token);
         }
         private void MoveToNextCar()
         {
-            cbReady.BackColor = SystemColors.Control;
-            Form currentForm = this;
-
-            this.BeginInvoke(new Action(() =>
+            try 
             {
-                if (Application.OpenForms.OfType<frmWhistle>().Any())
-                    return;
+                cbReady.BackColor = SystemColors.Control;
+                Form currentForm = this;
 
-                var form = new frmWhistle(this.serialNumber);
-                form.Show();
+                this.BeginInvoke(new Action(() =>
+                {
+                    if (Application.OpenForms.OfType<frmWhistle>().Any())
+                        return;
 
-                currentForm.Close();
-            }));
+                    var form = new frmWhistle(this.serialNumber);
+                    form.Show();
+
+                    currentForm.Close();
+                }));
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         public void ProcessNHD6109Data(byte[] data)
         {
-            if (data[0] == 0x01)
+            try
             {
-                // Xử lý 34 byte của đèn phải (Right Headlight)
-                string rightFLHorizontalDeviation = Encoding.ASCII.GetString(data, 2, 5);    // Lệch ngang Right HB (5 bytes)
-                string rightFLVerticalDeviation = Encoding.ASCII.GetString(data, 7, 5);      // Lệch dọc Right HB (5 bytes)
-                string rightFLLightIntensity = Encoding.ASCII.GetString(data, 12, 4);        // Cường độ Right HB (4 bytes)
-                string rightFLLightHeight = Encoding.ASCII.GetString(data, 34, 4);
-
-                string leftFLHorizontalDeviation = Encoding.ASCII.GetString(data, 45, 5);    // Lệch ngang Left HB (5 bytes)
-                string leftFLVerticalDeviation = Encoding.ASCII.GetString(data, 50, 5);      // Lệch dọc Left HB (5 bytes)
-                string leftFLLightIntensity = Encoding.ASCII.GetString(data, 55, 4);         // Cường độ Left HB (4 bytes)
-                string leftFLLightHeight = Encoding.ASCII.GetString(data, 77, 4);
-
-                // Chuyển đổi chuỗi ASCII thành số thực
-                this.rightFLHorizontalValue = ConvertToPercentage(rightFLHorizontalDeviation);
-                this.rightFLVerticalValue = ConvertToPercentage(rightFLVerticalDeviation);
-                this.rightFLIntensity = ConvertToCd(rightFLLightIntensity);
-                this.rightFLHeight = ConvertToMM(rightFLLightHeight);
-
-                this.leftFLHorizontalValue = ConvertToPercentage(leftFLHorizontalDeviation);
-                this.leftFLVerticalValue = ConvertToPercentage(leftFLVerticalDeviation);
-                this.leftFLIntensity = ConvertToCd(leftFLLightIntensity);
-                this.leftFLHeight = ConvertToMM(leftFLLightHeight);
-
-                this.Invoke(new Action(() =>
+                if (data[0] == 0x01)
                 {
-                    lbRFLIntensity.Text = rightFLIntensity.ToString();
-                    lbRFLVerticalDeviation.Text = rightFLVerticalValue.ToString();
-                    lbRFLHorizontalDeviation.Text = rightFLHorizontalValue.ToString();
-                    lbRFLHeight.Text = rightFLHeight.ToString();
+                    // Xử lý 34 byte của đèn phải (Right Headlight)
+                    string rightFLHorizontalDeviation = Encoding.ASCII.GetString(data, 2, 5);    // Lệch ngang Right HB (5 bytes)
+                    string rightFLVerticalDeviation = Encoding.ASCII.GetString(data, 7, 5);      // Lệch dọc Right HB (5 bytes)
+                    string rightFLLightIntensity = Encoding.ASCII.GetString(data, 12, 4);        // Cường độ Right HB (4 bytes)
+                    string rightFLLightHeight = Encoding.ASCII.GetString(data, 34, 4);
 
-                    lbLFLIntensity.Text = leftFLIntensity.ToString();
-                    lbLFLVerticalDeviation.Text = leftFLVerticalValue.ToString();
-                    lbLFLHorizontalDeviation.Text = leftFLHorizontalValue.ToString();
-                    lbLFLHeight.Text = leftFLHeight.ToString();
+                    string leftFLHorizontalDeviation = Encoding.ASCII.GetString(data, 45, 5);    // Lệch ngang Left HB (5 bytes)
+                    string leftFLVerticalDeviation = Encoding.ASCII.GetString(data, 50, 5);      // Lệch dọc Left HB (5 bytes)
+                    string leftFLLightIntensity = Encoding.ASCII.GetString(data, 55, 4);         // Cường độ Left HB (4 bytes)
+                    string leftFLLightHeight = Encoding.ASCII.GetString(data, 77, 4);
 
-                    // Kiểm tra và đổi màu cho Right High Beam
-                    lbRFLIntensity.ForeColor = (rightFLIntensity >= minFLIntensity && rightFLIntensity <= maxFLIntensity) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbRFLVerticalDeviation.ForeColor = (rightFLVerticalValue >= minDiffVertiFL && rightFLVerticalValue <= maxDiffVertiFL) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbRFLHorizontalDeviation.ForeColor = (rightFLHorizontalValue >= minDiffHoriFL && rightFLHorizontalValue <= maxDiffHoriFL) ? SystemColors.HotTrack : Color.DarkRed;
+                    // Chuyển đổi chuỗi ASCII thành số thực
+                    this.rightFLHorizontalValue = ConvertToPercentage(rightFLHorizontalDeviation);
+                    this.rightFLVerticalValue = ConvertToPercentage(rightFLVerticalDeviation);
+                    this.rightFLIntensity = ConvertToCd(rightFLLightIntensity);
+                    this.rightFLHeight = ConvertToMM(rightFLLightHeight);
 
-                    // Kiểm tra và đổi màu cho Left High Beam
-                    lbLFLIntensity.ForeColor = (leftFLIntensity >= minFLIntensity && leftFLIntensity <= maxFLIntensity) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLFLVerticalDeviation.ForeColor = (leftFLVerticalValue >= minDiffVertiFL && leftFLVerticalValue <= maxDiffVertiFL) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLFLHorizontalDeviation.ForeColor = (leftFLHorizontalValue >= minDiffHoriFL && leftFLHorizontalValue <= maxDiffHoriFL) ? SystemColors.HotTrack : Color.DarkRed;
+                    this.leftFLHorizontalValue = ConvertToPercentage(leftFLHorizontalDeviation);
+                    this.leftFLVerticalValue = ConvertToPercentage(leftFLVerticalDeviation);
+                    this.leftFLIntensity = ConvertToCd(leftFLLightIntensity);
+                    this.leftFLHeight = ConvertToMM(leftFLLightHeight);
 
-                    isDataCollected = true;
-                }));
+                    this.Invoke(new Action(() =>
+                    {
+                        lbRFLIntensity.Text = rightFLIntensity.ToString();
+                        lbRFLVerticalDeviation.Text = rightFLVerticalValue.ToString();
+                        lbRFLHorizontalDeviation.Text = rightFLHorizontalValue.ToString();
+                        lbRFLHeight.Text = rightFLHeight.ToString();
+
+                        lbLFLIntensity.Text = leftFLIntensity.ToString();
+                        lbLFLVerticalDeviation.Text = leftFLVerticalValue.ToString();
+                        lbLFLHorizontalDeviation.Text = leftFLHorizontalValue.ToString();
+                        lbLFLHeight.Text = leftFLHeight.ToString();
+
+                        // Kiểm tra và đổi màu cho Right High Beam
+                        lbRFLIntensity.ForeColor = (rightFLIntensity >= minFLIntensity && rightFLIntensity <= maxFLIntensity) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbRFLVerticalDeviation.ForeColor = (rightFLVerticalValue >= minDiffVertiFL && rightFLVerticalValue <= maxDiffVertiFL) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbRFLHorizontalDeviation.ForeColor = (rightFLHorizontalValue >= minDiffHoriFL && rightFLHorizontalValue <= maxDiffHoriFL) ? SystemColors.HotTrack : Color.DarkRed;
+
+                        // Kiểm tra và đổi màu cho Left High Beam
+                        lbLFLIntensity.ForeColor = (leftFLIntensity >= minFLIntensity && leftFLIntensity <= maxFLIntensity) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLFLVerticalDeviation.ForeColor = (leftFLVerticalValue >= minDiffVertiFL && leftFLVerticalValue <= maxDiffVertiFL) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLFLHorizontalDeviation.ForeColor = (leftFLHorizontalValue >= minDiffHoriFL && leftFLHorizontalValue <= maxDiffHoriFL) ? SystemColors.HotTrack : Color.DarkRed;
+
+                        isDataCollected = true;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private decimal ConvertToDecimal(object value)
@@ -202,26 +219,33 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                lbVinNumber.Text = this.serialNumber;
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
 
-                    // Gán các giá trị tiêu chuẩn
-                    minFLIntensity = ConvertToDecimal(standard["MinFLIntensity"]);
-                    maxFLIntensity = ConvertToDecimal(standard["MaxFLIntensity"]);
-                    minDiffHoriFL = ConvertToDecimal(standard["MinDiffHoriFL"]);
-                    maxDiffHoriFL = ConvertToDecimal(standard["MaxDiffHoriFL"]);
-                    minDiffVertiFL = ConvertToDecimal(standard["MinDiffVertiFL"]);
-                    maxDiffVertiFL = ConvertToDecimal(standard["MaxDiffVertiFL"]);
-                    minFLHeight = ConvertToDecimal(standard["MinFLHeight"]);
-                    maxFLHeight = ConvertToDecimal(standard["MaxFLHeight"]);
+                        // Gán các giá trị tiêu chuẩn
+                        minFLIntensity = ConvertToDecimal(standard["MinFLIntensity"]);
+                        maxFLIntensity = ConvertToDecimal(standard["MaxFLIntensity"]);
+                        minDiffHoriFL = ConvertToDecimal(standard["MinDiffHoriFL"]);
+                        maxDiffHoriFL = ConvertToDecimal(standard["MaxDiffHoriFL"]);
+                        minDiffVertiFL = ConvertToDecimal(standard["MinDiffVertiFL"]);
+                        maxDiffVertiFL = ConvertToDecimal(standard["MaxDiffVertiFL"]);
+                        minFLHeight = ConvertToDecimal(standard["MinFLHeight"]);
+                        maxFLHeight = ConvertToDecimal(standard["MaxFLHeight"]);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private decimal ConvertToCd(string value)
@@ -254,42 +278,63 @@ namespace SenAIS
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveFogLightsData(serialNumber, rightFLIntensity, rightFLVerticalValue, rightFLHorizontalValue, rightFLHeight,
-                                        leftFLIntensity, leftFLVerticalValue, leftFLHorizontalValue, leftFLHeight);
+            try
+            {
+                sqlHelper.SaveFogLightsData(serialNumber, rightFLIntensity, rightFLVerticalValue, rightFLHorizontalValue, rightFLHeight,
+                            leftFLIntensity, leftFLVerticalValue, leftFLHorizontalValue, leftFLHeight);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void frmFogLights_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (measurementTokenSource != null)
+            try
             {
-                measurementTokenSource.Cancel();
-                measurementTokenSource.Dispose();
-                measurementTokenSource = null;
+                if (measurementTokenSource != null)
+                {
+                    measurementTokenSource.Cancel();
+                    measurementTokenSource.Dispose();
+                    measurementTokenSource = null;
+                }
+                comConnect?.CloseConnection();
             }
-            comConnect.CloseConnection();
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
         private void frmFogLights_Load(object sender, EventArgs e)
         {
-            comConnect.OpenConnection();
-            LoadVehicleStandards(serialNumber);
-            if (comConnect.IsConnected())
+            try
             {
-                cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
-                StartMeasurementProcess();
+                LoadVehicleStandards(serialNumber);
+                comConnect.OpenConnection();
+                if (comConnect.IsConnected())
+                {
+                    cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
+                    StartMeasurementProcess();
+                }
+                else
+                {
+                    cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+                Logging.LogError(this, ex);
             }
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private async void btnNext_Click(object sender, EventArgs e)
         {
             try
             {
                 if (isDataCollected)
                 {
-                    SaveDataToDatabase();
+                    await Task.Run(() => SaveDataToDatabase());
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -307,18 +352,19 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
 
-        private void btnPre_Click(object sender, EventArgs e)
+        private async void btnPre_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lưu dữ liệu hiện tại
                 if (isDataCollected)
                 {
-                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    await Task.Run(() => SaveDataToDatabase());
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -337,9 +383,9 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
     }
 }

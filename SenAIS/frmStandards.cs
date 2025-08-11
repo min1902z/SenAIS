@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -80,8 +81,9 @@ namespace SenAIS
                     dgStandards.Columns["SampleEngine"].HeaderText = "Số Máy mẫu";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi tải dữ liệu tiêu chuẩn.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -97,6 +99,7 @@ namespace SenAIS
                 }
                 catch (Exception ex)
                 {
+                    Logging.LogError(this, ex);
                     MessageBox.Show($"Lưu thay đổi thất bại: {ex.Message}");
                 }
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
@@ -64,8 +65,6 @@ namespace SenAIS
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Headlights"], 2400, this);
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
-            StartCounterMonitoring();
-            StartSensorMonitoring();
         }
         private void StartCounterMonitoring()
         {
@@ -85,12 +84,17 @@ namespace SenAIS
                         if (checkStatus != lastStatus || checkStatus == 2)
                         {
                             lastStatus = checkStatus;
+                            if (!this.IsHandleCreated || this.IsDisposed)
+                                return;
                             this.BeginInvoke((MethodInvoker)(() => UpdateUI(checkStatus)));
                         }
 
                         await Task.Delay(200, token);
                     }
-                    catch (Exception) { }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
+                    }
                 }
             }, token);
         }
@@ -124,11 +128,14 @@ namespace SenAIS
 
                         await Task.Delay(50, token);
                     }
-                    catch (Exception) { }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
+                    }
                 }
             }, token);
         }
-        private void UpdateUI(int checkStatus)
+        private async void UpdateUI(int checkStatus)
         {
             switch (checkStatus)
             {
@@ -162,7 +169,7 @@ namespace SenAIS
 
                     if (isReady)
                     {
-                        SaveDataToDatabase();
+                        await Task.Run(() => SaveDataToDatabase());
                         isReady = false;
                     }
                     break;
@@ -213,129 +220,142 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                lbVinNumber.Text = this.serialNumber;
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-
-                    // Gán các giá trị tiêu chuẩn
-                    minHBIntensity = ConvertToDecimal(standard["MinHLIntensity"]);
-                    minDiffHoriLeftHB = ConvertToDecimal(standard["MinDiffHoriLeftHB"]);
-                    maxDiffHoriLeftHB = ConvertToDecimal(standard["MaxDiffHoriLeftHB"]);
-                    minDiffHoriHB = ConvertToDecimal(standard["MinDiffHoriHB"]);
-                    maxDiffHoriHB = ConvertToDecimal(standard["MaxDiffHoriHB"]);
-                    minDiffVertiHB = ConvertToDecimal(standard["MinDiffVertiHB"]);
-                    maxDiffVertiHB = ConvertToDecimal(standard["MaxDiffVertiHB"]);
-                    minDiffHoriLB = ConvertToDecimal(standard["MinDiffHoriLB"]);
-                    maxDiffHoriLB = ConvertToDecimal(standard["MaxDiffHoriLB"]);
-                    minDiffVertiLB = ConvertToDecimal(standard["MinDiffVertiLB"]);
-                    maxDiffVertiLB = ConvertToDecimal(standard["MaxDiffVertiLB"]);
-                    minLBIntensity = ConvertToDecimal(standard["MinLBIntensity"]);
-                    minHBHeight = ConvertToDecimal(standard["MinLightHeight"]);
-                    maxHBHeight = ConvertToDecimal(standard["MaxLightHeight"]);
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
+                        // Gán các giá trị tiêu chuẩn
+                        minHBIntensity = ConvertToDecimal(standard["MinHLIntensity"]);
+                        minDiffHoriLeftHB = ConvertToDecimal(standard["MinDiffHoriLeftHB"]);
+                        maxDiffHoriLeftHB = ConvertToDecimal(standard["MaxDiffHoriLeftHB"]);
+                        minDiffHoriHB = ConvertToDecimal(standard["MinDiffHoriHB"]);
+                        maxDiffHoriHB = ConvertToDecimal(standard["MaxDiffHoriHB"]);
+                        minDiffVertiHB = ConvertToDecimal(standard["MinDiffVertiHB"]);
+                        maxDiffVertiHB = ConvertToDecimal(standard["MaxDiffVertiHB"]);
+                        minDiffHoriLB = ConvertToDecimal(standard["MinDiffHoriLB"]);
+                        maxDiffHoriLB = ConvertToDecimal(standard["MaxDiffHoriLB"]);
+                        minDiffVertiLB = ConvertToDecimal(standard["MinDiffVertiLB"]);
+                        maxDiffVertiLB = ConvertToDecimal(standard["MaxDiffVertiLB"]);
+                        minLBIntensity = ConvertToDecimal(standard["MinLBIntensity"]);
+                        minHBHeight = ConvertToDecimal(standard["MinLightHeight"]);
+                        maxHBHeight = ConvertToDecimal(standard["MaxLightHeight"]);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         // Method to process and display data on frmCosLightL
         public void ProcessNHD6109Data(byte[] data)
         {
-            if (data[0] == 0x01)
+            try
             {
-                // Xử lý 34 byte của đèn phải (Right Headlight)
-                string rightHBHorizontalDeviation = Encoding.ASCII.GetString(data, 2, 5);    // Lệch ngang Right HB (5 bytes)
-                string rightHBVerticalDeviation = Encoding.ASCII.GetString(data, 7, 5);      // Lệch dọc Right HB (5 bytes)
-                string rightHBLightIntensity = Encoding.ASCII.GetString(data, 12, 4);        // Cường độ Right HB (4 bytes)
-                string rightHBLightHeight = Encoding.ASCII.GetString(data, 34, 4);
-
-                string rightLBHorizontalDeviation = Encoding.ASCII.GetString(data, 20, 5);   // Lệch ngang Right LB (5 bytes)
-                string rightLBVerticalDeviation = Encoding.ASCII.GetString(data, 25, 5);     // Lệch dọc Right LB (5 bytes)
-                // string rightLBLightIntensity = Encoding.ASCII.GetString(data, 30, 4);        // Cường độ Right LB (4 bytes)
-                string rightLBLightHeight = Encoding.ASCII.GetString(data, 16, 4);
-
-                // Xử lý 34 byte của đèn trái (Left Headlight)
-                string leftHBHorizontalDeviation = Encoding.ASCII.GetString(data, 45, 5);    // Lệch ngang Left HB (5 bytes)
-                string leftHBVerticalDeviation = Encoding.ASCII.GetString(data, 50, 5);      // Lệch dọc Left HB (5 bytes)
-                string leftHBLightIntensity = Encoding.ASCII.GetString(data, 55, 4);         // Cường độ Left HB (4 bytes)
-                string leftHBLightHeight = Encoding.ASCII.GetString(data, 77, 4);
-
-                string leftLBHorizontalDeviation = Encoding.ASCII.GetString(data, 63, 5);    // Lệch ngang Left LB (5 bytes)
-                string leftLBVerticalDeviation = Encoding.ASCII.GetString(data, 68, 5);      // Lệch dọc Left LB (5 bytes)
-                //string leftLBLightIntensity = Encoding.ASCII.GetString(data, 73, 4);         // Cường độ Left LB (4 bytes)
-                string leftLBLightHeight = Encoding.ASCII.GetString(data, 59, 4);
-
-                // Chuyển đổi chuỗi ASCII thành số thực
-                this.rightHBHorizontalValue = ConvertToPercentage(rightHBHorizontalDeviation);
-                this.rightHBVerticalValue = ConvertToPercentage(rightHBVerticalDeviation);
-                this.rightHBIntensityValue = ConvertToCd(rightHBLightIntensity);
-                this.rightHBHeightValue = ConvertToMM(rightHBLightHeight);
-
-                this.rightLBHorizontalValue = ConvertToPercentage(rightLBHorizontalDeviation);
-                this.rightLBVerticalValue = ConvertToPercentage(rightLBVerticalDeviation);
-                //this.rightLBIntensityValue = ConvertToCd(rightLBLightIntensity);
-                this.rightLBHeightValue = ConvertToMM(rightLBLightHeight);
-
-                this.leftHBHorizontalValue = ConvertToPercentage(leftHBHorizontalDeviation);
-                this.leftHBVerticalValue = ConvertToPercentage(leftHBVerticalDeviation);
-                this.leftHBIntensityValue = ConvertToCd(leftHBLightIntensity);
-                this.leftHBHeightValue = ConvertToMM(leftHBLightHeight);
-
-                this.leftLBHorizontalValue = ConvertToPercentage(leftLBHorizontalDeviation);
-                this.leftLBVerticalValue = ConvertToPercentage(leftLBVerticalDeviation);
-                //this.leftLBIntensityValue = ConvertToCd(leftLBLightIntensity);
-                this.leftLBHeightValue = ConvertToMM(leftLBLightHeight);
-
-                this.Invoke(new Action(() =>
+                if (data[0] == 0x01)
                 {
-                    lbHBRIntensity.Text = rightHBIntensityValue.ToString();
-                    lbHBRVerticalDeviation.Text = rightHBVerticalValue.ToString();
-                    lbHBRHorizontalDeviation.Text = rightHBHorizontalValue.ToString();
-                    lbHBRHeight.Text = rightHBHeightValue.ToString();
+                    // Xử lý 34 byte của đèn phải (Right Headlight)
+                    string rightHBHorizontalDeviation = Encoding.ASCII.GetString(data, 2, 5);    // Lệch ngang Right HB (5 bytes)
+                    string rightHBVerticalDeviation = Encoding.ASCII.GetString(data, 7, 5);      // Lệch dọc Right HB (5 bytes)
+                    string rightHBLightIntensity = Encoding.ASCII.GetString(data, 12, 4);        // Cường độ Right HB (4 bytes)
+                    string rightHBLightHeight = Encoding.ASCII.GetString(data, 34, 4);
 
-                    //lbLBRIntensity.Text = rightLBIntensityValue.ToString();
-                    lbLBRVerticalDeviation.Text = rightLBVerticalValue.ToString();
-                    lbLBRHorizontalDeviation.Text = rightLBHorizontalValue.ToString();
-                    lbLBRHeight.Text = rightLBHeightValue.ToString();
+                    string rightLBHorizontalDeviation = Encoding.ASCII.GetString(data, 20, 5);   // Lệch ngang Right LB (5 bytes)
+                    string rightLBVerticalDeviation = Encoding.ASCII.GetString(data, 25, 5);     // Lệch dọc Right LB (5 bytes)
+                                                                                                 // string rightLBLightIntensity = Encoding.ASCII.GetString(data, 30, 4);        // Cường độ Right LB (4 bytes)
+                    string rightLBLightHeight = Encoding.ASCII.GetString(data, 16, 4);
 
-                    lbHBLIntensity.Text = leftHBIntensityValue.ToString();
-                    lbHBLVerticalDeviation.Text = leftHBVerticalValue.ToString();
-                    lbHBLHorizontalDeviation.Text = leftHBHorizontalValue.ToString();
-                    lbHBLHeight.Text = leftHBHeightValue.ToString();
+                    // Xử lý 34 byte của đèn trái (Left Headlight)
+                    string leftHBHorizontalDeviation = Encoding.ASCII.GetString(data, 45, 5);    // Lệch ngang Left HB (5 bytes)
+                    string leftHBVerticalDeviation = Encoding.ASCII.GetString(data, 50, 5);      // Lệch dọc Left HB (5 bytes)
+                    string leftHBLightIntensity = Encoding.ASCII.GetString(data, 55, 4);         // Cường độ Left HB (4 bytes)
+                    string leftHBLightHeight = Encoding.ASCII.GetString(data, 77, 4);
 
-                    //lbLBLIntensity.Text = leftLBIntensityValue.ToString();
-                    lbLBLVerticalDeviation.Text = leftLBVerticalValue.ToString();
-                    lbLBLHorizontalDeviation.Text = leftLBHorizontalValue.ToString();
-                    lbLBLHeight.Text = leftLBHeightValue.ToString();
+                    string leftLBHorizontalDeviation = Encoding.ASCII.GetString(data, 63, 5);    // Lệch ngang Left LB (5 bytes)
+                    string leftLBVerticalDeviation = Encoding.ASCII.GetString(data, 68, 5);      // Lệch dọc Left LB (5 bytes)
+                                                                                                 //string leftLBLightIntensity = Encoding.ASCII.GetString(data, 73, 4);         // Cường độ Left LB (4 bytes)
+                    string leftLBLightHeight = Encoding.ASCII.GetString(data, 59, 4);
 
-                    // Kiểm tra và đổi màu cho Right High Beam
-                    lbHBRIntensity.ForeColor = rightHBIntensityValue >= minHBIntensity ? SystemColors.HotTrack : Color.DarkRed;
-                    lbHBRVerticalDeviation.ForeColor = (rightHBVerticalValue >= minDiffVertiHB && rightHBVerticalValue <= maxDiffVertiHB) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbHBRHorizontalDeviation.ForeColor = (rightHBHorizontalValue >= minDiffHoriHB && rightHBHorizontalValue <= maxDiffHoriHB) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbHBRHeight.ForeColor = (rightHBHeightValue >= minHBHeight && rightHBHeightValue <= maxHBHeight) ? SystemColors.HotTrack : Color.DarkRed;
+                    // Chuyển đổi chuỗi ASCII thành số thực
+                    this.rightHBHorizontalValue = ConvertToPercentage(rightHBHorizontalDeviation);
+                    this.rightHBVerticalValue = ConvertToPercentage(rightHBVerticalDeviation);
+                    this.rightHBIntensityValue = ConvertToCd(rightHBLightIntensity);
+                    this.rightHBHeightValue = ConvertToMM(rightHBLightHeight);
 
-                    // Kiểm tra và đổi màu cho Right Low Beam
-                    //lbLBRIntensity.ForeColor = rightLBIntensityValue >= minLBIntensity ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLBRVerticalDeviation.ForeColor = (rightLBVerticalValue >= minDiffVertiLB && rightLBVerticalValue <= maxDiffVertiLB) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLBRHorizontalDeviation.ForeColor = (rightLBHorizontalValue >= minDiffHoriLB && rightLBHorizontalValue <= maxDiffHoriLB) ? SystemColors.HotTrack : Color.DarkRed;
+                    this.rightLBHorizontalValue = ConvertToPercentage(rightLBHorizontalDeviation);
+                    this.rightLBVerticalValue = ConvertToPercentage(rightLBVerticalDeviation);
+                    //this.rightLBIntensityValue = ConvertToCd(rightLBLightIntensity);
+                    this.rightLBHeightValue = ConvertToMM(rightLBLightHeight);
 
-                    // Kiểm tra và đổi màu cho Left High Beam
-                    lbHBLIntensity.ForeColor = leftHBIntensityValue >= minHBIntensity ? SystemColors.HotTrack : Color.DarkRed;
-                    lbHBLVerticalDeviation.ForeColor = (leftHBVerticalValue >= minDiffVertiHB && leftHBVerticalValue <= maxDiffVertiHB) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbHBLHorizontalDeviation.ForeColor = (leftHBHorizontalValue >= minDiffHoriHB && leftHBHorizontalValue <= maxDiffHoriHB) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbHBLHeight.ForeColor = (leftHBHeightValue >= minHBHeight && leftHBHeightValue <= maxHBHeight) ? SystemColors.HotTrack : Color.DarkRed;
+                    this.leftHBHorizontalValue = ConvertToPercentage(leftHBHorizontalDeviation);
+                    this.leftHBVerticalValue = ConvertToPercentage(leftHBVerticalDeviation);
+                    this.leftHBIntensityValue = ConvertToCd(leftHBLightIntensity);
+                    this.leftHBHeightValue = ConvertToMM(leftHBLightHeight);
 
-                    // Kiểm tra và đổi màu cho Left Low Beam
-                    //lbLBLIntensity.ForeColor = leftLBIntensityValue >= minLBIntensity ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLBLVerticalDeviation.ForeColor = (leftLBVerticalValue >= minDiffVertiLB && leftLBVerticalValue <= maxDiffVertiLB) ? SystemColors.HotTrack : Color.DarkRed;
-                    lbLBLHorizontalDeviation.ForeColor = (leftLBHorizontalValue >= minDiffHoriLB && leftLBHorizontalValue <= maxDiffHoriLB) ? SystemColors.HotTrack : Color.DarkRed;
+                    this.leftLBHorizontalValue = ConvertToPercentage(leftLBHorizontalDeviation);
+                    this.leftLBVerticalValue = ConvertToPercentage(leftLBVerticalDeviation);
+                    //this.leftLBIntensityValue = ConvertToCd(leftLBLightIntensity);
+                    this.leftLBHeightValue = ConvertToMM(leftLBLightHeight);
 
-                    isDataCollected = true;
-                    opcManager.SetOPCValue(opcHLCounter, 3);
-                }));
+                    this.Invoke(new Action(() =>
+                    {
+                        lbHBRIntensity.Text = rightHBIntensityValue.ToString();
+                        lbHBRVerticalDeviation.Text = rightHBVerticalValue.ToString();
+                        lbHBRHorizontalDeviation.Text = rightHBHorizontalValue.ToString();
+                        lbHBRHeight.Text = rightHBHeightValue.ToString();
+
+                        //lbLBRIntensity.Text = rightLBIntensityValue.ToString();
+                        lbLBRVerticalDeviation.Text = rightLBVerticalValue.ToString();
+                        lbLBRHorizontalDeviation.Text = rightLBHorizontalValue.ToString();
+                        lbLBRHeight.Text = rightLBHeightValue.ToString();
+
+                        lbHBLIntensity.Text = leftHBIntensityValue.ToString();
+                        lbHBLVerticalDeviation.Text = leftHBVerticalValue.ToString();
+                        lbHBLHorizontalDeviation.Text = leftHBHorizontalValue.ToString();
+                        lbHBLHeight.Text = leftHBHeightValue.ToString();
+
+                        //lbLBLIntensity.Text = leftLBIntensityValue.ToString();
+                        lbLBLVerticalDeviation.Text = leftLBVerticalValue.ToString();
+                        lbLBLHorizontalDeviation.Text = leftLBHorizontalValue.ToString();
+                        lbLBLHeight.Text = leftLBHeightValue.ToString();
+
+                        // Kiểm tra và đổi màu cho Right High Beam
+                        lbHBRIntensity.ForeColor = rightHBIntensityValue >= minHBIntensity ? SystemColors.HotTrack : Color.DarkRed;
+                        lbHBRVerticalDeviation.ForeColor = (rightHBVerticalValue >= minDiffVertiHB && rightHBVerticalValue <= maxDiffVertiHB) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbHBRHorizontalDeviation.ForeColor = (rightHBHorizontalValue >= minDiffHoriHB && rightHBHorizontalValue <= maxDiffHoriHB) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbHBRHeight.ForeColor = (rightHBHeightValue >= minHBHeight && rightHBHeightValue <= maxHBHeight) ? SystemColors.HotTrack : Color.DarkRed;
+
+                        // Kiểm tra và đổi màu cho Right Low Beam
+                        //lbLBRIntensity.ForeColor = rightLBIntensityValue >= minLBIntensity ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLBRVerticalDeviation.ForeColor = (rightLBVerticalValue >= minDiffVertiLB && rightLBVerticalValue <= maxDiffVertiLB) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLBRHorizontalDeviation.ForeColor = (rightLBHorizontalValue >= minDiffHoriLB && rightLBHorizontalValue <= maxDiffHoriLB) ? SystemColors.HotTrack : Color.DarkRed;
+
+                        // Kiểm tra và đổi màu cho Left High Beam
+                        lbHBLIntensity.ForeColor = leftHBIntensityValue >= minHBIntensity ? SystemColors.HotTrack : Color.DarkRed;
+                        lbHBLVerticalDeviation.ForeColor = (leftHBVerticalValue >= minDiffVertiHB && leftHBVerticalValue <= maxDiffVertiHB) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbHBLHorizontalDeviation.ForeColor = (leftHBHorizontalValue >= minDiffHoriHB && leftHBHorizontalValue <= maxDiffHoriHB) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbHBLHeight.ForeColor = (leftHBHeightValue >= minHBHeight && leftHBHeightValue <= maxHBHeight) ? SystemColors.HotTrack : Color.DarkRed;
+
+                        // Kiểm tra và đổi màu cho Left Low Beam
+                        //lbLBLIntensity.ForeColor = leftLBIntensityValue >= minLBIntensity ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLBLVerticalDeviation.ForeColor = (leftLBVerticalValue >= minDiffVertiLB && leftLBVerticalValue <= maxDiffVertiLB) ? SystemColors.HotTrack : Color.DarkRed;
+                        lbLBLHorizontalDeviation.ForeColor = (leftLBHorizontalValue >= minDiffHoriLB && leftLBHorizontalValue <= maxDiffHoriLB) ? SystemColors.HotTrack : Color.DarkRed;
+
+                        isDataCollected = true;
+                        opcManager.SetOPCValue(opcHLCounter, 3);
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private decimal ConvertToCd(string value)
@@ -366,14 +386,14 @@ namespace SenAIS
             }
             return 0;
         }
-        private void btnPre_Click(object sender, EventArgs e)
+        private async void btnPre_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    await Task.Run(() => SaveDataToDatabase());
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -388,16 +408,17 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-        private void btnNext_Click(object sender, EventArgs e)
+        private async void btnNext_Click(object sender, EventArgs e)
         {
             try
             {
                 if (isReady)
                 {
-                    SaveDataToDatabase();
+                    await Task.Run(() => SaveDataToDatabase());
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -411,16 +432,24 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveHeadlightsData(this.serialNumber, this.leftHBIntensityValue, this.leftHBVerticalValue, this.leftHBHorizontalValue,
-                                                                this.rightHBIntensityValue, this.rightHBVerticalValue, this.rightHBHorizontalValue,
-                                                                this.leftLBIntensityValue, this.leftLBVerticalValue, this.leftLBHorizontalValue,
-                                                                this.rightLBIntensityValue, this.rightLBVerticalValue, this.rightLBHorizontalValue,
-                                                                this.rightHBHeightValue, this.rightLBHeightValue, this.leftHBHeightValue, this.leftLBHeightValue);
+            try
+            {
+                sqlHelper.SaveHeadlightsData(this.serialNumber, this.leftHBIntensityValue, this.leftHBVerticalValue, this.leftHBHorizontalValue,
+                                                    this.rightHBIntensityValue, this.rightHBVerticalValue, this.rightHBHorizontalValue,
+                                                    this.leftLBIntensityValue, this.leftLBVerticalValue, this.leftLBHorizontalValue,
+                                                    this.rightLBIntensityValue, this.rightLBVerticalValue, this.rightLBHorizontalValue,
+                                                    this.rightHBHeightValue, this.rightLBHeightValue, this.leftHBHeightValue, this.leftLBHeightValue);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void StopSensorMonitoring()
         {
@@ -430,31 +459,49 @@ namespace SenAIS
         }
         private void frmCosLightL_Load(object sender, EventArgs e)
         {
-            comConnect.OpenConnection();
-            LoadVehicleStandards(serialNumber);
+            try
+            {
+                comConnect.OpenConnection();
+                LoadVehicleStandards(serialNumber);
+                StartCounterMonitoring();
+                StartSensorMonitoring();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void frmCosLightL_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (opcCancellationTokenSource != null)
+            try
             {
-                opcCancellationTokenSource.Cancel();
-                opcCancellationTokenSource.Dispose();
-                opcCancellationTokenSource = null;
-            }
-            // Đóng COM nếu còn mở
-            if (comConnect != null)
-            {
-                try
+                if (opcCancellationTokenSource != null)
                 {
-                    comConnect.CloseConnection();
+                    opcCancellationTokenSource.Cancel();
+                    opcCancellationTokenSource.Dispose();
+                    opcCancellationTokenSource = null;
                 }
-                catch (Exception)
+                StopSensorMonitoring();
+                // Đóng COM nếu còn mở
+                if (comConnect != null)
                 {
+                    try
+                    {
+                        comConnect.CloseConnection();
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
+                    }
+                }
+                if (opcManager != null && opcManager.IsConnected)
+                {
+                    opcManager.DisconnectOPC();
                 }
             }
-            if (opcManager != null && opcManager.IsConnected)
+            catch (Exception ex)
             {
-                opcManager.DisconnectOPC();
+                Logging.LogError(this, ex);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -32,8 +33,6 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
-            LoadVehicleStandards(serialNumber);
-            StartListening();
         }
         private void StartListening()
         {
@@ -68,14 +67,15 @@ namespace SenAIS
                             }));
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        Logging.LogError(this, ex);
                     }
                     await Task.Delay(100, token);
                 }
             }, token);
         }
-        private void UpdateUI(int checkStatus)
+        private async void UpdateUI(int checkStatus)
         {
             switch (checkStatus)
             {
@@ -108,7 +108,7 @@ namespace SenAIS
                     lbSpeed.Visible = true;
                     if (isReady)
                     {
-                        SaveDataToDatabase();
+                        await Task.Run(() => SaveDataToDatabase());
                         isReady = false;
                     }
                     break;
@@ -146,8 +146,9 @@ namespace SenAIS
                     lbSpeed.ForeColor = isValueInStandard ? Color.Blue : Color.DarkRed;
                 }));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
             }
         }
         private decimal ConvertToDecimal(object value)
@@ -156,30 +157,37 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                lbVinNumber.Text = this.serialNumber;
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    minSpeed = ConvertToDecimal(standard["MinSpeed"]);
-                    maxSpeed = ConvertToDecimal(standard["MaxSpeed"]);
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
+                        minSpeed = ConvertToDecimal(standard["MinSpeed"]);
+                        maxSpeed = ConvertToDecimal(standard["MaxSpeed"]);
+                    }
+                    lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")}  -  {maxSpeed.ToString("F0")}]" : "--  -  --";
                 }
-                lbStandard.Text = (minSpeed > 0 && maxSpeed > 0) ? $"[{minSpeed.ToString("F0")}  -  {maxSpeed.ToString("F0")}]" : "--  -  --";
+                speedA = sqlHelper.GetParaValue("Speed", "ParaA");
             }
-            speedA = sqlHelper.GetParaValue("Speed", "ParaA");
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
-        private void btnPreSpeed_Click(object sender, EventArgs e)
+        private async void btnPreSpeed_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    SaveDataToDatabase();
+                    await Task.Run(() => SaveDataToDatabase());
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -194,17 +202,17 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-
-        private void btnNextSpeed_Click(object sender, EventArgs e)
+        private async void btnNextSpeed_Click(object sender, EventArgs e)
         {
             try
             {
                 if (isReady)
                 {
-                    SaveDataToDatabase();
+                    await Task.Run(() => SaveDataToDatabase());
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -218,24 +226,51 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveSpeedData(this.serialNumber, this.speedValue);
+            try
+            {
+                sqlHelper.SaveSpeedData(this.serialNumber, this.speedValue);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void frmSpeed_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (opcCancellationTokenSource != null)
+            try
             {
-                opcCancellationTokenSource.Cancel();
-                opcCancellationTokenSource.Dispose();
-                opcCancellationTokenSource = null;
+                if (opcCancellationTokenSource != null)
+                {
+                    opcCancellationTokenSource.Cancel();
+                    opcCancellationTokenSource.Dispose();
+                    opcCancellationTokenSource = null;
+                }
+                if (opcManager != null && opcManager.IsConnected)
+                {
+                    opcManager.DisconnectOPC();
+                }
             }
-            if (opcManager != null && opcManager.IsConnected)
+            catch (Exception ex)
             {
-                opcManager.DisconnectOPC();
+                Logging.LogError(this, ex);
+            }
+        }
+        private void frmSpeed_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadVehicleStandards(serialNumber);
+                StartListening();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
     }

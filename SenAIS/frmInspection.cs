@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OPCAutomation;
+using SenAIS.Logger;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -99,10 +100,13 @@ namespace SenAIS
                 {
                     try
                     {
+                        if (!IsHandleCreated || IsDisposed)
+                            break;
+
                         switch (stationType)
                         {
                             case StationType.Speed:
-                                int speed = opcManager.GetOPCValue(opcSpeedCounter);
+                                int speed = await Task.Run(() => opcManager.GetOPCValue(opcSpeedCounter), token);
                                 if (speed == 1 && lastSpeed != 1)
                                 {
                                     lastSpeed = speed;
@@ -116,7 +120,7 @@ namespace SenAIS
                                 break;
 
                             case StationType.Brake:
-                                int brake = opcManager.GetOPCValue(opcBrakeFCounter);
+                                int brake = await Task.Run(() =>  opcManager.GetOPCValue(opcBrakeFCounter), token);
                                 if (brake == 1 && lastBrake != 1)
                                 {
                                     lastBrake = brake;
@@ -135,8 +139,8 @@ namespace SenAIS
                                 break;
 
                             case StationType.Headlights:
-                                int hlPos1 = opcManager.GetOPCValue(opcHLPos1);
-                                int hlPos2 = opcManager.GetOPCValue(opcHLPos2);
+                                int hlPos1 = await Task.Run(() => opcManager.GetOPCValue(opcHLPos1), token);
+                                int hlPos2 = await Task.Run(() => opcManager.GetOPCValue(opcHLPos2), token);
 
                                 if (hasReceivedVin)
                                 {
@@ -145,8 +149,8 @@ namespace SenAIS
                                     {
                                         if (CheckSerialNumber())
                                         {
-                                            OpenNewForm(new frmHeadlights(this.serialNumber));
                                             opcManager.SetOPCValue(opcHLCounter, 1);
+                                            OpenNewForm(new frmHeadlights(this.serialNumber));
                                             hasReceivedVin = false;
                                         }
                                     }));
@@ -166,9 +170,9 @@ namespace SenAIS
                                 break;
 
                             case StationType.Steer:
-                                int steer = opcManager.GetOPCValue(opcSteerCounter);
-                                int glPos1 = opcManager.GetOPCValue(opcGLPos1);
-                                int glPos2 = opcManager.GetOPCValue(opcGLPos2);
+                                int steer = await Task.Run(() => opcManager.GetOPCValue(opcSteerCounter), token);
+                                int glPos1 = await Task.Run(() => opcManager.GetOPCValue(opcGLPos1), token);
+                                int glPos2 = await Task.Run(() => opcManager.GetOPCValue(opcGLPos2), token);
 
                                 if ((steer == 1 || steer == 2) && steer != lastSteer)
                                 {
@@ -194,9 +198,9 @@ namespace SenAIS
                                 break;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        // Bỏ qua lỗi
+                        Logging.LogError(this, ex);
                     }
                     await Task.Delay(100, token);
                 }
@@ -244,7 +248,6 @@ namespace SenAIS
             if (CheckSerialNumber())
             {
                 OpenNewForm(new frmSideSlip(this.serialNumber));
-                opcManager.SetOPCValue(opcSSCounter, 1);
             }
         }
         private void btnNoise_Click(object sender, EventArgs e)
@@ -266,7 +269,6 @@ namespace SenAIS
             if (CheckSerialNumber())
             {
                 OpenNewForm(new frmWhistle(this.serialNumber));
-                opcManager.SetOPCValue(opcWhistleCounter, 1);
             }
         }
 
@@ -378,9 +380,10 @@ namespace SenAIS
                 }
                 dateInSpec.Value = DateTime.Now;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // Xử lý lỗi DB và đặt giá trị mặc định
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi tải dữ liệu: Vui lòng kiểm tra lại cơ sở dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 cbTypeCar.DataSource = null;
@@ -400,7 +403,6 @@ namespace SenAIS
         private bool SaveDataToDB()
         {
             vehicleType = cbTypeCar.Text.Trim();
-            //vehicleType = cbTypeCar.SelectedValue?.ToString() ?? string.Empty;
             inspector = cbInspector.SelectedValue?.ToString() ?? string.Empty;
             frameNumber = txtEngineNum.Text;
             serialNumber = txtVinNum.Text;
@@ -518,18 +520,25 @@ namespace SenAIS
                     opcCancellationTokenSource = null;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Bỏ qua lỗi dừng
+                Logging.LogError(this, ex);
             }
         }
         private void frmInspection_FormClosing(object sender, FormClosingEventArgs e)
         {
-            StopListeningForVehicleInfo();
-            StopMonitoring();
-            if (opcManager != null && opcManager.IsConnected)
+            try
             {
-                opcManager.DisconnectOPC();
+                StopListeningForVehicleInfo();
+                StopMonitoring();
+                if (opcManager != null && opcManager.IsConnected)
+                {
+                    opcManager.DisconnectOPC();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
 
@@ -600,13 +609,22 @@ namespace SenAIS
                 {
                     foreach (var ip in selectedIPs)
                     {
-                        IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ip), udpPort);
-                        udpClient.Send(data, data.Length, endPoint);
+                        try
+                        {
+                            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ip), udpPort);
+                            udpClient.Send(data, data.Length, endPoint);
+                        }
+                        catch (Exception exIp)
+                        {
+                            Logging.LogError(this, exIp);
+                            // Log riêng IP nào bị lỗi
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi gửi thông tin xe, kiểm tra kết nối với các máy trạm: " + ex.Message);
             }
         }
@@ -620,11 +638,15 @@ namespace SenAIS
             try
             {
                 udpListener?.Close();
-                udpListener = new UdpClient(port);
+                udpListener = new UdpClient(port)
+                {
+                    Client = { ReceiveTimeout = 2000 } // 2s timeout để không block mãi
+                };
                 vinListeningTokenSource = new CancellationTokenSource();
             }
-            catch
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 return; // Nếu lỗi khởi tạo listener, không làm gì cả
             }
 
@@ -644,15 +666,24 @@ namespace SenAIS
                             continue;
 
                         // Dù VIN giống hay khác, cũng chỉ update 1 lần khi gói mới đến
-                        this.Invoke(new Action(() =>
+                        this.BeginInvoke(new Action(() =>
                         {
                             UpdateVehicleInfo(receivedVin);
                             hasReceivedVin = true; // Cho phép các trạm xử lý theo VIN mới
                         }));
                     }
-                    catch
+                    catch (SocketException sex) when (sex.SocketErrorCode == SocketError.TimedOut)
                     {
-                        // Bỏ qua lỗi nhận/gỡ luồng khi dừng
+                        Logging.LogError(this, sex);
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // Bỏ qua khi socket đã đóng
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
                     }
                 }
             }, vinListeningTokenSource.Token);
@@ -671,75 +702,99 @@ namespace SenAIS
                     receiveTask = null;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         public void UpdateVehicleInfo(string serialNumber)
         {
-            if (string.IsNullOrEmpty(serialNumber))
+            try
             {
-                cbTypeCar.SelectedIndex = -1;
-                cbInspector.SelectedIndex = -1;
-                txtEngineNum.Text = string.Empty;
-                txtVinNum.Text = string.Empty;
-                dateInSpec.Value = DateTime.Now;
-                cbFuel.SelectedIndex = -1;
-                txtColor.Text = string.Empty;
-                return;
+                if (string.IsNullOrEmpty(serialNumber))
+                {
+                    cbTypeCar.SelectedIndex = -1;
+                    cbInspector.SelectedIndex = -1;
+                    txtEngineNum.Text = string.Empty;
+                    txtVinNum.Text = string.Empty;
+                    dateInSpec.Value = DateTime.Now;
+                    cbFuel.SelectedIndex = -1;
+                    txtColor.Text = string.Empty;
+                    return;
+                }
+                var vehicleInfo = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleInfo != null)
+                {
+                    string vehicleTypeFromDb = vehicleInfo["VehicleType"].ToString().Trim();
+                    int index = cbTypeCar.FindStringExact(vehicleTypeFromDb);
+                    cbTypeCar.SelectedIndex = index;
+                    cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
+                    txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
+                    txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
+                    this.serialNumber = txtVinNum.Text;
+                    dateInSpec.Value = vehicleInfo["InspectionDate"] != DBNull.Value
+                                       ? Convert.ToDateTime(vehicleInfo["InspectionDate"])
+                                       : DateTime.Now;
+                    cbFuel.SelectedItem = vehicleInfo["Fuel"]?.ToString();
+                    txtColor.Text = vehicleInfo["Color"]?.ToString();
+                }
             }
-            var vehicleInfo = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleInfo != null)
+            catch (Exception ex)
             {
-                string vehicleTypeFromDb = vehicleInfo["VehicleType"].ToString().Trim();
-                int index = cbTypeCar.FindStringExact(vehicleTypeFromDb);
-                cbTypeCar.SelectedIndex = index;
-                cbInspector.SelectedValue = vehicleInfo["Inspector"]?.ToString();
-                txtEngineNum.Text = vehicleInfo["FrameNumber"]?.ToString();
-                txtVinNum.Text = vehicleInfo["SerialNumber"]?.ToString();
-                this.serialNumber = txtVinNum.Text;
-                dateInSpec.Value = vehicleInfo["InspectionDate"] != DBNull.Value
-                                   ? Convert.ToDateTime(vehicleInfo["InspectionDate"])
-                                   : DateTime.Now;
-                cbFuel.SelectedItem = vehicleInfo["Fuel"]?.ToString();
-                txtColor.Text = vehicleInfo["Color"]?.ToString();
+                Logging.LogError(this, ex);
             }
         }
         private void LoadAllVehicleInfo()
         {
-            DataTable results = sqlHelper.GetAllVehicleInfo(); // hoặc SearchVehicleInfo(từ khóa)
-            if (results != null && results.Rows.Count > 0)
+            try
             {
-                dgVehicleInfo.DataSource = results;
-                dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số VIN";
-                dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
-                dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
-                dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
-                dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
-                dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
-                dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
+                DataTable results = sqlHelper.GetAllVehicleInfo(); // hoặc SearchVehicleInfo(từ khóa)
+                if (results != null && results.Rows.Count > 0)
+                {
+                    dgVehicleInfo.DataSource = results;
+                    dgVehicleInfo.Columns["SerialNumber"].HeaderText = "Số VIN";
+                    dgVehicleInfo.Columns["FrameNumber"].HeaderText = "Số máy";
+                    dgVehicleInfo.Columns["VehicleType"].HeaderText = "Loại xe";
+                    dgVehicleInfo.Columns["Inspector"].HeaderText = "Người kiểm tra";
+                    dgVehicleInfo.Columns["InspectionDate"].HeaderText = "Ngày kiểm tra";
+                    dgVehicleInfo.Columns["Fuel"].HeaderText = "Nhiên liệu";
+                    dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         public void ToggleMainUI()
         {
-            string currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
-            string newUI = currentUI == "Menu" ? "Vehicle" : "Menu";
-
-            // Cập nhật hiển thị
-            if (newUI == "Menu")
+            try
             {
-                tbMenuControl.Visible = true;
-                VehicleListPanel.Visible = false;
-            }
-            else
-            {
-                tbMenuControl.Visible = false;
-                VehicleListPanel.Visible = true;
-            }
+                string currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
+                string newUI = currentUI == "Menu" ? "Vehicle" : "Menu";
 
-            // Lưu lại cấu hình
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["DefaultMainUI"].Value = newUI;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
+                // Cập nhật hiển thị
+                if (newUI == "Menu")
+                {
+                    tbMenuControl.Visible = true;
+                    VehicleListPanel.Visible = false;
+                }
+                else
+                {
+                    tbMenuControl.Visible = false;
+                    VehicleListPanel.Visible = true;
+                }
+
+                // Lưu lại cấu hình
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["DefaultMainUI"].Value = newUI;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void RestartApplication()
         {
@@ -757,57 +812,73 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show($"Không thể khởi động lại ứng dụng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private async void frmInspection_Load(object sender, EventArgs e)
         {
-            await Task.Run(() =>
+            try
             {
-                opcManager = new OPCUtility();
-            });
-            this.serialNumber = txtVinNum.Text;
-            currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
-            if (currentUI == "Menu")
-            {
-                tbMenuControl.Visible = true;
-                VehicleListPanel.Visible = false;
+                await Task.Run(() =>
+                {
+                    try
+                    {
+                        opcManager = new OPCUtility();
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
+                        throw; // để bubble ra ngoài catch lớn
+                    }
+                });
+                this.serialNumber = txtVinNum.Text;
+                currentUI = ConfigurationManager.AppSettings["DefaultMainUI"] ?? "Menu";
+                if (currentUI == "Menu")
+                {
+                    tbMenuControl.Visible = true;
+                    VehicleListPanel.Visible = false;
+                }
+                else
+                {
+                    tbMenuControl.Visible = false;
+                    VehicleListPanel.Visible = true;
+                }
+                LoadAllVehicleInfo();
+                LoadVehicleInfo();
+                UpdateVehicleInfo(serialNumber);
+                StartListeningForVehicleInfo();
+                string configStation = ConfigurationManager.AppSettings["StationType"];
+
+                switch (configStation)
+                {
+                    case "Speed":
+                        stationType = StationType.Speed;
+                        break;
+
+                    case "Brake":
+                        stationType = StationType.Brake;
+                        break;
+
+                    case "Headlights":
+                        stationType = StationType.Headlights;
+                        break;
+
+                    case "Steer":
+                        stationType = StationType.Steer;
+                        break;
+
+                    default:
+                        stationType = StationType.None;
+                        break;
+                }
+
+                StartMonitoringByStationType();
             }
-            else
+            catch (Exception ex)
             {
-                tbMenuControl.Visible = false;
-                VehicleListPanel.Visible = true;
+                Logging.LogError(this, ex);
             }
-            LoadAllVehicleInfo();
-            LoadVehicleInfo();
-            UpdateVehicleInfo(serialNumber);
-            StartListeningForVehicleInfo();
-            string configStation = ConfigurationManager.AppSettings["StationType"];
-
-            switch (configStation)
-            {
-                case "Speed":
-                    stationType = StationType.Speed;
-                    break;
-
-                case "Brake":
-                    stationType = StationType.Brake;
-                    break;
-
-                case "Headlights":
-                    stationType = StationType.Headlights;
-                    break;
-
-                case "Steer":
-                    stationType = StationType.Steer;
-                    break;
-
-                default:
-                    stationType = StationType.None;
-                    break;
-            }
-
-            StartMonitoringByStationType();
         }
 
         private void dgVehicleInfo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -851,8 +922,9 @@ namespace SenAIS
                     dgVehicleInfo.Columns["Color"].HeaderText = "Màu xe";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Không tìm thấy dữ liệu danh sách xe.", "Thông báo");
             }
         }

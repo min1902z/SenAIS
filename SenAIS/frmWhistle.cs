@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -31,7 +32,6 @@ namespace SenAIS
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Whistle"], 300, this);
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
-            StartOPCListener();
         }
         private void StartOPCListener()
         {
@@ -58,13 +58,16 @@ namespace SenAIS
                             }));
                         }
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Logging.LogError(this, ex);
+                    }
 
                     await Task.Delay(100, token);
                 }
             }, token);
         }
-        private void UpdateWhistleUI(int status)
+        private async void UpdateWhistleUI(int status)
         {
             switch (status)
             {
@@ -110,7 +113,7 @@ namespace SenAIS
 
                     if (isReady)
                     {
-                        SaveDataToDatabase();
+                        await Task.Run(() => SaveDataToDatabase());
                         isReady = false;
                     }
                     isMeasuring = false;
@@ -153,28 +156,35 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                lbVinNumber.Text = this.serialNumber;
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    minWhistle = ConvertToDecimal(standard["MinWhistle"]);
-                    maxWhistle = ConvertToDecimal(standard["MaxWhistle"]);
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
+                        minWhistle = ConvertToDecimal(standard["MinWhistle"]);
+                        maxWhistle = ConvertToDecimal(standard["MaxWhistle"]);
+                    }
+                    lbStandard.Text = (minWhistle > 0 && maxWhistle > 0) ? $"{minWhistle.ToString("F1")}  -  {maxWhistle.ToString("F1")}" : "--  -  --";
                 }
-                lbStandard.Text = (minWhistle > 0 && maxWhistle > 0) ? $"{minWhistle.ToString("F1")}  -  {maxWhistle.ToString("F1")}" : "--  -  --";
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
-        private void btnNext_Click(object sender, EventArgs e)
+        private async void btnNext_Click(object sender, EventArgs e)
         {
             try
             {
                 if (isReady)
                 {
-                    SaveDataToDatabase();// Lưu dữ liệu nếu sẵn sàng
+                    await Task.Run(() => SaveDataToDatabase());
                 }
 
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
@@ -188,17 +198,18 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
-        private void btnPre_Click(object sender, EventArgs e)
+        private async void btnPre_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    await Task.Run(() => SaveDataToDatabase());
                 }
                 // Lấy SerialNumber trước đó
                 string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
@@ -213,12 +224,20 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveWhistleData(this.serialNumber, this.whistle);
+            try
+            {
+                sqlHelper.SaveWhistleData(this.serialNumber, this.whistle);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         public void ProcessMaxSoundData(byte[] data)
         {
@@ -248,29 +267,45 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi xử lý dữ liệu Còi: " + ex.Message);
             }
         }
 
         private void frmWhistle_Load(object sender, EventArgs e)
         {
-            comConnect.OpenConnection();
-            LoadVehicleStandards(serialNumber);
-            opcManager.SetOPCValue(opcWhistleCounter, 1);
+            try
+            {
+                comConnect.OpenConnection();
+                LoadVehicleStandards(serialNumber);
+                opcManager.SetOPCValue(opcWhistleCounter, 1);
+                StartOPCListener();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
         private void frmWhistle_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (opcCancellationTokenSource != null)
+            try
             {
-                opcCancellationTokenSource.Cancel();
-                opcCancellationTokenSource.Dispose();
-                opcCancellationTokenSource = null;
+                if (opcCancellationTokenSource != null)
+                {
+                    opcCancellationTokenSource.Cancel();
+                    opcCancellationTokenSource.Dispose();
+                    opcCancellationTokenSource = null;
+                }
+                comConnect.CloseConnection();
+                if (opcManager != null && opcManager.IsConnected)
+                {
+                    opcManager.DisconnectOPC();
+                }
             }
-            comConnect.CloseConnection();
-            if (opcManager != null && opcManager.IsConnected)
+            catch (Exception ex)
             {
-                opcManager.DisconnectOPC();
+                Logging.LogError(this, ex);
             }
         }
     }

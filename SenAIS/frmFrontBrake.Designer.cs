@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFrontBrake));
             this.FBrakePanel = new System.Windows.Forms.Panel();
+            this.cbSensor = new System.Windows.Forms.CheckBox();
             this.cbBrake = new System.Windows.Forms.CheckBox();
             this.tbRight = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPre = new System.Windows.Forms.Button();
             this.lbBrakeTitle = new System.Windows.Forms.Label();
-            this.cbSensor = new System.Windows.Forms.CheckBox();
             this.FBrakePanel.SuspendLayout();
             this.tbRight.SuspendLayout();
             this.tbLeft.SuspendLayout();
@@ -70,6 +70,23 @@
             this.FBrakePanel.Name = "FBrakePanel";
             this.FBrakePanel.Size = new System.Drawing.Size(1827, 922);
             this.FBrakePanel.TabIndex = 1;
+            // 
+            // cbSensor
+            // 
+            this.cbSensor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSensor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbSensor.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.cbSensor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSensor.BackgroundImage")));
+            this.cbSensor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cbSensor.Checked = true;
+            this.cbSensor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSensor.Enabled = false;
+            this.cbSensor.Location = new System.Drawing.Point(1663, 13);
+            this.cbSensor.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSensor.Name = "cbSensor";
+            this.cbSensor.Size = new System.Drawing.Size(148, 108);
+            this.cbSensor.TabIndex = 54;
+            this.cbSensor.UseVisualStyleBackColor = false;
             // 
             // cbBrake
             // 
@@ -115,10 +132,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(767, 79);
+            this.label3.Location = new System.Drawing.Point(799, 63);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 146);
+            this.label3.Size = new System.Drawing.Size(120, 118);
             this.label3.TabIndex = 7;
             this.label3.Text = "Phải \r\n(N)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,7 +149,7 @@
             this.lbRight_Brake.Location = new System.Drawing.Point(4, 0);
             this.lbRight_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbRight_Brake.Name = "lbRight_Brake";
-            this.lbRight_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbRight_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbRight_Brake.TabIndex = 9;
             this.lbRight_Brake.Text = "0.0";
             this.lbRight_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -146,7 +163,7 @@
             this.lbDiff_Brake.Location = new System.Drawing.Point(4, 339);
             this.lbDiff_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDiff_Brake.Name = "lbDiff_Brake";
-            this.lbDiff_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbDiff_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbDiff_Brake.TabIndex = 10;
             this.lbDiff_Brake.Text = "0.0";
             this.lbDiff_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -157,10 +174,10 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label7.Location = new System.Drawing.Point(676, 419);
+            this.label7.Location = new System.Drawing.Point(727, 402);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(243, 146);
+            this.label7.Size = new System.Drawing.Size(192, 118);
             this.label7.TabIndex = 11;
             this.label7.Text = "Sai Lệch \r\n(%)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,10 +209,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(4, 79);
+            this.label2.Location = new System.Drawing.Point(4, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 146);
+            this.label2.Size = new System.Drawing.Size(95, 118);
             this.label2.TabIndex = 6;
             this.label2.Text = "Trái\r\n(N)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -206,10 +223,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label8.Location = new System.Drawing.Point(4, 419);
+            this.label8.Location = new System.Drawing.Point(4, 402);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(162, 146);
+            this.label8.Size = new System.Drawing.Size(128, 118);
             this.label8.TabIndex = 31;
             this.label8.Text = "Tổng \r\n(N)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -220,10 +237,10 @@
             this.lbSum_Brake.AutoSize = true;
             this.lbSum_Brake.Font = new System.Drawing.Font("Calibri", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSum_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbSum_Brake.Location = new System.Drawing.Point(174, 370);
+            this.lbSum_Brake.Location = new System.Drawing.Point(140, 364);
             this.lbSum_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSum_Brake.Name = "lbSum_Brake";
-            this.lbSum_Brake.Size = new System.Drawing.Size(357, 244);
+            this.lbSum_Brake.Size = new System.Drawing.Size(287, 195);
             this.lbSum_Brake.TabIndex = 13;
             this.lbSum_Brake.Text = "0.0";
             this.lbSum_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,10 +251,10 @@
             this.lbLeft_Brake.AutoSize = true;
             this.lbLeft_Brake.Font = new System.Drawing.Font("Calibri", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLeft_Brake.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbLeft_Brake.Location = new System.Drawing.Point(174, 0);
+            this.lbLeft_Brake.Location = new System.Drawing.Point(140, 0);
             this.lbLeft_Brake.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbLeft_Brake.Name = "lbLeft_Brake";
-            this.lbLeft_Brake.Size = new System.Drawing.Size(449, 305);
+            this.lbLeft_Brake.Size = new System.Drawing.Size(357, 244);
             this.lbLeft_Brake.TabIndex = 8;
             this.lbLeft_Brake.Text = "0.0";
             this.lbLeft_Brake.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -250,7 +267,7 @@
             this.lbVinNumber.Location = new System.Drawing.Point(172, -12);
             this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
-            this.lbVinNumber.Size = new System.Drawing.Size(418, 164);
+            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
             this.lbVinNumber.TabIndex = 50;
             this.lbVinNumber.Text = "Số Vin";
             // 
@@ -308,27 +325,10 @@
             this.lbBrakeTitle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbBrakeTitle.Location = new System.Drawing.Point(157, 353);
             this.lbBrakeTitle.Name = "lbBrakeTitle";
-            this.lbBrakeTitle.Size = new System.Drawing.Size(1450, 204);
+            this.lbBrakeTitle.Size = new System.Drawing.Size(1158, 163);
             this.lbBrakeTitle.TabIndex = 36;
             this.lbBrakeTitle.Text = "LỰC PHANH TRƯỚC";
             this.lbBrakeTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cbSensor
-            // 
-            this.cbSensor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbSensor.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbSensor.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.cbSensor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cbSensor.BackgroundImage")));
-            this.cbSensor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.cbSensor.Checked = true;
-            this.cbSensor.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSensor.Enabled = false;
-            this.cbSensor.Location = new System.Drawing.Point(1663, 13);
-            this.cbSensor.Margin = new System.Windows.Forms.Padding(4);
-            this.cbSensor.Name = "cbSensor";
-            this.cbSensor.Size = new System.Drawing.Size(148, 108);
-            this.cbSensor.TabIndex = 54;
-            this.cbSensor.UseVisualStyleBackColor = false;
             // 
             // frmFrontBrake
             // 
@@ -344,6 +344,7 @@
             this.Text = "Lực Phanh Trước";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFrontBrake_FormClosing);
+            this.Load += new System.EventHandler(this.frmFrontBrake_Load);
             this.FBrakePanel.ResumeLayout(false);
             this.FBrakePanel.PerformLayout();
             this.tbRight.ResumeLayout(false);

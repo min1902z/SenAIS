@@ -104,7 +104,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(1377, 911);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(341, 146);
+            this.label1.Size = new System.Drawing.Size(273, 117);
             this.label1.TabIndex = 55;
             this.label1.Text = "Km/h";
             // 
@@ -116,7 +116,7 @@
             this.lbStandard.ForeColor = System.Drawing.Color.DarkRed;
             this.lbStandard.Location = new System.Drawing.Point(701, 948);
             this.lbStandard.Name = "lbStandard";
-            this.lbStandard.Size = new System.Drawing.Size(239, 97);
+            this.lbStandard.Size = new System.Drawing.Size(189, 78);
             this.lbStandard.TabIndex = 54;
             this.lbStandard.Text = "--  -  --";
             // 
@@ -128,7 +128,7 @@
             this.lbStandardTitle.ForeColor = System.Drawing.Color.DarkRed;
             this.lbStandardTitle.Location = new System.Drawing.Point(199, 948);
             this.lbStandardTitle.Name = "lbStandardTitle";
-            this.lbStandardTitle.Size = new System.Drawing.Size(454, 97);
+            this.lbStandardTitle.Size = new System.Drawing.Size(361, 78);
             this.lbStandardTitle.TabIndex = 53;
             this.lbStandardTitle.Text = "Tiêu Chuẩn: ";
             // 
@@ -140,7 +140,7 @@
             this.lbVinNumber.Location = new System.Drawing.Point(168, -15);
             this.lbVinNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbVinNumber.Name = "lbVinNumber";
-            this.lbVinNumber.Size = new System.Drawing.Size(418, 164);
+            this.lbVinNumber.Size = new System.Drawing.Size(334, 131);
             this.lbVinNumber.TabIndex = 50;
             this.lbVinNumber.Text = "Số Vin";
             // 
@@ -230,6 +230,7 @@
             this.Text = "Tốc Độ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSpeed_FormClosing);
+            this.Load += new System.EventHandler(this.frmSpeed_Load);
             this.SpeedPanel.ResumeLayout(false);
             this.SpeedPanel.PerformLayout();
             this.ResumeLayout(false);

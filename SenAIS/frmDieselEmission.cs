@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -40,7 +41,6 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(comDieselEmission, 9600, this);
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
         }
         private async Task StartDieselEmissionProcess(CancellationToken cancellationToken)
         {
@@ -103,18 +103,20 @@ namespace SenAIS
                 if (currentDataRequest > 3)
                 {
                     CalculateAverages();
-                    SaveDataToDatabase();
+                    await Task.Run(() => SaveDataToDatabase());
                     lbNotice.Text = "Quá trình lưu dữ liệu hoàn tất.";
                     await Task.Delay(3000, cancellationToken);
                     NextVin();
                 }
             }
-            catch (TaskCanceledException)
+            catch (TaskCanceledException ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Quá trình đo đã bị hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show($"Lỗi trong quá trình đo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -144,75 +146,102 @@ namespace SenAIS
         }
         public void ProcessNHT6Data(byte[] data)
         {
-            if (data[0] == 0xA5)
+            try
             {
-                opacity = ((data[1] << 8) + data[2]) / 10.0m; // Opacity chia 10
-                lightAbsorption = ((data[3] << 8) + data[4]) / 100.0m; // Light absorption chia 100
-                lastRpm = (data[5] << 8) + data[6]; // Lưu tạm tốc độ
-                int oilTempRaw = (data[7] << 8) + data[8];
-                oilTemperature = (oilTempRaw == 0xFFFF) ? "--" : oilTempRaw.ToString();
+                if (data[0] == 0xA5)
+                {
+                    opacity = ((data[1] << 8) + data[2]) / 10.0m; // Opacity chia 10
+                    lightAbsorption = ((data[3] << 8) + data[4]) / 100.0m; // Light absorption chia 100
+                    lastRpm = (data[5] << 8) + data[6]; // Lưu tạm tốc độ
+                    int oilTempRaw = (data[7] << 8) + data[8];
+                    oilTemperature = (oilTempRaw == 0xFFFF) ? "--" : oilTempRaw.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         public void ProcessNHT6MaxData(byte[] data)
         {
-            if (data[0] == 0xA6)
+            try
             {
-                lastMaxSpeed = (data[5] << 8) + data[6]; // Lưu tạm tốc độ tối đa
+                if (data[0] == 0xA6)
+                {
+                    lastMaxSpeed = (data[5] << 8) + data[6]; // Lưu tạm tốc độ tối đa
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private void ConfirmMeasurement()
         {
-            this.Invoke(new Action(() =>
+            try
             {
-                if (currentDataRequest == 1)
+                this.Invoke(new Action(() =>
                 {
-                    minSpeed1 = lastRpm;
-                    maxSpeed1 = Math.Max(lastRpm, lastMaxSpeed); // Đảm bảo max >= min
-                    hsu1 = opacity;
-                    hsu1 = (decimal)Math.Max(0.01, Math.Round((double)hsu1, 2));
-                }
-                else if (currentDataRequest == 2)
-                {
-                    minSpeed2 = lastRpm;
-                    maxSpeed2 = Math.Max(lastRpm, lastMaxSpeed);
-                    hsu2 = opacity;
-                    hsu2 = (decimal)Math.Max(0.01, Math.Round((double)hsu2, 2));
-                }
-                else if (currentDataRequest == 3)
-                {
-                    minSpeed3 = lastRpm;
-                    maxSpeed3 = Math.Max(lastRpm, lastMaxSpeed);
-                    hsu3 = opacity;
-                    hsu3 = (decimal)Math.Max(0.01, Math.Round((double)hsu3, 2));
-                }
-
-                UpdateUI(currentDataRequest);
-            }));
+                    if (currentDataRequest == 1)
+                    {
+                        minSpeed1 = lastRpm;
+                        maxSpeed1 = Math.Max(lastRpm, lastMaxSpeed); // Đảm bảo max >= min
+                        hsu1 = opacity;
+                        hsu1 = (decimal)Math.Max(0.01, Math.Round((double)hsu1, 2));
+                    }
+                    else if (currentDataRequest == 2)
+                    {
+                        minSpeed2 = lastRpm;
+                        maxSpeed2 = Math.Max(lastRpm, lastMaxSpeed);
+                        hsu2 = opacity;
+                        hsu2 = (decimal)Math.Max(0.01, Math.Round((double)hsu2, 2));
+                    }
+                    else if (currentDataRequest == 3)
+                    {
+                        minSpeed3 = lastRpm;
+                        maxSpeed3 = Math.Max(lastRpm, lastMaxSpeed);
+                        hsu3 = opacity;
+                        hsu3 = (decimal)Math.Max(0.01, Math.Round((double)hsu3, 2));
+                    }
+                    UpdateUI(currentDataRequest);
+                }));
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void UpdateUI(int measurementStep)
         {
-            switch (measurementStep)
+            try
             {
-                case 1:
-                    if (maxSpeed1 < minSpeed1) maxSpeed1 = minSpeed1;
-                    lbMinSpeed1.Text = minSpeed1.ToString("F0");
-                    lbMaxSpeed1.Text = maxSpeed1.ToString("F0");
-                    lbHSU1.Text = hsu1.ToString("F2");
-                    break;
+                switch (measurementStep)
+                {
+                    case 1:
+                        if (maxSpeed1 < minSpeed1) maxSpeed1 = minSpeed1;
+                        lbMinSpeed1.Text = minSpeed1.ToString("F0");
+                        lbMaxSpeed1.Text = maxSpeed1.ToString("F0");
+                        lbHSU1.Text = hsu1.ToString("F2");
+                        break;
 
-                case 2:
-                    maxSpeed2 = Math.Max(maxSpeed2, Math.Max(maxSpeed1, minSpeed2));
-                    lbMinSpeed2.Text = minSpeed2.ToString("F0");
-                    lbMaxSpeed2.Text = maxSpeed2.ToString("F0");
-                    lbHSU2.Text = hsu2.ToString("F2");
-                    break;
+                    case 2:
+                        maxSpeed2 = Math.Max(maxSpeed2, Math.Max(maxSpeed1, minSpeed2));
+                        lbMinSpeed2.Text = minSpeed2.ToString("F0");
+                        lbMaxSpeed2.Text = maxSpeed2.ToString("F0");
+                        lbHSU2.Text = hsu2.ToString("F2");
+                        break;
 
-                case 3:
-                    maxSpeed3 = Math.Max(maxSpeed3, Math.Max(maxSpeed2, minSpeed3));
-                    lbMinSpeed3.Text = minSpeed3.ToString("F0");
-                    lbMaxSpeed3.Text = maxSpeed3.ToString("F0");
-                    lbHSU3.Text = hsu3.ToString("F2");
-                    break;
+                    case 3:
+                        maxSpeed3 = Math.Max(maxSpeed3, Math.Max(maxSpeed2, minSpeed3));
+                        lbMinSpeed3.Text = minSpeed3.ToString("F0");
+                        lbMaxSpeed3.Text = maxSpeed3.ToString("F0");
+                        lbHSU3.Text = hsu3.ToString("F2");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private void UpdateTitle(string message)
@@ -260,16 +289,23 @@ namespace SenAIS
         }
         private void LoadVehicleStandards(string serialNumber)
         {
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    maxHsu = ConvertToDecimal(standard["MaxHSU"]);
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
+                        maxHsu = ConvertToDecimal(standard["MaxHSU"]);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
             }
         }
         private void btnPre_Click(object sender, EventArgs e)
@@ -288,6 +324,7 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
@@ -305,26 +342,43 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
             }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveDieselEmissionData(this.serialNumber, minSpeed1, maxSpeed1, hsu1, minSpeed2, maxSpeed2, hsu2, minSpeed3, maxSpeed3, hsu3);
+            try
+            {
+                sqlHelper.SaveDieselEmissionData(this.serialNumber, minSpeed1, maxSpeed1, hsu1, minSpeed2, maxSpeed2, hsu2, minSpeed3, maxSpeed3, hsu3);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private async void frmDieselEmission_LoadAsync(object sender, EventArgs e)
         {
-            lbVinNumber.Text = this.serialNumber;
-            comConnect.OpenConnection();
-            if (comConnect.IsConnected())
+            try
             {
-                cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
-                cts = new CancellationTokenSource();
-                await StartDieselEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+                lbVinNumber.Text = this.serialNumber;
+                LoadVehicleStandards(serialNumber);
+                comConnect.OpenConnection();
+                if (comConnect.IsConnected())
+                {
+                    cbReady.BackColor = Color.Green;
+                    cts = new CancellationTokenSource();
+                    await StartDieselEmissionProcess(cts.Token);
+                }
+                else
+                {
+                    cbReady.BackColor = SystemColors.Control;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+                Logging.LogError(this, ex);
+                MessageBox.Show("Lỗi khi khởi tạo đo khí thải: " + ex.Message);
             }
         }
         private byte CalculateCheckCode(byte command)
@@ -334,15 +388,29 @@ namespace SenAIS
         }
         private void frmDieselEmission_FormClosing(object sender, FormClosingEventArgs e)
         {
-            cts?.Cancel();
-            comConnect.CloseConnection();
+            try
+            {
+                cts?.Cancel();
+                comConnect?.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
         private async void btnReMeasure_Click(object sender, EventArgs e)
         {
-            ResetToDefault();
-            cts = new CancellationTokenSource();
-            await StartDieselEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+            try
+            {
+                ResetToDefault();
+                cts = new CancellationTokenSource();
+                await StartDieselEmissionProcess(cts.Token); // Bắt đầu quá trình đo
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

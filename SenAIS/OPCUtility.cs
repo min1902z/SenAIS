@@ -1,4 +1,5 @@
 ﻿using OPCAutomation;
+using SenAIS.Logger;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -63,6 +64,7 @@ namespace SenAIS
                 isConnected = false;
                 if (!opcErrorShown)
                 {
+                    Logging.LogError(this, ex);
                     MessageBox.Show($"Không thể kết nối OPC server: {ex.Message}", "Lỗi OPC", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     opcErrorShown = true;
                 }
@@ -81,8 +83,9 @@ namespace SenAIS
                     opcGroup.OPCItems.AddItem(itemName, clientHandle);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
             }
         }
         public void DisconnectOPC()
@@ -106,6 +109,7 @@ namespace SenAIS
             }
             catch (Exception ex)
             {
+                Logging.LogError(this, ex);
                 MessageBox.Show($"Lỗi khi ngắt kết nối OPC: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -126,6 +130,7 @@ namespace SenAIS
                 }
                 catch (Exception ex)
                 {
+                    Logging.LogError(this, ex);
                     throw new Exception($"Không thêm được OPC item {itemName}: {ex.Message}");
                 }
             }
@@ -144,6 +149,7 @@ namespace SenAIS
                 if (!opcErrorShown)
                 {
                     opcErrorShown = true;
+                    Logging.LogError(this, ex);
                     MessageBox.Show($"Đọc giá trị OPC item {opcItem} thất bại: {ex.Message}");
                 }
                 return 0; // Giá trị mặc định
@@ -160,6 +166,7 @@ namespace SenAIS
             {
                 if (!opcErrorShown)
                 {
+                    Logging.LogError(this, ex);
                     MessageBox.Show($"Ghi giá trị OPC item {opcItem} thất bại: {ex.Message}");
                     opcErrorShown = true;
                 }
@@ -174,8 +181,9 @@ namespace SenAIS
                 {
                     result[item] = GetOPCValue(item);
                 }
-                catch
+                catch(Exception ex)
                 {
+                    Logging.LogError(this, ex);
                     result[item] = -1; // Trả về giá trị mặc định khi lỗi
                 }
             }

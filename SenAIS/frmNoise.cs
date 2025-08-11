@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -23,13 +24,10 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             comConnect = new COMConnect(ConfigurationManager.AppSettings["COM_Noise"], 300, this);
             sqlHelper = new SQLHelper();
-            LoadVehicleStandards(serialNumber);
-
         }
-        private async void StartMeasurementProcess()
+        private async Task StartMeasurementProcess()
         {
             int measurementDelay;
-
             // Đọc thời gian từ App.config, nếu không có thì mặc định là 10 giây
             if (!int.TryParse(ConfigurationManager.AppSettings["NoiseMeasurementDelay"], out measurementDelay))
             {
@@ -39,12 +37,12 @@ namespace SenAIS
             await Task.Delay(3000); // Quãng nghỉ 3 giây trước khi bắt đầu đo
 
             lbNoiseTitle.Text = "Chuẩn bị quá trình đo...";
-            await Task.Delay(5000); // Đợi 10 giây trước khi gửi lệnh đo
+            await Task.Delay(5000);
 
             lbNoise.Visible = true;
             isMeasuring = true;
             byte[] startCommand = { 0xB8 };
-            comConnect.SendRequest(startCommand);
+            await Task.Run(() => comConnect.SendRequest(startCommand)); // COM chạy thread phụ
             lbEnd.Visible = true;
             lbEnd.Text = "Bắt đầu";
             for (int countdown = measurementDelay; countdown >= 0; countdown--)
@@ -55,7 +53,7 @@ namespace SenAIS
 
             isMeasuring = false;
             lbEnd.Text = "Kết thúc";
-            SaveDataToDatabase();
+            await Task.Run(() => SaveDataToDatabase()); // DB chạy thread phụ
             await Task.Delay(2000);
             NextVin();
         }
@@ -93,14 +91,14 @@ namespace SenAIS
         {
             return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
         }
-        private void LoadVehicleStandards(string serialNumber)
+        private async Task LoadVehicleStandards(string serialNumber)
         {
             lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
+            var vehicleDetails = await Task.Run(() => sqlHelper.GetVehicleDetails(serialNumber));
             if (vehicleDetails != null)
             {
                 string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
+                var vehicleStandards = await Task.Run(() => sqlHelper.GetVehicleStandardsByTypeCar(vehicleType));
                 if (vehicleStandards.Rows.Count > 0)
                 {
                     DataRow standard = vehicleStandards.Rows[0];
@@ -109,7 +107,7 @@ namespace SenAIS
                 }
             }
         }
-        private void btnPre_Click(object sender, EventArgs e)
+        private async void btnPre_Click(object sender, EventArgs e)
         {
             try
             {
@@ -120,15 +118,15 @@ namespace SenAIS
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    LoadVehicleStandards(serialNumber);
+                    await LoadVehicleStandards(serialNumber);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
+                Logging.LogError(this, ex);
             }
         }
-        private void btnNext_Click(object sender, EventArgs e)
+        private async void btnNext_Click(object sender, EventArgs e)
         {
             try
             {
@@ -137,17 +135,24 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
-                    LoadVehicleStandards(serialNumber);
+                    await LoadVehicleStandards(serialNumber);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
+                Logging.LogError(this, ex);
             }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveNoiseData(this.serialNumber, this.noiseValue);
+            try
+            {
+                sqlHelper.SaveNoiseData(serialNumber, noiseValue);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         public void ProcessNoiseData(byte[] data)
         {
@@ -160,7 +165,7 @@ namespace SenAIS
 
                     if (double.TryParse(soundLevelString, out double soundLevel))
                     {
-                        this.Invoke(new Action(() =>
+                        this.BeginInvoke(new Action(() =>
                         {
                             if (isMeasuring) // Chỉ cập nhật UI nếu còn trong quá trình đo
                             {
@@ -173,33 +178,56 @@ namespace SenAIS
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
             }
         }
-        private void frmNoise_Load(object sender, EventArgs e)
+        private async  void frmNoise_Load(object sender, EventArgs e)
         {
-            lbVinNumber.Text = this.serialNumber;
-            comConnect.OpenConnection();
-            if (comConnect.IsConnected())
+            try
             {
-                cbReady.BackColor = Color.Green; // Đèn xanh nếu kết nối thành công
-                StartMeasurementProcess();
+                lbVinNumber.Text = this.serialNumber;
+                await LoadVehicleStandards(serialNumber);
+                bool connected = await Task.Run(() =>
+                {
+                    comConnect.OpenConnection();
+                    return comConnect.IsConnected();
+                });
+
+                cbReady.BackColor = connected ? Color.Green : SystemColors.Control;
+
+                if (connected)
+                    await StartMeasurementProcess();
             }
-            else
+            catch (Exception ex)
             {
-                cbReady.BackColor = SystemColors.Control; // Màu mặc định nếu không kết nối
+                Logging.LogError(this, ex);
             }
         }
         private void frmNoise_FormClosing(object sender, FormClosingEventArgs e)
         {
-            comConnect.CloseConnection();
+            try
+            {
+                comConnect?.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
-        private void btnReMeasure_Click(object sender, EventArgs e)
+        private async void btnReMeasure_Click(object sender, EventArgs e)
         {
-            ResetToDefault();
-            StartMeasurementProcess();
+            try
+            {
+                ResetToDefault();
+                await StartMeasurementProcess();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

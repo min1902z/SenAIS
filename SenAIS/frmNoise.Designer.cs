@@ -232,7 +232,7 @@
             this.lbNoiseTitle.Name = "lbNoiseTitle";
             this.lbNoiseTitle.Size = new System.Drawing.Size(1880, 456);
             this.lbNoiseTitle.TabIndex = 20;
-            this.lbNoiseTitle.Text = "ĐỘ ỒN";
+            this.lbNoiseTitle.Text = "Độ Ồn";
             this.lbNoiseTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frmNoise

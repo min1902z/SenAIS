@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -31,7 +32,6 @@ namespace SenAIS
             this.serialNumber = serialNumber;
             sqlHelper = new SQLHelper();
             opcManager = new OPCUtility();
-            StartListening();
         }
         private void StartListening()
         {
@@ -45,21 +45,25 @@ namespace SenAIS
                     try
                     {
                         int checkStatus = (int)opcManager.GetOPCValue(opcSSCounter);
-                        this.Invoke((Action)(() => UpdateUI(checkStatus))); // Cập nhật UI từ Thread chính
+                        if (!this.IsDisposed && this.IsHandleCreated)
+                        {
+                            this.BeginInvoke((Action)(() => UpdateUI(checkStatus)));
+                        }
 
                         if (checkStatus == 2) // Chỉ lấy SideSlip khi counter == 2
                         {
                             UpdateSideSlip();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        Logging.LogError(this, ex);
                     }
                     await Task.Delay(100, token); // Giảm trễ xuống 100ms để cập nhật nhanh hơn
                 }
             }, token);
         }
-        private void UpdateUI(int checkStatus)
+        private  async void UpdateUI(int checkStatus)
         {
             switch (checkStatus)
             {
@@ -88,7 +92,7 @@ namespace SenAIS
                     lbEnd.Visible = true;
                     if (isReady)
                     {
-                        SaveDataToDatabase();
+                        await Task.Run(() => SaveDataToDatabase());
                         isReady = false;
                     }
                     break;
@@ -123,21 +127,27 @@ namespace SenAIS
                 double sideSlipResult = (double)opcManager.GetOPCValue(opcSSResult);
                 double sideSlip = (sideSlipSign == 0) ? (sideSlipResult / alignA) : (-1 * (sideSlipResult / alignA));
 
-                this.Invoke((Action)(() =>
+                if (!this.IsDisposed && this.IsHandleCreated)
                 {
-                    lbSideSlip.Text = sideSlip.ToString("F1");
-                    this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
+                    this.BeginInvoke((Action)(() =>
+                    {
+                        lbSideSlip.Text = sideSlip.ToString("F1");
+                        this.sideSlip = Convert.ToDecimal(sideSlip.ToString("F1"));
 
-                    bool isValueInStandard = this.sideSlip >= minSideSlip && (maxSideSlip == 0 || this.sideSlip <= maxSideSlip);
-                    lbSideSlip.ForeColor = isValueInStandard ? Color.Blue : Color.DarkRed;
-                }));
+                        bool isValueInStandard = this.sideSlip >= minSideSlip && (maxSideSlip == 0 || this.sideSlip <= maxSideSlip);
+                        lbSideSlip.ForeColor = isValueInStandard ? Color.Blue : Color.DarkRed;
+                    }));
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logging.LogError(this, ex);
             }
         }
         private void NextVin()
         {
+            try
+            {
                 string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
 
                 if (!(Application.OpenForms.OfType<frmInspection>().FirstOrDefault() is frmInspection frmMain))
@@ -150,7 +160,6 @@ namespace SenAIS
                 {
                     this.serialNumber = nextSerialNumber;
                     lbVinNumber.Text = this.serialNumber;
-
                     txtVinNum.Text = this.serialNumber;
                     frmMain.UpdateVehicleInfo(this.serialNumber);
                 }
@@ -159,99 +168,131 @@ namespace SenAIS
                     txtVinNum.Text = string.Empty;
                 }
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private decimal ConvertToDecimal(object value)
         {
             return value == DBNull.Value ? 0 : Convert.ToDecimal(value);
         }
-        private void LoadVehicleStandards(string serialNumber)
+        private async Task LoadVehicleStandards(string serialNumber)
         {
-            lbVinNumber.Text = this.serialNumber;
-            DataRow vehicleDetails = sqlHelper.GetVehicleDetails(serialNumber);
-            if (vehicleDetails != null)
+            try
             {
-                string vehicleType = vehicleDetails["VehicleType"].ToString();
-                DataTable vehicleStandards = sqlHelper.GetVehicleStandardsByTypeCar(vehicleType);
-                if (vehicleStandards.Rows.Count > 0)
+                lbVinNumber.Text = this.serialNumber;
+                DataRow vehicleDetails = await Task.Run(() => sqlHelper.GetVehicleDetails(serialNumber));
+                if (vehicleDetails != null)
                 {
-                    DataRow standard = vehicleStandards.Rows[0];
-                    minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
-                    maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
+                    string vehicleType = vehicleDetails["VehicleType"].ToString();
+                    DataTable vehicleStandards = await Task.Run(() => sqlHelper.GetVehicleStandardsByTypeCar(vehicleType));
+                    if (vehicleStandards.Rows.Count > 0)
+                    {
+                        DataRow standard = vehicleStandards.Rows[0];
+                        minSideSlip = ConvertToDecimal(standard["MinSideSlip"]);
+                        maxSideSlip = ConvertToDecimal(standard["MaxSideSlip"]);
+                    }
+                    lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip:F1}]  -  [{maxSideSlip:F1}]" : "--  -  --";
                 }
-                lbStandard.Text = (minSideSlip != 0 && maxSideSlip != 0) ? $"[{minSideSlip.ToString("F1")}]  -  [{maxSideSlip.ToString("F1")}]" : "--  -  --";
+                this.alignA = await Task.Run(() => sqlHelper.GetParaValue("SideSlip", "ParaA"));
             }
-            this.alignA = sqlHelper.GetParaValue("SideSlip", "ParaA");
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
-        private void btnPre_Click(object sender, EventArgs e)
+        private async void btnPre_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lưu dữ liệu hiện tại
                 if (isReady)
                 {
-                    SaveDataToDatabase(); // Lưu DB nếu đèn xanh và CP xác nhận lưu
+                    await Task.Run(() => SaveDataToDatabase());
                 }
                 // Lấy SerialNumber trước đó
-                string previousSerialNumber = sqlHelper.GetPreviousSerialNumber(this.serialNumber);
+                string previousSerialNumber = await Task.Run(() => sqlHelper.GetPreviousSerialNumber(this.serialNumber));
                 if (!string.IsNullOrEmpty(previousSerialNumber))
                 {
                     // Cập nhật serialNumber mới
                     this.serialNumber = previousSerialNumber;
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
-                    LoadVehicleStandards(serialNumber);
+                    await LoadVehicleStandards(serialNumber);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
+                Logging.LogError(this, ex);
             }
         }
-        private void btnNext_Click(object sender, EventArgs e)
+        private async void btnNext_Click(object sender, EventArgs e)
         {
             try
             {
                 if (isReady)
                 {
-                    SaveDataToDatabase(); // Lưu dữ liệu nếu sẵn sàng
+                    await Task.Run(() => SaveDataToDatabase());
                 }
 
-                string nextSerialNumber = sqlHelper.GetNextSerialNumber(this.serialNumber);
+                string nextSerialNumber = await Task.Run(() => sqlHelper.GetNextSerialNumber(this.serialNumber));
                 if (!string.IsNullOrEmpty(nextSerialNumber))
                 {
                     this.serialNumber = nextSerialNumber; // Cập nhật serial number
                     lbVinNumber.Text = this.serialNumber; // Hiển thị serial number mới
                     isReady = false; // Đặt lại trạng thái
-                    LoadVehicleStandards(serialNumber);
+                    await LoadVehicleStandards(serialNumber);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thay đổi Số Máy: " + ex.Message);
+                Logging.LogError(this, ex);
             }
         }
         private void SaveDataToDatabase()
         {
-            sqlHelper.SaveSideSlipData(this.serialNumber, this.sideSlip);
+            try
+            {
+                sqlHelper.SaveSideSlipData(this.serialNumber, this.sideSlip);
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
         private void frmSideSlip_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (opcCancellationTokenSource != null)
+            try
             {
-                opcCancellationTokenSource.Cancel();
-                opcCancellationTokenSource.Dispose();
+                opcCancellationTokenSource?.Cancel();
+                opcCancellationTokenSource?.Dispose();
                 opcCancellationTokenSource = null;
+
+                if (opcManager != null && opcManager.IsConnected)
+                {
+                    opcManager.DisconnectOPC();
+                }
             }
-            if (opcManager != null && opcManager.IsConnected)
+            catch (Exception ex)
             {
-                opcManager.DisconnectOPC();
+                Logging.LogError(this, ex);
             }
         }
 
-        private void frmSideSlip_Load(object sender, EventArgs e)
+        private async void frmSideSlip_Load(object sender, EventArgs e)
         {
-            LoadVehicleStandards(serialNumber);
-            opcManager.SetOPCValue(opcSSCounter, 1);
+            try
+            {
+                await LoadVehicleStandards(serialNumber);
+                opcManager.SetOPCValue(opcSSCounter, 1);
+                StartListening();
+            }
+            catch (Exception ex)
+            {
+                Logging.LogError(this, ex);
+            }
         }
     }
 }
