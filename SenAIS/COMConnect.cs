@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SenAIS.Logger;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -311,7 +312,15 @@ namespace SenAIS
         {
             if (serialPort.IsOpen)
             {
-                serialPort.Write(request, 0, request.Length);
+                try
+                {
+                    serialPort.WriteTimeout = 1000; // 1 giây
+                    serialPort.Write(request, 0, request.Length);
+                }
+                catch (TimeoutException)
+                {
+                    Logging.LogError(this, "SendRequest: Timeout khi gửi dữ liệu COM.");
+                }
             }
         }
         public bool IsConnected()

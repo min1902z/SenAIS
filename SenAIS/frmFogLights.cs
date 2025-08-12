@@ -75,7 +75,7 @@ namespace SenAIS
                     if (!autoTestCheck)
                     {
                         byte[] autoTest = { 0x41 };
-                        await Task.Run(() => comConnect.SendRequest(autoTest)); // COM chạy thread phụ
+                        comConnect.SendRequest(autoTest);
                         autoTestCheck = true;
                     }
                     bool hasCollected = false;
@@ -96,30 +96,37 @@ namespace SenAIS
                     var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(timeoutMinutes));
                     using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(token, timeoutCts.Token))
                     {
-                        while (!isDataCollected && !linkedCts.Token.IsCancellationRequested)
+                        try
                         {
-                            await Task.Delay(1000, linkedCts.Token);
+                            while (!isDataCollected && !linkedCts.Token.IsCancellationRequested)
+                            {
+                                await Task.Delay(1000, linkedCts.Token);
+                            }
+                        }
+                        catch (TaskCanceledException)
+                        {
+                            // Timeout hoặc form đóng
                         }
                         hasCollected = isDataCollected;
+                        if (linkedCts.IsCancellationRequested && !hasCollected)
+                        {
+                            if (this.IsHandleCreated && !this.IsDisposed)
+                            {
+                                this.BeginInvoke((Action)(() => this.Close()));
+                                return;
+                            }
+                        }
                         if (hasCollected)
                         {
-                            await Task.Run(() => SaveDataToDatabase()); // DB chạy thread phụ
-                            await Task.Delay(5000, token); // Nghỉ 5s sau khi lưu
+                            await Task.Run(() => SaveDataToDatabase(), linkedCts.Token); // DB chạy thread phụ
+                            await Task.Delay(5000, linkedCts.Token); // Nghỉ 5s sau khi lưu
 
                             if (this.IsHandleCreated && !this.IsDisposed)
                             {
                                 this.BeginInvoke((Action)(() => MoveToNextCar()));
                             }
                         }
-                        else
-                        {
-                            if (this.IsHandleCreated && !this.IsDisposed)
-                            {
-                                this.BeginInvoke((Action)(() => this.Close()));
-                            }
-                        }
                     }
-
                 }
                 catch (TaskCanceledException ex)
                 {
